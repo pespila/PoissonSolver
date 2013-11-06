@@ -1,0 +1,258 @@
+\documentclass[a4paper]{letter}
+\usepackage[latin1]{inputenc}
+\usepackage{ngerman}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{scrextend}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% \setlength{\textwidth}{14cm}
+% \setlength{\oddsidemargin}{0mm}
+% \setlength{\evensidemargin}{0mm}
+% \setlength{\unitlength}{1mm}
+% \setlength{\textheight}{22cm}
+% \setlength{\voffset}{0cm}
+
+\begin{document}
+
+\begin{center}
+	\underline{
+		\textbf{
+			\large{
+				Das Verfahren der konjugierten Gradienten
+			}
+		}
+	}
+\end{center}
+
+\begin{center}
+Michael Bauer, 11. November 2013
+\end{center}
+
+\parskip 5pt
+
+\underline{Motivation:}
+\\L\"ose ein Gleichungssystem $Ax = b$, wobei $A\in\mathbb{R}^{n}$ s.p.d., $x, b\in\mathbb{R}^{n}$ und n sehr gro{\ss}.
+
+\parskip 12pt
+
+\underline{Definition 1.1} (A-orthogonal)
+\\Sei $A$ eine symmetrische, nicht singul\"are (invertierbare) Matrix. Zwei Vektoren $x$ und $y$ hei{\ss}en \underline{\textbf{konjugiert}} oder \underline{\textbf{A-orthogonal}},
+wenn $x^{T}Ay = 0$ ist.
+\\\\\underline{Bemerkung:}
+\\$\cdot$ Es definiert $\langle x,y \rangle _{A} = x^{T}Ay$ ein Skalarprodukt auf dem $\mathbb{R}^{n}$ f\"ur $A$ s.p.d.
+\\$\cdot$ Wir nennen $\|x\|_{A} := \sqrt{\langle x, x \rangle _{A}}$ die Energie-Norm.
+
+\underline{Satz 1.2}
+\\Sei $A\in\mathbb{R}^{n \times n}$ s.p.d. und
+$$f(x) := \frac 1 2 x^{T}Ax - b^{T}x,$$
+\\wobei $b,x \in \mathbb{R}^{n}$. Dann gilt:
+\begin{center}
+f hat ein eindeutig bestimmtes Minimum und
+\end{center}
+$$Ax^{*} = b \Longleftrightarrow f(x^{*}) = \underset{x\in\mathbb{R}^{n}}{\min} f(x) \hspace{10mm}(1.1)$$
+
+\underline{Beweis:}
+\\1. Eindeutigkeit: per Widerspruch
+\\Sei $\hat x$ ein weiteres Minimum von f. Dann ist $\nabla f(\hat x) = A\hat x - b = 0 \Rightarrow A\hat x = b$.
+\\$\Rightarrow Ax = b$ hat zwei L\"osungen $x^{*}$ und $\hat x$. Widerspruch, da $A$ eine quadratische Matrix und $det(A) \ne 0 \Rightarrow $ das GLS hat eine eindeutige L\"osung.
+\\2. $\Rightarrow:$ Sei $x^{*}$ die eind. Lsg. von $Ax = b$. Dann kann man $f(x)$ auch folgenderma{\ss}en schreiben:
+$$f(x) = \frac 1 2 (x - x^{*})^{T}A(x - x^{*}) - c \hspace{2mm} mit \hspace{2mm} c = \frac 1 2 (x^{*})^{T}Ax^{*}$$
+Da $\langle y, y, \rangle _{A} > 0 \hspace{2mm} \forall _{y \ne 0}$ und $c$ nicht von $x$ abh\"angt, also $c$ konstant, so folgt
+$$f(x) = \underbrace {\frac 1 2 (x - x^{*})^{T}A(x - x^{*})}_{\ge 0} - c$$
+ist genau dann minimal, wenn $x = x^{*}$.
+\\3. $\Leftarrow:$ Sei $f(x^{*})$ das Minimum von $f(x)$, dann gilt
+$$\nabla f(x^{*}) = Ax^{*} - b = 0 \Rightarrow Ax^{*} = b$$
+$\Rightarrow x^{*}$ l\"ost $Ax = b \Rightarrow$ Beh.$\hspace{10mm} \blacksquare$
+
+\underline{Lemma 1.3}
+\\Sei f wie in (1.1). Die Richtung des steilsten Abstiegs von f an der Stelle x, d.h. $s\in\mathbb{R}^{n}$ so, dass die Richtungsableitung
+$$\frac d {dt} f(x+t\frac s {\|s\|_{2}})|_{t=0} = (\nabla f(x))^{T} (\frac s {\|s\|_{2}}) \hspace{10mm}(1.2)$$
+minimal ist, wird durch $s = -\nabla f(x) = b - Ax$ gegeben.
+
+\underline{Beweis:}
+\\Aus den Eigenschaften des Skalarproduktes wissen wir, dass $\langle x, y \rangle$ minimal wird genau dann, wenn $y = -x$. Da $\nabla f(x) = Ax - b$ und f\"ur festes $x$ muss $s$ in $\langle {\nabla f(x)}, {\frac s {\|s\|_{2}}} \rangle$ zu $\nabla f(x)$ entgegengesetzte Richtung haben, also $s = -\nabla f(x) \Rightarrow$ Beh.$\hspace{10mm} \blacksquare$
+
+\underline{Lemma 1.4}
+\\Sei $U_{k}$ ein k-dimensionaler Teilraum des $\mathbb{R}^{n} \hspace{1mm} (k \le n)$, und $p^{0}, p^{1},...,p^{k-1}$ eine $\textit{A-orthogonale Basis}$ dieses Teilraums, also $\langle p^{i}, p^{j} \rangle _{A} = 0 \hspace{2mm} f\ddot{u}r \hspace{2mm} i \ne j$. Sei $v \in \mathbb{R}^{n}$, dann gilt f\"ur $u^{k} \in U_{k}$:
+$$\|u^{k} - v\|_{A} = \underset{u \in U_{k}}{\min} \|u - v\|_{A} \hspace{10mm}(1.3)$$
+genau dann, wenn $u^{k}$ die $\textit{A-orthogonale Projektion}$ von $v$ auf $U_{k}$ ist. Au{\ss}erdem hat $\textbf{u}^{k}$ die Darstellung
+$$\textbf{u}^{k} = \sum_{j=0}^{k-1} \frac {\langle v, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j} \hspace{10mm}(1.4)$$
+
+\underline{Erinnerung:} (Projektionssatz aus Numerik 2 oder LinAlg.)
+\\F\"ur $U \subset V$ und $U$ sei ein n-dim. Teilraum von $V$. Dann ex. ein eind. $u^{*} \in U$, welches
+\\$\|u^{*} - v\| = \underset{u \in U}{\min} \|u - v\|$ erf\"ullt. F\"ur jedes $v \in V$ wird dieses Problem durch
+$$P_{U}(v) := \sum_{j=1}^{n} \langle v, \phi_{j} \rangle \phi_{j}$$
+gel\"ost.
+
+\underline{Beweis von Lemma 1.4:}
+\\Mit $V = \mathbb{R}^{n}, U = U_{k}$ stellt Lemma 1.4 den Projektionssatz dar, wobei $\langle \cdot, \cdot \rangle = \langle \cdot, \cdot \rangle _{A}$ gilt. Zudem sind die $p^{0},...,p^{k-1}$ orthogonal. Also m\"ussen diese orthonormalisiert werden mit $\phi_{j+1} = \frac {p^{j}} {\|p^{j}\|_{A}}$.
+$$\Rightarrow \sum_{j=0}^{k-1} \langle v, \phi_{j+1} \rangle _{A} \phi_{j+1} =
+\sum_{j=0}^{k-1} \langle v, {\frac {p^{j}} {\|p^{j}\|_{A}}} \rangle _{A} \frac {p^{j}} {\|p^{j}\|_{A}} =
+\sum_{j=0}^{k-1} \frac {\langle v, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j} \hspace{10mm} \blacksquare$$
+
+\begin{center}
+\underline{Herleitung der CG-Methode}
+\end{center}
+\underline{Bemerkungen:}
+\begin{itemize}
+	\item Wir w\"ahlen den Startvektor $x^{0} = 0$.
+	\item Wegen Lemma 1.3 ist die Richtung des steilsten Abstiegs gegeben durch $r^{0} = b - Ax^{0}$, wobei wir den Vektor $r$ \underline{Residuum} nennen werden.
+\end{itemize}
+
+\underline{Definition 1.5}
+\\Die folgenden Teilschritte definieren die Vorgehensweise zur Erzeugung der L\"osung $x^{*}$ durch N\"aherungen $x^{1}, x^{2},...$.
+\\\\$U_{1} := span\{r^{0}\}$,
+\\dann gilt f\"ur $k = 1,2,3,...,$ falls $r^{k-1} = b - Ax^{k-1} \ne 0$:
+\begin{addmargin}[0,5cm]{0,5cm}
+$CG_{a}$: Bestimme A-orthogonale Basis $p^{0},...,p^{k-1}$ von $U_{k}$
+\\$CG_{b}$: Bestimme $x^{k} \in U_{k}$, so dass
+$$\|x^{k} - x^{*}\|_{A} = \underset{u \in U_{k}}{\min} \|x - x^{*}\|_{A} \hspace{10mm} (1.5)$$
+\\$CG_{c}$: Erweitung des Teilraumes:
+$$U_{k+1} := span\{p^{0},...,p^{k-1},r^{k}\} \hspace{2mm} wobei \hspace{2mm} r^{k} := b - Ax^{k} \hspace{10mm} (1.6)$$
+\end{addmargin}
+
+\underline{Bemerkungen:}
+\begin{itemize}
+	\item Damit der Algorithmus sp\"ater stabil und effizient ist, muss die $A-orthogonale$ Basis von $U_{k}$ bestimmt werden.
+	\item Das $x^{k}$ stellt die optimale Approximation von $x^{*}$ dar.
+\end{itemize}
+
+Da in $CG_{b}$ der Eindruck entsteht, dass man zur Bestimmung von $x^{k}$ die L\"osung $x^{*}$ bereits kennen muss, zeigen wir mit dem folgenden Lemma, dass sich $x^{k}$ berechnen l\"asst, ohne $x^{*}$ zu kennen.
+
+\underline{Lemma 1.6}
+\\Sei $x^{*}$ die L\"osung in Gleichung (1.5). Dann gilt f\"ur $y \in U_{k}$:
+$$\langle x^{*}, y \rangle _{A} = \langle b, y \rangle \hspace{10mm} (1.7)$$
+
+\underline{Beweis:}
+\\Wir nutzen die Eigenschaften des (A-orthogonalen) Skalarproduktes aus:
+$$\langle x^{*}, y \rangle _{A} \overset{Def. 1.1}{=} x^{{*}^{T}}Ay \overset{Symmetrie}{=} y^{T}Ax^{*} = y^{T}b \overset{Symmetrie}{=} b^{T}y = \langle b, y \rangle$$
+
+\underline{Anmerkung:}
+\\Um nun einen numerischen Algorithmus zu entwickeln, werden uns die folgenden Lemmata weiter helfen:
+
+\underline{Lemma 1.7}
+\\Sei $x^{*}$ die L\"osung von Gleichung (1.5) und $x^{k}$ die optimale Approximation von $x^{*}$ in $U_{k}$. Dann kann $x^{k}$ wie folgt berechnet werden:
+$$x^{k} = x^{k-1} + \alpha_{k-1}p^{k-1}, \hspace{2mm} mit \hspace{2mm} \alpha_{k-1} := \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle} \hspace{10mm} (1.8)$$
+
+\underline{Beweis:}
+$$x^{k} \overset{(1.4)}{=}
+\sum_{j=0}^{k-1} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle {p^{j}, p^{j}} \rangle _{A}} p^{j} =
+\underbrace{\sum_{j=0}^{k-2} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle {p^{j}, p^{j}} \rangle _{A}} p^{j}}_{=x^{k-1}} +
+\frac {\langle \overbrace{Ax^{*}}^{=b=b-Ax^{0}=r^{0}}, p^{k-1} \rangle} {\langle {Ap^{k-1}, p^{k-1}} \rangle} p^{k-1} =
+x^{k-1} + \alpha_{k-1}p^{k-1}, \hspace{2mm} mit \hspace{2mm} \alpha_{k-1} \overset{(1.7)}{=}
+\frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle}$$
+
+\underline{Bemerkung:}
+\\$x^{k}$ kann mit wenig Aufwand aus $x^{k-1}$ und $p^{k-1}$ berechnet werden!
+
+\underline{Lemma 1.8}
+\\Um $U_{k+1}$ zu erhalten, also den Teilraum zu erweitern, muss lediglich das neue Residuum $r^{k} = b - Ax^{k}$ berechnet werden. Dieses erh\"alt man durch:
+$$r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1} \hspace{10mm} (1.9)$$
+Wobei $\alpha_{k-1}$ wie in (1.7).
+
+\underline{Bemerkung:}
+\\Das $\alpha_{k-1}$, sowie die Matrix-Vektor-Multiplikation $Ap^{k-1}$ wurden bereits berechnet!
+
+\underline{Beweis:}
+\\1. Zeige, dass nur das neue Residuum berechnet werden muss:
+\\Da $U_{k+1} = span\{p^{0},...,p^{k-1},r^{k}\}$ und wir die A-orthogonalen Vektoren $p^{0},...,p^{k-1}$ bereits bestimmt haben, muss nur noch das Residuum gem\"a{\ss} (1.6) berechnet werden.
+\\2. Zeige (1.9) durch Erweiterung von (1.8):
+$$x^{k} = x^{k-1} + \alpha_{k-1}p^{k-1}
+\Longleftrightarrow Ax^{k} = Ax^{k-1} + \alpha_{k-1}Ap^{k-1}
+\Longleftrightarrow b - Ax^{k} = b - Ax^{k-1} - \alpha_{k-1}Ap^{k-1}
+\Longleftrightarrow r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1}$$
+
+\underline{Satz 1.9} (Bestimmung einer A-orthogonalen Basis)
+\\Durch
+$$p^{k-1} = r^{k-1} - \sum_{j=0}^{k-2} \frac {\langle r^{k-1}, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j} \hspace{10mm} (1.10)$$
+wird die A-orthogonale Basis zum Vektor $r^{k-1}$ bestimmt.
+
+\underline{Beweis:}
+\\F\"ur $k = 1$ ist $U_{1} = span\{r^{0}\}$ also $p^{0} = r^{0}$.
+\\F\"ur $k > 1$ ist $U_{k} = span\{p^{0}, p^{1}, ...,p^{k-2}, r^{k-1}\}$, wobei $p^{0}, p^{1}, ..., p^{k-2}$ eine (bereits bekannte) A-orthogonale Basis von $U_{k-1}$ ist.
+\\Der neue A-orthogonale Basisvektor $p^{k-1} \in U_{k}$ ist nichts anders als der Vektor, der senkrecht zu $U_{k-1}$ steht. Da $r^{k-1}$ bekannt, l\"asst sich $p^{k-1}$ durch $r^{k-1}$ und die orthogonale Projektion von $r^{k-1}$ auf $U_{k-1}$ berechnen.
+\\Sei $w^{k-1}$ diese orthogonale Projektion, dann gilt:
+$$w^{k-1} = \sum_{j=0}^{k-2} \frac {\langle r^{k-1}, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j}$$
+Da offensichtlich $p^{k-1} = r^{k-1} - w^{k-1}$ folgt mit Einsetzen von $w^{k-1}$ die Beh.
+
+\underline{Lemma 1.10}
+\\F\"ur jedes $\textbf{r}^{k-1}$ und $\textbf{p}^{j}$ gilt:
+$$\langle r^{k-1}, p^{j} \rangle _{A} = 0 \hspace{2mm} f\ddot{u}r \hspace{2mm} 0 \le j \le k-3$$
+
+\underline{Beweis:}
+\\Sei $k \ge 3$ fest gew\"ahlt. Aus $U_{1} = span\{r^{0}\}, U_{2} = U_{1} \oplus span\{r^{1}\} = span\{r^{0}, r^{1}\}$ usw. erh\"alt man
+$$U_{m} = span\{r^{0}, r^{1},...,r^{m-1}\} \hspace{5mm} m = 1,2,...,k \hspace{10mm} (1.11)$$
+Aus der Definition von $x^{m}$ ergibt sich $x^{m} - x^{*} \perp_{A} U_{m}$, also $-r^{m} = A(x^{m} - x^{*}) \perp U_{m}$. Zusammen mit (1.11) folgt hieraus
+$$r^{i} \perp r^{j} \hspace{2mm} f\ddot{u}r \hspace{2mm} 0 \le i,j \le k, i \ne j \hspace{10mm} (1.12)$$
+Wir haben in (13.48) angenommen, dass $r^{j} \ne 0$ f\"ur $j \le k-1$ gilt. Wegen (13.54) muss dann $r^{j} \ne r^{j-1}$ gelten, also auch $x^{j} \ne x^{j-1}, j \le k-1$. Aus (13.50) erh\"alt man damit,
+dass $\alpha_{i} \ne 0$ f\"ur $j \le k-2$ gilt. Nun gilt f\"ur $j \le k-3$
+$$\langle r^{k-1}, p^{j} \rangle _{A} =
+\langle r^{k-1}, Ap^{j} \rangle \overset{(1.9)}{=} \langle r^{k-1}, {\frac 1 \alpha_{j} (r^{j} - r^{j-1})} \rangle =
+\frac 1 \alpha_{j} \langle r^{k-1}, r^{j} \rangle - \frac 1 \alpha_{j} \langle r^{k-1}, r^{j+1} \rangle \overset{(1.11)}{=} 0$$
+
+\underline{Folgerung 1.11}
+\\Wegen Lemma 1.10 vereinfacht sich (1.10) auf
+$$p^{k-1} = r^{k-1} - \frac {\langle r^{k-1}, Ap^{k-2} \rangle} {\langle p^{k-2}, Ap^{k-2} \rangle} p^{k-2}$$
+
+\underline{Bemerkung:}
+Somit k\"onnen wir $p^{k-1}$ einfach aus $r^{k-1}$ und $p^{k-2}$ berechnen.
+
+\underline{Satz 1.12} (Verallgemeinerung des Startvektors)
+\\Das Verfahren der konjugierten Gradienten ist unabh\"angig von der Wahl des Startvektors $x^{0}$.
+
+\underline{Beweis:}
+\\Idee: Sei $x^{0} \ne 0$. Betrachte ein transformiertes System $A\tilde x = \tilde b$ mit $\tilde x = x^{*} - x^{0}$, $\tilde b = b - Ax = r^{0}$.
+\\Wenn wir nun auf dieses System die CG-Methode anwenden und zum Schluss die Formeln R\"ucktransformieren mit $x^{k} := \tilde x^{k} + x^{0}$, $r^{k} = b- Ax^{k} = \tilde b - A\tilde x^{k} = \tilde r^{k}$ und $p^{k} := \tilde p^{k}$, erhalten wir wieder den Algorithmus der konjugierten Gradienten.
+
+\underline{Definition 1.13} (Verfahren der konjugierten Gradienten)
+\\Gegeben: $A \in \mathbb{R}^{n}$ s.p.d., $b \in \mathbb{R}^{n}$, Startvektor $x^{0} \in \mathbb{R}^{n}$, $\beta_{-1} := 0$. Berechne $r^{0} = b - Ax^{0}$. F\"ur $k = 1,2,...$, falls $r^{k-1} \ne 0$:
+\begin{Large}
+\emph{
+	$$p^{k-1} = r^{k-1} + \beta_{k-2}p^{k-2}, \hspace{2mm} wobei \hspace{2mm} \beta_{k-2} = \frac {\langle r^{k-1} r^{k-1} \rangle} {\langle r^{k-2} r^{k-2} \rangle} \hspace{2mm} mit \hspace{2mm} (k \ge 2),$$
+	$$x^{k} = x^{k-1} + \alpha_{k-1}p^{k-1}, \hspace{2mm} mit \hspace{2mm} \alpha_{k-1} = \frac {\langle r^{k-1} r^{k-1} \rangle} {\langle p^{k-1} Ap^{k-1} \rangle}$$
+	$$r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1}$$
+}
+\end{Large}
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+\underline{Folgerung 1.14} (Eigenschaften des CG-Verfahrens)
+\\Solange $r^{k-1} \ne 0$ ist, gelten folgende Aussagen:
+\begin{itemize}
+\item[(1)] Es ist $p^{k-1} \ne 0$.
+\item[(2)] Es ist
+$$U_{k} := span\{r^{0}, Ar^{0},...,A^{k-1}r^{0}\} = span\{r^{0}, r^{1},...,r^{k-1}\} = span\{p^{0},p^{1},...,p^{k-1}\}$$
+\item[(3)] Die Vektoren $p^{0},p^{1},...,p^{k-1}$ sind paarweise konjugiert.
+\item[(4)] Es ist
+$$f(x^{k}) = \underset{u \in U_{k}}{min} f(x^{0} + u)$$
+\end{itemize}
+
+\underline{Beweis:}
+\\F\"ur $k = 1$ sind die Aussagen klar. Die Aussagen seien schon f\"ur $k \ge 1$ bewiesen.
+\\Zun\"achst ist
+$$r^{k} = r^{k-1} + A(x^{k} - x^{k-1}) = r^{k-1} + \alpha_{k-1}Ap^{k-1}$$
+Also ist $r^{k} \in U_{k-1}$ und $span[r^{i}]_{i=0}^{k} \subset U_{k+1}$. Nach Induktionsvoraussetzung sind die Vektoren $p^{0},p^{1},...,p^{k-1}$ konjugiert und wegen der Optimalit\"at von $x^{k}$ ist
+$${p^{i}}^\prime r^{k} = 0 \hspace{2mm} f\ddot{u}r \hspace{2mm} i < k \hspace{10mm} (3.7.)$$
+Deshalb ist $r^{k}$ nur von $p^{0},p^{1},...,p^{k-1}$ linear unabh\"angig, falls $r^{k} = 0$ ist. Aus $r^{k} \ne 0$ schlie{\ss}en wir $r^{k} \notin U_{k}$. Dann ist $span[r^{i}]_{i=0}^{k}$ ein $k+1-$dimensionaler Raum und kein echter Unterraum von $U_{k+1}$. Damit ist für $k+1$ die erste Gleichung in der Aussage (2) bewiesen. Ferner stimmt $U_{k+1}$ mit $span[r^{i}]_{i=0}^{k}$ überein; denn wegen $r^{k} + p^{k} \in U_{k}$ h\"atte man genause gut $p^{k}$ hinzuf\"ugen k\"onnen.
+\\Au{\ss}erdem folgt aus $r^{k} + p^{k} \in U_{k}$ sofort $p^{k} \ne 0$, falls $r^{k} \ne 0$ gilt. Also ist Aussage (1) richtig.
+\\Zum Nachweis der Aussage (3) berechnen wir
+$${p^{i}}^\prime Ap^{k} = -{p^{i}}^\prime Ar^{k} + \beta_{k-1} {p^{i}}^\prime Ap^{k-1}\hspace{10mm} (3.8.)$$
+F\"ur $i \le k - 2$ verschwindet der erste Term auf der rechten Seite wegen $AU_{k-1} \subset U_{k}$ und (3.7). Au{\ss}erdem hat der zweite Term nach Voraussetzung den Wert null. F\"ur $i = k - 1$ wird gerade druch $\beta_{k}$ gem\"a{\ss} (3.5) erreicht, dass die rechte Seite von (3.8) verschwindet.
+\\Die letzte Eigenschaft wird durch Folgerung 3.3 geliefert, und der Induktionsbeweis ist fertig.$\hspace{10mm} \blacksquare$
+
+\underline{Erinnerung:} (Definition von einem Krylovraum)
+\begin{addmargin}[20mm]{20mm}
+$\mathcal{K}_{\mathit{k}}(r, A) := span\{r, Ar, ..., A^{k-1}r\} \hspace{20mm} mit \hspace{2mm} k \ge 1$
+\\$\mathcal{K}_{\mathit{k}}(r, A) := \{0\} \hspace{45mm} mit \hspace{2mm} k = 0$
+\end{addmargin}
+hei{\ss}t Krylovraum zur Matrix $A$ und zum Vektor $r$.
+\\Iterative Krylovraum-Methoden zur L\"osung eines GLS $Ax = b$ mit $A \in \mathbb{R}^{n \times n}$ verlangen $x^k \in x^{0} + \mathcal{K}_{\mathit{k}}(r^{0}, A)$ und $x^{n} = x^{*}$, wobei $r^{0} = Ax^{0} - b$.
+
+\end{document}

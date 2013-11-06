@@ -28,9 +28,11 @@ int main(int argc, char const *argv[]) {
 
     Run.PCG(A,O,L,U,V.x,V.b);
     
-    // for(int i=0;i<dim;i++)
-    //     printf("%f ", V.x[i]);
-    // printf("\n");
+    for(int i=0;i<n*n;i++)
+        printf("%f ", V.x[i]);
+    printf("\n");
+
+    scanf("%d",&n);
 
 	return EXIT_SUCCESS;
 }

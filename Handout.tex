@@ -1,0 +1,112 @@
+\documentclass[a4paper]{letter}
+\usepackage[latin1]{inputenc}
+\usepackage{ngerman}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{scrextend}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\setlength{\oddsidemargin}{10mm}
+\setlength{\textheight}{22cm}
+\setlength{\textwidth}{14cm}
+
+\begin{document}
+
+\begin{center}
+	\underline{
+		\textbf{
+			\large{
+				Das Verfahren der konjugierten Gradienten
+			}
+		}
+	}
+\end{center}
+
+\begin{center}
+Michael Bauer, 11. November 2013
+\end{center}
+
+\parskip 5pt
+
+\underline{Motivation:}
+\\L\"ose $Ax = b$ mit $A\in\mathbb{R}^{n}$ s.p.d., $x, b\in\mathbb{R}^{n}$ und n sehr gro{\ss}.
+
+\parskip 12pt
+
+\underline{Definition 1.1} (A-orthogonal)
+\\Sei $A$ eine symmetrische, nicht singul\"are Matrix. Zwei Vektoren $x$ und $y$ hei{\ss}en \underline{\textbf{konjugiert}} oder \underline{\textbf{A-orthogonal}},
+wenn $x^{T}Ay = 0$ ist.
+
+\underline{Satz 1.2}
+\\Sei $A\in\mathbb{R}^{n \times n}$ s.p.d. und
+$$f(x) := \frac 1 2 x^{T}Ax - b^{T}x,$$
+\\wobei $b,x \in \mathbb{R}^{n}$. Dann gilt:
+\begin{center}
+f hat ein eindeutig bestimmtes Minimum und
+\end{center}
+$$Ax^{*} = b \Longleftrightarrow f(x^{*}) = \underset{x\in\mathbb{R}^{n}}{\min} f(x) \hspace{10mm}(1.1)$$
+
+\underline{Lemma 1.3}
+\\Sei f wie in (1.1). Die Richtung des steilsten Abstiegs von f an der Stelle x, d.h. $s\in\mathbb{R}^{n}$ so, dass die Richtungsableitung
+$$\frac d {dt} f(x+t\frac s {\|s\|_{2}})|_{t=0} = (\nabla f(x))^{T} (\frac s {\|s\|_{2}}) \hspace{10mm}(1.2)$$
+minimal ist, wird durch $s = -\nabla f(x) = b - Ax$ gegeben.
+
+\underline{Lemma 1.4}
+\\Sei $U_{k}$ ein k-dimensionaler Teilraum des $\mathbb{R}^{n} \hspace{1mm} (k \le n)$, und $p^{0}, p^{1},...,p^{k-1}$ eine $\textit{A-orthogonale Basis}$ dieses Teilraums, also $\langle p^{i}, p^{j} \rangle _{A} = 0 \hspace{2mm} f\ddot{u}r \hspace{2mm} i \ne j$. Sei $v \in \mathbb{R}^{n}$, dann gilt f\"ur $u^{k} \in U_{k}$:
+$$\|u^{k} - v\|_{A} = \underset{u \in U_{k}}{\min} \|u - v\|_{A} \hspace{10mm}(1.3)$$
+genau dann, wenn $u^{k}$ die $\textit{A-orthogonale Projektion}$ von $v$ auf $U_{k}$ ist. Au{\ss}erdem hat $\textbf{u}^{k}$ die Darstellung
+$$\textbf{u}^{k} = \sum_{j=0}^{k-1} \frac {\langle v, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j} \hspace{10mm}(1.4)$$
+
+\underline{Definition 1.5}
+\\Sei $x^{*}$ die Lsg. von $Ax = b$. Dann erh\"alt man $x^{*}$ und die N\"aherungen $x^{1}, x^{2},...$ der L\"osung durch:
+\\\\$U_{1} := span\{r^{0}\}$, dann gilt f\"ur $k = 1,2,3,...,$ falls $r^{k-1} = b - Ax^{k-1} \ne 0$:
+\begin{addmargin}[0,5cm]{0,5cm}
+\begin{itemize}
+\item[(1)]Bestimme A-orthogonale Basis $p^{0},...,p^{k-1}$ von $U_{k}$
+\item[(2)]Bestimme $x^{k} \in U_{k}$, so dass
+$$\|x^{k} - x^{*}\|_{A} = \underset{u \in U_{k}}{\min} \|x - x^{*}\|_{A} \hspace{10mm} (1.5)$$
+\item[(3)]Erweitung des Teilraumes:
+$$U_{k+1} := span\{p^{0},...,p^{k-1},r^{k}\} \hspace{2mm} wobei \hspace{2mm} r^{k} := b - Ax^{k} \hspace{10mm} (1.6)$$
+\end{itemize}
+\end{addmargin}
+
+\underline{Lemma 1.6}
+\\Sei $x^{*}$ die L\"osung in (1.5). Dann gilt f\"ur $y \in U_{k}$:
+$$\langle x^{*}, y \rangle _{A} = \langle y, b \rangle \hspace{10mm} (1.7)$$
+
+\underline{Lemma 1.7}
+\\Sei $x^{*}$ die L\"osung von (1.5) und $x^{k}$ die optimale Approximation von $x^{*}$ in $U_{k}$. Dann kann $x^{k}$ wie folgt berechnet werden:
+$$x^{k} = x^{k-1} + \alpha_{k-1}p^{k-1}, \hspace{2mm} mit \hspace{2mm} \alpha_{k-1} := \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle} \hspace{10mm} (1.8)$$
+
+\underline{Lemma 1.8}
+\\Um $U_{k+1}$ zu erhalten, muss lediglich das neue Residuum $r^{k} = b - Ax^{k}$ berechnet werden mit:
+$$r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1} \hspace{10mm} (1.9)$$
+wobei $\alpha_{k-1}$ wie in (1.7).
+
+\underline{Satz 1.9} (Bestimmung einer A-orthogonalen Basis)
+\\Durch
+$$p^{k-1} = r^{k-1} - \sum_{j=0}^{k-2} \frac {\langle r^{k-1}, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j} \hspace{10mm} (1.10)$$
+wird die A-orthogonale Basis zum Vektor $r^{k-1}$ bestimmt.
+
+\underline{Lemma 1.10}
+\\F\"ur jedes $\textbf{r}^{k-1}$ und $\textbf{p}^{j}$ gilt:
+$$\langle r^{k-1}, p^{j} \rangle _{A} = 0 \hspace{2mm} f\ddot{u}r \hspace{2mm} 0 \le j \le k-3$$
+
+\underline{Satz 1.12} (Verallgemeinerung des Startvektors)
+\\Das Verfahren der konjugierten Gradienten ist unabh\"angig von der Wahl des Startvektors $x^{0}$.
+
+\underline{Definition 1.13} (Verfahren der konjugierten Gradienten)
+\\Gegeben: $A \in \mathbb{R}^{n}$ s.p.d., $b \in \mathbb{R}^{n}$, Startvektor $x^{0} \in \mathbb{R}^{n}$, $\beta_{-1} := 0$. Berechne $r^{0} = b - Ax^{0}$. F\"ur $k = 1,2,...$, falls $r^{k-1} \ne 0$:
+\begin{Large}
+\emph{
+	$$p^{k-1} = r^{k-1} + \beta_{k-2}p^{k-2}, \hspace{2mm} wobei \hspace{2mm} \beta_{k-2} = \frac {\langle r^{k-1} r^{k-1} \rangle} {\langle r^{k-2} r^{k-2} \rangle} \hspace{2mm} mit \hspace{2mm} (k \ge 2),$$
+	$$x^{k} = x^{k-1} + \alpha_{k-1}p^{k-1}, \hspace{2mm} mit \hspace{2mm} \alpha_{k-1} = \frac {\langle r^{k-1} r^{k-1} \rangle} {\langle p^{k-1} Ap^{k-1} \rangle}$$
+	$$r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1}$$
+}
+\end{Large}
+
+\end{document}
