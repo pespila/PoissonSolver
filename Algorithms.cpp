@@ -1,27 +1,43 @@
 #include "classes.h"
 
-Algorithms::Algorithms(PoissonMatrix& Mat) {
-    dim = Mat.size();
+Algorithms::Algorithms(Matrix& M) {
+    dim = M.Size();
     n = sqrt(dim);
 }
 
 Algorithms::~Algorithms() {
 }
 
-void Algorithms::modifiedIncompleteLU(PoissonMatrix& A, LowerPoissonMatrix& L, UpperPoissonMatrix& U) {
+int Algorithms::HashTable(int i, int j) {
+    if (i == j) {
+        return 1;
+    } else if (j == (i+1) && i%n != (n-1)) {
+        return 1;
+    } else if (j == (i-1) && i%n != 0) {
+        return 1;
+    } else if (j == (i+n)) {
+        return 1;
+    } else if (j == (i-n)) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
     int i,j,k;
-    double s, tmp, drop;
+    double s, drop;
 
     for(i=0;i<dim;i++) {
         drop = 0;
         for(k=0;k<i;k++) {
             s = 0;
             for(j=0;j<k;j++) {
-                s += L.get(i,j) * U.get(j,k);
+                if(HashTable(i,j) && HashTable(j,k))
+                    s += L.Get(i,j) * U.Get(j,k);
             }
-            if(A.get(i,k) != 0) {
-                tmp = (A.get(i,k) - s)/U.get(k,k);
-                L.set(i,k,tmp);
+            if(HashTable(i,k)) {
+                L.Set(i,k,((A.Get(i,k) - s)/U.Get(k,k)));
             } else {
                 drop += s;
             }
@@ -29,117 +45,117 @@ void Algorithms::modifiedIncompleteLU(PoissonMatrix& A, LowerPoissonMatrix& L, U
         for(k=i;k<dim;k++) {
             s = 0;
             for(j=0;j<i;j++) {
-                s += L.get(i,j) * U.get(j,k);
+                if(HashTable(i,j) && HashTable(j,k))
+                    s += L.Get(i,j) * U.Get(j,k);
             }
-            if(A.get(i,k) != 0) {
-                tmp = A.get(i,k) - s;
-                U.set(i,k,tmp);
+            if(HashTable(i,k)) {
+                U.Set(i,k,(A.Get(i,k) - s));
             } else {
                 drop += s;
             }
         }
-        U.set(i,i,(U.get(i,i) - drop));
+        U.Set(i,i,(U.Get(i,i) - drop));
     }
 }
 
-void Algorithms::modifiedIncompleteCholesky(PoissonMatrix& A, LowerPoissonMatrix& L, UpperPoissonMatrix& Ltranspose) {
+void Algorithms::incompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
     int i,j,k;
-    double sum, tmp;
-
-    for(k=0;k<dim;k++) {
-        sum=0;
-        for(j=0;j<k;j++) {
-            if (A.get(k,j) != 0) {
-                sum+=L.get(k,j);
-            }
-        }
-        tmp = sqrt(A.get(k,k)-sum);
-        L.set(k,k,tmp);
-        Ltranspose.set(k,k,tmp); //neu
-        for(i=k+1;i<dim;i++) {
-            if (A.get(i,k) != 0) {
-                sum=0;
-                for(j=0;j<k;j++) {
-                    if ((A.get(i,j) != 0) && (A.get(k,j) != 0)) {
-                        sum+=L.get(i,j)*L.get(k,j);
-                    }
-                }
-                tmp = (A.get(i,k) - sum)/L.get(k,k);
-                L.set(i,k,tmp);
-                Ltranspose.set(k,i,tmp); //neu
-            } else {
-                sum=0;
-                for(j=0;j<k;j++) {
-                    if ((A.get(i,j) != 0) && (A.get(k,j) != 0)) {
-                        sum+=L.get(i,j)*L.get(k,j);
-                    }
-                }
-                tmp = A.get(i,i) - sum;
-                A.set(i,i,tmp);
-            }
-        }
-    }
-}
-
-void Algorithms::incompleteLU(PoissonMatrix& A, LowerPoissonMatrix& L, UpperPoissonMatrix& U) {
-    int i,j,k;
-    double s, tmp;
+    double s;
 
     for(i=0;i<dim;i++) {
         for(k=1;k<i;k++) {
-            if (A.get(i,k) != 0) {
+            if (HashTable(i,k)) {
                 s=0;
                 for(j=0;j<k;j++) {
-                    s+=L.get(i,j)*U.get(j,k);
+                    if(HashTable(i,j) && HashTable(j,k))
+                        s+=L.Get(i,j)*U.Get(j,k);
                 }
-                tmp = (A.get(i,k)-s)/U.get(k,k);
-                L.set(i,k,tmp);
+                L.Set(i,k,((A.Get(i,k)-s)/U.Get(k,k)));
             }
         }
         for(k=i;k<dim;k++) {
-            if (A.get(i,k) != 0) {
+            if (HashTable(i,k) != 0) {
                 s=0;
                 for(j=0;j<i;j++) {
-                    s+=L.get(i,j)*U.get(j,k);
+                    if(HashTable(i,j) && HashTable(j,k))
+                        s+=L.Get(i,j)*U.Get(j,k);
                 }
-                tmp = A.get(i,k)-s;
-                U.set(i,k,tmp);
+                U.Set(i,k,(A.Get(i,k)-s));
             }
         }
     }
 }
 
-void Algorithms::incompleteCholesky(PoissonMatrix& A, LowerPoissonMatrix& L, UpperPoissonMatrix& Ltranspose) {
-    int i,j,k;
-    double sum, tmp;
+// void Algorithms::modifiedIncompleteCholesky(PoissonMatrix& A, LowerPoissonMatrix& L, UpperPoissonMatrix& Ltranspose) {
+//     int i,j,k;
+//     double sum, tmp;
 
-    for(k=0;k<dim;k++) {
-        sum=0;
-        for(j=0;j<k;j++) {
-            if(A.get(k,j) != 0) {
-                sum+=L.get(k,j)*L.get(k,j);
-            }
-        }
-        tmp = sqrt(A.get(k,k)-sum);
-        L.set(k,k,tmp);
-        Ltranspose.set(k,k,tmp); //neu
-        for(i=k+1;i<dim;i++) {
-            if (A.get(i,k) != 0) {
-                sum=0;
-                for(j=0;j<k;j++) {
-                    if(A.get(i,j) != 0 && A.get(k,j) != 0) {
-                        sum+=L.get(i,j)*L.get(k,j);
-                    }
-                }
-                tmp = (A.get(i,k) - sum)/L.get(k,k);
-                L.set(i,k,tmp);
-                Ltranspose.set(k,i,tmp);
-            }
-        }
-    }
-}
+//     for(k=0;k<dim;k++) {
+//         sum=0;
+//         for(j=0;j<k;j++) {
+//             if (A.Get(k,j) != 0) {
+//                 sum+=L.Get(k,j);
+//             }
+//         }
+//         tmp = sqrt(A.Get(k,k)-sum);
+//         L.Set(k,k,tmp);
+//         Ltranspose.Set(k,k,tmp); //neu
+//         for(i=k+1;i<dim;i++) {
+//             if (A.Get(i,k) != 0) {
+//                 sum=0;
+//                 for(j=0;j<k;j++) {
+//                     if ((A.Get(i,j) != 0) && (A.Get(k,j) != 0)) {
+//                         sum+=L.Get(i,j)*L.Get(k,j);
+//                     }
+//                 }
+//                 tmp = (A.Get(i,k) - sum)/L.Get(k,k);
+//                 L.Set(i,k,tmp);
+//                 Ltranspose.Set(k,i,tmp); //neu
+//             } else {
+//                 sum=0;
+//                 for(j=0;j<k;j++) {
+//                     if ((A.Get(i,j) != 0) && (A.Get(k,j) != 0)) {
+//                         sum+=L.Get(i,j)*L.Get(k,j);
+//                     }
+//                 }
+//                 tmp = A.Get(i,i) - sum;
+//                 A.Set(i,i,tmp);
+//             }
+//         }
+//     }
+// }
 
-void Algorithms::CG(PoissonMatrix& A, Operators& O, vector<double>& x, const vector<double>& b) {
+// void Algorithms::incompleteCholesky(PoissonMatrix& A, LowerPoissonMatrix& L, UpperPoissonMatrix& Ltranspose) {
+//     int i,j,k;
+//     double sum, tmp;
+
+//     for(k=0;k<dim;k++) {
+//         sum=0;
+//         for(j=0;j<k;j++) {
+//             if(A.Get(k,j) != 0) {
+//                 sum+=L.Get(k,j)*L.Get(k,j);
+//             }
+//         }
+//         tmp = sqrt(A.Get(k,k)-sum);
+//         L.Set(k,k,tmp);
+//         Ltranspose.Set(k,k,tmp); //neu
+//         for(i=k+1;i<dim;i++) {
+//             if (A.Get(i,k) != 0) {
+//                 sum=0;
+//                 for(j=0;j<k;j++) {
+//                     if(A.Get(i,j) != 0 && A.Get(k,j) != 0) {
+//                         sum+=L.Get(i,j)*L.Get(k,j);
+//                     }
+//                 }
+//                 tmp = (A.Get(i,k) - sum)/L.Get(k,k);
+//                 L.Set(i,k,tmp);
+//                 Ltranspose.Set(k,i,tmp);
+//             }
+//         }
+//     }
+// }
+
+void Algorithms::CG(Matrix& A, Operators& O, CGVectors& V) {
     double alpha,beta,eps,h,norm,skpOfRes,denom;
     int steps,i,j,k;
 
@@ -161,17 +177,17 @@ void Algorithms::CG(PoissonMatrix& A, Operators& O, vector<double>& x, const vec
 
     vector<double> Ax;
     Ax.assign(dim,0);
-    x.assign(dim,0);
-    O.MatrixVectorMultiplyer(A,x,Ax);
+    V.x.assign(dim,0);
+    O.MatrixVectorMultiplyer(A,V.x,Ax);
     for(i=0;i<dim;i++)
-        r[i]=b[i]-Ax[i];
+        r[i]=V.b[i]-Ax[i];
     Ax.clear();
 
     k=0;
     for (i=1;i<(n+1);i++) {
         for (j=1;j<(n+1);j++) {
             solution[k] = O.g(j*h,i*h);
-            stopNorm[k] = x[k]-solution[k];
+            stopNorm[k] = V.x[k]-solution[k];
             k++;
         }
     }
@@ -193,7 +209,7 @@ void Algorithms::CG(PoissonMatrix& A, Operators& O, vector<double>& x, const vec
         alpha=skpOfRes/denom;
 
         for(i=0;i<dim;i++) {
-            x[i] += alpha*p[i];
+            V.x[i] += alpha*p[i];
             r[i] -= alpha*Ap[i];
         }
 
@@ -202,7 +218,7 @@ void Algorithms::CG(PoissonMatrix& A, Operators& O, vector<double>& x, const vec
 
         for(i=0;i<dim;i++) {
             p[i]=r[i]+beta*p[i];
-            stopNorm[i]=x[i]-solution[i];
+            stopNorm[i]=V.x[i]-solution[i];
         }
         rTmp = r;
         Ap.clear();
@@ -211,7 +227,7 @@ void Algorithms::CG(PoissonMatrix& A, Operators& O, vector<double>& x, const vec
     printf("CGSteps: %d\n", steps);
 }
 
-void Algorithms::PCG(PoissonMatrix& A, Operators& O, LowerPoissonMatrix& L, UpperPoissonMatrix& U, vector<double>& x, const vector<double>& b) {
+void Algorithms::PCG(Matrix& A, Operators& O, WriteableMatrix& L, WriteableMatrix& U, CGVectors& V) {
     double alpha,beta,eps,h,norm,skpOfRes,denom;
     int steps,i,j,k;
 
@@ -236,10 +252,10 @@ void Algorithms::PCG(PoissonMatrix& A, Operators& O, LowerPoissonMatrix& L, Uppe
 
     vector<double> Ax;
     Ax.assign(dim,0);
-    x.assign(dim,0);
-    O.MatrixVectorMultiplyer(A,x,Ax);
+    V.x.assign(dim,0);
+    O.MatrixVectorMultiplyer(A,V.x,Ax);
     for(i=0;i<dim;i++)
-        r[i]=b[i]-Ax[i];
+        r[i]=V.b[i]-Ax[i];
 
     z=r;
 
@@ -254,7 +270,7 @@ void Algorithms::PCG(PoissonMatrix& A, Operators& O, LowerPoissonMatrix& L, Uppe
     for (i=1;i<(n+1);i++) {
         for (j=1;j<(n+1);j++) {
             solution[k] = O.g(j*h,i*h);
-            stopNorm[k] = x[k]-solution[k];
+            stopNorm[k] = V.x[k]-solution[k];
             k++;
         }
     }
@@ -273,7 +289,7 @@ void Algorithms::PCG(PoissonMatrix& A, Operators& O, LowerPoissonMatrix& L, Uppe
         alpha=skpOfRes/denom;
 
         for(i=0;i<dim;i++) {
-            x[i] += alpha*p[i];
+            V.x[i] += alpha*p[i];
             r[i] -= alpha*Ap[i];
         }
 
@@ -287,7 +303,7 @@ void Algorithms::PCG(PoissonMatrix& A, Operators& O, LowerPoissonMatrix& L, Uppe
 
         for(i=0;i<dim;i++) {
             p[i]=z[i]+beta*p[i];
-            stopNorm[i]=x[i]-solution[i];
+            stopNorm[i]=V.x[i]-solution[i];
         }
         rTmp = r;
         Ap.clear();

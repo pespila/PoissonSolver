@@ -1,72 +1,37 @@
 #include "classes.h"
 
-void writeToFile(LowerPoissonMatrix&,UpperPoissonMatrix&);
-void readFromFile(LowerPoissonMatrix&,UpperPoissonMatrix&);
-
 int main(int argc, char const *argv[]) {
-    int arg, n;//, dim;
+    int arg, n, dim;
     if (argc > 1) {
         arg = atoi(&*argv[1]);
     } else {
         arg = 4;
     }
     n=arg-1;
-    //dim = n*n;
+    dim = n*n;
 
     PoissonMatrix A(n);
     Operators O(n);
     CGVectors V(n,O);
     Algorithms Run(A);
+    LowerMatrix L(n);
+    UpperMatrix U(n);
 
-    LowerPoissonMatrix L(n);
-    UpperPoissonMatrix U(n);
+    // double time,start=0.0,end=0.0;
+    // start = clock();
 
-    //Run.CG(A,O,V.x,V.b);
     //Run.modifiedIncompleteLU(A,L,U);
-    //Run.incompleteLU(A,L,U);
-    //printf("done\n");
-    //writeToFile(L,U);
-    readFromFile(L,U);
-    // A.printMat();
-    //L.printMat();
-    //U.printMat();
+    Run.incompleteLU(A,L,U);
 
-    Run.PCG(A,O,L,U,V.x,V.b);
-    
-    // for(int i=0;i<dim;i++)
-    //     printf("%f ", V.x[i]);
-    // printf("\n");
+    // end = clock();
+    // time=(end-start)/CLOCKS_PER_SEC;
+    // printf("%f\n", time);
+
+    //Run.CG(A,O,V);
+    Run.PCG(A,O,L,U,V);
+
+    V.PrintVector();
+    V.WriteToFile(O);
 
     return EXIT_SUCCESS;
-}
-
-void writeToFile(LowerPoissonMatrix& L, UpperPoissonMatrix& U) {
-    FILE *file;
-    file=fopen("LU.txt", "w");
-    if(file==NULL)
-        printf("ERROR!\n");
-    for(int i=0;i<L.size();i++) {
-        for(int j=0;j<L.size();j++) {
-            fprintf(file, "%f\n", L.get(i,j));
-            fprintf(file, "%f\n", U.get(i,j));
-        }
-    }
-    fclose (file);
-}
-
-void readFromFile(LowerPoissonMatrix& L,UpperPoissonMatrix& U) {
-    FILE *file;
-    file = fopen("LU.txt", "r");
-    double l,u;
-    if(file==NULL)
-        printf("ERROR!\n");
-    for(int i=0;i<L.size();i++) {
-        for(int j=0;j<L.size();j++) {
-            fscanf(file, "%lf\n", &l);
-            fscanf(file, "%lf\n", &u);
-            L.set(i,j,l);
-            U.set(i,j,u);
-        }
-    }
-    fclose(file);
 }

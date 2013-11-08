@@ -47,4 +47,41 @@ CGVectors::CGVectors(int m, Operators& O) {
 }
 
 CGVectors::~CGVectors() {
+    vector<double>().swap(x);
+    vector<double>().swap(b);
+}
+
+void CGVectors::PrintVector() {
+    if(dim < 20)
+        for (int i = 0; i < dim; ++i) {
+            printf("%f", x[i]);
+        }
+    printf("\n");
+}
+
+void CGVectors::WriteToFile(Operators& O) {
+    int i,j,k,m;
+    double h=1.0/(double)(n+1);
+    FILE *file;
+    file=fopen("plot.txt", "w");
+    k=0;
+    m=n+1;
+    if(file==NULL)
+        printf("ERROR: Could not open file!\n");
+    for(i=0;i<m;i++) {
+        for(j=0;j<m;j++) {
+            if(i==0) {
+                fprintf(file, "%f %d %f\n", (double)j/(double)n,i,O.g(j*h,i));
+            } else if(i!=0) {
+                if(j==0) {
+                    fprintf(file, "%d %f %f\n", j,(double)i/(double)n,O.g(j,i*h));
+                } else if(j!=0){
+                    fprintf(file, "%f %f %f\n", (double)j/(double)n,(double)i/(double)n,x[k]);
+                    k++;
+                }
+            }
+        }
+        fprintf(file, "\n");
+    }
+    fclose (file);
 }

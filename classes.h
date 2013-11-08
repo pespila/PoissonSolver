@@ -7,67 +7,69 @@
 #include <fstream>
 #include <cstdio>
 #include <vector>
+#include <assert.h>
+#include <time.h>
 using namespace std;
 
-class PoissonMatrix
+class Matrix
+{
+    public:
+        virtual int Size()=0;
+        virtual double Get(int,int)=0;
+        void PrintMatrix();
+};
+
+class WriteableMatrix : public Matrix
+{
+    public:
+        virtual void Set(int,int,double)=0;
+};
+
+class PoissonMatrix : public Matrix
 {
     private:
     	int dim;
     	int n;
-    	vector<double> diagonal;
-    	vector<double> tridiagonal;
-    	vector<double> identity;
+    	double diagonal;
+        double tridiagonal;
+        double identity;
     public:
     	PoissonMatrix(int);
     	~PoissonMatrix();
 
-    	virtual void set(int, int, double);
-    	virtual double get(int, int);
-    	virtual int size();
-    	void printMat();
+        int Size();
+    	double Get(int, int);
 };
 
-class PoissonMatrixLite : public PoissonMatrix
+class LowerMatrix : public WriteableMatrix
 {
     private:
         int dim;
         int n;
-        double diag;
-        double tridiag;
-        double id;
     public:
-        PoissonMatrixLite(int);
-        ~PoissonMatrixLite();
+        LowerMatrix(int);
+        ~LowerMatrix();
+        vector<double> diagonal;
+        vector<double> tridiagonal;
+        vector<double> identity;
+        int Size();
+        double Get(int, int);
+        void Set(int, int, double);
 };
 
-class LowerPoissonMatrix : public PoissonMatrix
-{
-    private:
-        int dim;
-        int n;
-        vector<double> Ldiagonal;
-        vector<double> Ltridiagonal;
-        vector<double> Lidentity;
-    public:
-        LowerPoissonMatrix(int);
-        ~LowerPoissonMatrix();
-        void set(int, int, double);
-        double get(int, int);
-};
-
-class UpperPoissonMatrix : public PoissonMatrix
+class UpperMatrix : public LowerMatrix
 {
 	private:
 		int dim;
 		int n;
-		vector<double> Udiagonal;
-		vector<double> Utridiagonal;
-		vector<double> Uidentity;
+		// vector<double> Udiagonal;
+		// vector<double> Utridiagonal;
+		// vector<double> Uidentity;
 	public:
-		UpperPoissonMatrix(int);
-		~UpperPoissonMatrix();
-		void set(int, int, double);
-		double get(int, int);
+		UpperMatrix(int);
+		~UpperMatrix();
+        double Get(int, int);
+		void Set(int, int, double);
 };
 
 class Operators
@@ -80,9 +82,9 @@ class Operators
 		~Operators();
 		double innerProduct(const vector<double>&,const vector<double>&);
 		double vectorNorm(const vector<double>&);
-		void MatrixVectorMultiplyer(PoissonMatrix&,const vector<double>&,vector<double>& y);
-		void LUsolverLower(LowerPoissonMatrix&,vector<double>&);
-		void LUsolverUpper(UpperPoissonMatrix&,vector<double>&);
+		void MatrixVectorMultiplyer(Matrix&,const vector<double>&,vector<double>& y);
+		void LUsolverLower(Matrix&,vector<double>&);
+		void LUsolverUpper(Matrix&,vector<double>&);
 		double f(double, double);
     	double g(double, double);
 };
@@ -96,6 +98,8 @@ class CGVectors {
     	vector<double> b;
     	CGVectors(int, Operators&);
     	~CGVectors();
+        void PrintVector();
+        void WriteToFile(Operators&);
 };
 
 class Algorithms {
@@ -103,14 +107,15 @@ class Algorithms {
 		int dim;
 		int n;
 	public:
-		Algorithms(PoissonMatrix&);
+		Algorithms(Matrix&);
 		~Algorithms();
-		void modifiedIncompleteLU(PoissonMatrix&, LowerPoissonMatrix&, UpperPoissonMatrix&);
-		void modifiedIncompleteCholesky(PoissonMatrix&, LowerPoissonMatrix&, UpperPoissonMatrix&);
-		void incompleteLU(PoissonMatrix&, LowerPoissonMatrix&, UpperPoissonMatrix&);
-		void incompleteCholesky(PoissonMatrix&, LowerPoissonMatrix&, UpperPoissonMatrix&);
-		void CG(PoissonMatrix&, Operators&, vector<double>&, const vector<double>&);
-		void PCG(PoissonMatrix&, Operators&, LowerPoissonMatrix&, UpperPoissonMatrix&, vector<double>&, const vector<double>&);
+        int HashTable(int,int);
+		void modifiedIncompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
+        void incompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
+		// void modifiedIncompleteCholesky(PoissonMatrix&, LowerMatrix&, UpperMatrix&);
+		// void incompleteCholesky(PoissonMatrix&, LowerMatrix&, UpperMatrix&);
+		void CG(Matrix&, Operators&, CGVectors&);
+		void PCG(Matrix&, Operators&, WriteableMatrix&, WriteableMatrix&, CGVectors&);
 };
 
 #endif

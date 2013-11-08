@@ -17,44 +17,37 @@ double Operators::innerProduct(const vector<double>& x, const vector<double>& y)
 }
 
 double Operators::vectorNorm(const vector<double>& x) {
-    double ip, norm;
-    ip=0.0;
-
-    for (int i=0;i<dim;i++) {
-        ip += x[i]*x[i];
-    }
-    norm = sqrt(ip);
-    return norm;
+    return sqrt(innerProduct(x,x));
 }
 
-void Operators::MatrixVectorMultiplyer(PoissonMatrix& Mat, const vector<double>& x, vector<double>& b) {
+void Operators::MatrixVectorMultiplyer(Matrix& M, const vector<double>& x, vector<double>& b) {
     for (int i = 0; i < dim; i++) {
-        b[i] += x[i]*Mat.get(i,i);
+        b[i] += x[i]*M.Get(i,i);
         if (i < (dim-n)) {
-            b[i] += x[i+n]*Mat.get(i,i+n);
+            b[i] += x[i+n]*M.Get(i,i+n);
         } 
         if (i >= n) {
-            b[i] += x[i-n]*Mat.get(i,i-n);
+            b[i] += x[i-n]*M.Get(i,i-n);
         }
         if (i%n != 0) {
-            b[i] += x[i-1]*Mat.get(i,i-1);
-            b[i-1] += x[i]*Mat.get(i-1,i);
+            b[i] += x[i-1]*M.Get(i,i-1);
+            b[i-1] += x[i]*M.Get(i-1,i);
         }
     }
 }
 
-void Operators::LUsolverLower(LowerPoissonMatrix& L, vector<double>& z) {
+void Operators::LUsolverLower(Matrix& L, vector<double>& z) {
     for(int i=0;i<dim;i++)
         for(int j=0;j<i;j++)
-            z[i] -= L.get(i,j)*z[j];
+            z[i] -= L.Get(i,j)*z[j];
 }
 
-void Operators::LUsolverUpper(UpperPoissonMatrix& U, vector<double>& z) {
+void Operators::LUsolverUpper(Matrix& U, vector<double>& z) {
     for(int i=dim-1;i>=0;i--) {
         for(int j=dim-1;j>=i+1;j--) {
-            z[i] -= U.get(i,j)*z[j];
+            z[i] -= U.Get(i,j)*z[j];
         }
-        z[i] /= U.get(i,i);
+        z[i] /= U.Get(i,i);
     }
 }
 

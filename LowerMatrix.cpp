@@ -1,42 +1,40 @@
 #include "classes.h"
 
-LowerPoissonMatrix::LowerPoissonMatrix(int m) : PoissonMatrix(m) {
+LowerMatrix::LowerMatrix(int m) {
 	n=m;
 	dim=n*n;
-	Ldiagonal.resize(dim);
-	Ltridiagonal.resize(dim-1);
-	Lidentity.resize(dim-n);
-	for(int i=0;i<dim;i++) {
-		Ldiagonal[i] = 1.0;
-		if(i < (dim-1)) {
-			Ltridiagonal[i] = 0.0;
-		}
-		if(i < (dim-n)) {
-			Lidentity[i] = 0.0;
-		}
+	diagonal.assign(dim,1);
+	tridiagonal.assign(dim-1,0);
+	identity.assign(dim-n,0);
+}
+
+LowerMatrix::~LowerMatrix() {
+	vector<double>().swap(diagonal);
+	vector<double>().swap(tridiagonal);
+	vector<double>().swap(identity);
+}
+
+int LowerMatrix::Size() {
+	return dim;
+}
+
+void LowerMatrix::Set(int i,int j,double value) {
+	if (i == j) {
+		diagonal[i] = value;
+	} else if (j == (i-1)) {
+		tridiagonal[j] = value;
+	} else if (j == (i-n)) {
+		identity[j] = value;
 	}
 }
 
-LowerPoissonMatrix::~LowerPoissonMatrix() {
-}
-
-void LowerPoissonMatrix::set(int i,int j,double value) {
+double LowerMatrix::Get(int i,int j) {
 	if (i == j) {
-		Ldiagonal[i] = value;
+		return diagonal[i];
 	} else if (j == (i-1)) {
-		Ltridiagonal[j] = value;
+		return tridiagonal[j];
 	} else if (j == (i-n)) {
-		Lidentity[j] = value;
-	}
-}
-
-double LowerPoissonMatrix::get(int i,int j) {
-	if (i == j) {
-		return Ldiagonal[i];
-	} else if (j == (i-1)) {
-		return Ltridiagonal[j];
-	} else if (j == (i-n)) {
-		return Lidentity[j];
+		return identity[j];
 	} else {
 		return 0.0;
 	}
