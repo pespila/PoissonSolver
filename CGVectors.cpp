@@ -54,7 +54,7 @@ CGVectors::~CGVectors() {
 void CGVectors::PrintVector() {
     if(dim < 20)
         for (int i = 0; i < dim; ++i) {
-            printf("%f", x[i]);
+            printf("%f ", x[i]);
         }
     printf("\n");
 }

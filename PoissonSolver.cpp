@@ -20,14 +20,19 @@ int main(int argc, char const *argv[]) {
     // double time,start=0.0,end=0.0;
     // start = clock();
 
-    //Run.modifiedIncompleteLU(A,L,U);
-    Run.incompleteLU(A,L,U);
+    Run.modifiedIncompleteLU(A,L,U);
+    //Run.incompleteLU(A,L,U);
 
     // end = clock();
     // time=(end-start)/CLOCKS_PER_SEC;
     // printf("%f\n", time);
 
-    //Run.CG(A,O,V);
+    Run.CG(A,O,V);
+    
+    V.PrintVector();
+
+    V.x.assign(dim,n);
+
     Run.PCG(A,O,L,U,V);
 
     V.PrintVector();
