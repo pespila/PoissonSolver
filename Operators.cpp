@@ -37,9 +37,12 @@ void Operators::MatrixVectorMultiplyer(Matrix& M, const vector<double>& x, vecto
 }
 
 void Operators::LUsolverLower(Matrix& L, vector<double>& z) {
-    for(int i=0;i<dim;i++)
-        for(int j=0;j<i;j++)
+    for(int i=0;i<dim;i++) {
+        for(int j=0;j<i;j++) {
             z[i] -= L.Get(i,j)*z[j];
+        }
+        z[i] /= L.Get(i,i);
+    }
 }
 
 void Operators::LUsolverUpper(Matrix& U, vector<double>& z) {

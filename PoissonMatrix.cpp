@@ -1,21 +1,21 @@
 #include "classes.h"
 
-void Matrix::PrintMatrix() {
-	for(int i = 0; i < Size(); i++) {
-		for(int j = 0; j < Size(); j++) {
-			printf(" %.2f ", Get(i,j));
-		}
-		printf("\n");
-	}
-	printf("\n");
-}
-
 PoissonMatrix::PoissonMatrix(int m) {
 	n = m;
 	dim = n*n;
 	diagonal = 4.0*(n+1)*(n+1);
 	tridiagonal = -1.0*(n+1)*(n+1);
-	identity = -1.0*(n+1)*(n+1);
+	identity = tridiagonal;
+
+	for(int i=0;i<dim;i++){
+		for(int j=0;j<dim;j++){
+			if(Get(i,j)!=0){
+				hash.i=i;
+				hash.j=j;
+				HashKeys.push_back(hash);
+			}
+		}
+	}
 }
 
 PoissonMatrix::~PoissonMatrix() {
@@ -39,4 +39,14 @@ double PoissonMatrix::Get(int i, int j) {
 	} else {
 		return 0.0;
 	}
+}
+
+void Matrix::PrintMatrix() {
+	for(int i = 0; i < Size(); i++) {
+		for(int j = 0; j < Size(); j++) {
+			printf(" %.2f ", Get(i,j));
+		}
+		printf("\n");
+	}
+	printf("\n");
 }

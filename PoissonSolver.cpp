@@ -11,8 +11,9 @@ int main(int argc, char const *argv[]) {
     dim = n*n;
 
     PoissonMatrix A(n);
+    Preconditioner W(n);
     Operators O(n);
-    CGVectors V(n,O);
+    Vectors V(n,O);
     Algorithms Run(A);
     LowerMatrix L(n);
     UpperMatrix U(n);
@@ -20,23 +21,41 @@ int main(int argc, char const *argv[]) {
     // double time,start=0.0,end=0.0;
     // start = clock();
 
-    Run.modifiedIncompleteLU(A,L,U);
+    //Run.modifiedIncompleteLU(A,L,U);
     //Run.incompleteLU(A,L,U);
+    //Run.incompleteCholesky(A,L,U);
+    Run.modifiedIncompleteCholesky(W,L,U);
+    // A.PrintMatrix();
+    L.PrintMatrix();
+    U.PrintMatrix();
+
+    // V.x=V.b;
+    // O.LUsolverLower(L,V.x);
+    // O.LUsolverUpper(U,V.x);
+
+    // V.PrintVector();
 
     // end = clock();
     // time=(end-start)/CLOCKS_PER_SEC;
     // printf("%f\n", time);
 
-    Run.CG(A,O,V);
+    //Run.CG(A,O,V);
     
-    V.PrintVector();
+    //V.PrintVector();
 
-    V.x.assign(dim,n);
+    //V.x.assign(dim,0);
+    //Run.JacobiMethod(A,O,V);
+    //Run.GaussSeidelMethod(A,O,V);
+    //Run.SORMethod(A,O,V);
 
     Run.PCG(A,O,L,U,V);
 
+    // A.PrintMatrix();
+    // L.PrintMatrix();
+    // U.PrintMatrix();
+
     V.PrintVector();
-    V.WriteToFile(O);
+    //V.WriteToFile(O);
 
     return EXIT_SUCCESS;
 }

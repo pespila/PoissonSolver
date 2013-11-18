@@ -11,9 +11,17 @@
 #include <time.h>
 using namespace std;
 
+struct Tuple
+{
+    int i;
+    int j;
+};
+
 class Matrix
 {
     public:
+        Tuple hash;
+        vector<Tuple> HashKeys;
         virtual int Size()=0;
         virtual double Get(int,int)=0;
         void PrintMatrix();
@@ -39,6 +47,23 @@ class PoissonMatrix : public Matrix
 
         int Size();
     	double Get(int, int);
+};
+
+class Preconditioner : public WriteableMatrix
+{
+    private:
+        int dim;
+        int n;
+        vector<double> diagonal;
+        vector<double> tridiagonal;
+        vector<double> identity;
+    public:
+        Preconditioner(int);
+        ~Preconditioner();
+
+        int Size();
+        double Get(int,int);
+        void Set(int,int,double);
 };
 
 class LowerMatrix : public WriteableMatrix
@@ -89,15 +114,15 @@ class Operators
     	double g(double, double);
 };
 
-class CGVectors {
-	private:
-		int dim;
-		int n;
+class Vectors {
+    private:
+        int dim;
+        int n;
     public:
-    	vector<double> x;
-    	vector<double> b;
-    	CGVectors(int, Operators&);
-    	~CGVectors();
+        vector<double> x;
+        vector<double> b;
+        Vectors(int, Operators&);
+        ~Vectors();
         void PrintVector();
         void WriteToFile(Operators&);
 };
@@ -110,12 +135,17 @@ class Algorithms {
 		Algorithms(Matrix&);
 		~Algorithms();
         int HashTable(int,int);
-		void modifiedIncompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
         void incompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
-		// void modifiedIncompleteCholesky(PoissonMatrix&, LowerMatrix&, UpperMatrix&);
-		// void incompleteCholesky(PoissonMatrix&, LowerMatrix&, UpperMatrix&);
-		void CG(Matrix&, Operators&, CGVectors&);
-		void PCG(Matrix&, Operators&, WriteableMatrix&, WriteableMatrix&, CGVectors&);
+        void modifiedIncompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
+        void LUNEW(Matrix&, WriteableMatrix&, WriteableMatrix&);
+		void modifiedIncompleteCholesky(WriteableMatrix&, WriteableMatrix&, WriteableMatrix&);
+		void incompleteCholesky(PoissonMatrix&, LowerMatrix&, UpperMatrix&);
+        void JacobiMethod(Matrix&, Operators&, Vectors&);
+        void GaussSeidelMethod(Matrix&, Operators&, Vectors&);
+        void SORMethod(Matrix&, Operators&, Vectors&);
+        void SSORMethod(Matrix&, Operators&, Vectors&);
+		void CG(Matrix&, Operators&, Vectors&);
+		void PCG(Matrix&, Operators&, WriteableMatrix&, WriteableMatrix&, Vectors&);
 };
 
 #endif

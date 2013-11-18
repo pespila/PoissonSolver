@@ -1,6 +1,6 @@
 #include "classes.h"
 
-CGVectors::CGVectors(int m, Operators& O) {
+Vectors::Vectors(int m, Operators& O) {
     n=m;
     dim=n*n;
     b.resize(dim);
@@ -46,12 +46,12 @@ CGVectors::CGVectors(int m, Operators& O) {
     }
 }
 
-CGVectors::~CGVectors() {
+Vectors::~Vectors() {
     vector<double>().swap(x);
     vector<double>().swap(b);
 }
 
-void CGVectors::PrintVector() {
+void Vectors::PrintVector() {
     if(dim < 20)
         for (int i = 0; i < dim; ++i) {
             printf("%f ", x[i]);
@@ -59,7 +59,7 @@ void CGVectors::PrintVector() {
     printf("\n");
 }
 
-void CGVectors::WriteToFile(Operators& O) {
+void Vectors::WriteToFile(Operators& O) {
     int i,j,k,m;
     double h=1.0/(double)(n+1);
     FILE *file;
