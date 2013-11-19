@@ -33,66 +33,64 @@ void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMa
         for(k=0;k<i;k++) {
             s = 0;
             for(j=0;j<k;j++) {
-                if(HashTable(i,j) && HashTable(j,k))
+                if(HashTable(i,j) && HashTable(j,k)) {
                     s += L.Get(i,j) * U.Get(j,k);
+                    printf("Matrix L mit %.2f: %d,%d && %d,%d\n", s, i, j, j, k);
+                }
             }
+            //printf("in L   s_ik: %.2f_%d%d\n", s,i,k);
             if(HashTable(i,k)) {
                 L.Set(i,k,((A.Get(i,k) - s)/U.Get(k,k)));
             } else {
                 drop += s;
             }
         }
+        //printf("in L   drop_ik: %.2f_%d%d\n", drop,i,k);
         for(k=i;k<dim;k++) {
             s = 0;
             for(j=0;j<i;j++) {
-                if(HashTable(i,j) && HashTable(j,k))
+                if(HashTable(i,j) && HashTable(j,k)) {
                     s += L.Get(i,j) * U.Get(j,k);
+                    printf("Matrix R mit %.2f: %d,%d && %d,%d\n", s, i, j, j, k);
+                }
             }
+            //printf("in R   s_ik: %.2f_%d%d\n", s,i,k);
             if(HashTable(i,k)) {
                 U.Set(i,k,(A.Get(i,k) - s));
             } else {
                 drop += s;
             }
         }
+        printf("Drop: %.2f\n", drop);
+        //printf("in R   drop_ik: %.2f_%d%d\n", 2*drop,i,k);
         U.Set(i,i,(U.Get(i,i) - drop));
+        printf("\n");
     }
 }
 
 void Algorithms::LUNEW(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
-    int i,j,k;
-    double s, drop;
+    int i;
+    double sum, drop;
+    int stop = A.HashKeys.size();
 
-    // for(i=0;i<A.HashKeys.size();i++){
-    //     continue;
-    // }
+    for(i=0;i<stop;i++) {
+        if(i==0){
+            continue;
+        } else if(i>=n&&HashTable(i,i+1)&&i!=(dim-1)) {
+            printf("Calculate s(L_i,i-n+1)\n");
+        } else if(HashTable(i,i)) {
+            printf("Calculate s(U_i,i)\n");
+        } else if(i<(dim-n)&&HashTable(i,i-1)&&i!=0) {
+            printf("Calculate s(U_i,i+n-1\n");
+        }
 
-    for(i=0;i<dim;i++) {
-        drop = 0;
-        for(k=0;k<i;k++) {
-            s = 0;
-            for(j=0;j<k;j++) {
-                if(HashTable(i,j) && HashTable(j,k))
-                    s += L.Get(i,j) * U.Get(j,k);
-            }
-            if(HashTable(i,k)) {
-                L.Set(i,k,((A.Get(i,k) - s)/U.Get(k,k)));
-            } else {
-                drop += s;
-            }
+        if(i>n&&!HashTable(i,i+1)) {
+            drop=0; //s(U_i,i) + s(U_i,i+n-1)
+        } else if(i>(dim-n)&&i!=(dim-1)) {
+            drop=0; //s(L_i,i-n+1)
+        } else {
+            drop=0; //s(U_i,i)
         }
-        for(k=i;k<dim;k++) {
-            s = 0;
-            for(j=0;j<i;j++) {
-                if(HashTable(i,j) && HashTable(j,k))
-                    s += L.Get(i,j) * U.Get(j,k);
-            }
-            if(HashTable(i,k)) {
-                U.Set(i,k,(A.Get(i,k) - s));
-            } else {
-                drop += s;
-            }
-        }
-        U.Set(i,i,(U.Get(i,i) - drop));
     }
 }
 

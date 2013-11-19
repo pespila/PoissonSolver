@@ -21,11 +21,12 @@ int main(int argc, char const *argv[]) {
     // double time,start=0.0,end=0.0;
     // start = clock();
 
-    //Run.modifiedIncompleteLU(A,L,U);
+    Run.modifiedIncompleteLU(A,L,U);
+    Run.LUNEW(A,L,U);
     //Run.incompleteLU(A,L,U);
     //Run.incompleteCholesky(A,L,U);
-    Run.modifiedIncompleteCholesky(W,L,U);
-    // A.PrintMatrix();
+    //Run.modifiedIncompleteCholesky(W,L,U);
+    A.PrintMatrix();
     L.PrintMatrix();
     U.PrintMatrix();
 
