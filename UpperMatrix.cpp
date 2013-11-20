@@ -4,8 +4,13 @@ UpperMatrix::UpperMatrix(int m) : LowerMatrix(m) {
 	n=m;
 	dim=n*n;
 	diagonal.assign(dim,0);
-	tridiagonal.assign(dim-1,0);
-	identity.assign(dim-n,0);
+	tridiagonal.resize(dim-1);
+	for(int i=0;i<dim-1;i++) {
+		if(i%n!=n-1) {
+			tridiagonal[i]=-1.0*pow(n,2);
+		}
+	}
+	identity.assign(dim-n,-1.0*pow(n,2));
 }
 
 UpperMatrix::~UpperMatrix() {

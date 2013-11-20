@@ -1,14 +1,14 @@
 #include "classes.h"
 
 int main(int argc, char const *argv[]) {
-    int arg, n, dim;
+    int arg, n;//, dim;
     if (argc > 1) {
         arg = atoi(&*argv[1]);
     } else {
         arg = 4;
     }
     n=arg-1;
-    dim = n*n;
+    //dim = n*n;
 
     PoissonMatrix A(n);
     Preconditioner W(n);
@@ -21,20 +21,13 @@ int main(int argc, char const *argv[]) {
     // double time,start=0.0,end=0.0;
     // start = clock();
 
-    Run.modifiedIncompleteLU(A,L,U);
-    Run.LUNEW(A,L,U);
+    //Run.modifiedIncompleteLU(A,L,U);
     //Run.incompleteLU(A,L,U);
     //Run.incompleteCholesky(A,L,U);
-    //Run.modifiedIncompleteCholesky(W,L,U);
+    Run.modifiedIncompleteCholesky(W,L,U);
     A.PrintMatrix();
     L.PrintMatrix();
     U.PrintMatrix();
-
-    // V.x=V.b;
-    // O.LUsolverLower(L,V.x);
-    // O.LUsolverUpper(U,V.x);
-
-    // V.PrintVector();
 
     // end = clock();
     // time=(end-start)/CLOCKS_PER_SEC;
@@ -56,7 +49,7 @@ int main(int argc, char const *argv[]) {
     // U.PrintMatrix();
 
     V.PrintVector();
-    //V.WriteToFile(O);
+    V.WriteToFile(O);
 
     return EXIT_SUCCESS;
 }

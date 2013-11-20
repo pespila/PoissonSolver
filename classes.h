@@ -87,9 +87,6 @@ class UpperMatrix : public LowerMatrix
 	private:
 		int dim;
 		int n;
-		// vector<double> Udiagonal;
-		// vector<double> Utridiagonal;
-		// vector<double> Uidentity;
 	public:
 		UpperMatrix(int);
 		~UpperMatrix();
@@ -137,7 +134,6 @@ class Algorithms {
         int HashTable(int,int);
         void incompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
         void modifiedIncompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
-        void LUNEW(Matrix&, WriteableMatrix&, WriteableMatrix&);
 		void modifiedIncompleteCholesky(WriteableMatrix&, WriteableMatrix&, WriteableMatrix&);
 		void incompleteCholesky(PoissonMatrix&, LowerMatrix&, UpperMatrix&);
         void JacobiMethod(Matrix&, Operators&, Vectors&);

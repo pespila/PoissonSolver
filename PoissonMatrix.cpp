@@ -42,11 +42,15 @@ double PoissonMatrix::Get(int i, int j) {
 }
 
 void Matrix::PrintMatrix() {
-	for(int i = 0; i < Size(); i++) {
-		for(int j = 0; j < Size(); j++) {
-			printf(" %.2f ", Get(i,j));
+	if(Size()>25){
+		printf("Couldn't print Matrix! Dimension is too high.\n");
+	} else {
+		for(int i = 0; i < Size(); i++) {
+			for(int j = 0; j < Size(); j++) {
+				printf(" %.2f ", Get(i,j));
+			}
+			printf("\n");
 		}
 		printf("\n");
 	}
-	printf("\n");
 }
