@@ -61,7 +61,36 @@ void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMa
 }
 
 void Algorithms::LU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
-    int i=0;
+    int i,j,k,m,u;
+    double sum;
+    for(i=0;i<dim;i++) {
+        for(k=0;k<5;k++) {
+            m = A.HashMatrix[i][k];
+            if(m!=-1 && m<=i-1) {
+                sum=0;
+                for(j=0;j<m;j++) {
+                    u = A.HashMatrix[i][j];
+                    if(u!=-1) {
+                        sum+=L.Get(i,j)*U.Get(j,m);
+                    }
+                }
+                L.Set(i,m,(A.Get(i,m)-sum)/U.Get(m,m));
+            }
+        }
+        for(k=0;k<5;k++) {
+            m = A.HashMatrix[i][k];
+            if(m!=-1 && m>=i-1) {
+                sum=0;
+                for(j=0;j<i;j++) {
+                    u = A.HashMatrix[i][j];
+                    if(u!=-1) {
+                        sum+=L.Get(i,j)*U.Get(j,m);
+                    }
+                }
+                U.Set(i,m,(A.Get(i,m)-sum));
+            }
+        }
+    }
 }
 
 void Algorithms::incompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
@@ -492,8 +521,8 @@ void Algorithms::PCG(Matrix& A, Operators& O, WriteableMatrix& L, WriteableMatri
 
     z=r;
 
-    O.LUsolverLower(L,z);
-    O.LUsolverUpper(U,z);
+    O.LUsolverLower(A,L,z);
+    O.LUsolverUpper(A,U,z);
 
     p=z;
     rTmp=r;
@@ -527,8 +556,8 @@ void Algorithms::PCG(Matrix& A, Operators& O, WriteableMatrix& L, WriteableMatri
         }
 
         z=r;
-        O.LUsolverLower(L,z);
-        O.LUsolverUpper(U,z);
+        O.LUsolverLower(A,L,z);
+        O.LUsolverUpper(A,U,z);
         zTmp=z;
 
         denom = O.innerProduct(z,r);

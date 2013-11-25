@@ -4,8 +4,26 @@ Preconditioner::Preconditioner(int m) {
 	n=m;
 	dim=n*n;
 	diagonal.assign(dim,4);
-	tridiagonal.assign(dim-1,-1);
+	tridiagonal.assign(dim-n,-1);
 	identity.assign(dim-n,-1);
+
+	int i,j,k;
+	for(i=0;i<dim;i++) {
+		vector<int> push;
+		push.assign(5,-1);
+		k=0;
+		for(j=0;j<dim;j++) {
+			if(Get(i,j)!=0) {
+				if(k==0) push[k]=(j);
+				if(k==1) push[k]=(j);
+				if(k==2) push[k]=(j);
+				if(k==3) push[k]=(j);
+				if(k==4) push[k]=(j);
+				k++;
+			}
+		}
+		HashMatrix.push_back( push );
+	}
 }
 
 Preconditioner::~Preconditioner() {

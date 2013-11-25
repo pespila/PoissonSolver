@@ -6,42 +6,6 @@ PoissonMatrix::PoissonMatrix(int m) {
 	diagonal = 4.0*(n+1)*(n+1);
 	tridiagonal = -1.0*(n+1)*(n+1);
 	identity = tridiagonal;
-
-	for(int i=0;i<dim;i++){
-		for(int j=0;j<dim;j++){
-			if(Get(i,j)!=0){
-				hash.i=i;
-				hash.j=j;
-				HashKeys.push_back(hash);
-			}
-		}
-	}
-
-	int k;
-	FLUM.a = 0;
-	FLUM.b = 0;
-	FLUM.c = 0;
-	FLUM.d = 0;
-	FLUM.e = 0;
-	for(int i=0;i<dim;i++){
-		k=0;
-		for(int j=0;j<5;j++){
-			if(Get(i,j)!=0){
-				if(k==0) {
-					FLUM.a = j;
-				} else if(k==1){
-					FLUM.b = j;
-				} else if(k==2){
-					FLUM.c = j;
-				} else if(k==4){
-					FLUM.d = j;
-				} else if(k==5){
-					FLUM.e = j;
-				}
-				k++;
-			}
-		}
-	}
 }
 
 PoissonMatrix::~PoissonMatrix() {

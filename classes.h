@@ -17,22 +17,10 @@ struct Tuple
     int j;
 };
 
-struct FastLUMatrix
-{
-    int a;
-    int b;
-    int c;
-    int d;
-    int e;
-};
-
 class Matrix
 {
     public:
-        Tuple hash;
-        vector<Tuple> HashKeys;
-        FastLUMatrix FLUM;
-        vector<FastLUMatrix> tmpMatrix;
+        vector<vector<int> > HashMatrix;
         virtual int Size()=0;
         virtual double Get(int,int)=0;
         void PrintMatrix();
@@ -116,8 +104,8 @@ class Operators
 		double innerProduct(const vector<double>&,const vector<double>&);
 		double vectorNorm(const vector<double>&);
 		void MatrixVectorMultiplyer(Matrix&,const vector<double>&,vector<double>& y);
-		void LUsolverLower(Matrix&,vector<double>&);
-		void LUsolverUpper(Matrix&,vector<double>&);
+		void LUsolverLower(Matrix&,Matrix&,vector<double>&);
+		void LUsolverUpper(Matrix&,Matrix&,vector<double>&);
 		double f(double, double);
     	double g(double, double);
 };

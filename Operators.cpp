@@ -36,20 +36,28 @@ void Operators::MatrixVectorMultiplyer(Matrix& M, const vector<double>& x, vecto
     }
 }
 
-void Operators::LUsolverLower(Matrix& L, vector<double>& z) {
+void Operators::LUsolverLower(Matrix& A, Matrix& L, vector<double>& z) {
+    int m;
     for(int i=0;i<dim;i++) {
-        for(int j=0;j<i;j++) {
-            z[i] -= L.Get(i,j)*z[j];
+        for(int j=0;j<5;j++) {
+            m = A.HashMatrix[i][j];
+            if(m!=-1 && m < i) {
+                z[i] -= L.Get(i,m)*z[m];
+            }
         }
         z[i] /= L.Get(i,i);
     }
 }
 
-void Operators::LUsolverUpper(Matrix& U, vector<double>& z) {
+void Operators::LUsolverUpper(Matrix& A, Matrix& U, vector<double>& z) {
+    int m;
     for(int i=dim-1;i>=0;i--) {
-        for(int j=dim-1;j>=i+1;j--) {
-            z[i] -= U.Get(i,j)*z[j];
-        }
+        for(int j=0;j<5;j++) {
+            m = A.HashMatrix[i][j];
+            if(m!=-1 && m >= i) {
+                z[i] -= U.Get(i,m)*z[m];
+            }
+         }
         z[i] /= U.Get(i,i);
     }
 }
