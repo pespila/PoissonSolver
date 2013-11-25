@@ -1,5 +1,14 @@
 #include "classes.h"
 
+struct MatrixLine
+{
+    int a;
+    int b;
+    int c;
+    int d;
+    int e;
+};
+
 int main(int argc, char const *argv[]) {
     int arg, n;//, dim;
     if (argc > 1) {
@@ -21,13 +30,15 @@ int main(int argc, char const *argv[]) {
     // double time,start=0.0,end=0.0;
     // start = clock();
 
-    //Run.modifiedIncompleteLU(A,L,U);
+    Run.modifiedIncompleteLU(A,L,U);
     //Run.incompleteLU(A,L,U);
     //Run.incompleteCholesky(A,L,U);
-    Run.modifiedIncompleteCholesky(W,L,U);
-    A.PrintMatrix();
-    L.PrintMatrix();
-    U.PrintMatrix();
+    //Run.modifiedIncompleteCholesky(W,L,U);
+    //A.PrintMatrix();
+    //L.PrintMatrix();
+    //U.PrintMatrix();
+
+    for(int i=0;i<A.)
 
     // end = clock();
     // time=(end-start)/CLOCKS_PER_SEC;

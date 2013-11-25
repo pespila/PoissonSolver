@@ -17,11 +17,22 @@ struct Tuple
     int j;
 };
 
+struct FastLUMatrix
+{
+    int a;
+    int b;
+    int c;
+    int d;
+    int e;
+};
+
 class Matrix
 {
     public:
         Tuple hash;
         vector<Tuple> HashKeys;
+        FastLUMatrix FLUM;
+        vector<FastLUMatrix> tmpMatrix;
         virtual int Size()=0;
         virtual double Get(int,int)=0;
         void PrintMatrix();
@@ -134,6 +145,7 @@ class Algorithms {
         int HashTable(int,int);
         void incompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
         void modifiedIncompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
+        void LU(Matrix&, WriteableMatrix&, WriteableMatrix&);
 		void modifiedIncompleteCholesky(WriteableMatrix&, WriteableMatrix&, WriteableMatrix&);
 		void incompleteCholesky(PoissonMatrix&, LowerMatrix&, UpperMatrix&);
         void JacobiMethod(Matrix&, Operators&, Vectors&);

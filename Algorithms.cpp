@@ -60,6 +60,10 @@ void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMa
     }
 }
 
+void Algorithms::LU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
+    int i=0;
+}
+
 void Algorithms::incompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
     int i,j,k;
     double s;
