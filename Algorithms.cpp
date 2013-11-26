@@ -123,7 +123,7 @@ void Algorithms::incompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U)
 
 void Algorithms::JacobiMethod(Matrix& A, Operators& O, Vectors& V) {
     double eps,h,norm,sum;
-    int steps,i,j,k;
+    int steps,i,j,k,m;
 
     steps=0;
     h=1.0/(double)(n+1);
@@ -147,15 +147,24 @@ void Algorithms::JacobiMethod(Matrix& A, Operators& O, Vectors& V) {
     eps=pow(10,-3)*O.vectorNorm(stopNorm);
     norm=1.0;
 
+    printf("%d\n", A.HashMatrix[0][0]);
+
     while(eps<norm) {
         for(i=0;i<dim;i++) {
             sum=0;
-            for(j=0;j<dim;j++) {
-                if(i==j) continue;
-                if(HashTable(i,j)) {
-                    sum+=A.Get(i,j)*V.x[j];
-                } 
+            for(k=0;k<5;k++) {
+                m=A.HashMatrix[i][k];
+                printf("%d\n", m);
+                if(m!=-1) {
+                    sum+=A.Get(i,m)*V.x[m];
+                }
             }
+            // for(j=0;j<dim;j++) {
+            //     if(i==j) continue;
+            //     if(HashTable(i,j)) {
+            //         sum+=A.Get(i,j)*V.x[j];
+            //     } 
+            // }
                 V.x[i]=1/A.Get(i,i)*(V.b[i]-sum);
         }
 
