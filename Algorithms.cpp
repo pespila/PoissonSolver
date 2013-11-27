@@ -41,6 +41,7 @@ void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMa
                     }
                 }
                 L.Set(i,m,(A.Get(i,m)-sum)/U.Get(m,m));
+                drop+=sum;
             }
         }
         for(k=0;k<5;k++) {
@@ -54,41 +55,44 @@ void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMa
                     }
                 }
                 U.Set(i,m,(A.Get(i,m)-sum));
+                drop+=sum;
             }
         }
+        //printf("%f\n", drop);
         U.Set(i,i,(U.Get(i,i)-drop));
     }
 
-    for(i=0;i<dim;i++) {
-        drop = 0;
-        for(k=0;k<i;k++) {
-            sum = 0;
-            for(j=0;j<k;j++) {
-                if(HashTable(i,j) && HashTable(j,k)) {
-                    sum += L.Get(i,j) * U.Get(j,k);
-                }
-            }
-            if(HashTable(i,k)) {
-                L.Set(i,k,((A.Get(i,k) - sum)/U.Get(k,k)));
-            } else {
-                drop += sum;
-            }
-        }
-        for(k=i;k<dim;k++) {
-            sum = 0;
-            for(j=0;j<i;j++) {
-                if(HashTable(i,j) && HashTable(j,k)) {
-                    sum += L.Get(i,j) * U.Get(j,k);
-                }
-            }
-            if(HashTable(i,k)) {
-                U.Set(i,k,(A.Get(i,k) - sum));
-            } else {
-                drop += sum;
-            }
-        }
-        U.Set(i,i,(U.Get(i,i) - drop));
-    }
+    // for(i=0;i<dim;i++) {
+    //     drop = 0;
+    //     for(k=0;k<i;k++) {
+    //         sum = 0;
+    //         for(j=0;j<k;j++) {
+    //             if(HashTable(i,j) && HashTable(j,k)) {
+    //                 sum += L.Get(i,j) * U.Get(j,k);
+    //             }
+    //         }
+    //         if(HashTable(i,k)) {
+    //             L.Set(i,k,((A.Get(i,k) - sum)/U.Get(k,k)));
+    //         } else {
+    //             drop += sum;
+    //         }
+    //     }
+    //     for(k=i;k<dim;k++) {
+    //         sum = 0;
+    //         for(j=0;j<i;j++) {
+    //             if(HashTable(i,j) && HashTable(j,k)) {
+    //                 sum += L.Get(i,j) * U.Get(j,k);
+    //             }
+    //         }
+    //         if(HashTable(i,k)) {
+    //             U.Set(i,k,(A.Get(i,k) - sum));
+    //         } else {
+    //             drop += sum;
+    //         }
+    //     }
+    //     printf("%f\n", drop);
+    //     U.Set(i,i,(U.Get(i,i) - drop));
+    // }
 }
 
 // void Algorithms::LU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {

@@ -17,6 +17,7 @@ int main(int argc, char const *argv[]) {
     UpperMatrix U(n);
     //Preconditioner W(n);
 
+    printf("Started\n");
     double time,start=0.0,end=0.0;
     start = clock();
 
@@ -42,7 +43,7 @@ int main(int argc, char const *argv[]) {
     U.PrintMatrix();
 
     V.PrintVector();
-    V.WriteToFile(O);
+    //V.WriteToFile(O);
 
     return EXIT_SUCCESS;
 }
