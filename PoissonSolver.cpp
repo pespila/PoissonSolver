@@ -43,6 +43,7 @@ int main(int argc, char const *argv[]) {
     U.PrintMatrix();
 
     V.PrintVector();
+    printf("%f\n", V.b[0]);
     //V.WriteToFile(O);
 
     return EXIT_SUCCESS;

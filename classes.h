@@ -142,6 +142,7 @@ class Algorithms {
         void SSORMethod(Matrix&, Operators&, Vectors&);
 		void CG(Matrix&, Operators&, Vectors&);
 		void PCG(Matrix&, Operators&, WriteableMatrix&, WriteableMatrix&, Vectors&);
+        void MultiGridMethod();
 };
 
 #endif

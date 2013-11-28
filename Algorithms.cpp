@@ -619,3 +619,100 @@ void Algorithms::PCG(Matrix& A, Operators& O, WriteableMatrix& L, WriteableMatri
     }
     printf("PCGSteps: %d\n", steps);
 }
+
+vector<double> Algorithms::Restriction(const vector<double>& r, int n) {
+    vector<double> r2h;
+    r2h.resize(n-1*n-1);
+    int k=0;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+            if(i%2==0 && j%2==0) {
+                r2h[k]=r[k];
+            }
+            k++;
+        }
+    }
+    return r2h;
+}
+
+void Algorithms::MultiGridMethod(vector<double>& x, vector<double>& b, Operators& O, int m) {
+    int i,j,k;
+    if(m==1) {
+        double a,b;
+        a=4*pow(n+1,2);
+        b=O.f(h,h)+pow(n+1,2)*(O.g(0,h)+O.g(h,0)+O.g(1-h,1)+O.g(1,1-h));
+        return b/a;
+    } else {
+        PoissonMatrix A(m);
+        GaussSeidelMethod(A,O,V);
+        vector<double> Ax,r,e,r2h,Zeros;
+        Ax.resize(m*m);
+        r.assign(m*m,0);
+        e.resize(m*m);
+        r2h.resize(m-1*m-1);
+        Zeros.assign(m*m,0);
+        O.MatrixVectorMultiplyer(A,x,Ax);
+        for(i=0;i<m*m;i++) {
+            r[i]=Ax[i]-b[i];
+        }
+        r2h=Restriction(r,m);
+        MultiGridMethod(r2h,Zeros,O,m-1);
+        e=Interpolation(r2h);
+        //Compute Interpolation!!!
+        for(i=0;i<m*m;i++) {
+            x[i]=x[i]-e[i];
+        }
+        GaussSeidelMethod(A,O,V);
+    }
+}
+
+// void Algorithms::MultiGridMethod() {
+//     GaussSeidelMethod(A,O,V,3);
+//     vector<double> Au;
+//     Au.resize(dim);
+//     O.MatrixVectorMultiplyer(A,V.xh,Au);
+//     int k=0;
+//     for(int i=1;i<=n;i++) {
+//         for(int j=1;j<=n;j++) {
+//             if(i%2==0 && j%2==0) {
+//                 V.r2h[k]=V.rh[k];
+//             }
+//             k++;
+//         }
+//     }
+//     // for(int i=0;i<dim;i++) {
+//     //     V.rh[i] = V.bh[i] - Au[i];
+//     //     if(i%2!=0) {
+//     //         V.r2h[i] = V.rh[i];
+//     //     }
+//     // }
+//     vector<double> E2h;
+//     E2h.assign(V.r2h.Size(),0);
+//     int N = n+1;
+//     int n2h = N/2;
+//     PoissonMatrix A2h(n2h);
+//     GaussSeidelMethod(A2h,O,V,3);
+//     vector<double> Eh;
+//     Eh.resize(dim);
+//     int k=0;
+//     //int l=0;
+//     for(int i=0;i<=n;i++) {
+//         for(int j=0;j<=n;j++) {
+//             if(i%2==0 && j%2==0 && i>0 && j>0) {
+//                 V.rh[k]=V.r2h[k];
+//                 //l++;
+//             }
+//             if(i%2!=0 && j%2==0 && j>0) {
+//                 V.rh[k]=1/2*(V.r2h[]+V.r2h[]);
+//             }
+//             if(i%2==0 && j%2!=0 && i>0) {
+//                 V.rh[k]=1/2*
+//             }
+//             if(i%2!=0 && j%2!=0) {
+//                 V.rh[k]=1/4*
+//             }
+//             k++;
+//         }
+//     }
+//     GaussSeidelMethod(A,O,V,3);
+// }
