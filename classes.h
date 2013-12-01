@@ -136,13 +136,15 @@ class Algorithms {
         void LU(Matrix&, WriteableMatrix&, WriteableMatrix&);
 		void modifiedIncompleteCholesky(WriteableMatrix&, WriteableMatrix&, WriteableMatrix&);
 		void incompleteCholesky(PoissonMatrix&, LowerMatrix&, UpperMatrix&);
-        void JacobiMethod(Matrix&, Operators&, Vectors&);
-        void GaussSeidelMethod(Matrix&, Operators&, Vectors&);
-        void SORMethod(Matrix&, Operators&, Vectors&);
+        void JacobiMethod(Matrix&, Operators&, Vectors&,int);
+        void GaussSeidelMethod(Matrix&, Operators&, Vectors&,int);
+        void SORMethod(Matrix&, Operators&, Vectors&,int);
         void SSORMethod(Matrix&, Operators&, Vectors&);
 		void CG(Matrix&, Operators&, Vectors&);
 		void PCG(Matrix&, Operators&, WriteableMatrix&, WriteableMatrix&, Vectors&);
-        void MultiGridMethod();
+        void MultiGridMethod(vector<double>&,vector<double>&,Operators&,int);
+        void Restriction(const vector<double>&,vector<double>&,int);
+        void Interpolation(const vector<double>&,vector<double>&,int);
 };
 
 #endif

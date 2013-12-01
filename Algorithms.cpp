@@ -156,7 +156,7 @@ void Algorithms::incompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U)
     }
 }
 
-void Algorithms::JacobiMethod(Matrix& A, Operators& O, Vectors& V) {
+void Algorithms::JacobiMethod(Matrix& A, Operators& O, Vectors& V, int maxIterations = 5000) {
     double eps,h,norm,sum;
     int steps,i,j,k,m;
 
@@ -196,11 +196,14 @@ void Algorithms::JacobiMethod(Matrix& A, Operators& O, Vectors& V) {
         }
         norm=O.vectorNorm(stopNorm);
         steps++;
+        if(steps==maxIterations) {
+            norm=0.0;
+        }
     }
     printf("JacobianSteps: %d\n", steps);
 }
 
-void Algorithms::GaussSeidelMethod(Matrix& A, Operators& O, Vectors& V) {
+void Algorithms::GaussSeidelMethod(Matrix& A, Operators& O, Vectors& V, int maxIterations = 5000) {
     double eps,h,norm,sum1,sum2;
     int steps,i,j,k,m;
 
@@ -247,12 +250,15 @@ void Algorithms::GaussSeidelMethod(Matrix& A, Operators& O, Vectors& V) {
         }
         norm=O.vectorNorm(stopNorm);
         steps++;
+        if(steps==maxIterations) {
+            norm=0.0;
+        }
     }
 
     printf("GaussSeidelSteps: %d\n", steps);
 }
 
-void Algorithms::SORMethod(Matrix& A, Operators& O, Vectors& V) {
+void Algorithms::SORMethod(Matrix& A, Operators& O, Vectors& V, int maxIterations = 1000) {
     double eps,h,norm,sum1,sum2,omega;
     int steps,i,j,k,m;
 
@@ -301,6 +307,9 @@ void Algorithms::SORMethod(Matrix& A, Operators& O, Vectors& V) {
         }
         norm=O.vectorNorm(stopNorm);
         steps++;
+        if(steps==maxIterations) {
+            norm=0.0;
+        }
     }
     printf("SORSteps: %d\n", steps);
 }
@@ -620,9 +629,7 @@ void Algorithms::PCG(Matrix& A, Operators& O, WriteableMatrix& L, WriteableMatri
     printf("PCGSteps: %d\n", steps);
 }
 
-vector<double> Algorithms::Restriction(const vector<double>& r, int n) {
-    vector<double> r2h;
-    r2h.resize(n-1*n-1);
+void Algorithms::Restriction(const vector<double>& r, vector<double>& r2h, int n) {
     int k=0;
     for(int i=1;i<=n;i++){
         for(int j=1;j<=n;j++){
@@ -632,38 +639,52 @@ vector<double> Algorithms::Restriction(const vector<double>& r, int n) {
             k++;
         }
     }
-    return r2h;
 }
 
-void Algorithms::MultiGridMethod(vector<double>& x, vector<double>& b, Operators& O, int m) {
+void Algorithms::Interpolation(const vector<double>& r2h, vector<double>& E, int n) {
+    int k=0;
+    for(int i=1;i<=n;i++) {
+        for(int j=1;j<=n;j++) {
+
+        }
+    }
+}
+
+void Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, Operators& O, int m) {
     int i,j,k;
     if(m==1) {
-        double a,b;
+        double a,b,h;
+        
         a=4*pow(n+1,2);
         b=O.f(h,h)+pow(n+1,2)*(O.g(0,h)+O.g(h,0)+O.g(1-h,1)+O.g(1,1-h));
-        return b/a;
+        x.resize(m,b/a);
     } else {
         PoissonMatrix A(m);
-        GaussSeidelMethod(A,O,V);
-        vector<double> Ax,r,e,r2h,Zeros;
+        GaussSeidelMethod(A,O,V,3);
+        vector<double> Ax,r,E,r2h,xTmp;
         Ax.resize(m*m);
         r.assign(m*m,0);
-        e.resize(m*m);
-        r2h.resize(m-1*m-1);
-        Zeros.assign(m*m,0);
+        E.resize(m*m);
+        r2h.resize((m-1)*(m-1));
+        xTmp.assign((m-1)*(m-1),0);
         O.MatrixVectorMultiplyer(A,x,Ax);
         for(i=0;i<m*m;i++) {
-            r[i]=Ax[i]-b[i];
+            r[i]=b[i]-Ax[i];
         }
-        r2h=Restriction(r,m);
-        MultiGridMethod(r2h,Zeros,O,m-1);
-        e=Interpolation(r2h);
+        Restriction(r,r2h,m);
+        MultiGridMethod(xTmp,r2h,O,m-1);
+        Interpolation(r2h,E,m);
         //Compute Interpolation!!!
         for(i=0;i<m*m;i++) {
-            x[i]=x[i]-e[i];
+            x[i]=x[i]+E[i];
         }
-        GaussSeidelMethod(A,O,V);
+        GaussSeidelMethod(A,O,V,3);
     }
+    vector<double>().swap(Ax);
+    vector<double>().swap(r);
+    vector<double>().swap(E);
+    vector<double>().swap(r2h);
+    vector<double>().swap(xTmp);
 }
 
 // void Algorithms::MultiGridMethod() {
