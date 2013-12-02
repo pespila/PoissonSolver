@@ -45,7 +45,12 @@ int main(int argc, char const *argv[]) {
     //U.PrintMatrix();
 
     V.PrintVector();
+<<<<<<< HEAD
     V.WriteToFile(O);
+=======
+    printf("%f\n", V.b[0]);
+    //V.WriteToFile(O);
+>>>>>>> 29553d7bc1fd82a5b3ffbb9c6e7e628272008f74
 
     return EXIT_SUCCESS;
 }
