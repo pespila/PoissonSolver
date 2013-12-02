@@ -25,7 +25,7 @@ int Algorithms::HashTable(int i, int j) {
 }
 
 void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
-    int i,j,k,m,u,v,tmp=0;
+    int i,j,k,m,u;
     double sum, drop;
 
     for(i=0;i<dim;i++) {
@@ -156,7 +156,7 @@ void Algorithms::incompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U)
     }
 }
 
-void Algorithms::JacobiMethod(Matrix& A, Operators& O, Vectors& V) {
+void Algorithms::JacobiMethod(Matrix& A, Operators& O, vector<double>& x, const vector<double>& b, int maxIterations = 5000) {
     double eps,h,norm,sum;
     int steps,i,j,k,m;
 
@@ -168,13 +168,13 @@ void Algorithms::JacobiMethod(Matrix& A, Operators& O, Vectors& V) {
     solution.resize(dim);
     stopNorm.resize(dim);
 
-    V.x.assign(dim,0);
+    x.assign(dim,0);
 
     k=0;
     for (i=1;i<(n+1);i++) {
         for (j=1;j<(n+1);j++) {
             solution[k] = O.g(j*h,i*h);
-            stopNorm[k] = V.x[k]-solution[k];
+            stopNorm[k] = x[k]-solution[k];
             k++;
         }
     }
@@ -188,19 +188,22 @@ void Algorithms::JacobiMethod(Matrix& A, Operators& O, Vectors& V) {
             for(k=0;k<5;k++) {
                 m=A.HashMatrix[i][k];
                 if(m!=-1 && m!=i) {
-                    sum+=A.Get(i,m)*V.x[m];
+                    sum+=A.Get(i,m)*x[m];
                 }
             }
-            V.x[i]=1/A.Get(i,i)*(V.b[i]-sum);
-            stopNorm[i]=V.x[i]-solution[i];
+            x[i]=1/A.Get(i,i)*(b[i]-sum);
+            stopNorm[i]=x[i]-solution[i];
         }
         norm=O.vectorNorm(stopNorm);
         steps++;
+        if(steps==maxIterations) {
+            norm=0.0;
+        }
     }
     printf("JacobianSteps: %d\n", steps);
 }
 
-void Algorithms::GaussSeidelMethod(Matrix& A, Operators& O, Vectors& V) {
+void Algorithms::GaussSeidelMethod(Matrix& A, Operators& O, vector<double>& x, const vector<double>& b, int maxIterations = 5000) {
     double eps,h,norm,sum1,sum2;
     int steps,i,j,k,m;
 
@@ -212,13 +215,13 @@ void Algorithms::GaussSeidelMethod(Matrix& A, Operators& O, Vectors& V) {
     solution.resize(dim);
     stopNorm.resize(dim);
 
-    V.x.assign(dim,0);
+    x.assign(dim,0);
 
     k=0;
     for (i=1;i<(n+1);i++) {
         for (j=1;j<(n+1);j++) {
             solution[k] = O.g(j*h,i*h);
-            stopNorm[k] = V.x[k]-solution[k];
+            stopNorm[k] = x[k]-solution[k];
             k++;
         }
     }
@@ -232,27 +235,30 @@ void Algorithms::GaussSeidelMethod(Matrix& A, Operators& O, Vectors& V) {
             for(k=0;k<5;k++) {
                 m=A.HashMatrix[i][k];
                 if(m!=-1 && m<i) {
-                    sum1+=A.Get(i,m)*V.x[m];
+                    sum1+=A.Get(i,m)*x[m];
                 }
             }
             sum2=0;
             for(k=0;k<5;k++) {
                 m=A.HashMatrix[i][k];
                 if(m!=-1 && m>i) {
-                    sum2+=A.Get(i,m)*V.x[m];
+                    sum2+=A.Get(i,m)*x[m];
                 }
             }
-            V.x[i] = 1/A.Get(i,i)*(V.b[i]-sum1-sum2);
-            stopNorm[i]=V.x[i]-solution[i];
+            x[i] = 1/A.Get(i,i)*(b[i]-sum1-sum2);
+            stopNorm[i]=x[i]-solution[i];
         }
         norm=O.vectorNorm(stopNorm);
         steps++;
+        if(steps==maxIterations) {
+            norm=0.0;
+        }
     }
 
     printf("GaussSeidelSteps: %d\n", steps);
 }
 
-void Algorithms::SORMethod(Matrix& A, Operators& O, Vectors& V) {
+void Algorithms::SORMethod(Matrix& A, Operators& O, vector<double>& x, const vector<double>& b, int maxIterations = 1000) {
     double eps,h,norm,sum1,sum2,omega;
     int steps,i,j,k,m;
 
@@ -264,13 +270,13 @@ void Algorithms::SORMethod(Matrix& A, Operators& O, Vectors& V) {
     solution.resize(dim);
     stopNorm.resize(dim);
 
-    V.x.assign(dim,0);
+    x.assign(dim,0);
 
     k=0;
     for (i=1;i<(n+1);i++) {
         for (j=1;j<(n+1);j++) {
             solution[k] = O.g(j*h,i*h);
-            stopNorm[k] = V.x[k]-solution[k];
+            stopNorm[k] = x[k]-solution[k];
             k++;
         }
     }
@@ -286,21 +292,24 @@ void Algorithms::SORMethod(Matrix& A, Operators& O, Vectors& V) {
             for(k=0;k<5;k++) {
                 m=A.HashMatrix[i][k];
                 if(m!=-1 && m<i) {
-                    sum1+=A.Get(i,m)*V.x[m];
+                    sum1+=A.Get(i,m)*x[m];
                 }
             }
             sum2=0;
             for(k=0;k<5;k++) {
                 m=A.HashMatrix[i][k];
                 if(m!=-1 && m>=i) {
-                    sum2+=A.Get(i,m)*V.x[m];
+                    sum2+=A.Get(i,m)*x[m];
                 }
             }
-            V.x[i] = V.x[i]-omega*1/A.Get(i,i)*(sum1+sum2-V.b[i]);
-            stopNorm[i]=V.x[i]-solution[i];
+            x[i] = x[i]-omega*1/A.Get(i,i)*(sum1+sum2-b[i]);
+            stopNorm[i]=x[i]-solution[i];
         }
         norm=O.vectorNorm(stopNorm);
         steps++;
+        if(steps==maxIterations) {
+            norm=0.0;
+        }
     }
     printf("SORSteps: %d\n", steps);
 }
@@ -619,3 +628,113 @@ void Algorithms::PCG(Matrix& A, Operators& O, WriteableMatrix& L, WriteableMatri
     }
     printf("PCGSteps: %d\n", steps);
 }
+
+void Algorithms::Restriction(const vector<double>& r, vector<double>& r2h, int n) {
+    int k=0;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+            if(i%2==0 && j%2==0) {
+                r2h[k]=r[k];
+            }
+            k++;
+        }
+    }
+}
+
+void Algorithms::Interpolation(const vector<double>& r2h, vector<double>& E, int n) {
+    //int k=0;
+    for(int i=1;i<=n;i++) {
+        for(int j=1;j<=n;j++) {
+
+        }
+    }
+}
+
+void Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, Operators& O, int m) {
+    int i;
+    if(m==1) {
+        double a,b,h;
+        
+        h=1.0/(double)(m+1);
+        a=4*pow(n+1,2);
+        b=O.f(h,h)+pow(n+1,2)*(O.g(0,h)+O.g(h,0)+O.g(1-h,1)+O.g(1,1-h));
+        x.resize(m,b/a);
+    } else {
+        PoissonMatrix A(m);
+        GaussSeidelMethod(A,O,x,b,3);
+        vector<double> Ax,r,E,r2h,xTmp;
+        Ax.resize(m*m);
+        r.assign(m*m,0);
+        E.resize(m*m);
+        r2h.resize((m-1)*(m-1));
+        xTmp.assign((m-1)*(m-1),0);
+        O.MatrixVectorMultiplyer(A,x,Ax);
+        for(i=0;i<m*m;i++) {
+            r[i]=b[i]-Ax[i];
+        }
+        Restriction(r,r2h,m);
+        MultiGridMethod(xTmp,r2h,O,m-1);
+        Interpolation(r2h,E,m);
+        //Compute Interpolation!!!
+        for(i=0;i<m*m;i++) {
+            x[i]=x[i]+E[i];
+        }
+        GaussSeidelMethod(A,O,x,b,3);
+        vector<double>().swap(Ax);
+        vector<double>().swap(r);
+        vector<double>().swap(E);
+        vector<double>().swap(r2h);
+        vector<double>().swap(xTmp);
+    }
+}
+
+// void Algorithms::MultiGridMethod() {
+//     GaussSeidelMethod(A,O,V,3);
+//     vector<double> Au;
+//     Au.resize(dim);
+//     O.MatrixVectorMultiplyer(A,V.xh,Au);
+//     int k=0;
+//     for(int i=1;i<=n;i++) {
+//         for(int j=1;j<=n;j++) {
+//             if(i%2==0 && j%2==0) {
+//                 V.r2h[k]=V.rh[k];
+//             }
+//             k++;
+//         }
+//     }
+//     // for(int i=0;i<dim;i++) {
+//     //     V.rh[i] = V.bh[i] - Au[i];
+//     //     if(i%2!=0) {
+//     //         V.r2h[i] = V.rh[i];
+//     //     }
+//     // }
+//     vector<double> E2h;
+//     E2h.assign(V.r2h.Size(),0);
+//     int N = n+1;
+//     int n2h = N/2;
+//     PoissonMatrix A2h(n2h);
+//     GaussSeidelMethod(A2h,O,V,3);
+//     vector<double> Eh;
+//     Eh.resize(dim);
+//     int k=0;
+//     //int l=0;
+//     for(int i=0;i<=n;i++) {
+//         for(int j=0;j<=n;j++) {
+//             if(i%2==0 && j%2==0 && i>0 && j>0) {
+//                 V.rh[k]=V.r2h[k];
+//                 //l++;
+//             }
+//             if(i%2!=0 && j%2==0 && j>0) {
+//                 V.rh[k]=1/2*(V.r2h[]+V.r2h[]);
+//             }
+//             if(i%2==0 && j%2!=0 && i>0) {
+//                 V.rh[k]=1/2*
+//             }
+//             if(i%2!=0 && j%2!=0) {
+//                 V.rh[k]=1/4*
+//             }
+//             k++;
+//         }
+//     }
+//     GaussSeidelMethod(A,O,V,3);
+// }

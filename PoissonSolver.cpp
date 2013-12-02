@@ -45,5 +45,37 @@ int main(int argc, char const *argv[]) {
     V.PrintVector();
     //V.WriteToFile(O);
 
+    printf("\n");
+    for(int i=0;i<n;i++) {
+        for(int j=0;j<n;j++) {
+            printf("o ");
+        }
+        printf("\n");
+    }
+    printf("\n");
+
+    printf("\n");
+    for(int i=0;i<n/2;i++) {
+        printf("  ");
+        for(int j=0;j<n/2;j++) {
+            printf("o   ");
+        }
+        printf("\n");
+        printf("\n");
+    }
+    printf("\n");
+
+    printf("\n");
+    for(int i=0;i<n/4;i++) {
+        printf("    ");
+        for(int j=0;j<n/4;j++) {
+            printf("o    ");
+        }
+        printf("\n");
+        printf("\n");
+        printf("\n");
+    }
+    printf("\n");
+
     return EXIT_SUCCESS;
 }
