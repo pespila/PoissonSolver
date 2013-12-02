@@ -11,12 +11,6 @@
 #include <time.h>
 using namespace std;
 
-struct Tuple
-{
-    int i;
-    int j;
-};
-
 class Matrix
 {
     public:
@@ -46,23 +40,7 @@ class PoissonMatrix : public Matrix
 
         int Size();
     	double Get(int, int);
-};
-
-class Preconditioner : public WriteableMatrix
-{
-    private:
-        int dim;
-        int n;
-        vector<double> diagonal;
-        vector<double> tridiagonal;
-        vector<double> identity;
-    public:
-        Preconditioner(int);
-        ~Preconditioner();
-
-        int Size();
-        double Get(int,int);
-        void Set(int,int,double);
+        void Preconditioning();
 };
 
 class LowerMatrix : public WriteableMatrix
@@ -95,17 +73,12 @@ class UpperMatrix : public LowerMatrix
 
 class Operators
 {
-	private:
-		int dim;
-		int n;
 	public:
-		Operators(int);
+		Operators();
 		~Operators();
 		double innerProduct(const vector<double>&,const vector<double>&);
 		double vectorNorm(const vector<double>&);
 		void MatrixVectorMultiplyer(Matrix&,const vector<double>&,vector<double>& y);
-		void LUsolverLower(Matrix&,Matrix&,vector<double>&);
-		void LUsolverUpper(Matrix&,Matrix&,vector<double>&);
 		double f(double, double);
     	double g(double, double);
 };
@@ -136,6 +109,8 @@ class Algorithms {
         void LU(Matrix&, WriteableMatrix&, WriteableMatrix&);
 		void modifiedIncompleteCholesky(WriteableMatrix&, WriteableMatrix&, WriteableMatrix&);
 		void incompleteCholesky(PoissonMatrix&, LowerMatrix&, UpperMatrix&);
+        void LUsolverLower(Matrix&,Matrix&,vector<double>&);
+        void LUsolverUpper(Matrix&,Matrix&,vector<double>&);
         void JacobiMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int);
         void GaussSeidelMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int);
         void SORMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int);

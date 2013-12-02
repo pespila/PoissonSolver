@@ -128,6 +128,105 @@ void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMa
 //     }
 // }
 
+void Algorithms::modifiedIncompleteCholesky(WriteableMatrix& A, WriteableMatrix& L, WriteableMatrix& Ltranspose) {
+    int i,j,k,m,u,v;
+    double sum;
+
+    // for(k=0;k<dim;k++) {
+    //     sum=0;
+    //     for(j=0;j<k;j++) {
+    //         sum+=L.Get(k,j);
+    //     }
+    //     L.Set(k,k,sqrt(A.Get(k,k)-sum));
+    //     Ltranspose.Set(k,k,sqrt(A.Get(k,k)-sum));
+    //     for(i=k+1;i<dim;i++) {
+    //         if(A.Get(i,k)!=0) {
+    //             sum=0;
+    //             for(j=0;j<k;j++) {
+    //                 sum+=L.Get(i,j)*L.Get(k,j);
+    //             }
+    //             L.Set(i,k,(A.Get(i,k)-sum)/L.Get(k,k));
+    //             Ltranspose.Set(k,i,(A.Get(i,k)-sum)/L.Get(k,k));
+    //         } else {
+    //             sum=0;
+    //             for(j=0;j<k;j++) {
+    //                 sum+=L.Get(i,j)*L.Get(k,j);
+    //             }
+    //             A.Set(i,i,A.Get(i,i)-sum);
+    //         }
+    //     }
+    // }
+
+    for(k=0;k<dim;k++) {
+        sum=0;
+        for(j=0;j<5;j++) {
+            m=A.HashMatrix[k][j];
+            if(m!=-1 && m<k) {
+                sum+=L.Get(k,m);
+            }
+        }
+        L.Set(k,k,sqrt(A.Get(k,k)-sum));
+        Ltranspose.Set(k,k,sqrt(A.Get(k,k)-sum));
+        for(j=0;j<5;j++) {
+            m=A.HashMatrix[k][j];
+            if(m!=-1 && m>=k+1) {
+                sum=0;
+                for(i=0;i<5;i++) {
+                    u=A.HashMatrix[m][i];
+                    v=A.HashMatrix[k][i];
+                    if(u!=-1 && u<k && v!=-1 && v<k) {
+                        sum+=L.Get(m,u)*L.Get(m,v);
+                    }
+                }
+                L.Set(m,k,(A.Get(m,k)-sum)/L.Get(k,k));
+                Ltranspose.Set(k,m,(A.Get(m,k)-sum)/L.Get(k,k));
+            } else if(m!=-1 && m<k+1) {
+                sum=0;
+                for(i=0;i<5;i++) {
+                    u=A.HashMatrix[m][i];
+                    v=A.HashMatrix[k][i];
+                    if(u!=-1 && u<k && v!=-1 && v<k) {
+                        sum+=L.Get(m,u)*L.Get(m,v);
+                    }
+                }
+                A.Set(m,m,A.Get(m,m)-sum);
+            }
+        }
+    }
+}
+
+void Algorithms::incompleteCholesky(PoissonMatrix& A, LowerMatrix& L, UpperMatrix& Ltranspose) {
+    int i,j,k,m,u,v;
+    double sum;
+
+    for(k=0;k<dim;k++) {
+        sum=0;
+        for(j=0;j<5;j++) {
+            m=A.HashMatrix[k][j];
+            if(m!=-1 && m<k) {
+                sum+=pow(L.Get(k,m),2);
+            }
+        }
+        L.Set(k,k,sqrt(A.Get(k,k)-sum));
+        Ltranspose.Set(k,k,sqrt(A.Get(k,k)-sum));
+        for(j=0;j<5;j++) {
+            m=A.HashMatrix[k][j];
+            if(m!=-1 && m>=k+1) {
+                sum=0;
+                for(i=0;i<5;i++) {
+                    u=A.HashMatrix[m][i];
+                    v=A.HashMatrix[k][i];
+                    if(u!=-1 && u<k && v!=-1 && v<k) {
+                        sum+=L.Get(m,u)*L.Get(m,v);
+                    }
+                }
+                L.Set(m,k,(A.Get(m,k)-sum)/L.Get(k,k));
+                Ltranspose.Set(k,m,(A.Get(m,k)-sum)/L.Get(k,k));
+            }
+        }
+    }
+}
+
 void Algorithms::incompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
     int i,j,k;
     double sum;
@@ -153,6 +252,34 @@ void Algorithms::incompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U)
                 U.Set(i,k,(A.Get(i,k)-sum));
             }
         }
+    }
+}
+
+void Algorithms::LUsolverLower(Matrix& A, Matrix& L, vector<double>& z) {
+    int m;
+    int dim=z.size();
+    for(int i=0;i<dim;i++) {
+        for(int j=0;j<5;j++) {
+            m=A.HashMatrix[i][j];
+            if(m!=-1 && m < i) {
+                z[i]-=L.Get(i,m)*z[m];
+            }
+        }
+        z[i]/=L.Get(i,i);
+    }
+}
+
+void Algorithms::LUsolverUpper(Matrix& A, Matrix& U, vector<double>& z) {
+    int m;
+    int dim=z.size();
+    for(int i=dim-1;i>=0;i--) {
+        for(int j=0;j<5;j++) {
+            m=A.HashMatrix[i][j];
+            if(m!=-1 && m >= i) {
+                z[i]-=U.Get(i,m)*z[m];
+            }
+         }
+        z[i]/=U.Get(i,i);
     }
 }
 
@@ -371,105 +498,6 @@ void Algorithms::SSORMethod(Matrix& A, Operators& O, Vectors& V) {
     //printf("SORSteps: %d\n", steps);
 }
 
-void Algorithms::modifiedIncompleteCholesky(WriteableMatrix& A, WriteableMatrix& L, WriteableMatrix& Ltranspose) {
-    int i,j,k,m,u,v;
-    double sum;
-
-    // for(k=0;k<dim;k++) {
-    //     sum=0;
-    //     for(j=0;j<k;j++) {
-    //         sum+=L.Get(k,j);
-    //     }
-    //     L.Set(k,k,sqrt(A.Get(k,k)-sum));
-    //     Ltranspose.Set(k,k,sqrt(A.Get(k,k)-sum));
-    //     for(i=k+1;i<dim;i++) {
-    //         if(A.Get(i,k)!=0) {
-    //             sum=0;
-    //             for(j=0;j<k;j++) {
-    //                 sum+=L.Get(i,j)*L.Get(k,j);
-    //             }
-    //             L.Set(i,k,(A.Get(i,k)-sum)/L.Get(k,k));
-    //             Ltranspose.Set(k,i,(A.Get(i,k)-sum)/L.Get(k,k));
-    //         } else {
-    //             sum=0;
-    //             for(j=0;j<k;j++) {
-    //                 sum+=L.Get(i,j)*L.Get(k,j);
-    //             }
-    //             A.Set(i,i,A.Get(i,i)-sum);
-    //         }
-    //     }
-    // }
-
-    for(k=0;k<dim;k++) {
-        sum=0;
-        for(j=0;j<5;j++) {
-            m=A.HashMatrix[k][j];
-            if(m!=-1 && m<k) {
-                sum+=L.Get(k,m);
-            }
-        }
-        L.Set(k,k,sqrt(A.Get(k,k)-sum));
-        Ltranspose.Set(k,k,sqrt(A.Get(k,k)-sum));
-        for(j=0;j<5;j++) {
-            m=A.HashMatrix[k][j];
-            if(m!=-1 && m>=k+1) {
-                sum=0;
-                for(i=0;i<5;i++) {
-                    u=A.HashMatrix[m][i];
-                    v=A.HashMatrix[k][i];
-                    if(u!=-1 && u<k && v!=-1 && v<k) {
-                        sum+=L.Get(m,u)*L.Get(m,v);
-                    }
-                }
-                L.Set(m,k,(A.Get(m,k)-sum)/L.Get(k,k));
-                Ltranspose.Set(k,m,(A.Get(m,k)-sum)/L.Get(k,k));
-            } else if(m!=-1 && m<k+1) {
-                sum=0;
-                for(i=0;i<5;i++) {
-                    u=A.HashMatrix[m][i];
-                    v=A.HashMatrix[k][i];
-                    if(u!=-1 && u<k && v!=-1 && v<k) {
-                        sum+=L.Get(m,u)*L.Get(m,v);
-                    }
-                }
-                A.Set(m,m,A.Get(m,m)-sum);
-            }
-        }
-    }
-}
-
-void Algorithms::incompleteCholesky(PoissonMatrix& A, LowerMatrix& L, UpperMatrix& Ltranspose) {
-    int i,j,k,m,u,v;
-    double sum;
-
-    for(k=0;k<dim;k++) {
-        sum=0;
-        for(j=0;j<5;j++) {
-            m=A.HashMatrix[k][j];
-            if(m!=-1 && m<k) {
-                sum+=pow(L.Get(k,m),2);
-            }
-        }
-        L.Set(k,k,sqrt(A.Get(k,k)-sum));
-        Ltranspose.Set(k,k,sqrt(A.Get(k,k)-sum));
-        for(j=0;j<5;j++) {
-            m=A.HashMatrix[k][j];
-            if(m!=-1 && m>=k+1) {
-                sum=0;
-                for(i=0;i<5;i++) {
-                    u=A.HashMatrix[m][i];
-                    v=A.HashMatrix[k][i];
-                    if(u!=-1 && u<k && v!=-1 && v<k) {
-                        sum+=L.Get(m,u)*L.Get(m,v);
-                    }
-                }
-                L.Set(m,k,(A.Get(m,k)-sum)/L.Get(k,k));
-                Ltranspose.Set(k,m,(A.Get(m,k)-sum)/L.Get(k,k));
-            }
-        }
-    }
-}
-
 void Algorithms::CG(Matrix& A, Operators& O, Vectors& V) {
     double alpha,beta,eps,h,norm,skpOfRes,denom;
     int steps,i,j,k;
@@ -574,8 +602,8 @@ void Algorithms::PCG(Matrix& A, Operators& O, WriteableMatrix& L, WriteableMatri
 
     z=r;
 
-    O.LUsolverLower(A,L,z);
-    O.LUsolverUpper(A,U,z);
+    LUsolverLower(A,L,z);
+    LUsolverUpper(A,U,z);
 
     p=z;
     rTmp=r;
@@ -609,8 +637,8 @@ void Algorithms::PCG(Matrix& A, Operators& O, WriteableMatrix& L, WriteableMatri
         }
 
         z=r;
-        O.LUsolverLower(A,L,z);
-        O.LUsolverUpper(A,U,z);
+        LUsolverLower(A,L,z);
+        LUsolverUpper(A,U,z);
         zTmp=z;
 
         denom = O.innerProduct(z,r);
@@ -642,44 +670,106 @@ void Algorithms::Restriction(const vector<double>& r, vector<double>& r2h, int n
 }
 
 void Algorithms::Interpolation(const vector<double>& r2h, vector<double>& E, int n) {
-    //int k=0;
+    int k=0;
+    int l=0;
     for(int i=1;i<=n;i++) {
         for(int j=1;j<=n;j++) {
-
+            if(i%2==0 && j%2==0) {
+                E[k]=r2h[l];
+                l++;
+            }
+            if(i<n && j<n && i%2==0) {
+                E[k]=1/2*(r2h[l-1]+r2h[l]);
+            }
+            if(i%2==0 && (j==n || j==1)) {
+                E[k]=1/2*r2h[l];
+            }
+            k++;
+        }
+    }
+    for(int i=1;i<=n;i++) {
+        for(int j=1;j<=n;j++) {
+            if(i<n && j<n && j%2==0) {
+                E[k]=1/2*(E[k-n]+E[k+n]);
+            }
+            if(j%2==0 && i==1) {
+                E[k]=1/2*E[k+n];
+            }
+            if(j%2==0 && i==n) {
+                E[k]=1/2*E[k-n];
+            }
+            if(i<n && j<n && i%2!=0 && j%2!=0) {
+                E[k]=1/4*(E[k-n+1]+E[k-n-1]+E[k+n-1]+E[k+n+1]);
+            }
+            if(j==1 && i%2!=0 && i!=1 && i!=n) {
+                E[k]=1/4*(E[k-n+1]+E[k+n+1]);
+            }
+            if(j==n && i%2!=0 && i!=1 && i!=n) {
+                E[k]=1/4*(E[k-n-1]+E[k+n-1]);
+            }
+            if(i==1 && j%2!=0 && j!=1 && j!=n) {
+                E[k]=1/4*(E[k+n-1]+E[k+n+1]);
+            }
+            if(i==n && j%2!=0 && j!=1 && j!=n) {
+                E[k]=1/4*(E[k-n-1]+E[k-n+1]);
+            }
+            if(i==1 && j==1) {
+                E[k]=1/4*(E[k+n+1]);
+            }
+            if(i==n && j==n) {
+                E[k]=1/4*(E[k-n-1]);
+            }
+            if(i==1 && j==n) {
+                E[k]=1/4*(E[k+n-1]);
+            }
+            if(i==n && j==1) {
+                E[k]=1/4*(E[k-n+1]);
+            }
+            k++;
         }
     }
 }
 
 void Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, Operators& O, int m) {
     int i;
-    if(m==1) {
-        double a,b,h;
+    if(m==2) {
+        PoissonMatrix A(m+1);
+        GaussSeidelMethod(A,O,x,b);
+        printf("Stoping it\n");
+        // double a,b,h;
         
-        h=1.0/(double)(m+1);
-        a=4*pow(n+1,2);
-        b=O.f(h,h)+pow(n+1,2)*(O.g(0,h)+O.g(h,0)+O.g(1-h,1)+O.g(1,1-h));
-        x.resize(m,b/a);
+        // h=1.0/(double)(m+1);
+        // a=4*pow(n+1,2);
+        // b=O.f(h,h)+pow(n+1,2)*(O.g(0,h)+O.g(h,0)+O.g(1-h,1)+O.g(1,1-h));
+        // x.resize(m,b/a);
     } else {
+        printf("Doing it...\n");
         PoissonMatrix A(m);
+        printf("Doing it...\n");
         GaussSeidelMethod(A,O,x,b,3);
+        printf("Doing it...\n");
+        
         vector<double> Ax,r,E,r2h,xTmp;
         Ax.resize(m*m);
         r.assign(m*m,0);
         E.resize(m*m);
-        r2h.resize((m-1)*(m-1));
-        xTmp.assign((m-1)*(m-1),0);
+        r2h.resize((m/2+1)*(m/2+1));
+        xTmp.assign((m/2+1)*(m/2+1),0);
+        printf("Doing it...\n");
+        
         O.MatrixVectorMultiplyer(A,x,Ax);
-        for(i=0;i<m*m;i++) {
+        for(i=0;i<(m+1)*(m+1);i++) {
             r[i]=b[i]-Ax[i];
         }
-        Restriction(r,r2h,m);
-        MultiGridMethod(xTmp,r2h,O,m-1);
-        Interpolation(r2h,E,m);
+        Restriction(r,r2h,m+1);
+        MultiGridMethod(xTmp,r2h,O,m/2);
+        Interpolation(r2h,E,m+1);
         //Compute Interpolation!!!
-        for(i=0;i<m*m;i++) {
+        for(i=0;i<(m+1)*(m+1);i++) {
             x[i]=x[i]+E[i];
         }
         GaussSeidelMethod(A,O,x,b,3);
+        
         vector<double>().swap(Ax);
         vector<double>().swap(r);
         vector<double>().swap(E);
