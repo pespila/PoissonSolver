@@ -255,7 +255,6 @@ void Algorithms::incompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U)
     }
 }
 
-<<<<<<< HEAD
 void Algorithms::LUsolverLower(Matrix& A, Matrix& L, vector<double>& z) {
     int m;
     int dim=z.size();
@@ -285,9 +284,6 @@ void Algorithms::LUsolverUpper(Matrix& A, Matrix& U, vector<double>& z) {
 }
 
 void Algorithms::JacobiMethod(Matrix& A, Operators& O, vector<double>& x, const vector<double>& b, int maxIterations = 5000) {
-=======
-void Algorithms::JacobiMethod(Matrix& A, Operators& O, Vectors& V, int maxIterations = 5000) {
->>>>>>> 29553d7bc1fd82a5b3ffbb9c6e7e628272008f74
     double eps,h,norm,sum;
     int steps,i,j,k,m;
 
@@ -334,11 +330,7 @@ void Algorithms::JacobiMethod(Matrix& A, Operators& O, Vectors& V, int maxIterat
     printf("JacobianSteps: %d\n", steps);
 }
 
-<<<<<<< HEAD
 void Algorithms::GaussSeidelMethod(Matrix& A, Operators& O, vector<double>& x, const vector<double>& b, int maxIterations = 5000) {
-=======
-void Algorithms::GaussSeidelMethod(Matrix& A, Operators& O, Vectors& V, int maxIterations = 5000) {
->>>>>>> 29553d7bc1fd82a5b3ffbb9c6e7e628272008f74
     double eps,h,norm,sum1,sum2;
     int steps,i,j,k,m;
 
@@ -393,11 +385,7 @@ void Algorithms::GaussSeidelMethod(Matrix& A, Operators& O, Vectors& V, int maxI
     printf("GaussSeidelSteps: %d\n", steps);
 }
 
-<<<<<<< HEAD
 void Algorithms::SORMethod(Matrix& A, Operators& O, vector<double>& x, const vector<double>& b, int maxIterations = 1000) {
-=======
-void Algorithms::SORMethod(Matrix& A, Operators& O, Vectors& V, int maxIterations = 1000) {
->>>>>>> 29553d7bc1fd82a5b3ffbb9c6e7e628272008f74
     double eps,h,norm,sum1,sum2,omega;
     int steps,i,j,k,m;
 
@@ -683,7 +671,6 @@ void Algorithms::Restriction(const vector<double>& r, vector<double>& r2h, int n
 
 void Algorithms::Interpolation(const vector<double>& r2h, vector<double>& E, int n) {
     int k=0;
-<<<<<<< HEAD
     int l=0;
     for(int i=1;i<=n;i++) {
         for(int j=1;j<=n;j++) {
@@ -739,17 +726,11 @@ void Algorithms::Interpolation(const vector<double>& r2h, vector<double>& E, int
                 E[k]=1/4*(E[k-n+1]);
             }
             k++;
-=======
-    for(int i=1;i<=n;i++) {
-        for(int j=1;j<=n;j++) {
-
->>>>>>> 29553d7bc1fd82a5b3ffbb9c6e7e628272008f74
         }
     }
 }
 
 void Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, Operators& O, int m) {
-<<<<<<< HEAD
     int i;
     if(m==2) {
         PoissonMatrix A(m+1);
@@ -768,23 +749,10 @@ void Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, Ope
         GaussSeidelMethod(A,O,x,b,3);
         printf("Doing it...\n");
         
-=======
-    int i,j,k;
-    if(m==1) {
-        double a,b,h;
-        
-        a=4*pow(n+1,2);
-        b=O.f(h,h)+pow(n+1,2)*(O.g(0,h)+O.g(h,0)+O.g(1-h,1)+O.g(1,1-h));
-        x.resize(m,b/a);
-    } else {
-        PoissonMatrix A(m);
-        GaussSeidelMethod(A,O,V,3);
->>>>>>> 29553d7bc1fd82a5b3ffbb9c6e7e628272008f74
         vector<double> Ax,r,E,r2h,xTmp;
         Ax.resize(m*m);
         r.assign(m*m,0);
         E.resize(m*m);
-<<<<<<< HEAD
         r2h.resize((m/2+1)*(m/2+1));
         xTmp.assign((m/2+1)*(m/2+1),0);
         printf("Doing it...\n");
@@ -808,28 +776,6 @@ void Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, Ope
         vector<double>().swap(r2h);
         vector<double>().swap(xTmp);
     }
-=======
-        r2h.resize((m-1)*(m-1));
-        xTmp.assign((m-1)*(m-1),0);
-        O.MatrixVectorMultiplyer(A,x,Ax);
-        for(i=0;i<m*m;i++) {
-            r[i]=b[i]-Ax[i];
-        }
-        Restriction(r,r2h,m);
-        MultiGridMethod(xTmp,r2h,O,m-1);
-        Interpolation(r2h,E,m);
-        //Compute Interpolation!!!
-        for(i=0;i<m*m;i++) {
-            x[i]=x[i]+E[i];
-        }
-        GaussSeidelMethod(A,O,V,3);
-    }
-    vector<double>().swap(Ax);
-    vector<double>().swap(r);
-    vector<double>().swap(E);
-    vector<double>().swap(r2h);
-    vector<double>().swap(xTmp);
->>>>>>> 29553d7bc1fd82a5b3ffbb9c6e7e628272008f74
 }
 
 // void Algorithms::MultiGridMethod() {
