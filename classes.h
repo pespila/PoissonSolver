@@ -7,7 +7,6 @@
 #include <fstream>
 #include <cstdio>
 #include <vector>
-#include <assert.h>
 #include <time.h>
 using namespace std;
 
