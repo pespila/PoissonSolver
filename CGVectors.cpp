@@ -63,7 +63,7 @@ void Vectors::WriteToFile(Operators& O) {
     int i,j,k,m;
     double h=1.0/(double)(n+1);
     FILE *file;
-    file=fopen("plot.txt", "w");
+    file=fopen("./Plot/plot.txt", "w");
     k=0;
     m=n+1;
     if(file==NULL)
