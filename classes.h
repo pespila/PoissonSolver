@@ -39,8 +39,7 @@ class PoissonMatrix : public Matrix
 
         int Size();
     	double Get(int, int);
-        void Preconditioning();
-        int HashFunction(int,int);
+        void Hashing();
 };
 
 class LowerMatrix : public WriteableMatrix

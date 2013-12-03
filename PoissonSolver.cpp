@@ -17,7 +17,7 @@ int main(int argc, char const *argv[]) {
     LowerMatrix L(n);
     UpperMatrix U(n);
 
-    A.Preconditioning();
+    A.Hashing();
 
     printf("Started\n");
     double time,start=0.0,end=0.0;
@@ -28,13 +28,13 @@ int main(int argc, char const *argv[]) {
     //Run.incompleteCholesky(A,L,U);
     //Run.modifiedIncompleteLU(A,L,U);
 
-    Run.CG(A,O,V);
+    //Run.CG(A,O,V);
     //Run.JacobiMethod(A,O,V.x,V.b,5000);
     //Run.GaussSeidelMethod(A,O,V.x,V.b,5000);
     //Run.SORMethod(A,O,V);
     //Run.SSORMethod(A,O,V);
     //Run.PCG(A,O,L,U,V);
-    //Run.MultiGridMethod(V.x,V.b,O,n);
+    Run.MultiGridMethod(V.x,V.b,O,n);
 
     end = clock();
     time=(end-start)/CLOCKS_PER_SEC;

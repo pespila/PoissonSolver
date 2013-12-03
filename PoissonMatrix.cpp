@@ -32,7 +32,7 @@ double PoissonMatrix::Get(int i, int j) {
 }
 
 //Must be faster!!! Only a test!!!
-void PoissonMatrix::Preconditioning() {
+void PoissonMatrix::Hashing() {
 	int k;
 	for(int i=0;i<dim;i++) {
 		k=0;
