@@ -31,25 +31,9 @@ double PoissonMatrix::Get(int i, int j) {
 	}
 }
 
-//Must be faster!!! Only a test!!!
-void PoissonMatrix::Hashing() {
-	int k;
-	for(int i=0;i<dim;i++) {
-		k=0;
-		vector<int> push;
-		push.assign(5,-1);
-		for(int j=0;j<dim;j++) {
-			if(Get(i,j)!=0) {
-				if(k==0) push[k]=j;
-				if(k==1) push[k]=j;
-				if(k==2) push[k]=j;
-				if(k==3) push[k]=j;
-				if(k==4) push[k]=j;
-				k++;
-			}
-		}
-		HashMatrix.push_back(push);
-	}
+void PoissonMatrix::Resize(int m) {
+	this->n=m;
+	this->dim=n*n;
 }
 
 void Matrix::PrintMatrix() {

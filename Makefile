@@ -1,6 +1,6 @@
 CC = g++ -Wall -g
 
-poissonSolver: PoissonMatrix.o Algorithms.o CGVectors.o UpperMatrix.o LowerMatrix.o Operators.o PoissonSolver.o
+poissonSolver: PoissonMatrix.o Algorithms.o Vectors.o UpperMatrix.o LowerMatrix.o Operators.o PoissonSolver.o
 	$(CC) -o $@ $+
 
 PoissonMatrix.o: PoissonMatrix.cpp classes.h
@@ -9,7 +9,7 @@ PoissonMatrix.o: PoissonMatrix.cpp classes.h
 Algorithms.o: Algorithms.cpp classes.h
 	$(CC) -c -o $@ $<
 
-CGVectors.o: CGVectors.cpp classes.h
+Vectors.o: Vectors.cpp classes.h
 	$(CC) -c -o $@ $<
 
 UpperMatrix.o: UpperMatrix.cpp classes.h

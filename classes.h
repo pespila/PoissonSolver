@@ -39,7 +39,7 @@ class PoissonMatrix : public Matrix
 
         int Size();
     	double Get(int, int);
-        void Hashing();
+        void Resize(int);
 };
 
 class LowerMatrix : public WriteableMatrix
@@ -96,28 +96,27 @@ class Vectors {
 };
 
 class Algorithms {
-	private:
-		int dim;
-		int n;
 	public:
-		Algorithms(Matrix&);
+		Algorithms();
 		~Algorithms();
-        void incompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
-        void modifiedIncompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
-        void LU(Matrix&, WriteableMatrix&, WriteableMatrix&);
-		void modifiedIncompleteCholesky(WriteableMatrix&, WriteableMatrix&, WriteableMatrix&);
-		void incompleteCholesky(PoissonMatrix&, LowerMatrix&, UpperMatrix&);
-        void LUsolverLower(Matrix&,Matrix&,vector<double>&);
-        void LUsolverUpper(Matrix&,Matrix&,vector<double>&);
-        void JacobiMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int);
-        void GaussSeidelMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int);
-        void SORMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int);
+        vector<vector<int> > HashMatrix;
+        void InitHashMatrix(int);
+        void incompleteLU(Matrix&,WriteableMatrix&,WriteableMatrix&,Operators&);
+        void modifiedIncompleteLU(Matrix&,WriteableMatrix&,WriteableMatrix&,Operators&);
+        void LU(Matrix&,WriteableMatrix&,WriteableMatrix&,Operators&);
+		void modifiedIncompleteCholesky(WriteableMatrix&,WriteableMatrix&,WriteableMatrix&,Operators&);
+		void incompleteCholesky(PoissonMatrix&,LowerMatrix&,UpperMatrix&,Operators&);
+        void LUsolverLower(Matrix&,Matrix&,vector<double>&,Operators&);
+        void LUsolverUpper(Matrix&,Matrix&,vector<double>&,Operators&);
+        void JacobiMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int maxIterations=5000);
+        void GaussSeidelMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int maxIterations=5000);
+        void SORMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int maxIterations=5000);
         void SSORMethod(Matrix&,Operators&,Vectors&);
 		void CG(Matrix&,Operators&,Vectors&);
 		void PCG(Matrix&,Operators&,WriteableMatrix&,WriteableMatrix&,Vectors&);
-        void MultiGridMethod(vector<double>&,const vector<double>&,Operators&,int);
-        void Restriction(const vector<double>&,vector<double>&,int);
-        void Interpolation(const vector<double>&,vector<double>&,int);
+        void MultiGridMethod(vector<double>&,const vector<double>&,int,Operators&);
+        vector<double> Restriction(vector<double>&,int);
+        vector<double> Interpolation(vector<double>&,int);
 };
 
 #endif
