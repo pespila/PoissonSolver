@@ -26,14 +26,14 @@ int main(int argc, char const *argv[]) {
     //Run.LU(A,L,U);
     //Run.incompleteLU(A,L,U);
     //Run.incompleteCholesky(A,L,U);
-    Run.modifiedIncompleteLU(A,L,U);
+    //Run.modifiedIncompleteLU(A,L,U);
 
     //Run.CG(A,O,V);
-    //Run.JacobiMethod(A,O,V);
-    //Run.GaussSeidelMethod(A,O,V);
+    Run.JacobiMethod(A,O,V.x,V.b,5000);
+    //Run.GaussSeidelMethod(A,O,V.x,V.b,5000);
     //Run.SORMethod(A,O,V);
     //Run.SSORMethod(A,O,V);
-    Run.PCG(A,O,L,U,V);
+    //Run.PCG(A,O,L,U,V);
     //Run.MultiGridMethod(V.x,V.b,O,n);
 
     end = clock();

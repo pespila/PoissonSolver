@@ -669,19 +669,14 @@ void Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, Ope
         // b=O.f(h,h)+pow(n+1,2)*(O.g(0,h)+O.g(h,0)+O.g(1-h,1)+O.g(1,1-h));
         // x.resize(m,b/a);
     } else {
-        printf("Doing it...\n");
         PoissonMatrix A(m);
-        printf("Doing it...\n");
         GaussSeidelMethod(A,O,x,b,3);
-        printf("Doing it...\n");
-        
         vector<double> Ax,r,E,r2h,xTmp;
         Ax.resize(m*m);
         r.assign(m*m,0);
         E.resize(m*m);
         r2h.resize((m/2+1)*(m/2+1));
         xTmp.assign((m/2+1)*(m/2+1),0);
-        printf("Doing it...\n");
         
         O.MatrixVectorMultiplyer(A,x,Ax);
         for(i=0;i<(m+1)*(m+1);i++) {

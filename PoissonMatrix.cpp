@@ -33,13 +33,13 @@ double PoissonMatrix::Get(int i, int j) {
 
 //Must be faster!!! Only a test!!!
 void PoissonMatrix::Preconditioning() {
-	int i,j,k;
-	for(i=0;i<dim;i++) {
+	int k;
+	for(int i=0;i<dim;i++) {
 		k=0;
 		vector<int> push;
 		push.assign(5,-1);
-		for(j=0;j<dim;j++) {
-			if(HashFunction(i,j)) {
+		for(int j=0;j<dim;j++) {
+			if(Get(i,j)!=0) {
 				if(k==0) push[k]=j;
 				if(k==1) push[k]=j;
 				if(k==2) push[k]=j;
@@ -64,20 +64,4 @@ void Matrix::PrintMatrix() {
 		}
 		printf("\n");
 	}
-}
-
-int PoissonMatrix::HashFunction(int i, int j) {
-    if (i == j) {
-        return 1;
-    } else if (j == (i+1) && i%n != (n-1)) {
-        return 1;
-    } else if (j == (i-1) && i%n != 0) {
-        return 1;
-    } else if (j == (i+n)) {
-        return 1;
-    } else if (j == (i-n)) {
-        return 1;
-    } else {
-        return 0;
-    }
 }
