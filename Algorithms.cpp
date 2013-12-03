@@ -8,22 +8,6 @@ Algorithms::Algorithms(Matrix& M) {
 Algorithms::~Algorithms() {
 }
 
-int Algorithms::HashTable(int i, int j) {
-    if (i == j) {
-        return 1;
-    } else if (j == (i+1) && i%n != (n-1)) {
-        return 1;
-    } else if (j == (i-1) && i%n != 0) {
-        return 1;
-    } else if (j == (i+n)) {
-        return 1;
-    } else if (j == (i-n)) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
-
 void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
     int i,j,k,m,u;
     double sum, drop;
@@ -36,7 +20,7 @@ void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMa
                 sum=0;
                 for(j=0;j<5;j++) {
                     u=A.HashMatrix[i][j];
-                    if(u!=-1 && u<k) {// && v!=-1 && v<k) {
+                    if(u!=-1 && u<k) {
                         sum+=L.Get(i,u)*U.Get(u,m);
                     }
                 }
@@ -50,7 +34,7 @@ void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMa
                 sum=0;
                 for(j=0;j<5;j++) {
                     u=A.HashMatrix[i][j];
-                    if(u!=-1 && u<i) {// && v!=-1 && v<i) {
+                    if(u!=-1 && u<i) {
                         sum+=L.Get(i,u)*U.Get(u,m);
                     }
                 }
@@ -58,41 +42,8 @@ void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMa
                 drop+=sum;
             }
         }
-        //printf("%f\n", drop);
         U.Set(i,i,(U.Get(i,i)-drop));
     }
-
-    // for(i=0;i<dim;i++) {
-    //     drop = 0;
-    //     for(k=0;k<i;k++) {
-    //         sum = 0;
-    //         for(j=0;j<k;j++) {
-    //             if(HashTable(i,j) && HashTable(j,k)) {
-    //                 sum += L.Get(i,j) * U.Get(j,k);
-    //             }
-    //         }
-    //         if(HashTable(i,k)) {
-    //             L.Set(i,k,((A.Get(i,k) - sum)/U.Get(k,k)));
-    //         } else {
-    //             drop += sum;
-    //         }
-    //     }
-    //     for(k=i;k<dim;k++) {
-    //         sum = 0;
-    //         for(j=0;j<i;j++) {
-    //             if(HashTable(i,j) && HashTable(j,k)) {
-    //                 sum += L.Get(i,j) * U.Get(j,k);
-    //             }
-    //         }
-    //         if(HashTable(i,k)) {
-    //             U.Set(i,k,(A.Get(i,k) - sum));
-    //         } else {
-    //             drop += sum;
-    //         }
-    //     }
-    //     printf("%f\n", drop);
-    //     U.Set(i,i,(U.Get(i,i) - drop));
-    // }
 }
 
 // void Algorithms::LU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
@@ -131,31 +82,6 @@ void Algorithms::modifiedIncompleteLU(Matrix& A, WriteableMatrix& L, WriteableMa
 void Algorithms::modifiedIncompleteCholesky(WriteableMatrix& A, WriteableMatrix& L, WriteableMatrix& Ltranspose) {
     int i,j,k,m,u,v;
     double sum;
-
-    // for(k=0;k<dim;k++) {
-    //     sum=0;
-    //     for(j=0;j<k;j++) {
-    //         sum+=L.Get(k,j);
-    //     }
-    //     L.Set(k,k,sqrt(A.Get(k,k)-sum));
-    //     Ltranspose.Set(k,k,sqrt(A.Get(k,k)-sum));
-    //     for(i=k+1;i<dim;i++) {
-    //         if(A.Get(i,k)!=0) {
-    //             sum=0;
-    //             for(j=0;j<k;j++) {
-    //                 sum+=L.Get(i,j)*L.Get(k,j);
-    //             }
-    //             L.Set(i,k,(A.Get(i,k)-sum)/L.Get(k,k));
-    //             Ltranspose.Set(k,i,(A.Get(i,k)-sum)/L.Get(k,k));
-    //         } else {
-    //             sum=0;
-    //             for(j=0;j<k;j++) {
-    //                 sum+=L.Get(i,j)*L.Get(k,j);
-    //             }
-    //             A.Set(i,i,A.Get(i,i)-sum);
-    //         }
-    //     }
-    // }
 
     for(k=0;k<dim;k++) {
         sum=0;
@@ -227,33 +153,33 @@ void Algorithms::incompleteCholesky(PoissonMatrix& A, LowerMatrix& L, UpperMatri
     }
 }
 
-void Algorithms::incompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
-    int i,j,k;
-    double sum;
+// void Algorithms::incompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U) {
+//     int i,j,k;
+//     double sum;
 
-    for(i=0;i<dim;i++) {
-        for(k=1;k<i;k++) {
-            if (HashTable(i,k)) {
-                sum=0;
-                for(j=0;j<k;j++) {
-                    if(HashTable(i,j) && HashTable(j,k))
-                        sum+=L.Get(i,j)*U.Get(j,k);
-                }
-                L.Set(i,k,((A.Get(i,k)-sum)/U.Get(k,k)));
-            }
-        }
-        for(k=i;k<dim;k++) {
-            if (HashTable(i,k) != 0) {
-                sum=0;
-                for(j=0;j<i;j++) {
-                    if(HashTable(i,j) && HashTable(j,k))
-                        sum+=L.Get(i,j)*U.Get(j,k);
-                }
-                U.Set(i,k,(A.Get(i,k)-sum));
-            }
-        }
-    }
-}
+//     for(i=0;i<dim;i++) {
+//         for(k=1;k<i;k++) {
+//             if (HashTable(i,k)) {
+//                 sum=0;
+//                 for(j=0;j<k;j++) {
+//                     if(HashTable(i,j) && HashTable(j,k))
+//                         sum+=L.Get(i,j)*U.Get(j,k);
+//                 }
+//                 L.Set(i,k,((A.Get(i,k)-sum)/U.Get(k,k)));
+//             }
+//         }
+//         for(k=i;k<dim;k++) {
+//             if (HashTable(i,k) != 0) {
+//                 sum=0;
+//                 for(j=0;j<i;j++) {
+//                     if(HashTable(i,j) && HashTable(j,k))
+//                         sum+=L.Get(i,j)*U.Get(j,k);
+//                 }
+//                 U.Set(i,k,(A.Get(i,k)-sum));
+//             }
+//         }
+//     }
+// }
 
 void Algorithms::LUsolverLower(Matrix& A, Matrix& L, vector<double>& z) {
     int m;
@@ -473,15 +399,15 @@ void Algorithms::SSORMethod(Matrix& A, Operators& O, Vectors& V) {
         for(i=0;i<dim;i++) {
             sum1=0;
             for(j=0;j<i;j++) {
-                if(HashTable(i,j)) {
+                //if(HashTable(i,j)) {
                     sum1+=A.Get(i,j)*V.x[j];
-                }
+                //}
             }
             sum2=0;
             for(j=i;j<dim;j++) {
-                if(HashTable(i,j)) {
+                //if(HashTable(i,j)) {
                     sum2+=A.Get(i,j)*V.x[j];
-                }
+                //}
             }
             V.x[i] = V.x[i]-omega*1/A.Get(i,i)*(sum1+sum2-V.b[i]);
         }
@@ -777,54 +703,3 @@ void Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, Ope
         vector<double>().swap(xTmp);
     }
 }
-
-// void Algorithms::MultiGridMethod() {
-//     GaussSeidelMethod(A,O,V,3);
-//     vector<double> Au;
-//     Au.resize(dim);
-//     O.MatrixVectorMultiplyer(A,V.xh,Au);
-//     int k=0;
-//     for(int i=1;i<=n;i++) {
-//         for(int j=1;j<=n;j++) {
-//             if(i%2==0 && j%2==0) {
-//                 V.r2h[k]=V.rh[k];
-//             }
-//             k++;
-//         }
-//     }
-//     // for(int i=0;i<dim;i++) {
-//     //     V.rh[i] = V.bh[i] - Au[i];
-//     //     if(i%2!=0) {
-//     //         V.r2h[i] = V.rh[i];
-//     //     }
-//     // }
-//     vector<double> E2h;
-//     E2h.assign(V.r2h.Size(),0);
-//     int N = n+1;
-//     int n2h = N/2;
-//     PoissonMatrix A2h(n2h);
-//     GaussSeidelMethod(A2h,O,V,3);
-//     vector<double> Eh;
-//     Eh.resize(dim);
-//     int k=0;
-//     //int l=0;
-//     for(int i=0;i<=n;i++) {
-//         for(int j=0;j<=n;j++) {
-//             if(i%2==0 && j%2==0 && i>0 && j>0) {
-//                 V.rh[k]=V.r2h[k];
-//                 //l++;
-//             }
-//             if(i%2!=0 && j%2==0 && j>0) {
-//                 V.rh[k]=1/2*(V.r2h[]+V.r2h[]);
-//             }
-//             if(i%2==0 && j%2!=0 && i>0) {
-//                 V.rh[k]=1/2*
-//             }
-//             if(i%2!=0 && j%2!=0) {
-//                 V.rh[k]=1/4*
-//             }
-//             k++;
-//         }
-//     }
-//     GaussSeidelMethod(A,O,V,3);
-// }

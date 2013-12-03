@@ -40,6 +40,7 @@ class PoissonMatrix : public Matrix
         int Size();
     	double Get(int, int);
         void Preconditioning();
+        int HashFunction(int,int);
 };
 
 class LowerMatrix : public WriteableMatrix
@@ -102,13 +103,11 @@ class Algorithms {
 	public:
 		Algorithms(Matrix&);
 		~Algorithms();
-        int HashTable(int,int);
         void incompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
         void modifiedIncompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
         void LU(Matrix&, WriteableMatrix&, WriteableMatrix&);
 		void modifiedIncompleteCholesky(WriteableMatrix&, WriteableMatrix&, WriteableMatrix&);
 		void incompleteCholesky(PoissonMatrix&, LowerMatrix&, UpperMatrix&);
-<<<<<<< HEAD
         void LUsolverLower(Matrix&,Matrix&,vector<double>&);
         void LUsolverUpper(Matrix&,Matrix&,vector<double>&);
         void JacobiMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int);
@@ -118,15 +117,6 @@ class Algorithms {
 		void CG(Matrix&,Operators&,Vectors&);
 		void PCG(Matrix&,Operators&,WriteableMatrix&,WriteableMatrix&,Vectors&);
         void MultiGridMethod(vector<double>&,const vector<double>&,Operators&,int);
-=======
-        void JacobiMethod(Matrix&, Operators&, Vectors&,int);
-        void GaussSeidelMethod(Matrix&, Operators&, Vectors&,int);
-        void SORMethod(Matrix&, Operators&, Vectors&,int);
-        void SSORMethod(Matrix&, Operators&, Vectors&);
-		void CG(Matrix&, Operators&, Vectors&);
-		void PCG(Matrix&, Operators&, WriteableMatrix&, WriteableMatrix&, Vectors&);
-        void MultiGridMethod(vector<double>&,vector<double>&,Operators&,int);
->>>>>>> 29553d7bc1fd82a5b3ffbb9c6e7e628272008f74
         void Restriction(const vector<double>&,vector<double>&,int);
         void Interpolation(const vector<double>&,vector<double>&,int);
 };

@@ -1,14 +1,14 @@
 #include "classes.h"
 
 int main(int argc, char const *argv[]) {
-    int arg,n,m;
+    int arg,n;//,m;
     if (argc > 1) {
         arg = atoi(&*argv[1]);
     } else {
         arg = 4;
     }
     n=arg;
-    m=n-1;
+    //m=n-1;
 
     PoissonMatrix A(n);
     Operators O;
