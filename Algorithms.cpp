@@ -679,6 +679,18 @@ vector<double> Algorithms::Restriction(vector<double>& r, int n) {
 }
 
 vector<double> Algorithms::Interpolation(vector<double>& E2h, int n) {
+    int i,j,k,l;
+    vector<double> E;
+    E.resize(n*n);
+    for(i=1;i<=n;i++) {
+        for(j=1,k=0,l=0;j<=n;j++,k++) {
+            if(i%n==0 && j%n==0) {
+                E[k]=E2h[l];
+                l++;
+            }
+        }
+    }
+
     int k,l;
     vector<double> E;
     E.resize(n*n);
@@ -779,6 +791,7 @@ void Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, int
         for(i=0;i<dim;i++) {
             x[i]=x[i]+E[i];
         }
+        A.Resize((n+1)*2);
         GaussSeidelMethod(A,O,x,b,3);
         // vector<double>().swap(Ax);
         // vector<double>().swap(r);
