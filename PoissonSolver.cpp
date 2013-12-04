@@ -13,11 +13,12 @@ int main(int argc, char const *argv[]) {
     PoissonMatrix A(n);
     Operators O;
     Vectors V(n,O);
+    MGMVectors Vmgm(n,O);
     Algorithms Run;
     LowerMatrix L(n);
     UpperMatrix U(n);
 
-    Run.InitHashMatrix(n);
+    //Run.InitHashMatrix(n);
 
     printf("Started\n");
     double time,start=0.0,end=0.0;
@@ -34,18 +35,31 @@ int main(int argc, char const *argv[]) {
     //Run.SSORMethod(A,O,V);
     //Run.CG(A,O,V);
     //Run.PCG(A,O,L,U,V);
-    Run.MultiGridMethod(V.x,V.b,n,O);
+    //Run.MultiGridMethod(V.x,V.b,n,O);
 
     end = clock();
     time=(end-start)/CLOCKS_PER_SEC;
     printf("%f\n", time);
 
-    A.PrintMatrix();
+    vector<vector<double> > Try;
+    vector<double> it;
+    it.assign(2,5);
+    Try.assign(2,it);
+
+    for(int i=0;i<2;i++) {
+        for(int j=0;j<2;j++) {
+            printf("%f ", Try[i][j]);
+        }
+    }
+    printf("\n");
+
+    //A.PrintMatrix();
     //L.PrintMatrix();
     //U.PrintMatrix();
 
     V.PrintVector();
-    V.WriteToFile(O);
+    Vmgm.PrintVector();
+    //V.WriteToFile(O);
 
     return EXIT_SUCCESS;
 }

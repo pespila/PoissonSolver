@@ -95,6 +95,19 @@ class Vectors {
         void WriteToFile(Operators&);
 };
 
+class MGMVectors {
+    private:
+        int dim;
+        int n;
+    public:
+        vector<vector<double> > x;
+        vector<vector<double> > b;
+        MGMVectors(int, Operators&);
+        ~MGMVectors();
+        void PrintVector();
+        //void WriteToFile(Operators&);
+};
+
 class Algorithms {
 	public:
 		Algorithms();

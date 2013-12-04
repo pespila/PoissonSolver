@@ -682,84 +682,134 @@ vector<double> Algorithms::Interpolation(vector<double>& E2h, int n) {
     int i,j,k,l;
     vector<double> E;
     E.resize(n*n);
+    for(i=0,k=0;i<n,k<E2h.size();i++,k++) {
+        for(j=0,l=0;j<n,l<E2h.size();j++,l++) {
+
+        }
+    }
     for(i=1;i<=n;i++) {
-        for(j=1,k=0,l=0;j<=n;j++,k++) {
-            if(i%n==0 && j%n==0) {
+        for(j=1;j<=n;j++,k++) {
+            if(i%2==0 && j%2==0) {
                 E[k]=E2h[l];
                 l++;
             }
         }
     }
-
-    int k,l;
-    vector<double> E;
-    E.resize(n*n);
-    if(n==3) {
-        for(int i=0;i<n*n;i++) {
-            E[i]=1/2*E2h[0];
+    k=0;
+    for(i=0;i<=n;i++) {
+        for(j=1;j<=n;j++) {
+            if(i%2!=0 && j%2==0) {
+                if(i==0) {
+                    E[k]=1/2*E[k+1];
+                } else if(i==n) {
+                    E[k]=1/2*E[k-1];
+                } else {
+                    E[k]=1/2*(E[k-1]+E[k+1]);
+                }
+            }
+            if(i>=1 && j>=1) k++;
         }
     }
-    if(n!=3) {
-        k=0;
-        l=0;
-        for(int i=1;i<=n;i++) {
-            for(int j=1;j<=n;j++) {
-                if(i%2==0 && j%2==0) {
-                    E[k]=E2h[l];
-                    l++;
-                }
-                if(i<n && j<n && i%2==0) {
-                    E[k]=1/2*(E2h[l-1]+E2h[l]);
-                }
-                if(i%2==0 && (j==n || j==1)) {
-                    E[k]=1/2*E2h[l];
-                }
-                k++;
-            }
-        }
-        k=0;
-        for(int i=1;i<=n;i++) {
-            for(int j=1;j<=n;j++) {
-                if(i<n && j<n && j%2==0) {
+    k=0;
+    for(i=1;i<=n;i++) {
+        for(j=0;j<=n;j++) {
+            if(i%2==0 && j%2!=0) {
+                if(j==0) {
+                    E[k]=1/2*E[k+n];
+                } else if(j==n) {
+                    E[k]=1/2*E[k-n];
+                } else {
                     E[k]=1/2*(E[k-n]+E[k+n]);
                 }
-                if(j%2==0 && i==1) {
-                    E[k]=1/2*E[k+n];
-                }
-                if(j%2==0 && i==n) {
-                    E[k]=1/2*E[k-n];
-                }
-                if(i<n && j<n && i%2!=0 && j%2!=0) {
-                    E[k]=1/4*(E[k-n+1]+E[k-n-1]+E[k+n-1]+E[k+n+1]);
-                }
-                if(j==1 && i%2!=0 && i!=1 && i!=n) {
-                    E[k]=1/4*(E[k-n+1]+E[k+n+1]);
-                }
-                if(j==n && i%2!=0 && i!=1 && i!=n) {
-                    E[k]=1/4*(E[k-n-1]+E[k+n-1]);
-                }
-                if(i==1 && j%2!=0 && j!=1 && j!=n) {
-                    E[k]=1/4*(E[k+n-1]+E[k+n+1]);
-                }
-                if(i==n && j%2!=0 && j!=1 && j!=n) {
-                    E[k]=1/4*(E[k-n-1]+E[k-n+1]);
-                }
-                if(i==1 && j==1) {
-                    E[k]=1/4*(E[k+n+1]);
-                }
-                if(i==n && j==n) {
-                    E[k]=1/4*(E[k-n-1]);
-                }
-                if(i==1 && j==n) {
-                    E[k]=1/4*(E[k+n-1]);
-                }
-                if(i==n && j==1) {
-                    E[k]=1/4*(E[k-n+1]);
-                }
+            }
+            if(i>=1 && j>=1) k++;
+        }
+    }
+    k=0;
+    for(i=0;i<=n;i++) {
+        for(j=0;j<=n;j++) {
+            if(i%2!=0 && j%2!=0) {
+                E[k]=1/4*(E[k-n-1]+E[k-n+1]+E[k+n-1]+E[k+n+1]);
+            } else if(i==0 && j==0) {
+                E[k]=1/4*E[k+n+1];
+            } else if(i==n && j==0) {
+                E[k]=1/4*E[k-n-1];
+            }
+            if(i>=0 && j>=0) {
                 k++;
             }
         }
     }
+
+    // int k,l;
+    // vector<double> E;
+    // E.resize(n*n);
+    // if(n==3) {
+    //     for(int i=0;i<n*n;i++) {
+    //         E[i]=1/2*E2h[0];
+    //     }
+    // }
+    // if(n!=3) {
+    //     k=0;
+    //     l=0;
+    //     for(int i=1;i<=n;i++) {
+    //         for(int j=1;j<=n;j++) {
+    //             if(i%2==0 && j%2==0) {
+    //                 E[k]=E2h[l];
+    //                 l++;
+    //             }
+    //             if(i<n && j<n && i%2==0) {
+    //                 E[k]=1/2*(E2h[l-1]+E2h[l]);
+    //             }
+    //             if(i%2==0 && (j==n || j==1)) {
+    //                 E[k]=1/2*E2h[l];
+    //             }
+    //             k++;
+    //         }
+    //     }
+    //     k=0;
+    //     for(int i=1;i<=n;i++) {
+    //         for(int j=1;j<=n;j++) {
+    //             if(i<n && j<n && j%2==0) {
+    //                 E[k]=1/2*(E[k-n]+E[k+n]);
+    //             }
+    //             if(j%2==0 && i==1) {
+    //                 E[k]=1/2*E[k+n];
+    //             }
+    //             if(j%2==0 && i==n) {
+    //                 E[k]=1/2*E[k-n];
+    //             }
+    //             if(i<n && j<n && i%2!=0 && j%2!=0) {
+    //                 E[k]=1/4*(E[k-n+1]+E[k-n-1]+E[k+n-1]+E[k+n+1]);
+    //             }
+    //             if(j==1 && i%2!=0 && i!=1 && i!=n) {
+    //                 E[k]=1/4*(E[k-n+1]+E[k+n+1]);
+    //             }
+    //             if(j==n && i%2!=0 && i!=1 && i!=n) {
+    //                 E[k]=1/4*(E[k-n-1]+E[k+n-1]);
+    //             }
+    //             if(i==1 && j%2!=0 && j!=1 && j!=n) {
+    //                 E[k]=1/4*(E[k+n-1]+E[k+n+1]);
+    //             }
+    //             if(i==n && j%2!=0 && j!=1 && j!=n) {
+    //                 E[k]=1/4*(E[k-n-1]+E[k-n+1]);
+    //             }
+    //             if(i==1 && j==1) {
+    //                 E[k]=1/4*(E[k+n+1]);
+    //             }
+    //             if(i==n && j==n) {
+    //                 E[k]=1/4*(E[k-n-1]);
+    //             }
+    //             if(i==1 && j==n) {
+    //                 E[k]=1/4*(E[k+n-1]);
+    //             }
+    //             if(i==n && j==1) {
+    //                 E[k]=1/4*(E[k-n+1]);
+    //             }
+    //             k++;
+    //         }
+    //     }
+    // }
     return E;
 }
 
