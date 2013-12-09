@@ -53,6 +53,7 @@ void MGMOperators::MatrixVectorMultiplyer(PoissonMatrix& A, const vector<double>
                 }
             }
         }
+        int i;
         int dim=x.size();
         int n=sqrt(dim);
         for (int i=0;i<dim;i++) {
