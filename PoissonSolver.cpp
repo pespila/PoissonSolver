@@ -11,12 +11,12 @@ int main(int argc, char const *argv[]) {
     //m=n-1;
 
     PoissonMatrix A(n);
-    Operators O;
-    Vectors V(n,O);
-    MGMVectors Vmgm(n,O);
-    Algorithms Run;
     LowerMatrix L(n);
     UpperMatrix U(n);
+    PoissonVector P(n);
+    MGMVector M(n);
+    PoissonOperators O;
+    Algorithms Run;
 
     //Run.InitHashMatrix(n);
 

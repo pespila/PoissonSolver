@@ -13,10 +13,9 @@ using namespace std;
 class Matrix
 {
     public:
-        vector<vector<int> > HashMatrix;
         virtual int Size()=0;
         virtual double Get(int,int)=0;
-        void PrintMatrix();
+        virtual void PrintMatrix();
 };
 
 class WriteableMatrix : public Matrix
@@ -38,8 +37,9 @@ class PoissonMatrix : public Matrix
     	~PoissonMatrix();
 
         int Size();
-    	double Get(int, int);
+    	double Get(int,int);
         void Resize(int);
+        void PrintMatrix();
 };
 
 class LowerMatrix : public WriteableMatrix
@@ -47,15 +47,16 @@ class LowerMatrix : public WriteableMatrix
     private:
         int dim;
         int n;
-    public:
-        LowerMatrix(int);
-        ~LowerMatrix();
         vector<double> diagonal;
         vector<double> tridiagonal;
         vector<double> identity;
+    public:
+        LowerMatrix(int);
+        ~LowerMatrix();
         int Size();
-        double Get(int, int);
-        void Set(int, int, double);
+        double Get(int,int);
+        void Set(int,int,double);
+        void PrintMatrix();
 };
 
 class UpperMatrix : public LowerMatrix
@@ -66,46 +67,81 @@ class UpperMatrix : public LowerMatrix
 	public:
 		UpperMatrix(int);
 		~UpperMatrix();
-        double Get(int, int);
-		void Set(int, int, double);
-};
-
-class Operators
-{
-	public:
-		Operators();
-		~Operators();
-		double innerProduct(const vector<double>&,const vector<double>&);
-		double vectorNorm(const vector<double>&);
-		void MatrixVectorMultiplyer(Matrix&,const vector<double>&,vector<double>& y);
-		double f(double, double);
-    	double g(double, double);
+        double Get(int,int);
+		void Set(int,int,double);
+        void PrintMatrix();
 };
 
 class Vectors {
-    private:
-        int dim;
-        int n;
     public:
-        vector<double> x;
-        vector<double> b;
-        Vectors(int, Operators&);
-        ~Vectors();
-        void PrintVector();
-        void WriteToFile(Operators&);
+        virtual int Size()=0;
+        virtual void PrintVector()=0;
+        virtual void WriteToFile()=0;
 };
 
-class MGMVectors {
+class PoissonVector : public Vectors {
     private:
         int dim;
         int n;
+        double h;
     public:
-        vector<vector<double> > x;
-        vector<vector<double> > b;
-        MGMVectors(int, Operators&);
-        ~MGMVectors();
+        PoissonVector(int m);
+        ~PoissonVector();
+        int Size();
         void PrintVector();
-        //void WriteToFile(Operators&);
+        void WriteToFile();
+        double f(double,double);
+        double g(double,double);
+        vector<double> x;
+        vector<double> b;
+};
+
+class MGMVector : public Vectors {
+    private:
+        int dim;
+        int n;
+        double h;
+    public:
+        MGMVector(int m);
+        ~MGMVector();
+        int Size();
+        void PrintVector();
+        void WriteToFile();
+        double f(double,double);
+        double g(double,double);
+        vector<vector<double> > b;
+        vector<vector<double> > x;
+};
+
+class Operators {
+    public:
+        virtual double innerProduct(const vector<double>&,const vector<double>&)=0;
+        virtual double vectorNorm(const vector<double>&)=0;
+        virtual void MatrixVectorMultiplyer(Matrix&,const vector<double>&,vector<double>&)=0;
+};
+
+class CGOperators : public Operators
+{
+    public:
+        PoissonOperators();
+        ~PoissonOperators();
+        double innerProduct(const vector<double>&,const vector<double>&);
+        double vectorNorm(const vector<double>&);
+        void MatrixVectorMultiplyer(Matrix&,const vector<double>&,vector<double>& y);
+        double f(double, double);
+        double g(double, double);
+};
+
+class MGMOperators : public Operators
+{
+    public:
+        MGMOperators();
+        ~MGMOperators();
+        double innerProduct(const vector<double>&,const vector<double>&);
+        double vectorNorm(const vector<double>&);
+        void MatrixVectorMultiplyer(Matrix&,const vector<double>&,vector<double>& y);
+        double f(double, double);
+        double g(double, double);
 };
 
 class Algorithms {
