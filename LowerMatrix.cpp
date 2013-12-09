@@ -1,8 +1,8 @@
 #include "classes.h"
 
-LowerMatrix::LowerMatrix(int n) {
-	this->n=n;
-	this->dim=n*n;
+LowerMatrix::LowerMatrix(int m) {
+	n=m;
+	dim=n*n;
 	diagonal.assign(dim,1);
 	tridiagonal.assign(dim-1,0);
 	identity.assign(dim-n,0);
@@ -37,19 +37,5 @@ double LowerMatrix::Get(int i,int j) {
 		return identity[j];
 	} else {
 		return 0.0;
-	}
-}
-
-void PoissonMatrix::PrintMatrix() {
-	if(dim>25){
-		printf("Couldn't print Matrix! Dimension is too high.\n");
-	} else {
-		for(int i=0;i<dim;i++) {
-			for(int j=0;j<dim;j++) {
-				printf(" %.2f ", Get(i,j));
-			}
-			printf("\n");
-		}
-		printf("\n");
 	}
 }

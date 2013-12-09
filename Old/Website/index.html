@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Solving the discrete Poisson equation with the Conjugate Gradient Method">
+	<meta name="keywords" content="Bachelor, CG, PCG, Poisson">
+	<meta name="author" content="Michael Bauer" >
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/offcanvas.css" rel="stylesheet">
+    
+   	<link rel="shortcut icon" href="img/newFavicon.png">
+   	<link rel="icon" href="img/newFavicon.png">
+   
+	<title>PoissonSolver - Using Conjugate Gradient Method</title>
+
+</head>
+
+<body>
+
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./">PoissonSolver</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#" id="home">Home</a></li>
+            <li><a href="#" id="about">About</a></li>
+            <li><a href="#" id="contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>PoissonSolver Online</h1>
+            <p id="maincontent"></p>
+            <p class="text-right"><a class="btn btn-primary btn-lg" role="button" id="run">Run &raquo;</a></p>
+          </div>
+          <div class="row">
+            <div class="col-6 col-sm-6 col-lg-6">
+            	<h4>Discretized Poisson Equation</h4>
+            	<p>See how the Poisson Equation is discretized.
+            		<a href="#" role="button">View details &raquo;</a>
+            	</p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-6">
+            	<h4>Conjugate Gradient Method</h4>
+            	<p>See how CG Method works.
+              		<a href="#" role="button">View details &raquo;</a>
+             	</p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-6">
+            	<h4>Preconditioned Conjugate Gradient Method</h4>
+            	<p>Learn why preconditioning is useful.
+            		<a href="#" role="button">View details &raquo;</a>
+            	</p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-6">
+            	<h4>Incomplete LU decomposition</h4>
+            	<p>See the algorithm of the incomplete LU decomposition.
+            		<a href="#" role="button">View details &raquo;</a>
+            	</p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-6">
+            	<h4>Modified incomplete LU decomposition</h4>
+            	<p>See the algorithm of the modified incomplete LU decomposition.
+            		<a href="#" role="button">View details &raquo;</a>
+            	</p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-6">
+            	<h4>Advanced literature</h4>
+            	<p>Find my favourite literature.
+            		<a href="#" role="button">View details &raquo;</a>
+            	</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+            <a href="http://www.uni-regensburg.de" class="list-group-item active" target="_blank">University of Regensburg</a>
+            <a href="http://www.mathematik.uni-regensburg.de" class="list-group-item" target="_blank">Department of Mathematics</a>
+            <a href="http://www.uni-regensburg.de/physik/computational-science/" class="list-group-item" target="_blank">Computational Science</a>
+            <a href="http://www.mathematik.uni-r.de/Mat8/lst/index.html" class="list-group-item" target="_blank">Prof. Dr. Harald Garcke</a>
+          </div>
+        </div>
+    </div>
+
+    <hr>
+
+	<footer>
+    	<p>&copy; Michael Bauer 2013</p>
+	</footer>
+
+    </div>
+
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/offcanvas.js"></script>
+
+	    <script type="text/javascript">
+	    $(document).ready(function(){
+			$("#maincontent").text("With this website you can solve the Discretized Poisson Equation with the help of the Conjugate Gradient Method.");
+		});
+		$("#home").click(function(){
+			$("h1").text("PoissonSolver Online");
+			$("#maincontent").text("With this website you can solve the Discretized Poisson Equation with the help of the Conjugate Gradient Method.");
+		});
+		$("#about").click(function(){
+			$("h1").text("Bachelor Thesis of...");
+			$("#maincontent").text("...Michael Bauer, degree course: Computational Science, title: ...");
+		});
+		$("#contact").click(function(){
+			$("h1").text("Contact me");
+			$("#maincontent").html("E-Mail: <a href=mailto:michael1.bauer@stud.uni-r.de>Michael Bauer</a>");
+		});
+		$("#run").click(function(){
+			
+		});
+	    </script>
+
+</body>
+
+</html>

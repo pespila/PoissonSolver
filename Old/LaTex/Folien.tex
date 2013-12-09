@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{ngerman}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{mathtools}
+
+\setcounter{section}{1}
+\setlength{\textwidth}{15cm}
+\setlength{\unitlength}{1mm}
+\setlength{\textheight}{22cm}
+
+\title{Das Verfahren der konjugierten Gradienten}
+\author{Michael Bauer}
+\date{11. November 2013}
+
+\begin{document}
+\maketitle
+\Large
+
+\section*{}
+
+\subsection*{Richtung des steilsten Abstiegs}
+Sei f wie in (1). Die \underline{Richtung des steilsten Abstiegs} von f an der Stelle x, d.h. $s\in\mathbb{R}^{n}$ so, dass die Richtungsableitung
+\begin{equation}
+\frac d {dt} f(x+t\frac s {\|s\|_{2}})|_{t=0} = (\nabla f(x))^{T} (\frac s {\|s\|_{2}})
+\end{equation}
+minimal ist, wird durch $s = -\nabla f(x) = b - Ax$ gegeben.
+
+\subsection*{Projektionssatz (Numerik 1)}
+Für $U \subset V$, $U$ sei ein n-dim. Teilraum von $V$ und $\phi_{j}$ eine ONB. Dann existiert ein eindeutiges $u^{*} \in U$, welches $\|u^{*} - v\| = \underset{u \in U}{\min} \|u - v\|$ erfüllt. Für jedes $v \in V$ wird dieses Problem durch
+\begin{equation}
+P_{U}(v) := \sum_{j=1}^{n} \langle v, \phi_{j} \rangle \phi_{j}
+\end{equation}
+gelöst. $P_{U}(v)$ ist die \underline{orthogonale Projektion bzgl. $\langle \cdot, \cdot \rangle$}.
+
+\subsection*{Gram-Schmidt-Orthonormalisierung}
+\begin{align*}
+	w_{k}^{'} &:= v_{k} - \sum_{i=1}^{k-1} \langle v_{k}, w_{i} \rangle w_{i}, \\
+	w_{k} &= \frac {w_{k}^{'}} {\|w_{k}^{'}\|_{2}}
+\end{align*}
+
+\subsection*{Algorithmus der konjugierten Gradienten}
+Die folgenden Teilschritte definieren die Vorgehensweise zur Erzeugung der Lösung $x^{*}$ durch Näherungen $x^{1}, x^{2},...$.
+\\\\$U_{1} := span\{r^{0}\}$, wobei $r^{0} = b - Ax^{0}$
+\\dann gilt für $k = 1,2,3,...,$ falls $r^{k-1} = b - Ax^{k-1} \ne 0$:
+\begin{description}
+\item[$CG_{a}$:] Bestimme A-orthogonale Basis
+\begin{equation}
+p^{0},...,p^{k-1} \hspace{3mm} \textnormal{von} \hspace{3mm} U_{k}
+\end{equation}
+\item[$CG_{b}$:] Bestimme $x^{k} \in U_{k}$, so dass
+\begin{equation}
+\|x^{k} - x^{*}\|_{A} = \underset{u \in U_{k}}{\min} \|x - x^{*}\|_{A}
+\end{equation}
+\item[$CG_{c}$:] Erweitung des Teilraumes:
+\begin{equation}
+U_{k+1} := span\{p^{0},...,p^{k-1},r^{k}\} \hspace{2mm} \textnormal{wobei} \hspace{2mm} r^{k} := b - Ax^{k}
+\end{equation}
+\end{description}
+d.h.
+\begin{align}
+x^{k} = \sum_{j=0}^{k-1} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j}
+\end{align}
+
+\subsection*{Krylovraum}
+\begin{align*}
+\mathcal{K}_{\mathit{k}}(r, A) := span\{r, Ar, ..., A^{k-1}r\} \hspace{5mm} \textnormal{mit} \hspace{5mm} k \ge 1\\
+\mathcal{K}_{\mathit{k}}(r, A) := \{0\} \hspace{5mm} \textnormal{mit} \hspace{5mm} k = 0
+\end{align*}
+heißt Krylovraum zur Matrix $A$ und zum Vektor $r$.
+
+\end{document}

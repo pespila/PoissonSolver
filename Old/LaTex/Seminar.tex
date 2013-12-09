@@ -1,0 +1,276 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{ngerman}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{mathtools}
+
+\setcounter{section}{1}
+\setlength{\textwidth}{15cm}
+\setlength{\unitlength}{1mm}
+\setlength{\textheight}{22cm}
+
+\title{Das Verfahren der konjugierten Gradienten}
+\author{Michael Bauer}
+\date{11. November 2013}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\large
+
+\section*{Das Verfahren der konjugierten Gradienten}
+
+%1.1 Motivation
+\subsection{Motivation}
+Löse ein Gleichungssystem $Ax = b$, wobei $A\in\mathbb{R}^{n}$ s.p.d., $x, b\in\mathbb{R}^{n}$ und n sehr groß.
+
+\subsubsection{Bemerkung:}
+\begin{itemize}
+\item Es definiert $\langle x,y \rangle _{A} = x^{T}Ay$ ein Skalarprodukt auf dem $\mathbb{R}^{n}$ für $A$ s.p.d.
+\item Wir nennen $\|x\|_{A} := \sqrt{\langle x, x \rangle _{A}}$ die Energie-Norm.
+\end{itemize}
+
+%1.2. Definition (A-orthogonal)
+\subsection{Definition (A-orthogonal)}
+Sei $A$ eine symmetrische, nicht singuläre Matrix. Zwei Vektoren $x,y \in \mathbb{R}^{n}$ heißen \underline{\textbf{konjugiert}} oder \underline{\textbf{A-orthogonal}}, wenn $x^{T}Ay = 0$ ist.
+
+%1.3.Satz
+\subsection{Satz}
+Sei $A\in\mathbb{R}^{n \times n}$ s.p.d. und
+\begin{equation}
+f(x) := \frac 1 2 x^{T}Ax - b^{T}x,
+\end{equation}
+wobei $b,x \in \mathbb{R}^{n}$. Dann gilt:
+\begin{center}
+f hat ein eindeutig bestimmtes Minimum und
+\end{center}
+\begin{equation}
+Ax^{*} = b \Longleftrightarrow f(x^{*}) = \underset{x\in\mathbb{R}^{n}}{\min} f(x)
+\end{equation}
+
+\subsubsection{Beweis:}
+\begin{enumerate}
+\item Eindeutigkeit: per Widerspruch
+\\Sei $\hat x$ ein weiteres Minimum von f. Dann ist $\nabla f(\hat x) = A\hat x - b = 0 \Rightarrow A\hat x = b$.
+\\$\Rightarrow Ax = b$ hat zwei Lösungen $x^{*}$ und $\hat x$. Widerspruch, da $A$ eine quadratische Matrix und $det(A) \ne 0 \Rightarrow $ das GLS hat eine eindeutige Lösung.
+\item $\Rightarrow:$ Sei $x^{*}$ die eind. Lsg. von $Ax = b$. Dann kann man $f(x)$ auch folgenderma{\ss}en schreiben:
+$$f(x) = \frac 1 2 (x - x^{*})^{T}A(x - x^{*}) - c \hspace{2mm} mit \hspace{2mm} c = \frac 1 2 (x^{*})^{T}Ax^{*}$$
+Da $y^{T}Ay > 0 \hspace{2mm} \forall _{y \ne 0}$ und $c$ konstant ist, da es nicht von $x$ abhängt, folgt
+$$f(x) = \underbrace {\frac 1 2 (x - x^{*})^{T}A(x - x^{*})}_{\ge 0} - c$$
+ist genau dann minimal, wenn $x = x^{*}$.
+\item $\Leftarrow:$ Sei $f(x^{*})$ das Minimum von $f(x)$, dann gilt
+$$\nabla f(x^{*}) = Ax^{*} - b = 0 \Rightarrow Ax^{*} = b$$
+$\Rightarrow x^{*}$ löst $Ax = b \Rightarrow$ Beh.
+\end{enumerate}
+
+%1.4.Lemma
+\subsection{Lemma}
+Sei $U_{k}$ ein k-dimensionaler Teilraum des $\mathbb{R}^{n} \hspace{1mm} (k \le n)$, und $p^{0}, p^{1},...,p^{k-1}$ eine $\textit{A-orthogonale Basis}$ dieses Teilraums, also $\langle p^{i}, p^{j} \rangle _{A} = 0 \hspace{2mm} f\ddot{u}r \hspace{2mm} i \ne j$. Sei $v \in \mathbb{R}^{n}$, dann gilt für $u^{k} \in U_{k}$:
+\begin{equation}
+\|u^{k} - v\|_{A} = \underset{u \in U_{k}}{\min} \|u - v\|_{A}
+\end{equation}
+genau dann, wenn $u^{k}$ die $\textit{A-orthogonale Projektion}$ von $v$ auf $U_{k} = span\{p^{0},...,p^{k-1}\}$ ist. Außerdem hat $\textbf{u}^{k}$ die Darstellung
+\begin{equation}
+P_{U_{k,\langle \cdot,\cdot \rangle}}(v) = \textbf{u}^{k} = \sum_{j=0}^{k-1} \frac {\langle v, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j}
+\end{equation}
+
+\subsubsection{Beweis:}
+Folgt direkt aus dem Satz des Projektionssatzes (z.B. Numerik 1).
+
+\subsubsection{Bemerkungen:}
+\begin{itemize}
+	\item Wir wählen den Startvektor $x^{0} = 0$.
+	\item Wegen Lemma 1.3 ist die Richtung des steilsten Abstiegs gegeben durch $r^{0} = b - Ax^{0}$, wobei wir den Vektor $r$ \underline{Residuum} nennen werden.
+	\item Spezifisch für das CG-Verfahren ist die Nutzung des A-Skalarprodukts.
+\end{itemize}
+
+%1.5. Algorithmus
+\subsection{Algorithmus}
+Die folgenden Teilschritte definieren die Vorgehensweise zur Erzeugung der Lösung $x^{*}$ durch Näherungen $x^{1}, x^{2},...$.
+\\\\$U_{1} := span\{r^{0}\}$, wobei $r^{0} = b - Ax^{0}$
+\\dann gilt für $k = 1,2,3,...,$ falls $r^{k-1} = b - Ax^{k-1} \ne 0$:
+\begin{description}
+\item[$CG_{a}$:] Bestimme A-orthogonale Basis
+\begin{equation}
+p^{0},...,p^{k-1} \hspace{3mm} \textnormal{von} \hspace{3mm} U_{k}
+\end{equation}
+\item[$CG_{b}$:] Bestimme $x^{k} \in U_{k}$, so dass
+\begin{equation}
+\|x^{k} - x^{*}\|_{A} = \underset{u \in U_{k}}{\min} \|x - x^{*}\|_{A}
+\end{equation}
+\item[$CG_{c}$:] Erweitung des Teilraumes:
+\begin{equation}
+U_{k+1} := span\{p^{0},...,p^{k-1},r^{k}\} \hspace{2mm} \textnormal{wobei} \hspace{2mm} r^{k} := b - Ax^{k}
+\end{equation}
+\end{description}
+d.h.
+\begin{align}
+x^{k} = \sum_{j=0}^{k-1} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j}
+\end{align}
+
+%1.6. Satz (Verallgemeinerung des Startvektors)
+\subsection{Satz (Verallgemeinerung des Startvektors)}
+Das Verfahren der konjugierten Gradienten ist unabhängig von der Wahl des Startvektors $x^{0}$.
+
+\subsubsection{Beweis:}
+Zu lösen: $Ax^{*} = b$.
+\\Sei $x^{0} \ne 0$. Definiere für das transformierte System $A\tilde x = \tilde b$, $\tilde x := x^{*} - x^{0}$ und $\tilde b := b - Ax^{0}$
+\\$\Longrightarrow A\tilde x = A(x^{*} - x^{0}) = b - Ax^{0} = r^{0}$
+\\Sei nun: $\tilde x^{0} = 0$ Startvektor mit Residuum $\tilde r$.
+\\$\Longrightarrow \tilde x^{k} = x^{k} - x^{0} \Longrightarrow x^{k} = \tilde x^{k} + x^{0}$
+\\$\Longrightarrow \tilde r^{k} = \tilde b - A\tilde x^{k} = b - Ax^{0} - A\tilde x^{k}$
+\\$= b - A(x^{0} - \tilde x^{k}) = b - Ax^{k} = r^{k}$
+\\$\Longrightarrow \tilde r^{k} = r^{k}$
+
+%1.7. Lemma
+\subsection{Lemma}
+Sei $x^{*}$ die Lösung in Gleichung (6). Dann gilt für $y \in U_{k}$:
+\begin{equation}
+\langle x^{*}, y \rangle _{A} = \langle b, y \rangle
+\end{equation}
+
+\subsubsection{Beweis:}
+Wir nutzen die Eigenschaften des (A-orthogonalen) Skalarproduktes aus:
+\begin{equation*}
+\langle x^{*}, y \rangle _{A} \overset{Def. 1.1}{=} x^{{*}^{T}}Ay \overset{Symmetrie}{=} y^{T}Ax^{*} = y^{T}b \overset{Symmetrie}{=} b^{T}y = \langle b, y \rangle
+\end{equation*}
+
+\subsubsection{Anmerkung:}
+Um nun einen numerischen Algorithmus zu entwickeln, werden uns die folgenden Lemmata weiter helfen.
+
+%1.8. Lemma
+\subsection{Lemma}
+Sei $x^{*}$ die Lösung von Gleichung (6) und $x^{k}$ die optimale Approximation von $x^{*}$ in $U_{k}$. Dann kann $x^{k}$ wie folgt berechnet werden:
+\begin{equation}
+x^{k} = x^{k-1} + \alpha_{k-1}p^{k-1}, \hspace{2mm} mit \hspace{2mm} \alpha_{k-1} := \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle}
+\end{equation}
+
+\subsubsection{Beweis:}
+\begin{align*}
+\begin{split}
+x^{k} \overset{(4)}{=}
+\sum_{j=0}^{k-1} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle {p^{j}, p^{j}} \rangle _{A}} p^{j} =
+\underbrace{\sum_{j=0}^{k-2} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle {p^{j}, p^{j}} \rangle _{A}} p^{j}}_{=x^{k-1}} +
+\frac {\langle \overbrace{Ax^{*}}^{=b=b-Ax^{0}=r^{0}}, p^{k-1} \rangle} {\langle {Ap^{k-1}, p^{k-1}} \rangle} p^{k-1} =\\
+x^{k-1} + \alpha_{k-1}p^{k-1}, \hspace{2mm} \textnormal{mit} \hspace{2mm} \alpha_{k-1} \overset{(8)}{=} \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle}
+\end{split}
+\end{align*}
+
+\subsubsection{Bemerkung:}
+$x^{k}$ kann mit wenig Aufwand aus $x^{k-1}$ und $p^{k-1}$ berechnet werden.
+
+%1.9. Lemma
+\subsection{Lemma}
+Um $U_{k+1}$ zu erhalten, also den Teilraum zu erweitern, muss lediglich das neue Residuum $r^{k} = b - Ax^{k}$ berechnet werden. Dieses erhält man durch:
+\begin{equation}
+r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1}
+\end{equation}
+Wobei $\alpha_{k-1}$ wie in (10).
+
+\subsubsection{Beweis:}
+\begin{enumerate}
+\item Zeige, dass nur das neue Residuum berechnet werden muss:
+\\Da $U_{k+1} = span\{p^{0},...,p^{k-1},r^{k}\}$ und wir die A-orthogonalen Vektoren $p^{0},...,p^{k-1}$ bereits bestimmt haben, muss nur noch das Residuum gemäß (7) berechnet werden.
+\item Zeige (11) durch Erweiterung von (10):
+\begin{equation*}
+\begin{split}
+x^{k} = x^{k-1} + \alpha_{k-1}p^{k-1}
+\Longleftrightarrow Ax^{k} = Ax^{k-1} + \alpha_{k-1}Ap^{k-1}\\
+\Longleftrightarrow b - Ax^{k} = b - Ax^{k-1} - \alpha_{k-1}Ap^{k-1}
+\Longleftrightarrow r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1}
+\end{split}
+\end{equation*}
+\end{enumerate}
+
+\subsubsection{Bemerkung:}
+Das $\alpha_{k-1}$, sowie die Matrix-Vektor-Multiplikation $Ap^{k-1}$ wurden bereits berechnet.
+
+%1.10. Zusammenhang zu Krylovräumen
+\subsection{Lemma (Zusammenhang zu Krylovräumen)}
+Man kann $U_{k}$ auch in folgender Form schreiben:
+\begin{equation}
+U_{k} := span\{r^{0}, r^{1},...,r^{k-1}\} = span\{p^{0},p^{1},...,p^{k-1}\} = span\{r^{0}, Ar^{0},...,A^{k-1}r^{0}\}
+\end{equation}
+
+\subsubsection{Beweis:}
+Per Induktion über k (klar für k=0):
+\\Induktionsvoraussetzung:
+\begin{align*}
+& U_{k} := span\{r^{0}, r^{1},...,r^{k-1}\} = span\{p^{0},p^{1},...,p^{k-1}\} = span\{r^{0}, Ar^{0},...,A^{k-1}r^{0}\}\\
+& \Longrightarrow k \longrightarrow k+1: U_{k+1}\\
+& r^{k} = r^{k-1} - \alpha_{k-1} Ap^{k-1}\\
+& p^{k-1} \in U_{k} = span\{r^{0},...,A^{k-1}r^{0}\}\\
+& da \hspace{2mm} p^{k-1} = (\sum_{i=0}^{k-1} \sigma_{i}A^{i})r^{0}\\
+& \Longrightarrow Ap^{k-1} = (\sum_{i=0}^{k-1} \sigma_{i}A^{i+1})r^{0}\\
+& = \sigma_{0}Ar^{0} + ... + \sigma_{k-1}A^{k}r^{0}\\
+& \Longrightarrow r_{k} \in U_{k+1}
+\end{align*}
+
+%1.11. Satz (Bestimmung einer A-orthogonalen Basis)
+\subsection{Satz (Bestimmung einer A-orthogonalen Basis)}
+Durch
+\begin{equation}
+p^{k-1} = r^{k-1} - \sum_{j=0}^{k-2} \frac {\langle r^{k-1}, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j}
+\end{equation}
+wird die A-orthogonale Basis zum Vektor $r^{k-1}$ bestimmt.
+
+\subsubsection{Beweis:}
+Der Beweis folgt direkt aus dem Gram-Schmidt-Orthonormalisierungsverfahren.
+
+%1.12. Lemma
+\subsection{Lemma}
+Für jedes $\textbf{r}^{k-1}$ und $\textbf{p}^{j}$ gilt:
+\begin{equation*}
+\langle r^{k-1}, p^{j} \rangle _{A} = 0 \hspace{2mm} f\ddot{u}r \hspace{2mm} 0 \le j \le k-3
+\end{equation*}
+
+\subsubsection{Beweis:}
+Sei $k \ge 3$ fest gewählt. Aus $U_{1} = span\{r^{0}\}, U_{2} = U_{1} \oplus span\{r^{1}\} = span\{r^{0}, r^{1}\}$ usw. erhält man
+\begin{equation}
+U_{m} = span\{r^{0}, r^{1},...,r^{m-1}\} \hspace{5mm} m = 1,2,...,k
+\end{equation}
+Aus der Definition von $x^{m}$ ergibt sich $x^{m} - x^{*} \perp_{A} U_{m}$, also $-r^{m} = A(x^{m} - x^{*}) \perp U_{m}$. Zusammen mit (14) folgt hieraus
+\begin{equation}
+r^{i} \perp r^{j} \hspace{2mm} f\ddot{u}r \hspace{2mm} 0 \le i,j \le k, i \ne j
+\end{equation}
+Da $r^{j} \ne 0$ für $j \le k-1$ gilt folgt wegen (15) muss dann $r^{j} \ne r^{j-1}$ gelten, also auch $x^{j} \ne x^{j-1}, j \le k-1$. Aus (10) erhält man damit,
+dass $\alpha_{i} \ne 0$ für $j \le k-2$ gilt. Nun gilt für $j \le k-3$
+\begin{equation*}
+\langle r^{k-1}, p^{j} \rangle _{A} =
+\langle r^{k-1}, Ap^{j} \rangle \overset{(11)}{=} \langle r^{k-1}, {\frac 1 \alpha_{j} (r^{j} - r^{j-1})} \rangle =
+\frac 1 \alpha_{j} \langle r^{k-1}, r^{j} \rangle - \frac 1 \alpha_{j} \langle r^{k-1}, r^{j+1} \rangle \overset{(15)}{=} 0
+\end{equation*}
+
+%1.13. Folgerung
+\subsection{Folgerung}
+Wegen Lemma 1.11 vereinfacht sich (13) auf
+\begin{equation*}
+p^{k-1} = r^{k-1} - \frac {\langle r^{k-1}, Ap^{k-2} \rangle} {\langle p^{k-2}, Ap^{k-2} \rangle} p^{k-2}
+\end{equation*}
+
+\subsubsection{Bemerkung:}
+Somit können wir $p^{k-1}$ einfach aus $r^{k-1}$ und $p^{k-2}$ berechnen.
+
+%1.14. Algorithmu
+\subsection{Algorithmus}
+Gegeben: $A \in \mathbb{R}^{n}$ s.p.d., $b \in \mathbb{R}^{n}$, Startvektor $x^{0} \in \mathbb{R}^{n}$, $\beta_{-1} := 0$. Berechne $r^{0} = b - Ax^{0}$. Für $k = 1,2,...$, falls $r^{k-1} \ne 0$:
+\begin{subequations}
+\begin{align}
+	p^{k-1} &= r^{k-1} + \beta_{k-2}p^{k-2}, \hspace{2mm} wobei \hspace{2mm} \beta_{k-2} = \frac {\langle r^{k-1}, r^{k-1} \rangle} {\langle r^{k-2}, r^{k-2} \rangle} \hspace{2mm} mit \hspace{2mm} (k \ge 2),\\
+	x^{k} &= x^{k-1} + \alpha_{k-1}p^{k-1}, \hspace{2mm} mit \hspace{2mm} \alpha_{k-1} = \frac {\langle r^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle}\\
+	r^{k} &= r^{k-1} - \alpha_{k-1}Ap^{k-1}
+\end{align}
+\end{subequations}
+
+%1.15. Literatur
+\subsection{Literatur:}
+\begin{enumerate}
+\item "'Numerik für Ingenieure und Naturwissenschaftler"', \\W.Dahmen \& A.Reusken, 2.,korrigierte Auflage, 2008, Seiten 566-572
+\item "'Finite Elemente"', Braess, Seiten 177-180
+\end{enumerate}
+
+\end{document}
