@@ -35,7 +35,7 @@ int main(int argc, char const *argv[]) {
     //Run.SSORMethod(A,O,V);
     //Run.CG(A,O,V);
     //Run.PCG(A,O,L,U,V);
-    Run.MultiGridMethod(V.x,V.b,n,O);
+    //Run.MultiGridMethod(V.x,V.b,n,O);
 
     end = clock();
     time=(end-start)/CLOCKS_PER_SEC;

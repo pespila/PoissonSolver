@@ -27,45 +27,21 @@ void MGMOperators::MatrixVectorMultiplyer(PoissonMatrix& A, const vector<double>
         b.assign(b.size(),pushB);
         vector<double>().swap(pushB);
     } else  {
+        int i,j,k;
         int n=sqrt(x.size());
-        for(int i=0;i<n;i++) {
-            for(int j=0;j<n;j++) {
-                if((i==0 || i==n-1) && j!=0 && j!=n) {
-                    b[i][j]+=x[i][j]*A.Get(i,i)+x[i][j+1]*A.Get(i,i+1)+x[i][n+1]*A.Get(i,i+n)+x[i][j-1]*A.Get(i,i-1);
+        for(i=0,k=0;i<n;i++) {
+            for(j=0;j<n;j++,k++) {
+                b[i][j]+=x[i][j]*A.Get(k,k);
+                if(j!=n) {
+                    b[i][j]+=x[i][j+1]*A.Get(k,k+1);
+                    b[i][j+1]+=x[i][j]*A.Get(k,k-1);
                 }
-                if(i!=0 && i!=n-1 && j!=0 && j!=n) {
-                    b[i][j]+=x[i][j]*A.Get(i,i)+x[i][j+1]*A.Get(i,i+1)+x[i][n+1]*A.Get(i,i+n)+x[i][j-1]*A.Get(i,i-1)+x[i][j-n+1]
+                if(i>0) {
+                    b[i][j]+=x[i][j-n]*A.Get(k,k-n);
                 }
-
-                b[i][j]+=x[i][j]*A.Get(i,j);
-                if(i==j) {
-                    b[i][j]+=x[i][j]*A.Get(i,j);
+                if(i<n-1) {
+                    b[i][j]+=x[i][j+n]*A.Get(k,k+n);
                 }
-                if (i<(dim-n)) {
-                b[i]+=x[i+n]*A.Get(i,i+n);
-                } 
-                if (i>=n) {
-                    b[i]+=x[i-n]*A.Get(i,i-n);
-                }
-                if (i%n!=0) {
-                    b[i]+=x[i-1]*A.Get(i,i-1);
-                    b[i-1]+=x[i]*A.Get(i-1,i);
-                }
-            }
-        }
-        int dim=x.size();
-        int n=sqrt(dim);
-        for (int i=0;i<dim;i++) {
-            b[i]+=x[i]*A.Get(i,i);
-            if (i<(dim-n)) {
-                b[i]+=x[i+n]*A.Get(i,i+n);
-            } 
-            if (i>=n) {
-                b[i]+=x[i-n]*A.Get(i,i-n);
-            }
-            if (i%n!=0) {
-                b[i]+=x[i-1]*A.Get(i,i-1);
-                b[i-1]+=x[i]*A.Get(i-1,i);
             }
         }
     }

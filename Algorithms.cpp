@@ -665,16 +665,14 @@ void Algorithms::PCG(Matrix& A, Operators& O, WriteableMatrix& L, WriteableMatri
 
 vector<double> Algorithms::Restriction(vector<double>& r, int n) {
     vector<double> r2h;
-    r2h.resize((n-1)/2*(n-1)/2);
+    r2h.resize((n+1)/2*(n+1)/2);
     int k=0;
-    int l=0;
     for(int i=1;i<=n;i++){
-        for(int j=1;j<=n;j++,k++){
+        for(int j=1;j<=n;j++){
             if(i%2==0 && j%2==0) {
-                //r2h[l]=r[k];
-                r2h[l]=1.0/16.0*(4.0*r[k]+2*(r[k+1]+r[k-1]+r[k+n]+r[k-n])+r[k+n-1]+r[k+n+1]+r[k-n-1]+r[k-n+1]);
-                l++;
+                r2h[k]=r[k];
             }
+            k++;
         }
     }
     return r2h;
@@ -684,21 +682,12 @@ vector<double> Algorithms::Interpolation(vector<double>& E2h, int n) {
     int i,j,k,l;
     vector<double> E;
     E.resize(n*n);
-<<<<<<< HEAD
     for(i=0,k=0;i<n,k<E2h.size();i++,k++) {
         for(j=0,l=0;j<n,l<E2h.size();j++,l++) {
             
         }
     }
     for(i=1;i<=n;i++) {
-=======
-    // for(i=0,k=0;i<n,k<E2h.size();i++,k++) {
-    //     for(j=0,l=0;j<n,l<E2h.size();j++,l++) {
-
-    //     }
-    // }
-    for(i=1,k=0;i<=n;i++) {
->>>>>>> 58a5401e4222e5fa164334eef073aedd9ca03257
         for(j=1;j<=n;j++,k++) {
             if(i%2==0 && j%2==0) {
                 E[k]=E2h[l];
@@ -737,26 +726,14 @@ vector<double> Algorithms::Interpolation(vector<double>& E2h, int n) {
         }
     }
     k=0;
-    for(i=1;i<=n;i++) {
-        for(j=1;j<=n;j++) {
+    for(i=0;i<=n;i++) {
+        for(j=0;j<=n;j++) {
             if(i%2!=0 && j%2!=0) {
                 E[k]=1/4*(E[k-n-1]+E[k-n+1]+E[k+n-1]+E[k+n+1]);
-            } else if(i==1 && j==1) {
+            } else if(i==0 && j==0) {
                 E[k]=1/4*E[k+n+1];
-            } else if(i==n && j==1) {
-                E[k]=1/4*E[k+n-1];
-            } else if(i==1 && j==n) {
-                E[k]=1/4*E[k-n+1];
-            } else if(i==n && j==n) {
+            } else if(i==n && j==0) {
                 E[k]=1/4*E[k-n-1];
-            } else if(i==1 && j%2!=0 && j!=1 && j!=n) {
-                E[k]=1/4*(E[k+n-1]+E[k+n-1]);
-            } else if(i==n && j%2!=0 && j!=1 && j!=n) {
-                E[k]=1/4*(E[k-n-1]+E[k-n+1]);
-            } else if(j==1 && i%2!=0 && i!=1 && i!=n) {
-                E[k]=1/4*(E[k+n+1]+E[k-n+1]);
-            } else if(j==n && i%2!=0 && i!=1 && i!=n) {
-                E[k]=1/4*(E[k+n-1]+E[k-n-1]);
             }
             if(i>=0 && j>=0) {
                 k++;
@@ -864,7 +841,7 @@ void Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, int
         for(i=0;i<dim;i++) {
             x[i]=x[i]+E[i];
         }
-        //A.Resize((n+1)*2);
+        A.Resize((n+1)*2);
         GaussSeidelMethod(A,O,x,b,3);
         // vector<double>().swap(Ax);
         // vector<double>().swap(r);

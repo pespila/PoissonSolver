@@ -123,8 +123,8 @@ class Operators {
 class CGOperators : public Operators
 {
     public:
-        PoissonOperators();
-        ~PoissonOperators();
+        CGOperators();
+        ~CGOperators();
         double innerProduct(const vector<double>&,const vector<double>&);
         double vectorNorm(const vector<double>&);
         void MatrixVectorMultiplyer(Matrix&,const vector<double>&,vector<double>& y);
