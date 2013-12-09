@@ -684,82 +684,90 @@ vector<double> Algorithms::Interpolation(vector<double>& E2h, int n) {
     int i,j,k,l;
     vector<double> E;
     E.resize(n*n);
-<<<<<<< HEAD
-    for(i=0,k=0;i<n,k<E2h.size();i++,k++) {
-        for(j=0,l=0;j<n,l<E2h.size();j++,l++) {
-            
-        }
-    }
-    for(i=1;i<=n;i++) {
-=======
+    l=0;
     // for(i=0,k=0;i<n,k<E2h.size();i++,k++) {
     //     for(j=0,l=0;j<n,l<E2h.size();j++,l++) {
 
     //     }
     // }
-    for(i=1,k=0;i<=n;i++) {
->>>>>>> 58a5401e4222e5fa164334eef073aedd9ca03257
-        for(j=1;j<=n;j++,k++) {
-            if(i%2==0 && j%2==0) {
-                E[k]=E2h[l];
-                l++;
-            }
-        }
-    }
-    k=0;
-    for(i=0;i<=n;i++) {
-        for(j=1;j<=n;j++) {
-            if(i%2!=0 && j%2==0) {
-                if(i==0) {
-                    E[k]=1/2*E[k+1];
-                } else if(i==n) {
-                    E[k]=1/2*E[k-1];
-                } else {
-                    E[k]=1/2*(E[k-1]+E[k+1]);
+    if(n==3) {
+        E[4]=E2h[0];
+        k=0;
+        for(i=1;i<=n;i++) {
+            for(j=1;j<=n;j++,k++) {
+                if(i%2==0 && j%2==0) {
+                    continue;
+                } else if((i%2==0 && j%2!=0) || (i%2!=0 && j%2==0)) {
+                    E[k]=1.0/2.0*E[4];
+                } else if(i%2!=0 && j%2!=0) {
+                    E[k]=1.0/4.0*E[4];
                 }
             }
-            if(i>=1 && j>=1) k++;
         }
-    }
-    k=0;
-    for(i=1;i<=n;i++) {
-        for(j=0;j<=n;j++) {
-            if(i%2==0 && j%2!=0) {
-                if(j==0) {
-                    E[k]=1/2*E[k+n];
-                } else if(j==n) {
-                    E[k]=1/2*E[k-n];
-                } else {
-                    E[k]=1/2*(E[k-n]+E[k+n]);
+    } else {
+        for(i=1,k=0;i<=n;i++) {
+            for(j=1;j<=n;j++,k++) {
+                if(i%2==0 && j%2==0) {
+                    E[k]=E2h[l];
+                    l++;
                 }
             }
-            if(i>=1 && j>=1) k++;
         }
-    }
-    k=0;
-    for(i=1;i<=n;i++) {
-        for(j=1;j<=n;j++) {
-            if(i%2!=0 && j%2!=0) {
-                E[k]=1/4*(E[k-n-1]+E[k-n+1]+E[k+n-1]+E[k+n+1]);
-            } else if(i==1 && j==1) {
-                E[k]=1/4*E[k+n+1];
-            } else if(i==n && j==1) {
-                E[k]=1/4*E[k+n-1];
-            } else if(i==1 && j==n) {
-                E[k]=1/4*E[k-n+1];
-            } else if(i==n && j==n) {
-                E[k]=1/4*E[k-n-1];
-            } else if(i==1 && j%2!=0 && j!=1 && j!=n) {
-                E[k]=1/4*(E[k+n-1]+E[k+n-1]);
-            } else if(i==n && j%2!=0 && j!=1 && j!=n) {
-                E[k]=1/4*(E[k-n-1]+E[k-n+1]);
-            } else if(j==1 && i%2!=0 && i!=1 && i!=n) {
-                E[k]=1/4*(E[k+n+1]+E[k-n+1]);
-            } else if(j==n && i%2!=0 && i!=1 && i!=n) {
-                E[k]=1/4*(E[k+n-1]+E[k-n-1]);
+        k=0;
+        for(i=0;i<=n;i++) {
+            for(j=1;j<=n;j++) {
+                if(i%2!=0 && j%2==0) {
+                    if(i==0) {
+                        E[k]=1.0/2.0*E[k+1];
+                    } else if(i==n) {
+                        E[k]=1.0/2.0*E[k-1];
+                    } else {
+                        E[k]=1.0/2.0*(E[k-1]+E[k+1]);
+                    }
+                }
+                if(i>=1 && j>=1) k++;
             }
-            if(i>=0 && j>=0) {
-                k++;
+        }
+        k=0;
+        for(i=1;i<=n;i++) {
+            for(j=0;j<=n;j++) {
+                if(i%2==0 && j%2!=0) {
+                    if(j==0) {
+                        E[k]=1.0/2.0*E[k+n];
+                    } else if(j==n) {
+                        E[k]=1.0/2.0*E[k-n];
+                    } else {
+                        E[k]=1.0/2.0*(E[k-n]+E[k+n]);
+                    }
+                }
+                if(i>=1 && j>=1) k++;
+            }
+        }
+        k=0;
+        for(i=1;i<=n;i++) {
+            for(j=1;j<=n;j++) {
+                if(i%2!=0 && j%2!=0) {
+                    E[k]=1.0/4.0*(E[k-n-1]+E[k-n+1]+E[k+n-1]+E[k+n+1]);
+                } else if(i==1 && j==1) {
+                    E[k]=1.0/4.0*E[k+n+1];
+                } else if(i==n && j==1) {
+                    E[k]=1.0/4.0*E[k+n-1];
+                } else if(i==1 && j==n) {
+                    E[k]=1.0/4.0*E[k-n+1];
+                } else if(i==n && j==n) {
+                    E[k]=1.0/4.0*E[k-n-1];
+                } else if(i==1 && j%2!=0 && j!=1 && j!=n) {
+                    E[k]=1.0/4.0*(E[k+n-1]+E[k+n-1]);
+                } else if(i==n && j%2!=0 && j!=1 && j!=n) {
+                    E[k]=1.0/4.0*(E[k-n-1]+E[k-n+1]);
+                } else if(j==1 && i%2!=0 && i!=1 && i!=n) {
+                    E[k]=1.0/4.0*(E[k+n+1]+E[k-n+1]);
+                } else if(j==n && i%2!=0 && i!=1 && i!=n) {
+                    E[k]=1.0/4.0*(E[k+n-1]+E[k-n-1]);
+                }
+                if(i>=0 && j>=0) {
+                    k++;
+                }
             }
         }
     }
@@ -769,7 +777,7 @@ vector<double> Algorithms::Interpolation(vector<double>& E2h, int n) {
     // E.resize(n*n);
     // if(n==3) {
     //     for(int i=0;i<n*n;i++) {
-    //         E[i]=1/2*E2h[0];
+    //         E[i]=1.0/2.0*E2h[0];
     //     }
     // }
     // if(n!=3) {
@@ -782,10 +790,10 @@ vector<double> Algorithms::Interpolation(vector<double>& E2h, int n) {
     //                 l++;
     //             }
     //             if(i<n && j<n && i%2==0) {
-    //                 E[k]=1/2*(E2h[l-1]+E2h[l]);
+    //                 E[k]=1.0/2.0*(E2h[l-1]+E2h[l]);
     //             }
     //             if(i%2==0 && (j==n || j==1)) {
-    //                 E[k]=1/2*E2h[l];
+    //                 E[k]=1.0/2.0*E2h[l];
     //             }
     //             k++;
     //         }
@@ -794,40 +802,40 @@ vector<double> Algorithms::Interpolation(vector<double>& E2h, int n) {
     //     for(int i=1;i<=n;i++) {
     //         for(int j=1;j<=n;j++) {
     //             if(i<n && j<n && j%2==0) {
-    //                 E[k]=1/2*(E[k-n]+E[k+n]);
+    //                 E[k]=1.0/2.0*(E[k-n]+E[k+n]);
     //             }
     //             if(j%2==0 && i==1) {
-    //                 E[k]=1/2*E[k+n];
+    //                 E[k]=1.0/2.0*E[k+n];
     //             }
     //             if(j%2==0 && i==n) {
-    //                 E[k]=1/2*E[k-n];
+    //                 E[k]=1.0/2.0*E[k-n];
     //             }
     //             if(i<n && j<n && i%2!=0 && j%2!=0) {
-    //                 E[k]=1/4*(E[k-n+1]+E[k-n-1]+E[k+n-1]+E[k+n+1]);
+    //                 E[k]=1.0/4.0*(E[k-n+1]+E[k-n-1]+E[k+n-1]+E[k+n+1]);
     //             }
     //             if(j==1 && i%2!=0 && i!=1 && i!=n) {
-    //                 E[k]=1/4*(E[k-n+1]+E[k+n+1]);
+    //                 E[k]=1.0/4.0*(E[k-n+1]+E[k+n+1]);
     //             }
     //             if(j==n && i%2!=0 && i!=1 && i!=n) {
-    //                 E[k]=1/4*(E[k-n-1]+E[k+n-1]);
+    //                 E[k]=1.0/4.0*(E[k-n-1]+E[k+n-1]);
     //             }
     //             if(i==1 && j%2!=0 && j!=1 && j!=n) {
-    //                 E[k]=1/4*(E[k+n-1]+E[k+n+1]);
+    //                 E[k]=1.0/4.0*(E[k+n-1]+E[k+n+1]);
     //             }
     //             if(i==n && j%2!=0 && j!=1 && j!=n) {
-    //                 E[k]=1/4*(E[k-n-1]+E[k-n+1]);
+    //                 E[k]=1.0/4.0*(E[k-n-1]+E[k-n+1]);
     //             }
     //             if(i==1 && j==1) {
-    //                 E[k]=1/4*(E[k+n+1]);
+    //                 E[k]=1.0/4.0*(E[k+n+1]);
     //             }
     //             if(i==n && j==n) {
-    //                 E[k]=1/4*(E[k-n-1]);
+    //                 E[k]=1.0/4.0*(E[k-n-1]);
     //             }
     //             if(i==1 && j==n) {
-    //                 E[k]=1/4*(E[k+n-1]);
+    //                 E[k]=1.0/4.0*(E[k+n-1]);
     //             }
     //             if(i==n && j==1) {
-    //                 E[k]=1/4*(E[k-n+1]);
+    //                 E[k]=1.0/4.0*(E[k-n+1]);
     //             }
     //             k++;
     //         }
@@ -836,15 +844,16 @@ vector<double> Algorithms::Interpolation(vector<double>& E2h, int n) {
     return E;
 }
 
-void Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, int n, Operators& O) {
+vector<double> Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, int n, Operators& O) {
     int i,dim;
     dim=n*n;
     if(n==1) {
         double a,b,h;
-        h=1/2;
+        h=1.0/2.0;
         a=4*pow(n+1,2);
         b=O.f(h,h)+pow(n+1,2)*(O.g(0,h)+O.g(h,0)+O.g(1-h,1)+O.g(1,1-h));
         x[0]=b/a;
+        return x;
     } else {
         PoissonMatrix A(n);
         vector<double> r,r2h,Ax,E,E2h;
@@ -853,24 +862,25 @@ void Algorithms::MultiGridMethod(vector<double>& x, const vector<double>& b, int
         Ax.assign(dim,0);
         E2h.assign((((n+1)/2)-1)*(((n+1)/2)-1),0);
         E.assign(dim,0);
-        GaussSeidelMethod(A,O,x,b,3);
+        JacobiMethod(A,O,x,b,6);
         O.MatrixVectorMultiplyer(A,x,Ax);
         for(i=0;i<dim;i++) {
-            r[i]=b[i]-Ax[i];
+            r[i]=Ax[i]-b[i];
         }
         r2h=Restriction(r,n);
-        MultiGridMethod(E2h,r2h,((n+1)/2)-1,O);
+        E2h=MultiGridMethod(E2h,r2h,((n+1)/2)-1,O);
         E=Interpolation(E2h,n);
         for(i=0;i<dim;i++) {
-            x[i]=x[i]+E[i];
+            x[i]=x[i]-E[i];
         }
         //A.Resize((n+1)*2);
-        GaussSeidelMethod(A,O,x,b,3);
+        JacobiMethod(A,O,x,b,6);
         // vector<double>().swap(Ax);
         // vector<double>().swap(r);
         // vector<double>().swap(E);
         // vector<double>().swap(r2h);
         // vector<double>().swap(E2h);
+        return x;
     }
 }
 
