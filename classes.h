@@ -7,6 +7,7 @@
 #include <fstream>
 #include <cstdio>
 #include <vector>
+#include <assert.h>
 #include <time.h>
 using namespace std;
 
@@ -39,7 +40,6 @@ class PoissonMatrix : public Matrix
 
         int Size();
     	double Get(int, int);
-        void Resize(int);
 };
 
 class LowerMatrix : public WriteableMatrix
@@ -72,12 +72,17 @@ class UpperMatrix : public LowerMatrix
 
 class Operators
 {
+	private:
+		int dim;
+		int n;
 	public:
-		Operators();
+		Operators(int);
 		~Operators();
 		double innerProduct(const vector<double>&,const vector<double>&);
 		double vectorNorm(const vector<double>&);
 		void MatrixVectorMultiplyer(Matrix&,const vector<double>&,vector<double>& y);
+		void LUsolverLower(Matrix&,Matrix&,vector<double>&);
+		void LUsolverUpper(Matrix&,Matrix&,vector<double>&);
 		double f(double, double);
     	double g(double, double);
 };
@@ -86,6 +91,7 @@ class Vectors {
     private:
         int dim;
         int n;
+        double h;
     public:
         vector<double> x;
         vector<double> b;
@@ -93,43 +99,30 @@ class Vectors {
         ~Vectors();
         void PrintVector();
         void WriteToFile(Operators&);
-};
-
-class MGMVectors {
-    private:
-        int dim;
-        int n;
-    public:
-        vector<vector<double> > x;
-        vector<vector<double> > b;
-        MGMVectors(int, Operators&);
-        ~MGMVectors();
-        void PrintVector();
-        //void WriteToFile(Operators&);
+        double f(double,double);
+        double g(double,double);
 };
 
 class Algorithms {
+	private:
+		int dim;
+		int n;
 	public:
-		Algorithms();
+		Algorithms(Matrix&);
 		~Algorithms();
-        vector<vector<int> > HashMatrix;
-        void InitHashMatrix(int);
-        void incompleteLU(Matrix&,WriteableMatrix&,WriteableMatrix&,Operators&);
-        void modifiedIncompleteLU(Matrix&,WriteableMatrix&,WriteableMatrix&,Operators&);
-        void LU(Matrix&,WriteableMatrix&,WriteableMatrix&,Operators&);
-		void modifiedIncompleteCholesky(WriteableMatrix&,WriteableMatrix&,WriteableMatrix&,Operators&);
-		void incompleteCholesky(PoissonMatrix&,LowerMatrix&,UpperMatrix&,Operators&);
-        void LUsolverLower(Matrix&,Matrix&,vector<double>&,Operators&);
-        void LUsolverUpper(Matrix&,Matrix&,vector<double>&,Operators&);
-        void JacobiMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int maxIterations=5000);
-        void GaussSeidelMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int maxIterations=5000);
-        void SORMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int maxIterations=5000);
+        void incompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
+        void modifiedIncompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
+		void modifiedIncompleteCholesky(WriteableMatrix&, WriteableMatrix&, WriteableMatrix&);
+		void incompleteCholesky(PoissonMatrix&, LowerMatrix&, UpperMatrix&);
+        void JacobiMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int);
+        void GaussSeidelMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int);
+        void SORMethod(Matrix&,Operators&,vector<double>&,const vector<double>&,int);
         void SSORMethod(Matrix&,Operators&,Vectors&);
 		void CG(Matrix&,Operators&,Vectors&);
 		void PCG(Matrix&,Operators&,WriteableMatrix&,WriteableMatrix&,Vectors&);
-        void MultiGridMethod(vector<double>&,const vector<double>&,int,Operators&);
-        vector<double> Restriction(vector<double>&,int);
-        vector<double> Interpolation(vector<double>&,int);
+        void MultiGridMethod(vector<double>&,const vector<double>&,Operators&,int);
+        void Restriction(const vector<double>&,vector<double>&,int);
+        void Interpolation(const vector<double>&,vector<double>&,int);
 };
 
 #endif

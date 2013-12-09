@@ -1,14 +1,13 @@
 #include "classes.h"
 
-Vectors::Vectors(int m,Operators& O) {
+Vectors::Vectors(int m) {
     n=m;
     dim=n*n;
+    h=1.0/(double)(n+1);
     b.resize(dim);
     x.resize(dim);
 
     int k,i,j;
-    double h=1.0/(double)(n+1);
-
     k=0;
     for (j=1;j<=n;j++) {
         if (j == 1) {
@@ -20,7 +19,6 @@ Vectors::Vectors(int m,Operators& O) {
         }
         k++;
     }
-    
     for (i=2; i<=(n-1);i++) {
         for (j = 1; j <= n; j++) {
             if (j == 1) {
@@ -33,7 +31,6 @@ Vectors::Vectors(int m,Operators& O) {
             k++;
         }
     }
-    
     for (j=1;j<=n;j++) {
           if (j == 1) {
             b[k] = f(h, 1-h) + (n+1)*(n+1) * (g(h, 1)+g(0, 1-h));
@@ -59,6 +56,11 @@ double Vectors::g(double x,double y) {
     return (pow(x,2)+pow(y,2));
 }
 
+void Vectors::Resize(int m) {
+    n=m;
+    dim=n*n;
+}
+
 void Vectors::PrintVector() {
     if(dim<=16)
         for (int i=0;i<dim;i++) {
@@ -67,15 +69,13 @@ void Vectors::PrintVector() {
     printf("\n");
 }
 
-void Vectors::WriteToFile(Operators& O) {
+void Vectors::WriteToFile() {
     int i,j,k;
-    double h=1.0/(double)(n+1);
     FILE *file;
     file=fopen("./Plot/plot.txt", "w");
-    k=0;
     if(file==NULL)
         printf("ERROR: Could not open file!\n");
-    for(i=0;i<=n;i++) {
+    for(i=0,k=0;i<=n;i++) {
         for(j=0;j<=n;j++) {
             if(i==0) {
                 fprintf(file, "%f %d %f\n", (double)j/(double)n,i,g(j*h,i));

@@ -18,7 +18,7 @@ int main(int argc, char const *argv[]) {
 
     printf("Started\n");
     double time,start=0.0,end=0.0;
-    start = clock();
+    start=clock();
 
     //Run.incompleteLU(A,L,U);
     //Run.incompleteCholesky(A,L,U);
@@ -32,13 +32,13 @@ int main(int argc, char const *argv[]) {
     //Run.SSORMethod(A,O,V);
     Run.PCG(A,O,L,U,V);
 
-    end = clock();
+    end=clock();
     time=(end-start)/CLOCKS_PER_SEC;
     printf("%f\n", time);
 
     A.PrintMatrix();
-    L.PrintMatrix();
-    U.PrintMatrix();
+    //L.PrintMatrix();
+    //U.PrintMatrix();
 
     V.PrintVector();
     V.WriteToFile(O);

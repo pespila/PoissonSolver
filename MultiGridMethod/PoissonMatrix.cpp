@@ -94,6 +94,11 @@ double PoissonMatrix::Get(int i,int j) {
 	}
 }
 
+void PoissonMatrix::Resize(int m) {
+    n=m;
+    dim=n*n;
+}
+
 void Matrix::PrintMatrix() {
 	if(Size()>25){
 		printf("Couldn't print Matrix! Dimension is too high.\n");

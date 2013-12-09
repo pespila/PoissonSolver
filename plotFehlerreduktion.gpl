@@ -1,6 +1,0 @@
-set title "Fehlerreduktion"
-set xlabel "steps"
-set ylabel "reduction factor"
-set xrange [0:250]
-set yrange [0:1.25]
-plot "plotReduction.txt" with points ls 1 lt rgb "red", "plotReductionLine.txt" with lines lt rgb "blue"
