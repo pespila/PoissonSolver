@@ -64,8 +64,8 @@ class Algorithms {
         void GaussSeidelMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
         void SORMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
         vector<double> MultiGridMethod(PoissonMatrix&,Vectors&,vector<double>&,vector<double>&);
-        vector<double> Restriction(vector<double>&,int);
-        vector<double> Interpolation(vector<double>&,int);
+        vector<double> Restriction(vector<double>&);
+        vector<double> Interpolation(vector<double>&,Vectors&);
 };
 
 #endif

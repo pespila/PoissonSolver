@@ -14,36 +14,36 @@ int main(int argc, char const *argv[]) {
 
     A.PrintMatrix();
 
-    //V.x=Run.MultiGridMethod(A,V,V.x,V.b);
+    V.x=Run.MultiGridMethod(A,V,V.x,V.b);
 
-    vector<double> r;
-    r.assign(9,5);
-    vector<double> b;
-    b.assign(49,0);
+    // vector<double> r;
+    // r.assign(9,0);
+    // vector<double> b;
+    // b.assign(49,5);
 
-    for(int i=0;i<49;i++) {
-        printf("%.2f ", b[i]);
-    }
-    printf("\n");
-    printf("\n");
-    for(int i=0;i<9;i++) {
-        printf("%.2f ", r[i]);
-    }
-    printf("\n");
-    printf("\n");
+    // for(int i=0;i<49;i++) {
+    //     printf("%.2f ", b[i]);
+    // }
+    // printf("\n");
+    // printf("\n");
+    // for(int i=0;i<9;i++) {
+    //     printf("%.2f ", r[i]);
+    // }
+    // printf("\n");
+    // printf("\n");
 
-    b=Run.Interpolation(r,7);
+    // r=Run.Restriction(b);
 
-    for(int i=0;i<49;i++) {
-        printf("%.2f ", b[i]);
-    }
-    printf("\n");
-    printf("\n");
-    for(int i=0;i<9;i++) {
-        printf("%.2f ", r[i]);
-    }
-    printf("\n");
-    printf("\n");
+    // for(int i=0;i<49;i++) {
+    //     printf("%.2f ", b[i]);
+    // }
+    // printf("\n");
+    // printf("\n");
+    // for(int i=0;i<9;i++) {
+    //     printf("%.2f ", r[i]);
+    // }
+    // printf("\n");
+    // printf("\n");
 
     V.PrintVector();
     V.WriteToFile();
