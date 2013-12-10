@@ -14,7 +14,7 @@ int main(int argc, char const *argv[]) {
 
     A.PrintMatrix();
 
-    V.x=Run.MultiGridMethod(A,V,V.x,V.b);
+    V.x=Run.MultiGridMethod(A,V,V.b);
 
     // vector<double> r;
     // r.assign(9,0);

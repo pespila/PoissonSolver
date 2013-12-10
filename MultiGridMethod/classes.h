@@ -63,7 +63,7 @@ class Algorithms {
         void JacobiMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
         void GaussSeidelMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
         void SORMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
-        vector<double> MultiGridMethod(PoissonMatrix&,Vectors&,vector<double>&,vector<double>&);
+        vector<double> MultiGridMethod(PoissonMatrix&,Vectors&,const vector<double>&);
         vector<double> Restriction(vector<double>&);
         vector<double> Interpolation(vector<double>&,Vectors&);
 };
