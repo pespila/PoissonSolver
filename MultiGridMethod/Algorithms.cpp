@@ -189,33 +189,71 @@ vector<double> Algorithms::Interpolation(vector<double>& E2h,Vectors& V) {
 }
 
 vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,vector<double>& x,vector<double>& b) {
-    int i,dim=A.Size(),n=sqrt(dim);
+    int i,dim=x.size(),n=sqrt(dim);
     if(n==1) {
-        x[0]=1;
+        double a,b,h;
+        h=(double)1/(double)(n+1);
+        a=4.0*(double)pow(n+1,2),
+        b=V.f(h,h)+pow(n+1,2)*(V.g(0,h)+V.g(h,0)+V.g(1-h,1)+V.g(1,1-h));
+        x[0]=b/a;
         return x;
     } else {
+        int tmp=((n+1)/2)-1;
+        int newN=tmp*tmp;
         vector<double> Ax,r,r2h,E2h,E;
         Ax.assign(dim,0);
-        r.resize(dim);
-        r2h.resize(pow(((n+1)/2)-1,2));
-        E2h.resize(pow(((n+1)/2)-1,2));
+        r.assign(dim,0);
+        r2h.resize(newN);
+        E2h.resize(newN);
+        E.assign(dim,0);
         GaussSeidelMethod(A,x,b,3);
         MatrixVectorMultiplyer(A,V.x,Ax);
         for(i=0;i<dim;i++) {
             r[i]=b[i]-Ax[i];
         }
         r2h=Restriction(r);
-        A.Resize(((n+1)/2)-1);
+        A.Resize(tmp);
         E2h=MultiGridMethod(A,V,E2h,r2h);
-        E.resize(dim);
+        // vector<double> E;
+        // E.resize(dim);
         E=Interpolation(E2h,V);
         for(i=0;i<dim;i++) {
             x[i]=x[i]+E[i];
         }
+        A.Resize(n);
         GaussSeidelMethod(A,x,b,3);
         return x;
     }
 }
+
+// vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,vector<double>& x,vector<double>& b) {
+//     int i,dim=A.Size(),n=sqrt(dim);
+//     if(n==1) {
+//         x[0]=1;
+//         return x;
+//     } else {
+//         vector<double> Ax,r,r2h,E2h,E;
+//         Ax.assign(dim,0);
+//         r.resize(dim);
+//         r2h.resize(pow(((n+1)/2)-1,2));
+//         E2h.resize(pow(((n+1)/2)-1,2));
+//         GaussSeidelMethod(A,x,b,3);
+//         MatrixVectorMultiplyer(A,V.x,Ax);
+//         for(i=0;i<dim;i++) {
+//             r[i]=b[i]-Ax[i];
+//         }
+//         r2h=Restriction(r);
+//         A.Resize(((n+1)/2)-1);
+//         E2h=MultiGridMethod(A,V,E2h,r2h);
+//         E.resize(dim);
+//         E=Interpolation(E2h,V);
+//         for(i=0;i<dim;i++) {
+//             x[i]=x[i]+E[i];
+//         }
+//         GaussSeidelMethod(A,x,b,3);
+//         return x;
+//     }
+// }
 
 // vector<double> Algorithms::Restriction(vector<double>& r, int n) {
 //     vector<double> r2h;
