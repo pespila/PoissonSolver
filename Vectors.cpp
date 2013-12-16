@@ -60,7 +60,7 @@ double Vectors::g(double x,double y) {
 }
 
 void Vectors::PrintVector() {
-    if(dim<=16)
+    if(dim<=49)
         for (int i=0;i<dim;i++) {
             printf("%f ",x[i]);
         }

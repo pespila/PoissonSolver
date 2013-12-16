@@ -22,15 +22,15 @@ int main(int argc, char const *argv[]) {
 
     //Run.incompleteLU(A,L,U);
     //Run.incompleteCholesky(A,L,U);
-    Run.modifiedIncompleteLU(A,L,U);
+    //Run.modifiedIncompleteLU(A,L,U);
     //Run.modifiedIncompleteCholesky(W,L,U);
 
-    //Run.CG(A,O,V);
+    Run.CG(A,O,V);
     //Run.JacobiMethod(A,O,V);
     //Run.GaussSeidelMethod(A,O,V);
     //Run.SORMethod(A,O,V);
     //Run.SSORMethod(A,O,V);
-    Run.PCG(A,O,L,U,V);
+    //Run.PCG(A,O,L,U,V);
 
     end = clock();
     time=(end-start)/CLOCKS_PER_SEC;
