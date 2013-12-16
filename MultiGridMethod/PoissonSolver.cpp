@@ -5,7 +5,7 @@ int main(int argc, char const *argv[]) {
     if (argc>1) {
         n=atoi(&*argv[1])-1;
     } else {
-        n=8-1;
+        n=16-1;
     }
 
     PoissonMatrix A(n);
@@ -13,9 +13,9 @@ int main(int argc, char const *argv[]) {
     Algorithms Run(n);
 
     A.PrintMatrix();
+    A.InitHashMatrix();
 
-    V.x=Run.MultiGridMethod(A,V,V.b);
-
+    V.x=Run.MultiGridMethod(A,V,V.b,n);
     // vector<double> r;
     // r.assign(9,0);
     // vector<double> b;

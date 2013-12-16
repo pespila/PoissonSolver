@@ -29,6 +29,7 @@ void Algorithms::MatrixVectorMultiplyer(PoissonMatrix& A, const vector<double>& 
 void Algorithms::JacobiMethod(PoissonMatrix& A, vector<double>& x, const vector<double>& b, int steps) {
     double sum;
     int i,j,k,m;
+    int dim=A.Size();
     for(j=0;j<steps;j++) {
         for(i=0;i<dim;i++) {
             sum=0;
@@ -46,6 +47,7 @@ void Algorithms::JacobiMethod(PoissonMatrix& A, vector<double>& x, const vector<
 void Algorithms::GaussSeidelMethod(PoissonMatrix& A, vector<double>& x, const vector<double>& b, int steps) {
     double sum1,sum2;
     int i,j,k,m;
+    int dim=A.Size();
     for(j=0;j<steps;j++) {
         for(i=0;i<dim;i++) {
             sum1=0;
@@ -70,6 +72,7 @@ void Algorithms::GaussSeidelMethod(PoissonMatrix& A, vector<double>& x, const ve
 void Algorithms::SORMethod(PoissonMatrix& A, vector<double>& x, const vector<double>& b, int steps) {
     double sum1,sum2,Pi=3.141592654,omega=2/(1+sqrt(1-pow(cos(Pi*h),2)));
     int i,j,k,m;
+    int dim=A.Size();
     for(j=0;j<steps;j++) {
         for(i=0;i<dim;i++) {
             sum1=0;
@@ -91,16 +94,17 @@ void Algorithms::SORMethod(PoissonMatrix& A, vector<double>& x, const vector<dou
     }
 }
 
-vector<double> Algorithms::Restriction(vector<double>& r) {
-    vector<double> r2h;
-    int tmp=sqrt(r.size());
-    int n=((tmp+1)/2)-1;
-    r2h.resize(n*n);
+void Algorithms::Restriction(const vector<double>& r,vector<double>& r2h,int n) {
+    //vector<double> r2h;
+    // int tmp=sqrt(r.size());
+    // int n=((tmp+1)/2)-1;
+    //int tmp=n*n;
+    //r2h.resize(n*n);
     int i,j,k,l;
     k=0;
     l=0;
-    for(i=1;i<=tmp;i++) {
-        for(j=1;j<=tmp;j++) {
+    for(i=1;i<=n;i++) {
+        for(j=1;j<=n;j++) {
             if(i%2==0 && j%2==0) {
                 r2h[l]=r[k];
                 l++;
@@ -108,15 +112,15 @@ vector<double> Algorithms::Restriction(vector<double>& r) {
             k++;
         }
     }
-    return r2h;
+    //return r2h;
 }
 
-vector<double> Algorithms::Interpolation(vector<double>& E2h,Vectors& V) {
-    int tmp=sqrt(E2h.size());
-    int n=((tmp+1)*2)-1;
+void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,Vectors& V,int n) {
+    // int tmp=sqrt(E2h.size());
+    // int n=((tmp+1)*2)-1;
     int k,l,i,j;
-    vector<double> E;
-    E.resize(n*n);
+    // vector<double> E;
+    // E.resize(n*n);
     k=0;
     l=0;
     for(i=1;i<=n;i++) {
@@ -185,11 +189,11 @@ vector<double> Algorithms::Interpolation(vector<double>& E2h,Vectors& V) {
             k++;
         }
     }
-    return E;
+    //return E;
 }
 
-vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,const vector<double>& b) {
-    int i,dim=b.size(),n=sqrt(dim);
+vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,const vector<double>& b,int n) {
+    int i,dim=n*n;
     vector<double> x;
     x.assign(dim,0);
     if(n==1) {
@@ -200,38 +204,76 @@ vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,const vec
         x[0]=b/a;
         return x;
     } else {
-        int tmp=((n+1)/2)-1;
-        int newN=tmp*tmp;
-        vector<double> Ax,r,r2h,E2h,E;
-        Ax.assign(dim,0);
-        r.assign(dim,0);
-        r2h.resize(newN);
-        E2h.resize(newN);
-        E.assign(dim,0);
+        int smallerN=(n+1)/2-1;
         GaussSeidelMethod(A,x,b,3);
-        MatrixVectorMultiplyer(A,V.x,Ax);
+        vector<double> Ax;
+        Ax.assign(n*n,0);
+        MatrixVectorMultiplyer(A,x,Ax);
         for(i=0;i<dim;i++) {
-            r[i]=b[i]-Ax[i];
+            V.r[i]=b[i]-Ax[i];
         }
-        vector<double>().swap(Ax);
-        r2h=Restriction(r);
-        vector<double>().swap(r);
-        A.Resize(tmp);
-        E2h=MultiGridMethod(A,V,r2h);
-        vector<double>().swap(r2h);
-        // vector<double> E;
-        // E.resize(dim);
-        E=Interpolation(E2h,V);
-        vector<double>().swap(E2h);
+        Restriction(V.r,V.r2h,n);
+        A.Resize(smallerN);
+        A.InitHashMatrix();
+        vector<double> E2h;
+        E2h.assign(smallerN*smallerN,0);
+        V.E2h=MultiGridMethod(A,V,V.r2h,smallerN);
+        //int biggerN=((n+1)*2)-1;
+        Interpolation(V.E2h,V.E,V,n);
         for(i=0;i<dim;i++) {
-            x[i]=x[i]+E[i];
+            x[i]+=V.E[i];
         }
-        vector<double>().swap(E);
         A.Resize(n);
+        A.InitHashMatrix();
         GaussSeidelMethod(A,x,b,3);
         return x;
     }
 }
+
+// vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,const vector<double>& b) {
+//     int i,dim=b.size(),n=sqrt(dim);
+//     vector<double> x;
+//     x.assign(dim,0);
+//     if(n==1) {
+//         double a,b,h;
+//         h=(double)1/(double)(n+1);
+//         a=4.0*(double)pow(n+1,2),
+//         b=V.f(h,h)+pow(n+1,2)*(V.g(0,h)+V.g(h,0)+V.g(1-h,1)+V.g(1,1-h));
+//         x[0]=b/a;
+//         return x;
+//     } else {
+//         int tmp=((n+1)/2)-1;
+//         int biggerN=tmp*tmp;
+//         vector<double> Ax,r,r2h,E2h,E;
+//         Ax.assign(dim,0);
+//         r.assign(dim,0);
+//         r2h.resize(smallerN);
+//         E2h.resize(newN);
+//         E.assign(dim,0);
+//         GaussSeidelMethod(A,x,b,3);
+//         MatrixVectorMultiplyer(A,V.x,Ax);
+//         for(i=0;i<dim;i++) {
+//             r[i]=b[i]-Ax[i];
+//         }
+//         vector<double>().swap(Ax);
+//         r2h=Restriction(r);
+//         vector<double>().swap(r);
+//         A.Resize(tmp);
+//         E2h=MultiGridMethod(A,V,r2h);
+//         vector<double>().swap(r2h);
+//         // vector<double> E;
+//         // E.resize(dim);
+//         E=Interpolation(E2h,V);
+//         vector<double>().swap(E2h);
+//         for(i=0;i<dim;i++) {
+//             x[i]=x[i]+E[i];
+//         }
+//         vector<double>().swap(E);
+//         A.Resize(n);
+//         GaussSeidelMethod(A,x,b,3);
+//         return x;
+//     }
+// }
 
 // vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,vector<double>& x,vector<double>& b) {
 //     int i,dim=A.Size(),n=sqrt(dim);

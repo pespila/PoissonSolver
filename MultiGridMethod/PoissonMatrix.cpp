@@ -6,8 +6,18 @@ PoissonMatrix::PoissonMatrix(int m) {
 	diagonal=4.0*(n+1)*(n+1);
 	tridiagonal=-1.0*(n+1)*(n+1);
 	identity=tridiagonal;
+}
 
+PoissonMatrix::~PoissonMatrix() {
+}
+
+int PoissonMatrix::Size() {
+	return dim;
+}
+
+void PoissonMatrix::InitHashMatrix() {
     int i;
+    HashMatrix.resize(dim);
     vector<int> push;
     push.assign(5,-1);
     for(i=0;i<dim;i++) {
@@ -67,15 +77,9 @@ PoissonMatrix::PoissonMatrix(int m) {
                 push[4]=-1;
             }
         }
-        HashMatrix.push_back(push);
+        HashMatrix[i]=push;
+        //HashMatrix.push_back(push);
     }
-}
-
-PoissonMatrix::~PoissonMatrix() {
-}
-
-int PoissonMatrix::Size() {
-	return dim;
 }
 
 double PoissonMatrix::Get(int i,int j) {
