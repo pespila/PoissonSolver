@@ -64,7 +64,7 @@ void Algorithms::GaussSeidelMethod(PoissonMatrix& A, vector<double>& x, const ve
                     sum2+=A.Get(i,m)*x[m];
                 }
             }
-            x[i] = 1/A.Get(i,i)*(b[i]-sum1-sum2);
+            x[i]=1/A.Get(i,i)*(b[i]-sum1-sum2);
         }
     }
 }
@@ -89,7 +89,7 @@ void Algorithms::SORMethod(PoissonMatrix& A, vector<double>& x, const vector<dou
                     sum2+=A.Get(i,m)*x[m];
                 }
             }
-            x[i] = x[i]-omega*1/A.Get(i,i)*(sum1+sum2-b[i]);
+            x[i]=x[i]-omega*1/A.Get(i,i)*(sum1+sum2-b[i]);
         }
     }
 }
@@ -103,10 +103,20 @@ void Algorithms::Restriction(const vector<double>& r,vector<double>& r2h,int n) 
     int i,j,k,l;
     k=0;
     l=0;
+    // for(i=1;i<=n;i++) {
+    //     for(j=1;j<=n;j++) {
+    //         if(i%2==0 && j%2==0) {
+    //             r2h[l]=r[k];
+    //             l++;
+    //         }
+    //         k++;
+    //     }
+    // }
     for(i=1;i<=n;i++) {
         for(j=1;j<=n;j++) {
             if(i%2==0 && j%2==0) {
-                r2h[l]=r[k];
+                r2h[l]=1/16*(4*r[k]+2*(r[k-1]+r[k+1]+r[k-n]+r[k+n])+r[k+n-1]+r[k+n+1]+r[k-n-1]+r[k-n+1]);
+                r[k];
                 l++;
             }
             k++;
@@ -194,14 +204,23 @@ void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,Vecto
 
 vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,const vector<double>& b,int n) {
     int i,dim=n*n;
-    vector<double> x;
+    vector<double> x,solution;
     x.assign(dim,0);
+    solution.assign(dim,0);
+    int k=0;
+    for (i=1;i<=n;i++) {
+        for (j=1;j<=n;j++) {
+            solution[k] = V.g(j*h,i*h);
+            k++;
+        }
+    }
     if(n==1) {
-        double a,b,h;
+        double a,c,h;
         h=(double)1/(double)(n+1);
         a=4.0*(double)pow(n+1,2),
-        b=V.f(h,h)+pow(n+1,2)*(V.g(0,h)+V.g(h,0)+V.g(1-h,1)+V.g(1,1-h));
-        x[0]=b/a;
+        //b=V.f(h,h)+pow(n+1,2)*(V.g(0,h)+V.g(h,0)+V.g(1-h,1)+V.g(1,1-h));
+        c=b[0];
+        x[0]=c/a;
         return x;
     } else {
         int smallerN=(n+1)/2-1;
@@ -217,11 +236,11 @@ vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,const vec
         A.InitHashMatrix();
         vector<double> E2h;
         E2h.assign(smallerN*smallerN,0);
-        V.E2h=MultiGridMethod(A,V,V.r2h,smallerN);
+        E2h=MultiGridMethod(A,V,V.r2h,smallerN);
         //int biggerN=((n+1)*2)-1;
-        Interpolation(V.E2h,V.E,V,n);
+        Interpolation(E2h,V.E,V,n);
         for(i=0;i<dim;i++) {
-            x[i]+=V.E[i];
+            x[i]=V.E[i];
         }
         A.Resize(n);
         A.InitHashMatrix();
