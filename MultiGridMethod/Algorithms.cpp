@@ -115,7 +115,7 @@ void Algorithms::Restriction(const vector<double>& r,vector<double>& r2h,int n) 
     for(i=1;i<=n;i++) {
         for(j=1;j<=n;j++) {
             if(i%2==0 && j%2==0) {
-                r2h[l]=1/16*(4*r[k]+2*(r[k-1]+r[k+1]+r[k-n]+r[k+n])+r[k+n-1]+r[k+n+1]+r[k-n-1]+r[k-n+1]);
+                r2h[l]=1.0/16.0*(4.0*r[k]+2.0*(r[k-1]+r[k+1]+r[k-n]+r[k+n])+r[k+n-1]+r[k+n+1]+r[k-n-1]+r[k-n+1]);
                 r[k];
                 l++;
             }
@@ -142,6 +142,63 @@ void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,Vecto
             k++;
         }
     }
+    // k=0;
+    // for(int i=1;i<=n;i++) {
+    //     for(int j=1;j<=n;j++) {
+    //         if(i%2==0 && j%2!=0) {
+    //             if(j!=1 && j!=n) {
+    //                 E[k]=(double)1/(double)2*(E[k-1]+E[k+1]);
+    //             }
+    //             if(j==1) {
+    //                 E[k]=(double)1/(double)2*(E[k+1]+V.g(0,(double)i/(double)(n+1)));
+    //             }
+    //             if(j==n) {
+    //                 E[k]=(double)1/(double)2*(E[k-1]+V.g(1,(double)i/(double)(n+1)));
+    //             }
+    //         }
+    //         if(i%2!=0 && j%2==0) {
+    //             if(i!=1 && i!=n) {
+    //                 E[k]=(double)1/(double)2*(E[k-n]+E[k+n]);
+    //             }
+    //             if(i==1) {
+    //                 E[k]=(double)1/(double)2*(E[k+n]+V.g((double)j/(double)(n+1),0));
+    //             }
+    //             if(i==n) {
+    //                 E[k]=(double)1/(double)2*(E[k-n]+V.g((double)j/(double)(n+1),1));
+    //             }
+    //         }
+    //         if(i%2!=0 && j%2!=0) {
+    //             if(i!=1 && j!=1 && i!=n && j!=n) {
+    //                 E[k]=(double)1/(double)4*(E[k+n-1]+E[k+n+1]+E[k-n+1]+E[k-n-1]);
+    //             }
+    //             if(i==1 && j==1) {
+    //                 E[k]=(double)1/(double)4*(E[k+n+1]+V.g(0,0)+V.g(0,(double)(i+1)/(double)(n+1))+V.g((double)(i+1)/(double)(n+1),0));
+    //             }
+    //             if(i==n && j==n) {
+    //                 E[k]=(double)1/(double)4*(E[k-n-1]+V.g(1,1)+V.g(1,(double)(i-1)/(double)(n+1))+V.g((double)(i-1)/(double)(n+1),1));
+    //             }
+    //             if(i==1 && j==n) {
+    //                 E[k]=(double)1/(double)4*(E[k-n+1]+V.g(0,1)+V.g(0,(double)(i-1)/(double)(n+1))+V.g((double)(i+1)/(double)(n+1),1));
+    //             }
+    //             if(i==n && j==1) {
+    //                 E[k]=(double)1/(double)4*(E[k+n-1]+V.g(1,0)+V.g(1,(double)(i+1)/(double)(n+1))+V.g((double)(i-1)/(double)(n+1),0));
+    //             }
+    //             if(i==1 && j!=1 && j!=n) {
+    //                 E[k]=(double)1/(double)4*(E[k+n+1]+E[k+n-1]+V.g((double)(i-1)/(double)(n+1),0)+V.g((double)(i+1)/(double)(n+1),0));
+    //             }
+    //             if(i==n && j!=1 && j!=n) {
+    //                 E[k]=(double)1/(double)4*(E[k-n-1]+E[k-n+1]+V.g((double)(i-1)/(double)(n+1),1)+V.g((double)(i+1)/(double)(n+1),1));
+    //             }
+    //             if(j==1 && i!=1 && i!=n) {
+    //                 E[k]=(double)1/(double)4*(E[k+n+1]+E[k-n+1]+V.g(0,(double)(j+1)/(double)(n+1))+V.g(0,(double)(j-1)/(double)(n+1)));
+    //             }
+    //             if(j==n && i!=1 && i!=n) {
+    //                 E[k]=(double)1/(double)4*(E[k+n-1]+E[k-n-1]+V.g(1,(double)(j+1)/(double)(n+1))+V.g(1,(double)(j-1)/(double)(n+1)));
+    //             }
+    //         }
+    //         k++;
+    //     }
+    // }
     k=0;
     for(int i=1;i<=n;i++) {
         for(int j=1;j<=n;j++) {
@@ -150,10 +207,10 @@ void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,Vecto
                     E[k]=(double)1/(double)2*(E[k-1]+E[k+1]);
                 }
                 if(j==1) {
-                    E[k]=(double)1/(double)2*(E[k+1]+V.g(0,(double)i/(double)(n+1)));
+                    E[k]=(double)1/(double)2*(E[k+1]);//+V.g(0,(double)i/(double)(n+1)));
                 }
                 if(j==n) {
-                    E[k]=(double)1/(double)2*(E[k-1]+V.g(1,(double)i/(double)(n+1)));
+                    E[k]=(double)1/(double)2*(E[k-1]);//+V.g(1,(double)i/(double)(n+1)));
                 }
             }
             if(i%2!=0 && j%2==0) {
@@ -161,10 +218,10 @@ void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,Vecto
                     E[k]=(double)1/(double)2*(E[k-n]+E[k+n]);
                 }
                 if(i==1) {
-                    E[k]=(double)1/(double)2*(E[k+n]+V.g((double)j/(double)(n+1),0));
+                    E[k]=(double)1/(double)2*(E[k+n]);//+V.g((double)j/(double)(n+1),0));
                 }
                 if(i==n) {
-                    E[k]=(double)1/(double)2*(E[k-n]+V.g((double)j/(double)(n+1),1));
+                    E[k]=(double)1/(double)2*(E[k-n]);//+V.g((double)j/(double)(n+1),1));
                 }
             }
             if(i%2!=0 && j%2!=0) {
@@ -172,33 +229,38 @@ void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,Vecto
                     E[k]=(double)1/(double)4*(E[k+n-1]+E[k+n+1]+E[k-n+1]+E[k-n-1]);
                 }
                 if(i==1 && j==1) {
-                    E[k]=(double)1/(double)4*(E[k+n+1]+V.g(0,0)+V.g(0,(double)(i+1)/(double)(n+1))+V.g((double)(i+1)/(double)(n+1),0));
+                    E[k]=(double)1/(double)4*(E[k+n+1]);//+V.g(0,0)+V.g(0,(double)(i+1)/(double)(n+1))+V.g((double)(i+1)/(double)(n+1),0));
                 }
                 if(i==n && j==n) {
-                    E[k]=(double)1/(double)4*(E[k-n-1]+V.g(1,1)+V.g(1,(double)(i-1)/(double)(n+1))+V.g((double)(i-1)/(double)(n+1),1));
+                    E[k]=(double)1/(double)4*(E[k-n-1]);//+V.g(1,1)+V.g(1,(double)(i-1)/(double)(n+1))+V.g((double)(i-1)/(double)(n+1),1));
                 }
                 if(i==1 && j==n) {
-                    E[k]=(double)1/(double)4*(E[k-n+1]+V.g(0,1)+V.g(0,(double)(i-1)/(double)(n+1))+V.g((double)(i+1)/(double)(n+1),1));
+                    E[k]=(double)1/(double)4*(E[k-n+1]);//+V.g(0,1)+V.g(0,(double)(i-1)/(double)(n+1))+V.g((double)(i+1)/(double)(n+1),1));
                 }
                 if(i==n && j==1) {
-                    E[k]=(double)1/(double)4*(E[k+n-1]+V.g(1,0)+V.g(1,(double)(i+1)/(double)(n+1))+V.g((double)(i-1)/(double)(n+1),0));
+                    E[k]=(double)1/(double)4*(E[k+n-1]);//+V.g(1,0)+V.g(1,(double)(i+1)/(double)(n+1))+V.g((double)(i-1)/(double)(n+1),0));
                 }
                 if(i==1 && j!=1 && j!=n) {
-                    E[k]=(double)1/(double)4*(E[k+n+1]+E[k+n-1]+V.g((double)(i-1)/(double)(n+1),0)+V.g((double)(i+1)/(double)(n+1),0));
+                    E[k]=(double)1/(double)4*(E[k+n+1]+E[k+n-1]);//+V.g((double)(i-1)/(double)(n+1),0)+V.g((double)(i+1)/(double)(n+1),0));
                 }
                 if(i==n && j!=1 && j!=n) {
-                    E[k]=(double)1/(double)4*(E[k-n-1]+E[k-n+1]+V.g((double)(i-1)/(double)(n+1),1)+V.g((double)(i+1)/(double)(n+1),1));
+                    E[k]=(double)1/(double)4*(E[k-n-1]+E[k-n+1]);//+V.g((double)(i-1)/(double)(n+1),1)+V.g((double)(i+1)/(double)(n+1),1));
                 }
                 if(j==1 && i!=1 && i!=n) {
-                    E[k]=(double)1/(double)4*(E[k+n+1]+E[k-n+1]+V.g(0,(double)(j+1)/(double)(n+1))+V.g(0,(double)(j-1)/(double)(n+1)));
+                    E[k]=(double)1/(double)4*(E[k+n+1]+E[k-n+1]);//+V.g(0,(double)(j+1)/(double)(n+1))+V.g(0,(double)(j-1)/(double)(n+1)));
                 }
                 if(j==n && i!=1 && i!=n) {
-                    E[k]=(double)1/(double)4*(E[k+n-1]+E[k-n-1]+V.g(1,(double)(j+1)/(double)(n+1))+V.g(1,(double)(j-1)/(double)(n+1)));
+                    E[k]=(double)1/(double)4*(E[k+n-1]+E[k-n-1]);//+V.g(1,(double)(j+1)/(double)(n+1))+V.g(1,(double)(j-1)/(double)(n+1)));
                 }
             }
             k++;
         }
     }
+    // printf("E: ");
+    // for(i=0;i<E.size();i++) {
+    //     printf("%.3f ", E[i]);
+    // }
+    // printf("\n");
     //return E;
 }
 
@@ -206,45 +268,48 @@ vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,const vec
     int i,dim=n*n;
     vector<double> x,solution;
     x.assign(dim,0);
-    solution.assign(dim,0);
-    int k=0;
-    for (i=1;i<=n;i++) {
-        for (j=1;j<=n;j++) {
-            solution[k] = V.g(j*h,i*h);
-            k++;
-        }
-    }
+    // solution.assign(dim,0);
+    // int k=0;
+    // for (i=1;i<=n;i++) {
+    //     for (int j=1;j<=n;j++) {
+    //         solution[k] = V.g(j*h,i*h);
+    //         k++;
+    //     }
+    // }
     if(n==1) {
-        double a,c,h;
-        h=(double)1/(double)(n+1);
+        double a;
+        //h=(double)1/(double)(n+1);
         a=4.0*(double)pow(n+1,2),
-        //b=V.f(h,h)+pow(n+1,2)*(V.g(0,h)+V.g(h,0)+V.g(1-h,1)+V.g(1,1-h));
-        c=b[0];
-        x[0]=c/a;
+        //d=V.f(h,h)+pow(n+1,2)*(V.g(0,h)+V.g(h,0)+V.g(1-h,1)+V.g(1,1-h));
+        x[0]=b[0]/a;
         return x;
     } else {
         int smallerN=(n+1)/2-1;
-        GaussSeidelMethod(A,x,b,3);
-        vector<double> Ax;
-        Ax.assign(n*n,0);
+        GaussSeidelMethod(A,x,b,4);
+        vector<double> Ax,r;
+        Ax.assign(dim,0);
+        r.assign(dim,0);
         MatrixVectorMultiplyer(A,x,Ax);
         for(i=0;i<dim;i++) {
-            V.r[i]=b[i]-Ax[i];
+            r[i]=b[i]-Ax[i];
         }
-        Restriction(V.r,V.r2h,n);
+        vector<double> r2h;
+        r2h.assign(smallerN*smallerN,0);
+        Restriction(r,r2h,n);
         A.Resize(smallerN);
         A.InitHashMatrix();
         vector<double> E2h;
         E2h.assign(smallerN*smallerN,0);
-        E2h=MultiGridMethod(A,V,V.r2h,smallerN);
-        //int biggerN=((n+1)*2)-1;
-        Interpolation(E2h,V.E,V,n);
+        E2h=MultiGridMethod(A,V,r2h,smallerN);
+        vector<double> E;
+        E.assign(n*n,0);
+        Interpolation(E2h,E,V,n);
         for(i=0;i<dim;i++) {
-            x[i]=V.E[i];
+            x[i]+=E[i];
         }
         A.Resize(n);
         A.InitHashMatrix();
-        GaussSeidelMethod(A,x,b,3);
+        GaussSeidelMethod(A,x,b,4);
         return x;
     }
 }
