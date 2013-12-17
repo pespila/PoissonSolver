@@ -204,14 +204,18 @@ vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,const vec
     int i,dim=n*n;
     vector<double> x,solution;
     x.assign(dim,0);
+    if(n==this->n && this->counter==0) {
+        x=V.x;
+    }
     if(n==1) {
-        double a;
+        double a,b;
+        b=V.f(h,h)+pow(n+1,2)*(V.g(0,h)+V.g(h,0)+V.g(1-h,1)+V.g(1,1-h));
         a=4.0*(double)pow(n+1,2);
-        x[0]=b[0]/a;
+        x[0]=b/a;
         return x;
     } else {
         int smallerN=(n+1)/2-1;
-        GaussSeidelMethod(A,x,b,4);
+        GaussSeidelMethod(A,x,b,3);
         vector<double> Ax,r;
         Ax.assign(dim,0);
         r.assign(dim,0);
@@ -235,7 +239,7 @@ vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,const vec
         }
         A.Resize(n);
         A.InitHashMatrix();
-        GaussSeidelMethod(A,x,b,4);
+        GaussSeidelMethod(A,x,b,3);
         return x;
     }
 }
