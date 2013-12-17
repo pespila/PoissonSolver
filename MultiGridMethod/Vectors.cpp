@@ -5,14 +5,10 @@ Vectors::Vectors(int m) {
     dim=n*n;
     h=1.0/(double)(n+1);
     b.resize(dim);
-    x.resize(dim);
-    Ax.assign(dim,0);
-    r.assign(dim,0);
-    r2h.assign(dim,0);
-    E.assign(dim,0);
-    E2h.assign(dim,0);
+    x.assign(dim,0);
+    solution.assign(dim,0);
+    int i,j,k;
 
-    int k,i,j;
     k=0;
     for (j=1;j<=n;j++) {
         if (j == 1) {
@@ -49,8 +45,8 @@ Vectors::Vectors(int m) {
 }
 
 Vectors::~Vectors() {
-    //vector<double>().swap(x);
-    //vector<double>().swap(b);
+    vector<double>().swap(x);
+    vector<double>().swap(b);
 }
 
 double Vectors::f(double x,double y) {

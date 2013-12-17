@@ -43,11 +43,7 @@ class Vectors {
     public:
         vector<double> x;
         vector<double> b;
-        vector<double> Ax;
-        vector<double> r;
-        vector<double> r2h;
-        vector<double> E;
-        vector<double> E2h;
+        vector<double> solution;
         Vectors(int);
         ~Vectors();
         void PrintVector();
@@ -62,9 +58,11 @@ class Algorithms {
 		int dim;
 		int n;
         double h;
+        int counter;
 	public:
 		Algorithms(int);
 		~Algorithms();
+        double vectorNorm(const vector<double>&);
         void MatrixVectorMultiplyer(PoissonMatrix&,const vector<double>&,vector<double>& y);
         void JacobiMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
         void GaussSeidelMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
