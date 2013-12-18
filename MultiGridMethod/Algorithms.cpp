@@ -5,9 +5,24 @@ Algorithms::Algorithms(int m) {
     dim=n*n;
     h=1.0/(double)(n+1);
     counter=0;
+    finestGrid=getPower(n+1);
+    if(finestGrid%2==0) {
+        middleGrid=finestGrid/2+1;
+    } else {
+        middleGrid=(finestGrid+1)/2;
+    }
 }
 
 Algorithms::~Algorithms() {
+}
+
+int Algorithms::getPower(int n) {
+    int power=0;
+    while(n%2==0) {
+        power++;
+        n/=2;
+    }    
+    return power;
 }
 
 double Algorithms::vectorNorm(const vector<double>& x) {
@@ -107,25 +122,25 @@ void Algorithms::Restriction(const vector<double>& r,vector<double>& r2h,int n) 
     int i,j,k,l;
     k=0;
     l=0;
-    // for(i=1;i<=n;i++) {
-    //     for(j=1;j<=n;j++) {
-    //         if(i%2==0 && j%2==0) {
-    //             r2h[l]=r[k];
-    //             l++;
-    //         }
-    //         k++;
-    //     }
-    // }
     for(i=1;i<=n;i++) {
         for(j=1;j<=n;j++) {
             if(i%2==0 && j%2==0) {
-                r2h[l]=1.0/16.0*(4.0*r[k]+2.0*(r[k-1]+r[k+1]+r[k-n]+r[k+n])+r[k+n-1]+r[k+n+1]+r[k-n-1]+r[k-n+1]);
-                r[k];
+                r2h[l]=r[k];
                 l++;
             }
             k++;
         }
     }
+    // for(i=1;i<=n;i++) {
+    //     for(j=1;j<=n;j++) {
+    //         if(i%2==0 && j%2==0) {
+    //             r2h[l]=1.0/16.0*(4.0*r[k]+2.0*(r[k-1]+r[k+1]+r[k-n]+r[k+n])+r[k+n-1]+r[k+n+1]+r[k-n-1]+r[k-n+1]);
+    //             r[k];
+    //             l++;
+    //         }
+    //         k++;
+    //     }
+    // }
 }
 
 void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,Vectors& V,int n) {
@@ -200,22 +215,23 @@ void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,Vecto
     }
 }
 
-vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,const vector<double>& b,int n) {
+vector<double> Algorithms::MultiGridAlgorithm(PoissonMatrix& A,Vectors& V,const vector<double>& b,int n) {
     int i,dim=n*n;
     vector<double> x,solution;
-    x.assign(dim,0);
+    x.resize(dim);
     if(n==this->n && this->counter==0) {
+        //printf("Hi there\n");
         x=V.x;
     }
     if(n==1) {
-        double a,b;
-        b=V.f(h,h)+pow(n+1,2)*(V.g(0,h)+V.g(h,0)+V.g(1-h,1)+V.g(1,1-h));
+        double a;//,b;
+        //b=V.f(h,h)+pow(n+1,2)*(V.g(0,h)+V.g(h,0)+V.g(1-h,1)+V.g(1,1-h));
         a=4.0*(double)pow(n+1,2);
-        x[0]=b/a;
+        x[0]=b[0]/a;
         return x;
     } else {
         int smallerN=(n+1)/2-1;
-        GaussSeidelMethod(A,x,b,3);
+        SORMethod(A,x,b,3);
         vector<double> Ax,r;
         Ax.assign(dim,0);
         r.assign(dim,0);
@@ -230,7 +246,7 @@ vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,const vec
         A.InitHashMatrix();
         vector<double> E2h;
         E2h.assign(smallerN*smallerN,0);
-        E2h=MultiGridMethod(A,V,r2h,smallerN);
+        E2h=MultiGridAlgorithm(A,V,r2h,smallerN);
         vector<double> E;
         E.assign(n*n,0);
         Interpolation(E2h,E,V,n);
@@ -239,7 +255,38 @@ vector<double> Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,const vec
         }
         A.Resize(n);
         A.InitHashMatrix();
-        GaussSeidelMethod(A,x,b,3);
+        SORMethod(A,x,b,3);
+        // printf("This: %f\n", x[0]);
         return x;
+    }
+}
+
+void Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,int n) {
+    int i,j,k,steps=0,dim=n*n;
+    double eps,norm;
+    vector<double> solution,stopVector;
+    solution.resize(dim);
+    stopVector.resize(dim);
+    k=0;
+    for(i=1;i<=n;i++) {
+        for(j=1;j<=n;j++,k++) {
+            solution[k]=V.g(i*h,j*h);
+            stopVector[k]=V.x[k]-solution[k];
+        }
+    }
+    eps=pow(10,-3)*vectorNorm(stopVector);
+    norm=1.0;
+    while(eps<=norm) {
+        steps++;
+        V.x=MultiGridAlgorithm(A,V,V.b,n);
+        for(i=0;i<dim;i++) {
+            stopVector[i]=V.x[i]-solution[i];
+        }
+        norm=vectorNorm(stopVector);
+        // printf("%f\n", norm);
+        //V.PrintVector();
+        if(steps==100) {
+            norm=0.0;
+        }
     }
 }

@@ -59,15 +59,19 @@ class Algorithms {
 		int n;
         double h;
         int counter;
+        int finestGrid;
+        int middleGrid;
 	public:
 		Algorithms(int);
 		~Algorithms();
+        int getPower(int);
         double vectorNorm(const vector<double>&);
         void MatrixVectorMultiplyer(PoissonMatrix&,const vector<double>&,vector<double>& y);
         void JacobiMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
         void GaussSeidelMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
         void SORMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
-        vector<double> MultiGridMethod(PoissonMatrix&,Vectors&,const vector<double>&,int);
+        vector<double> MultiGridAlgorithm(PoissonMatrix&,Vectors&,const vector<double>&,int);
+        void MultiGridMethod(PoissonMatrix&,Vectors&,int);
         void Restriction(const vector<double>&,vector<double>&,int);
         void Interpolation(const vector<double>&,vector<double>&,Vectors&,int);
 };

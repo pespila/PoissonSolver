@@ -12,33 +12,10 @@ int main(int argc, char const *argv[]) {
     Vectors V(n);
     Algorithms Run(n);
 
-    A.PrintMatrix();
     A.InitHashMatrix();
 
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
-    V.x=Run.MultiGridMethod(A,V,V.b,n);
+    Run.MultiGridMethod(A,V,n);
+
     V.PrintVector();
     V.WriteToFile();
 
