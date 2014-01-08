@@ -113,7 +113,6 @@ class Algorithms {
         void JacobiMethod(Matrix&,Operators&,Vectors&);
         void GaussSeidelMethod(Matrix&,Operators&,Vectors&);
         void SORMethod(Matrix&,Operators&,Vectors&);
-        void SSORMethod(Matrix&,Operators&,Vectors&);
 		void CG(Matrix&,Operators&,Vectors&);
 		void PCG(Matrix&,Operators&,WriteableMatrix&,WriteableMatrix&,Vectors&);
 };
