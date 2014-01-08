@@ -29,7 +29,6 @@ class PoissonMatrix : public Matrix
     	PoissonMatrix(int);
     	~PoissonMatrix();
         vector<vector<int> > HashMatrix;
-        void InitHashMatrix();
         int Size();
     	double Get(int, int);
         void Resize(int);
@@ -43,7 +42,6 @@ class Vectors {
     public:
         vector<double> x;
         vector<double> b;
-        vector<double> solution;
         Vectors(int);
         ~Vectors();
         void PrintVector();
@@ -68,8 +66,11 @@ class Algorithms {
         double vectorNorm(const vector<double>&);
         void MatrixVectorMultiplyer(PoissonMatrix&,const vector<double>&,vector<double>& y);
         void JacobiMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
+        void JacobiMethod2(PoissonMatrix&,vector<double>&,const vector<double>&,int);
         void GaussSeidelMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
+        void GaussSeidelMethod2(PoissonMatrix&,vector<double>&,const vector<double>&,int);
         void SORMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
+        void SORMethod2(PoissonMatrix&,vector<double>&,const vector<double>&,int);
         vector<double> MultiGridAlgorithm(PoissonMatrix&,Vectors&,const vector<double>&,int);
         void MultiGridMethod(PoissonMatrix&,Vectors&,int);
         void Restriction(const vector<double>&,vector<double>&,int);

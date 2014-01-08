@@ -1,0 +1,585 @@
+\input{arbeit-vorlage-praeambel.tex} % Importiere die Einstellungen aus der Präambel
+% hier beginnt der eigentliche Inhalt
+\begin{document}
+\pagenumbering{Roman} % große Römische Seitenummerierung
+\pagestyle{empty}
+
+% Titelseite
+\clearscrheadings\clearscrplain
+
+\begin{center}
+\begin{Huge}
+Fakultät für Mathematik\\
+\vspace{3mm}
+\end{Huge}{\Large Universität Regensburg}\\
+
+\vspace{20mm}
+\begin{Large}
+Ein Vergleich des Verfahrens der konjugierten Gradienten und Mehrgittermethoden, angewandt auf die diskretisierte Poisson-Gleichung\\
+\end{Large}
+\vspace{8mm}
+Bachelor-Arbeit\\
+\vspace{0.4cm}
+\vspace{2 cm}
+Michael Bauer \\
+Matrikel-Nummer 1528558\\
+\vspace{8cm}
+\begin{tabular}{ll}
+{\bf Erstprüfer}&Prof. Garcke\\
+{\bf Zweitprüfer}&Prof. ...\\
+\end{tabular}
+
+\end{center}
+\clearpage
+
+
+\pagestyle{useheadings} % normale Kopf- und Fußzeilen für den Rest
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\chapter*{Symbolverzeichnis}\label{s.sym}
+\addcontentsline{toc}{chapter}{Symbolverzeichnis}
+\markboth{Symbolverzeichnis}{Symbolverzeichnis}
+\section*{Allgemeine Symbole}\label{s.sym.alg}
+\begin{flushleft}\begin{tabularx}{\textwidth}{l|X}
+Symbol & Bedeutung\\\hline
+$a$ & der Skalar $a$ \\
+$\vec{x}$ & der Vektor $\vec{x}$\\
+$\mat{A}$ & die Matrix $\mat{A}$\\
+\end{tabularx}\end{flushleft}
+
+
+
+
+% richtiger Inhalt
+\chapter{Einleitung}\label{c.Einleitung}
+\pagenumbering{arabic} % ab jetzt die normale arabische Nummerierung
+
+Viele Prozesse in den Naturwissenschaften, wie Biologie, Chemie und Physik, aber auch der Medizin, Technik und Wirtschaft lassen sich auf partielle Differentialgleichungen (PDG) zurückführen. Aus diesem Grund ist das Interesse an ihnen sehr groß. Solche Gleichungen zu lösen ist allerdings nicht immer möglich, oder sehr aufwendig.
+Eine der bekanntesten PDGs ist die Poisson-Gleichung – eine elliptische partielle Differentialgleichung zweiter Ordnung. Sie wurde vom Mathematiker und Physik Simeon Denis Poisson aufgestellt und findet vor Allem in der Physik Anwendung, da sie dem elektrostatischem Potential und dem Gravitationspotential genügt.
+Methoden aus der numerischen Mathematik ermöglichen uns das Lösen von partiellen Differentialgleichungen mittels computerbasierten Algorithmen. Hierbei wird jedoch nicht das Ergebnis direkt ausgerechnet, sondern versucht eine exakte Lösung zu approximieren. Diese Approximationen werden mittels Computerprogrammen realisiert und aus diesem Grund ist ein effizientes, numerisch stabiles Verfahren unabdingbar. Im folgenden werden wir zwei Methoden kennen lernen, die genau diese Kriterien erfüllen.
+Um nun die Lösung einer partiellen Differentialgleichung bestimmen zu können, müssen wir uns im Vorfeld Gedanken darüber machen, wie wir diese am besten erhalten. Eine der zentralen Methoden der Numerik sind Finite Differenzen. Hierbei führen wir die PDG, die auf einem gewissen Gebiet definiert ist auf das Einheitsquadrat zurück, legen ein Gitter darüber und erhalten durch diese Diskretisierung ein lineares Gleichungssystem.
+Da für lineare Gleichungssysteme direkte Lösungsverfahren, wie beispielsweise der Gauß-Algorithmus, existieren, bekommen wir unter Maschinengenauigkeit ein exaktes Ergebnis für die PDG. Wir werden allerdings sehen, dass der Rechenaufwand für große Systeme ungünstig ist.
+Eine weitere Möglichkeit zur Lösung sind iterative Verfahren. Diese haben nicht nur den Vorteil, dass sie nun mit hohen Dimension (z.B. Einer yxy-Matrix) kein Problem mehr haben, sondern auch wesentlich schneller gegen die exakte Approximation konvergieren.
+Da es eine Vielzahl an iterativen Lösungsverfahren gibt, werden wir uns hier auf das Verfahren der konjugierten Gradienten (mit Vorkonditionierung) und Mehrgittermethoden beschränken. Beide Verfahren haben gewisse Vorzüge, die wir gegeneinander abwiegen und so einen Vergleich der Verfahren erhalten werden. Abschließend werden wir uns noch der Implementierung beider Verfahren widmen und ein konkretes Beispiel sehen.
+
+
+
+\chapter{Diskretisierung der Poisson-Gleichung im $\mathbb{R}^{2}$}\label{c.Diskretisierte Poisson-Gleichung}
+Um nun die Poisson-Gleichung zu diskretisieren, werden wir diese zunächst definieren. Außerdem werden wir die Methode der finitien Differenzen einführen, um dann ein Gleichungssystem der Form $\mat{A}x = b$ zu erhalten.
+
+\section{Definition (Poisson-Gleichung)}\label{s.Poisson-Gleichung}
+
+Sei $\Omega = (0,1)\times(0,1) \in \mathbb{R}^{2}$ ein beschränktes, offenes Gebiet des $\mathbb{R}^{2}$. Gesucht wird eine Funktion $u(x,y)$, die
+\begin{eqnarray}
+	-\Delta u(x,y) &=& f(x,y) \textnormal{ in } \Omega \\
+    u(x,y) &=& g(x,y) \textnormal{ in } \partial \Omega
+\end{eqnarray}
+löst.
+Dabei bezeichnet $\Delta := \sum\limits_{k=1}^{n} \frac {\partial^{2}} {\partial x_{k}^{2}}$ den Laplace-Operator. Für die Poisson-Gleichung im $\mathbb{R}^{2}$ gilt dann:
+\begin{eqnarray}
+	-\Delta u(x,y) &=& \frac {\partial^{2} u(x,y)} {\partial x^{2}} + \frac {\partial^{2} u(x,y)} {\partial y^{2}} = f(x,y) \textnormal{ in } \Omega \\
+    u(x,y) &=& g(x,y) \textnormal{ in } \partial \Omega
+\end{eqnarray}
+(2.2) und (2.4) nennt man Dirichlet-Randbedingung.
+
+\section{Bemerkungen}\label{s.Bemerkungen zur Poisson-Gleichung}
+
+\begin{itemize}
+\item Die Funktion $u(x,y)$ ist häufig formelmäßig nicht darstellbar und wird mit Hilfe von numerischen Verfahren in $\Omega$ genähert (Parallele numerische Verfahren/Seite 18 unten)
+\item Man kann zeigen, dass, wenn $\partial \Omega$ aus glatten Liniensegmenten (z.B. Geraden) zusammengesetzt ist und $f(x,y) \in C^{1}(\Omega), g \in C(\partial \Omega)$ gilt, die Gleichungen (2.1),(2.2) bzw. (2.3),(2.4) eine eindeutige Lösung besitzen (Dahmen,Reusken Seite 463).
+\end{itemize}
+
+Um diese (elliptische) partielle Differentialgleichung nun in $\Omega$ zu diskretisieren, bedarf es der Hilfe der Finiten Differenzen Methode:
+
+\section{Finite Differenzen-Methode für die Poisson-Gleichung}\label{s.Finite Differenzen}
+
+\subsection{(Zentraler) Differenzenquotient zweiter Ordnung}
+
+Wir betrachten ein $(x,y) \in \Omega$ beliebig. Dann gilt für $h > 0$ mit der Taylorformel
+\begin{eqnarray}
+u(x+h,y) &=& u(x,y) + h \partial_{x} u(x,y) + \frac {h^{2}} {2!} \partial_{xx} u(x,y) + \frac {h^{3}} {3!} \partial_{xxx} u(x,y) + ... \\
+u(x-h,y) &=& u(x,y) - h \partial_{x} u(x,y) + \frac {h^{2}} {2!} \partial_{xx} u(x,y) - \frac {h^{3}} {3!} \partial_{xxx} u(x,y) + ...
+\end{eqnarray}
+Analog können wir diese Betrachtung für $u(x,y+h)$ und $u(x,y-h)$ machen. \\
+Löst man nun (2.5) und (2.6) jeweils nach $\partial_{xx} u(x,y)$ auf und addiert die zwei Gleichungen, so erhält man:
+\begin{equation}
+\partial_{xx} u(x,y) + O(h^{2}) = \frac {u(x-h,y) - 2u(x,y) + u(x+h,y)} {h^{2}}
+\end{equation}
+Ebenso lösen wir nach $\partial_{yy} u(x,y)$ auf und erhalten analog:
+\begin{equation}
+\partial_{yy} u(x,y) + O(h^{2}) = \frac {u(x,y-h) - 2u(x,y) + u(x,y+h)} {h^{2}}
+\end{equation}
+Diese Näherungen nennt man auch (zentralen) Differenzenquotienten der zweiten Ableitung, wobei $O(h^{2})$ ein Term zweiter Ordnung ist und später vernachlässigt wird/werden kann.
+Somit erhalten wir für $\Delta u(x,y)$ die Näherung
+\begin{eqnarray}
+\Delta u(x,y) &=& \frac {\partial^{2} u(x,y)} {\partial x^{2}} + \frac {\partial^{2} u(x,y)} {\partial y^{2}} \notag \\
+&\approx& \frac {u(x-h,y) + u(x+h,y) - 4u(x,y) + u(x,y-h) + u(x,y+h)} {h^{2}}
+\end{eqnarray}
+
+\subsection{Diskretisierung von $\Omega$}
+
+Mit einem zweidimensionalen Gitter, der Gitterweite $h$, wobei $h \in \mathbb{Q}$ mit $h = \frac {1} {n}$ und $n \in \mathbb{N}_{>1}$, wird nun das Gebiet $\Omega$ diskretisiert. Die Zahl $(n-1)$ gibt uns an, wie viele Gitterpunkte es jeweils in x- bzw. y-Richtung gibt.\\
+
+Für $i = 1,...,(n-1)$ und $j = 1,...,(n-1)$ kann man dann $u(x,y)$ auch in der Form $u(x_{i},y_{j})$ schreiben. Dabei gilt dann:
+\begin{equation}
+u(x_{i},y_{j}) := u(ih,jh)
+\end{equation}
+und für $\Omega$ lässt sich ein $\Omega_{h}$ einführen, so dass:
+\begin{equation}
+\Omega_{h} := \{u(ih, jh) | 1 \le i,j \le (n-1)\}
+\end{equation}
+Betrachten wir nun noch den Rand von $\Omega$ bzw. $\Omega_{h}$, dann gilt:
+\begin{equation}
+\overline \Omega_{h} := \{u(ih, jh) | 0 \le i,j \le n\}
+\end{equation}
+Mit der Formel (2.9) ergibt sich nun für $\Delta u(x,y)$ die diskretisierte Form:
+\begin{eqnarray}
+\Delta_{h} u(x,y) &:=& \frac {u(x-h,y) + u(x+h,y) - 4u(x,y) + u(x,y-h) + u(x,y+h)} {h^{2}} \notag \\
+&=& \frac {u(x_{i}-h,y_{i}) + u(x_{i}+h,y_{i}) - 4u(x_{i},y_{i}) + u(x_{i},y_{i}-h) + u(x_{i},y_{i}+h)} {h^{2}} \notag \\
+&=& \frac {u(ih-h,jh)+u(ih+h,jh)-4u(ih,jh)+u(ih,jh-h)+u(ih,jh+h)} {h^{2}} \notag \\
+&=& \frac {1} {h^{2}}
+\begin{pmatrix}
+\frac {u(x,y+h)} {u(x,y)}, & 1, & \frac {u(x,y-h)} {u(x,y)}
+\end{pmatrix}
+\begin{pmatrix}
+  & 1 & \\
+1 & -4 & 1 \\
+  & 1 & 
+\end{pmatrix}
+\begin{pmatrix}
+u(x+h,y) \\
+u(x,y) \\
+u(x-h,y)
+\end{pmatrix}
+\end{eqnarray}
+Diese Approximation wird auch 5-Punkt-Differenzenstern genannt, siehe dazu Abbildung (2.1).
+
+\bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}
+
+\bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
+
+Nummeriert man nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben durch (\autoref{img.gridWithNumbers}) und stellt für jeden dieser Punkte die Gleichung (2.13) auf, so führt dies auf eine $(n-1)^{2} \times (n-1)^{2}$-Matrix der Form:
+
+\begin{equation}
+\mat{A} = \frac {1} {h^{2}}
+\begin{pmatrix}
+A_{1} & -Id \\
+-Id & A_{2} & \ddots \\
+ & \ddots & \ddots & -Id \\
+ & & -Id & A_{n}
+\end{pmatrix}
+\end{equation}
+Wobei $\mat{Id} \in \mathbb{R}^{(n-1) \times (n-1)}$ die Identität - also die Einheitsmatrix - ist und für alle $i = 0,..,n$ gilt:
+\begin{equation}
+A_{i} = 
+\begin{pmatrix}
+4 & -1 & & \\
+-1 & 4 & \ddots & \\
+ & \ddots & \ddots & -1 \\
+ & & -1 & 4
+\end{pmatrix}
+\end{equation}
+mit $A_{i} \in \mathbb{R}^{(n-1) \times (n-1)}$ symmetrisch, positiv definit.
+
+Um nun auf ein lineares Gleichungssystem der Form $\mat{A}u = b$ zu kommen, muss natürlich noch die rechte Seite, also das $b$ aufgestellt werden. Aus der Form der Matrix ist erkennbar, dass nicht alle Punkt aus $\overline \Omega$ in $\mat{A}$ auftauchen. Das liegt daran, dass die Randpunkte die aus der Dirichlet-Randbedingung resultieren ($u(x,y) = f(x,y)$) bereits bekannt sind und somit nicht genähert werden müssen. Jedoch muss zu jeder Komponente in $b$, die einen Randpunkt als Nachbarn hat, dieser aufaddiert werden. Dies führt uns auf folgende rechte Seite:
+
+\begin{equation}
+b = 
+\begin{pmatrix}
+b_{1} \\ b_{2} \\ \vdots \\ b_{n-1}
+\end{pmatrix}
+\end{equation}
+
+wobei gilt
+
+\begin{equation}
+b_{1} = 
+\begin{pmatrix}
+f(h,h) + h^{-2}(g(h,0)+g(0,h)) \\
+f(2h,h) + h^{-2}(g(2h,0)) \\
+\vdots \\
+f(1-2h,h) + h^{-2}(g(1-2h,0)) \\
+f(1-h,h) + h^{-2}(g(1-h,0)+g(0,1-h))
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+b_{j} = 
+\begin{pmatrix}
+f(h,jh) + h^{-2}(g(0,jh)) \\
+f(2h,jh) \\
+\vdots \\
+f(1-2h,jh) \\
+f(1-h,jh) + h^{-2}(g(1,jh))
+\end{pmatrix}
+2 \le j \le n-2,
+\end{equation}
+
+\begin{equation}
+b_{n-1} = 
+\begin{pmatrix}
+f(h,1-h) + h^{-2}(g(h,1)+g(0,1-h)) \\
+f(2h,1-h) + h^{-2}(g(2h,1)) \\
+\vdots \\
+f(1-2h,1-h) + h^{-2}(g(1-2h,1)) \\
+f(1-h,1-h) + h^{-2}(g(1-h,1)+g(1,1-h))
+\end{pmatrix}
+\end{equation}
+
+Nun steht das lineare Gleichungssystem der Form $\mat{A}u = b$, wobei $\mat{A}$ und $b$ bekannt sind und $u$ der Lösungsvektor ist, der die partielle Differentialgleichung löst.
+
+\chapter{Iterative Lösungsvefahren für lineare Gleichungssysteme}\label{c.IterativeVerfahren}
+
+Gleichungssysteme, die partielle Differentialgleichungen lösen können sehr groß werden, da man das entsprechende Gitter sehr fein wählen will, um eine möglichst genaue Lösung zu erhalten. Aus diesem Grund sind direkte Verfahren, wie z.B. der Gauß-Algorithmus oder die LR-Zerlegung nicht geeignet. Ihr Rechenaufwand beläuft sich im Allgemeinen auf $\mathcal{O}(n^{3})$ und ist dadurch zu langsam und unstabil. Ein wesentlicher Bestandteil der numerischen Mathematik sind iterative Verfahren zu Lösung linearer Gleichungssysteme. Diese zeichnen sich meist durch eine schnelle Konvergenz und einen geringen Rechenaufwand aus. Wir wollen uns im folgenden dem Jacobi-Verfahren (Gesamtschrittverfahren), Gauß-Seidel-Verfahren (Einzelschrittverfahren) und dem CG-Verfahren (samt Vorkonditionierung) widmen.
+
+\section{Das Jacobi-Verfahren (Gesamtschrittverfahren)}\label{s.Das Jacobi-Iterationsverfahren}
+
+Im folgenden betrachten wir das oben beschriebene Gitter mit $(N-1)$ Gitterpunkten in x- und y-Richtung und erhalten dadurch für die Dimension $n = (N-1) \cdot (N-1)$. \\
+
+
+\subsection{Das allgemeine Jacobi-Iterationsverfahren}
+Sei $\mat{A} \in \mathbb{R}^{n \times n}$ und $b,u \in \mathbb{R}^{n}$, wobei $u$ die Lösung des linearen Gleichungssystems $\mat{A}u = b$ ist. Dann lässt sich $\mat{A}$ wie folgt zerlegen:
+\begin{equation}
+A = D - L - U
+\end{equation}
+Dabei sind $D,L,U \in \mathbb{R}^{n \times n}$, wobei $\mat{D}$ die Diagonalelemente von $\mat{A}$ enthält, $\mat{L}$ eine strikte untere und $\mat{U}$ eine strikte obere Dreiecksmatrix sind. \\
+Somit ergibt sich für $\mat{A}u = b$:
+\begin{equation}
+Au = b \Leftrightarrow (D-L-U)u = b \Leftrightarrow Du = (L+U)u + b
+\end{equation}
+Ist nun $D$ nicht singulär, so gilt für das Jacobi-Verfahren folgende Iterationsvorschrift:
+\begin{equation}
+Du^{k+1} = (L+U)u^{k} + b \Leftrightarrow u^{k+1} = D^{-1}(L+U)u^{k} + D^{-1}b
+\end{equation}
+Mit der Iterationsmatrix $T := D^{-1}(L+U)$.
+Wobei dies in Komponentenschreibweise wie folgt aussieht: \\
+Mit einem Startvektor $u^{0} \in \mathbb{R}^{n}$ und $k=1,2,...$ berechne für $i=1,...,n$:
+\begin{equation}
+u^{k}_{i} = \frac {1} {a_{ii}} (b_{i} - \sum_{\substack{j = 1 \\ j \ne i}}^{n} a_{ij}u^{k-1}_{i})
+\end{equation}
+Offensichtlich wird jedes $u^{k}$ durch seinen Vorgänger berechnet. Der Rechenaufwand pro Iterationsschritt beträgt hier $\mathcal{O}(n^{2})$ und entspricht somit einer Matrix-Vektor-Multiplikation.
+
+\subsection{Das Jacobi-Iterationsverfahren für die Poisson-Gleichung}
+Da die Matrix, die durch das diskretisierte Poisson-Problem aufgestellt wird, dünn besetzt ist, können wir den Rechenaufwand für dieses spezielle Problem auf $\mathcal{O}(n)$ pro Iterationsschritt verbessern. Dafür benötigen wir nochmals den 5-Punkt-Differenzenstern und die partielle Differentialgleichung:
+\begin{equation}
+\frac {u(x_{i-1},y_{j}) + u(x_{i+1},y_{j}) - 4u(x_{i},y_{j}) + u(x_{i},y_{j-1}) + u(x_{i},y_{j+1})} {h^{2}} = f(x,y)
+\end{equation}
+Löst man diese Gleichung nun nach $u(x_{i},y_{j})$ auf und geht jeden Gitterpunkt Schritt-für-Schritt durch, so erhält man folgende Iterationsvorschrift für das Jacobi-Verfahren: \\
+Für $k = 1,2,...$ berechne mit Startvektor $u^{0} \in \mathbb{R}^{n}$ \\
+Für $i,j = 1,...,N-1$
+\begin{equation}
+u^{k}_{i,j} =   \frac {1} {4} (u^{k}_{i-1,j} + u^{k}_{i+1,j} + u^{k}_{i,j-1} + u^{k}_{i,j+1} - h^{2}f(x_{i},y_{j}))
+\end{equation}
+Wie nun zu sehen ist, beträgt der Rechenaufwand pro Iterationsschritt lediglich $\mathcal{O}((N-1) \cdot (N-1)) = \mathcal{O}(n)$ Schritte für die Poisson-Gleichung. Zudem ist zu erwähnen, dass einige der $u_{i,j}$ Informationen über den Rand enthalten, die ja aus der Voraussetzung bekannt sind.
+
+Ein weiteres Verfahren, welches für die diskretisierte Poisson-Gleichung sogar doppelt so schnell konvergiert, als das Jacobi-Verfahren wollen wir nun im nächsten Abschnitt betrachten.
+
+
+\section{Das Gauß-Seidel-Verfahren (Einzelschrittverfahren)}\label{s.Das Gauss-Seidel-Verfahren}
+
+\subsection{Das allgemeine Gauss-Seidel-Iterationsverfahren}
+
+Mit der selben Vorschrift und den selben Überlegungen wie oben, wollen wir die Matrix $\mat{A}$ wie folgt zerlegen:
+\begin{equation}
+A = D - L - U
+\end{equation}
+Somit ergibt sich für $\mat{A}u = b$:
+\begin{equation}
+Au = b \Leftrightarrow (D-L-U)u = b \Leftrightarrow (D-L)u = Uu + b
+\end{equation}
+Daraus können wir nun folgende Iterationsvorschrift ableiten:
+\begin{equation}
+(D-L)u^{k+1} = Uu^{k} + b \Leftrightarrow u^{k+1} = (D-L)^{-1}Uu^{k} + (D-L)^{-1}b
+\end{equation}
+Dies nun in Komponentenschreibweise für $i=1,...,n$:
+\begin{equation}
+\sum\limits_{j=1}^{i} a_{ij}u_{j}^{k+1} = -\sum\limits_{j=i+1}^{n} a_{ij}u_{j}^{k} + b_{i}\label{eq.GaussSeidel}
+\end{equation}
+Formt man \autoref{eq.GaussSeidel} um, so erhält man den Algorithmus des Gauss-Seidel-Verfahrens mit Startvektor $u^{0} \in \mathbb{R}$: \\
+Für $k = 1,2,...$ berechne für $i = 1,...,n$
+\begin{eqnarray}
+u_{i}^{k+1} &=& \frac {1} {a_{ii}} (b_{i} - \sum\limits_{j=1}^{i-1} a_{ij}u_{j}^{k+1} - \sum\limits_{j=i+1}^{n} a_{ij}u_{j}^{k})
+\end{eqnarray}
+Wie zu sehen ist, verwendet dieser Algorithmus dieses mal nicht nur die Werte aus dem vorigen Iterationsschritt, sondern auch welche aus dem der gerade berechnet wird. Jedoch sind dies bereits neu berechnete Werte und werde in diesem Iterationsschritt nicht mehr geändert.Das Gauss-Seidel-Verfahren wartet ebenfalls mit einem Rechaufwand von $\mathcal{O}(n^{2})$ auf. Wie beim Jacobi-Verfahren kann man dies auf $\mathcal{O}(n)$ optimieren.
+
+\subsection{Das Gauss-Seidel-Iterationsverfahren für die Poisson-Gleichung}
+
+Um nun eine angepasste Formel bzw. Iterationsvorschrift zu erhalten gehen wir wieder mit Hilfe des 5-Punkt-Differenzensterns vor. Allerdings verwendet wie oben beschrieben der Algorithmus auch Werte, die im aktuellen Iterationsschritt berechnet wurden. Um dies zu gewährleisten müssen wir uns nur \autoref{img.gridWithNumbers} ansehen. Hierbei ist ersichtlich, dass $u_{i-1,j}$ und $u_{i,j-1}$ bereits neu berechnet wurde. $u_{i+1,j}$ und $u_{i,j+1}$ stammen noch aus dem vorigen Iterationsschritt.
+
+Daraus ergibt sich der spezielle Gauss-Seidel-Algorithmus für die Poisson-Gleichung:
+\begin{equation}
+u^{k}_{i,j} =   \frac {1} {4} (u^{k}_{i-1,j} + u^{k}_{i,j-1} + u^{k-1}_{i+1,j} + u^{k-1}_{i,j+1} - h^{2}f(x_{i},y_{j}))
+\end{equation}
+Auch hier reduziert sich der Rechenaufwand auf $\mathcal{O}(n)$.
+
+
+\section{Warum Einzelschritt- und Gesamtschrittverfahren?}\label{s.Warum Einzelschritt- und Gesamtschrittverfahren?}
+Zum lösen von großen linearen Gleichungssystemen werden das Jacobi-Verfahren und das Gauss-Seidel-Verfahren heute kaum mehr verwendet. Es gibt mittlerweile schnellere, stabilere und effizientere Verfahren wie wir im fortlaufenden sehen werden. Einen großen Vorteil haben allerdings beide Verfahren: Sie löschen große Fehler zu Beginn der Iteration aus bzw. reduzieren diese stark. Darum finden sie besonders große Verwendung in den Mehrgittermethoden, die wir später kennen lernen werden.
+
+\section{Das Verfahren der konjugierten Gradienten}\label{s.Das Verfahren der konjugierten Gradienten}
+
+Das Verfahren der konjugierten Gradienten wurde 1952 von Heestens und Stiefel erstmals vorgestellt und erfreut sich großer Beliebtheit. Diese rührt daher, da das Verfahren eine sehr schnelle Konvergenz hat und numerisch äußerst stabil ist. \\
+Das Verfahren der konjugierten Gradienten (oder CG-Verfahren) ist eine Krylov-Unterraum-Methode und gehört zu den Projektionsverfahren. Krylovräume sind, wie wir sehen werden, (Unter-)Räume die durch eine Matrizen und Residuenvektoren aufgespannt werden. Innerhalb dieser Räume wird ein orthogonaler Vektor gesucht, auf den Krylovraum projeziert und anschließend orthonormalisiert. Den Unterschied - nicht nur in der Konvergenzgeschwindigkeit - zum Gradientenabstiegsverfahren machen beim CG-Verfahren die konjugierten Richtungen. Sie kommen durch spezielle - A-orthogonale - Projektionen zu stande. Um dies nun mathematisch sauber zu formulieren, definieren wir zunächst, was A-orthogonal oder auch konjugiert heißt: 
+
+%1.2. Definition (A-orthogonal)
+\subsection{Definition (A-orthogonal)}
+Sei $\mat{A}$ eine symmetrische, nicht singuläre Matrix. Zwei Vektoren $x,y \in \mathbb{R}^{n}$ heißen \underline{\textbf{konjugiert}} oder \underline{\textbf{A-orthogonal}}, wenn $x^{T}Ay = 0$ gilt.
+
+\subsubsection{Bemerkung:}
+\begin{itemize}
+\item Es definiert $\langle x,y \rangle _{A} = x^{T}Ay$ ein Skalarprodukt auf dem $\mathbb{R}^{n}$ für $\mat{A}$ s.p.d.
+\item Wir nennen $\|x\|_{A} := \sqrt{\langle x, x \rangle _{A}}$ die Energie-Norm.
+\end{itemize}
+
+Wozu die A-Orthogonalität dient, wird uns der nächste Satz zeigen:
+
+%1.3.Satz
+\subsection{Satz - Minimierungsfunktion}
+Sei $\mat{A}\in\mathbb{R}^{n \times n}$ s.p.d. und
+\begin{equation}\label{eq.Minimierungsfunktion}
+f(x) := \frac 1 2 x^{T}\mat{A}x - b^{T}x,
+\end{equation}
+wobei $b,x \in \mathbb{R}^{n}$. Dann gilt:
+\begin{center}
+f hat ein eindeutig bestimmtes Minimum und
+\end{center}
+\begin{equation}
+Ax^{*} = b \Longleftrightarrow f(x^{*}) = \underset{x\in\mathbb{R}^{n}}{\min} f(x)
+\end{equation}
+
+Beweis siehe z.B. Dahmen/Reusken... \\ \\
+
+Bei der Minimierung der Funktion \autoref{eq.Minimierungsfunktion} werden beim Gradientenverfahren die Richtungen des steilsten Abstiegs gesucht. Im CG-Verfahren geschieht im wesentlichen das Gleiche, allerdings bewirkt die Matrix $\mat{A}$, dass wir unser Ziel - das Miniumum der Funktion - schneller erreichen. \\
+Illustriert wird dies durch Bild (bla). Hier ist gut zu sehen, dass beim Gradientenverfahren die Höhenlinien auf elliptischen Bahnen liegen. Durch die Matrix A, also die A-Orthogonalität, werden die Ellipsen gestaucht zu Kreisen. \\
+
+Folgendes Lemma wird illustrieren, wie wir uns diese neu gewonne Erkenntnis nun zu Nutze machen werden.
+
+%1.4.Lemma
+\subsection{Lemma - (A-orthogonaler) Projektionssatz}\label{s.Projektionssatz}
+
+Sei $U_{k}$ ein k-dimensionaler Teilraum des $\mathbb{R}^{n} \hspace{1mm} (k \le n)$, und $p^{0}, p^{1},...,p^{k-1}$ eine $\textit{A-orthogonale Basis}$ dieses Teilraums, also $\langle p^{i}, p^{j} \rangle _{A} = 0 \hspace{2mm} f\ddot{u}r \hspace{2mm} i \ne j$. Sei $v \in \mathbb{R}^{n}$, dann gilt für $u^{k} \in U_{k}$:
+
+\begin{equation}
+\|u^{k} - v\|_{A} = \underset{u \in U_{k}}{\min} \|u - v\|_{A}
+\end{equation}
+
+genau dann, wenn $u^{k}$ die $\textit{A-orthogonale Projektion}$ von $v$ auf $U_{k} = span\{p^{0},...,p^{k-1}\}$ ist. Außerdem hat $\textbf{u}^{k}$ die Darstellung
+
+\begin{equation}
+P_{U_{k,\langle \cdot,\cdot \rangle}}(v) = \textbf{u}^{k} = \sum_{j=0}^{k-1} \frac {\langle v, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j}
+\end{equation}
+
+Der Beweis zu diesem Lemma folgt direkt aus dem Projektionssatz. Man sucht einen Vektor $v$ in $U_{k+1}$. Man wählt nun ein beliebiges $v \in U_{k+1}$ und minimiert über alle $u^{k} \in U_{k}$. Die optimale Lösung ist dann der gesucht Vektor $v$. Hier wird in die Minimierungsfunkton jedoch noch die Matrix $\mat{A}$ hinzugenommen. \\
+Bildlich gesprochen, ist $v$ die (A-)orthogonale Projektion auf $U_{k}$. Vergleiche Bild (bla). \\ \\
+
+Da wir nun die Grundlagen für das CG-Verfahren geschaffen haben, wollen wir nun den Algorithmus betrachten.
+
+%1.5. Algorithmus
+\subsection{Allgemeiner Algorithmus der konjugierten Gradienten}
+
+Zur Erzeugung der Lösung von $x^{*}$ durch Näherungen $x^{1}, x^{2},...$ definieren wir folgende Teilschritte:
+
+\begin{description}
+
+\item[0.] Definiere den ersten Teilraum und bestimme das (Start-) Residuum mit Startvektor $x^{0}$
+\begin{equation}
+U_{1} := span\{r^{0}\} \textnormal{, wobei } r^{0} = b - Ax^{0}
+\end{equation}
+
+\item[1.] Bestimme eine A-orthogonale Basis
+\begin{equation}
+p^{0},...,p^{k-1} \textnormal{ von } U_{k}
+\end{equation}
+
+\item[2.] Bestimme eine Näherungslösung $x^{k}$, so dass
+\begin{equation}
+\|x^{k} - x^{*}\|_{A} = \underset{u \in U_{k}}{\min} \|x - x^{*}\|_{A}
+\end{equation}
+gilt. Mit dem A-orthogonalen Projektionssatz berechnen wir also:
+\begin{equation}
+x^{k} = \sum_{j=0}^{k-1} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j}
+\end{equation}
+
+\item[3.] Erweitere den Teilraum $U_{k}$ und berechne das iterierte Residuum
+\begin{equation}
+U_{k+1} := span\{p^{0},...,p^{k-1},r^{k}\} \textnormal{ wobei } r^{k} := b - Ax^{k}
+\end{equation}
+
+\end{description}
+
+Natürlich ist das (noch) kein numerischer Algorithmus, den man in Programmcode umsetzen kann, allerdings sollte man sich die Schritte des CG-Algorithmus klar machen, um die Effizienz dahinter zu verstehen:
+
+\subsubsection{Erklärung zum CG-Algorithmus}\label{Erklärung zum CG-Algorithmus}
+
+Vielleicht das Wichtigste vorab: Der Algorithmus endet nach maximal n Schritten. Da wir die Lösung $u \in \mathbb{R}^{n}$ suchen und unsere Teilräume $U_{k}$ mit $k \le n$ sind, muss nach spätestens n Schritten das Verfahren die optimale Lösung im $\mathbb{R}^{n}$  gefunden haben. Oftmals ist eine gesuchte Näherung in einem Teilraum der Lösung bereits sehr nahe bzw. gleich der Lösung. Dann bricht der Algorithmus vorzeitig ab. \\ \\
+Um nun das Verfahren zu erklären, betrachten wir nochmals alle Teilschritte des Algorithmus:
+\begin{description}
+
+\item[zu 0.] Was der erste Schritt im wesentlichen aussagt ist, dass man den Algorithmus initialisisert und ein Residuum bestimmen muss. Hierfür ist ein Startvektor $x^{0}$ beliebig zu wählen (\autoref{bla}). Das Residuum wird durch $r^{0} := b - Ax^{0}$ definiert.
+
+\item[zu 1.] Um eine A-orthogonale Basis von den $U_{k}$ zu bestimmen ist im wesentlichen eine (A-) Orthogonalisierungverfahren notwendig, welches hier auch angewandt wird.
+
+\item[zu 2.] Hier wird das in \autoref{s.Projektionssatz} bereits besprochene Verfahren angewandt, um eine neue Näherungslösung in $U_{k}$ zu bestimmen.
+
+\item[zu 3.] Hier soll im wesentlich das Gleiche geschehen in wie in Schritt 0. Lediglich wird nun das $k-te$ Resdiduum durch $r^{k} := b - Ax^{k}$ bestimmt.
+
+\end{description}
+
+All diese Überlegung führen uns nun zu einem numerischen Algorithmus, den man in Programmcode umsetzen kann. Die einzelnen Herleitungen und Beweise sind z.B. in Dahmen/Reusken (Seiten bla) zu finden.
+
+\subsection{Numerischer Algorithmus der konjugierten Gradienten}
+
+Gegeben ist eine symmetrisch positiv definitie Matrix $\mat{A} \in \mathbb{R}^{n}$. Bestimme die (Näherungs-) Lösung $x^{*}$ mit Hilfe eines beliebigen Startvektors $x^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $b \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$ und berechne das Residuum $r^{0} = b - Ax^{0}$. \\
+Für $k = 1,2,...$, falls $r^{k-1} \ne 0$ berechne:
+
+\begin{eqnarray}
+p^{k-1} &=& r^{k-1} + \beta_{k-2}p^{k-2}, \textnormal{ wobei } \beta_{k-2} = \frac {\langle r^{k-1}, r^{k-1} \rangle} {\langle r^{k-2}, r^{k-2} \rangle} \textnormal{ mit } (k \ge 2) \notag \\
+x^{k} &=& x^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ wobei } \alpha_{k-1} = \frac {\langle r^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle} \notag \\
+r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1} \notag
+\end{eqnarray}
+
+Das der Startvektor beliebig ist (gilt bei allen iterativen Verfahren) wollen wir im Folgenden noch zeigen und beweisen.
+
+%1.6. Satz (Verallgemeinerung des Startvektors)
+\subsection{Satz - Verallgemeinerung des Startvektors}
+
+Das Verfahren der konjugierten Gradienten ist unabhängig von der Wahl des Startvektors $x^{0}$.
+
+\subsubsection{Beweis:}
+Zu lösen: $\mat{A}x^{*} = b$.
+\\Sei $x^{0} \ne 0$. Definiere für das transformierte System $\mat{A}\tilde x = \tilde b$, $\tilde x := x^{*} - x^{0}$ und $\tilde b := b - Ax^{0}$
+\\$\Longrightarrow A\tilde x = A(x^{*} - x^{0}) = b - Ax^{0} = r^{0}$
+\\Sei nun: $\tilde x^{0} = 0$ Startvektor mit Residuum $\tilde r$.
+\\$\Longrightarrow \tilde x^{k} = x^{k} - x^{0} \Longrightarrow x^{k} = \tilde x^{k} + x^{0}$
+\\$\Longrightarrow \tilde r^{k} = \tilde b - A\tilde x^{k} = b - Ax^{0} - A\tilde x^{k}$
+\\$= b - A(x^{0} - \tilde x^{k}) = b - Ax^{k} = r^{k}$
+\\$\Longrightarrow \tilde r^{k} = r^{k}$
+
+%1.10. Zusammenhang zu Krylovräumen
+\subsection{Lemma (Zusammenhang zu Krylovräumen)}
+Man kann $U_{k}$ auch in folgender Form schreiben:
+\begin{equation}
+U_{k} := span\{r^{0}, r^{1},...,r^{k-1}\} = span\{p^{0},p^{1},...,p^{k-1}\} = span\{r^{0}, Ar^{0},...,A^{k-1}r^{0}\}
+\end{equation}
+
+\subsubsection{Beweis:}
+Per Induktion über k (klar für k=0):
+\\Induktionsvoraussetzung:
+\begin{align*}
+& U_{k} := span\{r^{0}, r^{1},...,r^{k-1}\} = span\{p^{0},p^{1},...,p^{k-1}\} = span\{r^{0}, Ar^{0},...,A^{k-1}r^{0}\}\\
+& \Longrightarrow k \longrightarrow k+1: U_{k+1}\\
+& r^{k} = r^{k-1} - \alpha_{k-1} Ap^{k-1}\\
+& p^{k-1} \in U_{k} = span\{r^{0},...,A^{k-1}r^{0}\}\\
+& da \hspace{2mm} p^{k-1} = (\sum_{i=0}^{k-1} \sigma_{i}A^{i})r^{0}\\
+& \Longrightarrow Ap^{k-1} = (\sum_{i=0}^{k-1} \sigma_{i}A^{i+1})r^{0}\\
+& = \sigma_{0}Ar^{0} + ... + \sigma_{k-1}A^{k}r^{0}\\
+& \Longrightarrow r_{k} \in U_{k+1}
+\end{align*}
+
+\chapter{Mehrgitterverfahren}\label{c.Mehrgitterverfahren}
+
+In diesem Abschnitt sollen nun die Mehrgittermethoden genauer betrachtet werden. Bevor wir jedoch genauer auf dieses Verfahren eingehen, wollen wir uns nochmal einige Erkenntnisse klar machen:
+
+\section{Grundideen}
+
+\begin{description}
+
+\item[1.] Auslöschung hochfrequenter Fehler \\
+Das Gauß-Seidel-Verfahren und das Jacobi-Verfahren löschen hochfrequente Fehler in den ersten Iterationsschritten aus. Niederfrequente Fehler werden nur sehr langsam beseitigt.(siehe \autoref{s.Das Jacobi-Iterationsverfahren} und \autoref{s.Das Gauss-Seidel-Verfahren})
+\item[2.] Grobe Fehler nach einer Gittertransformation \\
+Niedrig frequente Fehler auf einem feinen Gitter werden zu hochfrequenten Fehlern, wenn sie auf ein gröberes Gitter überführt werden.
+\item[3.] Residuumsgleichung \\
+Die für diesen Algorithmus wichtige Residuumsgleichung lautete:
+\begin{equation}
+\mat{A} \epsilon^{k} = -r^{k}\label{eq.Residuumsgleichung}
+\end{equation}
+Wobei die Lösung von $\mat{A} \epsilon^{k} = -r^{k}$, wobei $\epsilon^{k} = 0$ äquivalent zur Lösung von $\mat{A}u=b$ ist.
+
+\subsection{Beweis der Residuumsgleichung}
+
+Das Residuum ist an der $k-ten$ Stelle definiert als 
+\begin{equation}
+r^{k} = b - \mat{A}u^{k}
+\end{equation}
+Der Fehler
+\begin{equation}
+\epsilon = u^{*} - u^{k}\label{eq.Fehler}
+\end{equation}
+wobei $u^{*}$ die exakte Lösung darstellt, erfüllt ebenso folgende Gleichung:
+\begin{equation}
+\mat{A}\epsilon^{k} = \mat{A}(u^{*} - u^{k}) = \mat{A} u^{*} - \mat{A} u^{k} = b - \mat{A} u^{k} = r^{k}
+\end{equation}
+Wir kennen zwar den Fehler $\epsilon^{k}$ nicht, wissen aber, dass dieser $0$ ist, falls $r^{k} = 0$.
+$\Longrightarrow$ Beh.
+
+Gauss-Seidel- und Jacobi-Verfahren löschen also hochfrequente Fehler in den ersten Itertionsschritten aus. Um die nieder frequenten Fehler zu reduzieren sind allerdings wesentlich mehr Iterationsschritte notwendig. Auch aus diesem Grund finden beide Verfahren bei der Lösung großer, linearer Gleichungssysteme wenig Anwendung. \\
+Auch wenn die hohe Anzahl an notwendigen Iterationen ein deutlicher Nachteil ist, wollen wir im folgenden die Vorteile dieser Methoden ausnutzen. \\%Die Mehrgittermethoden bedienen sich der Auslöschung hochfrequenter Fehler und liefern so eine gute und schnelle Approximation der Lösung von $\mat{A}u=b$. \\
+Wie in\autoref{s.Finite Differenzen} gesehen befinden wir uns bei der Diskretisierung der Poisson-Gleichung auf einem Gebiet $\Omega_{h} = (0,1)^{2}$ der Schrittweite $h = \frac {1} {n}$. Nach der Ausführung von k-Iterationsschritten von Einzel- oder Gesamtschrittverfahren sind auf diesem Gitter die hochfrequenten Fehler $\epsilon^{k} = u^{*} - u^{k}$ verschwunden. Nun berechnet man im $k-ten$ Schritt das Residuum $r^{k}$ und führt für das äquivalente lineare Gleichungssystem $\mat{A}\epsilon^{k} = r^{k}$, wobei $\epsilon^{k} = 0$ gilt, $l$ Iterationsschritte aus. So erhalten wir eine Näherung des Fehlers $\epsilon^{k}$. \\
+Stellt man \autoref{eq.Fehler} um, berechnet also $\epsilon^{k} + u^{k}$, so erhält man eine neue Näherung der exakten Lösung. \\
+Kombiniert man dieses Vorgehen nun mit dem Wechsel zwischen zwei Gittern der Gitterweite $h$ und $2h$ so erhält man das Zweigitterverfahren:
+  % und bringen dieses auf ein gröberes Gitter, z.B. $\Omega_{2h}$ mit der Schrittweite $2h$, könnten wir hier nun mit \autoref{eq.Residuumsgleichung} das Gleichungssystem mit $\epsilon_{2h} = 0$ lösen. Der niedrig frequente Fehler in $r^{k}$ wird in $r_{2h}$ so dann zu einem hochfrequenten auf $\Omega_{2h}$ werden. \\
+% Führt man einige Iterationsschritte auf dem groben Gitter aus, bringt den verbleidenden Fehler $\epsilon_{2h}^{k}$ wieder zurück auf $\Omega_{h}$ und addiert diesen zur iterierten Lösung $u^{k}$ reduziert sich $\epsilon^{k}$. Diese Vorgehensweise führt man nun so lange durch, bis $\epsilon{k} \approx 0$.
+
+\section{Das Zweigitter-Verfahren}
+
+
+
+\end{description}
+
+\chapter{Zusammenfassung}\label{c.zusammenfassung}
+
+\begin{table}[!hbt]\vspace{1ex}\centering\begin{tabular}{|l|l|}
+\hline
+Formen & Städte\\
+\hline
+\hline
+Quadrat &  Bunkenstedt \\
+\hline
+Dreieck &  Laggenbeck\\
+\hline
+Kreis &  Peine\\
+\hline
+Raute & Wakaluba \\
+\hline
+\end{tabular}
+\caption{\label{tab.sinnlos}eine sinnlose Tabelle}
+\vspace{2ex}\end{table}
+
+\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{tabular}{|ll||l|l|l|l|}\hline
+\multicolumn{2}{|c||}{}&\multicolumn{4}{c|}{ dies} \\
+\multicolumn{2}{|c||}{}& von dort  & und dort & über hier & zu Los \\\hline\hline
+\multirow{3}*{\rotatebox{90}{das}} & hier &  bla  & bla  & bla  & bla \\\cline{2-6}
+& dort & bla  & bla & bla  & bla  \\\cline{2-6}
+& da &  bla  & bla & bla & bla \\\hline
+\end{tabular}
+\caption[eine kompliziertere Tabelle]{eine kompliziertere Tabelle mit viel Beschreibungstext, der aber nicht im Tabellenverzeichnis auftauschen soll}
+\vspace{2ex}\end{table}
+
+Er hörte leise Schritte hinter sich. Das bedeutete nichts Gutes. Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte! Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn beobachtet und abgewartet, um ihn nun um die Früchte seiner Arbeit zu erleichtern? Oder gehörten die Schritte hinter ihm zu einem der unzähligen Gesetzeshüter dieser Stadt, und die stählerne Acht um seine Handgelenke würde gleich zuschnappen? Er konnte die Aufforderung stehen zu bleiben schon hören. Gehetzt sah er sich um. Plötzlich erblickte er den schmalen Durchgang. Blitzartig drehte er sich nach rechts und verschwand zwischen den beiden Gebäuden. Beinahe wäre er dabei über den umgestürzten Mülleimer gefallen, der mitten im Weg lag. Er versuchte, sich in der Dunkelheit seinen Weg zu ertasten und erstarrte: Anscheinend gab es keinen anderen Ausweg aus diesem kleinen Hof als den Durchgang, durch den er gekommen war. Die Schritte wurden lauter und lauter, er sah eine dunkle Gestalt um die Ecke biegen. Fieberhaft irrten seine Augen durch die nächtliche Dunkelheit und suchten einen Ausweg. War jetzt wirklich alles vorbei, waren alle Mühe und alle Vorbereitungen umsonst? Er presste sich ganz eng an die Wand hinter ihm und hoffte, der Verfolger würde ihn übersehen, als plötzlich neben ihm mit kaum wahrnehmbarem Quietschen eine Tür im nächtlichen Wind hin und her schwang. Könnte dieses der flehentlich herbeigesehnte Ausweg aus seinem Dilemma sein? Langsam bewegte er sich auf die offene Tür zu, immer dicht an die Mauer gepresst. Würde diese Tür seine Rettung werden?
+
+
+% Anhang
+\begin{landscape}\begin{multicols}{2}
+\appendix
+\chapter{Anhang}
+\section{Quelltexte}
+\subsubsection*{cpu.c aus Linux 2.6.16}\label{s.cpu}\lstinputlisting[language=C]{code/cpu.c}
+\end{multicols}\end{landscape}
+
+
+\bibliographystyle{alphadin_martin}
+\bibliography{bibliographie}
+
+
+\chapter*{Erklärung}
+
+Hiermit versichere ich, dass ich die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe, dass alle Stellen der Arbeit, die wörtlich oder sinngemäß aus anderen Quellen übernommen wurden, als solche kenntlich gemacht und dass die Arbeit in gleicher oder ähnlicher Form noch keiner Prüfungsbehörde vorgelegt wurde.
+
+\vspace{3cm}
+Ort, Datum \hspace{5cm} Unterschrift\\
+
+\end{document}

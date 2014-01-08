@@ -12,8 +12,6 @@ int main(int argc, char const *argv[]) {
     Vectors V(n);
     Algorithms Run(n);
 
-    A.InitHashMatrix();
-
     Run.MultiGridMethod(A,V,n);
 
     V.PrintVector();

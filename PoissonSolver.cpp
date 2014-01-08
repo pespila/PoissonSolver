@@ -36,13 +36,9 @@ int main(int argc, char const *argv[]) {
     time=(end-start)/CLOCKS_PER_SEC;
     printf("%f\n", time);
 
-    // A.PrintMatrix();
-    // L.PrintMatrix();
-    // U.PrintMatrix();
-
-    printf("\n");
-    printf("%f\n", V.x[0]);
-    printf("\n");
+    A.PrintMatrix();
+    L.PrintMatrix();
+    U.PrintMatrix();
 
     V.PrintVector();
     V.WriteToFile(O);
