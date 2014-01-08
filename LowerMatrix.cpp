@@ -1,11 +1,11 @@
 #include "classes.h"
 
-LowerMatrix::LowerMatrix(int m) {
-	n=m;
-	dim=n*n;
-	diagonal.assign(dim,1);
-	tridiagonal.assign(dim-1,0);
-	identity.assign(dim-n,0);
+LowerMatrix::LowerMatrix(int n) {
+	this->n=n;
+	this->dim=n*n;
+	this->diagonal.assign(dim,1);
+	this->tridiagonal.assign(dim-1,0);
+	this->identity.assign(dim-n,0);
 }
 
 LowerMatrix::~LowerMatrix() {

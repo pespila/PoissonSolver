@@ -1,11 +1,11 @@
 #include "classes.h"
 
-UpperMatrix::UpperMatrix(int m) : LowerMatrix(m) {
-	n=m;
-	dim=n*n;
-	diagonal.assign(dim,0);
-	tridiagonal.assign(dim-1,0);
-	identity.assign(dim-n,0);
+UpperMatrix::UpperMatrix(int n) : LowerMatrix(n) {
+	this->n=n;
+	this->dim=n*n;
+	this->diagonal.assign(dim,0);
+	this->tridiagonal.assign(dim-1,0);
+	this->identity.assign(dim-n,0);
 }
 
 UpperMatrix::~UpperMatrix() {
