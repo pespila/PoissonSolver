@@ -492,11 +492,13 @@ Das Gauß-Seidel-Verfahren und das Jacobi-Verfahren löschen hochfrequente Fehle
 \item[2.] Grobe Fehler nach einer Gittertransformation \\
 Niedrig frequente Fehler auf einem feinen Gitter werden zu hochfrequenten Fehlern, wenn sie auf ein gröberes Gitter überführt werden.
 \item[3.] Residuumsgleichung \\
-Die für diesen Algorithmus wichtige Residuumsgleichung lautete:
+Die für diesen Algorithmus wichtige Residuumsgleichung lautet:
 \begin{equation}
-\mat{A} \epsilon^{k} = -r^{k}\label{eq.Residuumsgleichung}
+\mat{A} \epsilon^{k} = r^{k}\label{eq.Residuumsgleichung}
 \end{equation}
-Wobei die Lösung von $\mat{A} \epsilon^{k} = -r^{k}$, wobei $\epsilon^{k} = 0$ äquivalent zur Lösung von $\mat{A}u=b$ ist.
+Die Lösung von $\mat{A} \epsilon^{k} = r^{k}$ ist äquivalent zur Lösung von $\mat{A}u=b$, wobei $\epsilon^{k} = 0$.
+
+\end{description}
 
 \subsection{Beweis der Residuumsgleichung}
 
@@ -523,11 +525,49 @@ Kombiniert man dieses Vorgehen nun mit dem Wechsel zwischen zwei Gittern der Git
   % und bringen dieses auf ein gröberes Gitter, z.B. $\Omega_{2h}$ mit der Schrittweite $2h$, könnten wir hier nun mit \autoref{eq.Residuumsgleichung} das Gleichungssystem mit $\epsilon_{2h} = 0$ lösen. Der niedrig frequente Fehler in $r^{k}$ wird in $r_{2h}$ so dann zu einem hochfrequenten auf $\Omega_{2h}$ werden. \\
 % Führt man einige Iterationsschritte auf dem groben Gitter aus, bringt den verbleidenden Fehler $\epsilon_{2h}^{k}$ wieder zurück auf $\Omega_{h}$ und addiert diesen zur iterierten Lösung $u^{k}$ reduziert sich $\epsilon^{k}$. Diese Vorgehensweise führt man nun so lange durch, bis $\epsilon{k} \approx 0$.
 
-\section{Das Zweigitter-Verfahren}
+\section{Der Zweigitter-Algorithmus}\label{s.Der Zweigitter-Algorithmus}
 
+Der Zweigitter-Algorithmus findet in der Praxis zwar wenig Verwendung, allerdings wird die Idee dahinter die Basis für das Mehrgitter-Verfahren sein.
 
+\begin{eqnarray}
+\textbf{while } 				&u^{k} \ne u^{*} \notag \\
+&\textit{pre-smooth } 			&\textnormal{Jacobi-/Gauss-Seidel-Steps} \notag \\
+&\textit{calculate residual }	&r^{k} = b - Au^{k} \notag \\
+&\textit{restrict } 			&r^{k}_{2h}=Rr^{k}_{h} \notag \\
+&								&\mat{A}^{2h} = R\mat{A}^{h}P \notag \\
+&\textit{set error }			&\epsilon^{0}_{2h} = 0 \notag \\
+&\textit{solve direct }			&\mat{A}^{2h} \epsilon_{2h} = r^{k}_{2h} \notag \\
+&\textit{prolongate }			&\epsilon^{k}_{h} = P\epsilon^{k}_{2h} \notag \\
+&\textit{add error }			&u^{k}_{h} = u^{k-1}_{h} + \epsilon^{k}_{h} \notag \\
+&\textit{smooth (optional) }	&\textnormal{Jacobi-/Gauss-Seidel-Steps} \notag \\
+\textbf{end } \notag
+\end{eqnarray}
 
-\end{description}
+Zunächst sei erwähnt, dass das Nachglätten optional ist, allerdings einige Vorteile bietet, auf die wir hier nicht genauer eingehen möchten. Bei der Implementierung sollte also auf Nachglättung geachtet werden. \\
+Der klare Nachteil dieser Methode liegt natürlich im direkten Lösen der Residuumsgleichung. Wählen wir ein sehr feines Gebiet $\Omega_{h}$ mit $n = 256$, also $h = \frac {1} {256}$, so liefert das Gebiet $\Omega_{2h}$ immer noch ein Gleichungssystem der Dimension $127^{2}$. Ein System dieser Ordnung zu lösen erfordert Rechenaufwand, der hier nicht erwünscht ist. \\
+
+\section{Der Mehrgitter-Algorithmus}
+
+Eine bessere Methode ist, das Gitter immer feiner zu machen, bis das System direkt lösbar ist, um dann wieder auf das feinste Gitter zurück zu kehren. Genauer:
+
+\begin{eqnarray}
+\textbf{Multigrid }(u,b) 			& \notag \\
+&\textbf{if }\textit{(finest grid) }&\textnormal{return } u_{finest grid}=\mat{A}^{-1}b \notag \\
+&\textbf{else }						& \notag \\
+&\textit{pre-smooth } 				&\textnormal{Jacobi-/Gauss-Seidel-Steps} \notag \\
+&\textit{calculate residual }		&r^{k} = b - Au^{k} \notag \\
+&\textit{restrict } 				&r^{k}_{2h}=Rr^{k}_{h} \notag \\
+&									&\mat{A}^{2h} = R\mat{A}^{h}P \notag \\
+&\textit{recursion }				&\epsilon^{k}_{2h} = \textbf{Multigrid }(0,r^{k}_{2h}) \notag \\
+&\textit{prolongate }				&\epsilon^{k}_{h} = P\epsilon^{k}_{2h} \notag \\
+&\textit{add error }				&u^{k}_{h} = u^{k-1}_{h} + \epsilon^{k}_{h} \notag \\
+&\textit{smooth }					&\textnormal{Jacobi-/Gauss-Seidel-Steps} \notag \\
+&									&\textnormal{return } u_{h} \notag \\
+\textbf{end}						& \notag
+\end{eqnarray}
+
+Nun wollen wir die Idee, die wir in \autoref{s.Der Zweigitter-Algorithmus} entwickelt haben formulieren. Hier unterscheiden wir dann zwischen zwei Methoden: dem \textbf{V-Zyklus} und dem \textbf{W-Zyklus}. \\
+Bei einem V-Zyklus wird geht man pro Iterationsschritt vom feinsten zum gröbsten Gitter und zurück (siehe Bild bla). Bei einem W-Zyklus geht man vom feinsten auf das gröbste Gitter über, prolongiert 
 
 \chapter{Zusammenfassung}\label{c.zusammenfassung}
 

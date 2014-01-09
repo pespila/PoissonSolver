@@ -27,7 +27,8 @@
 \BOOKMARK [0][-]{chapter.4}{Mehrgitterverfahren}{}
 \BOOKMARK [1][-]{section.4.1}{Grundideen}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.1.1}{Beweis der Residuumsgleichung}{section.4.1}
-\BOOKMARK [1][-]{section.4.2}{Das Zweigitter-Verfahren}{chapter.4}
+\BOOKMARK [1][-]{section.4.2}{Der Zweigitter-Algorithmus}{chapter.4}
+\BOOKMARK [1][-]{section.4.3}{Der Mehrgitter-Algorithmus}{chapter.4}
 \BOOKMARK [0][-]{chapter.5}{Zusammenfassung}{}
 \BOOKMARK [0][-]{appendix.A}{Anhang}{}
 \BOOKMARK [1][-]{section.A.1}{Quelltexte}{appendix.A}

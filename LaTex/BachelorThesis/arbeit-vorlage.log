@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.12.21)  5 JAN 2014 18:05
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.12.21)  8 JAN 2014 21:25
 entering extended mode
  %&-line parsing enabled.
 **arbeit-vorlage.tex
@@ -953,13 +953,13 @@ Overfull \hbox (44.47119pt too wide) in paragraph at lines 137--139
 ti-sier-te Form: 
  []
 
-[5] <images/diffStar.pdf, id=247, 915.42pt x 733.74126pt>
+[5] <images/diffStar.pdf, id=252, 915.42pt x 733.74126pt>
 File: images/diffStar.pdf Graphic file (type pdf)
 
 <use images/diffStar.pdf>
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 160.
- <images/grid.pdf, id=248, 424.58624pt x 422.57875pt>
+ <images/grid.pdf, id=253, 424.58624pt x 422.57875pt>
 File: images/grid.pdf Graphic file (type pdf)
 
 <use images/grid.pdf> [6pdfTeX warning (ext4): destination with the same identi
@@ -1116,9 +1116,32 @@ Kapitel 4.
 [19
 
 
-] [20]
+]
+Overfull \hbox (47.75969pt too wide) in paragraph at lines 512--514
+\T1/ppl/m/n/12 (-20) wobei $\OML/zplm/m/it/12 u[]$ \T1/ppl/m/n/12 (-20) die ex-
+ak-te Lö-sung dar-stellt, er-füllt eben-so fol-gen-de Glei-chung: 
+ []
+
+
+Overfull \hbox (4.44005pt too wide) in paragraph at lines 520--527
+\T1/ppl/m/n/12 (-20) Wie in[]Abschnitt 2.3[][] ge-se-hen be-fin-den wir uns bei
+ der Dis-kre-ti-sie-rung der Poisson-Gleichung
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 546--548
+
+ []
+
+
+Overfull \hbox (34.6997pt too wide) in paragraph at lines 551--552
+\T1/ppl/m/n/12 (-20) ist, um dann wie-der auf das feins-te Git-ter zu-rück zu k
+eh-ren. Ge-nau-er: 
+ []
+
+[21] [22]
 Kapitel 5.
-[21
+[23
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.5.1}) h
@@ -1126,14 +1149,14 @@ as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.563 
+l.603 
       pdfTeX warning (ext4): destination with the same identifier (name{table.5
 .2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.563 
-      ] [22]
+l.603 
+      ] [24]
 Anhang A.
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
@@ -1142,8 +1165,8 @@ File: lstlang1.sty 2004/09/05 1.3 listings language file
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 570.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 570.
+nput line 610.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 610.
 
 
 (/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
@@ -1157,17 +1180,17 @@ File: mt-mvs.cfg 2006/07/05 v1.1 microtype config. file: Marvosym Euro (RS)
 )
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <6> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 6.
- [23
+ [25
 
 
 
-] [24]) [25]
+] [26]) [27]
 (./arbeit-vorlage.bbl)
-Underfull \hbox (badness 10000) in paragraph at lines 583--584
+Underfull \hbox (badness 10000) in paragraph at lines 623--624
 
  []
 
-[26
+[28
 
 
 
@@ -1177,11 +1200,11 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 12163 strings out of 495021
- 177162 string characters out of 1181034
- 737467 words of memory out of 3000000
- 14512 multiletter control sequences out of 15000+50000
- 76707 words of font info for 267 fonts, out of 3000000 for 9000
+ 12176 strings out of 495021
+ 177312 string characters out of 1181034
+ 737635 words of memory out of 3000000
+ 14514 multiletter control sequences out of 15000+50000
+ 77025 words of font info for 271 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  45i,13n,66p,1789b,2130s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-
@@ -1196,10 +1219,10 @@ public/mathpazo/fplmri.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfit08
 exmf-texlive/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf-texlive/font
 s/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palat
 ino/uplr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on arbeit-vorlage.pdf (32 pages, 298514 bytes).
+Output written on arbeit-vorlage.pdf (34 pages, 303567 bytes).
 PDF statistics:
- 755 PDF objects out of 1000 (max. 8388607)
- 697 compressed objects within 7 object streams
- 359 named destinations out of 1000 (max. 500000)
- 51475 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 774 PDF objects out of 1000 (max. 8388607)
+ 713 compressed objects within 8 object streams
+ 364 named destinations out of 1000 (max. 500000)
+ 51483 words of extra memory for PDF output out of 51595 (max. 10000000)
 
