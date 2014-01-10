@@ -57,28 +57,26 @@ $\mat{A}$ & die Matrix $\mat{A}$\\
 \chapter{Einleitung}\label{c.Einleitung}
 \pagenumbering{arabic} % ab jetzt die normale arabische Nummerierung
 
-Viele Prozesse in den Naturwissenschaften, wie Biologie, Chemie und Physik, aber auch der Medizin, Technik und Wirtschaft lassen sich auf partielle Differentialgleichungen (PDG) zurückführen. Aus diesem Grund ist das Interesse an ihnen sehr groß. Solche Gleichungen zu lösen ist allerdings nicht immer möglich, oder sehr aufwendig.
-Eine der bekanntesten PDGs ist die Poisson-Gleichung – eine elliptische partielle Differentialgleichung zweiter Ordnung. Sie wurde vom Mathematiker und Physik Simeon Denis Poisson aufgestellt und findet vor Allem in der Physik Anwendung, da sie dem elektrostatischem Potential und dem Gravitationspotential genügt.
-Methoden aus der numerischen Mathematik ermöglichen uns das Lösen von partiellen Differentialgleichungen mittels computerbasierten Algorithmen. Hierbei wird jedoch nicht das Ergebnis direkt ausgerechnet, sondern versucht eine exakte Lösung zu approximieren. Diese Approximationen werden mittels Computerprogrammen realisiert und aus diesem Grund ist ein effizientes, numerisch stabiles Verfahren unabdingbar. Im folgenden werden wir zwei Methoden kennen lernen, die genau diese Kriterien erfüllen.
-Um nun die Lösung einer partiellen Differentialgleichung bestimmen zu können, müssen wir uns im Vorfeld Gedanken darüber machen, wie wir diese am besten erhalten. Eine der zentralen Methoden der Numerik sind Finite Differenzen. Hierbei führen wir die PDG, die auf einem gewissen Gebiet definiert ist auf das Einheitsquadrat zurück, legen ein Gitter darüber und erhalten durch diese Diskretisierung ein lineares Gleichungssystem.
-Da für lineare Gleichungssysteme direkte Lösungsverfahren, wie beispielsweise der Gauß-Algorithmus, existieren, bekommen wir unter Maschinengenauigkeit ein exaktes Ergebnis für die PDG. Wir werden allerdings sehen, dass der Rechenaufwand für große Systeme ungünstig ist.
-Eine weitere Möglichkeit zur Lösung sind iterative Verfahren. Diese haben nicht nur den Vorteil, dass sie nun mit hohen Dimension (z.B. Einer yxy-Matrix) kein Problem mehr haben, sondern auch wesentlich schneller gegen die exakte Approximation konvergieren.
-Da es eine Vielzahl an iterativen Lösungsverfahren gibt, werden wir uns hier auf das Verfahren der konjugierten Gradienten (mit Vorkonditionierung) und Mehrgittermethoden beschränken. Beide Verfahren haben gewisse Vorzüge, die wir gegeneinander abwiegen und so einen Vergleich der Verfahren erhalten werden. Abschließend werden wir uns noch der Implementierung beider Verfahren widmen und ein konkretes Beispiel sehen.
-
+Viele Prozesse in den Naturwissenschaften, wie Biologie, Chemie und Physik, aber auch der Medizin, Technik und Wirtschaft lassen sich auf partielle Differentialgleichungen (PDG) zurückführen. Das Lösen solcher Gleichungen ist allerdings nicht immer möglich, oder aufwendig. \\
+Eine PDG, die vor Allem in der Physik häufige Verwendung findet, ist die Poisson-Gleichung – eine elliptische partielle Differentialgleichung zweiter Ordnung. So genügt diese Gleichung beispielsweise dem elektrostatischen Potential $u$ zu gegebener Ladungsdichte $f$, aber auch dem Gravitationspotential $u$ zu gegebener Massendichte $f$. \\
+Methoden aus der numerischen Mathematik ermöglichen uns nun das Lösen von partiellen Differentialgleichungen mittels computerbasierten Algorithmen. Hierbei wird jedoch nicht die Lösung direkt bestimmt, sondern versucht eine exakte Approximation der Lösung zu erhalten. Dabei ist es wichtig, dass der zugrunde liegende Algorithmus effizient ist. \\
+Um nun die Lösung einer partiellen Differentialgleichung mittels effizienten Algorithmus bestimmen zu können, müssen wir uns im Vorfeld Gedanken darüber machen, wie wir diese am besten erhalten. Eine der zentralen Methoden der Numerik sind Finite Differenzen. Hierbei diskretisiert man das Gebiet, auf dem die PDG definiert ist und führt die Gleichung auf ein lineares Gleichungssystem zurück. \\
+Eine Möglichkeit ein solches lineares Gleichungssystem zu lösen sind iterative Verfahren. Somit hat man ein großartiges Werkzeug, dass eine Lösung innerhalb weniger Iterationsschritte berechnet und auch mit sehr großen Systemen gut zurecht kommt. Natürlich gilt das nicht für jedes Verfahren, weshalb wir über die Verfahren sprechen möchten, die diese Kriterien erfüllen. \\
+Abschließend wollen wir uns dann noch mit Mehrgittermethoden beschäftigen. Sie stellen wohl die effizienteste und modernste Methode dar, ein lineares Gleichungssystem zu lösen.
 
 
 \chapter{Diskretisierung der Poisson-Gleichung im $\mathbb{R}^{2}$}\label{c.Diskretisierte Poisson-Gleichung}
-Um die Poisson-Gleichung zu diskretisieren, werden wir diese zunächst definieren. Außerdem werden wir die Methode der finitien Differenzen einführen, um dann ein Gleichungssystem der Form $\mat{A}x = f$ zu erhalten.
+Um die Poisson-Gleichung zu diskretisieren, werden wir diese zunächst definieren. Außerdem werden wir die Methode der finitien Differenzen einführen, um dann ein Gleichungssystem der Form $\mat{A}u = f$ zu erhalten.
 
 \section{Definition (Poisson-Gleichung)}\label{s.Poisson-Gleichung}
 
-Sei $\Omega = (0,1)\times(0,1) \in \mathbb{R}^{2}$ ein beschränktes, offenes Gebiet des $\mathbb{R}^{2}$. Gesucht wird eine Funktion $u(x,y)$, die
+Sei $\Omega = (0,1)\times(0,1) \in \mathbb{R}^{2}$ ein beschränktes, offenes Gebiet des $\mathbb{R}^{2}$. Gesucht wird eine Funktion $u(x,y)$, die das Randwertproblem
 \begin{eqnarray}
 	-\Delta u(x,y) &=& f(x,y) \textnormal{ in } \Omega \\
     u(x,y) &=& g(x,y) \textnormal{ in } \partial \Omega
 \end{eqnarray}
 löst.
-Dabei bezeichnet $\Delta := \sum\limits_{k=1}^{n} \frac {\partial^{2}} {\partial x_{k}^{2}}$ den Laplace-Operator. Für die Poisson-Gleichung im $\mathbb{R}^{2}$ gilt dann:
+Dabei seien $f: \Omega \rightarrow \mathbb{R}$ und $g: \partial\Omega \rightarrow \mathbb{R}$ stetige Funktionen und es bezeichnet $\Delta := \sum\limits_{k=1}^{n} \frac {\partial^{2}} {\partial x_{k}^{2}}$ den Laplace-Operator. Für die Poisson-Gleichung im $\mathbb{R}^{2}$ gilt dann:
 \begin{eqnarray}
 	-\Delta u(x,y) &=& \frac {\partial^{2} u(x,y)} {\partial x^{2}} + \frac {\partial^{2} u(x,y)} {\partial y^{2}} = f(x,y) \textnormal{ in } \Omega \\
     u(x,y) &=& g(x,y) \textnormal{ in } \partial \Omega
@@ -165,9 +163,9 @@ u(x-h,y)
 \end{eqnarray}
 Diese Approximation wird auch 5-Punkt-Differenzenstern genannt, siehe dazu Abbildung (2.1).
 
-\bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}\label{img.5-Point-Star}
+%\bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}\label{img.5-Point-Star}
 
-\bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
+%\bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
 
 Nummeriert man nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben durch (\autoref{img.gridWithNumbers}) und stellt für jeden dieser Punkte die Gleichung (2.13) auf, so führt dies auf eine $(n-1)^{2} \times (n-1)^{2}$-Matrix der Form:
 
@@ -239,6 +237,51 @@ f(1-h,1-h) + h^{-2}(g(1-h,1)+g(1,1-h))
 \end{equation}
 
 Nun steht das lineare Gleichungssystem der Form $\mat{A}u = f$, wobei $\mat{A}$ und $f$ bekannt sind und $u$ der Lösungsvektor ist, der die Lösung der partielle Differentialgleichung enthält.
+
+% \section{Das Residuum und die Residuumsgleichung}\label{s.Residuum und Resdiuumsgleichung}
+
+% Ein weiterer Begriff, der im Zusammenhang mit linearen Gleichungssystemen oft fällt, ist der des Residuums. Dieses wird uns in \autoref{s.Das Verfahren der konjugierten Gradienten} und \autoref{c.Mehrgitterverfahren} wieder begegnen.
+
+% \subsection{Definition (Residuum)}\label{ss.Das Residuum}
+
+% Sei $\mat{A}u = f$ ein lineares Gleichungssystem mit $A \in \mathbb{R}^{n \times n}$, $u,f \in \mathbb{R}^{n}$. Dann gilt für $r \in \mathbb{R}^{n}$:
+% \begin{equation}
+% r := f - \mat{A}u
+% \end{equation}
+% wobei wir $r$ das Residuum nennen.
+
+% \subsection{Die Residuumsgleichung}\label{ss.Resdiuumsgleichung}
+
+% Seien $\mat{A},u,f$ und $r$ wie in \autoref{ss.Das Residuum}. Dann gilt für $e \in \mathbb{R}^{n}$:
+
+\section{Eigenwerte und Eigenvektoren der Matrix $\mat{A}$}\label{s.Eigenwerte und Eigenvektoren}
+
+Der Spektralradius bzw. die Kondition der Matrix $\mat{A}$ spielt in den iterativen Verfahren, wie auch bei den Mehrgittermethoden eine große Rolle. Sie entscheidet über die Konvergenzeigenschaften und die Effizienz des Algorithmus. Darum wollen wir uns in diesem Kapitel mit den Eigenwerten und Eigenvektoren der Matrix $\mat{A}$ genauer befassen. \\
+Da $\mat{A}$ symmetrisch ist, existiert eine Orthogonalbasis aus Eigenvektoren für die gilt:
+\begin{equation}
+\mat{A}x = \lambda x
+\end{equation}
+Für die diskretisierte Poisson Gleichung des $\mathbb{R}1{2}$, lässt sich dies auch in der Form:
+\begin{equation}
+\mat{A}x_{ij} = \lambda_{ij} x{ij}
+\end{equation}
+
+\subsection{Eigenwerte von $\mat{A}$}\label{ss.Eigenwerte}
+
+Sei $\mat{A}$ die Matrix der 2D Poisson Gleichung. Dann lassen sich die Eigenwerte wie folgt darstellen:
+\begin{equation}
+\lambda_{ij} = \frac {4} {h^{2}} \left(\sin^{2}(\frac {1} {2} i \pi h) + \sin^{2}(\frac {1} {2} j \pi h) \right) \textnormal{ für } 1 \le i,j \le n-1
+\end{equation}
+wobei $(n-1)$ die Anzahl der Gitterpunkte in x- und in y-Richtung definiert (siehe oben).
+
+\subsection{Eigenvektoren von $\mat{A}$}\label{ss.Eigenvektoren}
+
+Die Eigenvektoren für die Matrix $\mat{A}$ lassen sich in folgender Form darstellen:
+\begin{equation}
+u_{ij} = \sin(i \pi h) \sin(j \pi h) \textnormal{ für } i,j \in \mathbb{N}
+\end{equation}
+
+
 
 \chapter{Iterative Lösungsvefahren für lineare Gleichungssysteme}\label{c.IterativeVerfahren}
 
@@ -491,7 +534,7 @@ All diese Überlegung führen uns nun zu einem numerischen Algorithmus, den man 
 
 \subsection{Numerischer Algorithmus der konjugierten Gradienten}
 
-Gegeben ist eine symmetrisch positiv definitie Matrix $\mat{A} \in \mathbb{R}^{n}$. Bestimme die (Näherungs-) Lösung $x^{*}$ mit Hilfe eines beliebigen Startvektors $x^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $b \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$ und berechne das Residuum $r^{0} = b - Ax^{0}$. \\
+Gegeben ist eine symmetrisch positiv definitie Matrix $\mat{A} \in \mathbb{R}^{n}$. Bestimme die (Näherungs-) Lösung $x^{*}$ mit Hilfe eines \textit{beliebigen} Startvektors $x^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $b \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$ und berechne das Residuum $r^{0} = b - Ax^{0}$. \\
 Für $k = 1,2,...$, falls $r^{k-1} \ne 0$ berechne:
 
 \begin{eqnarray}
@@ -499,24 +542,6 @@ p^{k-1} &=& r^{k-1} + \beta_{k-2}p^{k-2}, \textnormal{ wobei } \beta_{k-2} = \fr
 x^{k} &=& x^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ wobei } \alpha_{k-1} = \frac {\langle r^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle} \notag \\
 r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1} \notag
 \end{eqnarray}
-
-Das der Startvektor beliebig ist (gilt bei allen iterativen Verfahren) wollen wir im Folgenden noch zeigen und beweisen.
-
-%1.6. Satz (Verallgemeinerung des Startvektors)
-\subsection{Satz - Verallgemeinerung des Startvektors}
-
-Das Verfahren der konjugierten Gradienten ist unabhängig von der Wahl des Startvektors $x^{0}$.
-
-\subsubsection{Beweis:}
-Zu lösen: $\mat{A}x^{*} = b$.
-\\Sei $x^{0} \ne 0$. Definiere für das transformierte System $\mat{A}\tilde x = \tilde b$, $\tilde x := x^{*} - x^{0}$ und $\tilde b := b - Ax^{0}$
-\\$\Longrightarrow A\tilde x = A(x^{*} - x^{0}) = b - Ax^{0} = r^{0}$
-\\Sei nun: $\tilde x^{0} = 0$ Startvektor mit Residuum $\tilde r$.
-\\$\Longrightarrow \tilde x^{k} = x^{k} - x^{0} \Longrightarrow x^{k} = \tilde x^{k} + x^{0}$
-\\$\Longrightarrow \tilde r^{k} = \tilde b - A\tilde x^{k} = b - Ax^{0} - A\tilde x^{k}$
-\\$= b - A(x^{0} - \tilde x^{k}) = b - Ax^{k} = r^{k}$
-\\$\Longrightarrow \tilde r^{k} = r^{k}$
-
 
 \chapter{Mehrgitterverfahren}\label{c.Mehrgitterverfahren}
 
@@ -533,9 +558,9 @@ Niedrig frequente Fehler auf einem feinen Gitter werden zu hochfrequenten Fehler
 \item[3.] Residuumsgleichung \\
 Die für diesen Algorithmus wichtige Residuumsgleichung lautet:
 \begin{equation}
-\mat{A} \epsilon^{k} = r^{k}\label{eq.Residuumsgleichung}
+\mat{A} e^{k} = r^{k}\label{eq.Residuumsgleichung}
 \end{equation}
-Die Lösung von $\mat{A} \epsilon^{k} = r^{k}$ ist äquivalent zur Lösung von $\mat{A}u=b$, wobei $\epsilon^{k} = 0$.
+Die Lösung von $\mat{A} e^{k} = r^{k}$ ist äquivalent zur Lösung von $\mat{A}u=b$, wobei $e^{k} = 0$.
 
 \end{description}
 
@@ -547,22 +572,22 @@ r^{k} = b - \mat{A}u^{k}
 \end{equation}
 Der Fehler
 \begin{equation}
-\epsilon = u^{*} - u^{k}\label{eq.Fehler}
+e = u^{*} - u^{k}\label{eq.Fehler}
 \end{equation}
 wobei $u^{*}$ die exakte Lösung darstellt, erfüllt ebenso folgende Gleichung:
 \begin{equation}
-\mat{A}\epsilon^{k} = \mat{A}(u^{*} - u^{k}) = \mat{A} u^{*} - \mat{A} u^{k} = b - \mat{A} u^{k} = r^{k}
+\mat{A}e^{k} = \mat{A}(u^{*} - u^{k}) = \mat{A} u^{*} - \mat{A} u^{k} = b - \mat{A} u^{k} = r^{k}
 \end{equation}
-Wir kennen zwar den Fehler $\epsilon^{k}$ nicht, wissen aber, dass dieser $0$ ist, falls $r^{k} = 0$.
+Wir kennen zwar den Fehler $e^{k}$ nicht, wissen aber, dass dieser $0$ ist, falls $r^{k} = 0$.
 $\Longrightarrow$ Beh.
 
 Gauss-Seidel- und Jacobi-Verfahren löschen also hochfrequente Fehler in den ersten Itertionsschritten aus. Um die nieder frequenten Fehler zu reduzieren sind allerdings wesentlich mehr Iterationsschritte notwendig. Auch aus diesem Grund finden beide Verfahren bei der Lösung großer, linearer Gleichungssysteme wenig Anwendung. \\
 Auch wenn die hohe Anzahl an notwendigen Iterationen ein deutlicher Nachteil ist, wollen wir im folgenden die Vorteile dieser Methoden ausnutzen. \\%Die Mehrgittermethoden bedienen sich der Auslöschung hochfrequenter Fehler und liefern so eine gute und schnelle Approximation der Lösung von $\mat{A}u=b$. \\
-Wie in\autoref{s.Finite Differenzen} gesehen befinden wir uns bei der Diskretisierung der Poisson-Gleichung auf einem Gebiet $\Omega_{h} = (0,1)^{2}$ der Schrittweite $h = \frac {1} {n}$. Nach der Ausführung von k-Iterationsschritten von Einzel- oder Gesamtschrittverfahren sind auf diesem Gitter die hochfrequenten Fehler $\epsilon^{k} = u^{*} - u^{k}$ verschwunden. Nun berechnet man im $k-ten$ Schritt das Residuum $r^{k}$ und führt für das äquivalente lineare Gleichungssystem $\mat{A}\epsilon^{k} = r^{k}$, wobei $\epsilon^{k} = 0$ gilt, $l$ Iterationsschritte aus. So erhalten wir eine Näherung des Fehlers $\epsilon^{k}$. \\
-Stellt man \autoref{eq.Fehler} um, berechnet also $\epsilon^{k} + u^{k}$, so erhält man eine neue Näherung der exakten Lösung. \\
+Wie in\autoref{s.Finite Differenzen} gesehen befinden wir uns bei der Diskretisierung der Poisson-Gleichung auf einem Gebiet $\Omega_{h} = (0,1)^{2}$ der Schrittweite $h = \frac {1} {n}$. Nach der Ausführung von k-Iterationsschritten von Einzel- oder Gesamtschrittverfahren sind auf diesem Gitter die hochfrequenten Fehler $e^{k} = u^{*} - u^{k}$ verschwunden. Nun berechnet man im $k-ten$ Schritt das Residuum $r^{k}$ und führt für das äquivalente lineare Gleichungssystem $\mat{A}e^{k} = r^{k}$, wobei $e^{k} = 0$ gilt, $l$ Iterationsschritte aus. So erhalten wir eine Näherung des Fehlers $e^{k}$. \\
+Stellt man \autoref{eq.Fehler} um, berechnet also $e^{k} + u^{k}$, so erhält man eine neue Näherung der exakten Lösung. \\
 Kombiniert man dieses Vorgehen nun mit dem Wechsel zwischen zwei Gittern der Gitterweite $h$ und $2h$ so erhält man das Zweigitterverfahren:
-  % und bringen dieses auf ein gröberes Gitter, z.B. $\Omega_{2h}$ mit der Schrittweite $2h$, könnten wir hier nun mit \autoref{eq.Residuumsgleichung} das Gleichungssystem mit $\epsilon_{2h} = 0$ lösen. Der niedrig frequente Fehler in $r^{k}$ wird in $r_{2h}$ so dann zu einem hochfrequenten auf $\Omega_{2h}$ werden. \\
-% Führt man einige Iterationsschritte auf dem groben Gitter aus, bringt den verbleidenden Fehler $\epsilon_{2h}^{k}$ wieder zurück auf $\Omega_{h}$ und addiert diesen zur iterierten Lösung $u^{k}$ reduziert sich $\epsilon^{k}$. Diese Vorgehensweise führt man nun so lange durch, bis $\epsilon{k} \approx 0$.
+  % und bringen dieses auf ein gröberes Gitter, z.B. $\Omega_{2h}$ mit der Schrittweite $2h$, könnten wir hier nun mit \autoref{eq.Residuumsgleichung} das Gleichungssystem mit $e_{2h} = 0$ lösen. Der niedrig frequente Fehler in $r^{k}$ wird in $r_{2h}$ so dann zu einem hochfrequenten auf $\Omega_{2h}$ werden. \\
+% Führt man einige Iterationsschritte auf dem groben Gitter aus, bringt den verbleidenden Fehler $e_{2h}^{k}$ wieder zurück auf $\Omega_{h}$ und addiert diesen zur iterierten Lösung $u^{k}$ reduziert sich $e^{k}$. Diese Vorgehensweise führt man nun so lange durch, bis $e{k} \approx 0$.
 
 \section{Der Zweigitter-Algorithmus}\label{s.Der Zweigitter-Algorithmus}
 
@@ -574,10 +599,10 @@ Der Zweigitter-Algorithmus findet in der Praxis zwar wenig Verwendung, allerding
 &\textit{calculate residual }	&r^{k} = b - Au^{k} \notag \\
 &\textit{restrict } 			&r^{k}_{2h}=Rr^{k}_{h} \notag \\
 &								&\mat{A}^{2h} = R\mat{A}^{h}P \notag \\
-&\textit{set error }			&\epsilon^{0}_{2h} = 0 \notag \\
-&\textit{solve direct }			&\mat{A}^{2h} \epsilon_{2h} = r^{k}_{2h} \notag \\
-&\textit{prolongate }			&\epsilon^{k}_{h} = P\epsilon^{k}_{2h} \notag \\
-&\textit{add error }			&u^{k}_{h} = u^{k-1}_{h} + \epsilon^{k}_{h} \notag \\
+&\textit{set error }			&e^{0}_{2h} = 0 \notag \\
+&\textit{solve direct }			&\mat{A}^{2h} e_{2h} = r^{k}_{2h} \notag \\
+&\textit{prolongate }			&e^{k}_{h} = Pe^{k}_{2h} \notag \\
+&\textit{add error }			&u^{k}_{h} = u^{k-1}_{h} + e^{k}_{h} \notag \\
 &\textit{smooth (optional) }	&\textnormal{Jacobi-/Gauss-Seidel-Steps} \notag \\
 \textbf{end } \notag
 \end{eqnarray}
@@ -597,9 +622,9 @@ Eine bessere Methode ist, das Gitter immer feiner zu machen, bis das System dire
 &\textit{calculate residual }		&r^{k} = b - Au^{k} \notag \\
 &\textit{restrict } 				&r^{k}_{2h}=Rr^{k}_{h} \notag \\
 &									&\mat{A}^{2h} = R\mat{A}^{h}P \notag \\
-&\textit{recursion }				&\epsilon^{k}_{2h} = \textbf{Multigrid }(0,r^{k}_{2h}) \notag \\
-&\textit{prolongate }				&\epsilon^{k}_{h} = P\epsilon^{k}_{2h} \notag \\
-&\textit{add error }				&u^{k}_{h} = u^{k-1}_{h} + \epsilon^{k}_{h} \notag \\
+&\textit{recursion }				&e^{k}_{2h} = \textbf{Multigrid }(0,r^{k}_{2h}) \notag \\
+&\textit{prolongate }				&e^{k}_{h} = Pe^{k}_{2h} \notag \\
+&\textit{add error }				&u^{k}_{h} = u^{k-1}_{h} + e^{k}_{h} \notag \\
 &\textit{smooth }					&\textnormal{Jacobi-/Gauss-Seidel-Steps} \notag \\
 &									&\textnormal{return } u_{h} \notag \\
 \textbf{end}						& \notag
@@ -608,7 +633,35 @@ Eine bessere Methode ist, das Gitter immer feiner zu machen, bis das System dire
 Nun wollen wir die Idee, die wir in \autoref{s.Der Zweigitter-Algorithmus} entwickelt haben formulieren. Hier unterscheiden wir dann zwischen zwei Methoden: dem \textbf{V-Zyklus} und dem \textbf{W-Zyklus}. \\
 Bei einem V-Zyklus wird geht man pro Iterationsschritt vom feinsten zum gröbsten Gitter und zurück (siehe Bild bla). Bei einem W-Zyklus geht man vom feinsten auf das gröbste Gitter über, prolongiert 
 
-\chapter{Zusammenfassung}\label{c.zusammenfassung}
+\chapter{Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}\label{c.Vergleich}
+
+In diesem letzten Kapitel wollen wir die Iterativen-Verfahren, speziell das Verfahren der konjugierten Gradienten, und die Mehrgitterverfahren numerisch vergleichen. Dafür betrachten wir folgende Gleichung:
+
+\section{Beispiel einer Poisson Gleichung}\label{s.Beispiel einer Poisson Gleichung}
+
+Seien $f: \Omega \rightarrow \mathbb{R}$ und $g: \partial\Omega \rightarrow \mathbb{R}$ stetige Funktionen mit $f(x,y) = -4.$ und $g(x,y) = x^{2} + y^{2}$. Sei außerdem $\Omega = (0,1)\times(0,1) \in \mathbb{R}^{2}$.Gegeben ist das Randwertproblem
+\begin{eqnarray}
+	-\Delta u(x,y) &=& f(x,y) = -4 \textnormal{ in } \Omega \\
+    u(x,y) &=& g(x,y) = x^{2} + y^{2} \textnormal{ in } \partial \Omega
+\end{eqnarray}
+Gesucht ist eine Funktion $u(x,y)$, die diese Gleichung löst. \\
+Offensichtlich löst der elliptische Paraboloid $u(x,y) = x^{2} + y^{2}$ die partielle Differentialgleichung, da $\partial_{xx}u(x,y) = \partial_{yy}u(x,y) = 2$. Allerdings wollen wir nun diese Lösung auch numerisch erhalten.
+
+\section{Jacobi-Verfahren angewandt auf das Beispiel}\label{s.Jacobi mit Beispiel}
+
+\section{Gauss-Seidel-Verfahren angewandt auf das Beispiel}\label{s.Gauss-Seidel mit Beispiel}
+
+\section{SOR-Verfahren angewandt auf das Beispiel}\label{s.SOR mit Beispiel}
+
+\section{CG-Verfahren angewandt auf das Beispiel}\label{s.CG mit Beispiel}
+
+\section{PCG-Verfahren angewandt auf das Beispiel}\label{s.PCG mit Beispiel}
+
+\section{Das Mehrgitterverfahren angewandt auf das Beispiel}\label{s.Multigrid mit Beispiel}
+
+\subsection{V-Zyklus}\label{ss.V-Zyklus mit Beispiel}
+
+\subsection{W-Zyklus}\label{ss.W-Zyklus mit Beispiel}
 
 \begin{table}[!hbt]\vspace{1ex}\centering\begin{tabular}{|l|l|}
 \hline

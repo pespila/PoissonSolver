@@ -247,7 +247,6 @@ void Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V) {
             r[i]=V.b[i]-Ax[i];
         }
         norm=vectorNorm(r);
-        printf("%f\n", norm);
         if(steps==200) {
             norm=0.0;
         }
