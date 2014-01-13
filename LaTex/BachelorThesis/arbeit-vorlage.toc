@@ -1,8 +1,8 @@
 \select@language {ngerman}
 \select@language {ngerman}
-\contentsline {chapter}{Abbildungsverzeichnis}{IV}{chapter*.2}
-\contentsline {chapter}{Tabellenverzeichnis}{V}{chapter*.3}
-\contentsline {chapter}{Symbolverzeichnis}{VI}{chapter*.4}
+\contentsline {chapter}{Abbildungsverzeichnis}{V}{chapter*.2}
+\contentsline {chapter}{Tabellenverzeichnis}{VI}{chapter*.3}
+\contentsline {chapter}{Symbolverzeichnis}{VII}{chapter*.4}
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}Diskretisierung der Poisson-Gleichung im $\PazoBB {R}^{2}$}{2}{chapter.2}
 \contentsline {section}{\numberline {2.1}Definition (Poisson-Gleichung)}{2}{section.2.1}
@@ -11,41 +11,58 @@
 \contentsline {subsection}{\numberline {2.3.1}(Zentraler) Differenzenquotient zweiter Ordnung}{3}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Diskretisierung von $\Omega $}{4}{subsection.2.3.2}
 \contentsline {section}{\numberline {2.4}Eigenwerte und Eigenvektoren der Matrix $ {\textbf {A}} $}{7}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Eigenwerte von $ {\textbf {A}} $}{7}{subsection.2.4.1}
-\contentsline {chapter}{\numberline {3}Iterative L\IeC {\"o}sungsvefahren f\IeC {\"u}r lineare Gleichungssysteme}{8}{chapter.3}
-\contentsline {section}{\numberline {3.1}Das Jacobi-Verfahren (Gesamtschrittverfahren)}{8}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Das allgemeine Jacobi-Iterationsverfahren}{9}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Das Jacobi-Iterationsverfahren f\IeC {\"u}r die Poisson-Gleichung}{9}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Das Gau\IeC {\ss }-Seidel-Verfahren (Einzelschrittverfahren)}{10}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Das allgemeine Gauss-Seidel-Iterationsverfahren}{10}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Das Gauss-Seidel-Iterationsverfahren f\IeC {\"u}r die Poisson-Gleichung}{11}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Warum Einzelschritt- und Gesamtschrittverfahren?}{12}{section.3.3}
-\contentsline {section}{\numberline {3.4}Die SOR-Methode (SOR = successive overrelaxation)}{12}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Algorithmus des SOR-Verfahrens}{12}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Satz (Optimaler Parameter $\omega $)}{13}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}SOR in Matrix-Darstellung}{13}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Satz}{13}{subsection.3.4.4}
-\contentsline {section}{\numberline {3.5}Das Verfahren der konjugierten Gradienten}{14}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Definition (A-orthogonal)}{14}{subsection.3.5.1}
-\contentsline {subsubsection}{Bemerkung:}{14}{section*.6}
-\contentsline {subsection}{\numberline {3.5.2}Lemma - (A-orthogonaler) Projektionssatz}{15}{subsection.3.5.2}
-\contentsline {subsection}{\numberline {3.5.3}Allgemeiner Algorithmus der konjugierten Gradienten}{15}{subsection.3.5.3}
-\contentsline {subsubsection}{Erkl\IeC {\"a}rung zum CG-Algorithmus}{16}{section*.7}
-\contentsline {subsection}{\numberline {3.5.4}Numerischer Algorithmus der konjugierten Gradienten}{17}{subsection.3.5.4}
-\contentsline {chapter}{\numberline {4}Mehrgitterverfahren}{18}{chapter.4}
-\contentsline {section}{\numberline {4.1}Grundideen}{18}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Beweis der Residuumsgleichung}{18}{subsection.4.1.1}
-\contentsline {section}{\numberline {4.2}Der Zweigitter-Algorithmus}{19}{section.4.2}
-\contentsline {section}{\numberline {4.3}Der Mehrgitter-Algorithmus}{20}{section.4.3}
-\contentsline {chapter}{\numberline {5}Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}{22}{chapter.5}
-\contentsline {section}{\numberline {5.1}Beispiel einer Poisson Gleichung}{22}{section.5.1}
-\contentsline {section}{\numberline {5.2}Jacobi-Verfahren angewandt auf das Beispiel}{23}{section.5.2}
-\contentsline {section}{\numberline {5.3}Gauss-Seidel-Verfahren angewandt auf das Beispiel}{23}{section.5.3}
-\contentsline {section}{\numberline {5.4}SOR-Verfahren angewandt auf das Beispiel}{23}{section.5.4}
-\contentsline {section}{\numberline {5.5}CG-Verfahren angewandt auf das Beispiel}{23}{section.5.5}
-\contentsline {section}{\numberline {5.6}PCG-Verfahren angewandt auf das Beispiel}{23}{section.5.6}
-\contentsline {section}{\numberline {5.7}Das Mehrgitterverfahren angewandt auf das Beispiel}{23}{section.5.7}
-\contentsline {subsection}{\numberline {5.7.1}V-Zyklus}{23}{subsection.5.7.1}
-\contentsline {subsection}{\numberline {5.7.2}W-Zyklus}{23}{subsection.5.7.2}
-\contentsline {chapter}{\numberline {A}Anhang}{25}{appendix.A}
-\contentsline {section}{\numberline {A.1}Quelltexte}{25}{section.A.1}
+\contentsline {subsection}{\numberline {2.4.1}Eigenvektoren von $ {\textbf {A}} $}{7}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Eigenwerte von $ {\textbf {A}} $}{7}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Definition (Kondition einer symmetrischen Matrix)}{7}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Lemma (Kondition der 2D Poisson Matrix)}{8}{subsection.2.4.4}
+\contentsline {subsubsection}{\numberline {2.4.4.1}Beweis:}{8}{subsubsection.2.4.4.1}
+\contentsline {chapter}{\numberline {3}Iterative L\IeC {\"o}sungsvefahren f\IeC {\"u}r lineare Gleichungssysteme}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Das Jacobi-Verfahren (Gesamtschrittverfahren)}{9}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Das allgemeine Jacobi-Iterationsverfahren}{10}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Das Jacobi-Iterationsverfahren f\IeC {\"u}r die Poisson-Gleichung}{10}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Das Gau\IeC {\ss }-Seidel-Verfahren (Einzelschrittverfahren)}{11}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Das allgemeine Gauss-Seidel-Iterationsverfahren}{11}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Das Gauss-Seidel-Iterationsverfahren f\IeC {\"u}r die Poisson-Gleichung}{12}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Warum Einzelschritt- und Gesamtschrittverfahren?}{13}{section.3.3}
+\contentsline {section}{\numberline {3.4}Die SOR-Methode (SOR = successive overrelaxation)}{13}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Algorithmus des SOR-Verfahrens}{13}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Satz (Optimaler Parameter $\omega $)}{14}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}SOR in Matrix-Darstellung}{14}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Satz}{14}{subsection.3.4.4}
+\contentsline {section}{\numberline {3.5}Das Verfahren der konjugierten Gradienten}{15}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Definition (A-orthogonal)}{15}{subsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.1.1}Bemerkung:}{15}{subsubsection.3.5.1.1}
+\contentsline {subsection}{\numberline {3.5.2}Lemma - (A-orthogonaler) Projektionssatz}{16}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}Allgemeiner Algorithmus der konjugierten Gradienten}{16}{subsection.3.5.3}
+\contentsline {subsubsection}{\numberline {3.5.3.1}Erkl\IeC {\"a}rung zum CG-Algorithmus}{17}{subsubsection.3.5.3.1}
+\contentsline {subsection}{\numberline {3.5.4}Numerischer Algorithmus der konjugierten Gradienten}{18}{subsection.3.5.4}
+\contentsline {subsection}{\numberline {3.5.5}Satz (Konvergenze des CG-Algorithmus)}{18}{subsection.3.5.5}
+\contentsline {section}{\numberline {3.6}Vorkonditioniertes Verfahren der konjugierten Gradienten (PCG)}{19}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Satz}{19}{subsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.1.1}Beweis:}{19}{subsubsection.3.6.1.1}
+\contentsline {subsection}{\numberline {3.6.2}Der Algorithmus des vorkonditionierten konjugierten Gradienten Verfahrens}{20}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}Die unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{20}{subsection.3.6.3}
+\contentsline {subsubsection}{\numberline {3.6.3.1}Definition (Das Muster E)}{21}{subsubsection.3.6.3.1}
+\contentsline {subsubsection}{\numberline {3.6.3.2}Eigenschaften der Matrix $\mathaccentV {tilde}47E{ {\textbf {L}} }$}{21}{subsubsection.3.6.3.2}
+\contentsline {subsubsection}{\numberline {3.6.3.3}Der numerische Algorithmus der unvollst\IeC {\"a}ndigen Cholesky Zerlegung}{22}{subsubsection.3.6.3.3}
+\contentsline {subsubsection}{\numberline {3.6.3.4}Bemerkungen:}{22}{subsubsection.3.6.3.4}
+\contentsline {subsection}{\numberline {3.6.4}Die modifizierte unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{22}{subsection.3.6.4}
+\contentsline {subsubsection}{\numberline {3.6.4.1}Eigenschaften der Matrix $\mathaccentV {tilde}47E{ {\textbf {L}} }$}{22}{subsubsection.3.6.4.1}
+\contentsline {subsubsection}{\numberline {3.6.4.2}Der numerische Algorithmus der modifizierten unvollst\IeC {\"a}ndigen Cholesky-Zerlegung}{23}{subsubsection.3.6.4.2}
+\contentsline {chapter}{\numberline {4}Mehrgitterverfahren}{24}{chapter.4}
+\contentsline {section}{\numberline {4.1}Grundideen}{24}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Beweis der Residuumsgleichung}{24}{subsection.4.1.1}
+\contentsline {section}{\numberline {4.2}Der Zweigitter-Algorithmus}{25}{section.4.2}
+\contentsline {section}{\numberline {4.3}Der Mehrgitter-Algorithmus}{26}{section.4.3}
+\contentsline {chapter}{\numberline {5}Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}{28}{chapter.5}
+\contentsline {section}{\numberline {5.1}Beispiel einer Poisson Gleichung}{28}{section.5.1}
+\contentsline {section}{\numberline {5.2}Jacobi-Verfahren angewandt auf das Beispiel}{29}{section.5.2}
+\contentsline {section}{\numberline {5.3}Gauss-Seidel-Verfahren angewandt auf das Beispiel}{29}{section.5.3}
+\contentsline {section}{\numberline {5.4}SOR-Verfahren angewandt auf das Beispiel}{29}{section.5.4}
+\contentsline {section}{\numberline {5.5}CG-Verfahren angewandt auf das Beispiel}{29}{section.5.5}
+\contentsline {section}{\numberline {5.6}PCG-Verfahren angewandt auf das Beispiel}{29}{section.5.6}
+\contentsline {section}{\numberline {5.7}Das Mehrgitterverfahren angewandt auf das Beispiel}{29}{section.5.7}
+\contentsline {subsection}{\numberline {5.7.1}V-Zyklus}{29}{subsection.5.7.1}
+\contentsline {subsection}{\numberline {5.7.2}W-Zyklus}{29}{subsection.5.7.2}
+\contentsline {chapter}{\numberline {A}Anhang}{31}{appendix.A}
+\contentsline {section}{\numberline {A.1}Quelltexte}{31}{section.A.1}

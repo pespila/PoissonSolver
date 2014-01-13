@@ -62,7 +62,7 @@ Eine PDG, die vor Allem in der Physik häufige Verwendung findet, ist die Poisso
 Methoden aus der numerischen Mathematik ermöglichen uns nun das Lösen von partiellen Differentialgleichungen mittels computerbasierten Algorithmen. Hierbei wird jedoch nicht die Lösung direkt bestimmt, sondern versucht eine exakte Approximation der Lösung zu erhalten. Dabei ist es wichtig, dass der zugrunde liegende Algorithmus effizient ist. \\
 Um nun die Lösung einer partiellen Differentialgleichung mittels effizienten Algorithmus bestimmen zu können, müssen wir uns im Vorfeld Gedanken darüber machen, wie wir diese am besten erhalten. Eine der zentralen Methoden der Numerik sind Finite Differenzen. Hierbei diskretisiert man das Gebiet, auf dem die PDG definiert ist und führt die Gleichung auf ein lineares Gleichungssystem zurück. \\
 Eine Möglichkeit ein solches lineares Gleichungssystem zu lösen sind iterative Verfahren. Somit hat man ein großartiges Werkzeug, dass eine Lösung innerhalb weniger Iterationsschritte berechnet und auch mit sehr großen Systemen gut zurecht kommt. Natürlich gilt das nicht für jedes Verfahren, weshalb wir über die Verfahren sprechen möchten, die diese Kriterien erfüllen. \\
-Abschließend wollen wir uns dann noch mit Mehrgittermethoden beschäftigen. Sie stellen wohl die effizienteste und modernste Methode dar, ein lineares Gleichungssystem zu lösen.
+Abschließend wollen wir uns dann noch mit Mehrgittermethoden beschäftigen. Sie stellen die wohl effizienteste und modernste Methode dar, ein lineares Gleichungssystem zu lösen.
 
 
 \chapter{Diskretisierung der Poisson-Gleichung im $\mathbb{R}^{2}$}\label{c.Diskretisierte Poisson-Gleichung}
@@ -176,7 +176,7 @@ A_{1} & -Id \\
 -Id & A_{2} & \ddots \\
  & \ddots & \ddots & -Id \\
  & & -Id & A_{n}
-\end{pmatrix}
+\end{pmatrix}\label{eq.PoissonMatrix}
 \end{equation}
 wobei $\mat{Id} \in \mathbb{R}^{(n-1) \times (n-1)}$ die Identität meint und für alle $i = 0,..,n$ gilt:
 
@@ -256,31 +256,65 @@ Nun steht das lineare Gleichungssystem der Form $\mat{A}u = f$, wobei $\mat{A}$ 
 
 \section{Eigenwerte und Eigenvektoren der Matrix $\mat{A}$}\label{s.Eigenwerte und Eigenvektoren}
 
-Der Spektralradius bzw. die Kondition der Matrix $\mat{A}$ spielt in den iterativen Verfahren, wie auch bei den Mehrgittermethoden eine große Rolle. Sie entscheidet über die Konvergenzeigenschaften und die Effizienz des Algorithmus. Darum wollen wir uns in diesem Kapitel mit den Eigenwerten und Eigenvektoren der Matrix $\mat{A}$ genauer befassen. \\
+Die Kondition der Matrix $\mat{A}$ spielt in den iterativen Verfahren, wie auch bei den Mehrgittermethoden eine große Rolle. Sie entscheidet über die Konvergenzeigenschaften und die Effizienz des Algorithmus. Darum wollen wir uns in diesem Kapitel mit den Eigenwerten und Eigenvektoren der Matrix $\mat{A}$ genauer befassen. \\
 Da $\mat{A}$ symmetrisch ist, existiert eine Orthogonalbasis aus Eigenvektoren für die gilt:
 \begin{equation}
 \mat{A}x = \lambda x
 \end{equation}
-Für die diskretisierte Poisson Gleichung des $\mathbb{R}1{2}$, lässt sich dies auch in der Form:
+
+\subsection{Eigenvektoren von $\mat{A}$}\label{ss.Eigenvektoren}
+
+Die Eigenvektoren für die Matrix $\mat{A}$ aus \autoref{eq.PoissonMatrix} lassen sich in folgender Form darstellen:
 \begin{equation}
-\mat{A}x_{ij} = \lambda_{ij} x{ij}
+u_{ij}(x,y) = \sin(i \pi x) \sin(j \pi y) \textnormal{ für } i,j \in \mathbb{N} \textnormal{ und } (x,y) \in \Omega_{h}
 \end{equation}
 
 \subsection{Eigenwerte von $\mat{A}$}\label{ss.Eigenwerte}
 
-Sei $\mat{A}$ die Matrix der 2D Poisson Gleichung. Dann lassen sich die Eigenwerte wie folgt darstellen:
+Die zugehörigen Eigenwerte lassen sich wie folgt darstellen:
 \begin{equation}
-\lambda_{ij} = \frac {4} {h^{2}} \left(\sin^{2}(\frac {1} {2} i \pi h) + \sin^{2}(\frac {1} {2} j \pi h) \right) \textnormal{ für } 1 \le i,j \le n-1
+\lambda_{ij} = \frac {4} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2}) \right) \textnormal{ für } 1 \le i,j \le n-1\label{eq.Eigenwerte}
 \end{equation}
 wobei $(n-1)$ die Anzahl der Gitterpunkte in x- und in y-Richtung definiert (siehe oben).
 
-\subsection{Eigenvektoren von $\mat{A}$}\label{ss.Eigenvektoren}
+Für das Lemma \autoref{ss.Matrixkondition} ist folgende Definition hilfreich:
 
-Die Eigenvektoren für die Matrix $\mat{A}$ lassen sich in folgender Form darstellen:
+\subsection{Definition (Kondition einer symmetrischen Matrix)}\label{ss.Definition Kondition einer Matrix}
+
+Sei $\mat{A}$ eine symmetrische Matrix des $\mathbb{R}^{n \times n}$. Dann gilt für die euklidische Norm:
 \begin{equation}
-u_{ij} = \sin(i \pi h) \sin(j \pi h) \textnormal{ für } i,j \in \mathbb{N}
+\kappa_{2} (A) = \frac {\lambda_{max}} {\lambda_{min}}\label{eq.Kondition}
 \end{equation}
 
+\subsection{Lemma (Kondition der 2D Poisson Matrix)}\label{ss.Matrixkondition}
+
+Für die Matrix $\mat{A}$ der diskreten 2D Poisson Gleichung gilt bzgl. der euklidischen Norm:
+\begin{equation}
+\kappa_{2} (A) = \frac {\cos^{2}(\frac{\pi h}{2})} {\sin^{2}(\frac{\pi h}{2})} = \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2}))
+\end{equation}
+
+\subsubsection{Beweis:}
+
+Da $\mat{A}$ s.p.d. ist, gilt mit \autoref{eq.Kondition} $\kappa_{2} (A) = \frac {\lambda_{max}} {\lambda_{min}}$. Für die Eigenwerte gilt aus \autoref{eq.Eigenwerte}:
+\begin{equation}
+\lambda_{ij} = \frac {4} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2}) \right) \textnormal{ für } 1 \le i,j \le n-1
+\end{equation}
+Dann folgt:
+\begin{equation}
+\kappa_{2} (A) = \frac {\lambda_{n-1,n-1}} {\lambda_{1,1}} = \frac {\sin^{2} (\frac {\pi} {2} - \frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})} = \frac {\cos^{2} (\frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})}
+\end{equation}
+Substituiert man nun $\cos^{2}(\frac {\pi h} {2} = 1 - \sin^{2}(\frac {\pi h} {2}$ (Pythoagoras) und nähert $\sin (\frac {\pi h} {2}) = \frac {\pi h} {2} + \mathcal{O}(h^{3})$ mit der Taylorformel, so erhält man:
+\begin{equation}
+\frac {\cos^{2} (\frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})} = \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2}))
+\end{equation}
+
+Natürlich wollen wir die Funktion $u(x,y)$ so gut wie möglich in $\Omega_{h}$ approximieren und sind daher bestrebt das Gitter so fein als möglich zu wählen. Daraus ergibt sich jedoch die negative Eigenschaft der 2D Poisson Matrix. \\
+Zur Erinnerung: $h := \frac {1} {n}$. Je größer $n$ gewählt wird, desto schlechter wird die Kondition der Matrix.
+\begin{equation}
+\lim_{n \to \infty} \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2})) = \lim_{n \to \infty} \left( \frac {2} {\pi \frac {1} {n}} \right)^{2} (1 + \mathcal{O}(\frac {1} {n^{2}})) \approx \lim_{n \to \infty} 8 n^{2} \longrightarrow \infty
+\end{equation}
+
+Diese Problematik wird uns in späteren Abschnitten nochmals begegnen.
 
 
 \chapter{Iterative Lösungsvefahren für lineare Gleichungssysteme}\label{c.IterativeVerfahren}
@@ -542,6 +576,123 @@ p^{k-1} &=& r^{k-1} + \beta_{k-2}p^{k-2}, \textnormal{ wobei } \beta_{k-2} = \fr
 x^{k} &=& x^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ wobei } \alpha_{k-1} = \frac {\langle r^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle} \notag \\
 r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1} \notag
 \end{eqnarray}
+
+Bevor wir nun eine Weiterentwicklung des CG-Verfahrens betrachten, soll an dieser Stelle ein kurzer Satz über die Konvergenz des Verfahrens folgen. Einen Beweis hierzu findet man z.B. in (Dahmen/Reusken 573):
+
+\subsection{Satz (Konvergenze des CG-Algorithmus)}
+
+Sei $\mat{A} \in \mathbb{R}^{n \times n}$ symmetrisch, positiv definit und seien $u,f,u^{*},u^{k} \in \mathbb{R}^{n}$, wobei $u^{*}$ die exakte Lösung des Gleichungssystems $Au = b$ und $x^{k}$ die approximierte Lösung durch das CG-Verfahren ist. Dann gilt für $k = 1,2,...$:
+\begin{equation}
+\| x^{k} - x^{*} \|_{A} \le 2 \left( \frac {\kappa_{2} (A) - 1} {\kappa_{2} (A) + 1} \right)^{k} \| x^{0} - x^{*} \|_{A}
+\end{equation}
+Da stets $\frac {\kappa_{2} (A) - 1} {\kappa_{2} (A) + 1} < 1$ gilt, liefert dieser Satz die Konvergenz des Algorithmus. Man sieht also, dass die Konvergenz des Verfahrens von der Kondition der Matrix $\mat{A}$ abhängt.
+
+\section{Vorkonditioniertes Verfahren der konjugierten Gradienten (PCG)}
+
+Das PCG-Verfahren (preconditioned conjugate gradient) ist eine optimierte Version des CG-Verfahrens. Wie wir in \autoref{ss.Matrixkondition} gesehen haben, ist die Matrix $\mat{A}$ schlecht konditioniert. Die Idee ist nun, die bei der Iterations zu Grunde liegende Matrix $\mat{A}$ durch eine ähnliche Matrix mit besserer Kondition zu ersetzen, damit sich das Konvergenzverhalten verbessert.
+
+\subsection{Satz}
+
+Sei $\mat{W} \in \mathbb{R}^{n \times n}$ s.p.d. dann gilt:
+\begin{equation}
+\mat{A}u = f \Longleftrightarrow \mat{W}^{-1} \mat{A} x = \mat{W}^{-1} b
+\end{equation}
+
+\subsubsection{Beweis:}
+
+\begin{eqnarray}
+\mat{A}u = f &\Longleftrightarrow& u = \mat{A}^{-1} \mat{E} f \Longleftrightarrow u = \mat{A}^{-1} \mat{W} \mat{W}^{-1} f \notag \\
+&\Longleftrightarrow& u = (\mat{W}^{-1} \mat{A})^{-1} f \Longleftrightarrow \mat{W}^{-1} \mat{A} x = \mat{W}^{-1} b \notag
+\end{eqnarray}
+
+Die Konditionszahl dieses Problem ist nun durch $\kappa_{2}(\mat{W}^{-1}\mat{A})$ bedingt. Das Ziel muss es also sein, $\mat{W}^{-1}$ so gut wie möglich zu wählen, damit die Kondition möglichst klein wird. Nun ist im Allgemeinen $\mat{W}^{-1}\mat{A}$ nicht s.p.d. Somit könnten wir zwar den CG-Alorithmus trotzdem darauf anwenden, werden aber wegen dieser Tatsache möglicherweise keine Konvergenz erhalten. Um dies zu umgehen findet man z.B. in (Dahmen/Reusken 576) einen Lösungsansatz, bei dem mit der Cholesky-Zerlegung eine entsprechende Umformung gefunden werden kann.
+
+\subsection{Der Algorithmus des vorkonditionierten konjugierten Gradienten Verfahrens}
+
+Gegeben seien $\mat{A}, \mat{W} \in \mathbb{R}^{n}$ s.p.d. Bestimme die (Näherungs-) Lösung $x^{*}$ mit Hilfe eines \textit{beliebigen} Startvektors $x^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $b \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$, berechne das Residuum $r^{0} = b - Ax^{0}$ und $z^{0} = \mat{W}^{-1}r^{0}$ (löse $\mat{W}z^{0} = r^{0}$).\\
+Für $k = 1,2,...$, falls $r^{k-1} \ne 0$ berechne:
+
+\begin{eqnarray}
+p^{k-1} &=& z^{k-1} + \beta_{k-2}p^{k-2}, \textnormal{ wobei } \beta_{k-2} = \frac {\langle z^{k-1}, r^{k-1} \rangle} {\langle z^{k-2}, r^{k-2} \rangle} \textnormal{ mit } (k \ge 2) \notag \\
+x^{k} &=& x^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ wobei } \alpha_{k-1} = \frac {\langle z^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle} \notag \\
+r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1} \notag \\
+z^{k} &=& \mat{W}^{-1}r^{k} \textnormal{ (löse } \mat{W}z^{k} = r^{k}) \notag
+\end{eqnarray}
+
+Wichtig hierbei ist, dass das Lösen von $\mat{W}z^{k} = r^{k}$ mit möglichst wenig Aufwand (ideal: $\mathcal{O}(n)$) berechnet werden soll.
+
+\subsection{Die unvollständige Cholesky-Zerlegung}\label{ss.ICCG}
+
+Eine Matrix $\mat{A}$, die symmetrisch positiv definit ist, lässt sich durch eine Cholesky-Zerlegung in eine normierte untere Dreiecksmatrix $\mat{L}$ und eine rechte obere Dreicksmatrix $\mat{U}$ zerlegen, wobei gilt: $\mat{U} := \mat{D}\mat{L}^{T}$ \\
+Mit dieser Zerlegung möchten wir nun unser System vorkonditionieren. Allerdings würde eine vollständige Cholesky-Zerlegung viele Nulleinträge in einer Sparse-Matrix auslöschen. Darum greift man auf eine unvollständige Cholesky-Zerlegung zurück, bei der die Stellen, an denen $\mat{A}$ Nulleinträge besitzt, ebenfalls Null werden.
+
+\subsubsection{Definition (Das Muster E)}
+
+Sei das Muster $E \subseteq \{1,...,n\} \times \{1,...,n\}$, dann gilt:
+\begin{equation}
+E := \{(i,j) | 1 \le i,j \le n, a_{i,j} \ne 0 \}
+\end{equation}
+
+Dann lässt sich die Matrix $\mat{A}$ auch folgendermaßen schreiben:
+\begin{equation}
+\mat{A} = \tilde{\mat{L}} \tilde{\mat{L}}^{T} + E \approx \tilde{\mat{L}} \tilde{\mat{L}}^{T}
+\end{equation}
+wobei $\tilde{\mat{L}}, \tilde{\mat{L}}^{T}$ nicht die komplette Faktorisierung darstellt, sondern folgende Eigenschaften erfüllt:
+
+\subsubsection{Eigenschaften der Matrix $\tilde{\mat{L}}$}
+\begin{itemize}
+\item $\tilde{\mat{L}}$ ist normierte untere Dreicksmatrix
+\item Es gilt: $l_{i,j} = 0$, falls $(i,j) \notin E$
+\end{itemize}
+
+Natürlich ist diese Faktorisierung ungenauer, als die vollständige Zerlegung, allerdings genügt sie, um die Kondition des Gleichungssystems in vielen Fällen zu verbessern. Um den folgenden Algorithmus effizient zu machen, werden Summen nur über Indizes aus dem Muster berechnet.
+
+\subsubsection{Der numerische Algorithmus der unvollständigen Cholesky Zerlegung}
+
+Seien $\mat{A} \in \mathbb{R}^{n \times n}$ s.p.d. und $E$ das Muster zur Matrix $\mat{A}$. Berechne dann für $i=1,2,...,n$:
+\begin{eqnarray}
+l_{i,i} &=& \left( a_{i,i} - \sum^{i-1}_{j=1,(i,j) \in E} l_{i,j}^{2} \right)^{\frac {1} {2}} \\
+\textnormal{for k } &=& i+1,...,n: \textnormal{ if } (k,i) \in E: \\
+l_{k,i} &=& \left( a_{k,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l_{i,j} \right) / l_{i,i}
+\end{eqnarray}
+
+\subsubsection{Bemerkungen:}
+
+\begin{itemize}
+\item Die für den PCG-Algorithmus wichtige Matrix $\mat{W}$ wird nun definierte als: $\mat{W} := \tilde{\mat{L}} \tilde{\mat{L}}^{T}$. Dadurch wird auch $\mat{W}z^{k} = \tilde{\mat{L}} \tilde{\mat{L}}^{T}z^{k} = r^{k}$ schnell durch Vorwärts- bzw. Rückwärtseinsetzen lösbar.
+\item Für viele Probleme zeigt sich, dass $\kappa_{2}(\mat{W}^{-1} \mat{A}) \ll \kappa_{2} (A)$ gilt. \\
+\end{itemize}
+
+Es gibt einige Varianten dieses Verfahrens. Wir wollen uns an dieser Stelle mit einer auseinander setzen.
+
+\subsection{Die modifizierte unvollständige Cholesky-Zerlegung}
+
+Auch bei der modifizierten Methode des Verfahrens gehen wir vor, wie in \autoref{ss.ICCG}. Jedoch werden die Vorschriften für die Matrix $\tilde{\mat{L}}$ abgeändert:
+
+\subsubsection{Eigenschaften der Matrix $\tilde{\mat{L}}$}
+
+Sei $e := (1,,1,...,1)^{T}$
+
+\begin{itemize}
+\item $a_{i,j} = (\tilde{\mat{L}} \tilde{\mat{L}}^{T})_{i,j}$ für alle $(i,j) \in E, i \ne j$
+\item $\mat{A} e = \tilde{\mat{L}} \tilde{\mat{L}}^{T} e$, d.h. die Zeilensummen stimmen überein.
+\item $l_{i,j} = r_{i,j} = 0$ für alle $(i,j) \notin E$
+\end{itemize}
+
+\subsubsection{Der numerische Algorithmus der modifizierten unvollständigen Cholesky-Zerlegung}
+
+Seien $\mat{A} \in \mathbb{R}^{n \times n}$ s.p.d. und $E$ das Muster zur Matrix $\mat{A}$. Berechne dann für $i=1,2,...,n$:
+\begin{eqnarray}
+l_{i,i} &=& \left( a_{i,i} - \sum^{i-1}_{j=1,(i,j) \in E} l_{i,j}^{2} \right)^{\frac {1} {2}} \\
+\textnormal{for k } &=& i+1,...,n: \\
+&\textnormal{ if }& (k,i) \in E: \\
+l_{k,i} &=& \left( a_{k,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l_{i,j} \right) / l_{i,i} \\
+&\textnormal{ else }&:\\
+a_{k,k} &=& a_{i,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l_{i,j}
+\end{eqnarray}
+
+Wir setzen wieder $\mat{W} := \tilde{\mat{L}} \tilde{\mat{L}}^{T}$. \\
+Es gibt noch weitere Verfahren (siehe z.B. Saad), wie beispielsweise das SSOR-Verfahren, die wir hier nicht weiter diskutieren wollen. In \autoref{c.Vergleich} werden wir die Vorteile der Vorkonditionierung anhand der 2D Poisson Gleichung sehen.
 
 \chapter{Mehrgitterverfahren}\label{c.Mehrgitterverfahren}
 
