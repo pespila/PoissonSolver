@@ -228,7 +228,7 @@ f(1-h,1-h) + h^{-2}(g(1-h,1)+g(1,1-h))
 \end{pmatrix}
 \end{equation}
 
-Wir erhalten das lineare Gleichungssystem der Form $\mat{A}u = f$, wobei $\mat{A}$ und $f$ bekannt sind und $u$ der approximierte Lösungsvektor ist, der die Lösung der partielle Differentialgleichung enthält.
+Wir erhalten das lineare Gleichungssystem der Form $\mat{A}u = f$, wobei $\mat{A}$ und $f$ bekannt sind und $u$ der approximierte Lösungsvektor ist, der die Lösung der partielle Differentialgleichung enthält. Wir bezeichnet ab jetzt die diskrete 2D Poisson Matrix mit $\mat{A}_{2D}$
 
 % \section{Das Residuum und die Residuumsgleichung}\label{s.Residuum und Resdiuumsgleichung}
 
@@ -246,24 +246,24 @@ Wir erhalten das lineare Gleichungssystem der Form $\mat{A}u = f$, wobei $\mat{A
 
 % Seien $\mat{A},u,f$ und $r$ wie in \autoref{ss.Das Residuum}. Dann gilt für $e \in \mathbb{R}^{n}$:
 
-\section{Eigenwerte und Eigenvektoren der Matrix $\mat{A}$}\label{s.Eigenwerte und Eigenvektoren}
+\section{Eigenwerte und Eigenvektoren der Matrix $\mat{A}_{2D}$}\label{s.Eigenwerte und Eigenvektoren}
 
-Die Kondition der Matrix $\mat{A}$ spielt in den iterativen Verfahren, wie auch bei den Mehrgittermethoden eine große Rolle. Sie entscheidet über die Konvergenzeigenschaften und die Effizienz des Algorithmus.\\
-Erinnerung: Da $\mat{A}$ symmetrisch ist, existiert eine Orthogonalbasis aus Eigenvektoren für die gilt:
+Die Kondition der Matrix $\mat{A}_{2D}$ spielt in den iterativen Verfahren, wie auch bei den Mehrgittermethoden eine große Rolle. Sie entscheidet über die Konvergenzeigenschaften und die Effizienz des Algorithmus.\\
+Erinnerung: Da $\mat{A}_{2D}$ symmetrisch ist, existiert eine Orthogonalbasis aus Eigenvektoren für die gilt:
 \begin{equation}
-\mat{A}x = \lambda x
+\mat{A}_{2D}x = \lambda x
 \end{equation}
 
-\subsection{Eigenvektoren von $\mat{A}$}\label{ss.Eigenvektoren}
+\subsection{Eigenvektoren von $\mat{A}_{2D}$}\label{ss.Eigenvektoren}
 
-Die Eigenvektoren für die Matrix $\mat{A}$ aus \autoref{eq.PoissonMatrix} lassen sich in folgender Form darstellen:
+Die Eigenvektoren für die Matrix $\mat{A}_{2D}$ aus \autoref{eq.PoissonMatrix} lassen sich in folgender Form darstellen:
 \begin{equation}
 u_{ij}(x,y) = \sin(i \pi x) \sin(j \pi y) \textnormal{ für } i,j \in \mathbb{N} \textnormal{ und } (x,y) \in \Omega_{h}
 \end{equation}
 
-\subsection{Eigenwerte von $\mat{A}$}\label{ss.Eigenwerte}
+\subsection{Eigenwerte von $\mat{A}_{2D}$}\label{ss.Eigenwerte}
 
-Für die Eigenwerte der Matrix $\mat{A}$ gilt:
+Für die Eigenwerte der Matrix $\mat{A}_{2D}$ gilt:
 \begin{equation}
 \lambda_{ij} = \frac {4} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2}) \right) \textnormal{ für } 1 \le i,j \le n-1\label{eq.Eigenwerte}
 \end{equation}
@@ -278,24 +278,24 @@ Sei $\mat{A}$ eine symmetrische Matrix des $\mathbb{R}^{n \times n}$. Dann gilt 
 \kappa_{2} (A) = \frac {\lambda_{max}} {\lambda_{min}}\label{eq.Kondition}
 \end{equation}
 
-\subsection{Lemma (Kondition der 2D Poisson Matrix)}\label{ss.Matrixkondition}
+\subsection{Lemma (Kondition von $\mat{A}_{2D}$)}\label{ss.Matrixkondition}
 
-Für die Matrix $\mat{A}$ der diskreten 2D Poisson Gleichung gilt bzgl. der euklidischen Norm:
+Für die Matrix $\mat{A}_{2D}$ gilt für ihre Kondition:
 \begin{equation}
 \kappa_{2} (A) = \frac {\cos^{2}(\frac{\pi h}{2})} {\sin^{2}(\frac{\pi h}{2})} = \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2}))
 \end{equation}
 
 \subsubsection{Beweis:}
 
-Da $\mat{A}$ s.p.d. ist, gilt mit \autoref{eq.Kondition} $\kappa_{2} (A) = \frac {\lambda_{max}} {\lambda_{min}}$. Für die Eigenwerte gilt aus \autoref{eq.Eigenwerte}:
+Da $\mat{A}_{2D}$ s.p.d. ist, gilt mit \autoref{eq.Kondition} $\kappa_{2} (A_{2D}) = \frac {\lambda_{max}} {\lambda_{min}}$. Für die Eigenwerte gilt aus \autoref{eq.Eigenwerte}:
 \begin{equation}
 \lambda_{ij} = \frac {4} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2}) \right) \textnormal{ für } 1 \le i,j \le n-1
 \end{equation}
 Dann folgt:
 \begin{equation}
-\kappa_{2} (A) = \frac {\lambda_{n-1,n-1}} {\lambda_{1,1}} = \frac {\sin^{2} (\frac {\pi} {2} - \frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})} = \frac {\cos^{2} (\frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})}
+\kappa_{2} (A_{2D}) = \frac {\lambda_{n-1,n-1}} {\lambda_{1,1}} = \frac {\sin^{2} (\frac {\pi} {2} - \frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})} = \frac {\cos^{2} (\frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})}
 \end{equation}
-Substituiert man nun $\cos^{2}(\frac {\pi h} {2} = 1 - \sin^{2}(\frac {\pi h} {2}$ (Pythoagoras) und nähert $\sin (\frac {\pi h} {2}) = \frac {\pi h} {2} + \mathcal{O}(h^{3})$ mit der Taylorformel, so erhält man:
+Substituiert man nun $\cos^{2}(\frac {\pi h} {2}) = 1 - \sin^{2}(\frac {\pi h} {2})$ und nähert $\sin (\frac {\pi h} {2}) = \frac {\pi h} {2} + \mathcal{O}(h^{3})$ mit der Taylorformel, so erhält man:
 \begin{equation}
 \frac {\cos^{2} (\frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})} = \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2}))
 \end{equation}
@@ -314,7 +314,9 @@ Diese Problematik wird uns in späteren Abschnitten nochmals begegnen.
 Gleichungssysteme, die partielle Differentialgleichungen lösen, können sehr groß werden. Aus diesem Grund sind direkte Verfahren, wie z.B. der Gauß-Algorithmus oder die LR-Zerlegung nicht geeignet. Ihr Rechenaufwand beläuft sich im Allgemeinen auf $\mathcal{O}(n^{3})$ und ist dadurch zu langsam.\\
 Wesentlich besser geeignet für diese Problemstellung sind iterative Verfahren. Sie zeichnen sich durch eine schnelle Konvergenz und einen geringen Rechenaufwand aus, falls sie konvergieren.
 
-\section{Definition (Spektralradius)}\label{s.Spektralradius}
+\section{Grundbegriffe}
+
+\subsection{Definition (Spektralradius)}\label{s.Spektralradius}
 
 Sei $\mat{A} \in \mathbb{R}^{n \times n}$. Dann gilt:
 \begin{equation}
@@ -322,7 +324,7 @@ Sei $\mat{A} \in \mathbb{R}^{n \times n}$. Dann gilt:
 \end{equation}
 Ist $\mat{A}$ symmetrisch so gilt auch: $\| A \|_{2} = \rho(A)$
 
-\section{Definition (Iterationsmatrix)}
+\subsection{Definition (Iterationsmatrix)}
 
 Sei $\mat{A} \in \mathbb{R}^{n \times n}$. Sei außerdem $\mat{C} \in \mathbb{R}^{n \times n}$ eine nichtsinguläre Matrix. Für die iterative Lösung eines linearen Gleichungssystems der Form $Au = f$ ist die Iterationsmatrix $\mat{T} \in \mathbb{R}^{n \times n}$ definiert als:
 \begin{equation}
@@ -333,14 +335,30 @@ wobei die Iterationsvorschrift gegeben ist durch:
 u^{k+1} := (\mat{Id} - \mat{C} \mat{A})u^{k} + \mat{C} f \textnormal{ für k = 0,1,2,...}\label{eq.Iteratives Verfahren}
 \end{equation}
 
-\section{Satz (Konvergenz iterativer Verfahren)}
+\subsection{Satz (Konvergenz iterativer Verfahren)}
 
 Ein iteratives Verfahren mit beliebigen Startvektor $x^{0} \in \mathbb{R}^{n}$ konvergiert genau dann gegen die exakte Lösung $x^{*} \in \mathbb{R}^{n}$, wenn gilt:
 \begin{equation}
-\rho(\mat{T}) < 1
+\rho(\mat{T}) = \rho(Id - CA) < 1
 \end{equation}
 
 Einen Beweis hierzu findet man z.B. in (Dahmen/Reusken und Verweis).
+
+\subsection{Definition (Residuum und Fehler)}
+
+Sei $u^{*} \in \mathbb{R}^{n}$ die exakte Lösung des linearen Gleichungssystems $Au = f$. Sei außerdem für $k = 0,1,...$  $u^{k} \in \mathbb{R}^{n}$ die Approximation der Lösung im $k-ten$ Iterationsschritt. Dann gilt für das Residuum:
+\begin{equation}
+r^{k} := f - \mat{A} u^{k}\label{eq.Residuum}
+\end{equation}
+Der Fehler, also die Diskrepanz zwischen exakter und approximierter Lösung, ist definiert als:
+\begin{equation}
+e^{k} := u^{*} - u^{k}\label{eq.Fehler}
+\end{equation}
+Durch Multiplikation mit der Matrix $\mat{A}$ ergibt sich:
+\begin{equation}
+e = u^{*} - u \Leftrightarrow \mat{A}e = \mat{A}(u^{*} - u) \Leftrightarrow \mat{A}e = \mat{A} u^{*} - \mat{A} u \Leftrightarrow \mat{A}e = b - \mat{A} u \Leftrightarrow \mat{A}e = r
+\end{equation}
+Die letzte Gleichung nennen wir Residuumsgleichung:
 
 \section{Das Jacobi-Verfahren (Gesamtschrittverfahren)}\label{s.Das Jacobi-Iterationsverfahren}
 
@@ -370,7 +388,7 @@ In Komponentenschreibweise: \\
 Mit einem Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig} und $k=1,2,...$ berechne für $i=1,...,n$:
 
 \begin{equation}
-u^{k}_{i} = \frac {1} {a_{ii}} (f_{i} - \sum_{\substack{j = 1 \\ j \ne i}}^{n} a_{ij}u^{k-1}_{i})
+u^{k+1}_{i} = \frac {1} {a_{ii}} (f_{i} - \sum_{\substack{j = 1 \\ j \ne i}}^{n} a_{ij}u^{k}_{i})
 \end{equation}
 
 In jedem Schritt zur Berechnung von $u^{k}$ muss hier die Information seines Vorgängers $u^{k-1}$ bekannt sein. Der Rechenaufwand pro Iterationsschritt beträgt $\mathcal{O}(n^{2})$ und entspricht somit einer Matrix-Vektor-Multiplikation.
@@ -393,14 +411,14 @@ u^{k+1} = D^{-1}(L+U)u^{k} + D^{-1}f
 \end{eqnarray}
 $\Longrightarrow$ Beh.
 
-\subsection{Satz (Eigenwerte der Jacobi-Iterationsmatrix bzgl. der 2D Poisson Matrix)}
+\subsection{Satz (Eigenwerte der Jacobi-Iterationsmatrix bzgl. $\mat{A}_{2D}$)}
 
-Für die Eigenwerte der Iterationsmatrix $\mat{T}_{J}$ gilt:
+Für die Eigenwerte der Iterationsmatrix $\mat{T}_{J} := (\mat{Id} - \mat{D}^{-1}\mat{A}_{2D}$ gilt:
 \begin{equation}
 \lambda_{i,j}(\mat{T}_{J}) = 1 - \frac {4} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2}) \right) \textnormal{ für } 1 \le i,j \le n-1\label{eq.Jacobi-Eigenwerte}
 \end{equation}
 
-\textbf{Beweis:}
+\textbf{Beweis:}\label{b.EW Jacobi}
 Für $\mat{D} = \frac {4} {h^{2}} \mat{Id}$ folgt $\mat{D}^{-1} = \frac {h^{2}} {4} \mat{Id}$. Für die Iterationsmatrix $\mat{T}_{J}$ angewandt auf einen Vektor $u$ gilt:
 \begin{eqnarray}
 Tu = (Id - D^{-1}A)u = Id u - D^{-1} \underbrace{Au}_{=\lambda(A) u} = - \frac {h^{2}} {4} Id \lambda(A) u =
@@ -411,84 +429,162 @@ Die Eigenwerte von $\mat{T}$ lassen sich also einfach durch $(1 - \lambda(A)$ be
 \lambda_{i,j}(\mat{T}_{J}) = 1 - \frac {4} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2}) \right) \textnormal{ für } 1 \le i,j \le n-1
 \end{equation}
 
-\subsection{Lemma (Spektralradius der Jacobi-Iterationsmatrix bzgl. der 2D Poisson Matrix)}
+\subsection{Lemma (Spektralradius der Jacobi-Iterationsmatrix bzgl. $\mat{A}_{2D}$)}
 
 Das Jacobi-Verfahren konvergiert für die diskrete Poisson Gleichung und es gilt für den Spektralradius:
 \begin{equation}
 \rho(\mat{T}_{J}) = \cos(\pi h) < 1
 \end{equation}
 
-\textbf{Beweis:}
+\textbf{Beweis:}\label{b.Spektral Jacobi}
 
 Mit \autoref{eq.Jacobi-Eigenwerte} folgt:
 \begin{eqnarray}
-\rho(Id-D^{-1}A) = \max_{1 \le i \le n} | \lambda_{i} | = \max_{1 \le i \le n} | 1 - \frac {4} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2} \right) | &=& \\
+\rho(Id-D^{-1}A_{2D}) = \max_{1 \le i,j \le n} | \lambda_{i} | = \max_{1 \le i,j \le n} | 1 - \frac {4} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2} \right) | &=& \\
 1 - 2\sin^{2} (\frac {\pi h} {2}) =\cos (\pi h) \overset{\textnormal{mit Taylorentwicklung}}{\approx} 1 - \frac {1} {2} \pi^{2} h^{2}
 \end{eqnarray}
 
+Das Jacobi-Verfahren konvergiert also für $\mat{A}_{2D}$. Allerdings nimmt mit feinerem Gitter, also kleinere Schrittweite $h$, die Konvergenzgeschwindigkeit stark ab, da der Spektralradius nahe bei $1$ liegt.
+
 \subsection{Das Jacobi-Iterationsverfahren für die Poisson-Gleichung}\label{ss.Jacobi-Verfahren der Poisson Gleichung}
 
-Da die Matrix, die durch das diskretisierte Poisson-Problem aufgestellt wird, dünn besetzt ist, können wir den Rechenaufwand für dieses spezielle Problem auf $\mathcal{O}(n)$ pro Iterationsschritt verbessern. Dafür benötigen wir nochmals den 5-Punkt-Differenzenstern und die partielle Differentialgleichung:
+Um den Rechenaufwand zu verbessern, nutzen wir nun noch die Dünnbesetztheit von $\mat{A}_{2D}$ aus. Es sind pro Zeile maximal $5$ Einträge ungleich Null.
+% Da die Matrix, die durch das diskretisierte Poisson-Problem aufgestellt wird, dünn besetzt ist, können wir den Rechenaufwand für dieses spezielle Problem auf $\mathcal{O}(n)$ pro Iterationsschritt verbessern. Dafür benötigen wir nochmals den 5-Punkt-Differenzenstern und die partielle Differentialgleichung:
 
+% \begin{equation}
+% \frac {u(x_{i-1},y_{j}) + u(x_{i+1},y_{j}) - 4u(x_{i},y_{j}) + u(x_{i},y_{j-1}) + u(x_{i},y_{j+1})} {h^{2}} = f(x,y)
+% \end{equation}
+
+% Löst man diese Gleichung nun für alle $i,j$ nach $u(x_{i},y_{j})$ auf, so erhält man folgende Iterationsvorschrift für das Jacobi-Verfahren: \\
+
+Berechne für $k = 1,2,...$ mit Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig}\\
+Für i = 1,...,N-1 und für j = 1,...,N-1:
 \begin{equation}
-\frac {u(x_{i-1},y_{j}) + u(x_{i+1},y_{j}) - 4u(x_{i},y_{j}) + u(x_{i},y_{j-1}) + u(x_{i},y_{j+1})} {h^{2}} = f(x,y)
-\end{equation}
-
-Löst man diese Gleichung nun für alle $i,j$ nach $u(x_{i},y_{j})$ auf, so erhält man folgende Iterationsvorschrift für das Jacobi-Verfahren: \\
-
-Berechne für $k = 1,2,...$ mit Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig} \\
-Für $i = 1,...,N-1$ \\
-Für $j = 1,...,N-1$
-\begin{equation}
-u^{k}_{i,j} =   \frac {1} {4} (u^{k}_{i-1,j} + u^{k}_{i+1,j} + u^{k}_{i,j-1} + u^{k}_{i,j+1} - h^{2}f(x_{i},y_{j}))
+u^{k+1}_{i,j} =  \frac {1} {a_{i,i}} (f_{i,j} - u^{k}_{i-1,j} + u^{k}_{i+1,j} + u^{k}_{i,j-1} + u^{k}_{i,j+1})
 \end{equation}
 
 Der Rechenaufwand pro Iterationsschritt beträgt lediglich $\mathcal{O}((N-1) \cdot (N-1)) = \mathcal{O}(n)$ Schritte.
 
-\section{Das Gauß-Seidel-Verfahren (Einzelschrittverfahren)}\label{s.Das Gauss-Seidel-Verfahren}
+\section{Das Jacobi-Relaxationsverfahren}\label{s.Jacobi Relaxation}
 
-Mit einer ähnlichen Vorgehensweise wie oben, wollen wir uns nun ein weiteres Verfahren herleiten.
+Wir wollen nochmal das Jacobi-Verfahren betrachten:
 
-\subsection{Das allgemeine Gauss-Seidel-Iterationsverfahren}\label{ss.Allgemeines Gauss-Seidel-Verfahren}
-
-Wir zerlegen die Matrix $\mat{A}$ wie folgt:
 \begin{equation}
-A = D - L - U
+u^{k+1} = D^{-1}(L+U)u^{k} + D^{-1}f
 \end{equation}
 
-Somit ergibt sich für $\mat{A}u = f$:
-\begin{equation}
-Au = f \Leftrightarrow (D-L-U)u = f \Leftrightarrow (D-L)u = Uu + f
-\end{equation}
-
-Daraus können wir nun folgende Iterationsvorschrift ableiten:
-\begin{equation}
-(D-L)u^{k+1} = Uu^{k} + f \Leftrightarrow u^{k+1} = (D-L)^{-1}Uu^{k} + (D-L)^{-1}f
-\end{equation}
-
-In Komponentenschreibweise für $i=1,...,n$:
-\begin{equation}
-\sum\limits_{j=1}^{i} a_{ij}u_{j}^{k+1} = -\sum\limits_{j=i+1}^{n} a_{ij}u_{j}^{k} + f_{i}\label{eq.GaussSeidel}
-\end{equation}
-
-Formt man \autoref{eq.GaussSeidel} um, so erhält man den Algorithmus des Gauss-Seidel-Verfahrens mit Startvektor $u^{0} \in \mathbb{R}$ \textit{beliebig}:
-
-Für $k = 1,2,...$ berechne für $i = 1,...,n$
+Wir wollen zunächst eine Umformung vornehmen:
 \begin{eqnarray}
-u_{i}^{k+1} &=& \frac {1} {a_{ii}} (f_{i} - \sum\limits_{j=1}^{i-1} a_{ij}u_{j}^{k+1} - \sum\limits_{j=i+1}^{n} a_{ij}u_{j}^{k})
+u^{k+1} &=& (Id - D^{-1}A)u^{k} + D^{-1}f \\
+&=& u^{k} - D^{-1}Au^{k} + D^{-1}f \\
+&=& u^{k} + D^{-1} \underbrace{= r^{k}}_{(f - Au^{k})}
 \end{eqnarray}
 
-Dieses Verfahren nutzt sofort die Werte, die im laufenden Iterationsschritt berechnet wurden. Somit spart man sich das Alloziieren eines temporären Vektors, also Speicherplatz. \\
-Das Gauss-Seidel-Verfahren wartet ebenfalls mit einem Rechaufwand von $\mathcal{O}(n^{2})$ auf. Wie beim Jacobi-Verfahren kann man dies auf $\mathcal{O}(n)$ optimieren.
+Wir addieren also zu $u^{k}$ das Residuum. Die Idee ist nun dieses mit einem Parameter $\omega \in \mathbb{R}$ zu multiplizieren, um bessere Konvergenzeigenschaften zu erhalten:
+\begin{eqnarray}
+u^{k+1} &=& u^{k} + D^{-1} \omega r^{k} = u^{k} + \omega D^{-1} (f - Au^{k}) \notag \\
+&=& u^{k} - \omega D^{-1} Au^{k} + \omega D^{-1} = (Id - \omega D^{-1} A)u^{k} + \omega D^{-1}f \notag \\
+&=& (Id - \omega Id + \omega Id - \omega D^{-1} A)u^{k} + \omega D^{-1}f \notag \\
+&=& (Id - \omega Id) + (\omega Id - \omega D^{-1} A)u^{k} + \omega D^{-1}f \notag \\
+&=& (1 - \omega)Id + \omega(Id - D^{-1}A) u^{k} + \omega D^{-1}f\label{eq.Jacobi-Relaxation}
+\end{eqnarray}
+\autoref{eq.Jacobi-Relaxation} ist die Iterationsvorschrift für das Jacobi-Relaxationsverfahren. Die Iterationsmatrix ist gegeben durch:
+\begin{equation}
+\mat{T}_{J_{\omega}} := (\mat{Id} - \omega \mat{D}^{-1} \mat{A}) = (1 - \omega) \mat{Id} + \omega(\mat{Id} - \mat{D}^{-1} \mat{A})
+\end{equation}
 
-\subsection{Das Gauss-Seidel-Iterationsverfahren für die Poisson-Gleichung}\label{ss.Gauss-Seidel-Verfahren der Poisson Gleichung}
+Dies führt auf folgenden Algorithmus:
 
-Ebenso wie in \autoref{ss.Jacobi-Verfahren der Poisson Gleichung} entwickeln wir den Algorithmus, beachten aber dabei, dass bereits berechnete Werte im Iterationsschritt wieder genutzt werden:
+\subsection{Algorithmus des Jacobi-Relaxations-Verfahrens}
+
+Sei $u^{0} \in \mathbb{R}^{n}$ ein \textit{beliebiger} Startvektor und $k=1,2,...$ berechne für $i=1,...,n$:
 
 \begin{equation}
-u^{k}_{i,j} =   \frac {1} {4} (u^{k}_{i-1,j} + u^{k}_{i,j-1} + u^{k-1}_{i+1,j} + u^{k-1}_{i,j+1} - h^{2}f(x_{i},y_{j}))
+u^{k+1}_{i} = (1 - \omega)u^{k}_{i} + \frac {\omega} {a_{ii}} (f_{i} - \sum_{\substack{j = 1 \\ j \ne i}}^{n} a_{ij}u^{k}_{i})
 \end{equation}
-Auch hier reduziert sich der Rechenaufwand auf $\mathcal{O}(n)$.
+
+Beachte: Für $\omega = 1$ erhalten wir das Jacobi-Verfahren. Auch hier beträgt der Rechenaufwand $\mathcal{O}(n^{2})$. Angewandt auf die 2D Poisson Gleichung gilt:
+
+\subsection{Algorithmus des Jacobi-Relaxations-Verfahrens für $\mat{A}_{2D}$}
+
+Berechne für $k = 1,2,...$ mit Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig}\\
+Für i = 1,...,N-1 und für j = 1,...,N-1:
+\begin{equation}
+u^{k+1}_{i,j} = (1 - \omega)u^{k} + \frac {\omega} {a_{i,i}} (f_{i,j} - u^{k}_{i-1,j} + u^{k}_{i+1,j} + u^{k}_{i,j-1} + u^{k}_{i,j+1})
+\end{equation}
+
+mit Rechenaufwand $\mathcal{O}(n)$.
+
+\subsection{Satz (Eigenwerte des Jacobi-Relaxationsverfahren bzgl. $\mat{A}_{2D}$)}
+
+Für die Eigenwerte von $\mat{T}_{J_{\omega}}$ gilt:
+\begin{equation}
+\lambda_{i,j}(\mat{T}_{J}) = 1 - \frac {4 \omega} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2}) \right) \textnormal{ für } 1 \le i,j \le n-1\label{eq.Jacobi-Eigenwerte}
+\end{equation}
+
+\textbf{Beweis:}
+Analog zu \autoref{b.EW Jacobi}.
+
+\subsection{Lemma (Spektralradius der Jacobi-Relaxations-Matrix bzgl. $\mat{A}_{2D}$)}
+
+Das Jacobi-Relaxations-Verfahren konvergiert für die diskrete Poisson Gleichung und es gilt für den Spektralradius:
+\begin{equation}
+\rho(\mat{T}_{J}) = \omega \cos(\pi h) < 1
+\end{equation}
+
+\textbf{Beweis:}
+Ebenfalls analog zu \autoref{b.Spektral Jacobi}, wobei nun gilt:
+\begin{equation}
+1 - \omega 2\sin^{2} (\frac {\pi h} {2}) = \omega \cos (\pi h) \overset{\textnormal{Taylorformel}}{\approx} 1 - \frac {\omega} {2} \pi^{2} h^{2}
+\end{equation}
+
+Das Jacobi-Relaxations-Verfahren konvergiert für $\mat{A}_{2D}$ sogar schneller für ein $\omega \in (0,1)$. Häufig verwendete Werte für $\omega$ sind $\frac {1} {2}$ und $\frac {2} {3}$. Leider ist für kleines $h$ die Konvergenz immer noch sehr langsam.
+
+% \section{Das Gauß-Seidel-Verfahren (Einzelschrittverfahren)}\label{s.Das Gauss-Seidel-Verfahren}
+
+% Mit einer ähnlichen Vorgehensweise wie in \autoref{s.Das Jacobi-Iterationsverfahren}, wollen wir uns nun ein weiteres Verfahren herleiten.
+
+% \subsection{Das allgemeine Gauss-Seidel-Iterationsverfahren}\label{ss.Allgemeines Gauss-Seidel-Verfahren}
+
+% Wir zerlegen die Matrix $\mat{A}$ wie folgt:
+% \begin{equation}
+% A = D - L - U
+% \end{equation}
+
+% Somit ergibt sich für $\mat{A}u = f$:
+% \begin{equation}
+% Au = f \Leftrightarrow (D-L-U)u = f \Leftrightarrow (D-L)u = Uu + f
+% \end{equation}
+
+% Daraus können wir nun folgende Iterationsvorschrift ableiten:
+% \begin{equation}
+% (D-L)u^{k+1} = Uu^{k} + f \Leftrightarrow u^{k+1} = (D-L)^{-1}Uu^{k} + (D-L)^{-1}f
+% \end{equation}
+
+% In Komponentenschreibweise für $i=1,...,n$:
+% \begin{equation}
+% \sum\limits_{j=1}^{i} a_{ij}u_{j}^{k+1} = -\sum\limits_{j=i+1}^{n} a_{ij}u_{j}^{k} + f_{i}\label{eq.GaussSeidel}
+% \end{equation}
+
+% Formt man \autoref{eq.GaussSeidel} um, so erhält man den Algorithmus des Gauss-Seidel-Verfahrens mit Startvektor $u^{0} \in \mathbb{R}$ \textit{beliebig}:
+
+% Für $k = 1,2,...$ berechne für $i = 1,...,n$
+% \begin{eqnarray}
+% u_{i}^{k+1} &=& \frac {1} {a_{ii}} (f_{i} - \sum\limits_{j=1}^{i-1} a_{ij}u_{j}^{k+1} - \sum\limits_{j=i+1}^{n} a_{ij}u_{j}^{k})
+% \end{eqnarray}
+
+% Dieses Verfahren nutzt sofort die Werte, die im laufenden Iterationsschritt berechnet wurden. Somit spart man sich das Alloziieren eines temporären Vektors, also Speicherplatz. \\
+% Das Gauss-Seidel-Verfahren wartet ebenfalls mit einem Rechaufwand von $\mathcal{O}(n^{2})$ auf. Wie beim Jacobi-Verfahren kann man dies auf $\mathcal{O}(n)$ optimieren.
+
+% \subsection{Das Gauss-Seidel-Iterationsverfahren für die Poisson-Gleichung}\label{ss.Gauss-Seidel-Verfahren der Poisson Gleichung}
+
+% Ebenso wie in \autoref{ss.Jacobi-Verfahren der Poisson Gleichung} entwickeln wir den Algorithmus, beachten aber dabei, dass bereits berechnete Werte im Iterationsschritt wieder genutzt werden:
+
+% \begin{eqnarray}
+% u^{k}_{i,j} &=&  \frac {1} {4} (u^{k}_{i-1,j} + u^{k}_{i,j-1} + u^{k-1}_{i+1,j} + u^{k-1}_{i,j+1} - h^{2}f(x_{i},y_{j})) \\
+% &=& \frac {1} {4} (f_{i,j} - u^{k}_{i-1,j} + u^{k}_{i,j-1} + u^{k-1}_{i+1,j} + u^{k-1}_{i,j+1})
+% \end{eqnarray}
+% Auch hier reduziert sich der Rechenaufwand auf $\mathcal{O}(n)$.
 
 
 % \section{Warum Einzelschritt- und Gesamtschrittverfahren?}\label{s.Warum Einzelschritt- und Gesamtschrittverfahren?}
@@ -542,6 +638,39 @@ Auch hier reduziert sich der Rechenaufwand auf $\mathcal{O}(n)$.
 % Einen Beweis hierzu findet man beispielsweise in (oranges buch) \\ \\
 
 % Aus \autoref{ss.optimales omega} ist der optimale Paramater für die Poisson Gleichung bereits bekannt. Also konvergiert - wie erwartet - das Verfahren für $\omega = $.
+
+\subsection{Satz (Iterationsmatrix des Gauss-Seidel-Verfahrens)}
+
+Für die Iterationsmatrix des Jacobi-Verfahrens gilt:
+\begin{equation}
+\mat{T}_{GS} := (\mat{Id} - (\mat{D} - \mat{L})^{-1} \mat{A})
+\end{equation}
+Hier ist also $\mat{C} = (\mat{D} - \mat{L})^{-1}$
+
+\textbf{Beweis}:
+
+Mit der Iterationsvorschrift folgt:
+\begin{eqnarray}
+u^{k+1} &=& (D-L)^{-1}Uu^{k} + (D-L)^{-1}f \\
+&\overset{\mat{U}=(\mat{D}-\mat{L}-\mat{A})}{=}& (D-L)^{-1}(D-L-A)u^{k}+(D-L)^{-1}f \\
+&=& (D-L)^{-1}(D-L)-(D-L)^{-1}Au^{k}+(D-L)^{-1}f \\
+&=& (Id - (D-L)^{-1}A)u^{k} + (D-L)^{-1}f
+\end{eqnarray}
+$\Longrightarrow$ Beh.
+
+\subsection{Lemma (Spektralradius der Gauss-Seidel-Iterationsmatrix bzgl. $\mat{A}_{2D}$)}
+
+Das Gauss-Seidel-Verfahren konvergiert für die diskrete Poisson Gleichung und man kann zeigen, dass gilt:
+\begin{equation}
+\rho(\mat{T}_{GS}) = (\rho(\mat{T}_{J}))^{2} = \cos^{2}(\pi h) < 1
+\end{equation}
+
+\textbf{Beweis:}
+
+Einen ausführlichen Beweis findet man z.B. in (Dahmen/Reusken). Das $\cos^{2}(\pi h) < 1$ ist, folgt aus der Taylorentwicklung von $\cos^{2}$, für die gilt:
+\begin{equation}
+\cos^{2}(\pi h) \approx 1 - \pi^{2} h^{2} < 1
+\end{equation}
 
 \section{Das Verfahren der konjugierten Gradienten}\label{s.Das Verfahren der konjugierten Gradienten}
 
@@ -626,9 +755,11 @@ x^{k} &=& x^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ wobei } \alpha_{k-1} = \fr
 r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1} \notag
 \end{eqnarray}
 
-Bevor wir nun eine Weiterentwicklung des CG-Verfahrens betrachten, soll an dieser Stelle ein kurzer Satz über die Konvergenz des Verfahrens folgen. Einen Beweis hierzu findet man z.B. in (Dahmen/Reusken 573):
+Man muss in diesem Algorithmus pro Iterationsschritt lediglich zwei Skalarprodukte ausrechnen und eine Matrix-Vektor-Multiplikation durchführen. Somit erhält man einen Rechenaufwand von $\mathcal{O}(n^{2})$. Angewandt auf $\mat{A}_{2D}$ kann man - durch das Ausnutzen der Dünnbesetztheit - einen Aufwand pro Schritt von $\mathcal{O}(n)$ erreichen. \\
 
-\subsection{Satz (Konvergenze des CG-Algorithmus) [DahmenReusken]}
+An dieser Stelle soll noch ein kurzer Satz über die Konvergenz des Verfahrens folgen. Einen Beweis hierzu findet man z.B. in (Dahmen/Reusken 573):
+
+\subsection{Satz (Konvergenz des CG-Algorithmus) [DahmenReusken]}
 
 Sei $\mat{A} \in \mathbb{R}^{n \times n}$ symmetrisch, positiv definit und seien $u,f,u^{*},u^{k} \in \mathbb{R}^{n}$, wobei $u^{*}$ die exakte Lösung des Gleichungssystems $Au = b$ und $x^{k}$ die approximierte Lösung durch das CG-Verfahren ist. Dann gilt für $k = 1,2,...$:
 \begin{equation}
@@ -638,7 +769,7 @@ Da stets $\frac {\kappa_{2} (A) - 1} {\kappa_{2} (A) + 1} < 1$ gilt, sichert die
 
 \section{Vorkonditioniertes Verfahren der konjugierten Gradienten (PCG)}
 
-Das PCG-Verfahren (preconditioned conjugate gradient) ist eine optimierte Version des CG-Verfahrens. Wie wir in \autoref{ss.Matrixkondition} gesehen haben, ist die 2D Poisson Matrix $\mat{A}$ schlecht konditioniert. Die Idee ist nun, die bei der Iterations zu Grunde liegende Matrix $\mat{A}$ durch eine ähnliche Matrix mit besserer Kondition zu ersetzen, damit sich das Konvergenzverhalten verbessert.
+Das PCG-Verfahren (preconditioned conjugate gradient) ist eine optimierte Version des CG-Verfahrens. Wie wir in \autoref{ss.Matrixkondition} gesehen haben, ist z.B. $\mat{A}_{2D}$ schlecht konditioniert. Die Idee ist nun, die bei der Iterations zu Grunde liegende Matrix $\mat{A}$ durch eine ähnliche Matrix mit besserer Kondition zu ersetzen, damit sich das Konvergenzverhalten verbessert.
 
 \subsection{Satz}
 
@@ -712,7 +843,7 @@ l_{k,i} &=& \left( a_{k,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l
 \item Für viele Probleme zeigt sich, dass $\kappa_{2}(\mat{W}^{-1} \mat{A}) \ll \kappa_{2} (A)$ gilt. \\
 \end{itemize}
 
-Es gibt einige Varianten dieses Verfahrens. Wir wollen uns an dieser Stelle mit einer auseinander setzen.
+Es gibt einige Varianten dieses Verfahrens. Wir wollen uns an dieser Stelle mit einer dieser auseinander setzen.
 
 \subsection{Die modifizierte unvollständige Cholesky-Zerlegung}
 
@@ -741,8 +872,7 @@ a_{k,k} &=& a_{i,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l_{i,j}
 \end{eqnarray}
 
 Wir setzen wieder $\mat{W} := \tilde{\mat{L}} \tilde{\mat{L}}^{T}$. \\
-Es gibt noch weitere Verfahren (siehe z.B. Saad), wie beispielsweise das SSOR-Verfahren, die wir hier nicht weiter diskutieren wollen. In \autoref{c.Vergleich} werden wir die Vorteile der Vorkonditionierung anhand der 2D Poisson Gleichung sehen.
-
+Es gibt noch weitere Verfahren (siehe z.B. Saad), wie beispielsweise das SSOR-Verfahren, die wir hier nicht weiter diskutieren wollen.
 \chapter{Mehrgitterverfahren}\label{c.Mehrgitterverfahren}
 
 In diesem Abschnitt sollen nun die Mehrgittermethoden genauer betrachtet werden. Bevor wir jedoch genauer auf dieses Verfahren eingehen, wollen wir uns nochmal einige Erkenntnisse klar machen:
