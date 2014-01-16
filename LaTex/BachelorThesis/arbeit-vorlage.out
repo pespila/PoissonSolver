@@ -1,52 +1,47 @@
-\BOOKMARK [0][-]{chapter*.2}{Abbildungsverzeichnis}{}
-\BOOKMARK [0][-]{chapter*.3}{Tabellenverzeichnis}{}
-\BOOKMARK [0][-]{chapter*.4}{Symbolverzeichnis}{}
 \BOOKMARK [0][-]{chapter.1}{Einleitung}{}
 \BOOKMARK [0][-]{chapter.2}{Diskretisierung der Poisson-Gleichung im R2}{}
 \BOOKMARK [1][-]{section.2.1}{Definition \(Poisson-Gleichung\)}{chapter.2}
-\BOOKMARK [1][-]{section.2.2}{Bemerkungen}{chapter.2}
-\BOOKMARK [1][-]{section.2.3}{Finite Differenzen-Methode f\374r die Poisson-Gleichung}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.3.1}{\(Zentraler\) Differenzenquotient zweiter Ordnung}{section.2.3}
-\BOOKMARK [2][-]{subsection.2.3.2}{Diskretisierung von }{section.2.3}
-\BOOKMARK [1][-]{section.2.4}{Eigenwerte und Eigenvektoren der Matrix \040A }{chapter.2}
-\BOOKMARK [2][-]{subsection.2.4.1}{Eigenvektoren von \040A }{section.2.4}
-\BOOKMARK [2][-]{subsection.2.4.2}{Eigenwerte von \040A }{section.2.4}
-\BOOKMARK [2][-]{subsection.2.4.3}{Definition \(Kondition einer symmetrischen Matrix\)}{section.2.4}
-\BOOKMARK [2][-]{subsection.2.4.4}{Lemma \(Kondition der 2D Poisson Matrix\)}{section.2.4}
-\BOOKMARK [3][-]{subsubsection.2.4.4.1}{Beweis:}{subsection.2.4.4}
+\BOOKMARK [1][-]{section.2.2}{Finite Differenzen-Methode f\374r die Poisson-Gleichung}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.2.1}{\(Zentraler\) Differenzenquotient zweiter Ordnung}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.2}{Diskretisierung von }{section.2.2}
+\BOOKMARK [1][-]{section.2.3}{Eigenwerte und Eigenvektoren der Matrix \040A }{chapter.2}
+\BOOKMARK [2][-]{subsection.2.3.1}{Eigenvektoren von \040A }{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.2}{Eigenwerte von \040A }{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.3}{Definition \(Kondition einer symmetrischen Matrix\)}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.4}{Lemma \(Kondition der 2D Poisson Matrix\)}{section.2.3}
+\BOOKMARK [3][-]{subsubsection.2.3.4.1}{Beweis:}{subsection.2.3.4}
 \BOOKMARK [0][-]{chapter.3}{Iterative L\366sungsvefahren f\374r lineare Gleichungssysteme}{}
-\BOOKMARK [1][-]{section.3.1}{Das Jacobi-Verfahren \(Gesamtschrittverfahren\)}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.1.1}{Das allgemeine Jacobi-Iterationsverfahren}{section.3.1}
-\BOOKMARK [2][-]{subsection.3.1.2}{Das Jacobi-Iterationsverfahren f\374r die Poisson-Gleichung}{section.3.1}
-\BOOKMARK [1][-]{section.3.2}{Das Gau\337-Seidel-Verfahren \(Einzelschrittverfahren\)}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.2.1}{Das allgemeine Gauss-Seidel-Iterationsverfahren}{section.3.2}
-\BOOKMARK [2][-]{subsection.3.2.2}{Das Gauss-Seidel-Iterationsverfahren f\374r die Poisson-Gleichung}{section.3.2}
-\BOOKMARK [1][-]{section.3.3}{Warum Einzelschritt- und Gesamtschrittverfahren?}{chapter.3}
-\BOOKMARK [1][-]{section.3.4}{Die SOR-Methode \(SOR = successive overrelaxation\)}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.4.1}{Algorithmus des SOR-Verfahrens}{section.3.4}
-\BOOKMARK [2][-]{subsection.3.4.2}{Satz \(Optimaler Parameter \)}{section.3.4}
-\BOOKMARK [2][-]{subsection.3.4.3}{SOR in Matrix-Darstellung}{section.3.4}
-\BOOKMARK [2][-]{subsection.3.4.4}{Satz}{section.3.4}
-\BOOKMARK [1][-]{section.3.5}{Das Verfahren der konjugierten Gradienten}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.5.1}{Definition \(A-orthogonal\)}{section.3.5}
-\BOOKMARK [3][-]{subsubsection.3.5.1.1}{Bemerkung:}{subsection.3.5.1}
-\BOOKMARK [2][-]{subsection.3.5.2}{Lemma - \(A-orthogonaler\) Projektionssatz}{section.3.5}
-\BOOKMARK [2][-]{subsection.3.5.3}{Allgemeiner Algorithmus der konjugierten Gradienten}{section.3.5}
-\BOOKMARK [3][-]{subsubsection.3.5.3.1}{Erkl\344rung zum CG-Algorithmus}{subsection.3.5.3}
-\BOOKMARK [2][-]{subsection.3.5.4}{Numerischer Algorithmus der konjugierten Gradienten}{section.3.5}
-\BOOKMARK [2][-]{subsection.3.5.5}{Satz \(Konvergenze des CG-Algorithmus\)}{section.3.5}
-\BOOKMARK [1][-]{section.3.6}{Vorkonditioniertes Verfahren der konjugierten Gradienten \(PCG\)}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.6.1}{Satz}{section.3.6}
-\BOOKMARK [3][-]{subsubsection.3.6.1.1}{Beweis:}{subsection.3.6.1}
-\BOOKMARK [2][-]{subsection.3.6.2}{Der Algorithmus des vorkonditionierten konjugierten Gradienten Verfahrens}{section.3.6}
-\BOOKMARK [2][-]{subsection.3.6.3}{Die unvollst\344ndige Cholesky-Zerlegung}{section.3.6}
-\BOOKMARK [3][-]{subsubsection.3.6.3.1}{Definition \(Das Muster E\)}{subsection.3.6.3}
-\BOOKMARK [3][-]{subsubsection.3.6.3.2}{Eigenschaften der Matrix }{subsection.3.6.3}
-\BOOKMARK [3][-]{subsubsection.3.6.3.3}{Der numerische Algorithmus der unvollst\344ndigen Cholesky Zerlegung}{subsection.3.6.3}
-\BOOKMARK [3][-]{subsubsection.3.6.3.4}{Bemerkungen:}{subsection.3.6.3}
-\BOOKMARK [2][-]{subsection.3.6.4}{Die modifizierte unvollst\344ndige Cholesky-Zerlegung}{section.3.6}
-\BOOKMARK [3][-]{subsubsection.3.6.4.1}{Eigenschaften der Matrix }{subsection.3.6.4}
-\BOOKMARK [3][-]{subsubsection.3.6.4.2}{Der numerische Algorithmus der modifizierten unvollst\344ndigen Cholesky-Zerlegung}{subsection.3.6.4}
+\BOOKMARK [1][-]{section.3.1}{Definition \(Spektralradius\)}{chapter.3}
+\BOOKMARK [1][-]{section.3.2}{Definition \(Iterationsmatrix\)}{chapter.3}
+\BOOKMARK [1][-]{section.3.3}{Satz \(Konvergenz iterativer Verfahren\)}{chapter.3}
+\BOOKMARK [1][-]{section.3.4}{Das Jacobi-Verfahren \(Gesamtschrittverfahren\)}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.4.1}{Das allgemeine Jacobi-Iterationsverfahren}{section.3.4}
+\BOOKMARK [2][-]{subsection.3.4.2}{Satz \(Iterationsmatrix des Jacobi-Verfahrens\)}{section.3.4}
+\BOOKMARK [2][-]{subsection.3.4.3}{Satz \(Eigenwerte der Jacobi-Iterationsmatrix bzgl. der 2D Poisson Matrix\)}{section.3.4}
+\BOOKMARK [2][-]{subsection.3.4.4}{Lemma \(Spektralradius der Jacobi-Iterationsmatrix bzgl. der 2D Poisson Matrix\)}{section.3.4}
+\BOOKMARK [2][-]{subsection.3.4.5}{Das Jacobi-Iterationsverfahren f\374r die Poisson-Gleichung}{section.3.4}
+\BOOKMARK [1][-]{section.3.5}{Das Gau\337-Seidel-Verfahren \(Einzelschrittverfahren\)}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.5.1}{Das allgemeine Gauss-Seidel-Iterationsverfahren}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.2}{Das Gauss-Seidel-Iterationsverfahren f\374r die Poisson-Gleichung}{section.3.5}
+\BOOKMARK [1][-]{section.3.6}{Das Verfahren der konjugierten Gradienten}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.6.1}{Definition \(A-orthogonal\)}{section.3.6}
+\BOOKMARK [2][-]{subsection.3.6.2}{Lemma - \(A-orthogonaler\) Projektionssatz}{section.3.6}
+\BOOKMARK [2][-]{subsection.3.6.3}{Allgemeiner Algorithmus der konjugierten Gradienten}{section.3.6}
+\BOOKMARK [3][-]{subsubsection.3.6.3.1}{Erkl\344rung zum CG-Algorithmus}{subsection.3.6.3}
+\BOOKMARK [2][-]{subsection.3.6.4}{Numerischer Algorithmus der konjugierten Gradienten}{section.3.6}
+\BOOKMARK [2][-]{subsection.3.6.5}{Satz \(Konvergenze des CG-Algorithmus\) [DahmenReusken]}{section.3.6}
+\BOOKMARK [1][-]{section.3.7}{Vorkonditioniertes Verfahren der konjugierten Gradienten \(PCG\)}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.7.1}{Satz}{section.3.7}
+\BOOKMARK [3][-]{subsubsection.3.7.1.1}{Beweis:}{subsection.3.7.1}
+\BOOKMARK [2][-]{subsection.3.7.2}{Der Algorithmus des vorkonditionierten konjugierten Gradienten Verfahrens}{section.3.7}
+\BOOKMARK [2][-]{subsection.3.7.3}{Die unvollst\344ndige Cholesky-Zerlegung}{section.3.7}
+\BOOKMARK [3][-]{subsubsection.3.7.3.1}{Definition \(Das Muster E\)}{subsection.3.7.3}
+\BOOKMARK [3][-]{subsubsection.3.7.3.2}{Eigenschaften der Matrix }{subsection.3.7.3}
+\BOOKMARK [3][-]{subsubsection.3.7.3.3}{Der numerische Algorithmus der unvollst\344ndigen Cholesky Zerlegung}{subsection.3.7.3}
+\BOOKMARK [3][-]{subsubsection.3.7.3.4}{Bemerkungen:}{subsection.3.7.3}
+\BOOKMARK [2][-]{subsection.3.7.4}{Die modifizierte unvollst\344ndige Cholesky-Zerlegung}{section.3.7}
+\BOOKMARK [3][-]{subsubsection.3.7.4.1}{Eigenschaften der Matrix }{subsection.3.7.4}
+\BOOKMARK [3][-]{subsubsection.3.7.4.2}{Der numerische Algorithmus der modifizierten unvollst\344ndigen Cholesky-Zerlegung}{subsection.3.7.4}
 \BOOKMARK [0][-]{chapter.4}{Mehrgitterverfahren}{}
 \BOOKMARK [1][-]{section.4.1}{Grundideen}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.1.1}{Beweis der Residuumsgleichung}{section.4.1}
@@ -56,11 +51,8 @@
 \BOOKMARK [1][-]{section.5.1}{Beispiel einer Poisson Gleichung}{chapter.5}
 \BOOKMARK [1][-]{section.5.2}{Jacobi-Verfahren angewandt auf das Beispiel}{chapter.5}
 \BOOKMARK [1][-]{section.5.3}{Gauss-Seidel-Verfahren angewandt auf das Beispiel}{chapter.5}
-\BOOKMARK [1][-]{section.5.4}{SOR-Verfahren angewandt auf das Beispiel}{chapter.5}
-\BOOKMARK [1][-]{section.5.5}{CG-Verfahren angewandt auf das Beispiel}{chapter.5}
-\BOOKMARK [1][-]{section.5.6}{PCG-Verfahren angewandt auf das Beispiel}{chapter.5}
-\BOOKMARK [1][-]{section.5.7}{Das Mehrgitterverfahren angewandt auf das Beispiel}{chapter.5}
-\BOOKMARK [2][-]{subsection.5.7.1}{V-Zyklus}{section.5.7}
-\BOOKMARK [2][-]{subsection.5.7.2}{W-Zyklus}{section.5.7}
-\BOOKMARK [0][-]{appendix.A}{Anhang}{}
-\BOOKMARK [1][-]{section.A.1}{Quelltexte}{appendix.A}
+\BOOKMARK [1][-]{section.5.4}{CG-Verfahren angewandt auf das Beispiel}{chapter.5}
+\BOOKMARK [1][-]{section.5.5}{PCG-Verfahren angewandt auf das Beispiel}{chapter.5}
+\BOOKMARK [1][-]{section.5.6}{Das Mehrgitterverfahren angewandt auf das Beispiel}{chapter.5}
+\BOOKMARK [2][-]{subsection.5.6.1}{V-Zyklus}{section.5.6}
+\BOOKMARK [2][-]{subsection.5.6.2}{W-Zyklus}{section.5.6}

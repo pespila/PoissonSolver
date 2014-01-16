@@ -28,7 +28,22 @@ int main(int argc, char const *argv[]) {
     } else {
         printf("Couldn't print Matrix! Dimension is too high.\n");
     }
-    V.WriteToFile();
+    //V.WriteToFile();
+
+    double Pi=3.141592654;
+    FILE *file;
+    file=fopen("../Plot/plot.txt", "w");
+    if(file==NULL) {
+        printf("ERROR: Could not open file!\n");
+    } else {
+        for(int i=0;i<=arg;i++) {
+            for(int j=0;j<=arg;j++) {
+                fprintf(file, "%f %f %f\n",);
+            }
+            fprintf(file, "\n");
+        }
+    }
+    fclose (file);
 
     return EXIT_SUCCESS;
 }

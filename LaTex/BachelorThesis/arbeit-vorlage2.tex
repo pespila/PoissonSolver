@@ -66,6 +66,7 @@ Abschließend wollen wir uns dann noch mit Mehrgittermethoden beschäftigen. Sie
 
 
 \chapter{Diskretisierung der Poisson-Gleichung im $\mathbb{R}^{2}$}\label{c.Diskretisierte Poisson-Gleichung}
+Um die Poisson-Gleichung zu diskretisieren, werden wir diese zunächst definieren. Außerdem werden wir die Methode der finitien Differenzen einführen, um dann ein Gleichungssystem der Form $\mat{A}u = f$ zu erhalten.
 
 \section{Definition (Poisson-Gleichung)}\label{s.Poisson-Gleichung}
 
@@ -80,7 +81,14 @@ Dabei seien $f: \Omega \rightarrow \mathbb{R}$ und $g: \partial\Omega \rightarro
 	-\Delta u(x,y) &=& \frac {\partial^{2} u(x,y)} {\partial x^{2}} + \frac {\partial^{2} u(x,y)} {\partial y^{2}} = f(x,y) \textnormal{ in } \Omega \\
     u(x,y) &=& g(x,y) \textnormal{ in } \partial \Omega
 \end{eqnarray}
-(2.2) und (2.4) nennt man Dirichlet-Randbedingung.\\
+(2.2) und (2.4) nennt man Dirichlet-Randbedingung.
+
+\section{Bemerkungen}\label{s.Bemerkungen zur Poisson-Gleichung}
+
+\begin{itemize}
+\item Die Funktion $u(x,y)$ ist häufig formelmäßig nicht darstellbar und wird mit Hilfe von numerischen Verfahren in $\Omega$ genähert (Parallele numerische Verfahren/Seite 18 unten)
+\item Man kann zeigen, dass, wenn $\partial \Omega$ aus glatten Liniensegmenten (z.B. Geraden) zusammengesetzt ist und $f(x,y) \in C^{1}(\Omega), g \in C(\partial \Omega)$ gilt, die Gleichungen (2.1),(2.2) bzw. (2.3),(2.4) eine eindeutige Lösung besitzen (Dahmen,Reusken Seite 463).
+\end{itemize}
 
 Um diese (elliptische) partielle Differentialgleichung nun in $\Omega$ zu diskretisieren, bedarf es der Hilfe der Finiten Differenzen Methode.
 
@@ -183,7 +191,7 @@ A_{i} =
 \end{equation}
 mit $A_{i} \in \mathbb{R}^{(n-1) \times (n-1)}$ symmetrisch, positiv definit (s.p.d).
 
-Um nun auf ein lineares Gleichungssystem der Form $\mat{A}u = f$ zu kommen, muss natürlich noch die rechte Seite, also das $f$ aufgestellt werden. Zu jeder Komponente in $f$, die einen Randpunkt als Nachbarn hat, wird dieser dazu addieret. Dies führt uns auf folgende rechte Seite:
+Um nun auf ein lineares Gleichungssystem der Form $\mat{A}u = f$ zu kommen, muss natürlich noch die rechte Seite, also das $f$ aufgestellt werden. Aus der Form der Matrix ist erkennbar, dass nicht alle Punkt aus $\overline \Omega$ in $\mat{A}$ auftauchen. Das liegt daran, dass die Randpunkte die aus der Dirichlet-Randbedingung resultieren ($u(x,y) = f(x,y)$) bereits bekannt sind und somit nicht genähert werden müssen. Jedoch muss zu jeder Komponente in $f$, die einen Randpunkt als Nachbarn hat, dieser aufaddiert werden. Dies führt uns auf folgende rechte Seite:
 
 \begin{equation}
 f = 
@@ -248,8 +256,8 @@ Wir erhalten das lineare Gleichungssystem der Form $\mat{A}u = f$, wobei $\mat{A
 
 \section{Eigenwerte und Eigenvektoren der Matrix $\mat{A}$}\label{s.Eigenwerte und Eigenvektoren}
 
-Die Kondition der Matrix $\mat{A}$ spielt in den iterativen Verfahren, wie auch bei den Mehrgittermethoden eine große Rolle. Sie entscheidet über die Konvergenzeigenschaften und die Effizienz des Algorithmus.\\
-Erinnerung: Da $\mat{A}$ symmetrisch ist, existiert eine Orthogonalbasis aus Eigenvektoren für die gilt:
+Die Kondition der Matrix $\mat{A}$ spielt in den iterativen Verfahren, wie auch bei den Mehrgittermethoden eine große Rolle. Sie entscheidet über die Konvergenzeigenschaften und die Effizienz des Algorithmus. Darum wollen wir uns in diesem Kapitel mit den Eigenwerten und Eigenvektoren der Matrix $\mat{A}$ genauer befassen. \\
+Da $\mat{A}$ symmetrisch ist, existiert eine Orthogonalbasis aus Eigenvektoren für die gilt:
 \begin{equation}
 \mat{A}x = \lambda x
 \end{equation}
@@ -267,13 +275,13 @@ Für die Eigenwerte der Matrix $\mat{A}$ gilt:
 \begin{equation}
 \lambda_{ij} = \frac {4} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2}) \right) \textnormal{ für } 1 \le i,j \le n-1\label{eq.Eigenwerte}
 \end{equation}
-wobei $(n-1)$ die Anzahl der Gitterpunkte in x- und in y-Richtung definiert.
+wobei $(n-1)$ die Anzahl der Gitterpunkte in x- und in y-Richtung definiert (siehe oben).
 
-Für das Lemma in \autoref{ss.Matrixkondition} ist folgende Definition hilfreich:
+Für das Lemma \autoref{ss.Matrixkondition} ist folgende Definition hilfreich:
 
 \subsection{Definition (Kondition einer symmetrischen Matrix)}\label{ss.Definition Kondition einer Matrix}
 
-Sei $\mat{A}$ eine symmetrische Matrix des $\mathbb{R}^{n \times n}$. Dann gilt für die Kondition der Matrix:
+Sei $\mat{A}$ eine symmetrische Matrix des $\mathbb{R}^{n \times n}$. Dann gilt für die euklidische Norm:
 \begin{equation}
 \kappa_{2} (A) = \frac {\lambda_{max}} {\lambda_{min}}\label{eq.Kondition}
 \end{equation}
@@ -311,40 +319,13 @@ Diese Problematik wird uns in späteren Abschnitten nochmals begegnen.
 
 \chapter{Iterative Lösungsvefahren für lineare Gleichungssysteme}\label{c.IterativeVerfahren}
 
-Gleichungssysteme, die partielle Differentialgleichungen lösen, können sehr groß werden. Aus diesem Grund sind direkte Verfahren, wie z.B. der Gauß-Algorithmus oder die LR-Zerlegung nicht geeignet. Ihr Rechenaufwand beläuft sich im Allgemeinen auf $\mathcal{O}(n^{3})$ und ist dadurch zu langsam.\\
-Wesentlich besser geeignet für diese Problemstellung sind iterative Verfahren. Sie zeichnen sich durch eine schnelle Konvergenz und einen geringen Rechenaufwand aus, falls sie konvergieren.
-
-\section{Definition (Spektralradius)}\label{s.Spektralradius}
-
-Sei $\mat{A} \in \mathbb{R}^{n \times n}$. Dann gilt:
-\begin{equation}
-\rho(A) := \max_{1 \le i \le n} | \lambda_{i} |
-\end{equation}
-Ist $\mat{A}$ symmetrisch so gilt auch: $\| A \|_{2} = \rho(A)$
-
-\section{Definition (Iterationsmatrix)}
-
-Sei $\mat{A} \in \mathbb{R}^{n \times n}$. Sei außerdem $\mat{C} \in \mathbb{R}^{n \times n}$ eine nichtsinguläre Matrix. Für die iterative Lösung eines linearen Gleichungssystems der Form $Au = f$ ist die Iterationsmatrix $\mat{T} \in \mathbb{R}^{n \times n}$ definiert als:
-\begin{equation}
-\mat{T} := (\mat{Id} - \mat{C} \mat{A})
-\end{equation}
-wobei die Iterationsvorschrift gegeben ist durch:
-\begin{equation}
-u^{k+1} := (\mat{Id} - \mat{C} \mat{A})u^{k} + \mat{C} f \textnormal{ für k = 0,1,2,...}\label{eq.Iteratives Verfahren}
-\end{equation}
-
-\section{Satz (Konvergenz iterativer Verfahren)}
-
-Ein iteratives Verfahren mit beliebigen Startvektor $x^{0} \in \mathbb{R}^{n}$ konvergiert genau dann gegen die exakte Lösung $x^{*} \in \mathbb{R}^{n}$, wenn gilt:
-\begin{equation}
-\rho(\mat{T}) < 1
-\end{equation}
-
-Einen Beweis hierzu findet man z.B. in (Dahmen/Reusken und Verweis).
+Gleichungssysteme, die partielle Differentialgleichungen lösen, können sehr groß werden, da man das entsprechende Gitter sehr fein wählen will, um eine möglichst genaue Lösung zu erhalten. Aus diesem Grund sind direkte Verfahren, wie z.B. der Gauß-Algorithmus oder die LR-Zerlegung nicht geeignet. Ihr Rechenaufwand beläuft sich im Allgemeinen auf $\mathcal{O}(n^{3})$ und ist dadurch zu langsam. Fehler - durch Maschinengenauigkeit bedingt - werden außerdem in diesen Verfahren verstärkt. Darum müssen bessere Verfahren gewählt werden. \\
+Ein wesentlicher Bestandteil der numerischen Mathematik sind iterative Verfahren zur Lösung linearer Gleichungssysteme. Diese zeichnen sich meist durch eine schnelle Konvergenz und einen geringen Rechenaufwand aus. Wir wollen uns im folgenden dem Jacobi-Verfahren (Gesamtschrittverfahren), Gauß-Seidel-Verfahren (Einzelschrittverfahren) und dem CG-Verfahren (ohne und mit Vorkonditionierung) widmen.
 
 \section{Das Jacobi-Verfahren (Gesamtschrittverfahren)}\label{s.Das Jacobi-Iterationsverfahren}
 
-Für die Beispiele gilt stets: $n := (N-1) \cdot (N-1)$, wobei $(N-1)$ die Gitterweite in x- und y-Richtung darstellt.
+Im folgenden betrachten wir das oben beschriebene Gitter mit $(N-1)$ Gitterpunkten in x- und y-Richtung und erhalten dadurch für die Dimension $n = (N-1) \cdot (N-1)$. \\
+
 
 \subsection{Das allgemeine Jacobi-Iterationsverfahren}\label{ss.Allgemeines Jacobi-Verfahren}
 
@@ -366,65 +347,15 @@ Ist nun $D$ nicht singulär, so gilt für das Jacobi-Verfahren folgende Iteratio
 Du^{k+1} = (L+U)u^{k} + f \Leftrightarrow u^{k+1} = D^{-1}(L+U)u^{k} + D^{-1}f
 \end{equation}
 
-In Komponentenschreibweise: \\
-Mit einem Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig} und $k=1,2,...$ berechne für $i=1,...,n$:
+Mit der Iterationsmatrix $T := D^{-1}(L+U)$.
+Wobei dies in Komponentenschreibweise wie folgt aussieht: \\
+Mit einem Startvektor $u^{0} \in \mathbb{R}^{n}$ und $k=1,2,...$ berechne für $i=1,...,n$:
 
 \begin{equation}
 u^{k}_{i} = \frac {1} {a_{ii}} (f_{i} - \sum_{\substack{j = 1 \\ j \ne i}}^{n} a_{ij}u^{k-1}_{i})
 \end{equation}
 
-In jedem Schritt zur Berechnung von $u^{k}$ muss hier die Information seines Vorgängers $u^{k-1}$ bekannt sein. Der Rechenaufwand pro Iterationsschritt beträgt $\mathcal{O}(n^{2})$ und entspricht somit einer Matrix-Vektor-Multiplikation.
-
-\subsection{Satz (Iterationsmatrix des Jacobi-Verfahrens)}
-
-Für die Iterationsmatrix des Jacobi-Verfahrens gilt:
-\begin{equation}
-\mat{T}_{J} := (\mat{Id} - \mat{D}^{-1} \mat{A})
-\end{equation}
-Hier ist also $\mat{C} = \mat{D}^{-1}$
-
-\textbf{Beweis}:
-
-Mit der Iterationsvorschrift folgt:
-\begin{eqnarray}
-u^{k+1} = D^{-1}(L+U)u^{k} + D^{-1}f
-&\overset{(\mat{L}+\mat{U})=(\mat{D}-\mat{A})}{=}& D^{-1}(D-A)u^{k}+D^{-1}f \\
-&=& (Id-D^{-1}A)u^{k} + D^{-1}f
-\end{eqnarray}
-$\Longrightarrow$ Beh.
-
-\subsection{Satz (Eigenwerte der Jacobi-Iterationsmatrix bzgl. der 2D Poisson Matrix)}
-
-Für die Eigenwerte der Iterationsmatrix $\mat{T}_{J}$ gilt:
-\begin{equation}
-\lambda_{i,j}(\mat{T}_{J}) = 1 - \frac {4} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2}) \right) \textnormal{ für } 1 \le i,j \le n-1\label{eq.Jacobi-Eigenwerte}
-\end{equation}
-
-\textbf{Beweis:}
-Für $\mat{D} = \frac {4} {h^{2}} \mat{Id}$ folgt $\mat{D}^{-1} = \frac {h^{2}} {4} \mat{Id}$. Für die Iterationsmatrix $\mat{T}_{J}$ angewandt auf einen Vektor $u$ gilt:
-\begin{eqnarray}
-Tu = (Id - D^{-1}A)u = Id u - D^{-1} \underbrace{Au}_{=\lambda(A) u} = - \frac {h^{2}} {4} Id \lambda(A) u =
-(1 - \frac {h^{2}} {4} \lambda(A)) u
-\end{eqnarray}
-Die Eigenwerte von $\mat{T}$ lassen sich also einfach durch $(1 - \lambda(A)$ berechen. Somit folgt aus \autoref{eq.Eigenwerte}:
-\begin{equation}
-\lambda_{i,j}(\mat{T}_{J}) = 1 - \frac {4} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2}) \right) \textnormal{ für } 1 \le i,j \le n-1
-\end{equation}
-
-\subsection{Lemma (Spektralradius der Jacobi-Iterationsmatrix bzgl. der 2D Poisson Matrix)}
-
-Das Jacobi-Verfahren konvergiert für die diskrete Poisson Gleichung und es gilt für den Spektralradius:
-\begin{equation}
-\rho(\mat{T}_{J}) = \cos(\pi h) < 1
-\end{equation}
-
-\textbf{Beweis:}
-
-Mit \autoref{eq.Jacobi-Eigenwerte} folgt:
-\begin{eqnarray}
-\rho(Id-D^{-1}A) = \max_{1 \le i \le n} | \lambda_{i} | = \max_{1 \le i \le n} | 1 - \frac {4} {h^{2}} \left(\sin^{2}(\frac {i \pi h} {2}) + \sin^{2}(\frac {j \pi h} {2} \right) | &=& \\
-1 - 2\sin^{2} (\frac {\pi h} {2}) =\cos (\pi h) \overset{\textnormal{mit Taylorentwicklung}}{\approx} 1 - \frac {1} {2} \pi^{2} h^{2}
-\end{eqnarray}
+Offensichtlich wird jedes $u^{k}$ durch seinen Vorgänger berechnet. Der Rechenaufwand pro Iterationsschritt beträgt hier $\mathcal{O}(n^{2})$ und entspricht somit einer Matrix-Vektor-Multiplikation.
 
 \subsection{Das Jacobi-Iterationsverfahren für die Poisson-Gleichung}\label{ss.Jacobi-Verfahren der Poisson Gleichung}
 
@@ -434,24 +365,25 @@ Da die Matrix, die durch das diskretisierte Poisson-Problem aufgestellt wird, d�
 \frac {u(x_{i-1},y_{j}) + u(x_{i+1},y_{j}) - 4u(x_{i},y_{j}) + u(x_{i},y_{j-1}) + u(x_{i},y_{j+1})} {h^{2}} = f(x,y)
 \end{equation}
 
-Löst man diese Gleichung nun für alle $i,j$ nach $u(x_{i},y_{j})$ auf, so erhält man folgende Iterationsvorschrift für das Jacobi-Verfahren: \\
+Löst man diese Gleichung nun nach $u(x_{i},y_{j})$ auf und führt dies für alle $u(x_{i},y_{i})$ durch, so erhält man folgende Iterationsvorschrift für das Jacobi-Verfahren: \\
 
-Berechne für $k = 1,2,...$ mit Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig} \\
+Für $k = 1,2,...$ berechne mit Startvektor $u^{0} \in \mathbb{R}^{n}$ \\
 Für $i = 1,...,N-1$ \\
-Für $j = 1,...,N-1$
+$\hspace{2cm}$ Für $j = 1,...,N-1$
 \begin{equation}
 u^{k}_{i,j} =   \frac {1} {4} (u^{k}_{i-1,j} + u^{k}_{i+1,j} + u^{k}_{i,j-1} + u^{k}_{i,j+1} - h^{2}f(x_{i},y_{j}))
 \end{equation}
 
-Der Rechenaufwand pro Iterationsschritt beträgt lediglich $\mathcal{O}((N-1) \cdot (N-1)) = \mathcal{O}(n)$ Schritte.
+Der Rechenaufwand beträgt nun pro Iterationsschritt lediglich $\mathcal{O}((N-1) \cdot (N-1)) = \mathcal{O}(n)$ Schritte.
+
+Ein weiteres Verfahren, welches für die diskretisierte Poisson-Gleichung sogar doppelt so schnell konvergiert, als das Jacobi-Verfahren (siehe dazu Verweis aus parallell...) wollen wir nun im nächsten Abschnitt betrachten.
+
 
 \section{Das Gauß-Seidel-Verfahren (Einzelschrittverfahren)}\label{s.Das Gauss-Seidel-Verfahren}
 
-Mit einer ähnlichen Vorgehensweise wie oben, wollen wir uns nun ein weiteres Verfahren herleiten.
-
 \subsection{Das allgemeine Gauss-Seidel-Iterationsverfahren}\label{ss.Allgemeines Gauss-Seidel-Verfahren}
 
-Wir zerlegen die Matrix $\mat{A}$ wie folgt:
+Mit der selben Vorschrift und den selben Überlegungen wie oben, wollen wir die Matrix $\mat{A}$ wie folgt zerlegen:
 \begin{equation}
 A = D - L - U
 \end{equation}
@@ -466,33 +398,34 @@ Daraus können wir nun folgende Iterationsvorschrift ableiten:
 (D-L)u^{k+1} = Uu^{k} + f \Leftrightarrow u^{k+1} = (D-L)^{-1}Uu^{k} + (D-L)^{-1}f
 \end{equation}
 
-In Komponentenschreibweise für $i=1,...,n$:
+Dies nun in Komponentenschreibweise für $i=1,...,n$:
 \begin{equation}
 \sum\limits_{j=1}^{i} a_{ij}u_{j}^{k+1} = -\sum\limits_{j=i+1}^{n} a_{ij}u_{j}^{k} + f_{i}\label{eq.GaussSeidel}
 \end{equation}
 
-Formt man \autoref{eq.GaussSeidel} um, so erhält man den Algorithmus des Gauss-Seidel-Verfahrens mit Startvektor $u^{0} \in \mathbb{R}$ \textit{beliebig}:
+Formt man \autoref{eq.GaussSeidel} um, so erhält man den Algorithmus des Gauss-Seidel-Verfahrens mit Startvektor $u^{0} \in \mathbb{R}$: \\
 
 Für $k = 1,2,...$ berechne für $i = 1,...,n$
 \begin{eqnarray}
 u_{i}^{k+1} &=& \frac {1} {a_{ii}} (f_{i} - \sum\limits_{j=1}^{i-1} a_{ij}u_{j}^{k+1} - \sum\limits_{j=i+1}^{n} a_{ij}u_{j}^{k})
 \end{eqnarray}
 
-Dieses Verfahren nutzt sofort die Werte, die im laufenden Iterationsschritt berechnet wurden. Somit spart man sich das Alloziieren eines temporären Vektors, also Speicherplatz. \\
+Wie zu sehen ist, verwendet dieser Algorithmus dieses mal nicht nur die Werte aus dem vorigen Iterationsschritt, sondern auch welche aus dem gerade laufenden. \\
 Das Gauss-Seidel-Verfahren wartet ebenfalls mit einem Rechaufwand von $\mathcal{O}(n^{2})$ auf. Wie beim Jacobi-Verfahren kann man dies auf $\mathcal{O}(n)$ optimieren.
 
 \subsection{Das Gauss-Seidel-Iterationsverfahren für die Poisson-Gleichung}\label{ss.Gauss-Seidel-Verfahren der Poisson Gleichung}
 
-Ebenso wie in \autoref{ss.Jacobi-Verfahren der Poisson Gleichung} entwickeln wir den Algorithmus, beachten aber dabei, dass bereits berechnete Werte im Iterationsschritt wieder genutzt werden:
+Um nun eine angepasste Formel bzw. Iterationsvorschrift zu erhalten gehen wir wieder mit Hilfe des 5-Punkt-Differenzensterns vor. Allerdings verwendet wie oben beschrieben der Algorithmus auch Werte, die im aktuellen Iterationsschritt berechnet wurden. Um dies zu gewährleisten müssen wir uns nur \autoref{img.gridWithNumbers} ansehen. Hierbei ist ersichtlich, dass $u_{i-1,j}$ und $u_{i,j-1}$ bereits neu berechnet wurden. $u_{i+1,j}$ und $u_{i,j+1}$ stammen noch aus dem vorigen Iterationsschritt.
 
+Daraus ergibt sich der spezielle Gauss-Seidel-Algorithmus für die Poisson-Gleichung:
 \begin{equation}
 u^{k}_{i,j} =   \frac {1} {4} (u^{k}_{i-1,j} + u^{k}_{i,j-1} + u^{k-1}_{i+1,j} + u^{k-1}_{i,j+1} - h^{2}f(x_{i},y_{j}))
 \end{equation}
 Auch hier reduziert sich der Rechenaufwand auf $\mathcal{O}(n)$.
 
 
-% \section{Warum Einzelschritt- und Gesamtschrittverfahren?}\label{s.Warum Einzelschritt- und Gesamtschrittverfahren?}
-% Zum lösen von großen linearen Gleichungssystemen werden das Jacobi-Verfahren und das Gauss-Seidel-Verfahren heute kaum mehr verwendet. Es gibt mittlerweile schnellere, stabilere und effizientere Verfahren wie wir im fortlaufenden sehen werden. Einen großen Vorteil haben allerdings beide Verfahren: Sie löschen große Fehler bereits nach den ersten Iterationsschritten aus. Darum finden sie besonders große Verwendung in den Mehrgittermethoden, die wir später kennen lernen werden.
+\section{Warum Einzelschritt- und Gesamtschrittverfahren?}\label{s.Warum Einzelschritt- und Gesamtschrittverfahren?}
+Zum lösen von großen linearen Gleichungssystemen werden das Jacobi-Verfahren und das Gauss-Seidel-Verfahren heute kaum mehr verwendet. Es gibt mittlerweile schnellere, stabilere und effizientere Verfahren wie wir im fortlaufenden sehen werden. Einen großen Vorteil haben allerdings beide Verfahren: Sie löschen große Fehler bereits nach den ersten Iterationsschritten aus. Darum finden sie besonders große Verwendung in den Mehrgittermethoden, die wir später kennen lernen werden.
 
 % \section{Die SOR-Methode (SOR = successive overrelaxation)}\label{s.SOR-Methode}
 
@@ -546,11 +479,21 @@ Auch hier reduziert sich der Rechenaufwand auf $\mathcal{O}(n)$.
 \section{Das Verfahren der konjugierten Gradienten}\label{s.Das Verfahren der konjugierten Gradienten}
 
 Das Verfahren der konjugierten Gradienten wurde 1952 von Heestens und Stiefel erstmals vorgestellt. Das Verfahren zeichnet sich durch Stabilität und schnelle Konvergenz aus. \\
-Das CG-Verfahren (conjugate gradient) - wie es auch genannt wird - ist eine Projektionsmethode, bei der jedoch die Matrix $\mat{A}$ eine wesentliche Rolle spielt.
+Das Verfahren der konjugierten Gradienten (auch CG-Verfahren) ist eine Krylov-Unterraum-Methode und gehört zu den Projektionsverfahren. Charakterisitisch für das CG-Verfahren ist außerdem die A-Orthogonalität der Basen des Krylovraums. Die Orthogonalität hängt also von der zugrunde liegenden Matrix $\mat{A}$ ab. Aus diesem Grund müssen wir zunächst definieren, was A-orthogonal heißt.
 
 \subsection{Definition (A-orthogonal)}\label{ss.A-orthogonal}
 Sei $\mat{A}$ eine symmetrische, nicht singuläre Matrix. Zwei Vektoren $x,y \in \mathbb{R}^{n}$ heißen \underline{\textbf{konjugiert}} oder \underline{\textbf{A-orthogonal}}, wenn $x^{T}Ay = 0$ gilt.
 
+\subsubsection{Bemerkung:}\label{sss.Bemerkung zu A-orthogonal}
+
+\begin{itemize}
+\item Es definiert $\langle x,y \rangle _{A} = x^{T}Ay$ ein Skalarprodukt auf dem $\mathbb{R}^{n}$ für $\mat{A}$ s.p.d.
+\item Wir nennen $\|x\|_{A} := \sqrt{\langle x, x \rangle _{A}}$ die Energie-Norm.
+\end{itemize}
+
+Nun wollen wir noch den Projektionssatz in Abhängigkeit unserer Matrix $\mat{A}$ definieren.
+
+%1.4.Lemma
 \subsection{Lemma - (A-orthogonaler) Projektionssatz}\label{s.Projektionssatz}
 
 Sei $U_{k}$ ein k-dimensionaler Teilraum des $\mathbb{R}^{n} \hspace{1mm} (k \le n)$, und $p^{0}, p^{1},...,p^{k-1}$ eine $\textit{A-orthogonale Basis}$ dieses Teilraums, also $\langle p^{i}, p^{j} \rangle _{A} = 0 \hspace{2mm} f\ddot{u}r \hspace{2mm} i \ne j$. Sei $v \in \mathbb{R}^{n}$, dann gilt für $u^{k} \in U_{k}$:
@@ -565,15 +508,20 @@ genau dann, wenn $u^{k}$ die $\textit{A-orthogonale Projektion}$ von $v$ auf $U_
 P_{U_{k,\langle \cdot,\cdot \rangle}}(v) = \textbf{u}^{k} = \sum_{j=0}^{k-1} \frac {\langle v, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j}
 \end{equation}
 
-Der Beweis zu diesem Lemma folgt direkt aus dem Projektionssatz. (siehe auch Dahmen/Reusken) \\
+Der Beweis zu diesem Lemma folgt direkt aus dem Projektionssatz. \\
+Was dieser Satz nun aussagt ist, dass man einen Vektor $v$ in $U_{k+1}$ sucht. Nun wählen wir ein beliebiges $v \in U_{k+1}$ und minimiert über alle $u^{k} \in U_{k}$. Die optimale Lösung ist dann der gesucht Vektor $v$.
+Bildlich gesprochen, ist $v$ die (A-)orthogonale Projektion auf $U_{k}$. Vergleiche Bild (bla). \\ \\
 
+Da wir nun die Grundlagen für das CG-Verfahren geschaffen haben, wollen wir nun den Algorithmus betrachten.
+
+%1.5. Algorithmus
 \subsection{Allgemeiner Algorithmus der konjugierten Gradienten}
 
 Zur Erzeugung der Lösung von $x^{*}$ durch Näherungen $x^{1}, x^{2},...$ definieren wir folgende Teilschritte:
 
 \begin{description}
 
-\item[0.] Definiere den Teilraum $U_{1}$ und bestimme das Residuum $r^{0}$ mit Startvektor $x^{0}$
+\item[0.] Definiere den ersten Teilraum und bestimme das (Start-) Residuum mit Startvektor $x^{0}$
 \begin{equation}
 U_{1} := span\{r^{0}\} \textnormal{, wobei } r^{0} = b - Ax^{0}
 \end{equation}
@@ -587,7 +535,7 @@ p^{0},...,p^{k-1} \textnormal{ von } U_{k}
 \begin{equation}
 \|x^{k} - x^{*}\|_{A} = \underset{u \in U_{k}}{\min} \|x - x^{*}\|_{A}
 \end{equation}
-gilt. Mit dem (A-orthogonalen) Projektionssatz berechnen wir also:
+gilt. Mit dem A-orthogonalen Projektionssatz berechnen wir also:
 \begin{equation}
 x^{k} = \sum_{j=0}^{k-1} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j}
 \end{equation}
@@ -599,25 +547,28 @@ U_{k+1} := span\{p^{0},...,p^{k-1},r^{k}\} \textnormal{ wobei } r^{k} := b - Ax^
 
 \end{description}
 
-Natürlich ist das kein numerischer Algorithmus, den man in Programmcode umsetzen kann, allerdings sollte man sich die Schritte des CG-Algorithmus klar machen, um die Effizienz dahinter zu verstehen:
+Natürlich ist das (noch) kein numerischer Algorithmus, den man in Programmcode umsetzen kann, allerdings sollte man sich die Schritte des CG-Algorithmus klar machen, um die Effizienz dahinter zu verstehen:
 
 \subsubsection{Erklärung zum CG-Algorithmus}\label{Erklärung zum CG-Algorithmus}
 
+Um nun die obigen Teilschritte des Verfahrens besser zu verstehen, betrachten wir diese nochmal:
 \begin{description}
 
-\item[zu 0.] Initialisiere den Algorithmus und bestimme das Residuum. Hierfür ist ein Startvektor $x^{0}$ beliebig zu wählen.
+\item[zu 0.] Was der erste Schritt im wesentlichen aussagt ist, dass man den Algorithmus initialisisert und ein Residuum bestimmen muss. Hierfür ist ein Startvektor $x^{0}$ beliebig zu wählen (\autoref{bla}). Das Residuum wird durch $r^{0} := b - Ax^{0}$ definiert.
 
-\item[zu 1.] Um eine A-orthogonale Basis von den $U_{k}$ zu bestimmen ist im wesentlichen ein (A-) Orthogonalisierungverfahren notwendig.
+\item[zu 1.] Um eine A-orthogonale Basis von den $U_{k}$ zu bestimmen ist im wesentlichen eine (A-) Orthogonalisierungverfahren notwendig, welches hier auch angewandt wird.
 
-\item[zu 2.] Hier wird das Verfahren aus \autoref{s.Projektionssatz} angewandt, um eine neue Näherungslösung in $U_{k}$ zu bestimmen.
+\item[zu 2.] Hier wird das in \autoref{s.Projektionssatz} bereits besprochene Verfahren angewandt, um eine neue Näherungslösung in $U_{k}$ zu bestimmen.
 
-\item[zu 3.] Erweiterung des Teilraums $U_{k}$ zu $U_{k+1}$ durch das Hinzufügen des $k-ten$ Resdiduums (berechne: $r^{k} := b - Ax^{k}$).
+\item[zu 3.] Hier soll im wesentlich das Gleiche geschehen in wie in Schritt 0. Lediglich wird nun das $k-te$ Resdiduum durch $r^{k} := b - Ax^{k}$ bestimmt.
 
 \end{description}
 
+All diese Überlegung führen uns nun zu einem numerischen Algorithmus:
+
 \subsection{Numerischer Algorithmus der konjugierten Gradienten}
 
-Gegeben ist eine symmetrisch positiv definite Matrix $\mat{A} \in \mathbb{R}^{n}$. Bestimme die (Näherungs-) Lösung $x^{*}$ mit Hilfe eines \textit{beliebigen} Startvektors $x^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $b \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$ und berechne das Residuum $r^{0} = b - Ax^{0}$. \\
+Gegeben ist eine symmetrisch positiv definitie Matrix $\mat{A} \in \mathbb{R}^{n}$. Bestimme die (Näherungs-) Lösung $x^{*}$ mit Hilfe eines \textit{beliebigen} Startvektors $x^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $b \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$ und berechne das Residuum $r^{0} = b - Ax^{0}$. \\
 Für $k = 1,2,...$, falls $r^{k-1} \ne 0$ berechne:
 
 \begin{eqnarray}
@@ -628,17 +579,17 @@ r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1} \notag
 
 Bevor wir nun eine Weiterentwicklung des CG-Verfahrens betrachten, soll an dieser Stelle ein kurzer Satz über die Konvergenz des Verfahrens folgen. Einen Beweis hierzu findet man z.B. in (Dahmen/Reusken 573):
 
-\subsection{Satz (Konvergenze des CG-Algorithmus) [DahmenReusken]}
+\subsection{Satz (Konvergenze des CG-Algorithmus)}
 
 Sei $\mat{A} \in \mathbb{R}^{n \times n}$ symmetrisch, positiv definit und seien $u,f,u^{*},u^{k} \in \mathbb{R}^{n}$, wobei $u^{*}$ die exakte Lösung des Gleichungssystems $Au = b$ und $x^{k}$ die approximierte Lösung durch das CG-Verfahren ist. Dann gilt für $k = 1,2,...$:
 \begin{equation}
 \| x^{k} - x^{*} \|_{A} \le 2 \left( \frac {\kappa_{2} (A) - 1} {\kappa_{2} (A) + 1} \right)^{k} \| x^{0} - x^{*} \|_{A}
 \end{equation}
-Da stets $\frac {\kappa_{2} (A) - 1} {\kappa_{2} (A) + 1} < 1$ gilt, sichert dieser Satz die Konvergenz des Algorithmus. Man sieht also, dass die Konvergenz des Verfahrens von der Kondition der Matrix $\mat{A}$ abhängt. \\
+Da stets $\frac {\kappa_{2} (A) - 1} {\kappa_{2} (A) + 1} < 1$ gilt, liefert dieser Satz die Konvergenz des Algorithmus. Man sieht also, dass die Konvergenz des Verfahrens von der Kondition der Matrix $\mat{A}$ abhängt.
 
 \section{Vorkonditioniertes Verfahren der konjugierten Gradienten (PCG)}
 
-Das PCG-Verfahren (preconditioned conjugate gradient) ist eine optimierte Version des CG-Verfahrens. Wie wir in \autoref{ss.Matrixkondition} gesehen haben, ist die 2D Poisson Matrix $\mat{A}$ schlecht konditioniert. Die Idee ist nun, die bei der Iterations zu Grunde liegende Matrix $\mat{A}$ durch eine ähnliche Matrix mit besserer Kondition zu ersetzen, damit sich das Konvergenzverhalten verbessert.
+Das PCG-Verfahren (preconditioned conjugate gradient) ist eine optimierte Version des CG-Verfahrens. Wie wir in \autoref{ss.Matrixkondition} gesehen haben, ist die Matrix $\mat{A}$ schlecht konditioniert. Die Idee ist nun, die bei der Iterations zu Grunde liegende Matrix $\mat{A}$ durch eine ähnliche Matrix mit besserer Kondition zu ersetzen, damit sich das Konvergenzverhalten verbessert.
 
 \subsection{Satz}
 
