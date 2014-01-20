@@ -11,10 +11,10 @@
 \usepackage{mathpazo} % Palatino für Mathemodus
 %\usepackage{mathpazo,tgpagella} % auch sehr schöne Schriften
 \usepackage{setspace} % Zeilenabstand
-\onehalfspacing % 1,5 Zeilen
+% \onehalfspacing % 1,5 Zeilen
 % Schriften-Größen
-\setkomafont{chapter}{\Huge\rmfamily} % Überschrift der Ebene
-\setkomafont{section}{\Large\rmfamily}
+\setkomafont{chapter}{\huge\rmfamily} % Überschrift der Ebene
+\setkomafont{section}{\large\rmfamily}
 \setkomafont{subsection}{\large\rmfamily}
 \setkomafont{subsubsection}{\large\rmfamily}
 \setkomafont{chapterentry}{\large\rmfamily} % Überschrift der Ebene in Inhaltsverzeichnis
@@ -112,7 +112,7 @@
 }
 % bild mit defnierter Breite einfügen
 \newcommand{\bild}[4]{
-  \begin{figure}[!hbt]
+  \begin{figure}[H]
     \centering
       \vspace{1ex}
       \includegraphics[width=#2]{images/#1}
