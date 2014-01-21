@@ -3,9 +3,9 @@
 PoissonMatrix::PoissonMatrix(int n) {
 	this->n=n;
 	this->dim=n*n;
-	this->diagonal=4.0*(n+1)*(n+1);
-	this->tridiagonal=-1.0*(n+1)*(n+1);
-	this->identity=tridiagonal;
+	this->diagonal=4.0;
+	this->tridiagonal=-1.0;
+	this->identity=-1.0;
 
     vector<int> tmp;
     tmp.assign(5,-1);
@@ -86,13 +86,9 @@ int PoissonMatrix::Size() {
 double PoissonMatrix::Get(int i,int j) {
 	if(i==j) {
 		return diagonal;
-	} else if(j==(i+1) && i%n!=(n-1)) {
+	} else if((j==(i+1) && i%n!=(n-1)) || (j==(i-1) && i%n!=0)) {
 		return tridiagonal;
-	} else if(j==(i-1) && i%n!=0) {
-		return tridiagonal;
-	} else if(j==(i+n)) {
-		return identity;
-	} else if(j==(i-n)) {
+	} else if((j==(i+n)) || (j==(i-n))) {
 		return identity;
 	} else {
 		return 0.0;
@@ -100,15 +96,28 @@ double PoissonMatrix::Get(int i,int j) {
 }
 
 void Matrix::PrintMatrix() {
-	if(Size()>25){
-		printf("Couldn't print Matrix! Dimension is too high.\n");
-	} else {
-		for(int i=0;i<Size();i++) {
-			for(int j=0;j<Size();j++) {
-				printf(" %.2f ",Get(i,j));
-			}
-			printf("\n");
+	for(int i=0;i<Size();i++) {
+		for(int j=0;j<Size();j++) {
+			printf(" %.2f ",Get(i,j));
 		}
 		printf("\n");
 	}
+	printf("\n");
+}
+
+vector<double> PoissonMatrix::operator*(const vector<double>& x) {
+    vector<double> tmp;
+    tmp.assign(x.size(),0);
+    for(int i=0;i<dim;i++) {
+        tmp[i]+=x[i]*4.0;
+        if(i<(dim-n)) {
+            tmp[i]+=x[i+n]*-1.0;
+            tmp[i+n]+=x[i]*-1.0;
+        }
+        if(i%n!=0) {
+            tmp[i]+=x[i-1]*-1.0;
+            tmp[i-1]+=x[i]*-1.0;
+        }
+    }
+    return tmp;
 }

@@ -14,11 +14,13 @@ int main(int argc, char const *argv[]) {
 
     printf("Started\n");
     double time,start=0.0,end=0.0;
-    start = clock();
+    start=clock();
 
-    Run.MultiGridMethod(A,V);
+    Run.MultiGridMethod(A,V,V.x,V.b);
+    // Run.JacobiMethod(A,V.x,V.b,2056);
+    // Run.JacobiRelaxationMethod(A,V.x,V.b,10000);
 
-    end = clock();
+    end=clock();
     time=(end-start)/CLOCKS_PER_SEC;
     printf("%f\n", time);
 
@@ -28,22 +30,7 @@ int main(int argc, char const *argv[]) {
     } else {
         printf("Couldn't print Matrix! Dimension is too high.\n");
     }
-    //V.WriteToFile();
-
-    double Pi=3.141592654;
-    FILE *file;
-    file=fopen("../Plot/plot.txt", "w");
-    if(file==NULL) {
-        printf("ERROR: Could not open file!\n");
-    } else {
-        for(int i=0;i<=arg;i++) {
-            for(int j=0;j<=arg;j++) {
-                fprintf(file, "%f %f %f\n",);
-            }
-            fprintf(file, "\n");
-        }
-    }
-    fclose (file);
+    V.WriteToFile();
 
     return EXIT_SUCCESS;
 }
@@ -54,4 +41,19 @@ double f(double x,double y) {
 
 double g(double x,double y) {
     return pow(x,2)+pow(y,2);
+}
+
+std::vector<double> operator-(const std::vector<double>& lhs, const std::vector<double>& rhs) {
+    std::vector<double> tmp(lhs);
+    for(int i=0;i<(int)lhs.size();i++) {
+        tmp[i]=lhs[i]-rhs[i];
+    }
+    //tmp.insert(tmp.end(),rhs.begin(),rhs.end());
+    return tmp;
+}
+
+void operator+=(std::vector<double>& lhs, const std::vector<double>& rhs) {
+    for(int i=0;i<(int)rhs.size();i++) {
+        lhs[i]+=rhs[i];
+    }
 }

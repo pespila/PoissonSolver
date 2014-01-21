@@ -11,6 +11,8 @@ using namespace std;
 
 double f(double,double);
 double g(double,double);
+std::vector<double> operator-(const std::vector<double>&,const std::vector<double>&);
+void operator+=(std::vector<double>&,const std::vector<double>&);
 
 class Matrix
 {
@@ -18,6 +20,7 @@ class Matrix
         virtual int Size()=0;
         virtual double Get(int,int)=0;
         void PrintMatrix();
+        virtual vector<double> operator*(const vector<double>&)=0;
 };
 
 class PoissonMatrix : public Matrix
@@ -34,6 +37,7 @@ class PoissonMatrix : public Matrix
         int Size();
     	double Get(int, int);
         void Resize(int);
+        vector<double> operator*(const vector<double>&);
 };
 
 class Vectors {
@@ -59,12 +63,13 @@ class Algorithms {
 		Algorithms(int);
 		~Algorithms();
         double vectorNorm(const vector<double>&);
-        void MatrixVectorMultiplyer(PoissonMatrix&,const vector<double>&,vector<double>& y);
-        void JacobiMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
+        void JacobiMethod(Matrix&,vector<double>&,const vector<double>&,int);
+        void JacobiRelaxationMethod(Matrix&,vector<double>&,const vector<double>&,int);
+        void JacobiRelaxationSolver(Matrix&,vector<double>&,const vector<double>&);
         void GaussSeidelMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
         void SORMethod(PoissonMatrix&,vector<double>&,const vector<double>&,int);
         vector<double> MultiGridAlgorithm(PoissonMatrix&,Vectors&,const vector<double>&,int);
-        void MultiGridMethod(PoissonMatrix&,Vectors&);
+        void MultiGridMethod(PoissonMatrix&,Vectors&,vector<double>&,vector<double>&);
         void Restriction(const vector<double>&,vector<double>&,int);
         void Interpolation(const vector<double>&,vector<double>&,Vectors&,int);
 };

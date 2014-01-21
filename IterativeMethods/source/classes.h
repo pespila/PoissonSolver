@@ -13,6 +13,9 @@ using namespace std;
 
 double f(double,double);
 double g(double,double);
+std::vector<double> operator-(const std::vector<double>&, const std::vector<double>&);
+std::vector<double> operator*(double, std::vector<double>);
+void operator+=(std::vector<double>&,const std::vector<double>&);
 
 class Matrix
 {
@@ -21,6 +24,7 @@ class Matrix
         virtual int Size()=0;
         virtual double Get(int,int)=0;
         void PrintMatrix();
+        virtual vector<double> operator*(const vector<double>&)=0;
 };
 
 class WriteableMatrix : public Matrix
@@ -42,6 +46,7 @@ class PoissonMatrix : public Matrix
     	~PoissonMatrix();
         int Size();
     	double Get(int, int);
+        vector<double> operator*(const vector<double>&);
 };
 
 class LowerMatrix : public WriteableMatrix
@@ -58,6 +63,7 @@ class LowerMatrix : public WriteableMatrix
         int Size();
         double Get(int,int);
         void Set(int,int,double);
+        vector<double> operator*(const vector<double>&);
 };
 
 class UpperMatrix : public LowerMatrix
@@ -70,21 +76,7 @@ class UpperMatrix : public LowerMatrix
 		~UpperMatrix();
         double Get(int,int);
 		void Set(int,int,double);
-};
-
-class Operators
-{
-	private:
-		int dim;
-		int n;
-	public:
-		Operators(int);
-		~Operators();
-		double innerProduct(const vector<double>&,const vector<double>&);
-		double vectorNorm(const vector<double>&);
-		void MatrixVectorMultiplyer(Matrix&,const vector<double>&,vector<double>& y);
-		void LUsolverLower(Matrix&,Matrix&,vector<double>&);
-		void LUsolverUpper(Matrix&,Matrix&,vector<double>&);
+        vector<double> operator*(const vector<double>&);
 };
 
 class Vectors {
@@ -109,12 +101,18 @@ class Algorithms {
 	public:
 		Algorithms(int);
 		~Algorithms();
+        double innerProduct(const vector<double>&,const vector<double>&);
+        double vectorNorm(const vector<double>&);
         void modifiedIncompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
-        void JacobiMethod(Matrix&,Operators&,Vectors&);
-        void GaussSeidelMethod(Matrix&,Operators&,Vectors&);
-        void SORMethod(Matrix&,Operators&,Vectors&);
-		void CG(Matrix&,Operators&,Vectors&);
-		void PCG(Matrix&,Operators&,WriteableMatrix&,WriteableMatrix&,Vectors&);
+        void incompleteLU(Matrix&,WriteableMatrix&,WriteableMatrix&);
+        void JacobiMethod(Matrix&,vector<double>&,const vector<double>&);
+        void JacobiRelaxationMethod(Matrix&,vector<double>&,const vector<double>&);
+        void GaussSeidelMethod(Matrix&,vector<double>&,const vector<double>&);
+        void SORMethod(Matrix&,vector<double>&,const vector<double>&);
+		void CG(Matrix&,vector<double>&,const vector<double>&);
+		void PCG(Matrix&,WriteableMatrix&,WriteableMatrix&,vector<double>&,const vector<double>&);
+        void LUsolverLower(Matrix&,Matrix&,vector<double>&);
+        void LUsolverUpper(Matrix&,Matrix&,vector<double>&);
 };
 
 #endif

@@ -3,8 +3,8 @@
 PoissonMatrix::PoissonMatrix(int n) {
 	this->n=n;
 	this->dim=n*n;
-	this->diagonal=4.0*pow(n+1,2);
-	this->tridiagonal=-1.0*pow(n+1,2);
+	this->diagonal=4.0;
+	this->tridiagonal=-1.0;
 	this->identity=tridiagonal;
 }
 
@@ -48,4 +48,21 @@ void Matrix::PrintMatrix() {
 		printf("\n");
 	}
 	printf("\n");
+}
+
+vector<double> PoissonMatrix::operator*(const vector<double>& x) {
+    vector<double> tmp;
+    tmp.assign(x.size(),0);
+    for(int i=0;i<dim;i++) {
+        tmp[i]+=x[i]*4.0;
+        if(i<(dim-n)) {
+            tmp[i]+=x[i+n]*-1.0;
+            tmp[i+n]+=x[i]*-1.0;
+        }
+        if(i%n!=0) {
+            tmp[i]+=x[i-1]*-1.0;
+            tmp[i-1]+=x[i]*-1.0;
+        }
+    }
+    return tmp;
 }

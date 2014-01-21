@@ -10,18 +10,18 @@ Vectors::Vectors(int n) {
 
     for(i=1,k=0;i<=n;i++) {
         for(j=1;j<=n;j++,k++) {
-            b[k]=f(i*h,j*h);
+            b[k]=pow(h,2)*f(i*h,j*h);
             if(i==1) {
-                b[k]+=pow(1.0/h,2)*g(j*h,0);
+                b[k]+=pow(h,2)*pow(1.0/h,2)*g(j*h,0);
             }
             if(i==n) {
-                b[k]+=pow(1.0/h,2)*g(j*h,1);
+                b[k]+=pow(h,2)*pow(1.0/h,2)*g(j*h,1);
             }
             if(j==1) {
-                b[k]+=pow(1.0/h,2)*g(0,i*h);
+                b[k]+=pow(h,2)*pow(1.0/h,2)*g(0,i*h);
             }
             if(j==n) {
-                b[k]+=pow(1.0/h,2)*g(1,i*h);
+                b[k]+=pow(h,2)*pow(1.0/h,2)*g(1,i*h);
             }
         }
     }

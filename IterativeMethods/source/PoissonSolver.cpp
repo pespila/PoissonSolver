@@ -11,25 +11,29 @@ int main(int argc, char const *argv[]) {
     PoissonMatrix A(arg);
     LowerMatrix L(arg);
     UpperMatrix U(arg);
-    Operators O(arg);
     Vectors V(arg);
     Algorithms Run(arg);
 
-    printf("Choose your Algorithm: \n[0] CG\n[1] JacobiMethod\n[2] GaussSeidelMethod\n[3] SORMethod\n[4] PCG\n");
+    printf("Choose your Algorithm: \n[1] CG\n[2] ICCG\n[3] MICCG\n[4] JacobiMethod\n[5] JacobiRelaxationMethod\n[6] GaussSeidelMethod\n[7] SORMethod\n");
     scanf("%d",&alg);
 
     printf("Started\n");
     double time,start=0.0,end=0.0;
     start = clock();
 
-    if(alg==0) Run.CG(A,O,V);
-    if(alg==1) Run.JacobiMethod(A,O,V);
-    if(alg==2) Run.GaussSeidelMethod(A,O,V);
-    if(alg==3) Run.SORMethod(A,O,V);
-    if(alg==4) {
-        Run.modifiedIncompleteLU(A,L,U);
-        Run.PCG(A,O,L,U,V);
+    if(alg==1) Run.CG(A,V.x,V.b);
+    if(alg==2) {
+        Run.incompleteLU(A,L,U);
+        Run.PCG(A,L,U,V.x,V.b);
     }
+    if(alg==3) {
+        Run.modifiedIncompleteLU(A,L,U);
+        Run.PCG(A,L,U,V.x,V.b);
+    }
+    if(alg==4) Run.JacobiMethod(A,V.x,V.b);
+    if(alg==5) Run.JacobiRelaxationMethod(A,V.x,V.b);
+    if(alg==6) Run.GaussSeidelMethod(A,V.x,V.b);
+    if(alg==7) Run.SORMethod(A,V.x,V.b);
 
     end = clock();
     time=(end-start)/CLOCKS_PER_SEC;
@@ -52,4 +56,27 @@ double f(double x,double y) {
 
 double g(double x,double y) {
     return pow(x,2)+pow(y,2);
+}
+
+std::vector<double> operator-(const std::vector<double>& lhs, const std::vector<double>& rhs) {
+    std::vector<double> tmp(lhs);
+    for(int i=0;i<(int)lhs.size();i++) {
+        tmp[i]=lhs[i]-rhs[i];
+    }
+    //tmp.insert(tmp.end(),rhs.begin(),rhs.end());
+    return tmp;
+}
+
+std::vector<double> operator*(double x, std::vector<double> rhs) {
+    std::vector<double> tmp(rhs);
+    for(int i=0;i<(int)rhs.size();i++) {
+        tmp[i]=x*rhs[i];
+    }
+    return tmp;
+}
+
+void operator+=(std::vector<double>& lhs, const std::vector<double>& rhs) {
+    for(int i=0;i<(int)rhs.size();i++) {
+        lhs[i]+=rhs[i];
+    }
 }

@@ -17,43 +17,70 @@ double Algorithms::vectorNorm(const vector<double>& x) {
     return sqrt(norm);
 }
 
-void Algorithms::MatrixVectorMultiplyer(PoissonMatrix& A, const vector<double>& x, vector<double>& b) {
+void Algorithms::JacobiMethod(Matrix& A, vector<double>& x, const vector<double>& b, int steps) {
     int dim=A.Size();
-    for(int i=0;i<dim;i++) {
-        b[i]+=x[i]*A.Get(i,i);
-        if(i<(dim-n)) {
-            b[i]+=x[i+n]*A.Get(i,i+n);
-        }
-        if(i>=n) {
-            b[i]+=x[i-n]*A.Get(i,i-n);
-        }
-        if(i%n!=0) {
-            b[i]+=x[i-1]*A.Get(i,i-1);
-            b[i-1]+=x[i]*A.Get(i-1,i);
+    vector<double> r(dim);
+    for(int j=0;j<steps;j++) {
+        r=A*x;
+        for(int i=0;i<dim;i++) {
+            r[i]=1.0/4.0*(b[i]-r[i]);
+            x[i]+=r[i];
         }
     }
 }
 
-void Algorithms::JacobiMethod(PoissonMatrix& A, vector<double>& x, const vector<double>& b, int steps) {
+void Algorithms::JacobiRelaxationMethod(Matrix& A, vector<double>& x, const vector<double>& b, int steps) {
+    int dim=A.Size();
+    vector<double> r(dim);
+    for(int j=0;j<steps;j++) {
+        r=A*x;
+        for(int i=0;i<dim;i++) {
+            r[i]=1.0/5.0*(b[i]-r[i]);
+            x[i]+=r[i];
+        }
+    }
+}
+
+void Algorithms::JacobiRelaxationSolver(Matrix& A,vector<double>& x,const vector<double>& b) {
+    int dim=A.Size(),steps=0;
+    vector<double> r(dim,1),solved(dim);
+
+    for(int i=1,k=0;i<(n+1);i++) {
+        for(int j=1;j<(n+1);j++,k++) {
+            solved[k]=g(j*h,i*h);
+        }
+    }
+    double TOL=pow(10,-3)*vectorNorm(solved);
+    while(TOL<vectorNorm(r)) {
+        r=A*x;
+        for(int i=0;i<dim;i++) {
+            r[i]=1.0/5.0*(b[i]-r[i]);
+            x[i]+=r[i];
+            r[i]=x[i]-solved[i];
+        }
+        // x+=1.0/4.0*(b-A*x);
+        steps++;
+    }
+    printf("JacobianSteps: %d\n", steps);
+}
+
+void Algorithms::GaussSeidelMethod(PoissonMatrix& A, vector<double>& x, const vector<double>& b, int steps) {
     double sum;
     int dim=A.Size();
-    vector<double> tmp;
-    tmp.resize(dim);
 
     for(int j=0;j<steps;j++) {
-        tmp=x;
         for(int i=0;i<dim;i++) {
             sum=0.0;
             if(i==0) {
-                sum=tmp[i+1]*A.Get(i,i+1)+tmp[i+n]*A.Get(i,i+n);
+                sum=x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
             } else if(i!=0 && i<n) {
-                sum=tmp[i-1]*A.Get(i,i-1)+tmp[i+1]*A.Get(i,i+1)+tmp[i+n]*A.Get(i,i+n);
+                sum=x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
             } else if(i>=n && i<dim-n) {
-                sum=tmp[i-n]*A.Get(i,i-n)+tmp[i-1]*A.Get(i,i-1)+tmp[i+1]*A.Get(i,i+1)+tmp[i+n]*A.Get(i,i+n);
+                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
             } else if(i!=dim-1 && i>=dim-n) {
-                sum=tmp[i-n]*A.Get(i,i-n)+tmp[i-1]*A.Get(i,i-1)+tmp[i+1]*A.Get(i,i+1);
+                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1);
             } else if(i==dim-1) {
-                sum=tmp[i-n]*A.Get(i,i-n)+tmp[i-1]*A.Get(i,i-1);
+                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1);
             }
             x[i]=1.0/A.Get(i,i)*(b[i]-sum);
         }
@@ -79,29 +106,6 @@ void Algorithms::SORMethod(PoissonMatrix& A, vector<double>& x, const vector<dou
                 sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1);
             }
             x[i]=omega*1.0/A.Get(i,i)*(b[i]-sum)+(1-omega)*x[i];
-        }
-    }
-}
-
-void Algorithms::GaussSeidelMethod(PoissonMatrix& A, vector<double>& x, const vector<double>& b, int steps) {
-    double sum;
-    int dim=A.Size();
-
-    for(int j=0;j<steps;j++) {
-        for(int i=0;i<dim;i++) {
-            sum=0.0;
-            if(i==0) {
-                sum=x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-            } else if(i!=0 && i<n) {
-                sum=x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-            } else if(i>=n && i<dim-n) {
-                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-            } else if(i!=dim-1 && i>=dim-n) {
-                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1);
-            } else if(i==dim-1) {
-                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1);
-            }
-            x[i]=1.0/A.Get(i,i)*(b[i]-sum);
         }
     }
 }
@@ -186,70 +190,49 @@ void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,Vecto
 }
 
 vector<double> Algorithms::MultiGridAlgorithm(PoissonMatrix& A,Vectors& V,const vector<double>& b,int n) {
-    int dim=n*n;
-    vector<double> x;
-    x.resize(dim);
+    int dim=pow(n,2),N2h=(n+1)/2-1,dim2h=pow(N2h,2);
+    vector<double> x(dim,0),r(dim,0),E(dim,0),r2h(dim2h,0),E2h(dim2h,0);
     if(n==this->n) {
         x=V.x;
     }
     if(n==1) {
         double a;
-        a=4.0*pow(n+1,2);
+        a=4.0;
         x[0]=b[0]/a;
         return x;
     } else {
-        int smallerN=(n+1)/2-1;
-        SORMethod(A,x,b,4);
-        vector<double> Ax,r;
-        Ax.assign(dim,0);
-        r.assign(dim,0);
-        MatrixVectorMultiplyer(A,x,Ax);
-        for(int i=0;i<dim;i++) {
-            r[i]=b[i]-Ax[i];
-        }
-        vector<double> r2h;
-        r2h.assign(smallerN*smallerN,0);
+        JacobiRelaxationMethod(A,x,b,3);
+        r=b-A*x;
         Restriction(r,r2h,n);
-        A.Resize(smallerN);
-        vector<double> E2h;
-        E2h.assign(smallerN*smallerN,0);
-        E2h=MultiGridAlgorithm(A,V,r2h,smallerN);
-        vector<double> E;
-        E.assign(n*n,0);
+        A.Resize(N2h);
+        E2h=MultiGridAlgorithm(A,V,r2h,N2h);
+        E2h=MultiGridAlgorithm(A,V,r2h,N2h);
         Interpolation(E2h,E,V,n);
-        for(int i=0;i<dim;i++) {
-            x[i]+=E[i];
-        }
+        x+=E;
         A.Resize(n);
-        SORMethod(A,x,b,4);
+        JacobiRelaxationMethod(A,x,b,3);
         return x;
     }
 }
 
-void Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V) {
+void Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,vector<double>& x,vector<double>& b) {
     int steps=0;
-    vector<double> Ax,r;
-    Ax.assign(dim,0);
-    r.assign(dim,0);
-    MatrixVectorMultiplyer(A,V.x,Ax);
-    for(int i=0;i<dim;i++) {
-        r[i]=V.b[i]-Ax[i];
-    }
-    double TOL=pow(10,-6);
-    double eps=vectorNorm(r)*TOL;
-    double norm=100.0;
-    while(eps<=norm) {
-        steps++;
-        V.x=MultiGridAlgorithm(A,V,V.b,n);
-        Ax.assign(dim,0);
-        MatrixVectorMultiplyer(A,V.x,Ax);
-        for(int i=0;i<dim;i++) {
-            r[i]=V.b[i]-Ax[i];
+    vector<double> r(dim,1),solved(dim);
+
+    for(int i=1,k=0;i<(n+1);i++) {
+        for(int j=1;j<(n+1);j++,k++) {
+            solved[k]=g(j*h,i*h);
         }
-        norm=vectorNorm(r);
-        printf("%f\n", norm);
+    }
+    r=b-A*x;
+    double TOL=pow(10,-3)*vectorNorm(r);
+    while(TOL<=vectorNorm(r)) {
+        V.x=MultiGridAlgorithm(A,V,b,n);
+        r=b-A*x;
+        // r=V.x-solved;
+        steps++;
         if(steps==200) {
-            norm=0.0;
+            r.assign(dim,0);
         }
     }
     printf("MultiGridSteps: %d\n", steps);

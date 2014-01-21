@@ -21,3 +21,20 @@ double UpperMatrix::Get(int i,int j) {
 void UpperMatrix::Set(int i,int j,double value) {
 	return LowerMatrix::Set(j,i,value);
 }
+
+vector<double> UpperMatrix::operator*(const vector<double>& x) {
+    vector<double> tmp;
+    tmp.assign(x.size(),0);
+    for(int i=0;i<dim;i++) {
+        tmp[i]+=x[i]*4.0;
+        if(i<(dim-n)) {
+            tmp[i]+=x[i+n]*-1.0;
+            tmp[i+n]+=x[i]*-1.0;
+        }
+        if(i%n!=0) {
+            tmp[i]+=x[i-1]*-1.0;
+            tmp[i-1]+=x[i]*-1.0;
+        }
+    }
+    return tmp;
+}
