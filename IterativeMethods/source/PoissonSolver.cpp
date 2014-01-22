@@ -11,7 +11,8 @@ int main(int argc, char const *argv[]) {
     PoissonMatrix A(arg);
     LowerMatrix L(arg);
     UpperMatrix U(arg);
-    Vectors V(arg);
+    Boundary B(arg);
+    Startvector X(arg,0.0);
     Algorithms Run(arg);
 
     printf("Choose your Algorithm: \n[1] CG\n[2] ICCG\n[3] MICCG\n[4] JacobiMethod\n[5] JacobiRelaxationMethod\n[6] GaussSeidelMethod\n[7] SORMethod\n");
@@ -19,23 +20,23 @@ int main(int argc, char const *argv[]) {
 
     printf("Started\n");
     double time,start=0.0,end=0.0;
-    start = clock();
+    start=clock();
 
-    if(alg==1) Run.CG(A,V.x,V.b);
+    if(alg==1) Run.CG(A,X.x,B.b);
     if(alg==2) {
         Run.incompleteLU(A,L,U);
-        Run.PCG(A,L,U,V.x,V.b);
+        Run.PCG(A,L,U,X.x,B.b);
     }
     if(alg==3) {
         Run.modifiedIncompleteLU(A,L,U);
-        Run.PCG(A,L,U,V.x,V.b);
+        Run.PCG(A,L,U,X.x,B.b);
     }
-    if(alg==4) Run.JacobiMethod(A,V.x,V.b);
-    if(alg==5) Run.JacobiRelaxationMethod(A,V.x,V.b);
-    if(alg==6) Run.GaussSeidelMethod(A,V.x,V.b);
-    if(alg==7) Run.SORMethod(A,V.x,V.b);
+    if(alg==4) Run.JacobiMethod(A,X.x,B.b);
+    if(alg==5) Run.JacobiRelaxationMethod(A,X.x,B.b);
+    if(alg==6) Run.GaussSeidelMethod(A,X.x,B.b);
+    if(alg==7) Run.SORMethod(A,X.x,B.b);
 
-    end = clock();
+    end=clock();
     time=(end-start)/CLOCKS_PER_SEC;
     printf("%f\n", time);
 
@@ -43,9 +44,9 @@ int main(int argc, char const *argv[]) {
         A.PrintMatrix();
         L.PrintMatrix();
         U.PrintMatrix();
-        V.PrintVector();
+        X.PrintVector();
     }
-    V.WriteToFile();
+    X.WriteToFile();
 
     return EXIT_SUCCESS;
 }
@@ -63,7 +64,6 @@ std::vector<double> operator-(const std::vector<double>& lhs, const std::vector<
     for(int i=0;i<(int)lhs.size();i++) {
         tmp[i]=lhs[i]-rhs[i];
     }
-    //tmp.insert(tmp.end(),rhs.begin(),rhs.end());
     return tmp;
 }
 
@@ -79,4 +79,19 @@ void operator+=(std::vector<double>& lhs, const std::vector<double>& rhs) {
     for(int i=0;i<(int)rhs.size();i++) {
         lhs[i]+=rhs[i];
     }
+}
+
+double operator*(const std::vector<double>& x,const std::vector<double>& y) {
+    double ip=0.0;
+    for (int i=0;i<(int)x.size();i++)
+        ip+=x[i]*y[i];
+    return ip;
+}
+
+double operator|(const std::vector<double>& x,const std::vector<double>& y) {
+    double norm=0.0;
+    for(int i=0;i<(int)x.size();i++) {
+        norm+=x[i]*y[i];
+    }
+    return sqrt(norm);
 }

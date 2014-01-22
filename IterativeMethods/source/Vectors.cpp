@@ -1,11 +1,10 @@
 #include "classes.h"
 
-Vectors::Vectors(int n) {
+Boundary::Boundary(int n) {
     this->n=n;
     this->dim=n*n;
     this->h=1.0/(double)(n+1);
     this->b.resize(dim);
-    this->x.resize(dim);
 
     for(int i=1,k=0;i<=n;i++) {
         for(int j=1;j<=n;j++,k++) {
@@ -26,34 +25,59 @@ Vectors::Vectors(int n) {
     }
 }
 
-Vectors::~Vectors() {
-    vector<double>().swap(x);
+Boundary::~Boundary() {
     vector<double>().swap(b);
 }
 
+double Boundary::Get(int i) {
+    return this->b[i];
+}
+
+int Boundary::Size() {
+    return b.size();
+}
+
+Startvector::Startvector(int n,double value) {
+    this->n=n;
+    this->dim=n*n;
+    this->value=value;
+    this->x.assign(dim,value);
+}
+
+Startvector::~Startvector() {
+    vector<double>().swap(x);
+}
+
+double Startvector::Get(int i) {
+    return this->x[i];
+}
+
+int Startvector::Size() {
+    return x.size();
+}
+
 void Vectors::PrintVector() {
-    for (int i=0;i<dim;i++) {
-        printf("%f ",x[i]);
+    for (int i=0;i<Size();i++) {
+        printf("%f ",Get(i));
     }
     printf("\n");
 }
 
 void Vectors::WriteToFile() {
-    int i,j,k=0;
     FILE *file;
     file=fopen("../Plot/plot.txt","w");
     if(file==NULL)
         printf("ERROR: Could not open file!\n");
     else {
-        for(i=0;i<=n;i++) {
-            for(j=0;j<=n;j++) {
+        for(int i=0,k=0;i<=sqrt(Size());i++) {
+            for(int j=0;j<=sqrt(Size());j++) {
                 if(i==0) {
-                    fprintf(file,"%f %d %f\n",(double)j/(double)n,i,g(j*h,i));
+                    fprintf(file,"%f %d %f\n",(double)j/(double)(sqrt(Size())),i,g(j*1.0/(double)(sqrt(Size()+1)),i));
                 } else if(i!=0) {
                     if(j==0) {
-                        fprintf(file,"%d %f %f\n",j,(double)i/(double)n,g(j,i*h));
+                        fprintf(file,"%d %f %f\n",j,(double)i/(double)(sqrt(Size())),g(j,i*1.0/(double)(sqrt(Size()+1))));
                     } else if(j!=0){
-                        fprintf(file,"%f %f %f\n",(double)j/(double)n,(double)i/(double)n,x[k]);
+                        fprintf(file,"%f %f %f\n",(double)j/(double)(sqrt(Size())),(double)i/(double)(sqrt(Size())),Get(k));
                         k++;
                     }
                 }

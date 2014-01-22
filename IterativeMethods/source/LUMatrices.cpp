@@ -22,22 +22,38 @@ void UpperMatrix::Set(int i,int j,double value) {
 	return LowerMatrix::Set(j,i,value);
 }
 
-vector<double> UpperMatrix::operator*(const vector<double>& x) {
-    vector<double> tmp;
-    tmp.assign(x.size(),0);
-    for(int i=0;i<dim;i++) {
-        tmp[i]+=x[i]*4.0;
-        if(i<(dim-n)) {
-            tmp[i]+=x[i+n]*-1.0;
-            tmp[i+n]+=x[i]*-1.0;
+std::vector<double> UpperMatrix::operator*(const std::vector<double>& z) {
+    std::vector<double> tmp(z);
+    for(int i=dim-1;i>=0;i--) {
+        tmp[i]-=tmp[i]*Get(i,i);
+        if(i<=(dim-n)) {
+            tmp[i]-=tmp[i+n]*Get(i,i+n);
         }
         if(i%n!=0) {
-            tmp[i]+=x[i-1]*-1.0;
-            tmp[i-1]+=x[i]*-1.0;
+            tmp[i]-=tmp[i+1]*Get(i,i+1);
         }
+        // tmp[i]-=z[i]*Get(i,i);
+        tmp[i]/=Get(i,i);
     }
     return tmp;
 }
+
+// vector<double> UpperMatrix::operator*(const vector<double>& x) {
+//     vector<double> tmp;
+//     tmp.assign(x.size(),0);
+//     for(int i=0;i<dim;i++) {
+//         tmp[i]+=x[i]*4.0;
+//         if(i<(dim-n)) {
+//             tmp[i]+=x[i+n]*-1.0;
+//             tmp[i+n]+=x[i]*-1.0;
+//         }
+//         if(i%n!=0) {
+//             tmp[i]+=x[i-1]*-1.0;
+//             tmp[i-1]+=x[i]*-1.0;
+//         }
+//     }
+//     return tmp;
+// }
 
 LowerMatrix::LowerMatrix(int n) {
     this->n=n;
@@ -79,17 +95,16 @@ double LowerMatrix::Get(int i,int j) {
     }
 }
 
-vector<double> LowerMatrix::operator*(const vector<double>& z) {
-    int m;
-    vector<double> tmp(z.size());
+std::vector<double> LowerMatrix::operator*(const std::vector<double>& z) {
+    std::vector<double> tmp(z);
     for(int i=0;i<dim;i++) {
-        for(int j=0;j<5;j++) {
-            m=HashMatrix[i][j];
-            if(m!=-1 && m<i) {
-                tmp[i]=z[i]-Get(i,m)*z[m];
-            }
+        if(i>=n) {
+            tmp[i]-=tmp[i-n]*Get(i,i-n);
         }
-        tmp[i]=z[i]/Get(i,i);
+        if(i%n!=0) {
+            tmp[i]-=tmp[i-1]*Get(i,i-1);
+        }
+        tmp[i]/=Get(i,i);
     }
     return tmp;
 }

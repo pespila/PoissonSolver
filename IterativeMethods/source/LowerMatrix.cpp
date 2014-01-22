@@ -40,19 +40,17 @@ double LowerMatrix::Get(int i,int j) {
 	}
 }
 
-vector<double> LowerMatrix::operator*(const vector<double>& x) {
-    vector<double> tmp;
-    tmp.assign(x.size(),0);
+vector<double> LowerMatrix::operator*(const vector<double>& z) {
+	int m;
+	vector<double> tmp(z.size());
     for(int i=0;i<dim;i++) {
-        tmp[i]+=x[i]*4.0;
-        if(i<(dim-n)) {
-            tmp[i]+=x[i+n]*-1.0;
-            tmp[i+n]+=x[i]*-1.0;
+        for(int j=0;j<5;j++) {
+            m=HashMatrix[i][j];
+            if(m!=-1 && m<i) {
+                tmp[i]=z[i]-Get(i,m)*z[m];
+            }
         }
-        if(i%n!=0) {
-            tmp[i]+=x[i-1]*-1.0;
-            tmp[i-1]+=x[i]*-1.0;
-        }
+        tmp[i]=z[i]/Get(i,i);
     }
     return tmp;
 }

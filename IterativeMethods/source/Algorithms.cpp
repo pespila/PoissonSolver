@@ -9,19 +9,206 @@ Algorithms::Algorithms(int n) {
 Algorithms::~Algorithms() {
 }
 
-double Algorithms::innerProduct(const vector<double>& x,const vector<double>& y) {
-    double ip=0.0;
-    for (int i=0;i<dim;i++)
-        ip+=x[i]*y[i];
-    return ip;
+void Algorithms::JacobiMethod(Matrix& A,vector<double>& x,const vector<double>& b) {
+    int dim=A.Size(),steps=0;
+    vector<double> r(dim,1),solved(dim);
+
+    for(int i=1,k=0;i<(n+1);i++) {
+        for(int j=1;j<(n+1);j++,k++) {
+            solved[k]=g(j*h,i*h);
+        }
+    }
+    double TOL=pow(10,-3)*((x-solved)|(x-solved));
+    while(TOL<(r|r)) {
+        r=A*x;
+        for(int i=0;i<dim;i++) {
+            r[i]=1.0/4.0*(b[i]-r[i]);
+            x[i]+=r[i];
+            r[i]=x[i]-solved[i];
+        }
+        // x+=1.0/4.0*(b-A*x);
+        steps++;
+    }
+    printf("JacobianSteps: %d\n", steps);
 }
 
-double Algorithms::vectorNorm(const vector<double>& x) {
-    double norm=0.0;
-    for(int i=0;i<dim;i++) {
-        norm+=pow(x[i],2);
+void Algorithms::JacobiRelaxationMethod(Matrix& A,vector<double>& x,const vector<double>& b) {
+    int dim=A.Size(),steps=0;
+    vector<double> r(dim,1),solved(dim);
+
+    for(int i=1,k=0;i<(n+1);i++) {
+        for(int j=1;j<(n+1);j++,k++) {
+            solved[k]=g(j*h,i*h);
+        }
     }
-    return sqrt(norm);
+    double TOL=pow(10,-3)*((x-solved)|(x-solved));
+    while(TOL<(r|r)) {
+        r=A*x;
+        for(int i=0;i<dim;i++) {
+            r[i]=1.0/5.0*(b[i]-r[i]);
+            x[i]+=r[i];
+            r[i]=x[i]-solved[i];
+        }
+        // x+=1.0/4.0*(b-A*x);
+        steps++;
+    }
+    printf("JacobianRelaxationSteps: %d\n", steps);
+}
+
+void Algorithms::GaussSeidelMethod(Matrix& A,vector<double>& x,const vector<double>& b) {
+    double sum;
+    int steps=0;
+
+    vector<double> solved(dim),r(dim,1);
+    for(int i=1,k=0;i<(n+1);i++) {
+        for(int j=1;j<(n+1);j++,k++) {
+            solved[k]=g(j*h,i*h);
+        }
+    }
+
+    double TOL=pow(10,-3)*((x-solved)|(x-solved));
+
+    while(TOL<(r|r)) {
+        for(int i=0;i<dim;i++) {
+            if(i==0) {
+                sum=x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
+            } else if(i!=0 && i<n) {
+                sum=x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
+            } else if(i>=n && i<dim-n) {
+                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
+            } else if(i!=dim-1 && i>=dim-n) {
+                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1);
+            } else if(i==dim-1) {
+                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1);
+            }
+            x[i]=1.0/A.Get(i,i)*(b[i]-sum);
+            r[i]=x[i]-solved[i];
+        }
+        steps++;
+    }
+    printf("GaussSeidelSteps: %d\n", steps);
+}
+
+void Algorithms::SORMethod(Matrix& A,vector<double>& x,const vector<double>& b) {
+    double sum,Pi=3.141592654,omega=2/(1+sqrt(1-pow(cos(Pi*h),2)));
+    int steps=0;
+
+    vector<double> solved(dim),r(dim,1);
+    for(int i=1,k=0;i<(n+1);i++) {
+        for(int j=1;j<(n+1);j++,k++) {
+            solved[k]=g(j*h,i*h);
+        }
+    }
+
+    double TOL=pow(10,-3)*((x-solved)|(x-solved));
+
+    while(TOL<(r|r)) {
+        for(int i=0;i<dim;i++) {
+            if(i==0) {
+                sum=x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
+            } else if(i!=0 && i<n) {
+                sum=x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
+            } else if(i>=n && i<dim-n) {
+                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
+            } else if(i!=dim-1 && i>=dim-n) {
+                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1);
+            } else if(i==dim-1) {
+                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1);
+            }
+            x[i]=omega*1.0/A.Get(i,i)*(b[i]-sum)+(1-omega)*x[i];
+            r[i]=x[i]-solved[i];
+        }
+        steps++;
+    }
+    printf("GaussSeidelSteps: %d\n", steps);
+}
+
+void Algorithms::CG(Matrix& A, vector<double>& x,const vector<double>& b) {
+    double alpha,beta=0.0,num1,num2,denom;
+    int steps=0;
+
+    vector<double> solved(dim),r(dim),Ap(dim),tmp(dim,1);
+    for(int i=1,k=0;i<(n+1);i++) {
+        for(int j=1;j<(n+1);j++,k++) {
+            solved[k]=g(j*h,i*h);
+        }
+    }
+    r=b-A*x;
+    vector<double> p(r),rTmp(r);
+
+    num2=rTmp*rTmp;
+    num1=num2;
+    double TOL=pow(10,-3)*((x-solved)|(x-solved));
+    while(TOL<(tmp|tmp)) {
+        Ap=A*p;
+        denom=p*Ap;
+        alpha=num2/denom;
+
+        for(int i=0;i<dim;i++) {
+            x[i]+=alpha*p[i];
+            r[i]-=alpha*Ap[i];
+        }
+
+        num2=r*r;
+        beta=num2/num1;
+
+        for(int i=0;i<dim;i++) {
+            p[i]=r[i]+beta*p[i];
+            tmp[i]=x[i]-solved[i];
+        }
+        rTmp=r;
+        num1=num2;
+        steps++;
+    }
+    printf("CGSteps: %d\n", steps);
+}
+
+void Algorithms::PCG(Matrix& A,WriteableMatrix& L,WriteableMatrix& U,vector<double>& x,const vector<double>& b) {
+    double alpha,beta=0.0,num1,num2,denom;
+    int steps=0;
+
+    vector<double> solved(dim),r(dim),Ap(dim),tmp(dim,1);
+    for(int i=1,k=0;i<(n+1);i++) {
+        for(int j=1;j<(n+1);j++,k++) {
+            solved[k]=g(j*h,i*h);
+        }
+    }
+    r=b-A*x;
+    vector<double> z(r),rTmp(r);
+    z=L*z;
+    LUsolverUpper(A,U,z);
+    vector<double> p(z),zTmp(z);
+
+    num2=zTmp*rTmp;
+    num1=num2;
+    double TOL=pow(10,-3)*((x-solved)|(x-solved));
+    while(TOL<(tmp|tmp)) {
+        Ap=A*p;
+        denom=p*Ap;
+        alpha=num2/denom;
+        
+        for(int i=0;i<dim;i++) {
+            x[i]+=alpha*p[i];
+            r[i]-=alpha*Ap[i];
+        }
+
+        z=r;
+        z=L*z;
+        LUsolverUpper(A,U,z);
+        zTmp=z;
+
+        num2=z*r;
+        beta=num2/num1;
+
+        for(int i=0;i<dim;i++) {
+            p[i]=z[i]+beta*p[i];
+            tmp[i]=x[i]-solved[i];
+        }
+        rTmp=r;
+        num1=num2;
+        steps++;
+    }
+    printf("PCGSteps: %d\n", steps);
 }
 
 void Algorithms::modifiedIncompleteLU(Matrix& A,WriteableMatrix& L,WriteableMatrix& U) {
@@ -88,221 +275,6 @@ void Algorithms::incompleteLU(Matrix& A, WriteableMatrix& L, WriteableMatrix& U)
                 U.Set(i,m,(A.Get(i,m)-sum));
             }
         }
-    }
-}
-
-void Algorithms::JacobiMethod(Matrix& A,vector<double>& x,const vector<double>& b) {
-    int dim=A.Size(),steps=0;
-    vector<double> r(dim,1),solved(dim);
-
-    for(int i=1,k=0;i<(n+1);i++) {
-        for(int j=1;j<(n+1);j++,k++) {
-            solved[k]=g(j*h,i*h);
-        }
-    }
-    double TOL=pow(10,-3)*vectorNorm(solved);
-    while(TOL<vectorNorm(r)) {
-        r=A*x;
-        for(int i=0;i<dim;i++) {
-            r[i]=1.0/4.0*(b[i]-r[i]);
-            x[i]+=r[i];
-            r[i]=x[i]-solved[i];
-        }
-        // x+=1.0/4.0*(b-A*x);
-        steps++;
-    }
-    printf("JacobianSteps: %d\n", steps);
-}
-
-void Algorithms::JacobiRelaxationMethod(Matrix& A,vector<double>& x,const vector<double>& b) {
-    int dim=A.Size(),steps=0;
-    vector<double> r(dim,1),solved(dim);
-
-    for(int i=1,k=0;i<(n+1);i++) {
-        for(int j=1;j<(n+1);j++,k++) {
-            solved[k]=g(j*h,i*h);
-        }
-    }
-    double TOL=pow(10,-3)*vectorNorm(solved);
-    while(TOL<vectorNorm(r)) {
-        r=A*x;
-        for(int i=0;i<dim;i++) {
-            r[i]=1.0/5.0*(b[i]-r[i]);
-            x[i]+=r[i];
-            r[i]=x[i]-solved[i];
-        }
-        // x+=1.0/4.0*(b-A*x);
-        steps++;
-    }
-    printf("JacobianSteps: %d\n", steps);
-}
-
-void Algorithms::GaussSeidelMethod(Matrix& A,vector<double>& x,const vector<double>& b) {
-    double sum;
-    int steps=0;
-
-    vector<double> solved(dim),r(dim,1);
-    for(int i=1,k=0;i<(n+1);i++) {
-        for(int j=1;j<(n+1);j++,k++) {
-            solved[k]=g(j*h,i*h);
-        }
-    }
-
-    double TOL=pow(10,-3)*vectorNorm(solved);
-
-    while(TOL<vectorNorm(r)) {
-        for(int i=0;i<dim;i++) {
-            if(i==0) {
-                sum=x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-            } else if(i!=0 && i<n) {
-                sum=x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-            } else if(i>=n && i<dim-n) {
-                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-            } else if(i!=dim-1 && i>=dim-n) {
-                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1);
-            } else if(i==dim-1) {
-                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1);
-            }
-            x[i]=1.0/A.Get(i,i)*(b[i]-sum);
-            r[i]=x[i]-solved[i];
-        }
-        steps++;
-    }
-    printf("GaussSeidelSteps: %d\n", steps);
-}
-
-void Algorithms::SORMethod(Matrix& A,vector<double>& x,const vector<double>& b) {
-    double sum,Pi=3.141592654,omega=2/(1+sqrt(1-pow(cos(Pi*h),2)));
-    int steps=0;
-
-    vector<double> solved(dim),r(dim,1);
-    for(int i=1,k=0;i<(n+1);i++) {
-        for(int j=1;j<(n+1);j++,k++) {
-            solved[k]=g(j*h,i*h);
-        }
-    }
-
-    double TOL=pow(10,-3)*vectorNorm(solved);
-
-    while(TOL<vectorNorm(r)) {
-        for(int i=0;i<dim;i++) {
-            if(i==0) {
-                sum=x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-            } else if(i!=0 && i<n) {
-                sum=x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-            } else if(i>=n && i<dim-n) {
-                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-            } else if(i!=dim-1 && i>=dim-n) {
-                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1);
-            } else if(i==dim-1) {
-                sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1);
-            }
-            x[i]=omega*1.0/A.Get(i,i)*(b[i]-sum)+(1-omega)*x[i];
-            r[i]=x[i]-solved[i];
-        }
-        steps++;
-    }
-    printf("GaussSeidelSteps: %d\n", steps);
-}
-
-void Algorithms::CG(Matrix& A, vector<double>& x,const vector<double>& b) {
-    double alpha,beta=0.0,num1,num2,denom;
-    int steps=0;
-
-    vector<double> solved(dim),r(dim),Ap(dim),tmp(dim,1);
-    for(int i=1,k=0;i<(n+1);i++) {
-        for(int j=1;j<(n+1);j++,k++) {
-            solved[k]=g(j*h,i*h);
-        }
-    }
-    r=b-A*x;
-    vector<double> p(r),rTmp(r);
-
-    num2=innerProduct(rTmp,rTmp);
-    num1=num2;
-    double TOL=pow(10,-3)*vectorNorm(solved);
-    while(TOL<vectorNorm(tmp)) {
-        Ap=A*p;
-        denom=innerProduct(p,Ap);
-        alpha=num2/denom;
-
-        for(int i=0;i<dim;i++) {
-            x[i]+=alpha*p[i];
-            r[i]-=alpha*Ap[i];
-        }
-
-        num2=innerProduct(r,r);
-        beta=num2/num1;
-
-        for(int i=0;i<dim;i++) {
-            p[i]=r[i]+beta*p[i];
-            tmp[i]=x[i]-solved[i];
-        }
-        rTmp=r;
-        num1=num2;
-        steps++;
-    }
-    printf("CGSteps: %d\n", steps);
-}
-
-void Algorithms::PCG(Matrix& A,WriteableMatrix& L,WriteableMatrix& U,vector<double>& x,const vector<double>& b) {
-    double alpha,beta=0.0,num1,num2,denom;
-    int steps=0;
-
-    vector<double> solved(dim),r(dim),Ap(dim),tmp(dim,1);
-    for(int i=1,k=0;i<(n+1);i++) {
-        for(int j=1;j<(n+1);j++,k++) {
-            solved[k]=g(j*h,i*h);
-        }
-    }
-    r=b-A*x;
-    vector<double> z(r),rTmp(r);
-    LUsolverLower(A,L,z);
-    LUsolverUpper(A,U,z);
-    vector<double> p(z),zTmp(z);
-
-    num2=innerProduct(zTmp,rTmp);
-    num1=num2;
-    double TOL=pow(10,-3)*vectorNorm(solved);
-    while(TOL<vectorNorm(tmp)) {
-        Ap=A*p;
-        denom=innerProduct(p,Ap);
-        alpha=num2/denom;
-        
-        for(int i=0;i<dim;i++) {
-            x[i]+=alpha*p[i];
-            r[i]-=alpha*Ap[i];
-        }
-
-        z=r;
-        LUsolverLower(A,L,z);
-        LUsolverUpper(A,U,z);
-        zTmp=z;
-
-        num2=innerProduct(z,r);
-        beta=num2/num1;
-
-        for(int i=0;i<dim;i++) {
-            p[i]=z[i]+beta*p[i];
-            tmp[i]=x[i]-solved[i];
-        }
-        rTmp=r;
-        num1=num2;
-        steps++;
-    }
-    printf("PCGSteps: %d\n", steps);
-}
-
-void Algorithms::LUsolverLower(Matrix& A,Matrix& L,vector<double>& z) {
-    int m;
-    for(int i=0;i<dim;i++) {
-        for(int j=0;j<5;j++) {
-            m=A.HashMatrix[i][j];
-            if(m!=-1 && m<i) {
-                z[i]-=L.Get(i,m)*z[m];
-            }
-        }
-        z[i]/=L.Get(i,i);
     }
 }
 

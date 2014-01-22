@@ -16,9 +16,10 @@ double g(double,double);
 std::vector<double> operator-(const std::vector<double>&, const std::vector<double>&);
 std::vector<double> operator*(double, std::vector<double>);
 void operator+=(std::vector<double>&,const std::vector<double>&);
+double operator*(const std::vector<double>&,const std::vector<double>&);
+double operator|(const std::vector<double>&,const std::vector<double>&);
 
-class Matrix
-{
+class Matrix {
     public:
         vector<vector<int> > HashMatrix;
         virtual int Size()=0;
@@ -27,14 +28,12 @@ class Matrix
         virtual vector<double> operator*(const vector<double>&)=0;
 };
 
-class WriteableMatrix : public Matrix
-{
+class WriteableMatrix : public Matrix {
     public:
         virtual void Set(int,int,double)=0;
 };
 
-class PoissonMatrix : public Matrix
-{
+class PoissonMatrix : public Matrix {
     private:
     	int dim;
     	int n;
@@ -49,8 +48,7 @@ class PoissonMatrix : public Matrix
         vector<double> operator*(const vector<double>&);
 };
 
-class LowerMatrix : public WriteableMatrix
-{
+class LowerMatrix : public WriteableMatrix {
     private:
         int dim;
         int n;
@@ -66,8 +64,7 @@ class LowerMatrix : public WriteableMatrix
         vector<double> operator*(const vector<double>&);
 };
 
-class UpperMatrix : public LowerMatrix
-{
+class UpperMatrix : public LowerMatrix {
 	private:
 		int dim;
 		int n;
@@ -80,17 +77,37 @@ class UpperMatrix : public LowerMatrix
 };
 
 class Vectors {
+    public:
+        virtual double Get(int)=0;
+        virtual int Size()=0;
+        void PrintVector();
+        void WriteToFile();
+};
+
+class Boundary : public Vectors {
     private:
         int dim;
         int n;
         double h;
     public:
-        vector<double> x;
+        Boundary(int);
+        ~Boundary();
         vector<double> b;
-        Vectors(int);
-        ~Vectors();
-        void PrintVector();
-        void WriteToFile();
+        double Get(int);
+        int Size();
+};
+
+class Startvector : public Vectors {
+    private:
+        int dim;
+        int n;
+        double value;
+    public:
+        Startvector(int,double);
+        ~Startvector();
+        vector<double> x;
+        double Get(int);
+        int Size();
 };
 
 class Algorithms {
@@ -101,17 +118,14 @@ class Algorithms {
 	public:
 		Algorithms(int);
 		~Algorithms();
-        double innerProduct(const vector<double>&,const vector<double>&);
-        double vectorNorm(const vector<double>&);
-        void modifiedIncompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
-        void incompleteLU(Matrix&,WriteableMatrix&,WriteableMatrix&);
         void JacobiMethod(Matrix&,vector<double>&,const vector<double>&);
         void JacobiRelaxationMethod(Matrix&,vector<double>&,const vector<double>&);
         void GaussSeidelMethod(Matrix&,vector<double>&,const vector<double>&);
         void SORMethod(Matrix&,vector<double>&,const vector<double>&);
 		void CG(Matrix&,vector<double>&,const vector<double>&);
 		void PCG(Matrix&,WriteableMatrix&,WriteableMatrix&,vector<double>&,const vector<double>&);
-        void LUsolverLower(Matrix&,Matrix&,vector<double>&);
+        void modifiedIncompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
+        void incompleteLU(Matrix&,WriteableMatrix&,WriteableMatrix&);
         void LUsolverUpper(Matrix&,Matrix&,vector<double>&);
 };
 

@@ -17,8 +17,6 @@ int main(int argc, char const *argv[]) {
     start=clock();
 
     Run.MultiGridMethod(A,V,V.x,V.b);
-    // Run.JacobiMethod(A,V.x,V.b,2056);
-    // Run.JacobiRelaxationMethod(A,V.x,V.b,10000);
 
     end=clock();
     time=(end-start)/CLOCKS_PER_SEC;

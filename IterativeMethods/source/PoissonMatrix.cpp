@@ -7,8 +7,7 @@ PoissonMatrix::PoissonMatrix(int n) {
 	this->tridiagonal=-1.0;
 	this->identity=-1.0;
 
-    vector<int> tmp;
-    tmp.assign(5,-1);
+    vector<int> tmp(5,-1);
     for(int i=0;i<dim;i++) {
         if(i<n) {
             if(i==0) {
