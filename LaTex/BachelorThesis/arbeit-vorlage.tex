@@ -77,7 +77,7 @@ Sei $\Omega = (0,1)\times(0,1) \in \mathbb{R}^{2}$ ein beschränktes, offenes Ge
 löst.
 Dabei seien $f: \Omega \rightarrow \mathbb{R}$ und $g: \partial\Omega \rightarrow \mathbb{R}$ stetige Funktionen und es bezeichnet $\Delta := \sum\limits_{k=1}^{n} \frac {\partial^{2}} {\partial x_{k}^{2}}$ den Laplace-Operator. Für die Poisson-Gleichung im $\mathbb{R}^{2}$ gilt dann:
 \begin{eqnarray}
-        -\Delta u(x,y) &=& \frac {\partial^{2} u(x,y)} {\partial x^{2}} + \frac {\partial^{2} u(x,y)} {\partial y^{2}} = f(x,y) \textnormal{ in } \Omega \\
+        -\Delta u(x,y) &=& \frac {\partial^{2} u(x,y)} {\partial x^{2}} + \frac {\partial^{2} u(x,y)} {\partial y^{2}} = f(x,y) \textnormal{ in }, \Omega \\
     u(x,y) &=& g(x,y) \textnormal{ in } \partial \Omega,
 \end{eqnarray}
 (2.2) und (2.4) nennt man Dirichlet-Randbedingung.\\
@@ -135,7 +135,7 @@ Betrachten wir nun noch den Abschluss von $\Omega_{h}$:
 \overline \Omega_{h} := \{u(ih, jh) | 0 \le i,j \le m\}.
 \end{equation}
 
-\bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}\label{img.5-Point-Star}
+% \bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}\label{img.5-Point-Star}
 
 Mit der Formel (2.9) ergibt sich nun für $\Delta u(x,y) \approx \Delta_{h} u(x,y)$ die diskretisierte Form:
 \begin{equation}
@@ -172,7 +172,7 @@ dar. (Dahmen Reusken)
 % \end{eqnarray}
 % Diese Approximation wird auch 5-Punkt-Differenzenstern genannt, siehe dazu Abbildung (2.1).
 
-\bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
+% \bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
 
 Nummeriert man nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben durch (\autoref{img.gridWithNumbers}) und stellt für jeden dieser Punkte \autoref{eq.5-Point-Star} auf, so führt dies auf eine $N^{2} \times N^{2}$-Matrix der Form:
 
@@ -333,14 +333,6 @@ Wesentlich besser geeignet für diese Problemstellung sind iterative Verfahren. 
 
 \section{Grundbegriffe}\label{s.Grundbegriffe}
 
-\subsection{Definition (Spektralradius)}\label{s.Spektralradius}
-
-Sei $\mat{A} \in \mathbb{R}^{n \times n}$. Und seien für alle $i=1,...,n$ $\lambda_{i} \in \mathbb{R}$. Dann gilt:
-\begin{equation}
-\rho(A) := \max_{1 \le i \le n} | \lambda_{i} |.
-\end{equation}
-Ist $\mat{A}$ symmetrisch so gilt auch $\rho(A) = \| A \|_{2}$ und $\lambda_{i} \in \mathbb{R}_{>0}$ für alle $i=1,...,n$.
-
 \subsection{Definition (Iterationsmatrix)}\label{ss.Iterationsmatrix}
 
 Sei $\mat{A} \in \mathbb{R}^{n \times n}$. Sei außerdem $\mat{C} \in \mathbb{R}^{n \times n}$ eine nichtsinguläre Matrix. Für die iterative Lösung eines linearen Gleichungssystems der Form $Au = f$ ist die Iterationsmatrix $\mat{T} \in \mathbb{R}^{n \times n}$ definiert als:
@@ -351,6 +343,14 @@ wobei die Iterationsvorschrift für $k=1,...,n$ gegeben ist durch:
 \begin{equation}
 u^{k+1} := (\mat{Id} - \mat{C} \mat{A})u^{k} + \mat{C} f.\label{eq.Iteratives Verfahren}
 \end{equation}
+
+\subsection{Definition (Spektralradius)}\label{s.Spektralradius}
+
+Sei $\mat{A} \in \mathbb{R}^{n \times n}$. Und seien für alle $i=1,...,n$ $\lambda_{i} \in \mathbb{R}$. Dann gilt:
+\begin{equation}
+\rho(A) := \max_{1 \le i \le n} | \lambda_{i} |.
+\end{equation}
+Ist $\mat{A}$ symmetrisch so gilt auch $\rho(A) = \| A \|_{2}$ und $\lambda_{i} \in \mathbb{R}_{>0}$ für alle $i=1,...,n$.
 
 \subsection{Satz (Konvergenz iterativer Verfahren)}\label{ss.Konvergenz iterativer Verfahren}
 
@@ -379,10 +379,6 @@ $\mat{A}e = r$ nennen wir Residuumsgleichung.
 
 \section{Das Jacobi-Verfahren (Gesamtschrittverfahren)}\label{s.Das Jacobi-Iterationsverfahren}
 
-Für die Beispiele gilt stets: $n := N \cdot N$, wobei $N$ die Gitterweite in x- und y-Richtung darstellt.
-
-\subsection{Das allgemeine Jacobi-Iterationsverfahren}\label{ss.Allgemeines Jacobi-Verfahren}
-
 Sei $\mat{A} \in \mathbb{R}^{n \times n}$ und $f,u \in \mathbb{R}^{n}$, wobei $u$ die Lösung des linearen Gleichungssystems $\mat{A}u = f$ ist. Dann lässt sich $\mat{A}$ wie folgt zerlegen:
 
 \begin{equation}
@@ -401,8 +397,8 @@ Ist nun $\mat{D}$ nicht singulär, so gilt für das Jacobi-Verfahren folgende It
 Du^{k+1} = (L+U)u^{k} + f \Leftrightarrow u^{k+1} = D^{-1}(L+U)u^{k} + D^{-1}f.
 \end{equation}
 
-In Komponentenschreibweise: \\
-Mit einem Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig} und $k=1,2,...$ berechne für $i=1,...,n$:
+\subsection{Algorithmus (Jacobi-Verfahren)}\label{ss.Allgemeines Jacobi-Verfahren}
+Dann gilt in Komponentenschreibweise mit einem Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig} und $k=1,2,...$. Berechne für $i=1,...,n$:
 
 \begin{equation}
 u^{k+1}_{i} = \frac {1} {a_{ii}} (f_{i} - \sum_{\substack{j = 1 \\ j \ne i}}^{n} a_{ij}u^{k}_{i}).
@@ -439,17 +435,22 @@ für $1 \le i,j \le N$ und $\theta_{i}$, $\theta_{j}$ wie in \autoref{ss.Eigenwe
 
 \textbf{Beweis:}\label{b.EW Jacobi}
 
-Für $\mat{D} = 4 \mat{Id}$ folgt $\mat{D}^{-1} = \frac {1} {4} \mat{Id}$. Für die Iterationsmatrix $\mat{T}_{J}$ angewandt auf einen Vektor $u$ gilt:
-\begin{eqnarray}
-Tu = (Id - D^{-1}A)u = Id u - D^{-1} \underbrace{Au}_{=\lambda(A) u} = Id u - \frac {1} {4} Id u A = u (1 - \frac {1} {4} \lambda(A)). \notag
-\end{eqnarray}
-Die Eigenwerte von $\mat{T}$ lassen sich also einfach durch $(1 - \frac {h^{2}} {4} \lambda(A))$ berechen:
-\begin{equation}
-\lambda_{i,j}(\mat{T}_{J}) = 1 - \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N. \notag
-\end{equation}
+Dieser folgt direkt mit dem Beweis aus \autoref{ss.EW Relax} für $\omega = 1$.
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
+
+% Für $\mat{D} = 4 \mat{Id}$ folgt $\mat{D}^{-1} = \frac {1} {4} \mat{Id}$. Für die Iterationsmatrix $\mat{T}_{J}$ angewandt auf einen Vektor $u$ gilt:
+% \begin{eqnarray}
+% Tu = (Id - D^{-1}A)u = Id u - D^{-1} \underbrace{Au}_{=\lambda(A) u} = Id u - \frac {1} {4} Id u A = u (1 - \frac {1} {4} \lambda(A)). \notag
+% \end{eqnarray}
+% Die Eigenwerte von $\mat{T}$ lassen sich also einfach durch $(1 - \frac {h^{2}} {4} \lambda(A))$ berechen:
+% \begin{equation}
+% \lambda_{i,j}(\mat{T}_{J}) = 1 - \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N. \notag
+% \end{equation}
+% \begin{flushright}
+% $\blacksquare$
+% \end{flushright}
 
 \subsection{Lemma (Spektralradius der Jacobi-Iterationsmatrix bzgl. $\mat{A}_{2D}$)}\label{ss.Spektralradius Jacobi}
 
@@ -460,21 +461,23 @@ Das Jacobi-Verfahren konvergiert für die diskrete Poisson Gleichung und es gilt
 
 \textbf{Beweis:}\label{b.Spektral Jacobi}
 
-Mit \autoref{eq.Jacobi-Eigenwerte} folgt:
-\begin{eqnarray}
-\rho(Id-D^{-1}A_{2D}) &=& \max_{1 \le i \le n} | \lambda_{i} | = \max_{1 \le i \le n} | 1 - \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{}} {2} \right) | \notag \\
-&=& 1 - 2\sin^{2} (\frac {\pi h} {2}) = 1 - 2(\frac{1} {2} (1 - \cos (\pi h)) \notag \\
-&=& \cos (\pi h) \overset{\textnormal{Taylorformel}}{\approx} 1 - \frac {1} {2} \pi^{2} h^{2}. \notag
-\end{eqnarray}
+Folgt mit Beweis aus \autoref{ss.Spektralradius Jacobi Relax} und $\omega = 1$.
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
 
-Das Jacobi-Verfahren konvergiert also für $\mat{A}_{2D}$. Allerdings nimmt mit feinerem Gitter, also kleinere Schrittweite $h$, die Konvergenzgeschwindigkeit stark ab, da der Spektralradius nahe bei $1$ liegt.
+% Mit \autoref{eq.Jacobi-Eigenwerte} folgt:
+% \begin{eqnarray}
+% \rho(Id-D^{-1}A_{2D}) &=& \max_{1 \le i \le n} | \lambda_{i} | = \max_{1 \le i \le n} | 1 - \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{}} {2} \right) | \notag \\
+% &=& 1 - 2\sin^{2} (\frac {\pi h} {2}) = 1 - 2(\frac{1} {2} (1 - \cos (\pi h)) \notag \\
+% &=& \cos (\pi h) \overset{\textnormal{Taylorformel}}{\approx} 1 - \frac {1} {2} \pi^{2} h^{2}. \notag
+% \end{eqnarray}
+% \begin{flushright}
+% $\blacksquare$
+% \end{flushright}
 
-\subsection{Das Jacobi-Iterationsverfahren für die Poisson-Gleichung}\label{ss.Jacobi-Verfahren der Poisson Gleichung}
-
-Um den Rechenaufwand zu verbessern, nutzen wir nun noch die Dünnbesetztheit von $\mat{A}_{2D}$ aus. Es sind pro Zeile maximal $5$ Einträge ungleich Null.
+Das Jacobi-Verfahren konvergiert also für $\mat{A}_{2D}$. Allerdings nimmt mit feinerem Gitter, also kleinere Schrittweite $h$, die Konvergenzgeschwindigkeit stark ab, da der Spektralradius nahe bei $1$ liegt.\\
+Abschließend wollen wir den Rechenaufwand verbessern. Dafür nutzen wir die Dünnbesetztheit von $\mat{A}_{2D}$ aus. Es sind pro Zeile maximal $5$ Einträge ungleich Null. Mit anderen Worten hat jeder Gitterpunkt in $\Omega_{h}$ höchstens 4 Nachbarn. Nutzt man diese Struktur aus, so erhält man den folgenden Algorithmus. 
 % Da die Matrix, die durch das diskretisierte Poisson-Problem aufgestellt wird, dünn besetzt ist, können wir den Rechenaufwand für dieses spezielle Problem auf $\mathcal{O}(n)$ pro Iterationsschritt verbessern. Dafür benötigen wir nochmals den 5-Punkt-Differenzenstern und die partielle Differentialgleichung:
 
 % \begin{equation}
@@ -482,6 +485,8 @@ Um den Rechenaufwand zu verbessern, nutzen wir nun noch die Dünnbesetztheit von
 % \end{equation}
 
 % Löst man diese Gleichung nun für alle $i,j$ nach $u(x_{i},y_{j})$ auf, so erhält man folgende Iterationsvorschrift für das Jacobi-Verfahren: \\
+
+\subsection{Algorithmus (Jacobi-Verfahren für $\mat{A}_{2D}$)}\label{ss.Jacobi für Poisson}
 
 Berechne für $k = 1,2,...$ mit Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig}\\
 Für $i = 1,...,N$ und für $j = 1,...,N$:
@@ -491,6 +496,7 @@ u^{k+1}_{i,j} =  \frac {1} {a_{i,i}} (f_{i,j} - u^{k}_{i-1,j} + u^{k}_{i+1,j} + 
 (Werte, bei denen eine Null im Index steht, werden ignoriert!)\\
 Der Rechenaufwand pro Iterationsschritt beträgt lediglich $\mathcal{O}(N \cdot N)=\mathcal{O}(n)$ Schritte.
 
+% \subsection{Das Jacobi-Relaxations-Verfahren für $\mat{A}_{2D}$}\label{ss.Jacobi-Verfahren der Poisson Gleichung}
 \section{Das Jacobi-Relaxationsverfahren}\label{s.Jacobi Relaxation}
 
 Wir wollen nochmal das Jacobi-Verfahren betrachten:
@@ -518,9 +524,18 @@ u^{k+1} &=& u^{k} + D^{-1} \omega r^{k} = u^{k} + \omega D^{-1} (f - Au^{k}) \no
 \mat{T}_{J_{\omega}} := (\mat{Id} - \omega \mat{D}^{-1} \mat{A}) = (1 - \omega) \mat{Id} + \omega(\mat{Id} - \mat{D}^{-1} \mat{A}).
 \end{equation}
 
-Dies führt auf folgenden Algorithmus:
+\textbf{Beweis}:\label{b.Iterationsvorschrift JacobiRelax}
 
-\subsection{Algorithmus des Jacobi-Relaxations-Verfahrens}\label{ss.Algorithmus Jacobi Relax}
+Mit der Iterationsvorschrift folgt:
+\begin{eqnarray}
+u^{k+1} &=& D^{-1}(L+U)u^{k} + D^{-1}f \overset{(L+U)=(D-A)}{=} D^{-1}(D-A)u^{k}+D^{-1}f \notag \\
+&=& (Id-D^{-1}A)u^{k} + D^{-1}f. \notag
+\end{eqnarray}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+\subsection{Algorithmus (Jacobi-Relaxations-Verfahren)}\label{ss.Algorithmus Jacobi Relax}
 
 Sei $u^{0} \in \mathbb{R}^{n}$ ein \textit{beliebiger} Startvektor und $k=1,2,...$ berechne für $i=1,...,n$:
 
@@ -528,9 +543,52 @@ Sei $u^{0} \in \mathbb{R}^{n}$ ein \textit{beliebiger} Startvektor und $k=1,2,..
 u^{k+1}_{i} = (1 - \omega)u^{k}_{i} + \frac {\omega} {a_{ii}} (f_{i} - \sum_{\substack{j = 1 \\ j \ne i}}^{n} a_{ij}u^{k}_{i}).
 \end{equation}
 
-Beachte: Für $\omega = 1$ erhalten wir das Jacobi-Verfahren. Auch hier beträgt der Rechenaufwand $\mathcal{O}(n^{2})$. Angewandt auf die 2D Poisson Gleichung gilt:
+Beachte: Für $\omega = 1$ erhalten wir das Jacobi-Verfahren. Auch hier beträgt der Rechenaufwand $\mathcal{O}(n^{2})$.
 
-\subsection{Algorithmus des Jacobi-Relaxations-Verfahrens für $\mat{A}_{2D}$}\label{ss.Algorithmus Jacobi Relax Poisson}
+\subsection{Satz (Eigenwerte des Jacobi-Relaxationsverfahren bzgl. $\mat{A}_{2D}$)}\label{ss.EW Relax}
+
+Auch hier entsprechen die Eigenvektoren denen von $\mat{A}_{2D}$ und für die Eigenwerte von $\mat{T}_{J_{\omega}}$ gilt:
+\begin{equation}
+\lambda_{i,j}(\mat{T}_{J}) = 1 - \omega \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N.\label{eq.Jacobi-Eigenwerte}
+\end{equation}
+
+\textbf{Beweis:}\label{sss.EW JacobiRelax}
+
+Für $\mat{D} = 4 \mat{Id}$ folgt $\mat{D}^{-1} = \frac {1} {4} \mat{Id}$. Für die Iterationsmatrix $\mat{T}_{J_{\omega}}$ angewandt auf einen Vektor $u$ gilt:
+\begin{eqnarray}
+\mat{T}_{J_{\omega}}u = (\mat{I}d - \omega \mat{D}^{-1}\mat{A})u = \mat{Id} u - \omega \mat{D}^{-1} \underbrace{\mat{A}u}_{=\lambda_{i,j}(A) u} = \mat{Id} u - \frac {\omega} {4} \mat{Id} \mat{A} u = u (1 - \frac {\omega} {4} \lambda_{i,j}(\mat{A})). \notag
+\end{eqnarray}
+Die Eigenwerte von $\mat{T}_{J_{\omega}}$ lassen sich also einfach durch $(1 - \frac {\omega} {4} \lambda_{i,j}(A))$ berechen:
+\begin{equation}
+\lambda_{i,j}(\mat{T}_{J}) = 1 - \omega \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N. \notag
+\end{equation}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+\subsection{Lemma (Spektralradius der Jacobi-Relaxations-Matrix bzgl. $\mat{A}_{2D}$)}\label{ss.Spektralradius Jacobi Relax}
+
+Das Jacobi-Relaxations-Verfahren konvergiert für die diskrete Poisson Gleichung und es gilt für den Spektralradius:
+\begin{equation}
+\rho(\mat{T}_{J_{\omega}}) = 1 - \omega(1 - \cos (\pi h)) < 1.
+\end{equation}
+
+\textbf{Beweis:}\label{b.Spektral JacobiRelax}
+
+Mit \autoref{eq.Jacobi-Eigenwerte} folgt:
+\begin{eqnarray}
+\rho(\mat{Id}-\omega\mat{D}^{-1}\mat{A}_{2D}) &=& \max_{1 \le i,j \le N} | \lambda_{i} | = \max_{1 \le i,j \le N} | 1 - \omega \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2} \right) | \notag \\
+&=& 1 - 2 \omega \sin^{2} (\frac {\theta_{1}} {2}) = 1 - 2 \omega \sin^{2} (\frac {\pi h} {2}) = 1 - 2 \omega (\frac{1} {2} (1 - \cos (\pi h)) \notag \\
+&=& 1 - \omega(1 - \cos (\pi h)) \overset{\textnormal{Taylorformel}}{\approx} 1 - \omega(1-(1-\frac{\pi^{2} h^{2}}{2})) \notag \\
+&=& 1 - \frac {\omega} {2} \pi^{2} h^{2} < 1. \notag
+\end{eqnarray}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+Das Jacobi-Relaxations-Verfahren konvergiert für $\mat{A}_{2D}$ sogar schneller für ein $\omega \in (0,1)$. Häufig verwendete Werte im zweidimensionalen Fall sind $\omega = \frac {1} {2}$ und $\omega = \frac {4} {5}$, wobei letzterer Wert für das Mehrgitterverfahren den optimalen Parameter darstellt [Saad]. Leider ist für kleines $h$ die Konvergenz immer noch sehr langsam. Den Rechenaufwand kann man allerdings auch hier verbesseren. Mit der selben Vorgehensweise wie oben erhalten wir:
+
+\subsection{Algorithmus (Jacobi-Relaxations-Verfahren für $\mat{A}_{2D}$)}\label{ss.Algorithmus Jacobi Relax Poisson}
 
 Berechne für $k = 1,2,...$ mit Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig}\\
 Für $i = 1,...,N$ und für $j = 1,...,N$:
@@ -539,35 +597,6 @@ u^{k+1}_{i,j} = (1 - \omega)u^{k} + \frac {\omega} {a_{i,i}} (f_{i,j} - u^{k}_{i
 \end{equation}
 
 mit Rechenaufwand $\mathcal{O}(n)$.
-
-\subsection{Satz (Eigenwerte des Jacobi-Relaxationsverfahren bzgl. $\mat{A}_{2D}$)}\label{ss.EW Relax}
-
-Auch hier entsprechen die Eigenvektoren denen von $\mat{A}_{2D}$ und für die Eigenwerte von $\mat{T}_{J_{\omega}}$ gilt:
-\begin{equation}
-\lambda_{i,j}(\mat{T}_{J}) = 1 - 4 \omega \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N.\label{eq.Jacobi-Eigenwerte}
-\end{equation}
-\begin{flushright}
-$\blacksquare$
-\end{flushright}
-
-\textbf{Beweis:}\label{b.Beweis Eigenwerte}
-
-Analog zu \autoref{b.EW Jacobi}.
-
-\subsection{Lemma (Spektralradius der Jacobi-Relaxations-Matrix bzgl. $\mat{A}_{2D}$)}\label{ss.Spektralradius Jacobi Relax}
-
-Das Jacobi-Relaxations-Verfahren konvergiert für die diskrete Poisson Gleichung und es gilt für den Spektralradius:
-\begin{equation}
-\rho(\mat{T}_{J}) = \omega \cos(\pi h) < 1.
-\end{equation}
-
-\textbf{Beweis:}\label{b.Beweis Spektralradius}
-Ebenfalls analog zu \autoref{b.Spektral Jacobi}, wobei nun gilt:
-\begin{equation}
-1 - \omega 2\sin^{2} (\frac {\pi h} {2}) = \omega \cos (\pi h) \overset{\textnormal{Taylorformel}}{\approx} 1 - \frac {\omega} {2} \pi^{2} h^{2}.
-\end{equation}
-
-Das Jacobi-Relaxations-Verfahren konvergiert für $\mat{A}_{2D}$ sogar schneller für ein $\omega \in (0,1)$. Häufig verwendete Werte für $\omega$ sind $\frac {1} {2}$ und $\frac {2} {3}$. Leider ist für kleines $h$ die Konvergenz immer noch sehr langsam.
 
 % \section{Das Gauß-Seidel-Verfahren (Einzelschrittverfahren)}\label{s.Das Gauss-Seidel-Verfahren}
 
@@ -726,7 +755,7 @@ e^{k+1} &=& u^{*} - u^{k+1} = u^{*} - \left( (Id - \omega D^{-1} A)u^{k} + \omeg
 &=& e^{k} + \omega D^{-1} A e^{k} = (Id - \omega D^{-1} A) e^{k}.
 \end{eqnarray}
 
-\bild{omegaeins}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi1}
+% \bild{omegaeins}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi1}
 
 Da die $n$ (zur Erinnerung: $n = N^{2}$) Eigenvektoren $v_{i,j}$ eine Basis bilden, lässt sich der Fehler $e$ als Linearkombination der $v_{i,j}$ darstellen:
 \begin{eqnarray}
@@ -735,13 +764,13 @@ e^{k+1} &=& \sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k+1}_{i,j} v_{i,j} = (Id - \o
 &=& \left(\sum_{i = 1}^{n} \xi^{k}_{i,j} \underbrace{(1 - \frac {\omega} {4} \lambda_{i,j}(A))}_{= \lambda_{i,j}(\mat{T}_{J_{\omega}})} v_{i,j}\right) = \left(\sum_{i = 1}^{n} \xi^{k}_{i,j} \lambda_{i,j}(\mat{T}_{J_{\omega}}) v_{i,j}\right).
 \end{eqnarray}
 
-\bild{omegaeinhalb}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi2}
+% \bild{omegaeinhalb}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi2}
 
 Betrachten wir nun die Eigenwerte der Iterationsmatrix für $\omega = 1$ (Jacobi-Verfahren), sieht man, dass die Eigenwerte für $i,j$ nahe Null oder $i,j$ nahe N den Fehler schlecht bis gar nicht dämpfen (\subfigureautorefname{ 3.1}). Dies erklärt auch das langsame Konvergenzverhalten des Jacobi-Verfahren (siehe Kapitel 5). Interessanter weiße ist der optimale Wert $\omega = 1$, wenn man das Ganze als iteratives Verfahren verwendet [Saad]. Das Jacobi-Verfahren besitzt aber keine Glättungseigenschaft.\\
 Da wir aber eine Fehlerglättung erreichen wollen, wählen wir nun $\omega = \frac {1} {2}$ (\subfigureautorefname{ 3.2}). Wir stellen fest, dass die Eigenwerte der Iterationsmatrix zwischen $0$ und $1$ liegen. Sind $i,j > \frac {N} {2}$ so werden die Fehleranteile wesentlich besser gedämpft, da die Eigenwerte hier nahe Null liegen. Diese Eigenschaft nennt man die \textit{Glättungseigenschaft}.\\
 Es stellt sich z.B. heraus [Saad], dass der optimale Relaxationsparameter, der unabhängig von der Schrittweite $h$ gewählt werden kann, $\omega = \frac {4} {5}$ ist. In \subfigureautorefname{ 3.3} ist gut zu sehen, dass viele der Eigenwerte nahe Null liegen.
 
-\bild{omeganullacht}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi3}
+% \bild{omeganullacht}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi3}
 
 \section{Das Verfahren der konjugierten Gradienten}\label{s.Das Verfahren der konjugierten Gradienten}
 
@@ -795,7 +824,7 @@ Es ist also äquivalent die Funktion $f(u)$ zu minimieren und das Gleichungssyst
 \begin{equation}
 \nabla f(x) = Ax - b = -r.
 \end{equation}
-Der Gradient von $f(x)$ ist also das negative Residuum des Gleichungsssystem. Beim Verfahren der \textbf{konjugierten} Gradienten wählt man konjugierte Richtungen $p$ für die Richtung des steilsten Abstiegs. Die dabei berechneten (konjugierten) Vektoren $p$ sind alle A-orthogonal und spannen einen sogenannten Krylow-Raum $U_{k} = \{p^{0},...,p^{k}\}$ auf. Für den Zusammenhang zwischen dem CG-Verfahren und Krylow-Räumen möchte ich an dieser Stelle auf [Braess] verweisen.\\
+Der Gradient von $f(x)$ ist also das negative Residuum. Beim Verfahren der \textbf{konjugierten} Gradienten wählt man konjugierte Richtungen $p$ für die Richtung des steilsten Abstiegs. Die dabei berechneten (konjugierten) Vektoren $p$ sind alle A-orthogonal und spannen einen sogenannten Krylow-Raum $U_{k} = \{p^{0},...,p^{k}\}$ auf. Für den Zusammenhang zwischen dem CG-Verfahren und Krylow-Räumen möchte ich an dieser Stelle auf [Braess] verweisen.\\
 Da wir also stets das Minimum im Teilraum $U_{k}$ suchen, wird uns folgendes Lemma hilfreich sein:
 
 % \bild{CG_Illu}{8cm}{Abstieg}{Abstieg}\label{img.CG}
@@ -822,7 +851,7 @@ Zur Erzeugung der Lösung von $u^{*}$ durch Näherungen $u^{1}, u^{2},...$ defin
 
 \begin{description}
 
-\item[0.] Definiere den Teilraum $U_{1}$ und bestimme das Residuum $r^{0}$ mit beliebigen Startvektor $u^{0}$
+\item[0.] Definiere Teilraum $U_{1}$ und bestimme $r^{0}$ mit beliebigen Startvektor $u^{0}$
 \begin{equation}
 U_{1} := span\{r^{0}\} \textnormal{, wobei } r^{0} = f - Au^{0}
 \end{equation}
@@ -848,11 +877,11 @@ U_{k+1} := span\{p^{0},...,p^{k-1},r^{k}\} \textnormal{ wobei } r^{k} := f - Au^
 
 \end{description}
 
-Nachdem man ein Residuum berechnet hat, startet der erste Iterationsschritt: Man erweitert seinen Teilraum um für diesen dann eine A-orthogonale Basis zu bestimmen. Ein gängiges Verfahren ist das Gram-Schmidt-Orthogonalisierungsverfahren. Die neue Näherungslösung bzgl. des Raumes $U_{k}$ kann dann über den (A-orthogonalen) Projektionssatz bestimmt werden. Nachdem erneut ein Residuum berechnet wurde, startet der nächste Iterationsschritt.\\
+Nachdem man ein Residuum berechnet hat, startet der erste Iterationsschritt: Man erweitert seinen Teilraum um für diesen dann eine A-orthogonale Basis zu bestimmen. Ein gängiges Verfahren ist das Gram-Schmidt-Orthonormalisierungsverfahren. Die neue Näherungslösung bzgl. des Raumes $U_{k}$ kann dann über den (A-orthogonalen) Projektionssatz bestimmt werden. Nachdem erneut ein Residuum berechnet wurde, startet der nächste Iterationsschritt.\\
 Wegen \autoref{eq.Projektion} könnte man vermuten, dass $u^{*}$ zur Durchführung des Algorithmus bekannt sein muss. Die folgenden Lemmata werden zeigen, dass dem nicht so ist.
 
 \subsection{Lemma}
-Sei $u^{*}$ die Lösung von $Au = f$. Dann gilt für ein $y \in U_{k}$:
+Sei $u^{*} \in \mathbb{R}^{n}$ die Lösung von $Au = f$. Dann gilt für ein $y \in U_{k}$:
 \begin{equation}
 \langle u^{*}, y \rangle _{A} = \langle f, y \rangle
 \end{equation}
@@ -870,7 +899,7 @@ $\blacksquare$
 Nun wollen wir \autoref{eq.Projektion} neu formulieren.
 
 \subsection{Lemma}
-Sei $x^{*}$ die Lösung von $Au = f$ und $x^{k}$ die optimale Approximation von $x^{*}$ in $U_{k}$. Dann kann $x^{k}$ wie folgt berechnet werden:
+Sei $x^{*} \in \mathbb{R}^{n}$ die Lösung von $Au = f$ und $x^{k} \in \mathbb{R}^{n}$ die optimale Approximation von $x^{*}$ in $U_{k}$. Dann kann $x^{k}$ wie folgt berechnet werden:
 \begin{equation}
 x^{k} = x^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ mit } \alpha_{k-1} := \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle}. \notag\label{eq.Alpha}
 \end{equation}
@@ -881,7 +910,7 @@ Einen Beweis findet man in [Dahmen/Reusken].
 $x^{k}$ kann mit wenig Aufwand aus $x^{k-1}$ und $p^{k-1}$ berechnet werden.
 
 \subsection{Lemma}
-Das Residuum $r^{k}$ kann einfach berechnet werden durch:
+Das Residuum $r^{k} \in \mathbb{R}^{n}$ kann einfach berechnet werden durch:
 \begin{equation}
 r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1},
 \end{equation}
@@ -905,7 +934,7 @@ Durch
 \begin{equation}
 p^{k-1} = r^{k-1} - \sum_{j=0}^{k-2} \frac {\langle r^{k-1}, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j},
 \end{equation}
-wird die A-orthogonale Basis zum Vektor $r^{k-1}$ bestimmt.
+wird die A-orthogonale Basis zum Vektor $r^{k-1}$ bestimmt, wobei $p^{k-1},r^{k-1} \in \mathbb{R}^{n}$.
 
 \textbf{Beweis:}
 Der Beweis folgt direkt aus dem Gram-Schmidt-Orthonormalisierungsverfahren.\\
@@ -1181,9 +1210,36 @@ Seien $f: \Omega \rightarrow \mathbb{R}$ und $g: \partial\Omega \rightarrow \mat
     u(x,y) &=& g(x,y) = x^{2} + y^{2} \textnormal{ in } \partial \Omega
 \end{eqnarray}
 Gesucht ist eine Funktion $u(x,y)$, die diese Gleichung löst. \\
-Offensichtlich löst der elliptische Paraboloid $u(x,y) = x^{2} + y^{2}$ die partielle Differentialgleichung, da $\partial_{xx}u(x,y) = \partial_{yy}u(x,y) = 2$. Allerdings wollen wir nun diese Lösung auch numerisch erhalten.
+Offensichtlich löst der elliptische Paraboloid $u(x,y) = x^{2} + y^{2}$ die partielle Differentialgleichung, da $\partial_{xx}u(x,y) = \partial_{yy}u(x,y) = 2$. Allerdings wollen wir nun diese Lösung auch numerisch erhalten.\\
+Die gewünschte Lösung sollte also folgenden Graphen ergeben:
 
-\section{Jacobi-Verfahren angewandt auf das Beispiel}\label{s.Jacobi mit Beispiel}
+%bild
+
+Zu beachten ist außerdem, dass wir $\Omega_{h} \in [0,1]$ gewählt haben. Es wird also auch nur das Viertel des Graphen ausgegeben, welches sich im Einheitsquadrat befindet.\\
+
+\subsection{Programmierung in C++}
+
+Das gesamte Programm wurde objektorientiert geschrieben, darum ist stets von Methoden und Klassen, nicht von Funktionen die Rede. In den folgenden Beispielen wollen wir zunächst die Lösung der Poisson Gleichung für verschiedene Verfahren betrachten. Dafür werden die jeweiligen Methoden der Klassen mit eingebunden, um eine Idee für die Programmierung zu erhalten. Außerdem wollen wir nicht nur die Iterationsschritte genauer betrachten, sondern auch die Rechenzeit.\\
+An manchen Stellen im Code kommt die Vermutung auf, dass es sich um Pseudocode handeln könnte. Dies ist natürlich nicht der Fall. Es wurden lediglich bestimmte Operatoren wie *,+,-,etc. überladen.
+
+\section{Lösung der Poisson Gleichung (Jacobi-Verfahren)}\label{s.Jacobi mit Beispiel}
+
+Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert das Jacobi-Verfahren nur langsam. Es überrascht darum nicht, dass einige Iterationsschritte nötig sind, um das Gleichungssystem zu lösen. Trotz einer effizienten Programmierung benötigt die Methode einiges an Rechenzeit. Dies illustriert (Tabelle kommt noch). Zunächst einmal wollen wir uns die C++-Methode genauer ansehen.
+
+\subsection{Jacobi C++-Methode}\label{s.cpu}\lstinputlisting[language=C]{code/Jacobi.c}
+
+
+
+\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{tabular}{|ll||l|l|l|l|}\hline
+\multicolumn{2}{|c||}{}&\multicolumn{4}{c|}{ dies} \\
+\multicolumn{2}{|c||}{}& von dort  & und dort & über hier & zu Los \\\hline\hline
+\multirow{3}*{\rotatebox{90}{das}} & hier &  bla  & bla  & bla  & bla \\\cline{2-6}
+& dort & bla  & bla & bla  & bla  \\\cline{2-6}
+& da &  bla  & bla & bla & bla \\\hline
+\end{tabular}
+\caption[eine kompliziertere Tabelle]{eine kompliziertere Tabelle mit viel Beschreibungstext, der aber nicht im Tabellenverzeichnis auftauschen soll}
+\vspace{2ex}\end{table}
 
 \section{CG-Verfahren angewandt auf das Beispiel}\label{s.CG mit Beispiel}
 

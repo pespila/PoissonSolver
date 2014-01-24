@@ -1,35 +1,44 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.12.21)  23 JAN 2014 19:50
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2013.10.14)  24 JAN 2014 14:08
 entering extended mode
+ restricted \write18 enabled.
  %&-line parsing enabled.
 **arbeit-vorlage.tex
 (./arbeit-vorlage.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, ngerman, german, german-x-2009-06-19, ngerman-x-2009-06-19, loaded.
-
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, et
+hiopic, farsi, arabic, pinyin, croatian, bulgarian, ukrainian, russian, slovak,
+ czech, danish, dutch, usenglishmax, ukenglish, finnish, french, basque, ngerma
+n, german, swissgerman, ngerman-x-2012-05-30, german-x-2012-05-30, monogreek, g
+reek, ibycus, ancientgreek, hungarian, bengali, tamil, hindi, telugu, gujarati,
+ sanskrit, malayalam, kannada, assamese, marathi, oriya, panjabi, italian, lati
+n, latvian, lithuanian, mongolian, mongolianlmc, nynorsk, bokmal, indonesian, e
+speranto, coptic, welsh, irish, interlingua, serbian, serbianc, slovenian, friu
+lan, romansh, estonian, romanian, armenian, uppersorbian, turkish, afrikaans, i
+celandic, kurmanji, polish, portuguese, galician, catalan, spanish, swedish, th
+ai, loaded.
 (./arbeit-vorlage-praeambel.tex
-(/usr/share/texmf-texlive/tex/latex/koma-script/scrreprt.cls
-Document Class: scrreprt 2009/07/24 v3.04a KOMA-Script document class (report)
-(/usr/share/texmf-texlive/tex/latex/koma-script/scrkbase.sty
-Package: scrkbase 2009/07/24 v3.04a KOMA-Script package (KOMA-Script-dependent 
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrreprt.cls
+Document Class: scrreprt 2012/05/15 v3.11 KOMA-Script document class (report)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2012/05/15 v3.11 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2012/05/15 v3.11 KOMA-Script package (KOMA-Script-independent 
 basics and keyval usage)
 
-(/usr/share/texmf-texlive/tex/latex/koma-script/scrbase.sty
-Package: scrbase 2009/07/24 v3.04a KOMA-Script package (KOMA-Script-independent
- basics and keyval usage)
-
-(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(/usr/share/texmf-texlive/tex/latex/koma-script/scrlfile.sty
-Package: scrlfile 2009/03/25 v3.03 KOMA-Script package (loading files)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2011/03/09 v3.09 KOMA-Script package (loading files)
 
-Package scrlfile, 2009/03/25 v3.03 KOMA-Script package (loading files)
+Package scrlfile, 2011/03/09 v3.09 KOMA-Script package (loading files)
                   Copyright (C) Markus Kohm
 
-))) (/usr/share/texmf-texlive/tex/latex/koma-script/tocbasic.sty
-Package: tocbasic 2009/06/08 v3.03b KOMA-Script package (handling toc-files)
+))) (/usr/share/texlive/texmf-dist/tex/latex/koma-script/tocbasic.sty
+Package: tocbasic 2012/04/04 v3.10b KOMA-Script package (handling toc-files)
 )
 Package tocbasic Info: omitting babel extension for `toc'
 (tocbasic)             because of feature `nobabel' available
@@ -41,16 +50,16 @@ Package tocbasic Info: omitting babel extension for `lot'
 (tocbasic)             because of feature `nobabel' available
 (tocbasic)             for `lot' on input line 119.
 Class scrreprt Info: File `scrsize12pt.clo' used to setup font sizes on input l
-ine 1271.
+ine 1365.
 
-(/usr/share/texmf-texlive/tex/latex/koma-script/scrsize12pt.clo
-File: scrsize12pt.clo 2009/07/24 v3.04a KOMA-Script font size class option (12p
-t)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrsize12pt.clo
+File: scrsize12pt.clo 2012/05/15 v3.11 KOMA-Script font size class option (12pt
 )
-(/usr/share/texmf-texlive/tex/latex/koma-script/typearea.sty
-Package: typearea 2009/07/24 v3.04a KOMA-Script package (type area)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/typearea.sty
+Package: typearea 2012/05/15 v3.11 KOMA-Script package (type area)
 
-Package typearea, 2009/07/24 v3.04a KOMA-Script package (type area)
+Package typearea, 2012/05/15 v3.11 KOMA-Script package (type area)
                   Copyright (C) Frank Neukam, 1992-1994
                   Copyright (C) Markus Kohm, 1994-
 
@@ -75,7 +84,7 @@ Package typearea Info: These are the values describing the layout:
 (typearea)              \topskip        = 12.0pt
 (typearea)              \footskip       = 50.75pt
 (typearea)              \baselineskip   = 14.5pt
-(typearea)              on input line 1115.
+(typearea)              on input line 1211.
 )
 \c@part=\count80
 \c@chapter=\count81
@@ -90,28 +99,28 @@ Package typearea Info: These are the values describing the layout:
 \c@figure=\count87
 \c@table=\count88
 \bibindent=\dimen102
-) (/usr/share/texmf-texlive/tex/latex/koma-script/scrpage2.sty
-Package: scrpage2 2008/12/08 v2.3 LaTeX2e KOMA-Script package
+) (/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrpage2.sty
+Package: scrpage2 2010/04/22 v2.5 LaTeX2e KOMA-Script package
 LaTeX Info: Redefining \pagemark on input line 176.
 )
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip47
 
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks15
 \ex@=\dimen103
 ))
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen104
 )
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count89
@@ -152,29 +161,29 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
-(/usr/share/texmf-texlive/tex/latex/marvosym/marvosym.sty
-Package: marvosym 2006/05/11 v2.1 Martin Vogel's Symbols font definitions
+(/usr/share/texlive/texmf-dist/tex/latex/marvosym/marvosym.sty
+Package: marvosym 2011/07/20 v2.2 Martin Vogel's Symbols font definitions
 )
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-(/usr/share/texmf-texlive/tex/latex/base/t1enc.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks20
 \inpenc@posthook=\toks21
 
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu
 File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -324,7 +333,7 @@ File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu
+(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu
 File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -355,7 +364,7 @@ File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu
+(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu
 File: omsenc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -379,217 +388,225 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(/usr/share/texmf-texlive/tex/latex/psnfss/mathpazo.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/mathpazo.sty
 Package: mathpazo 2005/04/12 PSNFSS-v9.2a Palatino w/ Pazo Math (D.Puga, WaS) 
 \symupright=\mathgroup4
 )
-(/usr/share/texmf-texlive/tex/latex/setspace/setspace.sty
-Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
-
-Package: `setspace' 6.7 <2000/12/01>
-) (/usr/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2009/06/22 v3.00
 
-(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 \symAMSa=\mathgroup5
 \symAMSb=\mathgroup6
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
 ))
-(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
-Package: babel 2008/07/06 v3.8l The Babel package
+(/var/lib/texmf/tex/generic/babel/babel.sty
+Package: babel 2008/07/08 v3.8m The Babel package
 
-(/usr/share/texmf-texlive/tex/generic/babel/ngermanb.ldf
+(/usr/share/texlive/texmf-dist/tex/generic/babel/ngermanb.ldf
 Language: ngermanb 2008/07/06 v2.6n new German support from the babel system
 
-(/usr/share/texmf-texlive/tex/generic/babel/babel.def
-File: babel.def 2008/07/06 v3.8l Babel common definitions
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2008/07/08 v3.8m Babel common definitions
 \babel@savecnt=\count101
 \U@D=\dimen112
 )
 \l@naustrian = a dialect from \language\l@ngerman 
 Package babel Info: Making " an active character on input line 92.
 ))
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2009/10/09 v6.79a Hypertext links for LaTeX
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/05/13 v6.82q Hypertext links for LaTeX
 
-(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in pdf mode detected.
-)
-(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty
-Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
-)
-(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty
-Package: ifxetex 2009/01/23 v0.5 Provides ifxetex conditional
-)
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
-Package: hycolor 2009/10/02 v1.5 Code for color options of hyperref/bookmark (H
-O)
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty
-Package: xcolor-patch 2009/10/02 xcolor patch
-))
-\@linkdim=\dimen113
-\Hy@linkcounter=\count102
-\Hy@pagecounter=\count103
-
-(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
-Now handling font encoding PD1 ...
-... no UTF-8 mapping file for font encoding PD1
-)
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2007/12/12 v1.2 Prefix for e-TeX command names (HO)
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
-)
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
-)
-(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg
-File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
-)
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
-t (HO)
-))
-Package hyperref Info: Option `breaklinks' set `true' on input line 2864.
-Package hyperref Info: Hyper figures OFF on input line 2975.
-Package hyperref Info: Link nesting OFF on input line 2980.
-Package hyperref Info: Hyper index ON on input line 2983.
-Package hyperref Info: Plain pages OFF on input line 2990.
-Package hyperref Info: Backreferencing OFF on input line 2995.
-
-Implicit mode ON; LaTeX internals redefined
-Package hyperref Info: Bookmarks ON on input line 3191.
-(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty
-\Urlmuskip=\muskip11
-Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
-)
-LaTeX Info: Redefining \url on input line 3428.
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty
-Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
-)
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2009/09/23 v0.6 LuaTeX support for pdfTeX utility functions
- (HO)
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2009/04/17 v1.2 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
-)
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-)))
-\Fld@menulength=\count104
+Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen113
+\Hy@linkcounter=\count102
+\Hy@pagecounter=\count103
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count104
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `breaklinks' set `true' on input line 3941.
+Package hyperref Info: Hyper figures OFF on input line 4062.
+Package hyperref Info: Link nesting OFF on input line 4067.
+Package hyperref Info: Hyper index ON on input line 4070.
+Package hyperref Info: Plain pages OFF on input line 4077.
+Package hyperref Info: Backreferencing OFF on input line 4082.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4300.
+\c@Hy@tempcnt=\count105
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4653.
+\Fld@menulength=\count106
 \Field@Width=\dimen114
 \Fld@charsize=\dimen115
-\Field@toks=\toks22
-Package hyperref Info: Hyper figures OFF on input line 4377.
-Package hyperref Info: Link nesting OFF on input line 4382.
-Package hyperref Info: Hyper index ON on input line 4385.
-Package hyperref Info: backreferencing OFF on input line 4392.
-Package hyperref Info: Link coloring OFF on input line 4397.
-Package hyperref Info: Link coloring with OCG OFF on input line 4402.
-Package hyperref Info: PDF/A mode OFF on input line 4407.
+Package hyperref Info: Hyper figures OFF on input line 5773.
+Package hyperref Info: Link nesting OFF on input line 5778.
+Package hyperref Info: Hyper index ON on input line 5781.
+Package hyperref Info: backreferencing OFF on input line 5788.
+Package hyperref Info: Link coloring OFF on input line 5793.
+Package hyperref Info: Link coloring with OCG OFF on input line 5798.
+Package hyperref Info: PDF/A mode OFF on input line 5803.
+LaTeX Info: Redefining \ref on input line 5843.
+LaTeX Info: Redefining \pageref on input line 5847.
+\Hy@abspage=\count107
+\c@Item=\count108
+\c@Hfootnote=\count109
+)
 
-(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty
-Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
+Package hyperref Message: Driver (default): hdvips.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+File: hdvips.def 2012/05/13 v6.82q Hyperref driver for dvips
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
+File: pdfmark.def 2012/05/13 v6.82q Hyperref definitions for pdfmark specials
+
+
+Package hyperref Warning: You have enabled option `breaklinks'.
+(hyperref)                But driver `hdvips.def' does not suppport this.
+(hyperref)                Expect trouble with the link areas of broken links.
+
+\pdf@docset=\toks22
+\pdf@box=\box29
+\pdf@toks=\toks23
+\pdf@defaulttoks=\toks24
+\Fld@listcount=\count110
+\c@bookmark@seq@number=\count111
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
 )
-\Hy@abspage=\count105
-\c@Item=\count106
-\c@Hfootnote=\count107
-)
-*hyperref using default driver hpdftex*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
-\Fld@listcount=\count108
-)
-(/usr/share/texmf-texlive/tex/latex/microtype/microtype.sty
-Package: microtype 2009/03/27 v2.3d Micro-typography with pdfTeX (RS)
-\MT@toks=\toks23
-\MT@count=\count109
-LaTeX Info: Redefining \lsstyle on input line 1608.
-LaTeX Info: Redefining \lslig on input line 1608.
-\MT@outer@space=\skip50
-LaTeX Info: Redefining \textls on input line 1616.
+\Hy@SectionHShift=\skip50
+))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+\MT@toks=\toks25
+\MT@count=\count112
+LaTeX Info: Redefining \lsstyle on input line 1597.
+LaTeX Info: Redefining \lslig on input line 1597.
+\MT@outer@space=\skip51
+LaTeX Info: Redefining \textls on input line 1605.
 \MT@outer@kern=\dimen116
-LaTeX Info: Redefining \textmicrotypecontext on input line 2167.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2156.
 Package microtype Info: Loading configuration file microtype.cfg.
 
-(/usr/share/texmf-texlive/tex/latex/microtype/microtype.cfg
-File: microtype.cfg 2009/03/27 v2.3d microtype main configuration file (RS)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2010/01/10 v2.4 microtype main configuration file (RS)
 ))
-(/usr/share/texmf-texlive/tex/latex/oberdiek/pdflscape.sty
-Package: pdflscape 2008/08/11 v0.10 Landscape pages in PDF (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
+Package: pdflscape 2008/08/11 v0.10 Display of landscape pages in PDF (HO)
 
-(/usr/share/texmf-texlive/tex/latex/graphics/lscape.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/etc/texmf/tex/latex/config/graphics.cfg
-File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Package graphics Info: Driver file: dvips.def on input line 91.
 
-(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
-\Gread@gobject=\count110
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 )))
-Package pdflscape Info: Auto-detected driver: pdftex on input line 75.
+Package pdflscape Info: Auto-detected driver: dvips (dvips) on input line 124.
 )
-(/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
 \bigstrutjot=\dimen117
 )
-(/usr/share/texmf-texlive/tex/latex/tools/multicol.sty
-Package: multicol 2008/12/05 v1.6h multicolumn formatting (FMi)
-\c@tracingmulticols=\count111
-\mult@box=\box29
+(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
+\c@tracingmulticols=\count113
+\mult@box=\box30
 \multicol@leftmargin=\dimen118
-\c@unbalance=\count112
-\c@collectmore=\count113
-\doublecol@number=\count114
-\multicoltolerance=\count115
-\multicolpretolerance=\count116
+\c@unbalance=\count114
+\c@collectmore=\count115
+\doublecol@number=\count116
+\multicoltolerance=\count117
+\multicolpretolerance=\count118
 \full@width=\dimen119
 \page@free=\dimen120
 \premulticols=\dimen121
 \postmulticols=\dimen122
-\multicolsep=\skip51
-\multicolbaselineskip=\skip52
-\partial@page=\box30
-\last@line=\box31
-\mult@rightbox=\box32
-\mult@grightbox=\box33
-\mult@gfirstbox=\box34
-\mult@firstbox=\box35
-\@tempa=\box36
+\multicolsep=\skip52
+\multicolbaselineskip=\skip53
+\partial@page=\box31
+\last@line=\box32
+\mult@rightbox=\box33
+\mult@grightbox=\box34
+\mult@gfirstbox=\box35
+\mult@firstbox=\box36
 \@tempa=\box37
 \@tempa=\box38
 \@tempa=\box39
@@ -606,131 +623,136 @@ Package: multicol 2008/12/05 v1.6h multicolumn formatting (FMi)
 \@tempa=\box50
 \@tempa=\box51
 \@tempa=\box52
-\c@columnbadness=\count117
-\c@finalcolumnbadness=\count118
+\@tempa=\box53
+\c@columnbadness=\count119
+\c@finalcolumnbadness=\count120
 \last@try=\dimen123
 \multicolovershoot=\dimen124
 \multicolundershoot=\dimen125
-\mult@nat@firstbox=\box53
-\colbreak@box=\box54
+\mult@nat@firstbox=\box54
+\colbreak@box=\box55
+\multicol@sort@counter=\count121
 )
-(/usr/share/texmf-texlive/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
 
-(/usr/share/texmf-texlive/tex/latex/tools/array.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen126
 \extrarowheight=\dimen127
-\NC@list=\toks24
-\extratabsurround=\skip53
-\backup@length=\skip54
+\NC@list=\toks26
+\extratabsurround=\skip54
+\backup@length=\skip55
 )
 \TX@col@width=\dimen128
 \TX@old@table=\dimen129
 \TX@old@col=\dimen130
 \TX@target=\dimen131
 \TX@delta=\dimen132
-\TX@cols=\count119
-\TX@ftn=\toks25
+\TX@cols=\count122
+\TX@ftn=\toks27
 )
-(/usr/share/texmf-texlive/tex/latex/tools/longtable.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
-\LTleft=\skip55
-\LTright=\skip56
-\LTpre=\skip57
-\LTpost=\skip58
-\LTchunksize=\count120
+\LTleft=\skip56
+\LTright=\skip57
+\LTpre=\skip58
+\LTpost=\skip59
+\LTchunksize=\count123
 \LTcapwidth=\dimen133
-\LT@head=\box55
-\LT@firsthead=\box56
-\LT@foot=\box57
-\LT@lastfoot=\box58
-\LT@cols=\count121
-\LT@rows=\count122
-\c@LT@tables=\count123
-\c@LT@chunks=\count124
-\LT@p@ftn=\toks26
+\LT@head=\box56
+\LT@firsthead=\box57
+\LT@foot=\box58
+\LT@lastfoot=\box59
+\LT@cols=\count124
+\LT@rows=\count125
+\c@LT@tables=\count126
+\c@LT@chunks=\count127
+\LT@p@ftn=\toks28
 )
 Class scrreprt Info: longtable captions redefined on input line 39.
 
-(/usr/share/texmf-texlive/tex/latex/germbib/bibgerm.sty
+(/usr/share/texlive/texmf-dist/tex/latex/germbib/bibgerm.sty
 Package: bibgerm 2000/08/18 v0.1 Support for mixed language bibliographies
 
 ** Macros for german `BibTeX'ing added to Style Option `german' 20 Apr 1993 **
 ** idea and languages `german' and `USenglish' implemented by M. Wallmeier **
 ** Modified for LaTeX 2e and german.sty 2.5b by A. Scherer 1 Nov 1995 **
 ** Modified for ngerman.sty and babel.sty by H. Harders 21 August 2000 **)
-(/usr/share/texmf-texlive/tex/latex/float/float.sty
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count125
-\float@exts=\toks27
-\float@box=\box59
-\@float@everytoks=\toks28
-\@floatcapt=\box60
+\c@float@type=\count128
+\float@exts=\toks29
+\float@box=\box60
+\@float@everytoks=\toks30
+\@floatcapt=\box61
 )
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 \Gin@req@height=\dimen134
 \Gin@req@width=\dimen135
 )
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 
-(/etc/texmf/tex/latex/config/color.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package color Info: Driver file: pdftex.def on input line 130.
-)
-(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
+Package color Info: Driver file: dvips.def on input line 130.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
-\subfigtopskip=\skip59
-\subfigcapskip=\skip60
+\subfigtopskip=\skip60
+\subfigcapskip=\skip61
 \subfigcaptopadj=\dimen136
-\subfigbottomskip=\skip61
+\subfigbottomskip=\skip62
 \subfigcapmargin=\dimen137
-\subfiglabelskip=\skip62
-\c@subfigure=\count126
-\c@lofdepth=\count127
-\c@subtable=\count128
-\c@lotdepth=\count129
+\subfiglabelskip=\skip63
+\c@subfigure=\count129
+\c@lofdepth=\count130
+\c@subtable=\count131
+\c@lotdepth=\count132
 
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
-(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.cfg)
-\subfig@top=\skip63
-\subfig@bottom=\skip64
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip64
+\subfig@bottom=\skip65
 )
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hypcap.sty
-Package: hypcap 2008/09/08 v1.10 Adjusting anchors of captions (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty
+Package: hypcap 2011/02/16 v1.11 Adjusting the anchors of captions (HO)
 )
-(/usr/share/texmf-texlive/tex/latex/listings/listings.sty
-\lst@mode=\count130
-\lst@gtempboxa=\box61
-\lst@token=\toks29
-\lst@length=\count131
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count133
+\lst@gtempboxa=\box62
+\lst@token=\toks31
+\lst@length=\count134
 \lst@currlwidth=\dimen138
-\lst@column=\count132
-\lst@pos=\count133
+\lst@column=\count135
+\lst@pos=\count136
 \lst@lostspace=\dimen139
 \lst@width=\dimen140
-\lst@newlines=\count134
-\lst@lineno=\count135
+\lst@newlines=\count137
+\lst@lineno=\count138
 \lst@maxwidth=\dimen141
 
-(/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-\c@lstnumber=\count136
-\lst@skipnumbers=\count137
-\lst@framebox=\box62
+\c@lstnumber=\count139
+\lst@skipnumbers=\count140
+\lst@framebox=\box63
 )
-(/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2007/02/22 1.4 listings configuration
 ))
 Package: listings 2007/02/22 1.4 (Carsten Heinz)
 LaTeX Font Info:    Try loading font information for T1+ppl on input line 83.
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1ppl.fd
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ppl.fd
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 )
 Package typearea Info: These are the values describing the layout:
@@ -750,12 +772,16 @@ Package typearea Info: These are the values describing the layout:
 (typearea)              \footskip       = 50.75pt
 (typearea)              \baselineskip   = 14.5pt
 (typearea)              on input line 83.
-) (./arbeit-vorlage.aux
+)
+(./arbeit-vorlage.aux
 
 LaTeX Warning: Label `eq.Jacobi-Eigenwerte' multiply defined.
 
 
 LaTeX Warning: Label `eq.Fehler' multiply defined.
+
+
+LaTeX Warning: Label `s.cpu' multiply defined.
 
 )
 \openout1 = `arbeit-vorlage.aux'.
@@ -774,86 +800,72 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
 LaTeX Font Info:    ... okay on input line 3.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 3.
 LaTeX Font Info:    ... okay on input line 3.
+\AtBeginShipoutBox=\box64
 Package hyperref Info: Link coloring OFF on input line 3.
- (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
-Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
-Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count138
+\c@section@level=\count141
 )
 LaTeX Info: Redefining \ref on input line 3.
 LaTeX Info: Redefining \pageref on input line 3.
+LaTeX Info: Redefining \nameref on input line 3.
 
 (./arbeit-vorlage.out) (./arbeit-vorlage.out)
 \@outlinefile=\write3
 \openout3 = `arbeit-vorlage.out'.
 
-\AtBeginShipoutBox=\box63
 LaTeX Info: Redefining \microtypecontext on input line 3.
-Package microtype Info: Generating PDF output.
+Package microtype Info: Generating DVI output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
-Package microtype Info: Automatic font expansion enabled (level 2),
-(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
-Package microtype Info: Using default expansion set `basictext'.
+Package microtype Info: No font expansion.
 Package microtype Info: No tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
 
-(/usr/share/texmf-texlive/tex/latex/microtype/mt-ppl.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
-)
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count139
-\scratchdimen=\dimen142
-\scratchbox=\box64
-\nofMPsegments=\count140
-\nofMParguments=\count141
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count142
-\MPscratchDim=\dimen143
-\MPnumerator=\count143
-\everyMPtoPDFconversion=\toks31
 )
 
 bibgerm.sty: babel.sty detected
 
-\c@lstlisting=\count144
+\c@lstlisting=\count142
 LaTeX Font Info:    Try loading font information for OT1+ppl on input line 27.
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ppl.fd
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
 LaTeX Font Info:    Try loading font information for OML+zplm on input line 27.
 
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/omlzplm.fd
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
 LaTeX Font Info:    Try loading font information for OMS+zplm on input line 27.
 
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/omszplm.fd
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
 LaTeX Font Info:    Try loading font information for OMX+zplm on input line 27.
 
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/omxzplm.fd
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Try loading font information for OT1+zplm on input line 27.
 
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1zplm.fd
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
 (Font)              scaled to size 12.50409pt on input line 27.
 
-(/usr/share/texmf-texlive/tex/latex/microtype/mt-msa.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
@@ -863,7 +875,7 @@ LaTeX Font Info:    Font shape `U/msa/m/n' will be
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 12.50409pt on input line 27.
 
-(/usr/share/texmf-texlive/tex/latex/microtype/mt-msb.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
@@ -874,14 +886,16 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 28.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+]
 LaTeX Font Info:    Try loading font information for T1+cmss on input line 38.
 
-(/usr/share/texmf-texlive/tex/latex/base/t1cmss.fd
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <24.88> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 38.
+Package tocbasic Info: character protrusion at toc deactivated on input line 38
+.
  (./arbeit-vorlage.toc
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
 (Font)              scaled to size 15.0049pt on input line 4.
@@ -897,13 +911,19 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 8.33606pt on input line 4.
 LaTeX Font Info:    Try loading font information for U+fplmbb on input line 4.
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/ufplmbb.fd
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 ) [2
 
 
 
-])
+]
+Overfull \hbox (5.73784pt too wide) in paragraph at lines 54--54
+ [][] [][]\T1/ppl/m/n/12 Der nu-me-ri-sche Al-go-rith-mus der mo-di-fi-zier-ten
+ un-voll-stän- 
+ []
+
+)
 \tf@toc=\write4
 \openout4 = `arbeit-vorlage.toc'.
 
@@ -915,6 +935,12 @@ Class scrreprt Warning: \float@addtolists detected!
 (scrreprt)              instead of \float@addtolists.
 (scrreprt)              Support for \float@addtolists may be removed from
 (scrreprt)              `scrreprt' soon .
+
+
+Overfull \hbox (16.24883pt too wide) in paragraph at lines 60--66
+\T1/ppl/m/n/12 Eine PDG, die vor Al-lem in der Phy-sik häu-fi-ge Ver-wen-dung f
+in-det, ist die Poisson-Gleichung
+ []
 
 [1
 
@@ -944,28 +970,28 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 70.
 
-Overfull \hbox (54.50049pt too wide) in paragraph at lines 76--79
-[] []$ \T1/ppl/m/n/12 (-20) den Laplace-Operator. Für die Poisson-Gleichung im 
-$\U/fplmbb/m/n/12 R[]$ \T1/ppl/m/n/12 (-20) gilt dann: 
+Overfull \hbox (60.77594pt too wide) in paragraph at lines 76--79
+[] []$ \T1/ppl/m/n/12 den Laplace-Operator. Für die Poisson-Gleichung im $\U/fp
+lmbb/m/n/12 R[]$ \T1/ppl/m/n/12 gilt dann: 
  []
 
 
-Overfull \hbox (85.05731pt too wide) in paragraph at lines 92--93
-\T1/ppl/m/n/12 (-20) Wir be-trach-ten ein $\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 
-x\OT1/ppl/m/n/12 (-20) , \OML/zplm/m/it/12 y\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12
- 2 \OT1/zplm/m/n/12 
-$ \T1/ppl/m/n/12 (-20) be-lie-big. Dann gilt für $\OML/zplm/m/it/12 h > \OT1/pp
-l/m/n/12 (-20) 0$ \T1/ppl/m/n/12 (-20) mit der Tay-lor-for-mel 
+Overfull \hbox (91.35556pt too wide) in paragraph at lines 92--93
+\T1/ppl/m/n/12 Wir be-trach-ten ein $\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 x\OT1/
+ppl/m/n/12 , \OML/zplm/m/it/12 y\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 2 \OT1/zplm
+/m/n/12 
+$ \T1/ppl/m/n/12 be-lie-big. Dann gilt für $\OML/zplm/m/it/12 h > \OT1/ppl/m/n/
+12 0$ \T1/ppl/m/n/12 mit der Tay-lor-for-mel 
  []
 
 [2
 
 
 ]
-Overfull \hbox (22.17918pt too wide) in paragraph at lines 111--112
-\T1/ppl/m/n/12 (-20) tung. $\OML/zplm/m/it/12 O\OT1/zplm/m/n/12 (\OML/zplm/m/it
-/12 h[]\OT1/zplm/m/n/12 )$ \T1/ppl/m/n/12 (-20) ist ein Term zwei-ter Ord-nung 
-und wird ver-nach-läs-sigt. 
+Overfull \hbox (28.1875pt too wide) in paragraph at lines 111--112
+\T1/ppl/m/n/12 tung. $\OML/zplm/m/it/12 O\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 h[
+]\OT1/zplm/m/n/12 )$ \T1/ppl/m/n/12 ist ein Term zwei-ter Ord-nung und wird ver
+-nach-läs-sigt. 
  []
 
 
@@ -985,60 +1011,48 @@ Underfull \hbox (badness 10000) in paragraph at lines 121--122
 
  []
 
-<images/diffStar.pdf, id=364, 915.42pt x 733.74126pt>
-File: images/diffStar.pdf Graphic file (type pdf)
 
-<use images/diffStar.pdf>
-LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 138.
- [3]
-Overfull \hbox (109.9713pt too wide) in paragraph at lines 140--141
-[]\T1/ppl/m/n/12 (-20) Mit der For-mel (2.9) er-gibt sich nun für $\OT1/zplm/m/
-n/12 ^^A\OML/zplm/m/it/12 u\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 x\OT1/ppl/m/n/12
- (-20) , \OML/zplm/m/it/12 y\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 ^^Y \OT1/zplm/m
-/n/12 ^^A[]\OML/zplm/m/it/12 u\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 x\OT1/ppl/m/n
-/12 (-20) , \OML/zplm/m/it/12 y\OT1/zplm/m/n/12 )$ \T1/ppl/m/n/12 (-20) die dis
--kre-ti-sier-te Form: 
+Overfull \hbox (116.17067pt too wide) in paragraph at lines 140--141
+[]\T1/ppl/m/n/12 Mit der For-mel (2.9) er-gibt sich nun für $\OT1/zplm/m/n/12 ^
+^A\OML/zplm/m/it/12 u\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 x\OT1/ppl/m/n/12 , \OM
+L/zplm/m/it/12 y\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 ^^Y \OT1/zplm/m/n/12 ^^A[]\
+OML/zplm/m/it/12 u\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 x\OT1/ppl/m/n/12 , \OML/z
+plm/m/it/12 y\OT1/zplm/m/n/12 )$ \T1/ppl/m/n/12 die dis-kre-ti-sier-te Form: 
  []
 
-<images/grid.pdf, id=377, 424.58624pt x 422.57875pt>
-File: images/grid.pdf Graphic file (type pdf)
- <use images/grid.pdf>
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 11.40997pt on input line 175.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 175.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 11.40997pt on input line 175.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 175.
+[3]
 
-[4pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}
-) has been already used, duplicate ignored
+LaTeX Warning: Reference `img.5-Point-Star' on page 4 undefined on input line 1
+45.
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.176 
-       <./images/diffStar.pdf>]
-Overfull \hbox (5.87132pt too wide) in paragraph at lines 187--189
-\T1/ppl/m/n/12 (-20) wobei $[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl
-/m/n/12 (-20) die Iden-ti-tät meint und für al-le $\OML/zplm/m/it/12 i \OT1/zpl
-m/m/n/12 = \OT1/ppl/m/n/12 (-20) 0, .., \OML/zplm/m/it/12 n$ \T1/ppl/m/n/12 (-2
-0) gilt: 
+
+Overfull \hbox (86.13255pt too wide) in paragraph at lines 143--146
+\T1/ppl/m/n/12 Man stellt $\OT1/zplm/m/n/12 ^^A[]\OML/zplm/m/it/12 u\OT1/zplm/m
+/n/12 (\OML/zplm/m/it/12 x\OT1/ppl/m/n/12 , \OML/zplm/m/it/12 y\OT1/zplm/m/n/12
+ )$ \T1/ppl/m/n/12 häu-fig auch als 5-Punkt-Differenzenstern ([]) in der Form 
  []
 
-[5pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}
-) has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.208 \end{equation}
-                     <./images/grid.pdf>]
+LaTeX Warning: Reference `img.gridWithNumbers' on page 4 undefined on input lin
+e 177.
+
+
+Overfull \hbox (10.26924pt too wide) in paragraph at lines 187--189
+\T1/ppl/m/n/12 wobei $[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl/m/n/1
+2 die Iden-ti-tät meint und für al-le $\OML/zplm/m/it/12 i \OT1/zplm/m/n/12 = \
+OT1/ppl/m/n/12 0, .., \OML/zplm/m/it/12 n$ \T1/ppl/m/n/12 gilt: 
+ []
+
+[4]
+Overfull \hbox (82.5548pt too wide) in paragraph at lines 246--247
+\T1/ppl/m/n/12 chung ent-hält. Wir be-zeich-net ab jetzt die dis-kre-te 2D Pois
+-son Ma-trix mit $[][]$ 
+ []
+
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 264.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <8> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 264.
-
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 264.
@@ -1052,6 +1066,13 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 264.
 
 
+Overfull \hbox (128.70743pt too wide) in paragraph at lines 266--267
+\T1/ppl/m/n/12 Da $[][] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl/m/n/12
+ s.p.d. ist, exis-tiert ei-ne Or-tho-go-nal-ba-sis aus Ei-gen-vek-to-ren für di
+e gilt: 
+ []
+
+
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 272.
 
@@ -1063,7 +1084,6 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 272.
 
-[6]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 279.
@@ -1076,16 +1096,16 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 279.
 
-
-Overfull \hbox (40.64708pt too wide) in paragraph at lines 284--286
-\T1/ppl/m/n/12 (-20) wobei $\OML/zplm/m/it/12 N$ \T1/ppl/m/n/12 (-20) die An-za
-hl der Git-ter-punk-te in x- und in y-Richtung de-fi-niert. 
+[5]
+Overfull \hbox (47.33797pt too wide) in paragraph at lines 284--286
+\T1/ppl/m/n/12 wobei $\OML/zplm/m/it/12 N$ \T1/ppl/m/n/12 die An-zahl der Git-t
+er-punk-te in x- und in y-Richtung de-fi-niert. 
  []
 
 
-Overfull \hbox (96.6425pt too wide) in paragraph at lines 289--290
-\T1/ppl/m/n/12 (-20) Sei $[]$ ei-ne sym-me-tri-sche Ma-trix des $\U/fplmbb/m/n/
-12 R[]$\T1/ppl/m/n/12 (-20) . Dann gilt für die Kon-di-ti-on der Ma-trix: 
+Overfull \hbox (103.80737pt too wide) in paragraph at lines 289--290
+\T1/ppl/m/n/12 Sei $[]$ ei-ne sym-me-tri-sche Ma-trix des $\U/fplmbb/m/n/12 R[]
+$\T1/ppl/m/n/12 . Dann gilt für die Kon-di-ti-on der Ma-trix: 
  []
 
 
@@ -1100,547 +1120,477 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 294.
 
+
+Overfull \hbox (124.73235pt too wide) in paragraph at lines 315--317
+\T1/ppl/m/n/12 In [Dah-men-Reus-ken] wird au-ÿer-dem ge-zeigt, dass sich $\OML/
+zplm/m/it/12 ^^T\OT1/zplm/m/n/12 ([][])$ \T1/ppl/m/n/12 wie folgt nä-hern lässt
+: 
+ []
+
+[6]
+Overfull \hbox (35.31621pt too wide) in paragraph at lines 327--328
+[]\T1/ppl/m/n/12 Für ein groÿes $\OML/zplm/m/it/12 m$\T1/ppl/m/n/12 , al-so ein
+ fei-nes Git-ter, wird die Kon-di-ti-on sehr groÿ. 
+ []
+
 [7]
-Overfull \hbox (117.06657pt too wide) in paragraph at lines 315--317
-\T1/ppl/m/n/12 (-20) In [Dah-men-Reus-ken] wird au-ÿer-dem ge-zeigt, dass sich 
-$\OML/zplm/m/it/12 ^^T\OT1/zplm/m/n/12 ([][])$ \T1/ppl/m/n/12 (-20) wie folgt n
-ä-hern lässt: 
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{equation.2.3.
-26}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.317 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.2.3.26}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.317 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.2.3.26}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.317 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.2.3.26}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.317 \begin{equation}
-                      
-Overfull \hbox (28.87488pt too wide) in paragraph at lines 327--328
-[]\T1/ppl/m/n/12 (-20) Für ein groÿes $\OML/zplm/m/it/12 m$\T1/ppl/m/n/12 (-20)
- , al-so ein fei-nes Git-ter, wird die Kon-di-ti-on sehr groÿ. 
- []
-
-[8pdfTeX warning (ext4): destination with the same identifier (name{equation.2.
-3.26}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.329 \chapter
-              {Iterative LÃ¶sungsvefahren fÃ¼r lineare Gleichungssysteme}\la...
-]
 Kapitel 3.
 
-Overfull \hbox (74.3029pt too wide) in paragraph at lines 341--343
-\T1/ppl/m/n/12 (-20) Ist $[]$ sym-me-trisch so gilt auch $\OML/zplm/m/it/12 ^^Z
-\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 A\OT1/zplm/m/n/12 ) = \OMS/zplm/m/n/12 k\OM
-L/zplm/m/it/12 A\OMS/zplm/m/n/12 k[]$ \T1/ppl/m/n/12 (-20) und $\OML/zplm/m/it/
-12 ^^U[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl/m/n/12 (-20) für al-l
-e $\OML/zplm/m/it/12 i \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 (-20) 1, ..., \OML/zp
-lm/m/it/12 n$\T1/ppl/m/n/12 (-20) . 
+Overfull \hbox (6.35751pt too wide) in paragraph at lines 341--343
+\T1/ppl/m/n/12 wobei die Ite-ra-ti-ons-vor-schrift für $\OML/zplm/m/it/12 k \OT
+1/zplm/m/n/12 = \OT1/ppl/m/n/12 1, ..., \OML/zplm/m/it/12 n$ \T1/ppl/m/n/12 ge-
+ge-ben ist durch: 
  []
 
 
-Overfull \hbox (0.76988pt too wide) in paragraph at lines 349--351
-\T1/ppl/m/n/12 (-20) wobei die Ite-ra-ti-ons-vor-schrift für $\OML/zplm/m/it/12
- k \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 (-20) 1, ..., \OML/zplm/m/it/12 n$ \T1/pp
-l/m/n/12 (-20) ge-ge-ben ist durch: 
+Overfull \hbox (78.62881pt too wide) in paragraph at lines 352--354
+\T1/ppl/m/n/12 Ist $[]$ sym-me-trisch so gilt auch $\OML/zplm/m/it/12 ^^Z\OT1/z
+plm/m/n/12 (\OML/zplm/m/it/12 A\OT1/zplm/m/n/12 ) = \OMS/zplm/m/n/12 k\OML/zplm
+/m/it/12 A\OMS/zplm/m/n/12 k[]$ \T1/ppl/m/n/12 und $\OML/zplm/m/it/12 ^^U[] \OM
+S/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl/m/n/12 für al-le $\OML/zplm/m/it/
+12 i \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 1, ..., \OML/zplm/m/it/12 n$\T1/ppl/m/n
+/12 . 
  []
 
-[9
+[8
 
 
 ]
-Overfull \hbox (50.92764pt too wide) in paragraph at lines 362--363
-[]\T1/ppl/m/n/12 (-20) Einen Be-weis hier-zu fin-det man z.B. in (Dah-men/Reus-
-ken und Ver-weis). 
+Overfull \hbox (58.1511pt too wide) in paragraph at lines 362--363
+[]\T1/ppl/m/n/12 Einen Be-weis hier-zu fin-det man z.B. in (Dah-men/Reus-ken un
+d Ver-weis). 
+ []
+
+
+Overfull \hbox (123.49025pt too wide) in paragraph at lines 395--396
+[]\T1/ppl/m/n/12 Ist nun $[]$ nicht sin-gu-lär, so gilt für das Jacobi-Verfahre
+n fol-gen-de Ite-ra-ti-ons-vor-schrift: 
+ []
+
+[9]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 428.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 428.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 428.
+
+
+Overfull \hbox (1.49995pt too wide) in paragraph at lines 430--431
+\T1/ppl/m/n/12 für die Ei-gen-wer-te der Ite-ra-ti-ons-ma-trix $[][] \OT1/zplm/
+m/n/12 := ([] \OMS/zplm/m/n/12 ^^@ [][][][]\OT1/zplm/m/n/12 )$\T1/ppl/m/n/12 : 
+
  []
 
 [10]
-Overfull \hbox (115.24103pt too wide) in paragraph at lines 399--400
-[]\T1/ppl/m/n/12 (-20) Ist nun $[]$ nicht sin-gu-lär, so gilt für das Jacobi-Ve
-rfahren fol-gen-de Ite-ra-ti-ons-vor-schrift: 
- []
-
-
-Overfull \hbox (76.89369pt too wide) in paragraph at lines 404--406
-\T1/ppl/m/n/12 (-20) Mit ei-nem Start-vek-tor $\OML/zplm/m/it/12 u[] \OMS/zplm/
-m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl/m/it/12 (-20) be-lie-big \T1/ppl/m/n/12 
-(-20) und $\OML/zplm/m/it/12 k \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 (-20) 1, 2, .
-..$ \T1/ppl/m/n/12 (-20) be-rech-ne für $\OML/zplm/m/it/12 i \OT1/zplm/m/n/12 =
- \OT1/ppl/m/n/12 (-20) 1, ..., \OML/zplm/m/it/12 n$\T1/ppl/m/n/12 (-20) : 
+Overfull \hbox (42.59335pt too wide) in paragraph at lines 438--439
+[]\T1/ppl/m/n/12 Dieser folgt di-rekt mit dem Be-weis aus [][]Un-ter-ab-schnitt
+ 3.3.2[][][][] für $\OML/zplm/m/it/12 ! \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 1$\T
+1/ppl/m/n/12 . 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 432.
+(hyperref)                removing `math shift' on input line 455.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 432.
+(hyperref)                removing `subscript' on input line 455.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 432.
+(hyperref)                removing `math shift' on input line 455.
 
-[11pdfTeX warning (ext4): destination with the same identifier (name{equation.3
-.2.13}) has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.440 \textbf{Beweis:}
-                      \label{b.EW Jacobi}]
-Overfull \hbox (65.70393pt too wide) in paragraph at lines 445--447
-\T1/ppl/m/n/12 (-20) Die Ei-gen-wer-te von $[]$ las-sen sich al-so ein-fach dur
-ch $\OT1/zplm/m/n/12 (\OT1/ppl/m/n/12 (-20) 1 \OMS/zplm/m/n/12 ^^@ []\OML/zplm/
-m/it/12 ^^U\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 A\OT1/zplm/m/n/12 ))$ \T1/ppl/m/
-n/12 (-20) be-re-chen: 
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 489.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 489.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 489.
+
+
+Overfull \hbox (122.54549pt too wide) in paragraph at lines 495--498
+\T1/ppl/m/n/12 Der Re-chen-auf-wand pro Ite-ra-ti-ons-schritt be-trägt le-dig-l
+ich $\OMS/zplm/m/n/12 O\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 N \OMS/zplm/m/n/12 ^
+^A \OML/zplm/m/it/12 N\OT1/zplm/m/n/12 ) = \OMS/zplm/m/n/12 O\OT1/zplm/m/n/12 (
+\OML/zplm/m/it/12 n\OT1/zplm/m/n/12 )$ \T1/ppl/m/n/12 Schrit-te. 
+ []
+
+[11]
+Overfull \hbox (49.15108pt too wide) in paragraph at lines 515--516
+\U/fplmbb/m/n/12 R$ \T1/ppl/m/n/12 zu mul-ti-pli-zie-ren, um bes-se-re Kon-ver-
+gen-zei-gen-schaf-ten zu er-hal-ten: 
+ []
+
+
+Overfull \hbox (72.3393pt too wide) in paragraph at lines 540--541
+\T1/ppl/m/n/12 Sei $\OML/zplm/m/it/12 u[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R
+[]$ \T1/ppl/m/n/12 ein \T1/ppl/m/it/12 be-lie-bi-ger \T1/ppl/m/n/12 Start-vek-t
+or und $\OML/zplm/m/it/12 k \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 1, 2, ...$ \T1/p
+pl/m/n/12 be-rech-ne für $\OML/zplm/m/it/12 i \OT1/zplm/m/n/12 = \OT1/ppl/m/n/1
+2 1, ..., \OML/zplm/m/it/12 n$\T1/ppl/m/n/12 : 
+ []
+
+[12]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 548.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 548.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 548.
+
+
+Overfull \hbox (88.6278pt too wide) in paragraph at lines 560--562
+\T1/ppl/m/n/12 Die Ei-gen-wer-te von $[][]$ las-sen sich al-so ein-fach durch $
+\OT1/zplm/m/n/12 (\OT1/ppl/m/n/12 1 \OMS/zplm/m/n/12 ^^@ []\OML/zplm/m/it/12 ^^
+U[]\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 A\OT1/zplm/m/n/12 ))$ \T1/ppl/m/n/12 be-
+re-chen: 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 454.
+(hyperref)                removing `math shift' on input line 569.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 454.
+(hyperref)                removing `subscript' on input line 569.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 454.
-
-[12pdfTeX warning (ext4): destination with the same identifier (name{equation.3
-.2.14}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.488 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.2.14}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.488 \begin{equation}
-                      ]pdfTeX warning (ext4): destination with the same identif
-ier (name{equation.3.2.15}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.488 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.2.15}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.488 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.2.15}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.488 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.2.15}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.488 \begin{equation}
-                      
-Overfull \hbox (30.23218pt too wide) in paragraph at lines 509--510
-\T1/ppl/m/n/12 (-20) zu mul-ti-pli-zie-ren, um bes-se-re Kon-ver-gen-zei-gen-sc
-haf-ten zu er-hal-ten: 
- []
+(hyperref)                removing `math shift' on input line 569.
 
 [13]
-Overfull \hbox (66.87415pt too wide) in paragraph at lines 525--526
-\T1/ppl/m/n/12 (-20) Sei $\OML/zplm/m/it/12 u[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/
-n/12 R[]$ \T1/ppl/m/n/12 (-20) ein \T1/ppl/m/it/12 (-20) be-lie-bi-ger \T1/ppl/
-m/n/12 (-20) Start-vek-tor und $\OML/zplm/m/it/12 k \OT1/zplm/m/n/12 = \OT1/ppl
-/m/n/12 (-20) 1, 2, ...$ \T1/ppl/m/n/12 (-20) be-rech-ne für $\OML/zplm/m/it/12
- i \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 (-20) 1, ..., \OML/zplm/m/it/12 n$\T1/ppl
-/m/n/12 (-20) : 
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 591.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 591.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 591.
+
+
+Overfull \hbox (88.82202pt too wide) in paragraph at lines 735--736
+\T1/ppl/m/n/12 Die Ite-ra-ti-ons-vor-schrift des Jacobi-Relaxations-Verfahrens 
+war ge-ge-ben durch: 
  []
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 533.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 533.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 533.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 543.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 543.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 543.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 557.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 557.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 557.
 
 [14]
-Overfull \hbox (80.85165pt too wide) in paragraph at lines 706--707
-\T1/ppl/m/n/12 (-20) Die Ite-ra-ti-ons-vor-schrift des Jacobi-Relaxations-Verfa
-hrens war ge-ge-ben durch: 
+Overfull \hbox (96.06567pt too wide) in paragraph at lines 750--751
+[]\T1/ppl/m/n/12 Betrachten wir nun den $\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 k 
+\OT1/zplm/m/n/12 + \OT1/ppl/m/n/12 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 ^^@ \OM
+L/zplm/m/it/12 ten$ \T1/ppl/m/n/12 Feh-ler und for-men ge-schickt um, dann gilt
+: 
+ []
+
+[15]
+Overfull \hbox (11.08919pt too wide) in paragraph at lines 781--782
+\T1/ppl/m/n/12 Sei $[]$ ei-ne sym-me-tri-sche, nicht sin-gu-lä-re Ma-trix. Zwei
+ Vek-to-ren $\OML/zplm/m/it/12 x\OT1/ppl/m/n/12 , \OML/zplm/m/it/12 y \OMS/zplm
+/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl/m/n/12 hei-ÿen $[]$
  []
 
 
-Overfull \hbox (89.39235pt too wide) in paragraph at lines 721--722
-[]\T1/ppl/m/n/12 (-20) Betrachten wir nun den $\OT1/zplm/m/n/12 (\OML/zplm/m/it
-/12 k \OT1/zplm/m/n/12 + \OT1/ppl/m/n/12 (-20) 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/
-n/12 ^^@ \OML/zplm/m/it/12 ten$ \T1/ppl/m/n/12 (-20) Feh-ler und for-men ge-sch
-ickt um, dann gilt: 
- []
-
-<images/omegaeins.png, id=483, 642.4pt x 385.44pt>
-File: images/omegaeins.png Graphic file (type png)
- <use images/omegaeins.png>
-[15] <images/omegaeinhalb.png, id=495, 642.4pt x 385.44pt>
-File: images/omegaeinhalb.png Graphic file (type png)
-
-<use images/omegaeinhalb.png> [16pdfTeX warning (ext4): destination with the sa
-me identifier (name{figure.3.1}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.739 
-       <./images/omegaeins.png>]
-<images/omeganullacht.png, id=504, 642.4pt x 385.44pt>
-File: images/omeganullacht.png Graphic file (type png)
-
-<use images/omeganullacht.png> [17pdfTeX warning (ext4): destination with the s
-ame identifier (name{figure.3.2}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.745 
-       <./images/omegaeinhalb.png>]
-Overfull \hbox (4.20439pt too wide) in paragraph at lines 752--753
-\T1/ppl/m/n/12 (-20) Sei $[]$ ei-ne sym-me-tri-sche, nicht sin-gu-lä-re Ma-trix
-. Zwei Vek-to-ren $\OML/zplm/m/it/12 x\OT1/ppl/m/n/12 (-20) , \OML/zplm/m/it/12
- y \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl/m/n/12 (-20) hei-ÿen $[]$
- []
-
-[18pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.762 \end{center}
-                   <./images/omeganullacht.png (PNG copy)>]
-Overfull \hbox (99.25497pt too wide) in paragraph at lines 793--795
-\T1/ppl/m/n/12 (-20) zu lö-sen. Be-trach-tet man nun den Gra-di-en-ten von $\OM
-L/zplm/m/it/12 f\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 x\OT1/zplm/m/n/12 )$\T1/ppl
-/m/n/12 (-20) , so stellt man fest, dass gilt: 
+Overfull \hbox (115.80406pt too wide) in paragraph at lines 822--824
+\OML/zplm/m/it/12 f$ \T1/ppl/m/n/12 zu lö-sen. Be-trach-tet man nun den Gra-di-
+en-ten von $\OML/zplm/m/it/12 f\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 x\OT1/zplm/m
+/n/12 )$\T1/ppl/m/n/12 , so stellt man fest, dass gilt: 
  []
 
 
-Overfull \hbox (20.40482pt too wide) in paragraph at lines 805--806
-\T1/ppl/m/n/12 (-20) Sei $\OML/zplm/m/it/12 U[]$ \T1/ppl/m/n/12 (-20) ein k-dim
-ensionaler Teil-raum des $\U/fplmbb/m/n/12 R[] \OT1/zplm/m/n/12 (\OML/zplm/m/it
-/12 k \OMS/zplm/m/n/12 ^^T \OML/zplm/m/it/12 n\OT1/zplm/m/n/12 )$\T1/ppl/m/n/12
- (-20) , und $\OML/zplm/m/it/12 p[]\OT1/ppl/m/n/12 (-20) , \OML/zplm/m/it/12 p[
-]\OT1/ppl/m/n/12 (-20) , ..., \OML/zplm/m/it/12 p[]$ \T1/ppl/m/n/12 (-20) ei-ne
- $[]$
+Overfull \hbox (25.4054pt too wide) in paragraph at lines 834--835
+\T1/ppl/m/n/12 Sei $\OML/zplm/m/it/12 U[]$ \T1/ppl/m/n/12 ein k-dimensionaler T
+eil-raum des $\U/fplmbb/m/n/12 R[] \OT1/zplm/m/n/12 (\OML/zplm/m/it/12 k \OMS/z
+plm/m/n/12 ^^T \OML/zplm/m/it/12 n\OT1/zplm/m/n/12 )$\T1/ppl/m/n/12 , und $\OML
+/zplm/m/it/12 p[]\OT1/ppl/m/n/12 , \OML/zplm/m/it/12 p[]\OT1/ppl/m/n/12 , ..., 
+\OML/zplm/m/it/12 p[]$ \T1/ppl/m/n/12 ei-ne $[]$
  []
 
 
-Overfull \hbox (88.61629pt too wide) in paragraph at lines 805--806
-\T1/ppl/m/n/12 (-20) die-ses Teil-raums, al-so $\OMS/zplm/m/n/12 h\OML/zplm/m/i
-t/12 p[]\OT1/ppl/m/n/12 (-20) , \OML/zplm/m/it/12 p[]\OMS/zplm/m/n/12 i[] \OT1/
-zplm/m/n/12 = \OT1/ppl/m/n/12 (-20) 0 \OML/zplm/m/it/12 f[]r i \OMS/zplm/m/n/12
- 6\OT1/zplm/m/n/12 = \OML/zplm/m/it/12 j$\T1/ppl/m/n/12 (-20) . Sei $\OML/zplm/
-m/it/12 v \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$\T1/ppl/m/n/12 (-20) , dann g
-ilt für $\OML/zplm/m/it/12 u[] \OMS/zplm/m/n/12 2 \OML/zplm/m/it/12 U[]$\T1/ppl
-/m/n/12 (-20) : 
+Overfull \hbox (92.71135pt too wide) in paragraph at lines 834--835
+\T1/ppl/m/n/12 die-ses Teil-raums, al-so $\OMS/zplm/m/n/12 h\OML/zplm/m/it/12 p
+[]\OT1/ppl/m/n/12 , \OML/zplm/m/it/12 p[]\OMS/zplm/m/n/12 i[] \OT1/zplm/m/n/12 
+= \OT1/ppl/m/n/12 0 \OML/zplm/m/it/12 f[]r i \OMS/zplm/m/n/12 6\OT1/zplm/m/n/12
+ = \OML/zplm/m/it/12 j$\T1/ppl/m/n/12 . Sei $\OML/zplm/m/it/12 v \OMS/zplm/m/n/
+12 2 \U/fplmbb/m/n/12 R[]$\T1/ppl/m/n/12 , dann gilt für $\OML/zplm/m/it/12 u[]
+ \OMS/zplm/m/n/12 2 \OML/zplm/m/it/12 U[]$\T1/ppl/m/n/12 : 
  []
 
-[19] [20]pdfTeX warning (ext4): destination with the same identifier (name{equa
-tion.3.5.41}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.874 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.5.41}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.874 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.5.41}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.874 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.5.41}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.874 \begin{equation}
-                      
-Overfull \hbox (86.40717pt too wide) in paragraph at lines 880--882
-[]\T1/ppl/b/n/12 Bemerkung: $\OML/zplm/m/it/12 x[]$ \T1/ppl/m/n/12 (-20) kann m
-it we-nig Auf-wand aus $\OML/zplm/m/it/12 x[]$ \T1/ppl/m/n/12 (-20) und $\OML/z
-plm/m/it/12 p[]$ \T1/ppl/m/n/12 (-20) be-rech-net wer-den. 
+[16]
+Overfull \hbox (136.6304pt too wide) in paragraph at lines 846--847
+[]\T1/ppl/m/n/12 Der Be-weis zu die-sem Lem-ma folgt di-rekt aus dem Pro-jek-ti
+-ons-satz [Dah-men/Reus-ken] 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{equation.3.5.
-41}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.885 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.5.41}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.885 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.5.41}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.885 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.5.41}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.885 \begin{equation}
-                       [21]
-Underfull \hbox (badness 10000) in paragraph at lines 958--959
+
+Overfull \hbox (101.63184pt too wide) in paragraph at lines 880--882
+\T1/ppl/m/n/12 be-kannt sein muss. Die fol-gen-den Lem-ma-ta wer-den zei-gen, d
+ass dem nicht so ist. 
+ []
+
+[17]
+Overfull \hbox (91.6811pt too wide) in paragraph at lines 909--911
+[]\T1/ppl/b/n/12 Bemerkung: $\OML/zplm/m/it/12 x[]$ \T1/ppl/m/n/12 kann mit we-
+nig Auf-wand aus $\OML/zplm/m/it/12 x[]$ \T1/ppl/m/n/12 und $\OML/zplm/m/it/12 
+p[]$ \T1/ppl/m/n/12 be-rech-net wer-den. 
+ []
+
+
+Overfull \hbox (1.4774pt too wide) in paragraph at lines 913--914
+\T1/ppl/m/n/12 Das Re-si-du-um $\OML/zplm/m/it/12 r[] \OMS/zplm/m/n/12 2 \U/fpl
+mbb/m/n/12 R[]$ \T1/ppl/m/n/12 kann ein-fach be-rech-net wer-den durch: 
+ []
+
+[18]
+Overfull \hbox (94.43787pt too wide) in paragraph at lines 936--938
+\T1/ppl/m/n/12 wird die A-orthogonale Ba-sis zum Vek-tor $\OML/zplm/m/it/12 r[]
+$ \T1/ppl/m/n/12 be-stimmt, wo-bei $\OML/zplm/m/it/12 p[]\OT1/ppl/m/n/12 , \OML
+/zplm/m/it/12 r[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$\T1/ppl/m/n/12 . 
+ []
+
+
+Overfull \hbox (3.22949pt too wide) in paragraph at lines 939--942
+\T1/ppl/m/n/12 Wie man sieht, kommt an die-ser Stel-le des Gram-Schmidt-Orthono
+rmalisierungsverfahren
+ []
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 987--988
 
  []
 
-[22pdfTeX warning (ext4): destination with the same identifier (name{equation.3
-.5.42}) has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.959 
-      ]pdfTeX warning (ext4): destination with the same identifier (name{equati
-on.3.5.44}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.965 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.5.44}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.965 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.5.44}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.965 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.3.5.44}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.965 \begin{equation}
-                      
-Underfull \hbox (badness 10000) in paragraph at lines 967--969
+Overfull \hbox (10.76376pt too wide) in paragraph at lines 989--990
+\T1/ppl/m/n/12 Einen Be-weis hier-zu fin-det man z.B. in (Dah-men/Reus-ken 573)
+: 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 996--998
 
  []
 
-[23]
-Overfull \hbox (3.72264pt too wide) in paragraph at lines 1010--1012
-\T1/ppl/m/n/12 (-20) Stel-len, an de-nen $[]$ Nul-lein-trä-ge be-sitzt, eben-fa
-lls Null wer-den. 
+[20]
+Overfull \hbox (120.38974pt too wide) in paragraph at lines 1008--1010
+\T1/ppl/m/n/12 Es macht al-so kei-nen Un-ter-schied, ob wir $\OML/zplm/m/it/12 
+Au \OT1/zplm/m/n/12 = \OML/zplm/m/it/12 f$ \T1/ppl/m/n/12 oder das äqui-va-len-
+te Sys-tem lö-sen. 
  []
 
-[24pdfTeX warning (ext4): destination with the same identifier (name{equation.3
-.6.46}) has been already used, duplicate ignored
+[21]
+Overfull \hbox (7.88527pt too wide) in paragraph at lines 1039--1041
+\T1/ppl/m/n/12 Eine Ma-trix $[]$, die sym-me-trisch po-si-tiv de-fi-nit ist, lä
+sst sich durch ei-ne Cholesky-Zerlegung
+ []
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.1012 
-       ]pdfTeX warning (ext4): destination with the same identifier (name{equat
-ion.3.6.46}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1016 \begin{equation}
-                       pdfTeX warning (ext4): destination with the same identif
-ier (name{equation.3.6.46}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1016 \begin{equation}
-                       pdfTeX warning (ext4): destination with the same identif
-ier (name{equation.3.6.46}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1016 \begin{equation}
-                       pdfTeX warning (ext4): destination with the same identif
-ier (name{equation.3.6.46}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1016 \begin{equation}
-                       
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1026.
+Overfull \hbox (9.81592pt too wide) in paragraph at lines 1039--1041
+\T1/ppl/m/n/12 Stel-len, an de-nen $[]$ Nul-lein-trä-ge be-sitzt, eben-falls Nu
+ll wer-den. 
+ []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1026.
+(hyperref)                removing `math shift' on input line 1055.
 
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 1028
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 1055.
+
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 1057
 .
-(/usr/share/texmf-texlive/tex/latex/psnfss/omsppl.fd
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1028.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1057.
 
-
-Overfull \hbox (121.256pt too wide) in paragraph at lines 1036--1037
-\T1/ppl/m/n/12 (-20) Seien $[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl
-/m/n/12 (-20) s.p.d. und $\OML/zplm/m/it/12 E$ \T1/ppl/m/n/12 (-20) das Mus-ter
- zur Ma-trix $[]$. Be-rech-ne dann für $\OML/zplm/m/it/12 i \OT1/zplm/m/n/12 = 
-\OT1/ppl/m/n/12 (-20) 1, 2, ..., \OML/zplm/m/it/12 n$\T1/ppl/m/n/12 (-20) : 
- []
-
-[25]
-Underfull \hbox (badness 10000) in paragraph at lines 1047--1048
-
+ [22]
+Overfull \hbox (127.58589pt too wide) in paragraph at lines 1065--1066
+\T1/ppl/m/n/12 Seien $[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl/m/n/1
+2 s.p.d. und $\OML/zplm/m/it/12 E$ \T1/ppl/m/n/12 das Mus-ter zur Ma-trix $[]$.
+ Be-rech-ne dann für $\OML/zplm/m/it/12 i \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 1,
+ 2, ..., \OML/zplm/m/it/12 n$\T1/ppl/m/n/12 : 
  []
 
 
-Overfull \hbox (52.91913pt too wide) in paragraph at lines 1054--1055
-\T1/ppl/m/n/12 (-20) schnitt 3.6.3[][]. Je-doch wer-den die Vor-schrif-ten für 
-die Ma-trix $[]$ ab-ge-än-dert: 
+Underfull \hbox (badness 10000) in paragraph at lines 1076--1077
+
+ []
+
+
+Overfull \hbox (21.3131pt too wide) in paragraph at lines 1083--1084
+\T1/ppl/m/n/12 Auch bei der mo-di-fi-zier-ten Me-tho-de des Ver-fah-rens ge-hen
+ wir vor, wie in [][]Un-ter-ab-schnitt 3.6.3[][][][].
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1056.
+(hyperref)                removing `math shift' on input line 1085.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1056.
+(hyperref)                removing `math shift' on input line 1085.
 
-
-Overfull \hbox (121.256pt too wide) in paragraph at lines 1068--1069
-\T1/ppl/m/n/12 (-20) Seien $[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl
-/m/n/12 (-20) s.p.d. und $\OML/zplm/m/it/12 E$ \T1/ppl/m/n/12 (-20) das Mus-ter
- zur Ma-trix $[]$. Be-rech-ne dann für $\OML/zplm/m/it/12 i \OT1/zplm/m/n/12 = 
-\OT1/ppl/m/n/12 (-20) 1, 2, ..., \OML/zplm/m/it/12 n$\T1/ppl/m/n/12 (-20) : 
+[23]
+Overfull \hbox (127.58589pt too wide) in paragraph at lines 1097--1098
+\T1/ppl/m/n/12 Seien $[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl/m/n/1
+2 s.p.d. und $\OML/zplm/m/it/12 E$ \T1/ppl/m/n/12 das Mus-ter zur Ma-trix $[]$.
+ Be-rech-ne dann für $\OML/zplm/m/it/12 i \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 1,
+ 2, ..., \OML/zplm/m/it/12 n$\T1/ppl/m/n/12 : 
  []
 
-[26] [27]
+[24]
 Kapitel 4.
 
-LaTeX Warning: Reference `s.Das Gauss-Seidel-Verfahren' on page 28 undefined on
- input line 1089.
+LaTeX Warning: Reference `s.Das Gauss-Seidel-Verfahren' on page 25 undefined on
+ input line 1118.
 
 
-Overfull \hbox (47.75969pt too wide) in paragraph at lines 1110--1112
-\T1/ppl/m/n/12 (-20) wobei $\OML/zplm/m/it/12 u[]$ \T1/ppl/m/n/12 (-20) die ex-
-ak-te Lö-sung dar-stellt, er-füllt eben-so fol-gen-de Glei-chung: 
+Overfull \hbox (54.63658pt too wide) in paragraph at lines 1139--1141
+\T1/ppl/m/n/12 wobei $\OML/zplm/m/it/12 u[]$ \T1/ppl/m/n/12 die ex-ak-te Lö-sun
+g dar-stellt, er-füllt eben-so fol-gen-de Glei-chung: 
  []
 
 
-Overfull \hbox (76.91199pt too wide) in paragraph at lines 1114--1116
-\T1/ppl/m/n/12 (-20) Wir ken-nen zwar den Feh-ler $\OML/zplm/m/it/12 e[]$ \T1/p
-pl/m/n/12 (-20) nicht, wis-sen aber, dass die-ser $\OT1/ppl/m/n/12 (-20) 0$ \T1
-/ppl/m/n/12 (-20) ist, falls $\OML/zplm/m/it/12 r[] \OT1/zplm/m/n/12 = \OT1/ppl
-/m/n/12 (-20) 0$\T1/ppl/m/n/12 (-20) . 
+Overfull \hbox (83.71185pt too wide) in paragraph at lines 1143--1145
+\T1/ppl/m/n/12 Wir ken-nen zwar den Feh-ler $\OML/zplm/m/it/12 e[]$ \T1/ppl/m/n
+/12 nicht, wis-sen aber, dass die-ser $\OT1/ppl/m/n/12 0$ \T1/ppl/m/n/12 ist, f
+alls $\OML/zplm/m/it/12 r[] \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 0$\T1/ppl/m/n/12
+ . 
  []
 
 
-Overfull \hbox (4.44005pt too wide) in paragraph at lines 1120--1127
-\T1/ppl/m/n/12 (-20) Wie in[]Abschnitt 2.2[][] ge-se-hen be-fin-den wir uns bei
- der Dis-kre-ti-sie-rung der Poisson-Gleichung
+Overfull \hbox (13.63199pt too wide) in paragraph at lines 1149--1156
+\T1/ppl/m/n/12 Wie in[][]Ab-schnitt 2.2[][][][] ge-se-hen be-fin-den wir uns be
+i der Dis-kre-ti-sie-rung der Poisson-Gleichung
+ []
+
+[25
+
+
+]
+Overfull \hbox (22.99135pt too wide) in paragraph at lines 1159--1160
+\T1/ppl/m/n/12 wird die Idee da-hin-ter die Ba-sis für das Mehrgitter-Verfahren
+ sein. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1175--1177
+
+ []
+
+[26]
+Overfull \hbox (41.46376pt too wide) in paragraph at lines 1180--1181
+\T1/ppl/m/n/12 ist, um dann wie-der auf das feins-te Git-ter zu-rück zu keh-ren
+. Ge-nau-er: 
+ []
+
+[27]
+Kapitel 5.
+
+Overfull \hbox (80.29015pt too wide) in paragraph at lines 1207--1208
+\OML/zplm/m/it/12 y[]$\T1/ppl/m/n/12 . Sei au-ÿer-dem $\OT1/zplm/m/n/12 
+ = (\OT1/ppl/m/n/12 0, 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 ^^B \OT1/zplm/m/n/1
+2 (\OT1/ppl/m/n/12 0, 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R
+[]$\T1/ppl/m/n/12 .Gegeben ist das Rand-wert-pro-blem 
+ []
+
+
+Overfull \hbox (11.25484pt too wide) in paragraph at lines 1211--1215
+\T1/ppl/m/n/12 Die ge-wünsch-te Lö-sung soll-te al-so fol-gen-den Gra-phen er-g
+e-ben: 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1218--1219
+
  []
 
 [28
 
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 1146--1148
+] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 1229.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 1229
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+) (./code/Jacobi.c
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <6> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1.
+LaTeX Font Info:    Try loading font information for U+mvs on input line 1.
+
+(/usr/share/texlive/texmf-dist/tex/latex/marvosym/umvs.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-mvs.cfg
+File: mt-mvs.cfg 2006/07/05 v1.1 microtype config. file: Marvosym Euro (RS)
+))
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 1241.
+ [29] [30]
+Underfull \hbox (badness 10000) in paragraph at lines 1303--1304
 
  []
 
-[29]
-Overfull \hbox (34.6997pt too wide) in paragraph at lines 1151--1152
-\T1/ppl/m/n/12 (-20) ist, um dann wie-der auf das feins-te Git-ter zu-rück zu k
-eh-ren. Ge-nau-er: 
- []
-
-[30]
-Kapitel 5.
-
-Overfull \hbox (74.67157pt too wide) in paragraph at lines 1178--1179
-\OML/zplm/m/it/12 y[]$\T1/ppl/m/n/12 (-20) . Sei au-ÿer-dem $\OT1/zplm/m/n/12 
- = (\OT1/ppl/m/n/12 (-20) 0, 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 ^^B \OT1/zplm
-/m/n/12 (\OT1/ppl/m/n/12 (-20) 0, 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 2 \U/fpl
-mbb/m/n/12 R[]$\T1/ppl/m/n/12 (-20) .Gegeben ist das Rand-wert-pro-blem 
- []
-
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1305.
 [31
 
 
-] [32]
-Underfull \hbox (badness 10000) in paragraph at lines 1247--1248
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1305.
+ (./arbeit-vorlage.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1305.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1305.
 
- []
-
-[33
 
 
-] (./arbeit-vorlage.aux)
+Package rerunfilecheck Warning: File `arbeit-vorlage.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `arbeit-vorlage.out':
+(rerunfilecheck)             Before: F6F8905BCD3A119526D572D63A362037;5709
+(rerunfilecheck)             After:  3A102C93183791845E992F640D93933F;5793.
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1305.
  ) 
 Here is how much of TeX's memory you used:
- 11732 strings out of 495021
- 171485 string characters out of 1181034
- 295718 words of memory out of 3000000
- 14248 multiletter control sequences out of 15000+50000
- 80242 words of font info for 295 fonts, out of 3000000 for 9000
- 28 hyphenation exceptions out of 8191
- 45i,14n,66p,1783b,639s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
-ve/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/ty
-pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
-cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/mathpazo/fplmbb.pfb></u
-sr/share/texmf-texlive/fonts/type1/public/mathpazo/fplmr.pfb></usr/share/texmf-
-texlive/fonts/type1/public/mathpazo/fplmri.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/palatino/uplb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplr
-8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplr8a.pfb></usr/shar
-e/texmf-texlive/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on arbeit-vorlage.pdf (36 pages, 450998 bytes).
-PDF statistics:
- 700 PDF objects out of 1000 (max. 8388607)
- 633 compressed objects within 7 object streams
- 189 named destinations out of 1000 (max. 500000)
- 50202 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 12480 strings out of 493486
+ 185240 string characters out of 3143548
+ 369197 words of memory out of 3000000
+ 15571 multiletter control sequences out of 15000+200000
+ 45920 words of font info for 107 fonts, out of 3000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 42i,16n,66p,1783b,1469s stack positions out of 5000i,500n,10000p,200000b,50000s
 
+Output written on arbeit-vorlage.dvi (34 pages, 176188 bytes).
