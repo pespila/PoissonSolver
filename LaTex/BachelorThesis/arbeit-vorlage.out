@@ -29,11 +29,16 @@
 \BOOKMARK [1][-]{section.3.4}{Gl\344ttungseigenschaft}{chapter.3}
 \BOOKMARK [1][-]{section.3.5}{Das Verfahren der konjugierten Gradienten}{chapter.3}
 \BOOKMARK [2][-]{subsection.3.5.1}{Definition \(A-orthogonal\)}{section.3.5}
-\BOOKMARK [2][-]{subsection.3.5.2}{Lemma - \(A-orthogonaler\) Projektionssatz}{section.3.5}
-\BOOKMARK [2][-]{subsection.3.5.3}{Allgemeiner Algorithmus der konjugierten Gradienten}{section.3.5}
-\BOOKMARK [3][-]{subsubsection.3.5.3.1}{Erkl\344rung zum CG-Algorithmus}{subsection.3.5.3}
-\BOOKMARK [2][-]{subsection.3.5.4}{Numerischer Algorithmus der konjugierten Gradienten}{section.3.5}
-\BOOKMARK [2][-]{subsection.3.5.5}{Satz \(Konvergenz des CG-Algorithmus\) [DahmenReusken]}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.2}{Satz}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.3}{Lemma - \(A-orthogonaler\) Projektionssatz}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.4}{Allgemeiner Algorithmus der konjugierten Gradienten}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.5}{Lemma}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.6}{Lemma}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.7}{Lemma}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.8}{Satz \(Bestimmung einer A-orthogonalen Basis\)}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.9}{Lemma}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.10}{Numerischer Algorithmus der konjugierten Gradienten}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.11}{Satz \(Konvergenz des CG-Algorithmus\) [DahmenReusken]}{section.3.5}
 \BOOKMARK [1][-]{section.3.6}{Vorkonditioniertes Verfahren der konjugierten Gradienten \(PCG\)}{chapter.3}
 \BOOKMARK [2][-]{subsection.3.6.1}{Satz}{section.3.6}
 \BOOKMARK [3][-]{subsubsection.3.6.1.1}{Beweis:}{subsection.3.6.1}
