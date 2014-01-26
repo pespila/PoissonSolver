@@ -201,37 +201,38 @@ vector<double> Algorithms::MultiGridAlgorithm(PoissonMatrix& A,Vectors& V,const 
         x[0]=b[0]/a;
         return x;
     } else {
-        JacobiRelaxationMethod(A,x,b,3);
+        JacobiRelaxationMethod(A,x,b,4);
         r=b-A*x;
         Restriction(r,r2h,n);
         A.Resize(N2h);
         E2h=MultiGridAlgorithm(A,V,r2h,N2h);
-        E2h=MultiGridAlgorithm(A,V,r2h,N2h);
+        // E2h=MultiGridAlgorithm(A,V,r2h,N2h);
         Interpolation(E2h,E,V,n);
         x+=E;
         A.Resize(n);
-        JacobiRelaxationMethod(A,x,b,3);
+        JacobiRelaxationMethod(A,x,b,4);
         return x;
     }
 }
 
 void Algorithms::MultiGridMethod(PoissonMatrix& A,Vectors& V,vector<double>& x,vector<double>& b) {
     int steps=0;
-    vector<double> r(dim,1),solved(dim);
+    vector<double> r(dim,10),solved(dim);
 
     for(int i=1,k=0;i<(n+1);i++) {
         for(int j=1;j<(n+1);j++,k++) {
             solved[k]=g(j*h,i*h);
         }
     }
-    r=b-A*x;
-    double TOL=pow(10,-3)*vectorNorm(r);
+    double TOL=pow(10,-3)*vectorNorm(solved);
+    // r=b-A*x;
+    // double TOL=pow(10,-3)*vectorNorm(r);
     while(TOL<=vectorNorm(r)) {
         V.x=MultiGridAlgorithm(A,V,b,n);
-        r=b-A*x;
-        // r=V.x-solved;
+        // r=b-A*x;
+        r=V.x-solved;
         steps++;
-        if(steps==200) {
+        if(steps==500) {
             r.assign(dim,0);
         }
     }

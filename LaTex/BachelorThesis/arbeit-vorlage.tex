@@ -135,7 +135,7 @@ Betrachten wir nun noch den Abschluss von $\Omega_{h}$:
 \overline \Omega_{h} := \{u(ih, jh) | 0 \le i,j \le m\}.
 \end{equation}
 
-% \bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}\label{img.5-Point-Star}
+\bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}\label{img.5-Point-Star}
 
 Mit der Formel (2.9) ergibt sich nun für $\Delta u(x,y) \approx \Delta_{h} u(x,y)$ die diskretisierte Form:
 \begin{equation}
@@ -172,7 +172,7 @@ dar. (Dahmen Reusken)
 % \end{eqnarray}
 % Diese Approximation wird auch 5-Punkt-Differenzenstern genannt, siehe dazu Abbildung (2.1).
 
-% \bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
+\bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
 
 Nummeriert man nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben durch (\autoref{img.gridWithNumbers}) und stellt für jeden dieser Punkte \autoref{eq.5-Point-Star} auf, so führt dies auf eine $N^{2} \times N^{2}$-Matrix der Form:
 
@@ -755,7 +755,7 @@ e^{k+1} &=& u^{*} - u^{k+1} = u^{*} - \left( (Id - \omega D^{-1} A)u^{k} + \omeg
 &=& e^{k} + \omega D^{-1} A e^{k} = (Id - \omega D^{-1} A) e^{k}.
 \end{eqnarray}
 
-% \bild{omegaeins}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi1}
+\bild{omegaeins}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi1}
 
 Da die $n$ (zur Erinnerung: $n = N^{2}$) Eigenvektoren $v_{i,j}$ eine Basis bilden, lässt sich der Fehler $e$ als Linearkombination der $v_{i,j}$ darstellen:
 \begin{eqnarray}
@@ -764,13 +764,13 @@ e^{k+1} &=& \sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k+1}_{i,j} v_{i,j} = (Id - \o
 &=& \left(\sum_{i = 1}^{n} \xi^{k}_{i,j} \underbrace{(1 - \frac {\omega} {4} \lambda_{i,j}(A))}_{= \lambda_{i,j}(\mat{T}_{J_{\omega}})} v_{i,j}\right) = \left(\sum_{i = 1}^{n} \xi^{k}_{i,j} \lambda_{i,j}(\mat{T}_{J_{\omega}}) v_{i,j}\right).
 \end{eqnarray}
 
-% \bild{omegaeinhalb}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi2}
+\bild{omegaeinhalb}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi2}
 
 Betrachten wir nun die Eigenwerte der Iterationsmatrix für $\omega = 1$ (Jacobi-Verfahren), sieht man, dass die Eigenwerte für $i,j$ nahe Null oder $i,j$ nahe N den Fehler schlecht bis gar nicht dämpfen (\subfigureautorefname{ 3.1}). Dies erklärt auch das langsame Konvergenzverhalten des Jacobi-Verfahren (siehe Kapitel 5). Interessanter weiße ist der optimale Wert $\omega = 1$, wenn man das Ganze als iteratives Verfahren verwendet [Saad]. Das Jacobi-Verfahren besitzt aber keine Glättungseigenschaft.\\
 Da wir aber eine Fehlerglättung erreichen wollen, wählen wir nun $\omega = \frac {1} {2}$ (\subfigureautorefname{ 3.2}). Wir stellen fest, dass die Eigenwerte der Iterationsmatrix zwischen $0$ und $1$ liegen. Sind $i,j > \frac {N} {2}$ so werden die Fehleranteile wesentlich besser gedämpft, da die Eigenwerte hier nahe Null liegen. Diese Eigenschaft nennt man die \textit{Glättungseigenschaft}.\\
 Es stellt sich z.B. heraus [Saad], dass der optimale Relaxationsparameter, der unabhängig von der Schrittweite $h$ gewählt werden kann, $\omega = \frac {4} {5}$ ist. In \subfigureautorefname{ 3.3} ist gut zu sehen, dass viele der Eigenwerte nahe Null liegen.
 
-% \bild{omeganullacht}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi3}
+\bild{omeganullacht}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi3}
 
 \section{Das Verfahren der konjugierten Gradienten}\label{s.Das Verfahren der konjugierten Gradienten}
 
@@ -827,7 +827,7 @@ Es ist also äquivalent die Funktion $f(u)$ zu minimieren und das Gleichungssyst
 Der Gradient von $f(x)$ ist also das negative Residuum. Beim Verfahren der \textbf{konjugierten} Gradienten wählt man konjugierte Richtungen $p$ für die Richtung des steilsten Abstiegs. Die dabei berechneten (konjugierten) Vektoren $p$ sind alle A-orthogonal und spannen einen sogenannten Krylow-Raum $U_{k} = \{p^{0},...,p^{k}\}$ auf. Für den Zusammenhang zwischen dem CG-Verfahren und Krylow-Räumen möchte ich an dieser Stelle auf [Braess] verweisen.\\
 Da wir also stets das Minimum im Teilraum $U_{k}$ suchen, wird uns folgendes Lemma hilfreich sein:
 
-% \bild{CG_Illu}{8cm}{Abstieg}{Abstieg}\label{img.CG}
+\bild{CG_Illu}{8cm}{Abstieg}{Abstieg}\label{img.CG}
 
 \subsection{Lemma - (A-orthogonaler) Projektionssatz}\label{s.Projektionssatz}
 
@@ -1217,39 +1217,121 @@ Die gewünschte Lösung sollte also folgenden Graphen ergeben:
 
 Zu beachten ist außerdem, dass wir $\Omega_{h} \in [0,1]$ gewählt haben. Es wird also auch nur das Viertel des Graphen ausgegeben, welches sich im Einheitsquadrat befindet.\\
 
-\subsection{Programmierung in C++}
+\section{Zur Implementierung in C++}
 
-Das gesamte Programm wurde objektorientiert geschrieben, darum ist stets von Methoden und Klassen, nicht von Funktionen die Rede. In den folgenden Beispielen wollen wir zunächst die Lösung der Poisson Gleichung für verschiedene Verfahren betrachten. Dafür werden die jeweiligen Methoden der Klassen mit eingebunden, um eine Idee für die Programmierung zu erhalten. Außerdem wollen wir nicht nur die Iterationsschritte genauer betrachten, sondern auch die Rechenzeit.\\
+Das gesamte Programm wurde objektorientiert geschrieben, darum ist stets von Methoden und Klassen, nicht von Funktionen die Rede. In den folgenden Beispielen wollen wir zunächst die Lösung der Poisson Gleichung für verschiedene Verfahren betrachten. Dafür werden die jeweiligen Methoden der Klassen ebenfalls dargestellt. Außerdem wollen wir nicht nur die Iterationsschritte genauer betrachten, sondern auch die Rechenzeit.\\
 An manchen Stellen im Code kommt die Vermutung auf, dass es sich um Pseudocode handeln könnte. Dies ist natürlich nicht der Fall. Es wurden lediglich bestimmte Operatoren wie *,+,-,etc. überladen.
+
+\section{Abbruchkriterien}
+
+Um zu verstehen, warum wir Abbruchkriterien benötigen, soll hier ein kurzes Beispiel folgen:\\
+Das CG-Verfahren konvergiert bekanntlich nach maximal $n$ Schritten. Wir brauchen also kein Abbruchkriterium, damit wir die optimale Lösung finden. Angenommen die Dimension der Matrix ist $n = 10^{6}$. Dann werden trotz der schnellen Konvergenz eine große Anzahl an Iterationen benötigt. Im schlimmsten Fall eben $10^{6}$. Um dies zu vermeiden, lässt man den Algorithmus abbrechen, sobald eine gewisse Toleranzgrenze erreicht ist. In der Praxis schätzt man das $k-te$ Residuum in der A-Norm oder der 2-Norm gegen eine Grenze ab. In diesem Beispiel wählen wir folgenden Ansatz:
+
+\begin{equation}
+$\| u^{k} - u^{*} \|_{2} \le 10^{-3} \cdot \| u^{0} - u^{*} \|_{2}$.
+\end{equation}
+
+Im Allgemeinen ist natürlich die Lösung der partiellen Differentialgleichung nicht bekannt. Hier existiert allerdings die analytische Lösung und wir können das Abbruchkriterium so wählen.
 
 \section{Lösung der Poisson Gleichung (Jacobi-Verfahren)}\label{s.Jacobi mit Beispiel}
 
-Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert das Jacobi-Verfahren nur langsam. Es überrascht darum nicht, dass einige Iterationsschritte nötig sind, um das Gleichungssystem zu lösen. Trotz einer effizienten Programmierung benötigt die Methode einiges an Rechenzeit. Dies illustriert (Tabelle kommt noch). Zunächst einmal wollen wir uns die C++-Methode genauer ansehen.
+Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert das Jacobi-Verfahren nur langsam. Es überrascht darum nicht, dass einige Iterationsschritte nötig sind, um das Gleichungssystem zu lösen. Trotz einer effizienten Programmierung benötigt die Methode viel Rechenzeit. Dies illustriert (Tabelle kommt noch).
 
-\subsection{Jacobi C++-Methode}\label{s.cpu}\lstinputlisting[language=C]{code/Jacobi.c}
+% \subsection{Jacobi C++-Methode}\label{s.cpu}\lstinputlisting[language=C]{code/Jacobi.c}
 
-
+% Der \"JacobiMethod\"-Methode wird die Matrix $\mat{A}$, der Iterationsvektor $x$ und der Lösungsvektor $b$ übergeben.
 
 \begin{table}[!hbt]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
-\multicolumn{2}{|c||}{}&\multicolumn{4}{c|}{ dies} \\
-\multicolumn{2}{|c||}{}& von dort  & und dort & über hier & zu Los \\\hline\hline
-\multirow{3}*{\rotatebox{90}{das}} & hier &  bla  & bla  & bla  & bla \\\cline{2-6}
-& dort & bla  & bla & bla  & bla  \\\cline{2-6}
-& da &  bla  & bla & bla & bla \\\hline
+\multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
+\multirow{5}* & Schritte & 2092  & 8345 & 33332  & 133227  \\\cline{2-6}
+& Rechenzeit in s &  0.45  & 7.28 & 120.31 & 2034.71 \\\hline
 \end{tabular}
-\caption[eine kompliziertere Tabelle]{eine kompliziertere Tabelle mit viel Beschreibungstext, der aber nicht im Tabellenverzeichnis auftauschen soll}
+\caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
+\vspace{2ex}\end{table}
+
+\section{Lösung der Poisson Gleichung (Jacobi-Relaxations-Verfahren)}\label{s.JacobiRelax mit Beispiel}
+
+\subsection{Parameter $\omega = \frac {1} {2}$}
+
+\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{tabular}{|ll||l|l|l|l|}\hline
+\multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
+\multirow{5}* & Schritte & 4186  & 16693 & 66667  & 133227  \\\cline{2-6}
+& Rechenzeit in s &  0.88  & 14.43 & 237.10 & bla \\\hline
+\end{tabular}
+\caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
+\vspace{2ex}\end{table}
+
+\subsection{Parameter $\omega = \frac {4} {5}$}
+
+\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{tabular}{|ll||l|l|l|l|}\hline
+\multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
+\multirow{5}* & Schritte & 2615  & 10432 & 41666  & 166534  \\\cline{2-6}
+& Rechenzeit in s &  0.55  & 9.00 & 147.91 & 3794.98 \\\hline
+\end{tabular}
+\caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
 \vspace{2ex}\end{table}
 
 \section{CG-Verfahren angewandt auf das Beispiel}\label{s.CG mit Beispiel}
 
+\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{tabular}{|ll||l|l|l|l|}\hline
+\multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
+\multirow{5}* & Schritte & 65  & 130 & 262  & 525  \\\cline{2-6}
+& Rechenzeit in s &  0.02  & 0.16 & 1.35 & 11.26 \\\hline
+\end{tabular}
+\caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
+\vspace{2ex}\end{table}
+
 \section{PCG-Verfahren angewandt auf das Beispiel}\label{s.PCG mit Beispiel}
+
+\subsection{Unvollständige Cholesky-Zerlegung}
+
+\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{tabular}{|ll||l|l|l|l|}\hline
+\multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
+\multirow{5}* & Schritte & 20  & 40 & 79  & 158  \\\cline{2-6}
+& Rechenzeit in s &  0.01  & 0.14 & 1.1 & 8.78 \\\hline
+\end{tabular}
+\caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
+\vspace{2ex}\end{table}
+
+\subsection{Modifizierte unvollständige Cholesky-Zerlegung}
+
+\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{tabular}{|ll||l|l|l|l|}\hline
+\multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
+\multirow{5}* & Schritte & 7  & 10 & 13  & 19  \\\cline{2-6}
+& Rechenzeit in s &  0.00  & 0.04 & 0.21 & 1.23 \\\hline
+\end{tabular}
+\caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
+\vspace{2ex}\end{table}
 
 \section{Das Mehrgitterverfahren angewandt auf das Beispiel}\label{s.Multigrid mit Beispiel}
 
 \subsection{V-Zyklus}\label{ss.V-Zyklus mit Beispiel}
 
+\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{tabular}{|ll||l|l|l|l|}\hline
+\multicolumn{2}{|c||}{$N$} & 32  & 64 & 128 & 256 \\\hline\hline
+\multirow{5}* & Schritte & 46  & 97 & 173  & 200  \\\cline{2-6}
+& Rechenzeit in s &  0.05  & 0.47 & 3.58 & 17.72 \\\hline
+\end{tabular}
+\caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
+\vspace{2ex}\end{table}
+
 \subsection{W-Zyklus}\label{ss.W-Zyklus mit Beispiel}
+
+\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{tabular}{|ll||l|l|l|l|}\hline
+\multicolumn{2}{|c||}{$N$} & 32  & 64 & 128 & 256 \\\hline\hline
+\multirow{5}* & Schritte & 2092  & 8345 & 33332  & 133227  \\\cline{2-6}
+& Rechenzeit in s &  0.45  & 7.28 & 120.31 & bla \\\hline
+\end{tabular}
+\caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
+\vspace{2ex}\end{table}
 
 % \begin{table}[!hbt]\vspace{1ex}\centering\begin{tabular}{|l|l|}
 % \hline

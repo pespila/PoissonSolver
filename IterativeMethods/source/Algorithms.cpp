@@ -18,8 +18,9 @@ void Algorithms::JacobiMethod(Matrix& A,vector<double>& x,const vector<double>& 
             solved[k]=g(j*h,i*h);
         }
     }
+
     double TOL=pow(10,-3)*((x-solved)|(x-solved));
-    while(TOL<(r|r)) {
+    while(TOL<=(r|r)) {
         r=A*x;
         for(int i=0;i<dim;i++) {
             r[i]=1.0/4.0*(b[i]-r[i]);
@@ -45,7 +46,7 @@ void Algorithms::JacobiRelaxationMethod(Matrix& A,vector<double>& x,const vector
     while(TOL<(r|r)) {
         r=A*x;
         for(int i=0;i<dim;i++) {
-            r[i]=1.0/5.0*(b[i]-r[i]);
+            r[i]=1.0/8.0*(b[i]-r[i]);
             x[i]+=r[i];
             r[i]=x[i]-solved[i];
         }

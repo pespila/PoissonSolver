@@ -16,8 +16,8 @@ int main(int argc, char const *argv[]) {
     double time,start=0.0,end=0.0;
     start=clock();
 
-    std::vector<double> E(arg*arg,0);
-    double h=1.0/(double)(arg+1);
+    // std::vector<double> E(arg*arg,0);
+    // double h=1.0/(double)(arg+1);
     // for(int i=1,k=0;i<arg;i++) {
     //     for(int j=1;j<arg;j++,k++) {
     //         E[k]=V.x[k]-g(i*h,j*h);
@@ -36,23 +36,23 @@ int main(int argc, char const *argv[]) {
     //     }
     // }
     // fclose (file);
-    // Run.MultiGridMethod(A,V,V.x,V.b);
-    Run.JacobiMethod(A,V.x,V.b,100);
-    for(int i=1,k=0;i<arg;i++) {
-        for(int j=1;j<arg;j++,k++) {
-            E[k]=V.x[k]-g(i*h,j*h);
-        }
-    }
-    FILE *file;
-    file=fopen("../Plot/plot.txt", "w");
-    if(file==NULL) {
-        printf("ERROR: Could not open file!\n");
-    } else {
-        for(int i=0;i<=arg;i++) {
-                fprintf(file, "%d %f\n",i,sin(3.14*(double)i/(double)arg));
-        }
-    }
-    fclose (file);
+    Run.MultiGridMethod(A,V,V.x,V.b);
+    // Run.JacobiMethod(A,V.x,V.b,100);
+    // for(int i=1,k=0;i<arg;i++) {
+    //     for(int j=1;j<arg;j++,k++) {
+    //         E[k]=V.x[k]-g(i*h,j*h);
+    //     }
+    // }
+    // FILE *file;
+    // file=fopen("../Plot/plot.txt", "w");
+    // if(file==NULL) {
+    //     printf("ERROR: Could not open file!\n");
+    // } else {
+    //     for(int i=0;i<=arg;i++) {
+    //             fprintf(file, "%d %f\n",i,sin(3.14*(double)i/(double)arg));
+    //     }
+    // }
+    // fclose (file);
 
     end=clock();
     time=(end-start)/CLOCKS_PER_SEC;
@@ -64,7 +64,7 @@ int main(int argc, char const *argv[]) {
     } else {
         printf("Couldn't print Matrix! Dimension is too high.\n");
     }
-    // V.WriteToFile();
+    V.WriteToFile();
 
     return EXIT_SUCCESS;
 }
