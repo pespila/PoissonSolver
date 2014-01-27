@@ -71,17 +71,18 @@ Abschließend wollen wir uns dann noch mit Mehrgittermethoden beschäftigen. Sie
 
 Sei $\Omega = (0,1)\times(0,1) \in \mathbb{R}^{2}$ ein beschränktes, offenes Gebiet. Gesucht wird eine Funktion $u(x,y)$, die das Randwertproblem
 \begin{eqnarray}
-        -\Delta u(x,y) &=& f(x,y) \textnormal{ in } \Omega, \\
-    u(x,y) &=& g(x,y) \textnormal{ in } \partial \Omega.
+-\Delta u(x,y) &=& f(x,y) \textnormal{ in } \Omega, \\
+u(x,y) &=& g(x,y) \textnormal{ in } \partial \Omega\label{eq.Dirichlet1}
 \end{eqnarray}
 löst.
 Dabei seien $f: \Omega \rightarrow \mathbb{R}$ und $g: \partial\Omega \rightarrow \mathbb{R}$ stetige Funktionen und es bezeichnet $\Delta := \sum\limits_{k=1}^{n} \frac {\partial^{2}} {\partial x_{k}^{2}}$ den Laplace-Operator. Für die Poisson-Gleichung im $\mathbb{R}^{2}$ gilt dann:
 \begin{eqnarray}
-        -\Delta u(x,y) &=& \frac {\partial^{2} u(x,y)} {\partial x^{2}} + \frac {\partial^{2} u(x,y)} {\partial y^{2}} = f(x,y) \textnormal{ in }, \Omega \\
-    u(x,y) &=& g(x,y) \textnormal{ in } \partial \Omega,
+-\Delta u(x,y) &=& \frac {\partial^{2} u(x,y)} {\partial x^{2}} + \frac {\partial^{2} u(x,y)} {\partial y^{2}} = f(x,y) \textnormal{ in } \Omega, \\
+u(x,y) &=& g(x,y) \textnormal{ in } \partial \Omega.\label{eq.Dirichlet2}
 \end{eqnarray}
-(2.2) und (2.4) nennt man Dirichlet-Randbedingung.\\
-\textbf{Beachte:}$\partial_{xx}u(x,y) = \frac {\partial^{2}u(x,y)} {\partial x^{1}}$.
+\autoref{eq.Dirichlet1} bzw. \autoref{eq.Dirichlet2} nennt man Dirichlet-Randbedingung.\\
+
+\textbf{Beachte:} $\partial_{xx}u(x,y) = \frac {\partial^{2}u(x,y)} {\partial x^{1}}$.
 
 Um diese (elliptische) partielle Differentialgleichung nun in $\Omega$ zu diskretisieren, bedarf es der Hilfe der Finiten Differenzen Methode.
 
@@ -90,14 +91,24 @@ Um diese (elliptische) partielle Differentialgleichung nun in $\Omega$ zu diskre
 \subsection{Zentraler Differenzenquotient zweiter Ordnung}\label{ss.Differenzenquotient zweiter Ordnung}
 
 Wir betrachten ein $(x,y) \in \Omega$ beliebig. Dann gilt für $h > 0$ mit der Taylorformel
+
 \begin{equation}
-u(x+h,y) = \sum_{k = 0}^{n} h^{k} \frac {\partial^{k}u(x,y)} {\partial x^{k}} \approx u(x,y) + h \partial_{x} u(x,y) + \frac {h^{2}} {2!} \partial_{xx} u(x,y) + \mathcal{O}(h^{3}),
+u(x+h,y) = \sum_{k = 0}^{n} h^{k} \frac {\partial^{k}u(x,y)} {\partial x^{k}} \approx u(x,y) + h \partial_{x} u(x,y) + \frac {h^{2}} {2!} \partial_{xx} u(x,y) + \mathcal{O}(h^{3}),\label{eq.Partiall x+h}
 \end{equation}
 \begin{equation}
-u(x-h,y) = \sum_{k = 0}^{n} (-1)^{k} h^{k} \frac {\partial^{k}u(x,y)} {\partial y^{k}} \approx u(x,y) - h \partial_{x} u(x,y) + \frac {h^{2}} {2!} \partial_{xx} u(x,y) - \mathcal{O}(h^{3}).
+u(x-h,y) = \sum_{k = 0}^{n} (-1)^{k} h^{k} \frac {\partial^{k}u(x,y)} {\partial y^{k}} \approx u(x,y) - h \partial_{x} u(x,y) + \frac {h^{2}} {2!} \partial_{xx} u(x,y) - \mathcal{O}(h^{3}).\label{eq.Partiall x-h}
 \end{equation}
-Analog können wir diese Betrachtung für $u(x,y+h)$ und $u(x,y-h)$ machen. \\
-Löst man nun (2.5) und (2.6) jeweils nach $\partial_{xx} u(x,y)$ auf und addiert die zwei Gleichungen, so erhält man:
+
+Analog können wir diese Betrachtung für $u(x,y+h)$ und $u(x,y-h)$ machen:
+
+\begin{equation}
+u(x,y+h) = \sum_{k = 0}^{n} h^{k} \frac {\partial^{k}u(x,y)} {\partial y^{k}} \approx u(x,y) + h \partial_{y} u(x,y) + \frac {h^{2}} {2!} \partial_{yy} u(x,y) + \mathcal{O}(h^{3}),
+\end{equation}
+\begin{equation}
+u(x,y-h) = \sum_{k = 0}^{n} (-1)^{k} h^{k} \frac {\partial^{k}u(x,y)} {\partial y^{k}} \approx u(x,y) - h \partial_{y} u(x,y) + \frac {h^{2}} {2!} \partial_{yy} u(x,y) - \mathcal{O}(h^{3}).
+\end{equation}
+
+Löst man nun \autoref{eq.Partiall x+h} und \autoref{eq.Partiall x-h} jeweils nach $\partial_{xx} u(x,y)$ auf und addiert die zwei Gleichungen, so erhält man:
 
 \begin{equation}
 \partial_{xx} u(x,y) + O(h^{2}) = \frac {u(x-h,y) - 2u(x,y) + u(x+h,y)} {h^{2}}.
@@ -113,7 +124,7 @@ Diese Näherungen nennt man auch (zentralen) Differenzenquotienten der zweiten A
 Somit erhalten wir für $\Delta u(x,y)$ die Näherung
 \begin{eqnarray}
 \Delta u(x,y) &=& \partial_{xx} u(x,y) + \partial_{yy} u(x,y) \notag \\
-&\approx& \frac {u(x-h,y) + u(x+h,y) - 4u(x,y) + u(x,y-h) + u(x,y+h)} {h^{2}}.
+&\approx& \frac {u(x-h,y) + u(x+h,y) - 4u(x,y) + u(x,y-h) + u(x,y+h)} {h^{2}}.\label{eq.Differenzenquotienten}
 \end{eqnarray}
 
 \subsection{Diskretisierung von $\Omega$}\label{ss.Diskretisierung}
@@ -125,19 +136,14 @@ Für $i,j = 1,...,N$ kann man dann $u(x,y)$ auch schreiben als:
 u(x_{i},y_{j}) = u(ih,jh).
 \end{equation}
 
-und $\Omega$ fassen wir als $\Omega_{h}$ auf, so dass:
+$\Omega$ fassen wir als $\Omega_{h}$ auf, so dass:
 \begin{equation}
 \Omega_{h} := \{u(ih, jh) | 1 \le i,j \le N\}.
 \end{equation}
 
-Betrachten wir nun noch den Abschluss von $\Omega_{h}$:
-\begin{equation}
-\overline \Omega_{h} := \{u(ih, jh) | 0 \le i,j \le m\}.
-\end{equation}
-
 \bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}\label{img.5-Point-Star}
 
-Mit der Formel (2.9) ergibt sich nun für $\Delta u(x,y) \approx \Delta_{h} u(x,y)$ die diskretisierte Form:
+Mit \autoref{eq.Differenzenquotienten} ergibt sich nun für $\Delta u(x,y) \approx \Delta_{h} u(x,y)$ die diskretisierte Form:
 \begin{equation}
 \Delta_{h} u(x,y) = \frac {u(x-h,y) + u(x+h,y) - 4u(x,y) + u(x,y-h) + u(x,y+h)} {h^{2}}.\label{eq.5-Point-Star}
 \end{equation}
@@ -174,7 +180,7 @@ dar. (Dahmen Reusken)
 
 \bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
 
-Nummeriert man nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben durch (\autoref{img.gridWithNumbers}) und stellt für jeden dieser Punkte \autoref{eq.5-Point-Star} auf, so führt dies auf eine $N^{2} \times N^{2}$-Matrix der Form:
+Nummeriert man nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben (\autoref{img.gridWithNumbers}) und stellt für jeden dieser Punkte \autoref{eq.5-Point-Star} auf, so führt dies auf eine $N^{2} \times N^{2}$-Matrix der Form:
 
 \begin{equation}
 \mat{A} =
@@ -183,7 +189,7 @@ A_{1} & -Id \\
 -Id & A_{2} & \ddots \\
  & \ddots & \ddots & -Id \\
  & & -Id & A_{n}
-\end{pmatrix},\label{eq.PoissonMatrix}
+\end{pmatrix},\label{eq.2D Matrix}
 \end{equation}
 wobei $\mat{Id} \in \mathbb{R}^{N \times N}$ die Identität meint und für alle $i = 0,..,n$ gilt:
 
@@ -198,7 +204,7 @@ A_{i} =
 \end{equation}
 $A_{i} \in \mathbb{R}^{N \times N}$.
 
-Um nun auf ein lineares Gleichungssystem der Form $\mat{A}u = f$ zu kommen, muss natürlich noch die rechte Seite, also das $f$ aufgestellt werden. Zu jeder Komponente von $f$, die einen Randpunkt als Nachbarn hat, wird dieser dazu addiert. Dies führt uns auf folgende rechte Seite:
+Um nun auf ein lineares Gleichungssystem der Form $\mat{A}u = f$ zu kommen, muss natürlich noch die rechte Seite, also das $f$ aufgestellt werden. Zu jeder Komponente von $f$, die einen Randpunkt als Nachbarn hat, wird dieser dazu addiert. Hat eine Komponente von $f$ zwei Nachbarn am Rand von $\Omega_{h}$, werden beide addiert. Dies führt uns auf folgende rechte Seite:
 
 \begin{equation}
 f = h^{2}
@@ -243,7 +249,7 @@ f(1-h,1-h) + h^{-2}(g(1-h,1)+g(1,1-h))
 \end{pmatrix}.
 \end{equation}
 
-Wir erhalten das lineare Gleichungssystem der Form $\mat{A}u = f$, wobei $\mat{A}$ und $f$ bekannt sind und $u$ der approximierte Lösungsvektor ist, der die Lösung der partielle Differentialgleichung enthält. Wir bezeichnet ab jetzt die diskrete 2D Poisson Matrix mit $\mat{A}_{2D}$
+Wir erhalten das lineare Gleichungssystem der Form $\mat{A}u = f$, wobei $\mat{A}$ und $f$ bekannt sind und $u$ der approximierte Lösungsvektor ist, der die Lösung der partielle Differentialgleichung enthält. Wir bezeichnet ab jetzt die diskrete 2D Poisson Matrix aus \autoref{eq.2D Matrix} mit $\mat{A}_{2D}$.
 
 % \section{Das Residuum und die Residuumsgleichung}\label{s.Residuum und Resdiuumsgleichung}
 
@@ -269,24 +275,49 @@ Da $\mat{A}_{2D} \in \mathbb{R}^{n \times n}$ s.p.d. ist, existiert eine Orthogo
 \end{equation}
 wobei $\lambda_{1,1},...,\lambda_{N,N} \in \mathbb{R}$ und $v_{i,j} \in \mathbb{R}^{n}$.
 
-\subsection{Eigenvektoren von $\mat{A}_{2D}$}\label{ss.Eigenvektoren}
+\subsection{Eigenwerte und Eigenvektoren von $\mat{A}_{2D}$}\label{ss.Eigenwerte und Eigenvektoren}
 
-Sei $x_{k} := k \cdot h$, wobei $k \in \mathbb{N}$ und $x_{k} \in \Omega_{h}$. Dann gilt für die Eigenvektoren der Matrix $\mat{A}_{2D}$:
+Für $k \in \mathbb{N}$ und $h = \frac {1} {m}$ wie oben, seien $(x_{k},y_{l}) \in \Omega_{h}$ mit $x_{k} := k \cdot h, y_{l} := l \cdot h$ und $\theta_{k} \in \mathbb{R}$ mit $\theta_{k} := k \pi h$. Dann gilt für die Eigenwerte:
 \begin{equation}
-v_{k,l}(x_{i},y_{j}) = \sin(k \pi x_{i}) \sin(l \pi y_{j}).
+\lambda_{i,j} = 4 \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N,\label{eq.Eigenwerte}
+\end{equation}
+Für einen Eigenvektor am Punkt $(x_{k},y_{l})$ gilt:
+\begin{equation}
+v_{i,j}(x_{k},y_{l}) = \sin(i \pi x_{k}) \sin(j \pi y_{l}) \textnormal{ für } 1 \le i,j,k,l \le N.
+\end{equation}
+wobei $N$ jeweils die Anzahl der Gitterpunkte in x- und in y-Richtung definiert.
+
+\textbf{Bemerkung:}
+
+Ein Eigenvektor im Punkt $(x_{k},y_{l})$ lässt sich auch in der folgenden Form darstellen:
+\begin{equation}
+v_{k.l} = 
+\begin{pmatrix}
+\sin(\pi x_{k})\sin(\pi y_{l})\\
+\sin(\pi x_{k})\sin(2 \pi y_{l})\\
+\vdots \\
+\sin(\pi x_{k})\sin(N \pi y_{l})\\
+\sin(2 \pi x_{k})\sin(\pi y_{l})\\
+\sin(2 \pi x_{k})\sin(2 \pi y_{l})\\
+\vdots\\
+\sin(N \pi x_{k})\sin((N-1) \pi y_{l})\\
+\sin(N \pi x_{k})\sin(N \pi y_{l})
+\end{pmatrix}.
 \end{equation}
 
-\subsection{Eigenwerte von $\mat{A}_{2D}$}\label{ss.Eigenwerte}
+\textbf{Beweis:}
 
-Sei $\theta_{k} := k \pi h \in \mathbb{R}$. Dann gilt für die Eigenwerte von $\mat{A}_{2D}$:
-\begin{equation}
-\lambda_{ij} = 4 \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N.\label{eq.Eigenwerte}
-\end{equation}
-wobei $N$ die Anzahl der Gitterpunkte in x- und in y-Richtung definiert.
+
+
+\textbf{Beispiel:}
+
+Um sich einen Eigenvektor besser vorstellen zu können, betrachten wir als Beispiel $v_{3,3} \in \mathbb{R}^{16}$ auf dem Gitter aus \autoref{img.gridWithNumbers} (Punkt "11").
+
+\bild{EV}{14cm}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}\label{img.Jacobi1}
 
 \subsection{Definition (Kondition einer symmetrischen Matrix)}\label{ss.Definition Kondition einer Matrix}
 
-Sei $\mat{A}$ eine symmetrische Matrix des $\mathbb{R}^{n \times n}$. Dann gilt für die Kondition der Matrix:
+Sei $\mat{A}$ eine symmetrische Matrix des $\mathbb{R}^{n \times n}$. Dann gilt für die euklidische Kondition der Matrix:
 \begin{equation}
 \kappa_{2} (A) := \frac {\lambda_{max}} {\lambda_{min}}.\label{eq.Kondition}
 \end{equation}
@@ -300,9 +331,9 @@ Für die Matrix $\mat{A}_{2D}$ gilt für ihre Kondition:
 
 \textbf{Beweis:}
 
-Da $\mat{A}_{2D}$ s.p.d. ist, gilt mit \autoref{eq.Kondition}: $\kappa_{2} (A_{2D}) = \frac {\lambda_{max}} {\lambda_{min}}$. Für die Eigenwerte gilt aus \autoref{ss.Eigenwerte}:
+Da $\mat{A}_{2D}$ s.p.d. ist, gilt mit \autoref{eq.Kondition}: $\kappa_{2} (A_{2D}) = \frac {\lambda_{max}} {\lambda_{min}}$. Für die Eigenwerte gilt aus \autoref{ss.Eigenwerte und Eigenvektoren}:
 \begin{equation}
-\lambda_{ij} = 4 \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N. \notag
+\lambda_{i,j} = 4 \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N. \notag
 \end{equation}
 Dann folgt:
 \begin{eqnarray}
@@ -318,7 +349,7 @@ In [DahmenReusken] wird außerdem gezeigt, dass sich $\kappa(\mat{A}_{2D})$ wie 
 \frac {\cos^{2} (\frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})} = \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2})).
 \end{equation}
 
-Natürlich wollen wir die Funktion $u(x,y)$ so gut wie möglich in $\Omega_{h}$ approximieren und sind daher bestrebt das Gitter so fein als möglich zu wählen. Daraus ergibt sich jedoch die negative Eigenschaft von $\mat{A}_{2D}$ \\
+Natürlich wollen wir die Funktion $u(x,y)$ so gut wie möglich in $\Omega_{h}$ approximieren und sind daher bestrebt das Gitter so fein als möglich zu wählen. Daraus ergibt sich jedoch die negative Eigenschaft von $\mat{A}_{2D}$. \\
 Zur Erinnerung: $h := \frac {1} {m}$. Je größer $m$ gewählt wird, desto schlechter wird die Kondition der Matrix.
 \begin{equation}
 \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2})) = \left( \frac {2} {\pi \frac {1} {m}} \right)^{2} (1 + \mathcal{O}(\frac {1} {m^{2}})) \approx \frac {4m^{2}} {\pi}.
@@ -346,7 +377,7 @@ u^{k+1} := (\mat{Id} - \mat{C} \mat{A})u^{k} + \mat{C} f.\label{eq.Iteratives Ve
 
 \subsection{Definition (Spektralradius)}\label{s.Spektralradius}
 
-Sei $\mat{A} \in \mathbb{R}^{n \times n}$. Und seien für alle $i=1,...,n$ $\lambda_{i} \in \mathbb{R}$. Dann gilt:
+Sei $\mat{A} \in \mathbb{R}^{n \times n}$. Und seien für alle $i=1,...,n$, $\lambda_{i} \in \mathbb{R}$. Dann gilt:
 \begin{equation}
 \rho(A) := \max_{1 \le i \le n} | \lambda_{i} |.
 \end{equation}
@@ -363,7 +394,7 @@ Einen Beweis hierzu findet man z.B. in (Dahmen/Reusken und Verweis).
 
 \subsection{Definition (Residuum und Fehler)}\label{ss.Residuum und Fehler}
 
-Sei $u^{*} \in \mathbb{R}^{n}$ die exakte Lösung des linearen Gleichungssystems $Au = f$. Sei außerdem für $u^{k} \in \mathbb{R}^{n}$ die Approximation der Lösung im $k-ten$ Iterationsschritt. Dann gilt für das Residuum:
+Sei $u^{*} \in \mathbb{R}^{n}$ die exakte Lösung des linearen Gleichungssystems $Au = f$. Sei außerdem $u^{k} \in \mathbb{R}^{n}$ die Approximation der Lösung im $k-ten$ Iterationsschritt. Dann gilt für das Residuum:
 \begin{equation}
 r^{k} := f - \mat{A} u^{k}.\label{eq.Residuum}
 \end{equation}
@@ -385,7 +416,7 @@ Sei $\mat{A} \in \mathbb{R}^{n \times n}$ und $f,u \in \mathbb{R}^{n}$, wobei $u
 A = D - L - U.
 \end{equation}
 
-Dabei sind $\mat{D},\mat{L},\mat{U} \in \mathbb{R}^{n \times n}$, wobei $\mat{D}$ die Diagonalelemente von $\mat{A}$ enthält, $\mat{L}$ eine strikte untere und $\mat{U}$ eine strikte obere Dreiecksmatrix sind. \\
+Dabei sind $\mat{D},\mat{L},\mat{U} \in \mathbb{R}^{n \times n}$, wobei $\mat{D} = diag(a_{1,1},...,a_{n,n})$ und $\mat{L}$ eine strikte untere und $\mat{U}$ eine strikte obere Dreiecksmatrix ist. \\
 Somit ergibt sich für $\mat{A}u = f$:
 
 \begin{equation}
@@ -398,7 +429,7 @@ Du^{k+1} = (L+U)u^{k} + f \Leftrightarrow u^{k+1} = D^{-1}(L+U)u^{k} + D^{-1}f.
 \end{equation}
 
 \subsection{Algorithmus (Jacobi-Verfahren)}\label{ss.Allgemeines Jacobi-Verfahren}
-Dann gilt in Komponentenschreibweise mit einem Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig} und $k=1,2,...$. Berechne für $i=1,...,n$:
+In Komponentenschreibweise mit einem Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig} und $k=1,2,...$. Berechne für $i=1,...,n$:
 
 \begin{equation}
 u^{k+1}_{i} = \frac {1} {a_{ii}} (f_{i} - \sum_{\substack{j = 1 \\ j \ne i}}^{n} a_{ij}u^{k}_{i}).
@@ -421,6 +452,7 @@ Mit der Iterationsvorschrift folgt:
 u^{k+1} &=& D^{-1}(L+U)u^{k} + D^{-1}f \overset{(L+U)=(D-A)}{=} D^{-1}(D-A)u^{k}+D^{-1}f \notag \\
 &=& (Id-D^{-1}A)u^{k} + D^{-1}f. \notag
 \end{eqnarray}
+Also $\mat{T}_{J} := (\mat{Id} - \mat{D}^{-1} \mat{A})$.
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
@@ -431,7 +463,7 @@ Man sieht leicht ein, dass die Eigenvektoren von $\mat{T}_{J}$ gleich denen von 
 \begin{equation}
 \lambda_{i,j}(\mat{T}_{J}) = 1 - \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right). \label{eq.Jacobi-Eigenwerte}
 \end{equation}
-für $1 \le i,j \le N$ und $\theta_{i}$, $\theta_{j}$ wie in \autoref{ss.Eigenwerte}.
+für $1 \le i,j \le N$ und $\theta_{i}$, $\theta_{j}$ wie in \autoref{ss.Eigenwerte und Eigenvektoren}.
 
 \textbf{Beweis:}\label{b.EW Jacobi}
 
@@ -477,7 +509,7 @@ $\blacksquare$
 % \end{flushright}
 
 Das Jacobi-Verfahren konvergiert also für $\mat{A}_{2D}$. Allerdings nimmt mit feinerem Gitter, also kleinere Schrittweite $h$, die Konvergenzgeschwindigkeit stark ab, da der Spektralradius nahe bei $1$ liegt.\\
-Abschließend wollen wir den Rechenaufwand verbessern. Dafür nutzen wir die Dünnbesetztheit von $\mat{A}_{2D}$ aus. Es sind pro Zeile maximal $5$ Einträge ungleich Null. Mit anderen Worten hat jeder Gitterpunkt in $\Omega_{h}$ höchstens 4 Nachbarn. Nutzt man diese Struktur aus, so erhält man den folgenden Algorithmus. 
+Abschließend wollen wir den Rechenaufwand verbessern. Dafür nutzen wir die Dünnbesetztheit von $\mat{A}_{2D}$ aus. Es sind pro Zeile maximal $5$ Einträge ungleich Null. Oder anders formuliert, hat jeder Gitterpunkt in $\Omega_{h}$ höchstens 4 Nachbarn. Nutzt man diese Struktur aus, so erhält man den folgenden Algorithmus. 
 % Da die Matrix, die durch das diskretisierte Poisson-Problem aufgestellt wird, dünn besetzt ist, können wir den Rechenaufwand für dieses spezielle Problem auf $\mathcal{O}(n)$ pro Iterationsschritt verbessern. Dafür benötigen wir nochmals den 5-Punkt-Differenzenstern und die partielle Differentialgleichung:
 
 % \begin{equation}
@@ -512,7 +544,7 @@ u^{k+1} &=& (Id - D^{-1}A)u^{k} + D^{-1}f \notag \\
 &=& u^{k} + D^{-1} \underbrace{(f - Au^{k})}_{= r^{k}}.
 \end{eqnarray}
 
-Wir addieren also zu $u^{k}$ das Residuum. Die Idee ist nun dieses mit einem Parameter $\omega \in \mathbb{R}$ zu multiplizieren, um bessere Konvergenzeigenschaften zu erhalten:
+Wir addieren also zu $u^{k}$ das Residuum. Die Idee ist nun dieses mit einem Parameter $\omega \in \mathbb{R}$ zu multiplizieren, um neue Eigenschaften zu erhalten:
 \begin{eqnarray}
 u^{k+1} &=& u^{k} + D^{-1} \omega r^{k} = u^{k} + \omega D^{-1} (f - Au^{k}) \notag \\
 &=& u^{k} - \omega D^{-1} Au^{k} + \omega D^{-1}f = (Id - \omega D^{-1} A)u^{k} + \omega D^{-1}f \notag \\
@@ -521,19 +553,10 @@ u^{k+1} &=& u^{k} + D^{-1} \omega r^{k} = u^{k} + \omega D^{-1} (f - Au^{k}) \no
 \end{eqnarray}
 \autoref{eq.Jacobi-Relaxation} ist die Iterationsvorschrift für das Jacobi-Relaxationsverfahren. Die Iterationsmatrix ist offensichtlich gegeben durch:
 \begin{equation}
-\mat{T}_{J_{\omega}} := (\mat{Id} - \omega \mat{D}^{-1} \mat{A}) = (1 - \omega) \mat{Id} + \omega(\mat{Id} - \mat{D}^{-1} \mat{A}).
+\mat{T}_{J_{\omega}} := (1 - \omega) \mat{Id} + \omega(\mat{Id} - \mat{D}^{-1} \mat{A}) = (\mat{Id} - \omega \mat{D}^{-1} \mat{A}).
 \end{equation}
 
-\textbf{Beweis}:\label{b.Iterationsvorschrift JacobiRelax}
-
-Mit der Iterationsvorschrift folgt:
-\begin{eqnarray}
-u^{k+1} &=& D^{-1}(L+U)u^{k} + D^{-1}f \overset{(L+U)=(D-A)}{=} D^{-1}(D-A)u^{k}+D^{-1}f \notag \\
-&=& (Id-D^{-1}A)u^{k} + D^{-1}f. \notag
-\end{eqnarray}
-\begin{flushright}
-$\blacksquare$
-\end{flushright}
+Man erweitert den Jacobi-Algorithmus also mit dem Parameter $\omega$ und addiert $(1 - \omega)u^{k}$ zu $u^{k+1}$.
 
 \subsection{Algorithmus (Jacobi-Relaxations-Verfahren)}\label{ss.Algorithmus Jacobi Relax}
 
@@ -551,6 +574,7 @@ Auch hier entsprechen die Eigenvektoren denen von $\mat{A}_{2D}$ und für die Ei
 \begin{equation}
 \lambda_{i,j}(\mat{T}_{J}) = 1 - \omega \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N.\label{eq.Jacobi-Eigenwerte}
 \end{equation}
+$\theta_{i}$, $\theta_{j}$ wie in \autoref{ss.Eigenwerte und Eigenvektoren}.
 
 \textbf{Beweis:}\label{sss.EW JacobiRelax}
 
@@ -577,7 +601,7 @@ Das Jacobi-Relaxations-Verfahren konvergiert für die diskrete Poisson Gleichung
 
 Mit \autoref{eq.Jacobi-Eigenwerte} folgt:
 \begin{eqnarray}
-\rho(\mat{Id}-\omega\mat{D}^{-1}\mat{A}_{2D}) &=& \max_{1 \le i,j \le N} | \lambda_{i} | = \max_{1 \le i,j \le N} | 1 - \omega \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2} \right) | \notag \\
+\rho(\mat{Id}-\omega\mat{D}^{-1}\mat{A}_{2D}) &=& \max_{1 \le i,j \le N} | \lambda_{i,j} | = \max_{1 \le i,j \le N} | 1 - \omega \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2} \right) | \notag \\
 &=& 1 - 2 \omega \sin^{2} (\frac {\theta_{1}} {2}) = 1 - 2 \omega \sin^{2} (\frac {\pi h} {2}) = 1 - 2 \omega (\frac{1} {2} (1 - \cos (\pi h)) \notag \\
 &=& 1 - \omega(1 - \cos (\pi h)) \overset{\textnormal{Taylorformel}}{\approx} 1 - \omega(1-(1-\frac{\pi^{2} h^{2}}{2})) \notag \\
 &=& 1 - \frac {\omega} {2} \pi^{2} h^{2} < 1. \notag
@@ -586,7 +610,7 @@ Mit \autoref{eq.Jacobi-Eigenwerte} folgt:
 $\blacksquare$
 \end{flushright}
 
-Das Jacobi-Relaxations-Verfahren konvergiert für $\mat{A}_{2D}$ sogar schneller für ein $\omega \in (0,1)$. Häufig verwendete Werte im zweidimensionalen Fall sind $\omega = \frac {1} {2}$ und $\omega = \frac {4} {5}$, wobei letzterer Wert für das Mehrgitterverfahren den optimalen Parameter darstellt [Saad]. Leider ist für kleines $h$ die Konvergenz immer noch sehr langsam. Den Rechenaufwand kann man allerdings auch hier verbesseren. Mit der selben Vorgehensweise wie oben erhalten wir:
+Das Jacobi-Relaxations-Verfahren konvergiert für $\mat{A}_{2D}$ sogar schneller für ein $\omega \in (0,1)$. Häufig verwendete Werte im zweidimensionalen Fall sind $\omega = \frac {1} {2}$ und $\omega = \frac {4} {5}$, wobei letzterer Wert für das Mehrgitterverfahren den optimalen Parameter darstellt [Saad]. Leider ist für kleines $h$ die Konvergenz immer noch sehr langsam. Den Rechenaufwand kann man allerdings auch hier verbesseren. Mit der selben Vorgehensweise wie in \autoref{ss.Jacobi für Poisson} erhalten wir:
 
 \subsection{Algorithmus (Jacobi-Relaxations-Verfahren für $\mat{A}_{2D}$)}\label{ss.Algorithmus Jacobi Relax Poisson}
 
@@ -738,10 +762,10 @@ u^{k+1} = (Id - \omega D^{-1}A)u^{k} + \omega D^{-1}f.
 \end{equation}
 Die Eigenvektoren sind wegen \autoref{ss.EW Jacobi} und \autoref{ss.EW Relax} gegeben durch:
 \begin{equation}
-v_{i,j} = sin(k \pi x_{i})sin(l \pi y_{j}) \textnormal{ für } 1 \le k,l \le N
+v_{k,l} = sin(i \pi x_{k})sin(j \pi y_{l}) \textnormal{ für } 1 \le i,j,k,l \le N
 \end{equation}
-und $x_{i}, y_{j} \in \Omega_{h}$. \\
-Als Eigenvektoren der Matrizen $\mat{T}_{J}$ bzw. $\mat{T}_{J_{\omega}}$ bilden diese Vektoren eine Basis.
+und $(x_{k}, y_{l}) \in \Omega_{h}$. \\
+Als Eigenvektoren der Matrizen $\mat{T}_{J}$ bzw. $\mat{T}_{J_{\omega}}$ bilden diese Vektoren eine Basis des $\mathbb{R}^{n}$, wobei $n = N^{2}$.
 Für den Fehlerterm im $k-ten$ Iterationsschritt gilt:
 \begin{equation}
 e^{k} = u^{*} - u^{k}.
@@ -757,11 +781,11 @@ e^{k+1} &=& u^{*} - u^{k+1} = u^{*} - \left( (Id - \omega D^{-1} A)u^{k} + \omeg
 
 \bild{omegaeins}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi1}
 
-Da die $n$ (zur Erinnerung: $n = N^{2}$) Eigenvektoren $v_{i,j}$ eine Basis bilden, lässt sich der Fehler $e$ als Linearkombination der $v_{i,j}$ darstellen:
+Da die $n$ Eigenvektoren $v_{i,j}$ eine Basis bilden, lässt sich der Fehler $e$ als Linearkombination der $v_{i,j}$ darstellen:
 \begin{eqnarray}
-e^{k+1} &=& \sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k+1}_{i,j} v_{i,j} = (Id - \omega D^{-1}A) \left(\sum_{i = 1}^{n} \xi^{k}_{i,j} v_{i,j}\right) \notag \\
-&=& \left(\sum_{i = 1}^{n} \xi^{k}_{i,j} (Id - \omega D^{-1}A) v_{i,j}\right) = \left(\sum_{i = 1}^{n} \xi^{k}_{i,j} (v_{i,j} - \frac {\omega} {4} \underbrace{A v_{i,j}}_{= \lambda_{i,j}(A)v_{i,j}})\right) \notag \\
-&=& \left(\sum_{i = 1}^{n} \xi^{k}_{i,j} \underbrace{(1 - \frac {\omega} {4} \lambda_{i,j}(A))}_{= \lambda_{i,j}(\mat{T}_{J_{\omega}})} v_{i,j}\right) = \left(\sum_{i = 1}^{n} \xi^{k}_{i,j} \lambda_{i,j}(\mat{T}_{J_{\omega}}) v_{i,j}\right).
+e^{k+1} &=& \sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k+1}_{i,j} v_{i,j} = (Id - \omega D^{-1}A) \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} v_{i,j}\right) \notag \\
+&=& \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} (Id - \omega D^{-1}A) v_{i,j}\right) = \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} (v_{i,j} - \frac {\omega} {4} \underbrace{A v_{i,j}}_{= \lambda_{i,j}(A)v_{i,j}})\right) \notag \\
+&=& \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} \underbrace{(1 - \frac {\omega} {4} \lambda_{i,j}(A))}_{= \lambda_{i,j}(\mat{T}_{J_{\omega}})} v_{i,j}\right) = \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} \lambda_{i,j}(\mat{T}_{J_{\omega}}) v_{i,j}\right).
 \end{eqnarray}
 
 \bild{omegaeinhalb}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi2}
@@ -774,7 +798,7 @@ Es stellt sich z.B. heraus [Saad], dass der optimale Relaxationsparameter, der u
 
 \section{Das Verfahren der konjugierten Gradienten}\label{s.Das Verfahren der konjugierten Gradienten}
 
-Das Verfahren der konjugierten Gradienten wurde 1952 von Hestenes und Stiefel erstmals vorgestellt. Das Verfahren zeichnet sich durch Stabilität und schnelle Konvergenz aus. \\
+Das Verfahren der konjugierten Gradienten wurde 1952 von Hestenes und Stiefel erstmals vorgestellt. Es zeichnet sich durch Stabilität und schnelle Konvergenz aus. \\
 Das CG-Verfahren (conjugate gradient) - wie es auch genannt wird - ist eine Projektions- und Krylow-Raum-Methode.
 
 \subsection{Definition (A-orthogonal)}\label{ss.A-orthogonal}
@@ -785,7 +809,7 @@ Sei $A\in\mathbb{R}^{n \times n}$ s.p.d. und
 \begin{equation}
 f(u) := \frac {1} {2} u^{T}Au - f^{T}u,
 \end{equation}
-wobei $b,u \in \mathbb{R}^{n}$. Dann gilt:
+wobei $f,u \in \mathbb{R}^{n}$. Dann gilt:
 \begin{center}
 f hat ein eindeutig bestimmtes Minimum und
 \end{center}
@@ -822,9 +846,9 @@ Au^{*} = f \Longleftrightarrow f(u^{*}) = \underset{u\in\mathbb{R}^{n}}{\min} f(
 Einen Beweis hierzu findet man z.B. in [Dahmen/Reusken].\\
 Es ist also äquivalent die Funktion $f(u)$ zu minimieren und das Gleichungssystem $Au = f$ zu lösen. Betrachtet man nun den Gradienten von $f(x)$, so stellt man fest, dass gilt:
 \begin{equation}
-\nabla f(x) = Ax - b = -r.
+\nabla f(x) = Ax - f = -r.
 \end{equation}
-Der Gradient von $f(x)$ ist also das negative Residuum. Beim Verfahren der \textbf{konjugierten} Gradienten wählt man konjugierte Richtungen $p$ für die Richtung des steilsten Abstiegs. Die dabei berechneten (konjugierten) Vektoren $p$ sind alle A-orthogonal und spannen einen sogenannten Krylow-Raum $U_{k} = \{p^{0},...,p^{k}\}$ auf. Für den Zusammenhang zwischen dem CG-Verfahren und Krylow-Räumen möchte ich an dieser Stelle auf [Braess] verweisen.\\
+Der Gradient von $f(x)$ ist also das negative Residuum. Beim normalen Gradientenverfahren wählt man als Richtung des steilsten Abstiegs genau das Residuum. Hier wählt man jedoch konjugierte Richtungen $p$ für die Richtung des steilsten Abstiegs. Die dabei berechneten (konjugierten) Vektoren $p$ sind alle A-orthogonal und spannen einen sogenannten Krylow-Raum $U_{k} = \{p^{0},...,p^{k}\}$ auf. Für den Zusammenhang zwischen dem CG-Verfahren und Krylow-Räumen möchte ich an dieser Stelle auf [Braess] verweisen.\\
 Da wir also stets das Minimum im Teilraum $U_{k}$ suchen, wird uns folgendes Lemma hilfreich sein:
 
 \bild{CG_Illu}{8cm}{Abstieg}{Abstieg}\label{img.CG}
@@ -877,7 +901,7 @@ U_{k+1} := span\{p^{0},...,p^{k-1},r^{k}\} \textnormal{ wobei } r^{k} := f - Au^
 
 \end{description}
 
-Nachdem man ein Residuum berechnet hat, startet der erste Iterationsschritt: Man erweitert seinen Teilraum um für diesen dann eine A-orthogonale Basis zu bestimmen. Ein gängiges Verfahren ist das Gram-Schmidt-Orthonormalisierungsverfahren. Die neue Näherungslösung bzgl. des Raumes $U_{k}$ kann dann über den (A-orthogonalen) Projektionssatz bestimmt werden. Nachdem erneut ein Residuum berechnet wurde, startet der nächste Iterationsschritt.\\
+Nachdem man ein Residuum berechnet hat, startet der erste Iterationsschritt: Man erweitert seinen Teilraum um das Residuum und bestimmt darauf hin eine A-orthogonale Basis dieses Teilraumes. Ein gängiges Verfahren ist das Gram-Schmidt-Orthonormalisierungsverfahren. Die neue Näherungslösung bzgl. $U_{k}$ kann dann über den (A-orthogonalen) Projektionssatz bestimmt werden. Nachdem erneut ein Residuum berechnet wurde, startet der nächste Iterationsschritt.\\
 Wegen \autoref{eq.Projektion} könnte man vermuten, dass $u^{*}$ zur Durchführung des Algorithmus bekannt sein muss. Die folgenden Lemmata werden zeigen, dass dem nicht so ist.
 
 \subsection{Lemma}
@@ -899,15 +923,15 @@ $\blacksquare$
 Nun wollen wir \autoref{eq.Projektion} neu formulieren.
 
 \subsection{Lemma}
-Sei $x^{*} \in \mathbb{R}^{n}$ die Lösung von $Au = f$ und $x^{k} \in \mathbb{R}^{n}$ die optimale Approximation von $x^{*}$ in $U_{k}$. Dann kann $x^{k}$ wie folgt berechnet werden:
+Sei $u^{*} \in \mathbb{R}^{n}$ die Lösung von $Au = f$ und $u^{k} \in \mathbb{R}^{n}$ die optimale Approximation von $u^{*}$ in $U_{k}$. Dann kann $u^{k}$ wie folgt berechnet werden:
 \begin{equation}
-x^{k} = x^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ mit } \alpha_{k-1} := \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle}. \notag\label{eq.Alpha}
+u^{k} = u^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ mit } \alpha_{k-1} := \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle}. \notag\label{eq.Alpha}
 \end{equation}
 
 Einen Beweis findet man in [Dahmen/Reusken].
 
 \textbf{Bemerkung:}
-$x^{k}$ kann mit wenig Aufwand aus $x^{k-1}$ und $p^{k-1}$ berechnet werden.
+$u^{k}$ kann mit wenig Aufwand aus $u^{k-1}$ und $p^{k-1}$ berechnet werden.
 
 \subsection{Lemma}
 Das Residuum $r^{k} \in \mathbb{R}^{n}$ kann einfach berechnet werden durch:
@@ -918,16 +942,16 @@ wobei $\alpha_{k-1}$ wie in \autoref{eq.Alpha}.
 
 \textbf{Beweis:}
 \begin{eqnarray}
-&x^{k} = x^{k-1} + \alpha_{k-1}p^{k-1} \notag \\
-&\Longleftrightarrow Ax^{k} = Ax^{k-1} + \alpha_{k-1}Ap^{k-1} \notag \\
-&\Longleftrightarrow b - Ax^{k} = b - Ax^{k-1} - \alpha_{k-1}Ap^{k-1} \notag \\
+&u^{k} = u^{k-1} + \alpha_{k-1}p^{k-1} \notag \\
+&\Longleftrightarrow Au^{k} = Au^{k-1} + \alpha_{k-1}Ap^{k-1} \notag \\
+&\Longleftrightarrow b - Au^{k} = b - Au^{k-1} - \alpha_{k-1}Ap^{k-1} \notag \\
 &\Longrightarrow r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1}. \notag
 \end{eqnarray}
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
 
-Da wir nun $x^{k}$ und $r^{k}$ recht komfortabel bestimmen können, wollen wir im Folgenden noch eine Möglichkeit sehen, um $p^{k}$ schnell zu berechnen.
+Da wir nun $u^{k}$ und $r^{k}$ recht komfortabel bestimmen können, wollen wir im Folgenden noch eine Möglichkeit sehen, um $p^{k}$ schnell zu berechnen.
 
 \subsection{Satz (Bestimmung einer A-orthogonalen Basis)}
 Durch
@@ -937,8 +961,9 @@ p^{k-1} = r^{k-1} - \sum_{j=0}^{k-2} \frac {\langle r^{k-1}, p^{j} \rangle _{A}}
 wird die A-orthogonale Basis zum Vektor $r^{k-1}$ bestimmt, wobei $p^{k-1},r^{k-1} \in \mathbb{R}^{n}$.
 
 \textbf{Beweis:}
-Der Beweis folgt direkt aus dem Gram-Schmidt-Orthonormalisierungsverfahren.\\
-Wie man sieht, kommt an dieser Stelle des Gram-Schmidt-Orthonormalisierungsverfahren zum Einsatz. Da dieser Algorithmus jedoch großen Rechenaufwand erfordert wollen wir ohne Beweis (siehe z.B. [Dahmen/Reusken]) angeben, wie man die $p^{k}$ effizient bestimmen kann.
+
+Der Beweis folgt direkt aus dem Gram-Schmidt-Orthonormalisierungsverfahren, welches allerdings einen hohen Rechenaufwand vorweist.\\
+Wir wollen ohne Beweis (siehe z.B. [Dahmen/Reusken]) angeben, wie man die $p^{k}$ effizienter bestimmen kann.
 
 \subsection{Lemma}
 Für die Berechnung von $p^{k}$ gilt:
@@ -975,12 +1000,12 @@ Substituiert man nun geschickt einige Werte in den Skalarprodukten, führt das a
 
 \subsection{Numerischer Algorithmus der konjugierten Gradienten}\label{ss.Numerisches CG}
 
-Gegeben ist eine symmetrisch positiv definite Matrix $\mat{A} \in \mathbb{R}^{n}$. Bestimme die (Näherungs-) Lösung $x^{*}$ mit Hilfe eines \textit{beliebigen} Startvektors $x^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $b \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$ und berechne das Residuum $r^{0} = b - Ax^{0}$. \\
+Gegeben ist eine symmetrisch positiv definite Matrix $\mat{A} \in \mathbb{R}^{n}$. Bestimme die (Näherungs-) Lösung $u^{*}$ mit Hilfe eines \textit{beliebigen} Startvektors $u^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $b \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$ und berechne das Residuum $r^{0} = b - Au^{0}$. \\
 Für $k = 1,2,...$, falls $r^{k-1} \ne 0$ berechne:
 
 \begin{eqnarray}
 p^{k-1} &=& r^{k-1} + \beta_{k-2}p^{k-2}, \textnormal{ wobei } \beta_{k-2} = \frac {\langle r^{k-1}, r^{k-1} \rangle} {\langle r^{k-2}, r^{k-2} \rangle} \textnormal{ mit } (k \ge 2) \notag \\
-x^{k} &=& x^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ wobei } \alpha_{k-1} = \frac {\langle r^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle} \notag \\
+u^{k} &=& u^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ wobei } \alpha_{k-1} = \frac {\langle r^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle} \notag \\
 r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1} \notag
 \end{eqnarray}
 
@@ -990,21 +1015,21 @@ An dieser Stelle soll noch ein kurzer Satz über die Konvergenz des Verfahrens f
 
 \subsection{Satz (Konvergenz des CG-Algorithmus) [DahmenReusken]}\label{ss.Konvergenz CG}
 
-Sei $\mat{A} \in \mathbb{R}^{n \times n}$ symmetrisch, positiv definit und seien $u,f,u^{*},u^{k} \in \mathbb{R}^{n}$, wobei $u^{*}$ die exakte Lösung des Gleichungssystems $Au = b$ und $x^{k}$ die approximierte Lösung durch das CG-Verfahren ist. Dann gilt für $k = 1,2,...$:
+Sei $\mat{A} \in \mathbb{R}^{n \times n}$ symmetrisch, positiv definit und seien $u,f,u^{*},u^{k} \in \mathbb{R}^{n}$, wobei $u^{*}$ die exakte Lösung des Gleichungssystems $Au = b$ und $u^{k}$ die approximierte Lösung durch das CG-Verfahren ist. Dann gilt für $k = 1,2,...$:
 \begin{equation}
-\| x^{k} - x^{*} \|_{A} \le 2 \left( \frac {\kappa_{2} (A) - 1} {\kappa_{2} (A) + 1} \right)^{k} \| x^{0} - x^{*} \|_{A}
+\| u^{k} - u^{*} \|_{A} \le 2 \left( \frac {\kappa_{2} (A) - 1} {\kappa_{2} (A) + 1} \right)^{k} \| u^{0} - u^{*} \|_{A}
 \end{equation}
 Da stets $\frac {\kappa_{2} (A) - 1} {\kappa_{2} (A) + 1} < 1$ gilt, sichert dieser Satz die Konvergenz des Algorithmus. Man sieht also, dass die Konvergenz des Verfahrens von der Kondition der Matrix $\mat{A}_{2D}$ abhängt. \\
 
 \section{Vorkonditioniertes Verfahren der konjugierten Gradienten (PCG)}\label{s.PCG}
 
-Das PCG-Verfahren (preconditioned conjugate gradient) ist eine optimierte Version des CG-Verfahrens. Wie wir in \autoref{ss.Matrixkondition} gesehen haben, ist $\mat{A}_{2D}$ schlecht konditioniert. Dies mindert natürlich die Effizienz des Verfahrens, wegen schlechterer Konvergenz. Die Idee ist nun, die bei der Iterations zu Grunde liegende Matrix $\mat{A}$ durch eine ähnliche Matrix mit besserer Kondition zu ersetzen, damit sich das Konvergenzverhalten verbessert.
+Das PCG-Verfahren (preconditioned conjugate gradient) ist eine optimierte Version des CG-Verfahrens. Wie wir in \autoref{ss.Matrixkondition} gesehen haben, ist $\mat{A}_{2D}$ schlecht konditioniert. Dies mindert natürlich die Effizienz des Verfahrens. Die Idee ist nun, die bei der Iteration zu Grunde liegende Matrix $\mat{A}$ durch eine ähnliche Matrix mit besserer Kondition zu ersetzen, damit sich das Konvergenzverhalten verbessert.
 
 \subsection{Satz}
 
 Sei $\mat{W} \in \mathbb{R}^{n \times n}$ s.p.d. dann gilt:
 \begin{equation}
-\mat{A}u = f \Longleftrightarrow \mat{W}^{-1} \mat{A} x = \mat{W}^{-1} f
+\mat{A}u = f \Longleftrightarrow \mat{W}^{-1} \mat{A} u = \mat{W}^{-1} f
 \end{equation}
 Es macht also keinen Unterschied, ob wir $Au = f$ oder das äquivalente System lösen.
 
@@ -1012,22 +1037,22 @@ Es macht also keinen Unterschied, ob wir $Au = f$ oder das äquivalente System l
 
 \begin{eqnarray}
 \mat{A}u = f &\Longleftrightarrow& u = \mat{A}^{-1} \mat{E} f \Longleftrightarrow u = \mat{A}^{-1} \mat{W} \mat{W}^{-1} f \notag \\
-&\Longleftrightarrow& u = (\mat{W}^{-1} \mat{A})^{-1} f \Longleftrightarrow \mat{W}^{-1} \mat{A} x = \mat{W}^{-1} b \notag
+&\Longleftrightarrow& u = (\mat{W}^{-1} \mat{A})^{-1} f \Longleftrightarrow \mat{W}^{-1} \mat{A} u = \mat{W}^{-1} b \notag
 \end{eqnarray}
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
 
-Die Konditionszahl dieses Problem ist nun durch $\kappa_{2}(\mat{W}^{-1}\mat{A})$ bedingt. Das Ziel muss es also sein, $\mat{W}^{-1}$ so gut wie möglich zu wählen, damit die Kondition möglichst klein wird. Nun ist im Allgemeinen $\mat{W}^{-1}\mat{A}$ nicht s.p.d. Somit könnten wir zwar den CG-Alorithmus trotzdem darauf anwenden, werden aber wegen dieser Tatsache möglicherweise keine Konvergenz erhalten. Um dies zu umgehen findet man z.B. in (Dahmen/Reusken 576) einen Lösungsansatz, bei dem mit der Cholesky-Zerlegung eine entsprechende Umformung gefunden werden kann.
+Die Konditionszahl dieses Problem ist nun durch $\kappa_{2}(\mat{W}^{-1}\mat{A})$ bedingt. Das Ziel muss es also sein, $\mat{W}^{-1}$ so gut wie möglich zu wählen, damit die Kondition möglichst klein wird. Nun ist im Allgemeinen $\mat{W}^{-1}\mat{A}$ nicht s.p.d. Somit könnten wir zwar den CG-Alorithmus trotzdem anwenden, werden aber wegen dieser Tatsache möglicherweise keine Konvergenz erhalten. Um dies zu umgehen findet man z.B. in (Dahmen/Reusken 576) einen Lösungsansatz, bei dem mit der Cholesky-Zerlegung eine entsprechende Umformung gefunden werden kann.
 
 \subsection{Der Algorithmus des vorkonditionierten konjugierten Gradienten Verfahrens}\label{ss.Algorithmus PCG}
 
-Gegeben seien $\mat{A}, \mat{W} \in \mathbb{R}^{n}$ s.p.d. Bestimme die (Näherungs-) Lösung $x^{*}$ mit Hilfe eines \textit{beliebigen} Startvektors $x^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $b \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$, berechne das Residuum $r^{0} = b - Ax^{0}$ und $z^{0} = \mat{W}^{-1}r^{0}$ (löse $\mat{W}z^{0} = r^{0}$).\\
+Gegeben seien $\mat{A}, \mat{W} \in \mathbb{R}^{n}$ s.p.d. Bestimme die (Näherungs-) Lösung $u^{*}$ mit Hilfe eines \textit{beliebigen} Startvektors $u^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $b \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$, berechne das Residuum $r^{0} = b - Au^{0}$ und $z^{0} = \mat{W}^{-1}r^{0}$ (löse $\mat{W}z^{0} = r^{0}$).\\
 Für $k = 1,2,...$, falls $r^{k-1} \ne 0$ berechne:
 
 \begin{eqnarray}
 p^{k-1} &=& z^{k-1} + \beta_{k-2}p^{k-2}, \textnormal{ wobei } \beta_{k-2} = \frac {\langle z^{k-1}, r^{k-1} \rangle} {\langle z^{k-2}, r^{k-2} \rangle} \textnormal{ mit } (k \ge 2) \notag \\
-x^{k} &=& x^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ wobei } \alpha_{k-1} = \frac {\langle z^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle} \notag \\
+u^{k} &=& u^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ wobei } \alpha_{k-1} = \frac {\langle z^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle} \notag \\
 r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1} \notag \\
 z^{k} &=& \mat{W}^{-1}r^{k} \textnormal{ (löse } \mat{W}z^{k} = r^{k}) \notag
 \end{eqnarray}
@@ -1037,7 +1062,7 @@ Wichtig hierbei ist, dass das Lösen von $\mat{W}z^{k} = r^{k}$ mit möglichst w
 \subsection{Die unvollständige Cholesky-Zerlegung}\label{ss.ICCG}
 
 Eine Matrix $\mat{A}$, die symmetrisch positiv definit ist, lässt sich durch eine Cholesky-Zerlegung in eine normierte untere Dreiecksmatrix $\mat{L}$ und eine rechte obere Dreicksmatrix $\mat{U}$ zerlegen, wobei gilt: $\mat{U} := \mat{D}\mat{L}^{T}$ \\
-Mit dieser Zerlegung möchten wir nun unser System vorkonditionieren. Allerdings würde eine vollständige Cholesky-Zerlegung viele Nulleinträge in einer Sparse-Matrix auslöschen. Darum greift man auf eine unvollständige Cholesky-Zerlegung zurück, bei der die Stellen, an denen $\mat{A}$ Nulleinträge besitzt, ebenfalls Null werden.
+Mit dieser Zerlegung möchten wir nun unser System vorkonditionieren. Allerdings würde eine vollständige Cholesky-Zerlegung viele Nulleinträge in einer dünn besetzten Matrix auslöschen. Darum greift man auf eine unvollständige Cholesky-Zerlegung zurück, bei der die Stellen, an denen $\mat{A}$ Nulleinträge besitzt, in $L$ und $U$ ebenfalls Null bleiben.
 
 \subsubsection{Definition (Das Muster E)}\label{sss.Muster E}
 
@@ -1228,7 +1253,7 @@ Um zu verstehen, warum wir Abbruchkriterien benötigen, soll hier ein kurzes Bei
 Das CG-Verfahren konvergiert bekanntlich nach maximal $n$ Schritten. Wir brauchen also kein Abbruchkriterium, damit wir die optimale Lösung finden. Angenommen die Dimension der Matrix ist $n = 10^{6}$. Dann werden trotz der schnellen Konvergenz eine große Anzahl an Iterationen benötigt. Im schlimmsten Fall eben $10^{6}$. Um dies zu vermeiden, lässt man den Algorithmus abbrechen, sobald eine gewisse Toleranzgrenze erreicht ist. In der Praxis schätzt man das $k-te$ Residuum in der A-Norm oder der 2-Norm gegen eine Grenze ab. In diesem Beispiel wählen wir folgenden Ansatz:
 
 \begin{equation}
-$\| u^{k} - u^{*} \|_{2} \le 10^{-3} \cdot \| u^{0} - u^{*} \|_{2}$.
+\| u^{k} - u^{*} \|_{2} \le 10^{-3} \cdot \| u^{0} - u^{*} \|_{2}.
 \end{equation}
 
 Im Allgemeinen ist natürlich die Lösung der partiellen Differentialgleichung nicht bekannt. Hier existiert allerdings die analytische Lösung und wir können das Abbruchkriterium so wählen.
@@ -1241,7 +1266,7 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 
 % Der \"JacobiMethod\"-Methode wird die Matrix $\mat{A}$, der Iterationsvektor $x$ und der Lösungsvektor $b$ übergeben.
 
-\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
 \multirow{5}* & Schritte & 2092  & 8345 & 33332  & 133227  \\\cline{2-6}
@@ -1254,7 +1279,7 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 
 \subsection{Parameter $\omega = \frac {1} {2}$}
 
-\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
 \multirow{5}* & Schritte & 4186  & 16693 & 66667  & 133227  \\\cline{2-6}
@@ -1265,7 +1290,7 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 
 \subsection{Parameter $\omega = \frac {4} {5}$}
 
-\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
 \multirow{5}* & Schritte & 2615  & 10432 & 41666  & 166534  \\\cline{2-6}
@@ -1276,7 +1301,7 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 
 \section{CG-Verfahren angewandt auf das Beispiel}\label{s.CG mit Beispiel}
 
-\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
 \multirow{5}* & Schritte & 65  & 130 & 262  & 525  \\\cline{2-6}
@@ -1289,7 +1314,7 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 
 \subsection{Unvollständige Cholesky-Zerlegung}
 
-\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
 \multirow{5}* & Schritte & 20  & 40 & 79  & 158  \\\cline{2-6}
@@ -1300,7 +1325,7 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 
 \subsection{Modifizierte unvollständige Cholesky-Zerlegung}
 
-\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
 \multirow{5}* & Schritte & 7  & 10 & 13  & 19  \\\cline{2-6}
@@ -1313,7 +1338,7 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 
 \subsection{V-Zyklus}\label{ss.V-Zyklus mit Beispiel}
 
-\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$N$} & 32  & 64 & 128 & 256 \\\hline\hline
 \multirow{5}* & Schritte & 46  & 97 & 173  & 200  \\\cline{2-6}
@@ -1324,7 +1349,7 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 
 \subsection{W-Zyklus}\label{ss.W-Zyklus mit Beispiel}
 
-\begin{table}[!hbt]\vspace{1ex}\centering
+\begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$N$} & 32  & 64 & 128 & 256 \\\hline\hline
 \multirow{5}* & Schritte & 2092  & 8345 & 33332  & 133227  \\\cline{2-6}
@@ -1333,7 +1358,7 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 \caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
 \vspace{2ex}\end{table}
 
-% \begin{table}[!hbt]\vspace{1ex}\centering\begin{tabular}{|l|l|}
+% \begin{table}[H]\vspace{1ex}\centering\begin{tabular}{|l|l|}
 % \hline
 % Formen & Städte\\
 % \hline
@@ -1350,7 +1375,7 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 % \caption{\label{tab.sinnlos}eine sinnlose Tabelle}
 % \vspace{2ex}\end{table}
 
-% \begin{table}[!hbt]\vspace{1ex}\centering
+% \begin{table}[H]\vspace{1ex}\centering
 % \begin{tabular}{|ll||l|l|l|l|}\hline
 % \multicolumn{2}{|c||}{}&\multicolumn{4}{c|}{ dies} \\
 % \multicolumn{2}{|c||}{}& von dort  & und dort & über hier & zu Los \\\hline\hline

@@ -5,10 +5,9 @@
 \BOOKMARK [2][-]{subsection.2.2.1}{Zentraler Differenzenquotient zweiter Ordnung}{section.2.2}
 \BOOKMARK [2][-]{subsection.2.2.2}{Diskretisierung von }{section.2.2}
 \BOOKMARK [1][-]{section.2.3}{Eigenschaften der Matrix \040A 2D}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.3.1}{Eigenvektoren von \040A 2D}{section.2.3}
-\BOOKMARK [2][-]{subsection.2.3.2}{Eigenwerte von \040A 2D}{section.2.3}
-\BOOKMARK [2][-]{subsection.2.3.3}{Definition \(Kondition einer symmetrischen Matrix\)}{section.2.3}
-\BOOKMARK [2][-]{subsection.2.3.4}{Lemma \(Kondition von \040A 2D\)}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.1}{Eigenwerte und Eigenvektoren von \040A 2D}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.2}{Definition \(Kondition einer symmetrischen Matrix\)}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.3}{Lemma \(Kondition von \040A 2D\)}{section.2.3}
 \BOOKMARK [0][-]{chapter.3}{Iterative L\366sungsvefahren f\374r lineare Gleichungssysteme}{}
 \BOOKMARK [1][-]{section.3.1}{Grundbegriffe}{chapter.3}
 \BOOKMARK [2][-]{subsection.3.1.1}{Definition \(Iterationsmatrix\)}{section.3.1}
