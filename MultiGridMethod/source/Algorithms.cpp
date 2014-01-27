@@ -201,16 +201,16 @@ vector<double> Algorithms::MultiGridAlgorithm(PoissonMatrix& A,Vectors& V,const 
         x[0]=b[0]/a;
         return x;
     } else {
-        JacobiRelaxationMethod(A,x,b,4);
+        SORMethod(A,x,b,4);
         r=b-A*x;
         Restriction(r,r2h,n);
         A.Resize(N2h);
         E2h=MultiGridAlgorithm(A,V,r2h,N2h);
-        // E2h=MultiGridAlgorithm(A,V,r2h,N2h);
+        E2h=MultiGridAlgorithm(A,V,r2h,N2h);
         Interpolation(E2h,E,V,n);
         x+=E;
         A.Resize(n);
-        JacobiRelaxationMethod(A,x,b,4);
+        SORMethod(A,x,b,4);
         return x;
     }
 }

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.12.21)  23 JAN 2014 16:29
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.12.21)  27 JAN 2014 08:05
 entering extended mode
  %&-line parsing enabled.
 **Seminar.tex
@@ -392,36 +392,36 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 33.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 37.
 
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 33.
-
-Overfull \hbox (56.48125pt too wide) in paragraph at lines 72--73
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 37.
+ [2]
+Overfull \hbox (56.48125pt too wide) in paragraph at lines 75--76
 \OT1/cmr/m/n/12 Sei $\OML/cmm/m/it/12 U[]$ \OT1/cmr/m/n/12 ein k-dimensionaler 
 Teil-raum des $\U/msb/m/n/12 R[] \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 k \OMS/cmsy/
 m/n/12 ^^T \OML/cmm/m/it/12 n\OT1/cmr/m/n/12 )$, und $\OML/cmm/m/it/12 p[]; p[]
 ; :::; p[]$ \OT1/cmr/m/n/12 ei-ne $[]$
  []
 
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 93--96
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--100
 
  []
 
 [3] [4]
-Overfull \hbox (5.7258pt too wide) in paragraph at lines 176--178
+Overfull \hbox (5.7258pt too wide) in paragraph at lines 183--185
 \OT1/cmr/m/n/12 Da $\OML/cmm/m/it/12 U[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 spa
 n\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 p[]; :::; p[]; r[]\OMS/cmsy/m/n/12 g$ \OT1/
 cmr/m/n/12 und wir die A-orthogonalen Vek-to-ren $\OML/cmm/m/it/12 p[]; :::; p[
 ]$
  []
 
-[5]
-Overfull \hbox (9.598pt too wide) detected at line 246
+[5] [6]
+Overfull \hbox (9.598pt too wide) detected at line 253
 \OMS/cmsy/m/n/12 h\OML/cmm/m/it/12 r[]; p[]\OMS/cmsy/m/n/12 i[] \OT1/cmr/m/n/12
  = \OMS/cmsy/m/n/12 h\OML/cmm/m/it/12 r[]; Ap[]\OMS/cmsy/m/n/12 i [] h\OML/cmm/
 m/it/12 r[]; []\OMS/cmsy/m/n/12 i \OT1/cmr/m/n/12 = [][]\OMS/cmsy/m/n/12 h\OML/
@@ -429,15 +429,26 @@ cmm/m/it/12 r[]; r[]\OMS/cmsy/m/n/12 i ^^@ [][]h\OML/cmm/m/it/12 r[]; r[]\OMS/c
 msy/m/n/12 i [] \OT1/cmr/m/n/12 0
  []
 
-[6] [7] (./Seminar.aux) ) 
+
+Overfull \hbox (17.2374pt too wide) in paragraph at lines 282--283
+\OT1/cmr/m/n/12 Ite-ra-ti-ons-schritt. Es m[]ussen zwei Ska-lar-pro-duk-te und 
+ei-ne Matrix-Vektor-Multiplikation
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--283
+
+ []
+
+[7] [8] (./Seminar.aux) ) 
 Here is how much of TeX's memory you used:
  2100 strings out of 495021
  25499 string characters out of 1181034
- 83481 words of memory out of 3000000
+ 82481 words of memory out of 3000000
  5272 multiletter control sequences out of 15000+50000
  13172 words of font info for 50 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 33i,23n,24p,353b,221s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,23n,24p,430b,221s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/
 cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.p
 fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/sh
@@ -453,9 +464,9 @@ fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1
 onts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti
 12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 >
-Output written on Seminar.pdf (7 pages, 205353 bytes).
+Output written on Seminar.pdf (8 pages, 209294 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
+ 93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

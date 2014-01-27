@@ -28,15 +28,15 @@
 \subsection{Motivation}
 Löse ein Gleichungssystem $Ax = b$, wobei $A\in\mathbb{R}^{n}$ s.p.d., $x, b\in\mathbb{R}^{n}$ und n sehr groß.
 
+%1.2. Definition (A-orthogonal)
+\subsection{Definition (A-orthogonal)}
+Sei $A$ eine symmetrische, nicht singuläre Matrix. Zwei Vektoren $x,y \in \mathbb{R}^{n}$ heißen \underline{\textbf{konjugiert}} oder \underline{\textbf{A-orthogonal}}, wenn $x^{T}Ay = 0$ ist.
+
 \subsubsection{Bemerkung:}
 \begin{itemize}
 \item Es definiert $\langle x,y \rangle _{A} = x^{T}Ay$ ein Skalarprodukt auf dem $\mathbb{R}^{n}$ für $A$ s.p.d.
 \item Wir nennen $\|x\|_{A} := \sqrt{\langle x, x \rangle _{A}}$ die Energie-Norm.
 \end{itemize}
-
-%1.2. Definition (A-orthogonal)
-\subsection{Definition (A-orthogonal)}
-Sei $A$ eine symmetrische, nicht singuläre Matrix. Zwei Vektoren $x,y \in \mathbb{R}^{n}$ heißen \underline{\textbf{konjugiert}} oder \underline{\textbf{A-orthogonal}}, wenn $x^{T}Ay = 0$ ist.
 
 %1.3.Satz
 \subsection{Satz}
@@ -67,6 +67,9 @@ $$\nabla f(x^{*}) = Ax^{*} - b = 0 \Rightarrow Ax^{*} = b$$
 $\Rightarrow x^{*}$ löst $Ax = b \Rightarrow$ Beh.
 \end{enumerate}
 
+\subsubsection{Bemerkung:}
+Wir wollen die Funktion $f(x)$ in jedem Iterationsschritt minimieren. Dann jedoch in einem entsprechenden Unterraum $U_{k}$ des $\mathbb{R}^{n}$, den wir im weiteren Verlauf kennen lernen werden.
+
 %1.4.Lemma
 \subsection{Lemma}
 Sei $U_{k}$ ein k-dimensionaler Teilraum des $\mathbb{R}^{n} \hspace{1mm} (k \le n)$, und $p^{0}, p^{1},...,p^{k-1}$ eine $\textit{A-orthogonale Basis}$ dieses Teilraums, also $\langle p^{i}, p^{j} \rangle _{A} = 0 \hspace{2mm} f\ddot{u}r \hspace{2mm} i \ne j$. Sei $v \in \mathbb{R}^{n}$, dann gilt für $u^{k} \in U_{k}$:
@@ -83,7 +86,8 @@ Folgt direkt aus dem Satz des Projektionssatzes (z.B. Numerik 1).
 
 \subsubsection{Bemerkungen:}
 \begin{itemize}
-	\item Wir wählen den Startvektor $x^{0} = 0$.
+	\item Wie wir in Lemma 1.4. gesehen haben, nutzen wir den Projektionssatz aus, um das Minimum in $U_{k}$ zu berechnen, also Minimierung von $f(x)$ in $U_{k}$.
+	\item Wir wählen im Folgenden den Startvektor $x^{0} = 0$.
 	\item Wegen Lemma 1.3 ist die Richtung des steilsten Abstiegs gegeben durch $r^{0} = b - Ax^{0}$, wobei wir den Vektor $r$ \underline{Residuum} nennen werden.
 	\item Spezifisch für das CG-Verfahren ist die Nutzung des A-Skalarprodukts.
 \end{itemize}
@@ -102,15 +106,18 @@ p^{0},...,p^{k-1} \hspace{3mm} \textnormal{von} \hspace{3mm} U_{k}
 \begin{equation}
 \|x^{k} - x^{*}\|_{A} = \underset{u \in U_{k}}{\min} \|x - x^{*}\|_{A}
 \end{equation}
+d.h.
+\begin{align}
+x^{k} = \sum_{j=0}^{k-1} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j}
+\end{align}
 \item[$CG_{c}$:] Erweitung des Teilraumes:
 \begin{equation}
 U_{k+1} := span\{p^{0},...,p^{k-1},r^{k}\} \hspace{2mm} \textnormal{wobei} \hspace{2mm} r^{k} := b - Ax^{k}
 \end{equation}
 \end{description}
-d.h.
-\begin{align}
-x^{k} = \sum_{j=0}^{k-1} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j}
-\end{align}
+
+\subsubsection{Bemerkung:}
+Wir wählen also die Richtung des steilsten Abstiegs, berechnen das Residuum. Erweitern unseren Teilraum $U_{k}$ mit diesem und wenden dann ein Orthogonalisierungsverfahren an, um eine A-orthogonale Basis für $U_{k}$ zu erhalten. Anschließend verwenden wir den Projektionssatz, um das neue $x^{k}$ zu berechnen. Nach der erneuten Berechnung wiederholt sich dieses Vorgehen bis zum Abbruch des Algorithmus.
 
 %1.6. Satz (Verallgemeinerung des Startvektors)
 \subsection{Satz (Verallgemeinerung des Startvektors)}
@@ -156,7 +163,7 @@ x^{k} \overset{(4)}{=}
 \sum_{j=0}^{k-1} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle {p^{j}, p^{j}} \rangle _{A}} p^{j} =
 \underbrace{\sum_{j=0}^{k-2} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle {p^{j}, p^{j}} \rangle _{A}} p^{j}}_{=x^{k-1}} +
 \frac {\langle \overbrace{Ax^{*}}^{=b=b-Ax^{0}=r^{0}}, p^{k-1} \rangle} {\langle {Ap^{k-1}, p^{k-1}} \rangle} p^{k-1} =\\
-x^{k-1} + \alpha_{k-1}p^{k-1}, \hspace{2mm} \textnormal{mit} \hspace{2mm} \alpha_{k-1} \overset{(8)}{=} \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle}
+x^{k-1} + \alpha_{k-1}p^{k-1}, \hspace{2mm} \textnormal{mit} \hspace{2mm} \alpha_{k-1} = \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle}
 \end{split}
 \end{align*}
 
@@ -174,7 +181,7 @@ Wobei $\alpha_{k-1}$ wie in (10).
 \subsubsection{Beweis:}
 \begin{enumerate}
 \item Zeige, dass nur das neue Residuum berechnet werden muss:
-\\Da $U_{k+1} = span\{p^{0},...,p^{k-1},r^{k}\}$ und wir die A-orthogonalen Vektoren $p^{0},...,p^{k-1}$ bereits bestimmt haben, muss nur noch das Residuum gemäß (7) berechnet werden.
+\\Da $U_{k+1} = span\{p^{0},...,p^{k-1},r^{k}\}$ und wir die A-orthogonalen Vektoren $p^{0},...,p^{k-1}$ bereits bestimmt haben, muss nur noch das Residuum gemäß (8) berechnet werden.
 \item Zeige (11) durch Erweiterung von (10):
 \begin{equation*}
 \begin{split}
@@ -245,6 +252,9 @@ dass $\alpha_{i} \ne 0$ für $j \le k-2$ gilt. Nun gilt für $j \le k-3$
 \frac 1 \alpha_{j} \langle r^{k-1}, r^{j} \rangle - \frac 1 \alpha_{j} \langle r^{k-1}, r^{j+1} \rangle \overset{(15)}{=} 0
 \end{equation*}
 
+\subsubsection{Bemerkung:}
+Im Beweis nutzen wir aus, dass laut dem Projektionssatz die $x^{m} - x^{*}$ A-orthogonal auf $U_{m}$ stehen. Durch das Ausnutzen der A-Orthogonalität können wir sehen, dass das negative Residuum senkrecht (nicht A-orthogonal) auf $U_{m}$ steht. Durch Ausnutzung der Eigenschaften des Residuums und des Iterationsvektors und durch geschicktes Umformen, erhalten wir Lemma 1.12.
+
 %1.13. Folgerung
 \subsection{Folgerung}
 Wegen Lemma 1.11 vereinfacht sich (13) auf
@@ -253,7 +263,8 @@ p^{k-1} = r^{k-1} - \frac {\langle r^{k-1}, Ap^{k-2} \rangle} {\langle p^{k-2}, 
 \end{equation*}
 
 \subsubsection{Bemerkung:}
-Somit können wir $p^{k-1}$ einfach aus $r^{k-1}$ und $p^{k-2}$ berechnen.
+Somit können wir $p^{k-1}$ einfach aus $r^{k-1}$ und $p^{k-2}$ berechnen.\\
+Durch das Ausnutzen von Lemma 1.12. kann der Rechenaufwand nochmals verbessert werden (ohne Beweis) und man erhält den folgenden Algorithmus.
 
 %1.14. Algorithmu
 \subsection{Algorithmus}
@@ -266,11 +277,15 @@ Gegeben: $A \in \mathbb{R}^{n}$ s.p.d., $b \in \mathbb{R}^{n}$, Startvektor $x^{
 \end{align}
 \end{subequations}
 
+%1.15. Rechenaufwand
+\subsection{Rechenaufwand}
+Im Allgemeinen hat das CG-Verfahren einen Aufwand von $\mathcal{O}(n^{2})$ Operationen pro Iterationsschritt. Es müssen zwei Skalarprodukte und eine Matrix-Vektor-Multiplikation berechnet werden. In bestimmten Fällen, z.B. beim Lösen der diskreten Poisson Gleichung, kann sich der Rechenaufwand auf $\mathcal{O}(n)$ pro Iterationsschritt verbessern.\\
+
 %1.15. Literatur
 \subsection{Literatur:}
 \begin{enumerate}
 \item "'Numerik für Ingenieure und Naturwissenschaftler"', \\W.Dahmen \& A.Reusken, 2.,korrigierte Auflage, 2008, Seiten 566-572
-\item "'Finite Elemente"', Braess, Seiten 177-180
+\item "'Finite Elemente"', Dietrich Braess,, 5. überarbeitete Auflage, 2013, Seiten 200-203
 \end{enumerate}
 
 \end{document}
