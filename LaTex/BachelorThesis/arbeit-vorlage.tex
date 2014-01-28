@@ -141,7 +141,7 @@ $\Omega$ fassen wir als $\Omega_{h}$ auf, so dass:
 \Omega_{h} := \{u(ih, jh) | 1 \le i,j \le N\}.
 \end{equation}
 
-% \bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}\label{img.5-Point-Star}
+\bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}\label{img.5-Point-Star}
 
 Mit \autoref{eq.Differenzenquotienten} ergibt sich nun für $\Delta u(x,y) \approx \Delta_{h} u(x,y)$ die diskretisierte Form:
 \begin{equation}
@@ -178,7 +178,7 @@ dar. (Dahmen Reusken)
 % \end{eqnarray}
 % Diese Approximation wird auch 5-Punkt-Differenzenstern genannt, siehe dazu Abbildung (2.1).
 
-% \bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
+\bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
 
 Nummeriert man nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben (\autoref{img.gridWithNumbers}) und stellt für jeden dieser Punkte \autoref{eq.5-Point-Star} auf, so führt dies auf eine $N^{2} \times N^{2}$-Matrix der Form:
 
@@ -313,7 +313,7 @@ v_{k.l} =
 
 Um sich einen Eigenvektor besser vorstellen zu können, betrachten wir als Beispiel $v_{3,3} \in \mathbb{R}^{16}$ auf dem Gitter aus \autoref{img.gridWithNumbers} (Punkt "11").
 
-% \bild{EV}{14cm}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}\label{img.Jacobi1}
+\bild{EV}{14cm}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}\label{img.Jacobi1}
 
 \subsection{Definition (Kondition einer symmetrischen Matrix)}\label{ss.Definition Kondition einer Matrix}
 
@@ -779,7 +779,7 @@ e^{k+1} &=& u^{*} - u^{k+1} = u^{*} - \left( (Id - \omega D^{-1} A)u^{k} + \omeg
 &=& e^{k} + \omega D^{-1} A e^{k} = (Id - \omega D^{-1} A) e^{k}.
 \end{eqnarray}
 
-% \bild{omegaeins}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi1}
+\bild{omegaeins}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi1}
 
 Da die $n$ Eigenvektoren $v_{i,j}$ eine Basis bilden, lässt sich der Fehler $e$ als Linearkombination der $v_{i,j}$ darstellen:
 \begin{eqnarray}
@@ -788,13 +788,13 @@ e^{k+1} &=& \sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k+1}_{i,j} v_{i,j} = (Id - \o
 &=& \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} \underbrace{(1 - \frac {\omega} {4} \lambda_{i,j}(A))}_{= \lambda_{i,j}(\mat{T}_{J_{\omega}})} v_{i,j}\right) = \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} \lambda_{i,j}(\mat{T}_{J_{\omega}}) v_{i,j}\right).
 \end{eqnarray}
 
-% \bild{omegaeinhalb}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi2}
+\bild{omegaeinhalb}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi2}
 
 Betrachten wir nun die Eigenwerte der Iterationsmatrix für $\omega = 1$ (Jacobi-Verfahren), sieht man, dass die Eigenwerte für $i,j$ nahe Null oder $i,j$ nahe N den Fehler schlecht bis gar nicht dämpfen (\subfigureautorefname{ 3.1}). Dies erklärt auch das langsame Konvergenzverhalten des Jacobi-Verfahren (siehe Kapitel 5). Interessanter weiße ist der optimale Wert $\omega = 1$, wenn man das Ganze als iteratives Verfahren verwendet [Saad]. Das Jacobi-Verfahren besitzt aber keine Glättungseigenschaft.\\
 Da wir aber eine Fehlerglättung erreichen wollen, wählen wir nun $\omega = \frac {1} {2}$ (\subfigureautorefname{ 3.2}). Wir stellen fest, dass die Eigenwerte der Iterationsmatrix zwischen $0$ und $1$ liegen. Sind $i,j > \frac {N} {2}$ so werden die Fehleranteile wesentlich besser gedämpft, da die Eigenwerte hier nahe Null liegen. Diese Eigenschaft nennt man die \textit{Glättungseigenschaft}.\\
 Es stellt sich z.B. heraus [Saad], dass der optimale Relaxationsparameter, der unabhängig von der Schrittweite $h$ gewählt werden kann, $\omega = \frac {4} {5}$ ist. In \subfigureautorefname{ 3.3} ist gut zu sehen, dass viele der Eigenwerte nahe Null liegen.
 
-% \bild{omeganullacht}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi3}
+\bild{omeganullacht}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi3}
 
 \section{Das Verfahren der konjugierten Gradienten}\label{s.Das Verfahren der konjugierten Gradienten}
 
@@ -851,7 +851,7 @@ Es ist also äquivalent die Funktion $f(u)$ zu minimieren und das Gleichungssyst
 Der Gradient von $f(x)$ ist also das negative Residuum. Beim normalen Gradientenverfahren wählt man als Richtung des steilsten Abstiegs genau das Residuum. Hier wählt man jedoch konjugierte Richtungen $p$ für die Richtung des steilsten Abstiegs. Die dabei berechneten (konjugierten) Vektoren $p$ sind alle A-orthogonal und spannen einen sogenannten Krylow-Raum $U_{k} = \{p^{0},...,p^{k}\}$ auf. Für den Zusammenhang zwischen dem CG-Verfahren und Krylow-Räumen möchte ich an dieser Stelle auf [Braess] verweisen.\\
 Da wir also stets das Minimum im Teilraum $U_{k}$ suchen, wird uns folgendes Lemma hilfreich sein:
 
-% \bild{CG_Illu}{8cm}{Abstieg}{Abstieg}\label{img.CG}
+\bild{CG_Illu}{8cm}{Abstieg}{Abstieg}\label{img.CG}
 
 \subsection{Lemma - (A-orthogonaler) Projektionssatz}\label{s.Projektionssatz}
 
@@ -1184,59 +1184,151 @@ Kurzwellige Fehler auf dem feinen Gitter bleiben kurzwellig, wenn man diese auf 
 
 Wir wollen diese Aussage anhand eines Beispiels illustrieren. Wir betrachten...
 
-\section{Restriktion}
+\section{Prolongation}
 
-Bevor wir nun auf die Mehrgittermethoden explizit eingehen, müssen wir uns Gedanken darüber machen, wie wir von einem Gitter auf das andere kommen. Angenommen wir befinden uns auf dem feinsten Gitter $\Omega_{h}$, so ist das Ziel auf ein gröberes Gitter $\Omega_{2h}$ mit wenig Rechenaufwand zu kommen und die Werte aus $\Omega_{h}$ sollten auf $\Omega_{2h}$ gut genähert sein. Dafür führen wir eine sogenannte Restriktion durch.
+Bevor wir nun auf die Mehrgittermethoden explizit eingehen, müssen wir uns Gedanken darüber machen, wie wir von einem Gitter auf das andere kommen. Angenommen wir befinden uns auf dem groben Gitter $\Omega_{2h}$, so ist das Ziel auf ein feineres Gitter $\Omega_{h}$ mit wenig Rechenaufwand zu kommen und die Werte aus $\Omega_{2h}$ sollten auf $\Omega_{h}$ gut genähert abgebildet werden. Für die Prolongation wählen wir hierfür eine lineare Interpolation.
 
-\subsection{Restriktionsmatrix}
+\subsection{Interpolationsmatrix}
 
-Diese Matrix überführt die Vektoren von $\Omega_{h}$ auf $\Omega_{2h}$. Sie ist \textit{nicht} symmetrisch. Diese Matrix kann nun verschiedene Gestalten haben. So könnte sie beispielsweise einfach die Werte des feinen Gitters eins zu eins auf die entsprechenden Werte des groben Gitters kopieren. Dadurch würde allerdings Genauigkeit verloren gehen. Wir bedienen uns der Full-Weighted-Restriktionsmatrix, der folgenden Form:
+Sei $I^{h}_{2h}: \Omega_{2h} \longrightarrow \Omega_{h}$ eine Abbildung mit $I_{2h}^{h}(u_{2h}) = \mat{I}u_{2h} = u_{h}$, wobei $\mat{I} \in \mathbb{R}^{(2 \tilde N - 1)^{2} \times \tilde N^{2}}$ und $\tilde N$ die Anzahl der Gitterpunkte auf dem groben Gitter. Dabei überführt die Matrix $\mat{I}$ Vektoren von $\Omega_{2h}$ auf $\Omega_{h}$. Sie ist \textit{nicht} symmetrisch und kann verschiedene Gestalten haben.
 
 \begin{equation}
-\mat{R} = \frac {1} {16} \left(
-\begin{smallmatrix}
-1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 & & & & & &\\
-& 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 & & & & &\\
-% & & 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 & & & &\\
-&&&&&&&&&&\ddots&&&&&&&&&&\\
-& & & & & 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 &\\
-& & & & & & 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1
-% 1 & 2 & 1 \hdots & 2 & 4 & 2 \hdots & 1 & 2 & 1\\
-% & 1 & 2 & 1 \hdots & 2 & 4 & 2 \hdots & 1 & 2 & 1\\
-% % & & 1 & 2 & 1 \hdots & 2 & 4 & 2 \hdots & 1 & 2 & 1 & & & &\\
-% &&&&&\ddots&&&&&\\
-% & & & 1 & 2 & 1 \hdots & 2 & 4 & 2 \hdots & 1 & 2 & 1 &\\
-% & & & & 1 & 2 & 1 \hdots & 2 & 4 & 2 \hdots & 1 & 2 & 1
-\end{smallmatrix} \right).
-\end{equation}
-
-\textbf{Bemerkung:}
-
-Für den Fall einer eindimensionalen Poisson Matrix hätte $R$ folgende Darstellung:
-\begin{equation}
-\mat{R}u^{i,j}_{h} = \frac {1} {4}
+\mat{I} = \frac {1} {4}
 \begin{pmatrix}
-1 & 2 & 1 & & & & & & \\
- & 1 & 2 & 1 & & & & & \\
- &&&&\ddots&&&& \\
- & & & & & & 1 & 2 & 1
-\end{pmatrix}
+I_{1} & & &\\
+I_{2} & & &\\
+& I_{1} & &\\
+& I_{2} & &\\
+& & \ddots &\\
+& & & I_{1}\\
+& & & I_{2}
+\end{pmatrix},
 \end{equation}
 
-Dabei ist $R \in \mathbb{R}^{m \times n}$. Sie bildet also einen ursprünglichen Vektor $u_{h} \in \mathbb{R}^{n}$ aus dem feinen Gitter auf einen Vektor $u_{2h} \in \mathbb{R}^{m}$ auf dem groben Gitter ab.
+für $I_{1},I_{2} \in \mathbb{R}^{(2\tilde N - 1) \times \tilde N}$ gilt folgende Darstellung:
+
+\begin{equation}
+\mat{I}_{1} =
+\begin{pmatrix}
+4 & & & &\\
+2 & 2 & & &\\
+& 4 & & &\\
+& 2 & 2 & &\\
+& & \ddots & &\\
+& & & 4 &\\
+& & & 2 & 2\\
+& & & & 4\\
+\end{pmatrix},
+\hspace{2cm}
+\mat{I}_{2} =
+\begin{pmatrix}
+2 & \hdots & 2 & & & &\\
+4 & \hdots & 4 & & & &\\
+& 2 & \hdots & 2 & & &\\
+& 4 & \hdots & 4 & & &\\
+& & \ddots & & & &\\
+& & & 2 & \hdots & 2 &\\
+& & & 4 & \hdots & 4 &\\
+& & & & 2 & \hdots & 2\\
+\end{pmatrix}.
+\end{equation}
+
+Wir haben hier die Full-Weighted-Matrix der Interpolation verwendet, da sie die höchste Genauigkeit beim Übergang von $\Omega_{2h}$ auf $\Omega_{h}$ besitzt. Sie berücksichtigt bei der Interpolation nicht nur Gitterpunkte, die in $\Omega_{2h}$, sowie in $\Omega_{h}$, existieren, sondern auch den jeweiligen Nachbarn. Zur Veranschaulichung dient (Abbildung bla). Es geht also in jedes $u^{i,j}_{h}$ auch der gewichtete Wert aller Nachbarpunkte von $u^{i,j}_{2h}$ des feinen Gitters mit ein.
 
 \textbf{Beispiel:}
 
 \begin{equation}
-\mat{R}u^{i,j}_{h} = \frac {1} {16} \left(
-\begin{smallmatrix}
-1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 & & & & & &\\
-& 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 & & & & &\\
-% & & 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 & & & &\\
-&&&&&&&&&&\ddots&&&&&&&&&&\\
-& & & & & 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 &\\
-& & & & & & 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1
-\end{smallmatrix} \right)
+\mat{I}u^{i,j}_{2h} = \frac {1} {4}
+\begin{pmatrix}
+I_{1} & & &\\
+I_{2} & & &\\
+& I_{1} & &\\
+& I_{2} & &\\
+& & \ddots &\\
+& & & I_{1}\\
+& & & I_{2}
+\end{pmatrix}
+\begin{pmatrix}
+u_{2h}^{(1)} \\
+\vdots \\
+u_{2h}^{(m)}
+\end{pmatrix} =
+\begin{pmatrix}
+u_{h}^{(1)} \\
+u_{h}^{(2)} \\
+\vdots \\
+\vdots \\
+u_{h}^{(n-1)}\\
+u_{h}^{(n)}
+\end{pmatrix} =
+u^{i,j}_{h}.
+\end{equation}
+
+\textbf{Bemerkung:}
+
+Für den Fall einer eindimensionalen Poisson Matrix hätte $\mat{I}$ folgende Darstellung:
+\begin{equation}
+\mat{I} = \frac {1} {2}
+\begin{pmatrix}
+1\\
+2\\
+1 & 1\\
+  & 2\\
+  & 1\\
+  &   & \ddots\\
+  &   &          & 1 & 1\\
+  &   &          &   & 2\\
+  &   &          &   & 1
+\end{pmatrix}.
+\end{equation}
+Hier ist $\mat{I} \in \mathbb{R}^{N \times \tilde N}$.
+
+% \bild{Restriktionsoperator}{14cm}{bla}{bla}\label{img.Restriktion}
+
+Für das Umsetzen in Programmcode ist es natürlich ungünstig eine komplette Matrix-Vektor-Multiplikation zu implementieren, zumal eine Matrix dieser Größe enorm viel Speicherplatz erfordert. Aus diesem Grund lässt sich die Interpolation auch in Komponentenschreibweise schreiben:
+
+\begin{eqnarray}
+u_{h}^{2i-1,2j-1} = u_{2h}^{i,j} &\hspace{0.5cm}& i,j = 1,...,\tilde N, \\
+u_{h}^{2i-1,2j} = \frac{1}{2} (u_{2h}^{i,j} + u_{2h}^{i,j+1}) &\hspace{0.5cm}& i = 1,...,\tilde N; j = 1,...,\tilde N - 1 \\
+u_{h}^{2i,2j-1} = \frac{1}{2} (u_{2h}^{i,j} + u_{2h}^{i+1,j}) &\hspace{0.5cm}& i = 1,...,\tilde N - 1; j = 1,...,\tilde N \\
+u_{h}^{2i,2j} = \frac{1}{4} (u_{2h}^{i,j} + u_{2h}^{i,j+1} + u_{2h}^{i+1,j} + u_{2h}^{i+1,j+1}) &\hspace{0.5cm}& i,j = 1,...,\tilde N - 1
+\end{eqnarray}
+
+Diese Vorschrift lässt sich nun relativ komfortabel und effizient programmieren. Somit ist nun der Übergang vom groben zum feinen Gitter bekannt. Im Folgenden wollen wir auch noch die Gegenrichtung betrachten.
+
+\section{Restriktion}
+
+Sei also $R_{h}^{2h}: \Omega_{h} \longrightarrow \Omega_{2h}$ mit $R_{h}^{2h}(u_{h}) = \mat{R}u_{h} = u_{2h}$ und $\mat{R} \in \mathbb{R}^{\tilde N^{2} \times (2 \tilde N - 1)^{2}}$. Diese Abbildungsvorschrift nennt man Restriktion. Auch hier gibt es unterschiedliche Methoden, wobei in diesem Abschnitt das Gegenstück zur obigen Interpolation - der Full-Weighting-Operator für die Restriktion - verwendet wird. Auch dieser stellt den exaktesten Übergang zwischen beiden Gittern dar und hat einen speziellen Bezug zu $\mat{I}$
+\begin{equation}
+\mat{R} := \frac {1} {4} \mat{I}^{T}
+\end{equation}
+
+\subsection{Restriktionsmatrix}
+
+Dadurch ist die Matrixdarstellung gegeben durch:
+
+\begin{equation}
+R = \frac{1}{16}
+\begin{pmatrix}
+I_{1}^{T} & I_{2}^{T}\\
+		  & I_{1}^{T} & I_{2}^{T}\\
+		  &			  &			  & \ddots\\
+		  &			  &			  &		   & I_{1}^{T} & I_{2}^{T}
+\end{pmatrix},
+\end{equation}
+
+wobei $I_{1}^{T}, I_{2}^{T}$ die transponierten Matrizen von $I_{1}, I_{2}$ darstellen.
+
+\textbf{Beispiel:}
+
+\begin{equation}
+\mat{R}u^{i,j}_{h} = \frac {1} {16}
+\begin{pmatrix}
+I_{1}^{T} & I_{2}^{T}\\
+		  & I_{1}^{T} & I_{2}^{T}\\
+		  &			  &			  & \ddots\\
+		  &			  &			  &		   & I_{1}^{T} & I_{2}^{T}
+\end{pmatrix}
 \begin{pmatrix}
 u_{h}^{(1)} \\
 u_{h}^{(2)} \\
@@ -1251,29 +1343,28 @@ u_{2h}^{(m)}
 u^{i,j}_{2h}.
 \end{equation}
 
-Hierbei geht in jedes $u^{i,j}_{2h}$ auch der gewichtete Wert aller Nachbarpunkte von $u^{i,j}_{h}$ des feinen Gitters mit ein.
-
-% \bild{Restriktionsoperator}{14cm}{bla}{bla}\label{img.Restriktion}
-
-Für das Umsetzen in Programmcode ist es natürlich ungünstig eine komplette Matrix-Vektor-Multiplikation zu implementieren. Aus diesem Grunde kann man das Vorgehen auch in folgender Form beschreiben.
-
-\subsection{Restriktionsvorschrift}
+Und für die Umsetzung in Code benutzen wir die Komponentenschreibweise:
 
 Für ein $u_{2h}$ auf $\Omega_{2h}$ gilt:
 \begin{equation}
 u_{2h}^{i,j} = \frac {1} {16} (4u_{h}^{i,j}+2(u_{h}^{i+1,j}+u_{h}^{i-1,j}+u_{h}^{i,j+1}+u_{h}^{i,j-1})+u_{h}^{i-1,j-1}+u_{h}^{i-1,j+1}+u_{h}^{i+1,j+1}+u_{h}^{i+1,j-1})
 \end{equation}
 
-Diese Vorschrift lässt sich nun relativ komfortabel und effizient programmieren.
+\textbf{Bemerkung:}
 
-\section{Prolongation}
+Auch hier wollen wir noch die Restriktionsmatrix für den eindimensionalen Fall angeben:
 
-Natürlich wollen wir auch eine Abbildungsvorschrift vom groben auf das feine Gitter definieren. Wir werden dies mit Hilfe einer bilinearen Interpolation definieren. Auch hier gibt es unterschiedliche Methoden, wobei in diesem Abschnitt die exakteste - nämliche die Full-Weighting-Interpolation - verwendet wird. Die Darstellung ist daher auch enorm einfach, denn es gilt:
 \begin{equation}
-\mat{I} = 4\mat{R}
+\mat{R} = \frac {1} {4}
+\begin{pmatrix}
+1 & 2 & 1\\
+  & 1 & 2 & 1\\
+  &   &   &   & \ddots\\
+  &   &   &   &        & 1 & 2 & 1
+\end{pmatrix}
 \end{equation}
 
-\subsection{Einführung in die Mehrgittermethoden}
+\section{Einführung in die Mehrgittermethoden}
 
 Bisher haben wir gesehen, dass das Jacobi-Relaxationsverfahren als iteratives Verfahren ungeeignet ist. Allerdings besitzt es die Glättungseigenschaft.
 
