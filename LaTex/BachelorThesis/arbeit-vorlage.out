@@ -54,21 +54,22 @@
 \BOOKMARK [1][-]{section.4.2}{Restriktion}{chapter.4}% 54
 \BOOKMARK [2][-]{subsection.4.2.1}{Restriktionsmatrix}{section.4.2}% 55
 \BOOKMARK [2][-]{subsection.4.2.2}{Restriktionsvorschrift}{section.4.2}% 56
-\BOOKMARK [2][-]{subsection.4.2.3}{Einf\374hrung in die Mehrgittermethoden}{section.4.2}% 57
-\BOOKMARK [1][-]{section.4.3}{Der Zweigitter-Algorithmus}{chapter.4}% 58
-\BOOKMARK [1][-]{section.4.4}{Der Mehrgitter-Algorithmus}{chapter.4}% 59
-\BOOKMARK [0][-]{chapter.5}{Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}{}% 60
-\BOOKMARK [1][-]{section.5.1}{Beispiel einer Poisson Gleichung}{chapter.5}% 61
-\BOOKMARK [1][-]{section.5.2}{Zur Implementierung in C++}{chapter.5}% 62
-\BOOKMARK [1][-]{section.5.3}{Abbruchkriterien}{chapter.5}% 63
-\BOOKMARK [1][-]{section.5.4}{L\366sung der Poisson Gleichung \(Jacobi-Verfahren\)}{chapter.5}% 64
-\BOOKMARK [1][-]{section.5.5}{L\366sung der Poisson Gleichung \(Jacobi-Relaxations-Verfahren\)}{chapter.5}% 65
-\BOOKMARK [2][-]{subsection.5.5.1}{Parameter = 12}{section.5.5}% 66
-\BOOKMARK [2][-]{subsection.5.5.2}{Parameter = 45}{section.5.5}% 67
-\BOOKMARK [1][-]{section.5.6}{CG-Verfahren angewandt auf das Beispiel}{chapter.5}% 68
-\BOOKMARK [1][-]{section.5.7}{PCG-Verfahren angewandt auf das Beispiel}{chapter.5}% 69
-\BOOKMARK [2][-]{subsection.5.7.1}{Unvollst\344ndige Cholesky-Zerlegung}{section.5.7}% 70
-\BOOKMARK [2][-]{subsection.5.7.2}{Modifizierte unvollst\344ndige Cholesky-Zerlegung}{section.5.7}% 71
-\BOOKMARK [1][-]{section.5.8}{Das Mehrgitterverfahren angewandt auf das Beispiel}{chapter.5}% 72
-\BOOKMARK [2][-]{subsection.5.8.1}{V-Zyklus}{section.5.8}% 73
-\BOOKMARK [2][-]{subsection.5.8.2}{W-Zyklus}{section.5.8}% 74
+\BOOKMARK [1][-]{section.4.3}{Prolongation}{chapter.4}% 57
+\BOOKMARK [2][-]{subsection.4.3.1}{Einf\374hrung in die Mehrgittermethoden}{section.4.3}% 58
+\BOOKMARK [1][-]{section.4.4}{Der Zweigitter-Algorithmus}{chapter.4}% 59
+\BOOKMARK [1][-]{section.4.5}{Der Mehrgitter-Algorithmus}{chapter.4}% 60
+\BOOKMARK [0][-]{chapter.5}{Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}{}% 61
+\BOOKMARK [1][-]{section.5.1}{Beispiel einer Poisson Gleichung}{chapter.5}% 62
+\BOOKMARK [1][-]{section.5.2}{Zur Implementierung in C++}{chapter.5}% 63
+\BOOKMARK [1][-]{section.5.3}{Abbruchkriterien}{chapter.5}% 64
+\BOOKMARK [1][-]{section.5.4}{L\366sung der Poisson Gleichung \(Jacobi-Verfahren\)}{chapter.5}% 65
+\BOOKMARK [1][-]{section.5.5}{L\366sung der Poisson Gleichung \(Jacobi-Relaxations-Verfahren\)}{chapter.5}% 66
+\BOOKMARK [2][-]{subsection.5.5.1}{Parameter = 12}{section.5.5}% 67
+\BOOKMARK [2][-]{subsection.5.5.2}{Parameter = 45}{section.5.5}% 68
+\BOOKMARK [1][-]{section.5.6}{CG-Verfahren angewandt auf das Beispiel}{chapter.5}% 69
+\BOOKMARK [1][-]{section.5.7}{PCG-Verfahren angewandt auf das Beispiel}{chapter.5}% 70
+\BOOKMARK [2][-]{subsection.5.7.1}{Unvollst\344ndige Cholesky-Zerlegung}{section.5.7}% 71
+\BOOKMARK [2][-]{subsection.5.7.2}{Modifizierte unvollst\344ndige Cholesky-Zerlegung}{section.5.7}% 72
+\BOOKMARK [1][-]{section.5.8}{Das Mehrgitterverfahren angewandt auf das Beispiel}{chapter.5}% 73
+\BOOKMARK [2][-]{subsection.5.8.1}{V-Zyklus}{section.5.8}% 74
+\BOOKMARK [2][-]{subsection.5.8.2}{W-Zyklus}{section.5.8}% 75

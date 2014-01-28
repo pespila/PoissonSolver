@@ -1163,11 +1163,11 @@ e = u^{*} - u^{k}\label{eq.Fehler}
 wobei $u^{*}$ die exakte Lösung darstellt.
 Betrachten wir jetzt nochmals \autoref{eq.Residuumsgleichung}, dann stellen wir fest, dass gilt:
 \begin{equation}
-Ae^{k} = r^{k} = b - Au^{k} = 0 \textnormal{ für } e^{k} = 0.
+\mat{A}e^{k} = r^{k} = b - \mat{A}u^{k} = 0 \textnormal{ für } e^{k} = 0.
 \end{equation}
 Somit ist
 \begin{equation}
-Ae^{k} = r^{k} \Longleftrightarrow Au^{k} = b \textnormal{ falls } e^{k} = 0.
+\mat{A}e^{k} = r^{k} \Longleftrightarrow \mat{A}u^{k} = b \textnormal{ falls } e^{k} = 0.
 \end{equation}
 \begin{flushright}
 $\blacksquare$
@@ -1193,25 +1193,50 @@ Bevor wir nun auf die Mehrgittermethoden explizit eingehen, müssen wir uns Geda
 Diese Matrix überführt die Vektoren von $\Omega_{h}$ auf $\Omega_{2h}$. Sie ist \textit{nicht} symmetrisch. Diese Matrix kann nun verschiedene Gestalten haben. So könnte sie beispielsweise einfach die Werte des feinen Gitters eins zu eins auf die entsprechenden Werte des groben Gitters kopieren. Dadurch würde allerdings Genauigkeit verloren gehen. Wir bedienen uns der Full-Weighted-Restriktionsmatrix, der folgenden Form:
 
 \begin{equation}
-R = \frac {1} {4}
-\begin{pmatrix}
-1 & 2 & 1 & & & & & & \\
- & 1 & 2 & 1 & & & & & \\
- &&&&\ddots&&&& \\
- & & & & & & 1 & 2 & 1
-\end{pmatrix}.
+\mat{R} = \frac {1} {16} \left(
+\begin{smallmatrix}
+1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 & & & & & &\\
+& 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 & & & & &\\
+% & & 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 & & & &\\
+&&&&&&&&&&\ddots&&&&&&&&&&\\
+& & & & & 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 &\\
+& & & & & & 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1
+% 1 & 2 & 1 \hdots & 2 & 4 & 2 \hdots & 1 & 2 & 1\\
+% & 1 & 2 & 1 \hdots & 2 & 4 & 2 \hdots & 1 & 2 & 1\\
+% % & & 1 & 2 & 1 \hdots & 2 & 4 & 2 \hdots & 1 & 2 & 1 & & & &\\
+% &&&&&\ddots&&&&&\\
+% & & & 1 & 2 & 1 \hdots & 2 & 4 & 2 \hdots & 1 & 2 & 1 &\\
+% & & & & 1 & 2 & 1 \hdots & 2 & 4 & 2 \hdots & 1 & 2 & 1
+\end{smallmatrix} \right).
 \end{equation}
 
-Dabei ist $R \in \mathbb{R}^{m \times n}$. Sie bildet also einen ursprünglichen Vektor $u_{h} \in \mathbb{R}^{n}$ aus dem feinen Gitter auf einen Vektor $u_{2h} \in \mathbb{R}^{m}$ auf dem groben Gitter ab.
+\textbf{Bemerkung:}
 
+Für den Fall einer eindimensionalen Poisson Matrix hätte $R$ folgende Darstellung:
 \begin{equation}
-Ru^{i,j}_{h} = \frac {1} {4}
+\mat{R}u^{i,j}_{h} = \frac {1} {4}
 \begin{pmatrix}
 1 & 2 & 1 & & & & & & \\
  & 1 & 2 & 1 & & & & & \\
  &&&&\ddots&&&& \\
  & & & & & & 1 & 2 & 1
 \end{pmatrix}
+\end{equation}
+
+Dabei ist $R \in \mathbb{R}^{m \times n}$. Sie bildet also einen ursprünglichen Vektor $u_{h} \in \mathbb{R}^{n}$ aus dem feinen Gitter auf einen Vektor $u_{2h} \in \mathbb{R}^{m}$ auf dem groben Gitter ab.
+
+\textbf{Beispiel:}
+
+\begin{equation}
+\mat{R}u^{i,j}_{h} = \frac {1} {16} \left(
+\begin{smallmatrix}
+1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 & & & & & &\\
+& 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 & & & & &\\
+% & & 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 & & & &\\
+&&&&&&&&&&\ddots&&&&&&&&&&\\
+& & & & & 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1 &\\
+& & & & & & 1 & 2 & 1 & 0 & \hdots & 0 & 2 & 4 & 2 & 0 & \hdots & 0 & 1 & 2 & 1
+\end{smallmatrix} \right)
 \begin{pmatrix}
 u_{h}^{(1)} \\
 u_{h}^{(2)} \\
@@ -1237,6 +1262,15 @@ Für das Umsetzen in Programmcode ist es natürlich ungünstig eine komplette Ma
 Für ein $u_{2h}$ auf $\Omega_{2h}$ gilt:
 \begin{equation}
 u_{2h}^{i,j} = \frac {1} {16} (4u_{h}^{i,j}+2(u_{h}^{i+1,j}+u_{h}^{i-1,j}+u_{h}^{i,j+1}+u_{h}^{i,j-1})+u_{h}^{i-1,j-1}+u_{h}^{i-1,j+1}+u_{h}^{i+1,j+1}+u_{h}^{i+1,j-1})
+\end{equation}
+
+Diese Vorschrift lässt sich nun relativ komfortabel und effizient programmieren.
+
+\section{Prolongation}
+
+Natürlich wollen wir auch eine Abbildungsvorschrift vom groben auf das feine Gitter definieren. Wir werden dies mit Hilfe einer bilinearen Interpolation definieren. Auch hier gibt es unterschiedliche Methoden, wobei in diesem Abschnitt die exakteste - nämliche die Full-Weighting-Interpolation - verwendet wird. Die Darstellung ist daher auch enorm einfach, denn es gilt:
+\begin{equation}
+\mat{I} = 4\mat{R}
 \end{equation}
 
 \subsection{Einführung in die Mehrgittermethoden}

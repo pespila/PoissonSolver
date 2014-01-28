@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2013.10.14)  28 JAN 2014 14:54
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2013.11.12)  28 JAN 2014 16:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1477,8 +1477,14 @@ Overfull \hbox (85.68233pt too wide) in paragraph at lines 1185--1186
 trie-ren. Wir be-trach-ten... 
  []
 
+
+Overfull \hbox (104.94957pt too wide) in paragraph at lines 1215--1216
+[]\T1/ppl/m/n/12 Für den Fall ei-ner ein-di-men-sio-na-len Pois-son Ma-trix hät
+-te $\OML/zplm/m/it/12 R$ \T1/ppl/m/n/12 fol-gen-de Dar-stel-lung: 
+ []
+
 [26]
-Overfull \hbox (1.37097pt too wide) detected at line 1240
+Overfull \hbox (1.37097pt too wide) detected at line 1265
 []\OML/zplm/m/it/12 u[] \OT1/zplm/m/n/12 = [](\OT1/ppl/m/n/12 4\OML/zplm/m/it/1
 2 u[] \OT1/zplm/m/n/12 + \OT1/ppl/m/n/12 2\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 u
 [] \OT1/zplm/m/n/12 + \OML/zplm/m/it/12 u[] \OT1/zplm/m/n/12 + \OML/zplm/m/it/1
@@ -1488,32 +1494,38 @@ it/12 u[] \OT1/zplm/m/n/12 + \OML/zplm/m/it/12 u[] \OT1/zplm/m/n/12 + \OML/zplm
  []
 
 
-Overfull \hbox (13.63199pt too wide) in paragraph at lines 1246--1253
+Overfull \hbox (95.2179pt too wide) in paragraph at lines 1267--1268
+[]\T1/ppl/m/n/12 Diese Vor-schrift lässt sich nun re-la-tiv kom-for-ta-bel und 
+ef-fi-zi-ent pro-gram-mie-ren. 
+ []
+
+
+Overfull \hbox (13.63199pt too wide) in paragraph at lines 1280--1287
 \T1/ppl/m/n/12 Wie in[][]Ab-schnitt 2.2[][][][] ge-se-hen be-fin-den wir uns be
 i der Dis-kre-ti-sie-rung der Poisson-Gleichung
  []
 
-
-Overfull \hbox (22.99135pt too wide) in paragraph at lines 1256--1257
+[27]
+Overfull \hbox (22.99135pt too wide) in paragraph at lines 1290--1291
 \T1/ppl/m/n/12 wird die Idee da-hin-ter die Ba-sis für das Mehrgitter-Verfahren
  sein. 
  []
 
-[27]
-Underfull \hbox (badness 10000) in paragraph at lines 1272--1274
+
+Underfull \hbox (badness 10000) in paragraph at lines 1306--1308
 
  []
 
-
-Overfull \hbox (41.46376pt too wide) in paragraph at lines 1277--1278
+[28]
+Overfull \hbox (41.46376pt too wide) in paragraph at lines 1311--1312
 \T1/ppl/m/n/12 ist, um dann wie-der auf das feins-te Git-ter zu-rück zu keh-ren
 . Ge-nau-er: 
  []
 
-[28] [29]
+[29]
 Kapitel 5.
 
-Overfull \hbox (80.29015pt too wide) in paragraph at lines 1304--1305
+Overfull \hbox (80.29015pt too wide) in paragraph at lines 1338--1339
 \OML/zplm/m/it/12 y[]$\T1/ppl/m/n/12 . Sei au-ÿer-dem $\OT1/zplm/m/n/12 
  = (\OT1/ppl/m/n/12 0, 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 ^^B \OT1/zplm/m/n/1
 2 (\OT1/ppl/m/n/12 0, 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R
@@ -1521,13 +1533,13 @@ Overfull \hbox (80.29015pt too wide) in paragraph at lines 1304--1305
  []
 
 
-Overfull \hbox (11.25484pt too wide) in paragraph at lines 1308--1312
+Overfull \hbox (11.25484pt too wide) in paragraph at lines 1342--1346
 \T1/ppl/m/n/12 Die ge-wünsch-te Lö-sung soll-te al-so fol-gen-den Gra-phen er-g
 e-ben: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1315--1316
+Underfull \hbox (badness 10000) in paragraph at lines 1349--1350
 
  []
 
@@ -1537,67 +1549,67 @@ Underfull \hbox (badness 10000) in paragraph at lines 1315--1316
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1352.
+(hyperref)                removing `math shift' on input line 1386.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\omega' on input line 1352.
+(hyperref)                removing `\omega' on input line 1386.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 1352.
+(hyperref)                removing `\begingroup' on input line 1386.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\endgroup' on input line 1352.
+(hyperref)                removing `\endgroup' on input line 1386.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@@over' on input line 1352.
+(hyperref)                removing `\@@over' on input line 1386.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1352.
+(hyperref)                removing `math shift' on input line 1386.
 
 [31]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1363.
+(hyperref)                removing `math shift' on input line 1397.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\omega' on input line 1363.
+(hyperref)                removing `\omega' on input line 1397.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 1363.
+(hyperref)                removing `\begingroup' on input line 1397.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\endgroup' on input line 1363.
+(hyperref)                removing `\endgroup' on input line 1397.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@@over' on input line 1363.
+(hyperref)                removing `\@@over' on input line 1397.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1363.
+(hyperref)                removing `math shift' on input line 1397.
 
 [32] [33] [34]
-Underfull \hbox (badness 10000) in paragraph at lines 1482--1483
+Underfull \hbox (badness 10000) in paragraph at lines 1516--1517
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1484.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1518.
 [35
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1484.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1518.
  (./arbeit-vorlage.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1484.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1484.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1518.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1518.
 
 
 
@@ -1606,23 +1618,23 @@ Package rerunfilecheck Warning: File `arbeit-vorlage.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `arbeit-vorlage.out':
-(rerunfilecheck)             Before: 03BBED9C60208D26B49C04F78EFDF555;6383
-(rerunfilecheck)             After:  855F91F6E7F2A8EFF95CF93C44E62AA1;6459.
+(rerunfilecheck)             Before: 855F91F6E7F2A8EFF95CF93C44E62AA1;6459
+(rerunfilecheck)             After:  C73626E771AC92431E9FAB6E87F785BF;6518.
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1484.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1518.
  ) 
 Here is how much of TeX's memory you used:
- 12005 strings out of 493486
- 179599 string characters out of 3143548
- 329470 words of memory out of 3000000
- 15118 multiletter control sequences out of 15000+200000
+ 12006 strings out of 493486
+ 179617 string characters out of 3143548
+ 335572 words of memory out of 3000000
+ 15119 multiletter control sequences out of 15000+200000
  42484 words of font info for 102 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  42i,16n,66p,1783b,707s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on arbeit-vorlage.dvi (39 pages, 200128 bytes).
+Output written on arbeit-vorlage.dvi (39 pages, 203148 bytes).
