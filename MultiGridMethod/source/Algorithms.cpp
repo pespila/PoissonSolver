@@ -18,17 +18,13 @@ double Algorithms::vectorNorm(const vector<double>& x) {
 }
 
 void Algorithms::JacobiMethod(Matrix& A, vector<double>& x, const vector<double>& b, int steps) {
-    int dim=A.Size();
-    vector<double> r(dim);
     for(int j=0;j<steps;j++) {
         x+=1.0/4.0*(b-A*x);
     }
 }
 
 void Algorithms::JacobiRelaxationMethod(Matrix& A, vector<double>& x, const vector<double>& b, int steps) {
-    int dim=A.Size();
-    double omega=0.8;
-    vector<double> r(dim);
+    double omega=4.0/5.0;
     for(int j=0;j<steps;j++) {
         x+=omega*1.0/4.0*(b-A*x);
     }

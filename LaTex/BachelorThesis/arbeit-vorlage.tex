@@ -141,7 +141,7 @@ $\Omega$ fassen wir als $\Omega_{h}$ auf, so dass:
 \Omega_{h} := \{u(ih, jh) | 1 \le i,j \le N\}.
 \end{equation}
 
-\bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}\label{img.5-Point-Star}
+% \bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}\label{img.5-Point-Star}
 
 Mit \autoref{eq.Differenzenquotienten} ergibt sich nun für $\Delta u(x,y) \approx \Delta_{h} u(x,y)$ die diskretisierte Form:
 \begin{equation}
@@ -178,7 +178,7 @@ dar. (Dahmen Reusken)
 % \end{eqnarray}
 % Diese Approximation wird auch 5-Punkt-Differenzenstern genannt, siehe dazu Abbildung (2.1).
 
-\bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
+% \bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
 
 Nummeriert man nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben (\autoref{img.gridWithNumbers}) und stellt für jeden dieser Punkte \autoref{eq.5-Point-Star} auf, so führt dies auf eine $N^{2} \times N^{2}$-Matrix der Form:
 
@@ -313,7 +313,7 @@ v_{k.l} =
 
 Um sich einen Eigenvektor besser vorstellen zu können, betrachten wir als Beispiel $v_{3,3} \in \mathbb{R}^{16}$ auf dem Gitter aus \autoref{img.gridWithNumbers} (Punkt "11").
 
-\bild{EV}{14cm}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}\label{img.Jacobi1}
+% \bild{EV}{14cm}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}\label{img.Jacobi1}
 
 \subsection{Definition (Kondition einer symmetrischen Matrix)}\label{ss.Definition Kondition einer Matrix}
 
@@ -404,7 +404,7 @@ e^{k} := u^{*} - u^{k}.\label{eq.Fehler}
 \end{equation}
 Durch Multiplikation mit der Matrix $\mat{A}$ ergibt sich:
 \begin{equation}
-e = u^{*} - u \Leftrightarrow \mat{A}e = \mat{A}(u^{*} - u) \Leftrightarrow \mat{A}e = \mat{A} u^{*} - \mat{A} u \Leftrightarrow \mat{A}e = b - \mat{A} u \Leftrightarrow \mat{A}e = r.
+e = u^{*} - u \Leftrightarrow \mat{A}e = \mat{A}(u^{*} - u) \Leftrightarrow \mat{A}e = \mat{A} u^{*} - \mat{A} u \Leftrightarrow \mat{A}e = b - \mat{A} u \Leftrightarrow \mat{A}e = r.\label{eq.Residuumsgleichung}
 \end{equation}
 $\mat{A}e = r$ nennen wir Residuumsgleichung.
 
@@ -779,7 +779,7 @@ e^{k+1} &=& u^{*} - u^{k+1} = u^{*} - \left( (Id - \omega D^{-1} A)u^{k} + \omeg
 &=& e^{k} + \omega D^{-1} A e^{k} = (Id - \omega D^{-1} A) e^{k}.
 \end{eqnarray}
 
-\bild{omegaeins}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi1}
+% \bild{omegaeins}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi1}
 
 Da die $n$ Eigenvektoren $v_{i,j}$ eine Basis bilden, lässt sich der Fehler $e$ als Linearkombination der $v_{i,j}$ darstellen:
 \begin{eqnarray}
@@ -788,13 +788,13 @@ e^{k+1} &=& \sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k+1}_{i,j} v_{i,j} = (Id - \o
 &=& \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} \underbrace{(1 - \frac {\omega} {4} \lambda_{i,j}(A))}_{= \lambda_{i,j}(\mat{T}_{J_{\omega}})} v_{i,j}\right) = \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} \lambda_{i,j}(\mat{T}_{J_{\omega}}) v_{i,j}\right).
 \end{eqnarray}
 
-\bild{omegaeinhalb}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi2}
+% \bild{omegaeinhalb}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi2}
 
 Betrachten wir nun die Eigenwerte der Iterationsmatrix für $\omega = 1$ (Jacobi-Verfahren), sieht man, dass die Eigenwerte für $i,j$ nahe Null oder $i,j$ nahe N den Fehler schlecht bis gar nicht dämpfen (\subfigureautorefname{ 3.1}). Dies erklärt auch das langsame Konvergenzverhalten des Jacobi-Verfahren (siehe Kapitel 5). Interessanter weiße ist der optimale Wert $\omega = 1$, wenn man das Ganze als iteratives Verfahren verwendet [Saad]. Das Jacobi-Verfahren besitzt aber keine Glättungseigenschaft.\\
 Da wir aber eine Fehlerglättung erreichen wollen, wählen wir nun $\omega = \frac {1} {2}$ (\subfigureautorefname{ 3.2}). Wir stellen fest, dass die Eigenwerte der Iterationsmatrix zwischen $0$ und $1$ liegen. Sind $i,j > \frac {N} {2}$ so werden die Fehleranteile wesentlich besser gedämpft, da die Eigenwerte hier nahe Null liegen. Diese Eigenschaft nennt man die \textit{Glättungseigenschaft}.\\
 Es stellt sich z.B. heraus [Saad], dass der optimale Relaxationsparameter, der unabhängig von der Schrittweite $h$ gewählt werden kann, $\omega = \frac {4} {5}$ ist. In \subfigureautorefname{ 3.3} ist gut zu sehen, dass viele der Eigenwerte nahe Null liegen.
 
-\bild{omeganullacht}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi3}
+% \bild{omeganullacht}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi3}
 
 \section{Das Verfahren der konjugierten Gradienten}\label{s.Das Verfahren der konjugierten Gradienten}
 
@@ -851,7 +851,7 @@ Es ist also äquivalent die Funktion $f(u)$ zu minimieren und das Gleichungssyst
 Der Gradient von $f(x)$ ist also das negative Residuum. Beim normalen Gradientenverfahren wählt man als Richtung des steilsten Abstiegs genau das Residuum. Hier wählt man jedoch konjugierte Richtungen $p$ für die Richtung des steilsten Abstiegs. Die dabei berechneten (konjugierten) Vektoren $p$ sind alle A-orthogonal und spannen einen sogenannten Krylow-Raum $U_{k} = \{p^{0},...,p^{k}\}$ auf. Für den Zusammenhang zwischen dem CG-Verfahren und Krylow-Räumen möchte ich an dieser Stelle auf [Braess] verweisen.\\
 Da wir also stets das Minimum im Teilraum $U_{k}$ suchen, wird uns folgendes Lemma hilfreich sein:
 
-\bild{CG_Illu}{8cm}{Abstieg}{Abstieg}\label{img.CG}
+% \bild{CG_Illu}{8cm}{Abstieg}{Abstieg}\label{img.CG}
 
 \subsection{Lemma - (A-orthogonaler) Projektionssatz}\label{s.Projektionssatz}
 
@@ -1133,22 +1133,20 @@ Wir setzen wieder $\mat{W} := \tilde{\mat{L}} \tilde{\mat{L}}^{T}$. \\
 Es gibt noch weitere Verfahren (siehe z.B. Saad), wie beispielsweise das SSOR-Verfahren, die wir hier nicht weiter diskutieren wollen.
 \chapter{Mehrgitterverfahren}\label{c.Mehrgitterverfahren}
 
-In diesem Abschnitt sollen nun die Mehrgittermethoden genauer betrachtet werden. Bevor wir jedoch genauer auf dieses Verfahren eingehen, wollen wir uns nochmal einige Erkenntnisse klar machen:
+In diesem Abschnitt sollen nun die Mehrgittermethoden genauer betrachtet werden. Zunächst aber nochmals die Grundlagen:
 
-\section{Grundideen}\label{s.Idee MGM}
+\section{Grundlagen}\label{s.Idee MGM}
 
 \begin{description}
 
-\item[1.] Auslöschung hochfrequenter Fehler \\
-Das Gauß-Seidel-Verfahren und das Jacobi-Verfahren löschen hochfrequente Fehler in den ersten Iterationsschritten aus. Niederfrequente Fehler werden nur sehr langsam beseitigt.(siehe \autoref{s.Das Jacobi-Iterationsverfahren} und \autoref{s.Das Gauss-Seidel-Verfahren})
-\item[2.] Grobe Fehler nach einer Gittertransformation \\
-Niedrig frequente Fehler auf einem feinen Gitter werden zu hochfrequenten Fehlern, wenn sie auf ein gröberes Gitter überführt werden.
-\item[3.] Residuumsgleichung \\
+\item[1.] Glättungseigenschaft der Jacobi-Relaxation \\
+Das Jacobi-Relaxationsverfahren löscht kurzwellig Fehler in den ersten Iterationsschritten aus. Langwellige Fehler werden nur sehr langsam beseitigt.
+\item[2.] Residuumsgleichung \\
 Die für diesen Algorithmus wichtige Residuumsgleichung lautet:
 \begin{equation}
 \mat{A} e^{k} = r^{k}\label{eq.Residuumsgleichung}
 \end{equation}
-Die Lösung von $\mat{A} e^{k} = r^{k}$ ist äquivalent zur Lösung von $\mat{A}u=b$, wobei $e^{k} = 0$.
+Die Lösung von $\mat{A} e^{k} = r^{k}$ ist äquivalent zur Lösung von $\mat{A}u=b$ für $e^{k} = 0$.
 
 \end{description}
 
@@ -1162,14 +1160,88 @@ Der Fehler
 \begin{equation}
 e = u^{*} - u^{k}\label{eq.Fehler}
 \end{equation}
-wobei $u^{*}$ die exakte Lösung darstellt, erfüllt ebenso folgende Gleichung:
+wobei $u^{*}$ die exakte Lösung darstellt.
+Betrachten wir jetzt nochmals \autoref{eq.Residuumsgleichung}, dann stellen wir fest, dass gilt:
 \begin{equation}
-\mat{A}e^{k} = \mat{A}(u^{*} - u^{k}) = \mat{A} u^{*} - \mat{A} u^{k} = b - \mat{A} u^{k} = r^{k}
+Ae^{k} = r^{k} = b - Au^{k} = 0 \textnormal{ für } e^{k} = 0.
 \end{equation}
-Wir kennen zwar den Fehler $e^{k}$ nicht, wissen aber, dass dieser $0$ ist, falls $r^{k} = 0$.
+Somit ist
+\begin{equation}
+Ae^{k} = r^{k} \Longleftrightarrow Au^{k} = b \textnormal{ falls } e^{k} = 0.
+\end{equation}
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
+
+\begin{description}
+
+\item[3.] Grobe Fehler nach einer Gittertransformation \\
+Kurzwellige Fehler auf dem feinen Gitter bleiben kurzwellig, wenn man diese auf ein grobes Gitter transformiert. Langwellige Fehleranteile des feinen Gitters, werden jedoch auf dem groben Gitter ebenfalls zu kurzwelligen.
+
+\end{description}
+
+\textbf{Beispiel:}
+
+Wir wollen diese Aussage anhand eines Beispiels illustrieren. Wir betrachten...
+
+\section{Restriktion}
+
+Bevor wir nun auf die Mehrgittermethoden explizit eingehen, müssen wir uns Gedanken darüber machen, wie wir von einem Gitter auf das andere kommen. Angenommen wir befinden uns auf dem feinsten Gitter $\Omega_{h}$, so ist das Ziel auf ein gröberes Gitter $\Omega_{2h}$ mit wenig Rechenaufwand zu kommen und die Werte aus $\Omega_{h}$ sollten auf $\Omega_{2h}$ gut genähert sein. Dafür führen wir eine sogenannte Restriktion durch.
+
+\subsection{Restriktionsmatrix}
+
+Diese Matrix überführt die Vektoren von $\Omega_{h}$ auf $\Omega_{2h}$. Sie ist \textit{nicht} symmetrisch. Diese Matrix kann nun verschiedene Gestalten haben. So könnte sie beispielsweise einfach die Werte des feinen Gitters eins zu eins auf die entsprechenden Werte des groben Gitters kopieren. Dadurch würde allerdings Genauigkeit verloren gehen. Wir bedienen uns der Full-Weighted-Restriktionsmatrix, der folgenden Form:
+
+\begin{equation}
+R = \frac {1} {4}
+\begin{pmatrix}
+1 & 2 & 1 & & & & & & \\
+ & 1 & 2 & 1 & & & & & \\
+ &&&&\ddots&&&& \\
+ & & & & & & 1 & 2 & 1
+\end{pmatrix}.
+\end{equation}
+
+Dabei ist $R \in \mathbb{R}^{m \times n}$. Sie bildet also einen ursprünglichen Vektor $u_{h} \in \mathbb{R}^{n}$ aus dem feinen Gitter auf einen Vektor $u_{2h} \in \mathbb{R}^{m}$ auf dem groben Gitter ab.
+
+\begin{equation}
+Ru^{i,j}_{h} = \frac {1} {4}
+\begin{pmatrix}
+1 & 2 & 1 & & & & & & \\
+ & 1 & 2 & 1 & & & & & \\
+ &&&&\ddots&&&& \\
+ & & & & & & 1 & 2 & 1
+\end{pmatrix}
+\begin{pmatrix}
+u_{h}^{(1)} \\
+u_{h}^{(2)} \\
+\vdots \\
+u_{h}^{(n)}
+\end{pmatrix} =
+\begin{pmatrix}
+u_{2h}^{(1)} \\
+\vdots \\
+u_{2h}^{(m)}
+\end{pmatrix} =
+u^{i,j}_{2h}.
+\end{equation}
+
+Hierbei geht in jedes $u^{i,j}_{2h}$ auch der gewichtete Wert aller Nachbarpunkte von $u^{i,j}_{h}$ des feinen Gitters mit ein.
+
+% \bild{Restriktionsoperator}{14cm}{bla}{bla}\label{img.Restriktion}
+
+Für das Umsetzen in Programmcode ist es natürlich ungünstig eine komplette Matrix-Vektor-Multiplikation zu implementieren. Aus diesem Grunde kann man das Vorgehen auch in folgender Form beschreiben.
+
+\subsection{Restriktionsvorschrift}
+
+Für ein $u_{2h}$ auf $\Omega_{2h}$ gilt:
+\begin{equation}
+u_{2h}^{i,j} = \frac {1} {16} (4u_{h}^{i,j}+2(u_{h}^{i+1,j}+u_{h}^{i-1,j}+u_{h}^{i,j+1}+u_{h}^{i,j-1})+u_{h}^{i-1,j-1}+u_{h}^{i-1,j+1}+u_{h}^{i+1,j+1}+u_{h}^{i+1,j-1})
+\end{equation}
+
+\subsection{Einführung in die Mehrgittermethoden}
+
+Bisher haben wir gesehen, dass das Jacobi-Relaxationsverfahren als iteratives Verfahren ungeeignet ist. Allerdings besitzt es die Glättungseigenschaft.
 
 Gauss-Seidel- und Jacobi-Verfahren löschen also hochfrequente Fehler in den ersten Itertionsschritten aus. Um die nieder frequenten Fehler zu reduzieren sind allerdings wesentlich mehr Iterationsschritte notwendig. Auch aus diesem Grund finden beide Verfahren bei der Lösung großer, linearer Gleichungssysteme wenig Anwendung. \\
 Auch wenn die hohe Anzahl an notwendigen Iterationen ein deutlicher Nachteil ist, wollen wir im folgenden die Vorteile dieser Methoden ausnutzen. \\%Die Mehrgittermethoden bedienen sich der Auslöschung hochfrequenter Fehler und liefern so eine gute und schnelle Approximation der Lösung von $\mat{A}u=b$. \\
