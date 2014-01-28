@@ -1,21 +1,52 @@
 #include "classes.h"
 
-PoissonMatrix::PoissonMatrix(int n) {
+PoissonMatrix1D::PoissonMatrix1D(int n,double a,double b) {
 	this->n=n;
-	this->dim=n*n;
-	this->diagonal=4.0;
-	this->tridiagonal=-1.0;
-	this->identity=tridiagonal;
+	this->dim=n;
+	this->diagonal=a;
+	this->tridiagonal=b;
 }
 
-PoissonMatrix::~PoissonMatrix() {
+PoissonMatrix1D::~PoissonMatrix1D() {
 }
 
-int PoissonMatrix::Size() {
+int PoissonMatrix1D::Size() {
 	return dim;
 }
 
-double PoissonMatrix::Get(int i,int j) {
+double PoissonMatrix1D::Get(int i,int j) {
+	if(i==j) {
+		return diagonal;
+	} else if(j==(i+1)) {
+		return tridiagonal;
+	} else if(j==(i-1)) {
+		return tridiagonal;
+	} else {
+		return 0.0;
+	}
+}
+
+void PoissonMatrix1D::Resize(int n) {
+    this->n=n;
+    this->dim=n;
+}
+
+PoissonMatrix2D::PoissonMatrix2D(int n,double a,double b,double c) {
+	this->n=n;
+	this->dim=pow(n,2);
+	this->diagonal=a;
+	this->tridiagonal=b;
+	this->identity=c;
+}
+
+PoissonMatrix2D::~PoissonMatrix2D() {
+}
+
+int PoissonMatrix2D::Size() {
+	return dim;
+}
+
+double PoissonMatrix2D::Get(int i,int j) {
 	if(i==j) {
 		return diagonal;
 	} else if(j==(i+1) && i%n!=(n-1)) {
@@ -31,12 +62,9 @@ double PoissonMatrix::Get(int i,int j) {
 	}
 }
 
-void PoissonMatrix::Resize(int n) {
+void PoissonMatrix2D::Resize(int n) {
     this->n=n;
     this->dim=n*n;
-    this->diagonal=4.0*pow(n+1,2);
-    this->tridiagonal=-1.0*pow(n+1,2);
-    this->identity=tridiagonal;
 }
 
 
@@ -50,7 +78,7 @@ void Matrix::PrintMatrix() {
 	printf("\n");
 }
 
-vector<double> PoissonMatrix::operator*(const vector<double>& x) {
+vector<double> PoissonMatrix2D::operator*(const vector<double>& x) {
     vector<double> tmp;
     tmp.assign(x.size(),0);
     for(int i=0;i<dim;i++) {
@@ -63,6 +91,15 @@ vector<double> PoissonMatrix::operator*(const vector<double>& x) {
             tmp[i]+=x[i-1]*-1.0;
             tmp[i-1]+=x[i]*-1.0;
         }
+    }
+    return tmp;
+}
+
+vector<double> PoissonMatrix1D::operator*(const vector<double>& x) {
+    vector<double> tmp;
+    tmp.assign(x.size(),0);
+    for(int i=0;i<dim;i++) {
+        tmp[i]+=x[i]*diagonal+x[i+1]*tridiagonal+x[i-1]*tridiagonal;
     }
     return tmp;
 }

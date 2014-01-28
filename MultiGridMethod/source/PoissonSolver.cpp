@@ -8,63 +8,29 @@ int main(int argc, char const *argv[]) {
         arg=31;
     }
 
-    PoissonMatrix A(arg);
-    Vectors V(arg);
+    PoissonMatrix2D A(arg,4.0,-1.0,-1.0);
+    PoissonVector2D V(arg);
     Algorithms Run(arg);
+    vector<double> x(arg*arg,0),b(arg*arg,0);
+    V.InitRightSide(b);
 
     printf("Started\n");
     double time,start=0.0,end=0.0;
     start=clock();
 
-    // std::vector<double> E(arg*arg,0);
-    // double h=1.0/(double)(arg+1);
-    // for(int i=1,k=0;i<arg;i++) {
-    //     for(int j=1;j<arg;j++,k++) {
-    //         E[k]=V.x[k]-g(i*h,j*h);
-    //     }
-    // }
-    // FILE *file;
-    // file=fopen("../Plot/plot.txt", "w");
-    // if(file==NULL) {
-    //     printf("ERROR: Could not open file!\n");
-    // } else {
-    //     for(int i=1,k=0;i<arg;i++) {
-    //         for(int j=1;j<arg;j++,k++) {
-    //             fprintf(file, "%f %f %f\n", (double)j/(double)arg,(double)i/(double)arg,E[k]);
-    //         }
-    //         fprintf(file, "\n");
-    //     }
-    // }
-    // fclose (file);
-    Run.MultiGridMethod(A,V,V.x,V.b);
-    // Run.JacobiMethod(A,V.x,V.b,100);
-    // for(int i=1,k=0;i<arg;i++) {
-    //     for(int j=1;j<arg;j++,k++) {
-    //         E[k]=V.x[k]-g(i*h,j*h);
-    //     }
-    // }
-    // FILE *file;
-    // file=fopen("../Plot/plot.txt", "w");
-    // if(file==NULL) {
-    //     printf("ERROR: Could not open file!\n");
-    // } else {
-    //     for(int i=0;i<=arg;i++) {
-    //             fprintf(file, "%d %f\n",i,sin(3.14*(double)i/(double)arg));
-    //     }
-    // }
-    // fclose (file);
-
+    Run.MultiGridMethod(A,x,b);
+    
     end=clock();
     time=(end-start)/CLOCKS_PER_SEC;
     printf("%f\n", time);
 
     if(arg<=5) {
         A.PrintMatrix();
-        V.PrintVector();
+        V.PrintVector(x);
     } else {
         printf("Couldn't print Matrix! Dimension is too high.\n");
     }
-    V.WriteToFile();
+    V.WriteToFile(x);
 
     return EXIT_SUCCESS;
 }
@@ -77,8 +43,16 @@ double g(double x,double y) {
     return pow(x,2)+pow(y,2);
 }
 
-std::vector<double> operator-(const std::vector<double>& lhs, const std::vector<double>& rhs) {
-    std::vector<double> tmp(lhs);
+double f(double x) {
+    return -2.0;
+}
+
+double g(double x) {
+    return pow(x,2);
+}
+
+vector<double> operator-(const vector<double>& lhs, const vector<double>& rhs) {
+    vector<double> tmp(lhs);
     for(int i=0;i<(int)lhs.size();i++) {
         tmp[i]=lhs[i]-rhs[i];
     }
@@ -86,8 +60,16 @@ std::vector<double> operator-(const std::vector<double>& lhs, const std::vector<
     return tmp;
 }
 
-void operator+=(std::vector<double>& lhs, const std::vector<double>& rhs) {
+void operator+=(vector<double>& lhs, const vector<double>& rhs) {
     for(int i=0;i<(int)rhs.size();i++) {
         lhs[i]+=rhs[i];
     }
+}
+
+vector<double> operator*(double x, vector<double> rhs) {
+    vector<double> tmp(rhs);
+    for(int i=0;i<(int)rhs.size();i++) {
+        tmp[i]=x*rhs[i];
+    }
+    return tmp;
 }
