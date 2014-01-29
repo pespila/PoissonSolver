@@ -81,7 +81,7 @@ void Matrix::PrintMatrix() {
 vector<double> PoissonMatrix2D::operator*(const vector<double>& x) {
     vector<double> tmp;
     tmp.assign(x.size(),0);
-    for(int i=0;i<dim;i++) {
+    for(int i=0;i<Size();i++) {
         tmp[i]+=x[i]*4.0;
         if(i<(dim-n)) {
             tmp[i]+=x[i+n]*-1.0;

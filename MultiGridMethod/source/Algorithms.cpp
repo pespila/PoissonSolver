@@ -31,26 +31,13 @@ void Algorithms::JacobiRelaxationMethod(Matrix& A, vector<double>& x, const vect
 }
 
 void Algorithms::JacobiRelaxationSolver(Matrix& A,vector<double>& x,const vector<double>& b) {
-    int dim=A.Size(),steps=0;
-    vector<double> r(dim,1),solved(dim);
-
-    for(int i=1,k=0;i<(n+1);i++) {
-        for(int j=1;j<(n+1);j++,k++) {
-            solved[k]=g(j*h,i*h);
-        }
-    }
-    double TOL=pow(10,-3)*vectorNorm(solved);
-    while(TOL<vectorNorm(r)) {
-        r=A*x;
-        for(int i=0;i<dim;i++) {
-            r[i]=1.0/5.0*(b[i]-r[i]);
-            x[i]+=r[i];
-            r[i]=x[i]-solved[i];
-        }
+    // double TOL=vectorNorm(A*x);
+    // while(TOL<vectorNorm(A*x)) {
+        x+=1.0/4.0*(b-A*x);
         // x+=1.0/4.0*(b-A*x);
-        steps++;
-    }
-    printf("JacobianSteps: %d\n", steps);
+        // steps++;
+    // }
+    // printf("JacobianSteps: %d\n", steps);
 }
 
 // void Algorithms::GaussSeidelMethod(Matrix& A, vector<double>& x, const vector<double>& b, int steps) {
@@ -184,10 +171,11 @@ vector<double> Algorithms::MultiGridAlgorithm(Matrix& A,vector<double>& X,const 
     if(n==this->n) {
         x=X;
     }
-    if(n==1) {
-        double a;
-        a=4.0;
-        x[0]=b[0]/a;
+    if(n==3) {
+        JacobiRelaxationSolver(A,x,b);
+        // double a;
+        // a=4.0;
+        // x[0]=b[0]/a;
         return x;
     } else {
         JacobiRelaxationMethod(A,x,b,3);
@@ -195,7 +183,7 @@ vector<double> Algorithms::MultiGridAlgorithm(Matrix& A,vector<double>& X,const 
         Restriction(r,r2h,n);
         A.Resize(N2h);
         E2h=MultiGridAlgorithm(A,X,r2h,N2h);
-        E2h=MultiGridAlgorithm(A,X,r2h,N2h);
+        // E2h=MultiGridAlgorithm(A,X,r2h,N2h);
         Interpolation(E2h,E,n);
         x+=E;
         A.Resize(n);

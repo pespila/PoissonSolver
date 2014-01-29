@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.1.27)  28 JAN 2014 23:20
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.1.27)  29 JAN 2014 17:00
 entering extended mode
  %&-line parsing enabled.
 **arbeit-vorlage.tex
@@ -1008,7 +1008,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
  []
 
-[3] <images/diffStar.pdf, id=438, 915.42pt x 733.74126pt>
+[3] <images/diffStar.pdf, id=443, 915.42pt x 733.74126pt>
 File: images/diffStar.pdf Graphic file (type pdf)
 
 <use images/diffStar.pdf>
@@ -1024,7 +1024,7 @@ lm/m/n/12 ^^A[]\OML/zplm/m/it/12 u\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 x\OT1/ppl
  dis-kre-ti-sier-te Form: 
  []
 
-<images/grid.pdf, id=441, 424.58624pt x 422.57875pt>
+<images/grid.pdf, id=446, 424.58624pt x 422.57875pt>
 File: images/grid.pdf Graphic file (type pdf)
  <use images/grid.pdf>
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
@@ -1099,7 +1099,7 @@ Overfull \hbox (99.25903pt too wide) in paragraph at lines 292--293
 1/ppl/m/n/12 (-20) lässt sich auch in der fol-gen-den Form dar-stel-len: 
  []
 
-<images/EV.png, id=479, 642.4pt x 385.44pt>
+<images/EV.png, id=484, 642.4pt x 385.44pt>
 File: images/EV.png Graphic file (type png)
  <use images/EV.png> [7]
 
@@ -1332,7 +1332,7 @@ n/12 ^^@ \OML/zplm/m/it/12 ten$ \T1/ppl/m/n/12 (-20) Feh-ler und for-men ge-sch
 ickt um, dann gilt: 
  []
 
-<images/omegaeins.png, id=567, 642.4pt x 385.44pt>
+<images/omegaeins.png, id=573, 642.4pt x 385.44pt>
 File: images/omegaeins.png Graphic file (type png)
  <use images/omegaeins.png>
 [17pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
@@ -1342,7 +1342,7 @@ File: images/omegaeins.png Graphic file (type png)
                                                   \fi \fi 
 l.789 \end{eqnarray}
                      <./images/omegaeins.png>]
-<images/omegaeinhalb.png, id=578, 642.4pt x 385.44pt>
+<images/omegaeinhalb.png, id=583, 642.4pt x 385.44pt>
 File: images/omegaeinhalb.png Graphic file (type png)
 
 <use images/omegaeinhalb.png> [18pdfTeX warning (ext4): destination with the sa
@@ -1352,7 +1352,7 @@ me identifier (name{figure.3.2}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.796 
        <./images/omegaeinhalb.png>]
-<images/omeganullacht.png, id=586, 642.4pt x 385.44pt>
+<images/omeganullacht.png, id=591, 642.4pt x 385.44pt>
 File: images/omeganullacht.png Graphic file (type png)
 
 <use images/omeganullacht.png>
@@ -1375,7 +1375,7 @@ L/zplm/m/it/12 f\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 x\OT1/zplm/m/n/12 )$\T1/ppl
 /m/n/12 (-20) , so stellt man fest, dass gilt: 
  []
 
-<images/CG_Illu.png, id=592, 486.618pt x 722.7pt>
+<images/CG_Illu.png, id=597, 486.618pt x 722.7pt>
 File: images/CG_Illu.png Graphic file (type png)
  <use images/CG_Illu.png>
 [20]
@@ -1585,27 +1585,44 @@ it/12 u[] \OT1/zplm/m/n/12 + \OML/zplm/m/it/12 u[] \OT1/zplm/m/n/12 + \OML/zplm
 /m/it/12 u[] \OT1/zplm/m/n/12 + \OML/zplm/m/it/12 u[]\OT1/zplm/m/n/12 )
  []
 
-
-Overfull \hbox (4.44005pt too wide) in paragraph at lines 1371--1378
+[34]
+Overfull \hbox (4.44005pt too wide) in paragraph at lines 1401--1406
 \T1/ppl/m/n/12 (-20) Wie in[]Abschnitt 2.2[][] ge-se-hen be-fin-den wir uns bei
  der Dis-kre-ti-sie-rung der Poisson-Gleichung
  []
 
-[34]
-Underfull \hbox (badness 10000) in paragraph at lines 1397--1399
+
+Overfull \hbox (2.69135pt too wide) in paragraph at lines 1409--1410
+\T1/ppl/m/n/12 (-20) Nun wol-len wir das ers-te Ver-fah-ren der Mehr-git-ter-me
+-tho-den ken-nen ler-nen. Der Zweigitter-
+ []
+
+[35]
+Underfull \hbox (badness 10000) in paragraph at lines 1431--1432
 
  []
 
 
-Overfull \hbox (34.6997pt too wide) in paragraph at lines 1402--1403
-\T1/ppl/m/n/12 (-20) ist, um dann wie-der auf das feins-te Git-ter zu-rück zu k
-eh-ren. Ge-nau-er: 
+Underfull \hbox (badness 10000) in paragraph at lines 1431--1432
+
  []
 
-[35] [36]
+
+Underfull \hbox (badness 10000) in paragraph at lines 1433--1434
+
+ []
+
+[36] [37] [38pdfTeX warning (ext4): destination with the same identifier (name{
+equation.4.7.21}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1478 \chapter
+               {Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}\...
+]
 Kapitel 5.
 
-Overfull \hbox (74.67157pt too wide) in paragraph at lines 1429--1430
+Overfull \hbox (74.67157pt too wide) in paragraph at lines 1484--1485
 \OML/zplm/m/it/12 y[]$\T1/ppl/m/n/12 (-20) . Sei au-ÿer-dem $\OT1/zplm/m/n/12 
  = (\OT1/ppl/m/n/12 (-20) 0, 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 ^^B \OT1/zplm
 /m/n/12 (\OT1/ppl/m/n/12 (-20) 0, 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 2 \U/fpl
@@ -1613,123 +1630,123 @@ mbb/m/n/12 R[]$\T1/ppl/m/n/12 (-20) .Gegeben ist das Rand-wert-pro-blem
  []
 
 
-Overfull \hbox (4.9124pt too wide) in paragraph at lines 1433--1437
+Overfull \hbox (4.9124pt too wide) in paragraph at lines 1488--1492
 \T1/ppl/m/n/12 (-20) Die ge-wünsch-te Lö-sung soll-te al-so fol-gen-den Gra-phe
 n er-ge-ben: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1440--1441
+Underfull \hbox (badness 10000) in paragraph at lines 1495--1496
 
  []
 
-[37
+[39
 
 
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1477.
+(hyperref)                removing `math shift' on input line 1532.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\omega' on input line 1477.
+(hyperref)                removing `\omega' on input line 1532.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 1477.
+(hyperref)                removing `\begingroup' on input line 1532.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\endgroup' on input line 1477.
+(hyperref)                removing `\endgroup' on input line 1532.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@@over' on input line 1477.
+(hyperref)                removing `\@@over' on input line 1532.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1477.
+(hyperref)                removing `math shift' on input line 1532.
 
-[38pdfTeX warning (ext4): destination with the same identifier (name{table.5.1}
+[40pdfTeX warning (ext4): destination with the same identifier (name{table.5.1}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1487 
+l.1542 
        ]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1488.
+(hyperref)                removing `math shift' on input line 1543.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\omega' on input line 1488.
+(hyperref)                removing `\omega' on input line 1543.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 1488.
+(hyperref)                removing `\begingroup' on input line 1543.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\endgroup' on input line 1488.
+(hyperref)                removing `\endgroup' on input line 1543.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@@over' on input line 1488.
+(hyperref)                removing `\@@over' on input line 1543.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1488.
+(hyperref)                removing `math shift' on input line 1543.
 
-[39pdfTeX warning (ext4): destination with the same identifier (name{table.5.2}
+[41pdfTeX warning (ext4): destination with the same identifier (name{table.5.2}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1522 
+l.1577 
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 5.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1522 
+l.1577 
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 5.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1522 
-       ] [40pdfTeX warning (ext4): destination with the same identifier (name{t
+l.1577 
+       ] [42pdfTeX warning (ext4): destination with the same identifier (name{t
 able.5.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1557 
+l.1612 
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 5.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1557 
+l.1612 
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 5.7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1557 
-       ] [41pdfTeX warning (ext4): destination with the same identifier (name{t
+l.1612 
+       ] [43pdfTeX warning (ext4): destination with the same identifier (name{t
 able.5.8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1602 \chapter
+l.1657 \chapter
                *{ErklÃ¤rung}]
-Underfull \hbox (badness 10000) in paragraph at lines 1607--1608
+Underfull \hbox (badness 10000) in paragraph at lines 1662--1663
 
  []
 
-[42
+[44
 
 
 ] (./arbeit-vorlage.aux)
@@ -1738,11 +1755,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 11836 strings out of 494948
- 172728 string characters out of 1179523
- 307424 words of memory out of 3000000
- 14289 multiletter control sequences out of 15000+50000
- 82600 words of font info for 312 fonts, out of 3000000 for 9000
+ 11842 strings out of 494948
+ 172799 string characters out of 1179523
+ 307417 words of memory out of 3000000
+ 14290 multiletter control sequences out of 15000+50000
+ 82610 words of font info for 312 fonts, out of 3000000 for 9000
  73 hyphenation exceptions out of 8191
  45i,16n,66p,1783b,687s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
@@ -1756,10 +1773,10 @@ type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/palatino/uplb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplr
 8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplr8a.pfb></usr/shar
 e/texmf-texlive/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on arbeit-vorlage.pdf (46 pages, 672866 bytes).
+Output written on arbeit-vorlage.pdf (48 pages, 676195 bytes).
 PDF statistics:
- 846 PDF objects out of 1000 (max. 8388607)
- 765 compressed objects within 8 object streams
- 233 named destinations out of 1000 (max. 500000)
- 50300 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 861 PDF objects out of 1000 (max. 8388607)
+ 778 compressed objects within 8 object streams
+ 238 named destinations out of 1000 (max. 500000)
+ 50308 words of extra memory for PDF output out of 51595 (max. 10000000)
 

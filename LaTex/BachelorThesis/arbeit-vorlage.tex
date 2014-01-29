@@ -1364,25 +1364,53 @@ Auch hier wollen wir noch die Restriktionsmatrix für den eindimensionalen Fall 
 \end{pmatrix}
 \end{equation}
 
+\section{Transformation der Matrix}
+
+Zum Abschluss sollte noch die Matrix $\mat{A}$ vom feinen Gitter auf das grobe Gitter transformiert werden. Befänden wir uns nicht auf dem Einheitsquadrat oder hätte $\mat{A}$ eine nicht so regelmäßige Struktur wie beispielsweise $\mat{A}_{2D}$, dann gilt folgende Transformationsvorschrift:
+
+\begin{equation}
+\mat{A}_{2h} = \mat{R}\mat{A}_{h}\mat{I},
+\end{equation}
+
+mit $\mat{A}_{2h},\mat{A}_{h},\mat{R},\mat{I}$ wie oben.\\
+Da wir uns jedoch auf dem Einheitsquadrat befinden und $\mat{A}_{2D}$ eine günstige Struktur hat, wollen wir dieses Kapitel nicht weiter vertiefen. Lediglich soll angegeben werden, wie $\mat{A}_{2h}$ in unserem Fall nach der Transformation aussieht.
+
+\textbf{Beispiel:}
+
+Sei $N = 7$ die Anzahl der Gitterpunkte in beide Richtungen des feinen Gitters und $\tilde N = 3$ die Anzahl der Gitterpunkte in beide Richtungen des groben Gitters. Außerdem seien $\mat{A}_{2h} \in \mathbb{R}^{9 \times 9}$, $\mat{A}_{h} \in \mathbb{R}^{49 \times 49}$, $\mat{I} \in \mathbb{R}^{49 \times 9}$ und $\mat{R} \in \mathbb{R}^{9 \times 49}$. So folgt:
+
+\begin{equation}
+\mat{R}\mat{A}\mat{I} = \mat{R}
+\begin{pmatrix}
+A_{1} & -Id \\
+-Id & A_{2} & \ddots \\
+ & \ddots & \ddots \\
+ & & A_{6} & -Id\\
+ & & -Id & A_{7}
+\end{pmatrix}
+\mat{I} = 
+\begin{pmatrix}
+A_{1} & -Id \\
+-Id & A_{2} & -Id \\
+ & -Id & A_{3}
+\end{pmatrix}
+\end{equation}
+
 \section{Einführung in die Mehrgittermethoden}
 
-Bisher haben wir gesehen, dass das Jacobi-Relaxationsverfahren als iteratives Verfahren ungeeignet ist. Allerdings besitzt es die Glättungseigenschaft.
-
-Gauss-Seidel- und Jacobi-Verfahren löschen also hochfrequente Fehler in den ersten Itertionsschritten aus. Um die nieder frequenten Fehler zu reduzieren sind allerdings wesentlich mehr Iterationsschritte notwendig. Auch aus diesem Grund finden beide Verfahren bei der Lösung großer, linearer Gleichungssysteme wenig Anwendung. \\
-Auch wenn die hohe Anzahl an notwendigen Iterationen ein deutlicher Nachteil ist, wollen wir im folgenden die Vorteile dieser Methoden ausnutzen. \\%Die Mehrgittermethoden bedienen sich der Auslöschung hochfrequenter Fehler und liefern so eine gute und schnelle Approximation der Lösung von $\mat{A}u=b$. \\
-Wie in\autoref{s.Finite Differenzen} gesehen befinden wir uns bei der Diskretisierung der Poisson-Gleichung auf einem Gebiet $\Omega_{h} = (0,1)^{2}$ der Schrittweite $h = \frac {1} {n}$. Nach der Ausführung von k-Iterationsschritten von Einzel- oder Gesamtschrittverfahren sind auf diesem Gitter die hochfrequenten Fehler $e^{k} = u^{*} - u^{k}$ verschwunden. Nun berechnet man im $k-ten$ Schritt das Residuum $r^{k}$ und führt für das äquivalente lineare Gleichungssystem $\mat{A}e^{k} = r^{k}$, wobei $e^{k} = 0$ gilt, $l$ Iterationsschritte aus. So erhalten wir eine Näherung des Fehlers $e^{k}$. \\
+Wie in\autoref{s.Finite Differenzen} gesehen befinden wir uns bei der Diskretisierung der Poisson-Gleichung auf einem Gebiet $\Omega_{h} = (0,1)^{2}$ der Schrittweite $h = \frac {1} {n}$. Nach der Ausführung von k-Iterationsschritten des Jacobi-Relaxationsverfahren sind auf diesem Gitter die hochfrequenten Fehler $e^{k} = u^{*} - u^{k}$ verschwunden. Nun berechnet man im $k-ten$ Schritt das Residuum $r^{k}$ und führt für das äquivalente lineare Gleichungssystem $\mat{A}e^{k} = r^{k}$, wobei $e^{k} = 0$ gilt, $l$ Iterationsschritte aus. So erhalten wir eine Näherung des Fehlers $e^{k}$. \\
 Stellt man \autoref{eq.Fehler} um, berechnet also $e^{k} + u^{k}$, so erhält man eine neue Näherung der exakten Lösung. \\
 Kombiniert man dieses Vorgehen nun mit dem Wechsel zwischen zwei Gittern der Gitterweite $h$ und $2h$ so erhält man das Zweigitterverfahren:
   % und bringen dieses auf ein gröberes Gitter, z.B. $\Omega_{2h}$ mit der Schrittweite $2h$, könnten wir hier nun mit \autoref{eq.Residuumsgleichung} das Gleichungssystem mit $e_{2h} = 0$ lösen. Der niedrig frequente Fehler in $r^{k}$ wird in $r_{2h}$ so dann zu einem hochfrequenten auf $\Omega_{2h}$ werden. \\
 % Führt man einige Iterationsschritte auf dem groben Gitter aus, bringt den verbleidenden Fehler $e_{2h}^{k}$ wieder zurück auf $\Omega_{h}$ und addiert diesen zur iterierten Lösung $u^{k}$ reduziert sich $e^{k}$. Diese Vorgehensweise führt man nun so lange durch, bis $e{k} \approx 0$.
 
-\section{Der Zweigitter-Algorithmus}\label{s.Der Zweigitter-Algorithmus}
+\section{Das Zweigitterverfahren}\label{s.Der Zweigitter-Algorithmus}
 
-Der Zweigitter-Algorithmus findet in der Praxis zwar wenig Verwendung, allerdings wird die Idee dahinter die Basis für das Mehrgitter-Verfahren sein.
+Nun wollen wir das erste Verfahren der Mehrgittermethoden kennen lernen. Der Zweigitter-Algorithmus bildet die Basis für die Mehrgitterverfahren. Die Idee dahinter ist, zunächste die kurzwelligen Fehler zu eliminieren, dann auf ein gröberes Gitter zu wechseln, auf dem langwellige Fehler zu kurzwelligen Fehlern werden. Dort soll dann die Residuumsgleichung gelöst und auf das feinere Gitter zurück gekehrt werden. Hier findet eine Nachglättung statt. Wiederhole dieses Vorgehen bis zur Konvergenz:
 
 \begin{eqnarray}
 \textbf{while }                                 &u^{k} \ne u^{*} \notag \\
-&\textit{pre-smooth }                         &\textnormal{Jacobi-/Gauss-Seidel-Steps} \notag \\
+&\textit{pre-smooth }                         &\textnormal{JacobiRelaxationMethod} \notag \\
 &\textit{calculate residual }        &r^{k} = b - Au^{k} \notag \\
 &\textit{restrict }                         &r^{k}_{2h}=Rr^{k}_{h} \notag \\
 &                                                                &\mat{A}^{2h} = R\mat{A}^{h}P \notag \\
@@ -1390,35 +1418,62 @@ Der Zweigitter-Algorithmus findet in der Praxis zwar wenig Verwendung, allerding
 &\textit{solve direct }                        &\mat{A}^{2h} e_{2h} = r^{k}_{2h} \notag \\
 &\textit{prolongate }                        &e^{k}_{h} = Pe^{k}_{2h} \notag \\
 &\textit{add error }                        &u^{k}_{h} = u^{k-1}_{h} + e^{k}_{h} \notag \\
-&\textit{smooth (optional) }        &\textnormal{Jacobi-/Gauss-Seidel-Steps} \notag \\
+&\textit{smooth (optional) }        &\textnormal{JacobiRelaxationMethod} \notag \\
 \textbf{end } \notag
 \end{eqnarray}
 
-Zunächst sei erwähnt, dass das Nachglätten optional ist, allerdings einige Vorteile bietet, auf die wir hier nicht genauer eingehen möchten. Bei der Implementierung sollte also auf Nachglättung geachtet werden. \\
-Der klare Nachteil dieser Methode liegt natürlich im direkten Lösen der Residuumsgleichung. Wählen wir ein sehr feines Gebiet $\Omega_{h}$ mit $n = 256$, also $h = \frac {1} {256}$, so liefert das Gebiet $\Omega_{2h}$ immer noch ein Gleichungssystem der Dimension $127^{2}$. Ein System dieser Ordnung zu lösen erfordert Rechenaufwand, der hier nicht erwünscht ist. \\
+Es bleiben zwei Fragen nun unbeantworte:
+\begin{description}
+\item[1.] Wie soll die Residuumsgleichung auf dem gröberen Gitter gelöst werden?
+\item[2.] Wie steht es mit der Konvergenz dieses Verfahrens? Besitzt es die nötige Rechengeschwindigkeit?
+\end{description}
 
-\section{Der Mehrgitter-Algorithmus}\label{s.Mehrgitteralgorithmus}
+Die Antwort auf die Frage nach der Konvergenz werden wir in dieser Arbeit nicht behandeln. Für ein weiteres Studium wird [Saad] empfohlen.\\ \\
 
-Eine bessere Methode ist, das Gitter immer feiner zu machen, bis das System direkt lösbar ist, um dann wieder auf das feinste Gitter zurück zu kehren. Genauer:
+Der klare Nachteil dieser Methode liegt natürlich im direkten Lösen der Residuumsgleichung. Wählen wir ein sehr feines Gebiet $\Omega_{h}$ mit $m = 256$, also $h = \frac {1} {256}$, so liefert das Gebiet $\Omega_{2h}$ immer noch ein Gleichungssystem der Dimension $127^{2}$. Ein System dieser Ordnung zu lösen erfordert großen Rechenaufwand, der in dieser Form nicht erwünscht ist. \\
+
+\section{Mehrgitter-Algorithmen}\label{s.Mehrgitteralgorithmus}
+
+Da also das Lösen der Residuumsgleichung auf dem groben Gitter einen direkten Löser erfordert, der zusätzlichen Rechenaufwand bedeutet, ist der Zweigitter-Algorithmus nicht die Variante, die in der Praxis verwendet wird.
+
+Eine bessere Methode ist, das Gitter immer feiner zu machen, bis das System direkt lösbar ist, um dann wieder auf das feinste Gitter zurück zu kehren. Wir erweitern also das Zweigitterverfahren um Rekursion. Denn ruft sich die Funktion in jedem Iterationsschritt selbst auf und löst direkt, sobald sie auf dem gröbsten Gitter befindet, erhalten wir folgende rekursive Funktion:
 
 \begin{eqnarray}
-\textbf{Multigrid }(u,b)                         & \notag \\
-&\textbf{if }\textit{(finest grid) }&\textnormal{return } u_{finest grid}=\mat{A}^{-1}b \notag \\
+\textbf{V-cycle }(u,b)                         & \notag \\
+&\textbf{if }\textit{(coarsest grid) }&\textnormal{return } u_{finest grid}=\mat{A}^{-1}b \notag \\
 &\textbf{else }                                                & \notag \\
-&\textit{pre-smooth }                                 &\textnormal{Jacobi-/Gauss-Seidel-Steps} \notag \\
+&\textit{pre-smooth }                                 &\textnormal{JacobiRelaxationMethod} \notag \\
 &\textit{calculate residual }                &r^{k} = b - Au^{k} \notag \\
 &\textit{restrict }                                 &r^{k}_{2h}=Rr^{k}_{h} \notag \\
 &                                                                        &\mat{A}^{2h} = R\mat{A}^{h}P \notag \\
-&\textit{recursion }                                &e^{k}_{2h} = \textbf{Multigrid }(0,r^{k}_{2h}) \notag \\
+&\textit{recursion }                                &e^{k}_{2h} = \textbf{V-cycle}(0,r^{k}_{2h}) \notag \\
 &\textit{prolongate }                                &e^{k}_{h} = Pe^{k}_{2h} \notag \\
 &\textit{add error }                                &u^{k}_{h} = u^{k-1}_{h} + e^{k}_{h} \notag \\
-&\textit{smooth }                                        &\textnormal{Jacobi-/Gauss-Seidel-Steps} \notag \\
+&\textit{smooth }                                        &\textnormal{JacobiRelaxationMethod} \notag \\
 &                                                                        &\textnormal{return } u_{h} \notag \\
 \textbf{end}                                                & \notag
 \end{eqnarray}
 
-Nun wollen wir die Idee, die wir in \autoref{s.Der Zweigitter-Algorithmus} entwickelt haben formulieren. Hier unterscheiden wir dann zwischen zwei Methoden: dem \textbf{V-Zyklus} und dem \textbf{W-Zyklus}. \\
-Bei einem V-Zyklus wird geht man pro Iterationsschritt vom feinsten zum gröbsten Gitter und zurück (siehe Bild bla). Bei einem W-Zyklus geht man vom feinsten auf das gröbste Gitter über, prolongiert 
+Dieser Algorithmus ist auch als V-Zyklus bekannt. Wie dieser Name zustande kommt illustriert (Bild V-Zyklus). Nun gibt es eine weitere Variante, den W-Zyklus (illustriert in Bild W-Zyklus):
+
+\begin{eqnarray}
+\textbf{W-cycle }(u,b)                         & \notag \\
+&\textbf{if }\textit{(coarsest grid) }&\textnormal{return } u_{finest grid}=\mat{A}^{-1}b \notag \\
+&\textbf{else }                                                & \notag \\
+&\textit{pre-smooth }                                 &\textnormal{JacobiRelaxationMethod} \notag \\
+&\textit{calculate residual }                &r^{k} = b - Au^{k} \notag \\
+&\textit{restrict }                                 &r^{k}_{2h}=Rr^{k}_{h} \notag \\
+&                                                                        &\mat{A}^{2h} = R\mat{A}^{h}P \notag \\
+&\textit{recursion }                                &e^{k}_{2h} = \textbf{W-cycle}(0,r^{k}_{2h}) \notag \\
+&\textit{recursion }                                &e^{k}_{2h} = \textbf{W-cycle}(0,r^{k}_{2h}) \notag \\
+&\textit{prolongate }                                &e^{k}_{h} = Pe^{k}_{2h} \notag \\
+&\textit{add error }                                &u^{k}_{h} = u^{k-1}_{h} + e^{k}_{h} \notag \\
+&\textit{smooth }                                        &\textnormal{JacobiRelaxationMethod} \notag \\
+&                                                                        &\textnormal{return } u_{h} \notag \\
+\textbf{end}                                                & \notag
+\end{eqnarray}
+
+Man kann zeigen [Briggs/Saad], dass die Mehrgittermethoden einen Rechenaufwand von $\mathcal{O}(n)$ pro Iterationsschritt haben. Somit sind Mehrgitterverfahren effiziente und häufig verwendete Lösungsalgorithmen für lineare Gleichungssysteme. Im letzten Kapitel werden wir nun noch vergleichen, welcher der bisher vorgestellten Algorithmen für unsere Aufgabenstellung gut geeignet ist.
 
 \chapter{Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}\label{c.Vergleich}
 

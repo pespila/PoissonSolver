@@ -55,9 +55,10 @@
 \BOOKMARK [2][-]{subsection.4.2.1}{Interpolationsmatrix}{section.4.2}
 \BOOKMARK [1][-]{section.4.3}{Restriktion}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.3.1}{Restriktionsmatrix}{section.4.3}
-\BOOKMARK [1][-]{section.4.4}{Einf\374hrung in die Mehrgittermethoden}{chapter.4}
-\BOOKMARK [1][-]{section.4.5}{Der Zweigitter-Algorithmus}{chapter.4}
-\BOOKMARK [1][-]{section.4.6}{Der Mehrgitter-Algorithmus}{chapter.4}
+\BOOKMARK [1][-]{section.4.4}{Transformation der Matrix}{chapter.4}
+\BOOKMARK [1][-]{section.4.5}{Einf\374hrung in die Mehrgittermethoden}{chapter.4}
+\BOOKMARK [1][-]{section.4.6}{Das Zweigitterverfahren}{chapter.4}
+\BOOKMARK [1][-]{section.4.7}{Mehrgitter-Algorithmen}{chapter.4}
 \BOOKMARK [0][-]{chapter.5}{Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}{}
 \BOOKMARK [1][-]{section.5.1}{Beispiel einer Poisson Gleichung}{chapter.5}
 \BOOKMARK [1][-]{section.5.2}{Zur Implementierung in C++}{chapter.5}
