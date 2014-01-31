@@ -279,11 +279,12 @@ wobei $\lambda_{1,1},...,\lambda_{N,N} \in \mathbb{R}$ und $v_{i,j} \in \mathbb{
 
 Für $k \in \mathbb{N}$ und $h = \frac {1} {m}$ wie oben, seien $(x_{k},y_{l}) \in \Omega_{h}$ mit $x_{k} := k \cdot h, y_{l} := l \cdot h$ und $\theta_{k} \in \mathbb{R}$ mit $\theta_{k} := k \pi h$. Dann gilt für die Eigenwerte:
 \begin{equation}
-\lambda_{i,j} = 4 \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N,\label{eq.Eigenwerte}
+\lambda_{k,l} = 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2}) \right) \textnormal{ für } 1 \le k,l \le N,\label{eq.Eigenwerte}
 \end{equation}
 Für einen Eigenvektor am Punkt $(x_{k},y_{l})$ gilt:
 \begin{equation}
-v_{i,j}(x_{k},y_{l}) = \sin(i \pi x_{k}) \sin(j \pi y_{l}) \textnormal{ für } 1 \le i,j,k,l \le N.
+v_{k,l} = \sin(i \pi x_{k}) \sin(j \pi y_{l}) = \sin(i\theta_{k}) \sin(j\theta_{l}) \textnormal{ für } 1 \le i,j \le N.
+% v_{i,j}(x_{k},y_{l}) = \sin(i \pi x_{k}) \sin(j \pi y_{l}) \textnormal{ für } 1 \le i,j,k,l \le N.
 \end{equation}
 wobei $N$ jeweils die Anzahl der Gitterpunkte in x- und in y-Richtung definiert.
 
@@ -293,15 +294,15 @@ Ein Eigenvektor im Punkt $(x_{k},y_{l})$ lässt sich auch in der folgenden Form 
 \begin{equation}
 v_{k.l} = 
 \begin{pmatrix}
-\sin(\pi x_{k})\sin(\pi y_{l})\\
-\sin(\pi x_{k})\sin(2 \pi y_{l})\\
+\sin(\theta_{k})\sin(\theta_{l})\\
+\sin(\theta_{k})\sin(2 \theta_{l})\\
 \vdots \\
-\sin(\pi x_{k})\sin(N \pi y_{l})\\
-\sin(2 \pi x_{k})\sin(\pi y_{l})\\
-\sin(2 \pi x_{k})\sin(2 \pi y_{l})\\
+\sin(\theta_{k})\sin(N \theta_{l})\\
+\sin(2 \theta_{k})\sin(\theta_{l})\\
+\sin(2 \theta_{k})\sin(2 \theta_{l})\\
 \vdots\\
-\sin(N \pi x_{k})\sin((N-1) \pi y_{l})\\
-\sin(N \pi x_{k})\sin(N \pi y_{l})
+\sin(N \theta_{k})\sin((N-1) \theta_{l})\\
+\sin(N \theta_{k})\sin(N \theta_{l})
 \end{pmatrix}.
 \end{equation}
 
@@ -379,19 +380,77 @@ Nun rechnen wir jede Zeile unseres Vektors aus:
 \begin{description}
 \item[1.] Zeile $1$, also $i = 1$
 \begin{eqnarray}
-&&-2b\left(\frac{c}{b}\right)^{\frac{1+1}{2}} \cos(\theta_{k})\sin(\theta_{k}) + b \left(\frac{c}{b}\right)^{\frac{1+1}{2}} (\cos(\theta_{k}) \sin(\theta_{k}) + \cos(\theta_{k}) \sin(\theta_{k})) \notag \\
+&& -2b\left(\frac{c}{b}\right)^{\frac{1+1}{2}} \cos(\theta_{k})\sin(\theta_{k}) + b \left(\frac{c}{b}\right)^{\frac{1+1}{2}} (\cos(\theta_{k}) \sin(\theta_{k}) + \cos(\theta_{k}) \sin(\theta_{k})) \notag \\
 &=& c (-2\cos(\theta_{k})\sin(\theta_{k}) + 2\cos(\theta_{k})\sin(\theta_{k})) = 0. \notag
 \end{eqnarray}
 \item[2.] Zeile $2,..,N-1$, betrachte für alle $2 \le i \le N-1$
 \begin{eqnarray}
-
+&& b \left(\frac{c}{b}\right)^{\frac{i+1}{2}} (\cos(\theta_{k}) \sin(i \theta_{k}) - \cos(i \theta_{k}) \sin(\theta_{k})) - 2b\left(\frac{c}{b}\right)^{\frac{i+1}{2}} \cos(\theta_{k})\sin(i \theta_{k}) \notag \\
+&+& b \left(\frac{c}{b}\right)^{\frac{i+1}{2}} (\cos(\theta_{k}) \sin(i \theta_{k}) - \cos(i \theta_{k}) \sin(\theta_{k})) \notag \\
+&=& b \left(\frac{c}{b}\right)^{\frac{i+1}{2}} (-2\cos(\theta_{k})\sin(i\theta_{k}) + 2\cos(\theta_{k})\sin(i\theta_{k}) \notag \\
+&+& \cos(i\theta_{k})\sin(\theta_{k}) - \cos(i\theta_{k})\sin(\theta_{k})) = 0. \notag
 \end{eqnarray}
 \item[3.] Zeile $N$, somit für $i = N$
 \begin{eqnarray}
-&&b \left(\frac{c}{b}\right)^{\frac{N+1}{2}} (\cos(\theta_{k}) \sin(N \theta_{k}) - \cos(N \theta_{k}) \sin(\theta_{k})) - 2b\left(\frac{c}{b}\right)^{\frac{N+1}{2}} \cos(\theta_{k})\sin(N \theta_{k}) \notag \\
+&& b \left(\frac{c}{b}\right)^{\frac{N+1}{2}} (\cos(\theta_{k}) \sin(N \theta_{k}) - \cos(N \theta_{k}) \sin(\theta_{k})) - 2b\left(\frac{c}{b}\right)^{\frac{N+1}{2}} \cos(\theta_{k})\sin(N \theta_{k}) \notag \\
 &=& b \left(\frac{c}{b}\right)^{\frac{N+1}{2}}(-2\cos(\theta_{k})\sin(N\theta_{k}) + \cos(\theta_{k})\sin(N\theta_{k}) - \cos(N\theta_{k})\sin(\theta_{k})) \notag \\
 &=& -b \left(\frac{c}{b}\right)^{\frac{N+1}{2}}(\cos(\theta_{k})\sin(N\theta_{k}) + \cos(N\theta_{k})\sin(\theta_{k})). \notag \\
 &=& -b \left(\frac{c}{b}\right)^{\frac{N+1}{2}} \sin((N+1)\theta_{k}) \overset{h = \frac{1}{N+1}}{=} -b \left(\frac{c}{b}\right)^{\frac{N+1}{2}} \sin(k\pi) = 0. \notag
+\end{eqnarray}
+\end{description}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+Für die Matrizen $A_{i}$ erhalten wir mit $a = 4, b = c = -1$ für die Eigenwerte $\lambda_{k} = 4 (1 - \frac{1}{2} \cos(theta_{k}))$ und die Eigenvektoren $v_{k} = \sin(i\theta_{k})$ für alle $1 \le i \le N$.\\
+Offensichtlich hat auch $-\mat{Id}$ die selben Eigenvektoren wie die $A_{i}$, mit den Eigenwerte $\mu_{k} = -1$, denn
+\begin{equation}
+(-\mat{Id} - \lambda_{k}\mat{Id}) v_{k} = \mat{0} v_{k} = 0.
+\end{equation}
+Nun wollen wir diese Erkenntnisse für unsere Matrix $\mat{A}_{2D} \in \mathbb{R}^{n \times n}$ verwenden. Da diese Matrix ebenfalls eine Tridiagonalmatrix ist, folgt für $a = A_{i}$ und $b,c = -Id$.\\
+Unser gesuchter Eigenvektor in einem Punkt $(x_{k},y_{l})$ war gegeben durch $v_{k,l}) = \sin(i\theta_{k}) \sin(j\theta_{l}) = \sin(j\theta_{l})v_{k}$.  Wegen $\mat{A}_{2D}$ symmetrisch folgt:
+\begin{equation}
+\mat{A}_{2D}v_{k,l} = 
+\begin{pmatrix}
+A_{1} & -Id\\
+-Id & A_{2} & -Id\\
+    & \ddots & \ddots & \ddots\\
+   	&		 & -Id    & A_{n-1} & -Id\\
+   	&		 &		  & -Id    & A_{n}
+\end{pmatrix}
+\begin{pmatrix}
+\sin(\theta_{l}) v_{k}\\
+\sin(2\theta_{l}) v_{k}\\
+\vdots\\
+\sin((N-1)\theta_{l}) v_{k}\\
+\sin(N\theta_{l}) v_{k}\\
+\end{pmatrix}
+= \lambda_{k,l}
+\begin{pmatrix}
+\sin(j\theta_{l}) v_{k}\\
+\sin(2\theta_{l}) v_{k}\\
+\vdots\\
+\sin((N-1)\theta_{l}) v_{k}\\
+\sin(N\theta_{l}) v_{k}\\
+\end{pmatrix}\notag
+\end{equation}
+
+Nun wollen wir wie oben $\mat{A}_{2D} v_{k,l}$ explizit ausrechnen und müssen dafür wieder drei Fälle unterscheiden:
+\begin{description}
+\item[1.] Zeile $1$, also $j = 1$
+\begin{eqnarray}
+&&\Longrightarrow A_{1} \sin(\theta_{l}) v_{k} - Id \sin(2\theta_{l}) v_{k} = \underbrace{A_{1} v_{k}}_{=\lambda_{k} v_{k}} \sin(\theta_{l}) + (\underbrace{-Id v_{k}}_{\mu_{k} v_{k}}) \underbrace{\sin(2\theta_{l})}_{2\cos({\theta_{l})\sin({\theta_{l}})}} \notag \\
+&=& \lambda_{k}v_{k}\sin(\theta_{l}) + 2\mu_{k}v_{k}\cos(\theta_{l})\sin(\theta_{l}) = (\lambda_{k} + 2\mu_{k}\cos(\theta_{l})) \underbrace{v_{k}\sin(\theta_{l})}_{v_{k,l}} \notag \\
+&=& (\lambda_{k} + 2\mu_{k}\cos(\theta_{l}))v_{k,l} = (4(1 - \frac{1}{2}\cos{\theta_{k}}) - 2\cos(\theta_{l})) v_{k,l} \notag \\
+&=& (4 - 2\cos(\theta_{k}) - 2\cos(\theta_{l})) v_{k,l} = (2 - 2\cos(\theta_{k}) + 2 - 2\cos(\theta_{l})) \notag \\
+&=& (2(1 - \frac{1}{2}\cos(\theta_{k})) + 2(1 - \frac{1}{2}\cos(\theta_{l})) = 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) = \lambda_{k,l} v_{k,l} \notag
+\end{eqnarray}
+\item[2.] Zeile $2,..,N-1$, betrachte für alle $2 \le j \le N-1$
+\begin{eqnarray}
+x
+\end{eqnarray}
+\item[3.] Zeile $N$, somit für $j = N$
+\begin{eqnarray}
+x
 \end{eqnarray}
 \end{description}
 
