@@ -8,71 +8,71 @@
 \contentsline {subsection}{\numberline {2.2.2}Diskretisierung von $\Omega $}{3}{subsection.2.2.2}
 \contentsline {section}{\numberline {2.3}Eigenschaften der Matrix $ {\textbf {A}} _{2D}$}{6}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Eigenwerte und Eigenvektoren von $ {\textbf {A}} _{2D}$}{7}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Definition (Kondition einer symmetrischen Matrix)}{8}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Lemma (Kondition von $ {\textbf {A}} _{2D}$)}{8}{subsection.2.3.3}
-\contentsline {chapter}{\numberline {3}Iterative L\IeC {\"o}sungsvefahren f\IeC {\"u}r lineare Gleichungssysteme}{10}{chapter.3}
-\contentsline {section}{\numberline {3.1}Grundbegriffe}{10}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Definition (Iterationsmatrix)}{10}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Definition (Spektralradius)}{10}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Satz (Konvergenz iterativer Verfahren)}{11}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}Definition (Residuum und Fehler)}{11}{subsection.3.1.4}
-\contentsline {section}{\numberline {3.2}Das Jacobi-Verfahren (Gesamtschrittverfahren)}{11}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Algorithmus (Jacobi-Verfahren)}{12}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Satz (Iterationsmatrix des Jacobi-Verfahrens)}{12}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Satz (Eigenwerte der Jacobi-Iterationsmatrix bzgl. $ {\textbf {A}} _{2D}$)}{13}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}Lemma (Spektralradius der Jacobi-Iterationsmatrix bzgl. $ {\textbf {A}} _{2D}$)}{13}{subsection.3.2.4}
-\contentsline {subsection}{\numberline {3.2.5}Algorithmus (Jacobi-Verfahren f\IeC {\"u}r $ {\textbf {A}} _{2D}$)}{14}{subsection.3.2.5}
-\contentsline {section}{\numberline {3.3}Das Jacobi-Relaxationsverfahren}{14}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Algorithmus (Jacobi-Relaxations-Verfahren)}{15}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Satz (Eigenwerte des Jacobi-Relaxationsverfahren bzgl. $ {\textbf {A}} _{2D}$)}{15}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Lemma (Spektralradius der Jacobi-Relaxations-Matrix bzgl. $ {\textbf {A}} _{2D}$)}{15}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}Algorithmus (Jacobi-Relaxations-Verfahren f\IeC {\"u}r $ {\textbf {A}} _{2D}$)}{16}{subsection.3.3.4}
-\contentsline {section}{\numberline {3.4}Gl\IeC {\"a}ttungseigenschaft}{16}{section.3.4}
-\contentsline {section}{\numberline {3.5}Das Verfahren der konjugierten Gradienten}{19}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Definition (A-orthogonal)}{19}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}Satz}{20}{subsection.3.5.2}
-\contentsline {subsection}{\numberline {3.5.3}Lemma - (A-orthogonaler) Projektionssatz}{21}{subsection.3.5.3}
-\contentsline {subsection}{\numberline {3.5.4}Allgemeiner Algorithmus der konjugierten Gradienten}{22}{subsection.3.5.4}
-\contentsline {subsection}{\numberline {3.5.5}Lemma}{23}{subsection.3.5.5}
-\contentsline {subsection}{\numberline {3.5.6}Lemma}{23}{subsection.3.5.6}
-\contentsline {subsection}{\numberline {3.5.7}Lemma}{23}{subsection.3.5.7}
-\contentsline {subsection}{\numberline {3.5.8}Satz (Bestimmung einer A-orthogonalen Basis)}{24}{subsection.3.5.8}
-\contentsline {subsection}{\numberline {3.5.9}Lemma}{24}{subsection.3.5.9}
-\contentsline {subsection}{\numberline {3.5.10}Numerischer Algorithmus der konjugierten Gradienten}{24}{subsection.3.5.10}
-\contentsline {subsection}{\numberline {3.5.11}Satz (Konvergenz des CG-Algorithmus) [DahmenReusken]}{25}{subsection.3.5.11}
-\contentsline {section}{\numberline {3.6}Vorkonditioniertes Verfahren der konjugierten Gradienten (PCG)}{25}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Satz}{26}{subsection.3.6.1}
-\contentsline {subsubsection}{\numberline {3.6.1.1}Beweis:}{26}{subsubsection.3.6.1.1}
-\contentsline {subsection}{\numberline {3.6.2}Der Algorithmus des vorkonditionierten konjugierten Gradienten Verfahrens}{26}{subsection.3.6.2}
-\contentsline {subsection}{\numberline {3.6.3}Die unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{27}{subsection.3.6.3}
-\contentsline {subsubsection}{\numberline {3.6.3.1}Definition (Das Muster E)}{27}{subsubsection.3.6.3.1}
-\contentsline {subsubsection}{\numberline {3.6.3.2}Eigenschaften der Matrix $\mathaccentV {tilde}47E{ {\textbf {L}} }$}{27}{subsubsection.3.6.3.2}
-\contentsline {subsubsection}{\numberline {3.6.3.3}Der numerische Algorithmus der unvollst\IeC {\"a}ndigen Cholesky Zerlegung}{28}{subsubsection.3.6.3.3}
-\contentsline {subsection}{\numberline {3.6.4}Die modifizierte unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{28}{subsection.3.6.4}
-\contentsline {subsubsection}{\numberline {3.6.4.1}Eigenschaften der Matrix $\mathaccentV {tilde}47E{ {\textbf {L}} }$}{28}{subsubsection.3.6.4.1}
-\contentsline {subsubsection}{\numberline {3.6.4.2}Der numerische Algorithmus der modifizierten unvollst\IeC {\"a}ndigen Cholesky-Zerlegung}{29}{subsubsection.3.6.4.2}
-\contentsline {chapter}{\numberline {4}Mehrgitterverfahren}{30}{chapter.4}
-\contentsline {section}{\numberline {4.1}Grundlagen}{30}{section.4.1}
-\contentsline {section}{\numberline {4.2}Prolongation}{31}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Interpolationsmatrix}{31}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Restriktion}{33}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Restriktionsmatrix}{33}{subsection.4.3.1}
-\contentsline {section}{\numberline {4.4}Transformation der Matrix}{34}{section.4.4}
-\contentsline {section}{\numberline {4.5}Einf\IeC {\"u}hrung in die Mehrgittermethoden}{35}{section.4.5}
-\contentsline {section}{\numberline {4.6}Das Zweigitterverfahren}{35}{section.4.6}
-\contentsline {section}{\numberline {4.7}Mehrgitter-Algorithmen}{36}{section.4.7}
-\contentsline {chapter}{\numberline {5}Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}{39}{chapter.5}
-\contentsline {section}{\numberline {5.1}Beispiel einer Poisson Gleichung}{39}{section.5.1}
-\contentsline {section}{\numberline {5.2}Zur Implementierung in C++}{39}{section.5.2}
-\contentsline {section}{\numberline {5.3}Abbruchkriterien}{40}{section.5.3}
-\contentsline {section}{\numberline {5.4}L\IeC {\"o}sung der Poisson Gleichung (Jacobi-Verfahren)}{40}{section.5.4}
-\contentsline {section}{\numberline {5.5}L\IeC {\"o}sung der Poisson Gleichung (Jacobi-Relaxations-Verfahren)}{41}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Parameter $\omega = \frac {1} {2}$}{41}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Parameter $\omega = \frac {4} {5}$}{41}{subsection.5.5.2}
-\contentsline {section}{\numberline {5.6}CG-Verfahren angewandt auf das Beispiel}{41}{section.5.6}
-\contentsline {section}{\numberline {5.7}PCG-Verfahren angewandt auf das Beispiel}{42}{section.5.7}
-\contentsline {subsection}{\numberline {5.7.1}Unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{42}{subsection.5.7.1}
-\contentsline {subsection}{\numberline {5.7.2}Modifizierte unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{42}{subsection.5.7.2}
-\contentsline {section}{\numberline {5.8}Das Mehrgitterverfahren angewandt auf das Beispiel}{42}{section.5.8}
-\contentsline {subsection}{\numberline {5.8.1}V-Zyklus}{42}{subsection.5.8.1}
-\contentsline {subsection}{\numberline {5.8.2}W-Zyklus}{43}{subsection.5.8.2}
+\contentsline {subsection}{\numberline {2.3.2}Definition (Kondition einer symmetrischen Matrix)}{10}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Lemma (Kondition von $ {\textbf {A}} _{2D}$)}{10}{subsection.2.3.3}
+\contentsline {chapter}{\numberline {3}Iterative L\IeC {\"o}sungsvefahren f\IeC {\"u}r lineare Gleichungssysteme}{12}{chapter.3}
+\contentsline {section}{\numberline {3.1}Grundbegriffe}{12}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Definition (Iterationsmatrix)}{12}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Definition (Spektralradius)}{12}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Satz (Konvergenz iterativer Verfahren)}{13}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Definition (Residuum und Fehler)}{13}{subsection.3.1.4}
+\contentsline {section}{\numberline {3.2}Das Jacobi-Verfahren (Gesamtschrittverfahren)}{13}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Algorithmus (Jacobi-Verfahren)}{14}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Satz (Iterationsmatrix des Jacobi-Verfahrens)}{14}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Satz (Eigenwerte der Jacobi-Iterationsmatrix bzgl. $ {\textbf {A}} _{2D}$)}{15}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Lemma (Spektralradius der Jacobi-Iterationsmatrix bzgl. $ {\textbf {A}} _{2D}$)}{15}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}Algorithmus (Jacobi-Verfahren f\IeC {\"u}r $ {\textbf {A}} _{2D}$)}{16}{subsection.3.2.5}
+\contentsline {section}{\numberline {3.3}Das Jacobi-Relaxationsverfahren}{16}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Algorithmus (Jacobi-Relaxations-Verfahren)}{17}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Satz (Eigenwerte des Jacobi-Relaxationsverfahren bzgl. $ {\textbf {A}} _{2D}$)}{17}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Lemma (Spektralradius der Jacobi-Relaxations-Matrix bzgl. $ {\textbf {A}} _{2D}$)}{17}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Algorithmus (Jacobi-Relaxations-Verfahren f\IeC {\"u}r $ {\textbf {A}} _{2D}$)}{18}{subsection.3.3.4}
+\contentsline {section}{\numberline {3.4}Gl\IeC {\"a}ttungseigenschaft}{18}{section.3.4}
+\contentsline {section}{\numberline {3.5}Das Verfahren der konjugierten Gradienten}{21}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Definition (A-orthogonal)}{21}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Satz}{22}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}Lemma - (A-orthogonaler) Projektionssatz}{23}{subsection.3.5.3}
+\contentsline {subsection}{\numberline {3.5.4}Allgemeiner Algorithmus der konjugierten Gradienten}{24}{subsection.3.5.4}
+\contentsline {subsection}{\numberline {3.5.5}Lemma}{25}{subsection.3.5.5}
+\contentsline {subsection}{\numberline {3.5.6}Lemma}{25}{subsection.3.5.6}
+\contentsline {subsection}{\numberline {3.5.7}Lemma}{25}{subsection.3.5.7}
+\contentsline {subsection}{\numberline {3.5.8}Satz (Bestimmung einer A-orthogonalen Basis)}{26}{subsection.3.5.8}
+\contentsline {subsection}{\numberline {3.5.9}Lemma}{26}{subsection.3.5.9}
+\contentsline {subsection}{\numberline {3.5.10}Numerischer Algorithmus der konjugierten Gradienten}{26}{subsection.3.5.10}
+\contentsline {subsection}{\numberline {3.5.11}Satz (Konvergenz des CG-Algorithmus) [DahmenReusken]}{27}{subsection.3.5.11}
+\contentsline {section}{\numberline {3.6}Vorkonditioniertes Verfahren der konjugierten Gradienten (PCG)}{27}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Satz}{28}{subsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.1.1}Beweis:}{28}{subsubsection.3.6.1.1}
+\contentsline {subsection}{\numberline {3.6.2}Der Algorithmus des vorkonditionierten konjugierten Gradienten Verfahrens}{28}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}Die unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{29}{subsection.3.6.3}
+\contentsline {subsubsection}{\numberline {3.6.3.1}Definition (Das Muster E)}{29}{subsubsection.3.6.3.1}
+\contentsline {subsubsection}{\numberline {3.6.3.2}Eigenschaften der Matrix $\mathaccentV {tilde}47E{ {\textbf {L}} }$}{29}{subsubsection.3.6.3.2}
+\contentsline {subsubsection}{\numberline {3.6.3.3}Der numerische Algorithmus der unvollst\IeC {\"a}ndigen Cholesky Zerlegung}{30}{subsubsection.3.6.3.3}
+\contentsline {subsection}{\numberline {3.6.4}Die modifizierte unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{30}{subsection.3.6.4}
+\contentsline {subsubsection}{\numberline {3.6.4.1}Eigenschaften der Matrix $\mathaccentV {tilde}47E{ {\textbf {L}} }$}{30}{subsubsection.3.6.4.1}
+\contentsline {subsubsection}{\numberline {3.6.4.2}Der numerische Algorithmus der modifizierten unvollst\IeC {\"a}ndigen Cholesky-Zerlegung}{31}{subsubsection.3.6.4.2}
+\contentsline {chapter}{\numberline {4}Mehrgitterverfahren}{32}{chapter.4}
+\contentsline {section}{\numberline {4.1}Grundlagen}{32}{section.4.1}
+\contentsline {section}{\numberline {4.2}Prolongation}{33}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Interpolationsmatrix}{33}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}Restriktion}{35}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Restriktionsmatrix}{35}{subsection.4.3.1}
+\contentsline {section}{\numberline {4.4}Transformation der Matrix}{36}{section.4.4}
+\contentsline {section}{\numberline {4.5}Einf\IeC {\"u}hrung in die Mehrgittermethoden}{37}{section.4.5}
+\contentsline {section}{\numberline {4.6}Das Zweigitterverfahren}{37}{section.4.6}
+\contentsline {section}{\numberline {4.7}Mehrgitter-Algorithmen}{38}{section.4.7}
+\contentsline {chapter}{\numberline {5}Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}{41}{chapter.5}
+\contentsline {section}{\numberline {5.1}Beispiel einer Poisson Gleichung}{41}{section.5.1}
+\contentsline {section}{\numberline {5.2}Zur Implementierung in C++}{41}{section.5.2}
+\contentsline {section}{\numberline {5.3}Abbruchkriterien}{42}{section.5.3}
+\contentsline {section}{\numberline {5.4}L\IeC {\"o}sung der Poisson Gleichung (Jacobi-Verfahren)}{42}{section.5.4}
+\contentsline {section}{\numberline {5.5}L\IeC {\"o}sung der Poisson Gleichung (Jacobi-Relaxations-Verfahren)}{43}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Parameter $\omega = \frac {1} {2}$}{43}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Parameter $\omega = \frac {4} {5}$}{43}{subsection.5.5.2}
+\contentsline {section}{\numberline {5.6}CG-Verfahren angewandt auf das Beispiel}{43}{section.5.6}
+\contentsline {section}{\numberline {5.7}PCG-Verfahren angewandt auf das Beispiel}{44}{section.5.7}
+\contentsline {subsection}{\numberline {5.7.1}Unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{44}{subsection.5.7.1}
+\contentsline {subsection}{\numberline {5.7.2}Modifizierte unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{44}{subsection.5.7.2}
+\contentsline {section}{\numberline {5.8}Das Mehrgitterverfahren angewandt auf das Beispiel}{44}{section.5.8}
+\contentsline {subsection}{\numberline {5.8.1}V-Zyklus}{44}{subsection.5.8.1}
+\contentsline {subsection}{\numberline {5.8.2}W-Zyklus}{45}{subsection.5.8.2}

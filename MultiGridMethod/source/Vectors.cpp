@@ -89,10 +89,10 @@ void PoissonVector2D::WriteToFile(const vector<double>& x) {
         for(int i=0,k=0;i<=this->n;i++) {
             for(int j=0;j<=this->n;j++) {
                 if(i==0) {
-                    fprintf(file, "%f %d %f\n", (double)j/(double)n,i,g(j*h,i));
+                    // fprintf(file, "%f %d %f\n", (double)j/(double)n,i,g(j*h,i));
                 } else if(i!=0) {
                     if(j==0) {
-                        fprintf(file, "%d %f %f\n", j,(double)i/(double)n,g(j,i*h));
+                        // fprintf(file, "%d %f %f\n", j,(double)i/(double)n,g(j,i*h));
                     } else if(j!=0){
                         fprintf(file, "%f %f %f\n", (double)j/(double)n,(double)i/(double)n,x[k]);
                         k++;

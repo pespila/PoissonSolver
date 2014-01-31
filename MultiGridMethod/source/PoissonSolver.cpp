@@ -18,6 +18,19 @@ int main(int argc, char const *argv[]) {
     double time,start=0.0,end=0.0;
     start=clock();
 
+    // std::vector<double> e(arg*arg);
+    // for(int i=1,k=0;i<=arg;i++) {
+    //     for(int j=1;j<=arg;j++,k++) {
+    //         e[k]=g((double)i/(double)(arg+1),(double)j/(double)(arg+1));
+    //     }
+    // }
+
+    // // V.WriteToFile(e);
+
+    // Run.JacobiRelaxationMethod(A,x,b,250);
+    // e=e-x;
+    // V.WriteToFile(e);
+
     Run.MultiGridMethod(A,x,b);
     
     end=clock();
