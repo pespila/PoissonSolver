@@ -269,7 +269,7 @@ Wir erhalten das lineare Gleichungssystem der Form $\mat{A}u = f$, wobei $\mat{A
 
 \section{Eigenschaften der Matrix $\mat{A}_{2D}$}\label{s.Eigenwerte und Eigenvektoren}
 
-Da $\mat{A}_{2D} \in \mathbb{R}^{n \times n}$ s.p.d. ist, existiert eine Orthogonalbasis aus Eigenvektoren für die gilt:
+Offensichtlich gilt $\mat{A}_{2D} = \mat{A}_{2D}^{T}$. Also ist $\mat{A}_{2D} \in \mathbb{R}^{n \times n}$ eine symmetrische Matrix. Somit existiert eine Orthogonalbasis aus Eigenvektoren für die gilt:
 \begin{equation}
 \mat{A}_{2D}v_{i,j} = \lambda_{i,j} v_{i,j},
 \end{equation}
@@ -305,6 +305,18 @@ v_{k.l} =
 \sin(N \theta_{k})\sin(N \theta_{l})
 \end{pmatrix}.
 \end{equation}
+
+\textbf{Beispiel:}
+
+Um sich die Eigenvektoren besser vorstellen zu können, wollen wir zunächst drei Eigenvektoren des eindimensionalen Poisson Problems, auf das wir hier nicht näher eingehen möchten, betrachten:
+
+\bild{sin1}{8cm}{Für Faktor 1}{Für Faktor 1}
+\bild{sin7}{8cm}{Für Faktor 7}{Für Faktor 7}
+\bild{sin13}{8cm}{Für Faktor 13}{Für Faktor 13}
+
+Man sieht deutlich, das die Oszillation unterschiedlich ist. Manche der Eigenvektoren sind langwellig, manche enorm kurzwellig. Wenn wir nun zurück zu unserer Ausgangssituation des zweidimensionalen Poisson Problems gehen und das Gitter aus \autoref{img.gridWithNumbers} als Basis nehmen, erhalten wir für den Punkt 11 des Gitters folgende Darstellung des Eigenvektors:
+
+\bild{EV}{14cm}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}\label{img.Jacobi1}
 
 \textbf{Beweis:}
 
@@ -468,37 +480,46 @@ $\blacksquare$
 
 \subsection{Folgerung ($\mat{A}_{2D}$ ist s.p.d.)}
 
-\textbf{Beispiel:}
+Für für die Eigenwerte gilt $\lambda_{k,l} \in \mathbb{R}_{> 0}$, d.h. $\mat{A}_{2D}$ ist symmetrisch positiv definit.
 
-Um sich einen Eigenvektor besser vorstellen zu können, betrachten wir als Beispiel $v_{3,3} \in \mathbb{R}^{16}$ auf dem Gitter aus \autoref{img.gridWithNumbers} (Punkt "11").
+\textbf{Beweis:}
 
-\bild{EV}{14cm}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}\label{img.Jacobi1}
+Mit $\sin^{2}(x) \in [0,1]$ für $x \in [0,p\i]$ und $0 < \frac{\pi h}{2} < \pi$ gilt:
+\begin{equation}
+\lambda_{k,l} = 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) > 0.
+\end{equation}
+Zudem gilt wegen $h = \frac{1}{m}$:
+\begin{eqnarray}
+\lambda_{min} &=& \lambda_{1,1} = 8\sin^{2}(\frac{\pi h}{2}) \\ \label{eq.Lambda min}
+\lambda_{max} &=& \lambda_{N,N} = 8\sin^{2}(\frac{N\pi h}{2}) \overset{\substack{h=\frac {1} {m}, \\N=m-1}}{=} 8\sin^{2}(\frac{(m-1)\pi}{2m}) \notag \\
+&=& 8\sin^{2}(\frac{\pi}{2} - \frac{\pi}{2m}) = 8\sin^{2}(\frac{\pi}{2} - \frac{\pi h}{2}) \notag \\
+&=& 8(\sin(\frac{\pi}{2}\cos(\frac{\pi h}{2})) - \cos(\frac{\pi h}{2})\sin(\frac{\pi}{2}))^{2} = 8\cos^{2}(\frac{\pi h}{2}) \label{eq.Lambda max}
+\end{eqnarray}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
 
 \subsection{Definition (Kondition einer symmetrischen Matrix)}\label{ss.Definition Kondition einer Matrix}
 
 Sei $\mat{A}$ eine symmetrische Matrix des $\mathbb{R}^{n \times n}$. Dann gilt für die euklidische Kondition der Matrix:
 \begin{equation}
-\kappa_{2} (A) := \frac {\lambda_{max}} {\lambda_{min}}.\label{eq.Kondition}
+\kappa_{2} (A) := \frac {\lambda_{max}} {\lambda_{min}} \ge 1.\label{eq.Kondition}
 \end{equation}
+Je kleiner die Konditionszahl $\kappa$, desto besser ist eine Matrix konditioniert.
 
 \subsection{Lemma (Kondition von $\mat{A}_{2D}$)}\label{ss.Matrixkondition}
 
-Für die Matrix $\mat{A}_{2D}$ gilt für ihre Kondition:
+Für die Kondition der Matrix $\mat{A}_{2D}$ gilt:
 \begin{equation}
-\kappa_{2} (A_{2D}) = \frac {\cos^{2}(\frac{\pi h}{2})} {\sin^{2}(\frac{\pi h}{2})} = \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2})).
+\kappa_{2} (A_{2D}) = \frac {\cos^{2}(\frac{\pi h}{2})} {\sin^{2}(\frac{\pi h}{2})}.
 \end{equation}
 
 \textbf{Beweis:}
 
-Da $\mat{A}_{2D}$ s.p.d. ist, gilt mit \autoref{eq.Kondition}: $\kappa_{2} (A_{2D}) = \frac {\lambda_{max}} {\lambda_{min}}$. Für die Eigenwerte gilt aus \autoref{ss.Eigenwerte und Eigenvektoren}:
+Aus \autoref{eq.Lambda min} und \autoref{eq.Lambda max} folgt:
 \begin{equation}
-\lambda_{i,j} = 4 \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N. \notag
+\kappa_{2} (A_{2D}) = \frac {\lambda_{N,N}} {\lambda_{1,1}} = \frac {\cos^{2} (\frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})}. \notag
 \end{equation}
-Dann folgt:
-\begin{eqnarray}
-\kappa_{2} (A_{2D}) &=& \frac {\lambda_{N,N}} {\lambda_{1,1}} = \frac {4(2\sin^{2}(\frac {N \pi h} {2}))} {4(2\sin^{2}(\frac {\pi h} {2}))} \overset{\substack{h=\frac {1} {m}, \\ N=m-1}}{=} \frac {\sin^{2}(\frac {(m-1) \pi} {2m})} {\sin^{2}(\frac {\pi h} {2})} \notag \\
-&=& \frac {\sin^{2} (\frac {\pi} {2} - \frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})} \overset{Additionstheoreme}{=} \frac {\cos^{2} (\frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})}. \notag
-\end{eqnarray}
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
@@ -514,7 +535,7 @@ Zur Erinnerung: $h := \frac {1} {m}$. Je größer $m$ gewählt wird, desto schle
 \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2})) = \left( \frac {2} {\pi \frac {1} {m}} \right)^{2} (1 + \mathcal{O}(\frac {1} {m^{2}})) \approx \frac {4m^{2}} {\pi}.
 \end{equation}
 
-Für ein großes $m$, also ein feines Gitter, wird die Kondition sehr groß.
+Für ein großes $m$, also ein feines Gitter, wird die Kondition sehr groß. Dies führt uns auf ein schlecht konditioniertes Problem.
 
 \chapter{Iterative Lösungsvefahren für lineare Gleichungssysteme}\label{c.IterativeVerfahren}
 
@@ -1442,6 +1463,8 @@ Für den Fall einer eindimensionalen Poisson Matrix hätte $\mat{I}$ folgende Da
 \end{equation}
 Hier ist $\mat{I} \in \mathbb{R}^{N \times \tilde N}$.
 
+\bild{interpolation}{12cm}{Bei der Interpolation bedienen sich die Punkte vom feinen Gitter, den gewichteten Punkten des groben Gitters.}{Bei der Interpolation bedienen sich die Punkte vom feinen Gitter, den gewichteten Punkten des groben Gitters.}
+
 % \bild{Restriktionsoperator}{14cm}{bla}{bla}\label{img.Restriktion}
 
 Für das Umsetzen in Programmcode ist es natürlich ungünstig eine komplette Matrix-Vektor-Multiplikation zu implementieren, zumal eine Matrix dieser Größe enorm viel Speicherplatz erfordert. Aus diesem Grund lässt sich die Interpolation auch in Komponentenschreibweise schreiben:
@@ -1508,6 +1531,8 @@ Für ein $u_{2h}$ auf $\Omega_{2h}$ gilt:
 \begin{equation}
 u_{2h}^{i,j} = \frac {1} {16} (4u_{h}^{i,j}+2(u_{h}^{i+1,j}+u_{h}^{i-1,j}+u_{h}^{i,j+1}+u_{h}^{i,j-1})+u_{h}^{i-1,j-1}+u_{h}^{i-1,j+1}+u_{h}^{i+1,j+1}+u_{h}^{i+1,j-1})
 \end{equation}
+
+\bild{restrict}{12cm}{Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte schön veranschaulicht.}{Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte schön veranschaulicht.}\label{img.restrict}
 
 \textbf{Bemerkung:}
 
