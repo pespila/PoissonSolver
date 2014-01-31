@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {2.3}Eigenschaften der Matrix $ {\textbf {A}} _{2D}$}{6}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Eigenwerte und Eigenvektoren von $ {\textbf {A}} _{2D}$}{7}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Definition (Kondition einer symmetrischen Matrix)}{11}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Lemma (Kondition von $ {\textbf {A}} _{2D}$)}{11}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.3}Lemma (Kondition von $ {\textbf {A}} _{2D}$)}{12}{subsection.2.3.3}
 \contentsline {chapter}{\numberline {3}Iterative L\IeC {\"o}sungsvefahren f\IeC {\"u}r lineare Gleichungssysteme}{13}{chapter.3}
 \contentsline {section}{\numberline {3.1}Grundbegriffe}{13}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Definition (Iterationsmatrix)}{13}{subsection.3.1.1}

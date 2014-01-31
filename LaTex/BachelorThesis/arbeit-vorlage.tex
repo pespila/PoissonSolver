@@ -406,7 +406,7 @@ Offensichtlich hat auch $-\mat{Id}$ die selben Eigenvektoren wie die $A_{i}$, mi
 \begin{equation}
 (-\mat{Id} - \lambda_{k}\mat{Id}) v_{k} = \mat{0} v_{k} = 0.
 \end{equation}
-Nun wollen wir diese Erkenntnisse für unsere Matrix $\mat{A}_{2D} \in \mathbb{R}^{n \times n}$ verwenden. Da diese Matrix ebenfalls eine Tridiagonalmatrix ist, folgt für $a = A_{i}$ und $b,c = -Id$.\\
+Nun wollen wir diese Erkenntnisse für unsere Matrix $\mat{A}_{2D} \in \mathbb{R}^{n \times n}$ verwenden. Da diese Matrix ebenfalls eine Tridiagonalmatrix ist, folgt für $a = A_{j}$ und $b,c = -Id$.\\
 Unser gesuchter Eigenvektor in einem Punkt $(x_{k},y_{l})$ war gegeben durch $v_{k,l}) = \sin(i\theta_{k}) \sin(j\theta_{l}) = \sin(j\theta_{l})v_{k}$.  Wegen $\mat{A}_{2D}$ symmetrisch folgt:
 \begin{equation}
 \mat{A}_{2D}v_{k,l} = 
@@ -440,19 +440,33 @@ Nun wollen wir wie oben $\mat{A}_{2D} v_{k,l}$ explizit ausrechnen und müssen d
 \begin{eqnarray}
 &&\Longrightarrow A_{1} \sin(\theta_{l}) v_{k} - Id \sin(2\theta_{l}) v_{k} = \underbrace{A_{1} v_{k}}_{=\lambda_{k} v_{k}} \sin(\theta_{l}) + (\underbrace{-Id v_{k}}_{\mu_{k} v_{k}}) \underbrace{\sin(2\theta_{l})}_{2\cos({\theta_{l})\sin({\theta_{l}})}} \notag \\
 &=& \lambda_{k}v_{k}\sin(\theta_{l}) + 2\mu_{k}v_{k}\cos(\theta_{l})\sin(\theta_{l}) = (\lambda_{k} + 2\mu_{k}\cos(\theta_{l})) \underbrace{v_{k}\sin(\theta_{l})}_{v_{k,l}} \notag \\
-&=& (\lambda_{k} + 2\mu_{k}\cos(\theta_{l}))v_{k,l} = (4(1 - \frac{1}{2}\cos{\theta_{k}}) - 2\cos(\theta_{l})) v_{k,l} \notag \\
+&=& (\lambda_{k} + 2\mu_{k}\cos(\theta_{l}))v_{k,l} \overset{\textnormal{ einsetzen von } \lambda_{k},\mu_{k}}{=} (4(1 - \frac{1}{2}\cos{\theta_{k}}) - 2\cos(\theta_{l})) v_{k,l} \notag \\
 &=& (4 - 2\cos(\theta_{k}) - 2\cos(\theta_{l})) v_{k,l} = (2 - 2\cos(\theta_{k}) + 2 - 2\cos(\theta_{l})) \notag \\
 &=& (2(1 - \frac{1}{2}\cos(\theta_{k})) + 2(1 - \frac{1}{2}\cos(\theta_{l})) = 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) = \lambda_{k,l} v_{k,l} \notag
 \end{eqnarray}
 \item[2.] Zeile $2,..,N-1$, betrachte für alle $2 \le j \le N-1$
 \begin{eqnarray}
-x
+&&\Longrightarrow -Id v_{k} \sin((j-1) \theta_{l}) + A_{j} v_{k} \sin(j\theta_{l}) - Id v_{k} \sin((j+1) \theta_{l}) \notag \\
+&=& \mu_{k} v_{k} (\sin(j\theta_{l})\cos(\theta_{l}) - \cos(j\theta_{l})\sin(\theta_{l})) + \lambda_{k} v_{k} \sin(j\theta_{l}) \notag \\
+&-& \mu_{k} v_{k} (\sin(j\theta_{l})\cos(\theta_{l}) + \cos(j\theta_{l})\sin(\theta_{l})) \notag \\
+&=& 2 \mu_{k} v_{k} \sin(j\theta_{l})\cos(\theta_{l}) + \lambda_{k} v_{k} \sin(j\theta_{l}) = (\lambda_{k} + \mu_{k} \cos(\theta_{l})) \sin(j\theta_{l}) v_{k} \notag \\
+&=& (\lambda_{k} + \mu_{k} \cos(\theta_{l})) \sin(j\theta_{l}) v_{k,l} \overset{\textnormal{ wie oben }}{=} 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) = \lambda_{k,l} v_{k,l} \notag
 \end{eqnarray}
 \item[3.] Zeile $N$, somit für $j = N$
 \begin{eqnarray}
-x
+&&\Longrightarrow -Id v_{k} \sin((N-1)\theta_{l}) + A_{N} v_{k} \sin(N \theta_{l}) \notag \\
+&=& \mu_{k} v_{k} (\sin((N-1)\theta_{l}) + \underbrace{\sin((N+1)\theta_{l})}_{= 0}) + \lambda_{k} v_{k} \sin(N\theta_{l}) \notag \\
+&=& \mu_{k} v_{k} (\sin(N\theta_{l})\cos(\theta_{l}) - \cos(N\theta_{l})\sin(\theta_{l}) + \sin(N\theta_{l})\cos(\theta_{l}) \notag \\
+&+& \cos(N\theta_{l})\sin(\theta_{l})) + \lambda_{k} v_{k} \sin(N \theta_{l}) = 2\mu_{k} v_{k} \sin(N\theta_{l})cos(\theta_{l}) + \lambda_{k} v_{k} \sin(N\theta_{l}) \notag \\
+&=& (\lambda_{k} + 2\mu_{k}\cos(\theta_{l})) \sin(N\theta_{l}) v_{k} \overset{\textnormal{ wie oben }}{=} 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) = \lambda_{k,l} v_{k,l} \notag
 \end{eqnarray}
 \end{description}
+Also sind die $\lambda_{k,l}$ Eigenwerte von $\mat{A}_{2D}$ zu den Eigenvektoren $v_{k,l}$.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+\subsection{Folgerung ($\mat{A}_{2D}$ ist s.p.d.)}
 
 \textbf{Beispiel:}
 
