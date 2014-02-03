@@ -9,14 +9,6 @@ Algorithms::Algorithms(int n) {
 Algorithms::~Algorithms() {
 }
 
-double Algorithms::vectorNorm(const vector<double>& x) {
-    double norm=0.0;
-    for(int i=0;i<dim;i++) {
-        norm+=pow(x[i],2);
-    }
-    return sqrt(norm);
-}
-
 void Algorithms::JacobiMethod(Matrix& A, vector<double>& x, const vector<double>& b, int steps) {
     for(int j=0;j<steps;j++) {
         x+=1.0/4.0*(b-A*x);
@@ -31,60 +23,15 @@ void Algorithms::JacobiRelaxationMethod(Matrix& A, vector<double>& x, const vect
 }
 
 void Algorithms::JacobiRelaxationSolver(Matrix& A,vector<double>& x,const vector<double>& b) {
-    // double TOL=vectorNorm(A*x);
-    // while(TOL<vectorNorm(A*x)) {
-        x+=1.0/4.0*(b-A*x);
-        // x+=1.0/4.0*(b-A*x);
-        // steps++;
-    // }
-    // printf("JacobianSteps: %d\n", steps);
+    vector<double> r(x.size(),0);
+    r=b-A*x;
+    double TOL=(r|r)*pow(10,-3);
+    double omega=4.0/5.0;
+    while(TOL<=(r|r)) {
+        x+=omega*1.0/4.0*r;
+        r=b-A*x;
+    }
 }
-
-// void Algorithms::GaussSeidelMethod(Matrix& A, vector<double>& x, const vector<double>& b, int steps) {
-//     double sum;
-//     int dim=A.Size();
-
-//     for(int j=0;j<steps;j++) {
-//         for(int i=0;i<dim;i++) {
-//             sum=0.0;
-//             if(i==0) {
-//                 sum=x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-//             } else if(i!=0 && i<n) {
-//                 sum=x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-//             } else if(i>=n && i<dim-n) {
-//                 sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-//             } else if(i!=dim-1 && i>=dim-n) {
-//                 sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1);
-//             } else if(i==dim-1) {
-//                 sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1);
-//             }
-//             x[i]=1.0/A.Get(i,i)*(b[i]-sum);
-//         }
-//     }
-// }
-
-// void Algorithms::SORMethod(Matrix& A, vector<double>& x, const vector<double>& b, int steps) {
-//     double sum,Pi=3.141592654,omega=2/(1+sqrt(1-pow(cos(Pi*h),2)));
-//     int dim=A.Size();
-
-//     for(int j=0;j<steps;j++) {
-//         for(int i=0;i<dim;i++) {
-//             sum=0.0;
-//             if(i==0) {
-//                 sum=x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-//             } else if(i!=0 && i<n) {
-//                 sum=x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-//             } else if(i>=n && i<dim-n) {
-//                 sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1)+x[i+n]*A.Get(i,i+n);
-//             } else if(i!=dim-1 && i>=dim-n) {
-//                 sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1)+x[i+1]*A.Get(i,i+1);
-//             } else if(i==dim-1) {
-//                 sum=x[i-n]*A.Get(i,i-n)+x[i-1]*A.Get(i,i-1);
-//             }
-//             x[i]=omega*1.0/A.Get(i,i)*(b[i]-sum)+(1-omega)*x[i];
-//         }
-//     }
-// }
 
 void Algorithms::Restriction(const vector<double>& r,vector<double>& r2h,int n) {
     for(int i=1,l=0,k=0;i<=n;i++) {
@@ -111,53 +58,53 @@ void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,int n
         for(int j=1;j<=n;j++,k++) {
             if(i%2==0 && j%2!=0) {
                 if(j!=1 && j!=n) {
-                    E[k]=(double)1/(double)2*(E[k-1]+E[k+1]);
+                    E[k]=1.0/2.0*(E[k-1]+E[k+1]);
                 }
                 if(j==1) {
-                    E[k]=(double)1/(double)2*(E[k+1]);
+                    E[k]=1.0/2.0*(E[k+1]);
                 }
                 if(j==n) {
-                    E[k]=(double)1/(double)2*(E[k-1]);
+                    E[k]=1.0/2.0*(E[k-1]);
                 }
             }
             if(i%2!=0 && j%2==0) {
                 if(i!=1 && i!=n) {
-                    E[k]=(double)1/(double)2*(E[k-n]+E[k+n]);
+                    E[k]=1.0/2.0*(E[k-n]+E[k+n]);
                 }
                 if(i==1) {
-                    E[k]=(double)1/(double)2*(E[k+n]);
+                    E[k]=1.0/2.0*(E[k+n]);
                 }
                 if(i==n) {
-                    E[k]=(double)1/(double)2*(E[k-n]);
+                    E[k]=1.0/2.0*(E[k-n]);
                 }
             }
             if(i%2!=0 && j%2!=0) {
                 if(i!=1 && j!=1 && i!=n && j!=n) {
-                    E[k]=(double)1/(double)4*(E[k+n-1]+E[k+n+1]+E[k-n+1]+E[k-n-1]);
+                    E[k]=1.0/4.0*(E[k+n-1]+E[k+n+1]+E[k-n+1]+E[k-n-1]);
                 }
                 if(i==1 && j==1) {
-                    E[k]=(double)1/(double)4*(E[k+n+1]);
+                    E[k]=1.0/4.0*(E[k+n+1]);
                 }
                 if(i==n && j==n) {
-                    E[k]=(double)1/(double)4*(E[k-n-1]);
+                    E[k]=1.0/4.0*(E[k-n-1]);
                 }
                 if(i==1 && j==n) {
-                    E[k]=(double)1/(double)4*(E[k-n+1]);
+                    E[k]=1.0/4.0*(E[k-n+1]);
                 }
                 if(i==n && j==1) {
-                    E[k]=(double)1/(double)4*(E[k+n-1]);
+                    E[k]=1.0/4.0*(E[k+n-1]);
                 }
                 if(i==1 && j!=1 && j!=n) {
-                    E[k]=(double)1/(double)4*(E[k+n+1]+E[k+n-1]);
+                    E[k]=1.0/4.0*(E[k+n+1]+E[k+n-1]);
                 }
                 if(i==n && j!=1 && j!=n) {
-                    E[k]=(double)1/(double)4*(E[k-n-1]+E[k-n+1]);
+                    E[k]=1.0/4.0*(E[k-n-1]+E[k-n+1]);
                 }
                 if(j==1 && i!=1 && i!=n) {
-                    E[k]=(double)1/(double)4*(E[k+n+1]+E[k-n+1]);
+                    E[k]=1.0/4.0*(E[k+n+1]+E[k-n+1]);
                 }
                 if(j==n && i!=1 && i!=n) {
-                    E[k]=(double)1/(double)4*(E[k+n-1]+E[k-n-1]);
+                    E[k]=1.0/4.0*(E[k+n-1]+E[k-n-1]);
                 }
             }
 
@@ -171,14 +118,11 @@ vector<double> Algorithms::MultiGridAlgorithm(Matrix& A,vector<double>& X,const 
     if(n==this->n) {
         x=X;
     }
-    if(n==3) {
+    if(n==15) {
         JacobiRelaxationSolver(A,x,b);
-        // double a;
-        // a=4.0;
-        // x[0]=b[0]/a;
         return x;
     } else {
-        JacobiRelaxationMethod(A,x,b,3);
+        JacobiRelaxationMethod(A,x,b,6);        
         r=b-A*x;
         Restriction(r,r2h,n);
         A.Resize(N2h);
@@ -187,26 +131,19 @@ vector<double> Algorithms::MultiGridAlgorithm(Matrix& A,vector<double>& X,const 
         Interpolation(E2h,E,n);
         x+=E;
         A.Resize(n);
-        JacobiRelaxationMethod(A,x,b,3);
+        JacobiRelaxationMethod(A,x,b,6);        
         return x;
     }
 }
 
 void Algorithms::MultiGridMethod(Matrix& A,vector<double>& x,vector<double>& b) {
     int steps=0;
-    vector<double> r(dim,1),solved(dim);
-
-    for(int i=1,k=0;i<(n+1);i++) {
-        for(int j=1;j<(n+1);j++,k++) {
-            solved[k]=g(j*h,i*h);
-        }
-    }
+    vector<double> r(dim);
     r=b-A*x;
-    double TOL=pow(10,-3)*vectorNorm(r);
-    while(TOL<=vectorNorm(r)) {
+    double TOL=pow(10,-3)*(r|r);
+    while(TOL<=(r|r)) {
         x=MultiGridAlgorithm(A,x,b,n);
         r=b-A*x;
-        // r=V.x-solved;
         steps++;
         if(steps==500) {
             r.assign(dim,0);

@@ -82,7 +82,7 @@ u(x,y) &=& g(x,y) \textnormal{ in } \partial \Omega.\label{eq.Dirichlet2}
 \end{eqnarray}
 \autoref{eq.Dirichlet1} bzw. \autoref{eq.Dirichlet2} nennt man Dirichlet-Randbedingung.\\
 
-\textbf{Beachte:} $\partial_{xx}u(x,y) = \frac {\partial^{2}u(x,y)} {\partial x^{1}}$.
+\textbf{Beachte:} $\partial_{xx}u(x,y) = \frac {\partial^{2}u(x,y)} {\partial x^{2}}$.
 
 Um diese (elliptische) partielle Differentialgleichung nun in $\Omega$ zu diskretisieren, bedarf es der Hilfe der Finiten Differenzen Methode.
 
@@ -93,19 +93,19 @@ Um diese (elliptische) partielle Differentialgleichung nun in $\Omega$ zu diskre
 Wir betrachten ein $(x,y) \in \Omega$ beliebig. Dann gilt für $h > 0$ mit der Taylorformel
 
 \begin{equation}
-u(x+h,y) = \sum_{k = 0}^{n} h^{k} \frac {\partial^{k}u(x,y)} {\partial x^{k}} \approx u(x,y) + h \partial_{x} u(x,y) + \frac {h^{2}} {2!} \partial_{xx} u(x,y) + \mathcal{O}(h^{3}),\label{eq.Partiall x+h}
+u(x+h,y) = \sum_{k = 0}^{n} \frac {h^{k}} {k!} \frac {\partial^{k}u(x,y)} {\partial x^{k}} \approx u(x,y) + h \partial_{x} u(x,y) + \frac {h^{2}} {2!} \partial_{xx} u(x,y) + \mathcal{O}(h^{3}),\label{eq.Partiall x+h}
 \end{equation}
 \begin{equation}
-u(x-h,y) = \sum_{k = 0}^{n} (-1)^{k} h^{k} \frac {\partial^{k}u(x,y)} {\partial y^{k}} \approx u(x,y) - h \partial_{x} u(x,y) + \frac {h^{2}} {2!} \partial_{xx} u(x,y) - \mathcal{O}(h^{3}).\label{eq.Partiall x-h}
+u(x-h,y) = \sum_{k = 0}^{n} (-1)^{k} \frac {h^{k}} {k!} \frac {\partial^{k}u(x,y)} {\partial y^{k}} \approx u(x,y) - h \partial_{x} u(x,y) + \frac {h^{2}} {2!} \partial_{xx} u(x,y) - \mathcal{O}(h^{3}).\label{eq.Partiall x-h}
 \end{equation}
 
 Analog können wir diese Betrachtung für $u(x,y+h)$ und $u(x,y-h)$ machen:
 
 \begin{equation}
-u(x,y+h) = \sum_{k = 0}^{n} h^{k} \frac {\partial^{k}u(x,y)} {\partial y^{k}} \approx u(x,y) + h \partial_{y} u(x,y) + \frac {h^{2}} {2!} \partial_{yy} u(x,y) + \mathcal{O}(h^{3}),
+u(x,y+h) = \sum_{k = 0}^{n} \frac {h^{k}} {k!} \frac {\partial^{k}u(x,y)} {\partial y^{k}} \approx u(x,y) + h \partial_{y} u(x,y) + \frac {h^{2}} {2!} \partial_{yy} u(x,y) + \mathcal{O}(h^{3}),
 \end{equation}
 \begin{equation}
-u(x,y-h) = \sum_{k = 0}^{n} (-1)^{k} h^{k} \frac {\partial^{k}u(x,y)} {\partial y^{k}} \approx u(x,y) - h \partial_{y} u(x,y) + \frac {h^{2}} {2!} \partial_{yy} u(x,y) - \mathcal{O}(h^{3}).
+u(x,y-h) = \sum_{k = 0}^{n} (-1)^{k} \frac {h^{k}} {k!} \frac {\partial^{k}u(x,y)} {\partial y^{k}} \approx u(x,y) - h \partial_{y} u(x,y) + \frac {h^{2}} {2!} \partial_{yy} u(x,y) - \mathcal{O}(h^{3}).
 \end{equation}
 
 Löst man nun \autoref{eq.Partiall x+h} und \autoref{eq.Partiall x-h} jeweils nach $\partial_{xx} u(x,y)$ auf und addiert die zwei Gleichungen, so erhält man:
@@ -119,7 +119,7 @@ Ebenso lösen wir nach $\partial_{yy} u(x,y)$ auf und erhalten:
 \partial_{yy} u(x,y) + O(h^{2}) = \frac {u(x,y-h) - 2u(x,y) + u(x,y+h)} {h^{2}}.
 \end{equation}
 
-Diese Näherungen nennt man auch (zentralen) Differenzenquotienten der zweiten Ableitung. $O(h^{2})$ ist ein Term zweiter Ordnung und wird vernachlässigt.
+Diese Näherungen nennt man den \textbf{zentralen Differenzenquotienten der zweiten Ableitung}. $O(h^{2})$ ist ein Term zweiter Ordnung und wird vernachlässigt.
 
 Somit erhalten wir für $\Delta u(x,y)$ die Näherung
 \begin{eqnarray}
@@ -178,9 +178,9 @@ dar. (Dahmen Reusken)
 % \end{eqnarray}
 % Diese Approximation wird auch 5-Punkt-Differenzenstern genannt, siehe dazu Abbildung (2.1).
 
-\bild{grid}{8cm}{(Lexikographische) Nummerierung von $\Omega = (0,1)^{2}$ mit $n=5$}{Gitter}\label{img.gridWithNumbers}
+\bild{grid}{8cm}{Nummerierung der Punkte von $\Omega = (0,1)^{2}$ mit $m=5$. In x- bzw. y-Richtung gibt es jeweils $N=4$ Punkte}{Gitter}\label{img.gridWithNumbers}
 
-Nummeriert man nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben (\autoref{img.gridWithNumbers}) und stellt für jeden dieser Punkte \autoref{eq.5-Point-Star} auf, so führt dies auf eine $N^{2} \times N^{2}$-Matrix der Form:
+Nummeriert man nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben (\autoref{img.gridWithNumbers}) und stellt für jeden dieser Punkte \autoref{eq.5-Point-Star} auf, so führt dies mit dem 5-Punkt-Differenzenstern auf eine $N^{2} \times N^{2}$-Matrix der Form:
 
 \begin{equation}
 \mat{A} =
@@ -191,7 +191,7 @@ A_{1} & -Id \\
  & & -Id & A_{n}
 \end{pmatrix},\label{eq.2D Matrix}
 \end{equation}
-wobei $\mat{Id} \in \mathbb{R}^{N \times N}$ die Identität meint und für alle $i = 0,..,n$ gilt:
+wobei $\mat{Id} \in \mathbb{R}^{N \times N}$ die Identität meint und für alle $i = 0,..,N$ gilt:
 
 \begin{equation}
 A_{i} = 
@@ -204,7 +204,7 @@ A_{i} =
 \end{equation}
 $A_{i} \in \mathbb{R}^{N \times N}$.
 
-Um nun auf ein lineares Gleichungssystem der Form $\mat{A}u = f$ zu kommen, muss natürlich noch die rechte Seite, also das $f$ aufgestellt werden. Zu jeder Komponente von $f$, die einen Randpunkt als Nachbarn hat, wird dieser dazu addiert. Hat eine Komponente von $f$ zwei Nachbarn am Rand von $\Omega_{h}$, werden beide addiert. Dies führt uns auf folgende rechte Seite:
+Unser Ziel ist ein lineares Gleichungssystem der Form $\mat{A}u = f$. Dafür muss zusätzlich die rechte Seite $f$ aufgestellt werden. Da die Funktion $f(x,y)$ bekannt ist, spielen lediglich noch die Randpunkte eine wesentliche Rolle. Zu jeder Komponente von $f$, die einen Randpunkt als Nachbarn hat, wird dieser dazu addiert. Hat eine Komponente von $f$ zwei Nachbarn am Rand von $\Omega_{h}$, werden beide addiert. Dies führt uns auf folgende rechte Seite [Dahmen/Reusken]:
 
 \begin{equation}
 f = h^{2}
@@ -249,7 +249,8 @@ f(1-h,1-h) + h^{-2}(g(1-h,1)+g(1,1-h))
 \end{pmatrix}.
 \end{equation}
 
-Wir erhalten das lineare Gleichungssystem der Form $\mat{A}u = f$, wobei $\mat{A}$ und $f$ bekannt sind und $u$ der approximierte Lösungsvektor ist, der die Lösung der partielle Differentialgleichung enthält. Wir bezeichnet ab jetzt die diskrete 2D Poisson Matrix aus \autoref{eq.2D Matrix} mit $\mat{A}_{2D}$.
+Schließlich erhalten wir das lineare Gleichungssystem der Form $\mat{A}u = f$, wobei $\mat{A}$ und $f$ bekannt sind und $u$ die approximierte Lösung, der partiellen Differentialgleichung darstellt.\\
+Wir bezeichnet ab jetzt die diskrete 2D Poisson Matrix aus \autoref{eq.2D Matrix} mit $\mat{A}_{2D}$.
 
 % \section{Das Residuum und die Residuumsgleichung}\label{s.Residuum und Resdiuumsgleichung}
 
@@ -308,17 +309,19 @@ v_{k.l} =
 
 \textbf{Beispiel:}
 
-Um sich die Eigenvektoren besser vorstellen zu können, wollen wir zunächst drei Eigenvektoren des eindimensionalen Poisson Problems, auf das wir hier nicht näher eingehen möchten, betrachten:
+Um sich die Eigenvektoren besser vorstellen zu können, wollen wir zunächst drei Eigenvektoren des eindimensionalen Poisson Problems, auf das wir hier nicht näher eingehen möchten, betrachten. Das Gebiet $\Omega_{h} \in (0,1)$ mit einer Schrittweite $h = \frac{1}{15}$ und drei zugehörigen Eigenvektoren:
 
-\bild{sin1}{8cm}{Für Faktor 1}{Für Faktor 1}
-\bild{sin7}{8cm}{Für Faktor 7}{Für Faktor 7}
-\bild{sin13}{8cm}{Für Faktor 13}{Für Faktor 13}
+\bild{sin1}{8cm}{Dieser Graph stellt den Eigenwert am ersten Punkt, also $h = \frac{1}{15}$ dar. Zu sehen sind harmonische, kurzwellige Sinuskurven.}{Für Faktor 1}
+\bild{sin7}{8cm}{Bei diesen stark oszillierenden Sinuswellen handelt es sich um den Eigenvektor im Punkt $\frac{7}{15}$.}{Für Faktor 7}
+\bild{sin13}{8cm}{Diese gleichmäßigen langen Sinuswellen gehören zum Punkt $\frac{13}{15}$.}{Für Faktor 13}\label{img.1D Langwelle}
 
-Man sieht deutlich, das die Oszillation unterschiedlich ist. Manche der Eigenvektoren sind langwellig, manche enorm kurzwellig. Wenn wir nun zurück zu unserer Ausgangssituation des zweidimensionalen Poisson Problems gehen und das Gitter aus \autoref{img.gridWithNumbers} als Basis nehmen, erhalten wir für den Punkt 11 des Gitters folgende Darstellung des Eigenvektors:
+Man sieht deutlich, das die Oszillation unterschiedlich ist. Manche der Eigenvektoren sind langwellig, manche kurzwellig. Wenn wir nun zurück zu unserer Ausgangssituation des zweidimensionalen Poisson Problems gehen und das Gitter aus \autoref{img.gridWithNumbers} als Basis nehmen, erhalten wir für den Punkt 11 des Gitters folgende Darstellung des Eigenvektors:
 
-\bild{EV}{14cm}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}\label{img.Jacobi1}
+\bild{EV}{14cm}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die gleichmäßigen Sinuswellen erkennen.}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}\label{img.Jacobi1}
 
-\textbf{Beweis:}
+Auch hier sind die Sinuswellen gut zu erkennen. Man kann dieses Bild in etwa mit \autoref{img.1D Langwelle} vergleichen. Dieser Eigenvektor besitzt eine langwellige Oszillation.
+
+\textbf{Beweis zu \autoref{s.Eigenwerte und Eigenvektoren}:}
 
 Wir wollen zunächst die $\mat{A}_{i} \in \mathbb{R}^{N \times N}$ von $\mat{A} \in \mathbb{R}^{n \times n}$ genauer Betrachten.\\
 Behauptung: Für eine Matrix $\mat{B} \in \mathbb{R}^{N \times N}$ mit
@@ -413,13 +416,13 @@ Nun rechnen wir jede Zeile unseres Vektors aus:
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
-Für die Matrizen $A_{i}$ erhalten wir mit $a = 4, b = c = -1$ für die Eigenwerte $\lambda_{k} = 4 (1 - \frac{1}{2} \cos(theta_{k}))$ und die Eigenvektoren $v_{k} = \sin(i\theta_{k})$ für alle $1 \le i \le N$.\\
-Offensichtlich hat auch $-\mat{Id}$ die selben Eigenvektoren wie die $A_{i}$, mit den Eigenwerte $\mu_{k} = -1$, denn
+Für die Matrizen $A_{i}$ erhalten wir mit $a = 4, b = c = -1$ für die Eigenwerte $\lambda_{k} = 4 (1 - \frac{1}{2} \cos(\theta_{k}))$ und die Eigenvektoren $v_{k} = \sin(i\theta_{k})$ für alle $1 \le i \le N$.\\
+Offensichtlich hat auch $-\mat{Id}$ die selben Eigenvektoren wie $A_{i}$, mit den Eigenwerte $\mu_{k} = -1$, denn
 \begin{equation}
 (-\mat{Id} - \lambda_{k}\mat{Id}) v_{k} = \mat{0} v_{k} = 0.
 \end{equation}
-Nun wollen wir diese Erkenntnisse für unsere Matrix $\mat{A}_{2D} \in \mathbb{R}^{n \times n}$ verwenden. Da diese Matrix ebenfalls eine Tridiagonalmatrix ist, folgt für $a = A_{j}$ und $b,c = -Id$.\\
-Unser gesuchter Eigenvektor in einem Punkt $(x_{k},y_{l})$ war gegeben durch $v_{k,l}) = \sin(i\theta_{k}) \sin(j\theta_{l}) = \sin(j\theta_{l})v_{k}$.  Wegen $\mat{A}_{2D}$ symmetrisch folgt:
+Nun wollen wir diese Erkenntnisse für unsere Matrix $\mat{A}_{2D} \in \mathbb{R}^{n \times n}$ verwenden. Da diese Matrix ebenfalls eine Tridiagonalmatrix ist, folgt für $a = A_{j}$ und $b = c = -Id$.\\
+Unser gesuchter Eigenvektor in einem Punkt $(x_{k},y_{l})$ war gegeben durch $v_{k,l} = \sin(i\theta_{k}) \sin(j\theta_{l}) = \sin(j\theta_{l})v_{k}$.  Wegen $\mat{A}_{2D}$ symmetrisch folgt:
 \begin{equation}
 \mat{A}_{2D}v_{k,l} = 
 \begin{pmatrix}
@@ -484,7 +487,7 @@ Für für die Eigenwerte gilt $\lambda_{k,l} \in \mathbb{R}_{> 0}$, d.h. $\mat{A
 
 \textbf{Beweis:}
 
-Mit $\sin^{2}(x) \in [0,1]$ für $x \in [0,p\i]$ und $0 < \frac{\pi h}{2} < \pi$ gilt:
+Mit $\sin^{2}(x) \in [0,1]$ für $x \in [0,\pi]$ und $0 < \frac{\pi h}{2} < \pi$ gilt:
 \begin{equation}
 \lambda_{k,l} = 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) > 0.
 \end{equation}
@@ -523,19 +526,19 @@ Aus \autoref{eq.Lambda min} und \autoref{eq.Lambda max} folgt:
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
-In [DahmenReusken] wird außerdem gezeigt, dass sich $\kappa(\mat{A}_{2D})$ wie folgt nähern lässt:
+In [DahmenReusken] wird außerdem gezeigt, dass sich $\kappa_{2}(\mat{A}_{2D})$ wie folgt nähern lässt:
 % Substituiert man nun $\cos^{2}(\frac {\pi h} {2}) = 1 - \sin^{2}(\frac {\pi h} {2})$ und nähert $\sin (\frac {\pi h} {2}) = \frac {\pi h} {2} + \mathcal{O}(h^{3})$ mit der Taylorformel, so erhält man:
 \begin{equation}
 \frac {\cos^{2} (\frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})} = \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2})).
 \end{equation}
 
 Natürlich wollen wir die Funktion $u(x,y)$ so gut wie möglich in $\Omega_{h}$ approximieren und sind daher bestrebt das Gitter so fein als möglich zu wählen. Daraus ergibt sich jedoch die negative Eigenschaft von $\mat{A}_{2D}$. \\
-Zur Erinnerung: $h := \frac {1} {m}$. Je größer $m$ gewählt wird, desto schlechter wird die Kondition der Matrix.
+Je größer $m$ gewählt wird, also je feiner das Gitter wird, desto schlechter wird die Kondition der Matrix.
 \begin{equation}
 \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2})) = \left( \frac {2} {\pi \frac {1} {m}} \right)^{2} (1 + \mathcal{O}(\frac {1} {m^{2}})) \approx \frac {4m^{2}} {\pi}.
 \end{equation}
 
-Für ein großes $m$, also ein feines Gitter, wird die Kondition sehr groß. Dies führt uns auf ein schlecht konditioniertes Problem.
+Diesem Problem werden wir später nochmals gegenüber stehen.
 
 \chapter{Iterative Lösungsvefahren für lineare Gleichungssysteme}\label{c.IterativeVerfahren}
 
@@ -1777,8 +1780,8 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$N$} & 32  & 64 & 128 & 256 \\\hline\hline
-\multirow{5}* & Schritte & 46  & 97 & 173  & 200  \\\cline{2-6}
-& Rechenzeit in s &  0.05  & 0.47 & 3.58 & 17.72 \\\hline
+\multirow{5}* & Schritte & 11  & 29 & 63  & 11 \\\cline{2-6}
+& Rechenzeit in s &  0.18  & 0.70 & 3.61 & 22.00 \\\hline
 \end{tabular}
 \caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
 \vspace{2ex}\end{table}

@@ -7,6 +7,9 @@ int main(int argc, char const *argv[]) {
     } else {
         arg=31;
     }
+    if(arg<8) {
+        arg=15;
+    }
 
     PoissonMatrix2D A(arg,4.0,-1.0,-1.0);
     PoissonVector2D V(arg);
@@ -17,19 +20,6 @@ int main(int argc, char const *argv[]) {
     printf("Started\n");
     double time,start=0.0,end=0.0;
     start=clock();
-
-    // std::vector<double> e(arg*arg);
-    // for(int i=1,k=0;i<=arg;i++) {
-    //     for(int j=1;j<=arg;j++,k++) {
-    //         e[k]=g((double)i/(double)(arg+1),(double)j/(double)(arg+1));
-    //     }
-    // }
-
-    // // V.WriteToFile(e);
-
-    // Run.JacobiRelaxationMethod(A,x,b,250);
-    // e=e-x;
-    // V.WriteToFile(e);
 
     Run.MultiGridMethod(A,x,b);
     
@@ -85,4 +75,12 @@ vector<double> operator*(double x, vector<double> rhs) {
         tmp[i]=x*rhs[i];
     }
     return tmp;
+}
+
+double operator|(const std::vector<double>& x,const std::vector<double>& y) {
+    double norm=0.0;
+    for(int i=0;i<(int)x.size();i++) {
+        norm+=x[i]*y[i];
+    }
+    return sqrt(norm);
 }

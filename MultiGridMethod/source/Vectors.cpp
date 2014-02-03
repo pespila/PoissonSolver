@@ -86,18 +86,9 @@ void PoissonVector2D::WriteToFile(const vector<double>& x) {
     } else if (sqrt(x.size())!=this->n) {
         printf("Size of Vector does not match!\n");
     }  else {
-        for(int i=0,k=0;i<=this->n;i++) {
-            for(int j=0;j<=this->n;j++) {
-                if(i==0) {
-                    // fprintf(file, "%f %d %f\n", (double)j/(double)n,i,g(j*h,i));
-                } else if(i!=0) {
-                    if(j==0) {
-                        // fprintf(file, "%d %f %f\n", j,(double)i/(double)n,g(j,i*h));
-                    } else if(j!=0){
-                        fprintf(file, "%f %f %f\n", (double)j/(double)n,(double)i/(double)n,x[k]);
-                        k++;
-                    }
-                }
+        for(int i=1,k=0;i<=n;i++) {
+            for(int j=1;j<=n;j++,k++) {
+                fprintf(file, "%f %f %f\n", i*h,j*h,x[k]);
             }
             fprintf(file, "\n");
         }

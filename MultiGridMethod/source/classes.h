@@ -16,6 +16,7 @@ double g(double);
 vector<double> operator-(const vector<double>&,const vector<double>&);
 void operator+=(vector<double>&,const vector<double>&);
 vector<double> operator*(double, vector<double>);
+double operator|(const std::vector<double>&,const std::vector<double>&);
 
 class Matrix
 {
@@ -99,12 +100,9 @@ class Algorithms {
 	public:
 		Algorithms(int);
 		~Algorithms();
-        double vectorNorm(const vector<double>&);
         void JacobiMethod(Matrix&,vector<double>&,const vector<double>&,int);
         void JacobiRelaxationMethod(Matrix&,vector<double>&,const vector<double>&,int);
         void JacobiRelaxationSolver(Matrix&,vector<double>&,const vector<double>&);
-        // void GaussSeidelMethod(Matrix&,vector<double>&,const vector<double>&,int);
-        // void SORMethod(Matrix&,vector<double>&,const vector<double>&,int);
         vector<double> MultiGridAlgorithm(Matrix&,vector<double>&,const vector<double>&,int);
         void MultiGridMethod(Matrix&,vector<double>&,vector<double>&);
         void Restriction(const vector<double>&,vector<double>&,int);
