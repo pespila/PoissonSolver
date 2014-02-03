@@ -543,7 +543,8 @@ Diesem Problem werden wir später nochmals gegenüber stehen.
 \chapter{Iterative Lösungsvefahren für lineare Gleichungssysteme}\label{c.IterativeVerfahren}
 
 Gleichungssysteme, die partielle Differentialgleichungen lösen, können sehr groß werden. Aus diesem Grund sind direkte Verfahren, wie z.B. der Gauß-Algorithmus oder die LR-Zerlegung nicht geeignet. Ihr Rechenaufwand beläuft sich im Allgemeinen auf $\mathcal{O}(n^{3})$ und ist zu langsam.\\
-Wesentlich besser geeignet für diese Problemstellung sind iterative Verfahren. Sie zeichnen sich durch eine schnelle Konvergenz und einen geringeren Rechenaufwand aus - falls sie konvergieren.
+Wesentlich besser geeignet für diese Problemstellung sind iterative Verfahren. Sie zeichnen sich durch eine schnelle Konvergenz und einen geringeren Rechenaufwand aus - falls sie konvergieren.\\
+Ein Großteil der Definitionen, Sätze und Lemmata in diesem Kapitel sind sinngemäß aus Dahmen/Reusken.
 
 \section{Grundbegriffe}\label{s.Grundbegriffe}
 
@@ -635,14 +636,14 @@ Mit der Iterationsvorschrift folgt:
 u^{k+1} &=& D^{-1}(L+U)u^{k} + D^{-1}f \overset{(L+U)=(D-A)}{=} D^{-1}(D-A)u^{k}+D^{-1}f \notag \\
 &=& (Id-D^{-1}A)u^{k} + D^{-1}f. \notag
 \end{eqnarray}
-Also $\mat{T}_{J} := (\mat{Id} - \mat{D}^{-1} \mat{A})$.
+Also $\mat{T}_{J} = (\mat{Id} - \mat{D}^{-1} \mat{A})$.
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
 
 \subsection{Satz (Eigenwerte der Jacobi-Iterationsmatrix bzgl. $\mat{A}_{2D}$)}\label{ss.EW Jacobi}
 
-Man sieht leicht ein, dass die Eigenvektoren von $\mat{T}_{J}$ gleich denen von $\mat{A}_{2D}$ sind. Dann gilt für die Eigenwerte der Iterationsmatrix $\mat{T}_{J} := (\mat{Id} - \mat{D}^{-1}\mat{A}_{2D})$:
+Man sieht leicht ein, dass die Eigenvektoren von $\mat{T}_{J}$ gleich denen von $\mat{A}_{2D}$ sind. Dann gilt für die Eigenwerte der Iterationsmatrix:
 \begin{equation}
 \lambda_{i,j}(\mat{T}_{J}) = 1 - \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right). \label{eq.Jacobi-Eigenwerte}
 \end{equation}
@@ -691,7 +692,7 @@ $\blacksquare$
 % $\blacksquare$
 % \end{flushright}
 
-Das Jacobi-Verfahren konvergiert also für $\mat{A}_{2D}$. Allerdings nimmt mit feinerem Gitter, also kleinere Schrittweite $h$, die Konvergenzgeschwindigkeit stark ab, da der Spektralradius nahe bei $1$ liegt.\\
+Das Jacobi-Verfahren konvergiert also für $\mat{A}_{2D}$. Allerdings nimmt mit feinerem Gitter, also kleinere Schrittweite $h$, die Konvergenzgeschwindigkeit stark ab, da der Spektralradius nahe bei $1$ liegt. Sie dazu auch \autoref{ss.Spektralradius Jacobi Relax}\\
 Abschließend wollen wir den Rechenaufwand verbessern. Dafür nutzen wir die Dünnbesetztheit von $\mat{A}_{2D}$ aus. Es sind pro Zeile maximal $5$ Einträge ungleich Null. Oder anders formuliert, hat jeder Gitterpunkt in $\Omega_{h}$ höchstens 4 Nachbarn. Nutzt man diese Struktur aus, so erhält man den folgenden Algorithmus. 
 % Da die Matrix, die durch das diskretisierte Poisson-Problem aufgestellt wird, dünn besetzt ist, können wir den Rechenaufwand für dieses spezielle Problem auf $\mathcal{O}(n)$ pro Iterationsschritt verbessern. Dafür benötigen wir nochmals den 5-Punkt-Differenzenstern und die partielle Differentialgleichung:
 
@@ -720,26 +721,26 @@ Wir wollen nochmal das Jacobi-Verfahren betrachten:
 u^{k+1} = (Id - D^{-1}A)u^{k} + D^{-1}f.
 \end{equation}
 
-Wir wollen zunächst eine Umformung vornehmen:
+Zunächst soll eine Umformung erfolgen:
 \begin{eqnarray}
 u^{k+1} &=& (Id - D^{-1}A)u^{k} + D^{-1}f \notag \\
 &=& u^{k} - D^{-1}Au^{k} + D^{-1}f \notag \\
 &=& u^{k} + D^{-1} \underbrace{(f - Au^{k})}_{= r^{k}}.
 \end{eqnarray}
 
-Wir addieren also zu $u^{k}$ das Residuum. Die Idee ist nun dieses mit einem Parameter $\omega \in \mathbb{R}$ zu multiplizieren, um neue Eigenschaften zu erhalten:
+Wir addieren also zu $u^{k}$ das Residuum. Die Idee ist nun dieses mit einem Parameter $\omega \in \mathbb{R}$ zu multiplizieren:
 \begin{eqnarray}
 u^{k+1} &=& u^{k} + D^{-1} \omega r^{k} = u^{k} + \omega D^{-1} (f - Au^{k}) \notag \\
 &=& u^{k} - \omega D^{-1} Au^{k} + \omega D^{-1}f = (Id - \omega D^{-1} A)u^{k} + \omega D^{-1}f \notag \\
 &=& (Id - \omega Id + \omega Id - \omega D^{-1} A)u^{k} + \omega D^{-1}f \notag \\
 &=& (1 - \omega)Id + \omega(Id - D^{-1}A) u^{k} + \omega D^{-1}f.\label{eq.Jacobi-Relaxation}
 \end{eqnarray}
-\autoref{eq.Jacobi-Relaxation} ist die Iterationsvorschrift für das Jacobi-Relaxationsverfahren. Die Iterationsmatrix ist offensichtlich gegeben durch:
+\autoref{eq.Jacobi-Relaxation} stellt die Iterationsvorschrift für das Jacobi-Relaxationsverfahren. Die Iterationsmatrix ist offensichtlich gegeben durch:
 \begin{equation}
 \mat{T}_{J_{\omega}} := (1 - \omega) \mat{Id} + \omega(\mat{Id} - \mat{D}^{-1} \mat{A}) = (\mat{Id} - \omega \mat{D}^{-1} \mat{A}).
 \end{equation}
 
-Man erweitert den Jacobi-Algorithmus also mit dem Parameter $\omega$ und addiert $(1 - \omega)u^{k}$ zu $u^{k+1}$.
+Letztlich erweitert man den Jacobi-Algorithmus also mit dem Parameter $\omega$ und addiert $(1 - \omega)u^{k}$ zu $u^{k+1}$.
 
 \subsection{Algorithmus (Jacobi-Relaxations-Verfahren)}\label{ss.Algorithmus Jacobi Relax}
 
@@ -753,7 +754,7 @@ Beachte: Für $\omega = 1$ erhalten wir das Jacobi-Verfahren. Auch hier beträgt
 
 \subsection{Satz (Eigenwerte des Jacobi-Relaxationsverfahren bzgl. $\mat{A}_{2D}$)}\label{ss.EW Relax}
 
-Auch hier entsprechen die Eigenvektoren denen von $\mat{A}_{2D}$ und für die Eigenwerte von $\mat{T}_{J_{\omega}}$ gilt:
+Die Eigenvektoren entsprechen denen von $\mat{A}_{2D}$ und für die Eigenwerte von $\mat{T}_{J_{\omega}}$ gilt:
 \begin{equation}
 \lambda_{i,j}(\mat{T}_{J}) = 1 - \omega \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N.\label{eq.Jacobi-Eigenwerte}
 \end{equation}
@@ -765,7 +766,7 @@ Für $\mat{D} = 4 \mat{Id}$ folgt $\mat{D}^{-1} = \frac {1} {4} \mat{Id}$. Für 
 \begin{eqnarray}
 \mat{T}_{J_{\omega}}u = (\mat{I}d - \omega \mat{D}^{-1}\mat{A})u = \mat{Id} u - \omega \mat{D}^{-1} \underbrace{\mat{A}u}_{=\lambda_{i,j}(A) u} = \mat{Id} u - \frac {\omega} {4} \mat{Id} \mat{A} u = u (1 - \frac {\omega} {4} \lambda_{i,j}(\mat{A})). \notag
 \end{eqnarray}
-Die Eigenwerte von $\mat{T}_{J_{\omega}}$ lassen sich also einfach durch $(1 - \frac {\omega} {4} \lambda_{i,j}(A))$ berechen:
+Die Eigenwerte von $\mat{T}_{J_{\omega}}$ lassen sich also einfach durch $(1 - \frac {\omega} {4} \lambda_{i,j}(A))$ berechnen:
 \begin{equation}
 \lambda_{i,j}(\mat{T}_{J}) = 1 - \omega \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N. \notag
 \end{equation}
@@ -793,7 +794,7 @@ Mit \autoref{eq.Jacobi-Eigenwerte} folgt:
 $\blacksquare$
 \end{flushright}
 
-Das Jacobi-Relaxations-Verfahren konvergiert für $\mat{A}_{2D}$ sogar schneller für ein $\omega \in (0,1)$. Häufig verwendete Werte im zweidimensionalen Fall sind $\omega = \frac {1} {2}$ und $\omega = \frac {4} {5}$, wobei letzterer Wert für das Mehrgitterverfahren den optimalen Parameter darstellt [Saad]. Leider ist für kleines $h$ die Konvergenz immer noch sehr langsam. Den Rechenaufwand kann man allerdings auch hier verbesseren. Mit der selben Vorgehensweise wie in \autoref{ss.Jacobi für Poisson} erhalten wir:
+Die Iterationsmatrix des Jacobi-Relaxationsverfahrens bezüglich für $\mat{A}_{2D}$ und für ein $\omega \in (0,1)$ eine bessere Kondition, als die des Standard-Jacobi-Verfahrens. Häufig verwendete Werte im zweidimensionalen Fall sind $\omega = \frac {1} {2}$ und $\omega = \frac {4} {5}$, wobei letzterer Wert für das Mehrgitterverfahren den optimalen Parameter darstellt [Saad]. Leider ist für kleines $h$ die Konvergenz immer noch sehr langsam. Den Rechenaufwand kann man allerdings auch hier verbesseren. Mit der selben Vorgehensweise wie in \autoref{ss.Jacobi für Poisson} erhalten wir:
 
 \subsection{Algorithmus (Jacobi-Relaxations-Verfahren für $\mat{A}_{2D}$)}\label{ss.Algorithmus Jacobi Relax Poisson}
 
@@ -939,22 +940,22 @@ mit Rechenaufwand $\mathcal{O}(n)$.
 
 \section{Glättungseigenschaft}\label{s.Glättungseigenschaft}
 
-Die Iterationsvorschrift des Jacobi-Relaxations-Verfahrens war gegeben durch:
+Für die Iterationsmatrix des Jacobi-Relaxationsverfahrens gilt:
 \begin{equation}
 u^{k+1} = (Id - \omega D^{-1}A)u^{k} + \omega D^{-1}f.
 \end{equation}
-Die Eigenvektoren sind wegen \autoref{ss.EW Jacobi} und \autoref{ss.EW Relax} gegeben durch:
+Die Eigenvektoren sind gegeben durch:
 \begin{equation}
-v_{k,l} = sin(i \pi x_{k})sin(j \pi y_{l}) \textnormal{ für } 1 \le i,j,k,l \le N
+v_{k,l} = sin(i \theta_{k})sin(j \theta_{l}) \textnormal{ für } 1 \le i,j,k,l \le N
 \end{equation}
-und $(x_{k}, y_{l}) \in \Omega_{h}$. \\
+für $\theta_{k}, \theta_{l}$ wie oben.\\
 Als Eigenvektoren der Matrizen $\mat{T}_{J}$ bzw. $\mat{T}_{J_{\omega}}$ bilden diese Vektoren eine Basis des $\mathbb{R}^{n}$, wobei $n = N^{2}$.
 Für den Fehlerterm im $k-ten$ Iterationsschritt gilt:
 \begin{equation}
 e^{k} = u^{*} - u^{k}.
 \end{equation}
 
-Betrachten wir nun den $(k+1)-ten$ Fehler und formen geschickt um, dann gilt:
+Betrachten wir nun den $(k+1)-ten$ Fehler und formen geschickt um, so gilt:
 \begin{eqnarray}
 e^{k+1} &=& u^{*} - u^{k+1} = u^{*} - \left( (Id - \omega D^{-1} A)u^{k} + \omega D^{-1}f \right) \notag \\
 &=& \underbrace{u^{*} - u^{k}}_{= e^{k}} + \omega D^{-1} A u^{k} - D^{-1}f = e^{k} + \omega D^{-1} (Au^{k} - f) \notag \\
@@ -962,7 +963,7 @@ e^{k+1} &=& u^{*} - u^{k+1} = u^{*} - \left( (Id - \omega D^{-1} A)u^{k} + \omeg
 &=& e^{k} + \omega D^{-1} A e^{k} = (Id - \omega D^{-1} A) e^{k}.
 \end{eqnarray}
 
-\bild{omegaeins}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi1}
+\bild{omegaeins}{14cm}{Dies ist das Eigenwertspektrum für $\omega = 1$. Das Gesamtschrittverfahren hat keine Glättungseigenschaft. Es liegen nur wenige der Eigenwerte um die Null.}{Dies ist das Eigenwertspektrum für $\omega = 1$. Das Gesamtschrittverfahren hat keine Glättungseigenschaft. Es liegen nur wenige der Eigenwerte um die Null.}\label{img.Jacobi1}
 
 Da die $n$ Eigenvektoren $v_{i,j}$ eine Basis bilden, lässt sich der Fehler $e$ als Linearkombination der $v_{i,j}$ darstellen:
 \begin{eqnarray}
@@ -971,13 +972,13 @@ e^{k+1} &=& \sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k+1}_{i,j} v_{i,j} = (Id - \o
 &=& \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} \underbrace{(1 - \frac {\omega} {4} \lambda_{i,j}(A))}_{= \lambda_{i,j}(\mat{T}_{J_{\omega}})} v_{i,j}\right) = \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} \lambda_{i,j}(\mat{T}_{J_{\omega}}) v_{i,j}\right).
 \end{eqnarray}
 
-\bild{omegaeinhalb}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi2}
+\bild{omegaeinhalb}{14cm}{Für $\omega = \frac{1}{2}$ ist gut zu erkennen, dass für $i,j$ nahe $N$ viele Eigenwerte nahe Null liegen.}{Für $\omega = \frac{1}{2}$ ist gut zu erkennen, dass für $i,j$ nahe $N$ viele Eigenwerte nahe Null liegen.}\label{img.Jacobi2}
 
-Betrachten wir nun die Eigenwerte der Iterationsmatrix für $\omega = 1$ (Jacobi-Verfahren), sieht man, dass die Eigenwerte für $i,j$ nahe Null oder $i,j$ nahe N den Fehler schlecht bis gar nicht dämpfen (\subfigureautorefname{ 3.1}). Dies erklärt auch das langsame Konvergenzverhalten des Jacobi-Verfahren (siehe Kapitel 5). Interessanter weiße ist der optimale Wert $\omega = 1$, wenn man das Ganze als iteratives Verfahren verwendet [Saad]. Das Jacobi-Verfahren besitzt aber keine Glättungseigenschaft.\\
-Da wir aber eine Fehlerglättung erreichen wollen, wählen wir nun $\omega = \frac {1} {2}$ (\subfigureautorefname{ 3.2}). Wir stellen fest, dass die Eigenwerte der Iterationsmatrix zwischen $0$ und $1$ liegen. Sind $i,j > \frac {N} {2}$ so werden die Fehleranteile wesentlich besser gedämpft, da die Eigenwerte hier nahe Null liegen. Diese Eigenschaft nennt man die \textit{Glättungseigenschaft}.\\
-Es stellt sich z.B. heraus [Saad], dass der optimale Relaxationsparameter, der unabhängig von der Schrittweite $h$ gewählt werden kann, $\omega = \frac {4} {5}$ ist. In \subfigureautorefname{ 3.3} ist gut zu sehen, dass viele der Eigenwerte nahe Null liegen.
+Betrachten wir nun die Eigenwerte der Iterationsmatrix für $\omega = 1$ (Jacobi-Verfahren), sieht man, dass die Eigenwerte für $i,j$ nahe Null oder $i,j$ nahe N den Fehler schlecht bis gar nicht dämpfen (\subfigureautorefname{ 3.1}). Interessanter weiße ist der optimale Parameter $\omega = 1$, wenn man das Ganze als iteratives Verfahren verwendet [Saad]. Das Jacobi-Verfahren besitzt aber offensichtlich keine Glättungseigenschaft.\\
+Da wir eine Fehlerglättung erreichen wollen, wählen wir nun $\omega = \frac {1} {2}$ (\subfigureautorefname{ 3.2}). Wir stellen fest, dass die Eigenwerte der Iterationsmatrix zwischen $0$ und $1$ liegen. Sind $i,j > \frac {N} {2}$ so werden die Fehleranteile wesentlich besser gedämpft, da die Eigenwerte hier nahe Null liegen. Diese Eigenschaft nennt man die \textit{Glättungseigenschaft}.\\
+Es stellt sich z.B. heraus [Saad], dass der optimale Relaxationsparameter, der unabhängig von der Schrittweite $h$ gewählt werden kann, $\omega = \frac {4} {5}$ ist. In \subfigureautorefname{ 3.3} ist gut zu sehen, dass ein Großteil des Spektrums nahe Null liegt.
 
-\bild{omeganullacht}{14cm}{Plot für ein Omega blablalba}{Plot für ein Omega blablalba}\label{img.Jacobi3}
+\bild{omeganullacht}{14cm}{Für den optimalen Parameter $\omega = \frac{4}{5}$ [Saad] ist gut zu erkennen, dass viele Eigenwerte um die Null liegen und somit eine gute Glättungseigenschaft besteht.}{Für den optimalen Parameter $\omega = \frac{4}{5}$ [Saad] ist gut zu erkennen, dass viele Eigenwerte um die Null liegen und somit eine gute Glättungseigenschaft besteht.}\label{img.Jacobi3}
 
 \section{Das Verfahren der konjugierten Gradienten}\label{s.Das Verfahren der konjugierten Gradienten}
 
@@ -1031,10 +1032,10 @@ Es ist also äquivalent die Funktion $f(u)$ zu minimieren und das Gleichungssyst
 \begin{equation}
 \nabla f(x) = Ax - f = -r.
 \end{equation}
-Der Gradient von $f(x)$ ist also das negative Residuum. Beim normalen Gradientenverfahren wählt man als Richtung des steilsten Abstiegs genau das Residuum. Hier wählt man jedoch konjugierte Richtungen $p$ für die Richtung des steilsten Abstiegs. Die dabei berechneten (konjugierten) Vektoren $p$ sind alle A-orthogonal und spannen einen sogenannten Krylow-Raum $U_{k} = \{p^{0},...,p^{k}\}$ auf. Für den Zusammenhang zwischen dem CG-Verfahren und Krylow-Räumen möchte ich an dieser Stelle auf [Braess] verweisen.\\
+% Der Gradient von $f(x)$ ist das negative Residuum. Beim normalen Gradientenverfahren wählt man als Richtung des steilsten Abstiegs genau dieses Residuum. Beim CG-Verfahren wählt man konjugierte Richtungen $p$ für die Richtung des steilsten Abstiegs. Die dabei berechneten (konjugierten) Vektoren $p$ sind alle A-orthogonal und spannen einen sogenannten Krylow-Raum $U_{k} = \{p^{0},...,p^{k}\}$ auf. Für den Zusammenhang zwischen dem CG-Verfahren und Krylow-Räumen möchte ich an dieser Stelle auf [Braess] verweisen.\\
 Da wir also stets das Minimum im Teilraum $U_{k}$ suchen, wird uns folgendes Lemma hilfreich sein:
 
-\bild{CG_Illu}{8cm}{Abstieg}{Abstieg}\label{img.CG}
+% \bild{CG_Illu}{8cm}{Abstieg}{Abstieg}\label{img.CG}
 
 \subsection{Lemma - (A-orthogonaler) Projektionssatz}\label{s.Projektionssatz}
 
@@ -1114,7 +1115,7 @@ u^{k} = u^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ mit } \alpha_{k-1} := \frac 
 Einen Beweis findet man in [Dahmen/Reusken].
 
 \textbf{Bemerkung:}
-$u^{k}$ kann mit wenig Aufwand aus $u^{k-1}$ und $p^{k-1}$ berechnet werden.
+$u^{k}$ kann dadurch mit wenig Aufwand aus $u^{k-1}$ und $p^{k-1}$ berechnet werden.
 
 \subsection{Lemma}
 Das Residuum $r^{k} \in \mathbb{R}^{n}$ kann einfach berechnet werden durch:
@@ -1125,10 +1126,10 @@ wobei $\alpha_{k-1}$ wie in \autoref{eq.Alpha}.
 
 \textbf{Beweis:}
 \begin{eqnarray}
-&u^{k} = u^{k-1} + \alpha_{k-1}p^{k-1} \notag \\
-&\Longleftrightarrow Au^{k} = Au^{k-1} + \alpha_{k-1}Ap^{k-1} \notag \\
-&\Longleftrightarrow b - Au^{k} = b - Au^{k-1} - \alpha_{k-1}Ap^{k-1} \notag \\
-&\Longrightarrow r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1}. \notag
+&&u^{k} = u^{k-1} + \alpha_{k-1}p^{k-1} \notag \\
+&&\Longleftrightarrow Au^{k} = Au^{k-1} + \alpha_{k-1}Ap^{k-1} \notag \\
+&&\Longleftrightarrow b - Au^{k} = b - Au^{k-1} - \alpha_{k-1}Ap^{k-1} \notag \\
+&&\Longrightarrow r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1}. \notag
 \end{eqnarray}
 \begin{flushright}
 $\blacksquare$
@@ -1148,13 +1149,13 @@ wird die A-orthogonale Basis zum Vektor $r^{k-1}$ bestimmt, wobei $p^{k-1},r^{k-
 Der Beweis folgt direkt aus dem Gram-Schmidt-Orthonormalisierungsverfahren, welches allerdings einen hohen Rechenaufwand vorweist.\\
 Wir wollen ohne Beweis (siehe z.B. [Dahmen/Reusken]) angeben, wie man die $p^{k}$ effizienter bestimmen kann.
 
-\subsection{Lemma}
+\subsection{Satz}
 Für die Berechnung von $p^{k}$ gilt:
 \begin{equation}
 p^{k-1} = r^{k-1} - \frac {\langle r^{k-1}, Ap^{k-2} \rangle} {\langle p^{k-2}, Ap^{k-2} \rangle} p^{k-2}.
 \end{equation}
 
-Substituiert man nun geschickt einige Werte in den Skalarprodukten, führt das auf den Algorithmus des CG-Verfahrens.
+Substituiert man nun geschickt einige Werte in den Skalarprodukten, führt das auf den Algorithmus der konjugierten Gradienten.
 
 % \textbf{Beweis:}
 % \begin{eqnarray}
@@ -1192,7 +1193,7 @@ u^{k} &=& u^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ wobei } \alpha_{k-1} = \fr
 r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1} \notag
 \end{eqnarray}
 
-Man muss in diesem Algorithmus pro Iterationsschritt lediglich zwei Skalarprodukte ausrechnen (die $r^{k-1}$-Skalarprodukte können für die $r^{k-2}$ nach der Berechnung des neuen Residuums wieder verwendet werden!) und eine Matrix-Vektor-Multiplikation durchführen. Somit erhält man einen Rechenaufwand von $\mathcal{O}(n^{2})$. Angewandt auf $\mat{A}_{2D}$ kann man - durch das Ausnutzen der Dünnbesetztheit - einen Aufwand pro Schritt von $\mathcal{O}(n)$ erreichen. \\
+Man muss in diesem Algorithmus pro Iterationsschritt lediglich zwei Skalarprodukte ausrechnen (die $r^{k-1}$-Skalarprodukte können für die $r^{k-2}$ nach der Berechnung des neuen Residuums wieder verwendet werden!) und eine Matrix-Vektor-Multiplikation durchführen. Somit erhält man einen Rechenaufwand von $\mathcal{O}(n^{2})$. Angewandt auf $\mat{A}_{2D}$ kann man - durch das Ausnutzen der Dünnbesetztheit - einen Aufwand pro Schritt von $\mathcal{O}(n)$ erreichen. Dies erreicht man durch eine geschickt gewählte Matrix-Vektor-Multiplikation, die die Struktur von $\mat{A}_{2D}$ ausnutzt.
 
 An dieser Stelle soll noch ein kurzer Satz über die Konvergenz des Verfahrens folgen. Einen Beweis hierzu findet man z.B. in (Dahmen/Reusken 573):
 
@@ -1202,17 +1203,21 @@ Sei $\mat{A} \in \mathbb{R}^{n \times n}$ symmetrisch, positiv definit und seien
 \begin{equation}
 \| u^{k} - u^{*} \|_{A} \le 2 \left( \frac {\kappa_{2} (A) - 1} {\kappa_{2} (A) + 1} \right)^{k} \| u^{0} - u^{*} \|_{A}
 \end{equation}
-Da stets $\frac {\kappa_{2} (A) - 1} {\kappa_{2} (A) + 1} < 1$ gilt, sichert dieser Satz die Konvergenz des Algorithmus. Man sieht also, dass die Konvergenz des Verfahrens von der Kondition der Matrix $\mat{A}_{2D}$ abhängt. \\
+Da stets $\frac {\kappa_{2} (A) - 1} {\kappa_{2} (A) + 1} < 1$ gilt, sichert dieser Satz die Konvergenz des Algorithmus. Man sieht also, dass die Konvergenz des Verfahrens von der Kondition der Matrix $\mat{A}_{2D}$ abhängt.
+
+\textbf{Bemerkung:}
+
+Das Verfahren der konjugierten Gradienten konvergiert im Allgemeinen nicht, wenn $\mat{A}$ nicht symmetrisch, positiv definit ist.
 
 \section{Vorkonditioniertes Verfahren der konjugierten Gradienten (PCG)}\label{s.PCG}
 
-Das PCG-Verfahren (preconditioned conjugate gradient) ist eine optimierte Version des CG-Verfahrens. Wie wir in \autoref{ss.Matrixkondition} gesehen haben, ist $\mat{A}_{2D}$ schlecht konditioniert. Dies mindert natürlich die Effizienz des Verfahrens. Die Idee ist nun, die bei der Iteration zu Grunde liegende Matrix $\mat{A}$ durch eine ähnliche Matrix mit besserer Kondition zu ersetzen, damit sich das Konvergenzverhalten verbessert.
+Das PCG-Verfahren (preconditioned conjugate gradient) ist eine optimierte Version des CG-Verfahrens. Wie wir in \autoref{ss.Matrixkondition} gesehen haben, ist $\mat{A}_{2D}$ für feinere Gitter schlecht konditioniert. Und in \autoref{ss.Konvergenz CG} haben wir gesehen, dass die Konvergenz des CG-Verfahrens von eben dieser Matrix abhängt. Dies mindert natürlich die Effizienz des Verfahrens. Die Idee ist nun, die bei der Iteration zu Grunde liegende Matrix $\mat{A}$ durch eine ähnliche Matrix mit besserer Kondition zu ersetzen, damit sich das Konvergenzverhalten verbessert.
 
 \subsection{Satz}
 
 Sei $\mat{W} \in \mathbb{R}^{n \times n}$ s.p.d. dann gilt:
 \begin{equation}
-\mat{A}u = f \Longleftrightarrow \mat{W}^{-1} \mat{A} u = \mat{W}^{-1} f
+\mat{A}u = f \Longleftrightarrow \mat{W}^{-1} \mat{A} u = \mat{W}^{-1} f.
 \end{equation}
 Es macht also keinen Unterschied, ob wir $Au = f$ oder das äquivalente System lösen.
 
@@ -1220,13 +1225,13 @@ Es macht also keinen Unterschied, ob wir $Au = f$ oder das äquivalente System l
 
 \begin{eqnarray}
 \mat{A}u = f &\Longleftrightarrow& u = \mat{A}^{-1} \mat{E} f \Longleftrightarrow u = \mat{A}^{-1} \mat{W} \mat{W}^{-1} f \notag \\
-&\Longleftrightarrow& u = (\mat{W}^{-1} \mat{A})^{-1} f \Longleftrightarrow \mat{W}^{-1} \mat{A} u = \mat{W}^{-1} b \notag
+&\Longleftrightarrow& u = (\mat{W}^{-1} \mat{A})^{-1} f \Longleftrightarrow \mat{W}^{-1} \mat{A} u = \mat{W}^{-1} f. \notag
 \end{eqnarray}
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
 
-Die Konditionszahl dieses Problem ist nun durch $\kappa_{2}(\mat{W}^{-1}\mat{A})$ bedingt. Das Ziel muss es also sein, $\mat{W}^{-1}$ so gut wie möglich zu wählen, damit die Kondition möglichst klein wird. Nun ist im Allgemeinen $\mat{W}^{-1}\mat{A}$ nicht s.p.d. Somit könnten wir zwar den CG-Alorithmus trotzdem anwenden, werden aber wegen dieser Tatsache möglicherweise keine Konvergenz erhalten. Um dies zu umgehen findet man z.B. in (Dahmen/Reusken 576) einen Lösungsansatz, bei dem mit der Cholesky-Zerlegung eine entsprechende Umformung gefunden werden kann.
+Die Konditionszahl dieses Problem ist nun durch $\kappa_{2}(\mat{W}^{-1}\mat{A})$ bedingt. Das Ziel muss es also sein, $\mat{W}^{-1}$ so gut wie möglich zu wählen, damit die Kondition klein wird. Nun ist im Allgemeinen $\mat{W}^{-1}\mat{A}$ nicht s.p.d. Somit könnten wir zwar den CG-Alorithmus trotzdem anwenden, werden aber wegen dieser Tatsache möglicherweise keine Konvergenz erhalten. Um dies zu umgehen findet man einen Lösungsansatz (z.B. in Dahmen/Reusken 576), bei dem mit der Cholesky-Zerlegung eine entsprechende Umformung gefunden werden kann.
 
 \subsection{Der Algorithmus des vorkonditionierten konjugierten Gradienten Verfahrens}\label{ss.Algorithmus PCG}
 
@@ -1234,10 +1239,10 @@ Gegeben seien $\mat{A}, \mat{W} \in \mathbb{R}^{n}$ s.p.d. Bestimme die (Näheru
 Für $k = 1,2,...$, falls $r^{k-1} \ne 0$ berechne:
 
 \begin{eqnarray}
-p^{k-1} &=& z^{k-1} + \beta_{k-2}p^{k-2}, \textnormal{ wobei } \beta_{k-2} = \frac {\langle z^{k-1}, r^{k-1} \rangle} {\langle z^{k-2}, r^{k-2} \rangle} \textnormal{ mit } (k \ge 2) \notag \\
-u^{k} &=& u^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ wobei } \alpha_{k-1} = \frac {\langle z^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle} \notag \\
-r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1} \notag \\
-z^{k} &=& \mat{W}^{-1}r^{k} \textnormal{ (löse } \mat{W}z^{k} = r^{k}) \notag
+p^{k-1} &=& z^{k-1} + \beta_{k-2}p^{k-2}, \textnormal{ wobei } \beta_{k-2} = \frac {\langle z^{k-1}, r^{k-1} \rangle} {\langle z^{k-2}, r^{k-2} \rangle} \textnormal{ mit } (k \ge 2), \notag \\
+u^{k} &=& u^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ wobei } \alpha_{k-1} = \frac {\langle z^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle}, \notag \\
+r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1}, \notag \\
+z^{k} &=& \mat{W}^{-1}r^{k} \textnormal{ (löse } \mat{W}z^{k} = r^{k}). \notag
 \end{eqnarray}
 
 Wichtig hierbei ist, dass das Lösen von $\mat{W}z^{k} = r^{k}$ mit möglichst wenig Aufwand (ideal: $\mathcal{O}(n)$) berechnet werden soll.
@@ -1247,16 +1252,16 @@ Wichtig hierbei ist, dass das Lösen von $\mat{W}z^{k} = r^{k}$ mit möglichst w
 Eine Matrix $\mat{A}$, die symmetrisch positiv definit ist, lässt sich durch eine Cholesky-Zerlegung in eine normierte untere Dreiecksmatrix $\mat{L}$ und eine rechte obere Dreicksmatrix $\mat{U}$ zerlegen, wobei gilt: $\mat{U} := \mat{D}\mat{L}^{T}$ \\
 Mit dieser Zerlegung möchten wir nun unser System vorkonditionieren. Allerdings würde eine vollständige Cholesky-Zerlegung viele Nulleinträge in einer dünn besetzten Matrix auslöschen. Darum greift man auf eine unvollständige Cholesky-Zerlegung zurück, bei der die Stellen, an denen $\mat{A}$ Nulleinträge besitzt, in $L$ und $U$ ebenfalls Null bleiben.
 
-\subsubsection{Definition (Das Muster E)}\label{sss.Muster E}
+\subsubsection{Definition (Muster E)}\label{sss.Muster E}
 
-Sei das Muster $E \subseteq \{1,...,n\} \times \{1,...,n\}$, dann gilt:
+Sei $E \subseteq \{1,...,n\} \times \{1,...,n\}$ ein Muster, für das gilt:
 \begin{equation}
-E := \{(i,j) | 1 \le i,j \le n, a_{i,j} \ne 0 \}
+E := \{(i,j) | 1 \le i,j \le n, a_{i,j} \ne 0 \}.
 \end{equation}
 
 Dann lässt sich die Matrix $\mat{A}$ auch folgendermaßen schreiben:
 \begin{equation}
-\mat{A} = \tilde{\mat{L}} \tilde{\mat{L}}^{T} + E \approx \tilde{\mat{L}} \tilde{\mat{L}}^{T}
+\mat{A} = \approx \tilde{\mat{L}} \tilde{\mat{L}}^{T}.
 \end{equation}
 wobei $\tilde{\mat{L}}, \tilde{\mat{L}}^{T}$ nicht die komplette Faktorisierung darstellt, sondern folgende Eigenschaften erfüllt:
 
@@ -1266,7 +1271,7 @@ wobei $\tilde{\mat{L}}, \tilde{\mat{L}}^{T}$ nicht die komplette Faktorisierung 
 \item Es gilt: $l_{i,j} = 0$, falls $(i,j) \notin E$
 \end{itemize}
 
-Natürlich ist diese Faktorisierung ungenauer, als die vollständige Zerlegung, allerdings genügt sie, um die Kondition des Gleichungssystems in vielen Fällen zu verbessern. Um den folgenden Algorithmus effizient zu machen, werden Summen nur über Indizes aus dem Muster berechnet.
+Natürlich ist diese Faktorisierung ungenauer, als die vollständige Zerlegung, allerdings genügt sie, um die Kondition des Gleichungssystems in vielen Fällen zu verbessern. Um den Algorithmus effizient und den Rechenaufwand so klein wie möglich zu machen, werden Summen nur über Indizes aus dem Muster berechnet.
 
 \subsubsection{Der numerische Algorithmus der unvollständigen Cholesky Zerlegung}\label{sss.Cholesky-Algorithmus}
 
@@ -1281,10 +1286,10 @@ l_{k,i} &=& \left( a_{k,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l
 
 \begin{itemize}
 \item Die für den PCG-Algorithmus wichtige Matrix $\mat{W}$ wird nun definierte als: $\mat{W} := \tilde{\mat{L}} \tilde{\mat{L}}^{T}$. Dadurch wird auch $\mat{W}z^{k} = \tilde{\mat{L}} \tilde{\mat{L}}^{T}z^{k} = r^{k}$ schnell durch Vorwärts- bzw. Rückwärtseinsetzen lösbar.
-\item Für viele Probleme zeigt sich, dass $\kappa_{2}(\mat{W}^{-1} \mat{A}) \ll \kappa_{2} (A)$ gilt. \\
+\item Für viele Probleme zeigt sich, dass $\kappa_{2}(\mat{W}^{-1} \mat{\mat{A}}) \ll \kappa_{2} (A)$ gilt. \\
 \end{itemize}
 
-Es gibt einige Varianten dieses Verfahrens. Wir wollen uns an dieser Stelle mit einer dieser auseinander setzen.
+Es gibt einige Varianten dieses Verfahrens. Wir wollen uns an dieser Stelle noch mit einer dieser auseinander setzen.
 
 \subsection{Die modifizierte unvollständige Cholesky-Zerlegung}\label{ss.Modifizierte Cholesky}
 

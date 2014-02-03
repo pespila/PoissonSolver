@@ -36,7 +36,7 @@
 \BOOKMARK [2][-]{subsection.3.5.6}{Lemma}{section.3.5}
 \BOOKMARK [2][-]{subsection.3.5.7}{Lemma}{section.3.5}
 \BOOKMARK [2][-]{subsection.3.5.8}{Satz \(Bestimmung einer A-orthogonalen Basis\)}{section.3.5}
-\BOOKMARK [2][-]{subsection.3.5.9}{Lemma}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.9}{Satz}{section.3.5}
 \BOOKMARK [2][-]{subsection.3.5.10}{Numerischer Algorithmus der konjugierten Gradienten}{section.3.5}
 \BOOKMARK [2][-]{subsection.3.5.11}{Satz \(Konvergenz des CG-Algorithmus\) [DahmenReusken]}{section.3.5}
 \BOOKMARK [1][-]{section.3.6}{Vorkonditioniertes Verfahren der konjugierten Gradienten \(PCG\)}{chapter.3}
@@ -44,7 +44,7 @@
 \BOOKMARK [3][-]{subsubsection.3.6.1.1}{Beweis:}{subsection.3.6.1}
 \BOOKMARK [2][-]{subsection.3.6.2}{Der Algorithmus des vorkonditionierten konjugierten Gradienten Verfahrens}{section.3.6}
 \BOOKMARK [2][-]{subsection.3.6.3}{Die unvollst\344ndige Cholesky-Zerlegung}{section.3.6}
-\BOOKMARK [3][-]{subsubsection.3.6.3.1}{Definition \(Das Muster E\)}{subsection.3.6.3}
+\BOOKMARK [3][-]{subsubsection.3.6.3.1}{Definition \(Muster E\)}{subsection.3.6.3}
 \BOOKMARK [3][-]{subsubsection.3.6.3.2}{Eigenschaften der Matrix }{subsection.3.6.3}
 \BOOKMARK [3][-]{subsubsection.3.6.3.3}{Der numerische Algorithmus der unvollst\344ndigen Cholesky Zerlegung}{subsection.3.6.3}
 \BOOKMARK [2][-]{subsection.3.6.4}{Die modifizierte unvollst\344ndige Cholesky-Zerlegung}{section.3.6}
