@@ -25,10 +25,10 @@ void Algorithms::JacobiRelaxationMethod(Matrix& A, vector<double>& x, const vect
 void Algorithms::JacobiRelaxationSolver(Matrix& A,vector<double>& x,const vector<double>& b) {
     vector<double> r(x.size(),0);
     r=b-A*x;
-    double TOL=(r|r)*pow(10,-3);
-    double omega=4.0/5.0;
+    double TOL=(r|r);
+    // double omega=4.0/5.0;
     while(TOL<=(r|r)) {
-        x+=omega*1.0/4.0*r;
+        x+=1.0/4.0*r;
         r=b-A*x;
     }
 }
@@ -118,7 +118,8 @@ vector<double> Algorithms::MultiGridAlgorithm(Matrix& A,vector<double>& X,const 
     if(n==this->n) {
         x=X;
     }
-    if(n==15) {
+    if(n==1) {
+        //x[0]=b[0]/A.Get(0,0);
         JacobiRelaxationSolver(A,x,b);
         return x;
     } else {
@@ -138,12 +139,18 @@ vector<double> Algorithms::MultiGridAlgorithm(Matrix& A,vector<double>& X,const 
 
 void Algorithms::MultiGridMethod(Matrix& A,vector<double>& x,vector<double>& b) {
     int steps=0;
+    vector<double> solved(dim);
+    for(int i=1,k=0;i<=n;i++) {
+        for(int j=1;j<=n;j++,k++) {
+            solved[k]=g(j*h,i*h);
+        }
+    }
     vector<double> r(dim);
-    r=b-A*x;
+    r=x-solved;
     double TOL=pow(10,-3)*(r|r);
     while(TOL<=(r|r)) {
         x=MultiGridAlgorithm(A,x,b,n);
-        r=b-A*x;
+        r=x-solved;
         steps++;
         if(steps==500) {
             r.assign(dim,0);

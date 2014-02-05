@@ -17,11 +17,31 @@ int main(int argc, char const *argv[]) {
     vector<double> x(arg*arg,0),b(arg*arg,0);
     V.InitRightSide(b);
 
+    double h=1.0/(double)(arg+1);
+
+    // for(int i=0;i<arg*arg;i++) {
+    //     x[i]=sin(i*h*3.14);
+    // }
+
     printf("Started\n");
     double time,start=0.0,end=0.0;
     start=clock();
 
     Run.MultiGridMethod(A,x,b);
+
+    // vector<double> e(arg*arg),solved(arg*arg);
+
+    // for(int i=1,k=0;i<=arg;i++) {
+    //     for(int j=1;j<=arg;j++,k++) {
+    //         solved[k]=g(j*h,i*h);
+    //     }
+    // }
+
+    // Run.JacobiRelaxationMethod(A,x,b,5);
+
+    // e=x-solved;
+
+    // V.WriteToFile(e);
     
     end=clock();
     time=(end-start)/CLOCKS_PER_SEC;
@@ -37,6 +57,8 @@ int main(int argc, char const *argv[]) {
 
     return EXIT_SUCCESS;
 }
+
+
 
 double f(double x,double y) {
     return -4.0;
