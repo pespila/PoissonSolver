@@ -67,13 +67,13 @@
 \newlabel{img.EV}{{2.6}{9}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen}{figure.2.6}{}}
 \newlabel{img.Jacobi1}{{2.3.1}{9}{Eigenwerte und Eigenvektoren von $\mat {A}_{2D}$\relax }{figure.2.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Folgerung ($ {\textbf  {A}} _{2D}$ ist s.p.d.)}{13}{subsection.2.3.2}}
-\newlabel{eq.Lambda min}{{2.33}{13}{Folgerung ($\mat {A}_{2D}$ ist s.p.d.)\relax }{equation.2.3.32}{}}
-\newlabel{eq.Lambda max}{{2.33}{13}{Folgerung ($\mat {A}_{2D}$ ist s.p.d.)\relax }{equation.2.3.32}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}Definition (Kondition einer symmetrischen Matrix)}{13}{subsection.2.3.3}}
 \newlabel{ss.Definition Kondition einer Matrix}{{2.3.3}{13}{Definition (Kondition einer symmetrischen Matrix)\relax }{subsection.2.3.3}{}}
-\newlabel{eq.Kondition}{{2.34}{13}{Definition (Kondition einer symmetrischen Matrix)\relax }{equation.2.3.34}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.4}Lemma (Kondition von $ {\textbf  {A}} _{2D}$)}{14}{subsection.2.3.4}}
-\newlabel{ss.Matrixkondition}{{2.3.4}{14}{Lemma (Kondition von $\mat {A}_{2D}$)\relax }{subsection.2.3.4}{}}
+\newlabel{eq.Kondition}{{2.32}{13}{Definition (Kondition einer symmetrischen Matrix)\relax }{equation.2.3.32}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.4}Lemma (Kondition von $ {\textbf  {A}} _{2D}$)}{13}{subsection.2.3.4}}
+\newlabel{ss.Matrixkondition}{{2.3.4}{13}{Lemma (Kondition von $\mat {A}_{2D}$)\relax }{subsection.2.3.4}{}}
+\newlabel{eq.Lambda min}{{2.34}{14}{Lemma (Kondition von $\mat {A}_{2D}$)\relax }{equation.2.3.34}{}}
+\newlabel{eq.Lambda max}{{2.35}{14}{Lemma (Kondition von $\mat {A}_{2D}$)\relax }{equation.2.3.34}{}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Iterative L\IeC {\"o}sungsvefahren f\IeC {\"u}r lineare Gleichungssysteme}{15}{chapter.3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -173,62 +173,67 @@
 \newlabel{sss.Eigenschaften L MCZ}{{3.6.4.1}{32}{Eigenschaften der Matrix $\tilde {\mat {L}}$\relax }{subsubsection.3.6.4.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.4.2}Der numerische Algorithmus der modifizierten unvollst\IeC {\"a}ndigen Cholesky-Zerlegung}{33}{subsubsection.3.6.4.2}}
 \newlabel{sss.Algorithmus MUCZ}{{3.6.4.2}{33}{Der numerische Algorithmus der modifizierten unvollständigen Cholesky-Zerlegung\relax }{subsubsection.3.6.4.2}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Mehrgitterverfahren}{34}{chapter.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.5}Effiziente Implementation der modifizierten Cholesky-Zerlegungen}{33}{subsection.3.6.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.6}C++-Methode der MIC}{34}{subsection.3.6.6}}
+\newlabel{s.MIC}{{3.6.6}{34}{C++-Methode der MIC\relax }{subsection.3.6.6}{}}
+\@writefile{lol}{\contentsline {lstlisting}{code/MIC.c}{34}{lstlisting.3.-1}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Mehrgitterverfahren}{35}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
-\newlabel{c.Mehrgitterverfahren}{{4}{34}{Mehrgitterverfahren\relax }{chapter.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Grundlagen}{34}{section.4.1}}
-\newlabel{s.Idee MGM}{{4.1}{34}{Grundlagen\relax }{section.4.1}{}}
-\newlabel{eq.Residuumsgleichung}{{4.1}{34}{Grundlagen\relax }{equation.4.1.1}{}}
-\newlabel{eq.Fehler}{{4.3}{34}{Grundlagen\relax }{equation.4.1.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Prolongation}{35}{section.4.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Interpolationsmatrix}{35}{subsection.4.2.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Bei der Interpolation bedienen sich die Punkte vom feinen Gitter, den gewichteten Punkten des groben Gitters.}}{37}{figure.4.1}}
-\newlabel{img.interpolation}{{4.1}{37}{Bei der Interpolation bedienen sich die Punkte vom feinen Gitter, den gewichteten Punkten des groben Gitters}{figure.4.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Restriktion}{37}{section.4.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Restriktionsmatrix}{38}{subsection.4.3.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte sch\IeC {\"o}n veranschaulicht.}}{39}{figure.4.2}}
-\newlabel{img.restrict}{{4.2}{39}{Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte schön veranschaulicht}{figure.4.2}{}}
-\newlabel{img.restrict}{{4.3.1}{39}{Restriktionsmatrix\relax }{figure.4.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Transformation der Matrix}{39}{section.4.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Einf\IeC {\"u}hrung in die Mehrgittermethoden}{40}{section.4.5}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.6}Das Zweigitterverfahren}{40}{section.4.6}}
-\newlabel{s.Der Zweigitter-Algorithmus}{{4.6}{40}{Das Zweigitterverfahren\relax }{section.4.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.7}Mehrgitter-Algorithmen}{41}{section.4.7}}
-\newlabel{s.Mehrgitteralgorithmus}{{4.7}{41}{Mehrgitter-Algorithmen\relax }{section.4.7}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}{44}{chapter.5}}
+\newlabel{c.Mehrgitterverfahren}{{4}{35}{Mehrgitterverfahren\relax }{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Grundlagen}{35}{section.4.1}}
+\newlabel{s.Idee MGM}{{4.1}{35}{Grundlagen\relax }{section.4.1}{}}
+\newlabel{eq.Residuumsgleichung}{{4.1}{35}{Grundlagen\relax }{equation.4.1.1}{}}
+\newlabel{eq.Fehler}{{4.3}{35}{Grundlagen\relax }{equation.4.1.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Prolongation}{36}{section.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Interpolationsmatrix}{36}{subsection.4.2.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Bei der Interpolation bedienen sich die Punkte vom feinen Gitter, den gewichteten Punkten des groben Gitters.}}{38}{figure.4.1}}
+\newlabel{img.interpolation}{{4.1}{38}{Bei der Interpolation bedienen sich die Punkte vom feinen Gitter, den gewichteten Punkten des groben Gitters}{figure.4.1}{}}
+\newlabel{img.Prolongation}{{4.2.1}{38}{Interpolationsmatrix\relax }{figure.4.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Restriktion}{38}{section.4.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Restriktionsmatrix}{39}{subsection.4.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte veranschaulicht. Jeder Wert wird zus\IeC {\"a}tzlich mit einem Faktor $\frac  {1}{16}$ multipliziert}}{40}{figure.4.2}}
+\newlabel{img.restrict}{{4.2}{40}{Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte veranschaulicht. Jeder Wert wird zusätzlich mit einem Faktor $\frac {1}{16}$ multipliziert\relax }{figure.4.2}{}}
+\newlabel{img.restrict}{{4.3.1}{40}{Restriktionsmatrix\relax }{figure.4.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Transformation der Matrix}{40}{section.4.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Einf\IeC {\"u}hrung in die Mehrgittermethoden}{41}{section.4.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Das Zweigitterverfahren}{41}{section.4.6}}
+\newlabel{s.Der Zweigitter-Algorithmus}{{4.6}{41}{Das Zweigitterverfahren\relax }{section.4.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.7}Mehrgitter-Algorithmen}{42}{section.4.7}}
+\newlabel{s.Mehrgitteralgorithmus}{{4.7}{42}{Mehrgitter-Algorithmen\relax }{section.4.7}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}{45}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
-\newlabel{c.Vergleich}{{5}{44}{Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden\relax }{chapter.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Beispiel einer Poisson Gleichung}{44}{section.5.1}}
-\newlabel{s.Beispiel einer Poisson Gleichung}{{5.1}{44}{Beispiel einer Poisson Gleichung\relax }{section.5.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Zur Implementierung in C++}{44}{section.5.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Abbruchkriterien}{45}{section.5.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}L\IeC {\"o}sung der Poisson Gleichung (Jacobi-Verfahren)}{45}{section.5.4}}
-\newlabel{s.Jacobi mit Beispiel}{{5.4}{45}{Lösung der Poisson Gleichung (Jacobi-Verfahren)\relax }{section.5.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Jacobi-Iterationsverfahren}}{45}{table.5.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.5}L\IeC {\"o}sung der Poisson Gleichung (Jacobi-Relaxations-Verfahren)}{46}{section.5.5}}
-\newlabel{s.JacobiRelax mit Beispiel}{{5.5}{46}{Lösung der Poisson Gleichung (Jacobi-Relaxations-Verfahren)\relax }{section.5.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}Parameter $\omega = \frac  {1} {2}$}{46}{subsection.5.5.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Jacobi-Iterationsverfahren}}{46}{table.5.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}Parameter $\omega = \frac  {4} {5}$}{46}{subsection.5.5.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces Jacobi-Iterationsverfahren}}{46}{table.5.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.6}CG-Verfahren angewandt auf das Beispiel}{46}{section.5.6}}
-\newlabel{s.CG mit Beispiel}{{5.6}{46}{CG-Verfahren angewandt auf das Beispiel\relax }{section.5.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Jacobi-Iterationsverfahren}}{46}{table.5.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.7}PCG-Verfahren angewandt auf das Beispiel}{47}{section.5.7}}
-\newlabel{s.PCG mit Beispiel}{{5.7}{47}{PCG-Verfahren angewandt auf das Beispiel\relax }{section.5.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.1}Unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{47}{subsection.5.7.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces Jacobi-Iterationsverfahren}}{47}{table.5.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.2}Modifizierte unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{47}{subsection.5.7.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces Jacobi-Iterationsverfahren}}{47}{table.5.6}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.8}Das Mehrgitterverfahren angewandt auf das Beispiel}{47}{section.5.8}}
-\newlabel{s.Multigrid mit Beispiel}{{5.8}{47}{Das Mehrgitterverfahren angewandt auf das Beispiel\relax }{section.5.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.1}V-Zyklus}{47}{subsection.5.8.1}}
-\newlabel{ss.V-Zyklus mit Beispiel}{{5.8.1}{47}{V-Zyklus\relax }{subsection.5.8.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces Jacobi-Iterationsverfahren}}{47}{table.5.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.2}W-Zyklus}{48}{subsection.5.8.2}}
-\newlabel{ss.W-Zyklus mit Beispiel}{{5.8.2}{48}{W-Zyklus\relax }{subsection.5.8.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.8}{\ignorespaces Jacobi-Iterationsverfahren}}{48}{table.5.8}}
+\newlabel{c.Vergleich}{{5}{45}{Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden\relax }{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Beispiel einer Poisson Gleichung}{45}{section.5.1}}
+\newlabel{s.Beispiel einer Poisson Gleichung}{{5.1}{45}{Beispiel einer Poisson Gleichung\relax }{section.5.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Zur Implementierung in C++}{45}{section.5.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Abbruchkriterien}{46}{section.5.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}L\IeC {\"o}sung der Poisson Gleichung (Jacobi-Verfahren)}{46}{section.5.4}}
+\newlabel{s.Jacobi mit Beispiel}{{5.4}{46}{Lösung der Poisson Gleichung (Jacobi-Verfahren)\relax }{section.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Jacobi-Iterationsverfahren}}{46}{table.5.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}L\IeC {\"o}sung der Poisson Gleichung (Jacobi-Relaxations-Verfahren)}{47}{section.5.5}}
+\newlabel{s.JacobiRelax mit Beispiel}{{5.5}{47}{Lösung der Poisson Gleichung (Jacobi-Relaxations-Verfahren)\relax }{section.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}Parameter $\omega = \frac  {1} {2}$}{47}{subsection.5.5.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Jacobi-Iterationsverfahren}}{47}{table.5.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}Parameter $\omega = \frac  {4} {5}$}{47}{subsection.5.5.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces Jacobi-Iterationsverfahren}}{47}{table.5.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}CG-Verfahren angewandt auf das Beispiel}{47}{section.5.6}}
+\newlabel{s.CG mit Beispiel}{{5.6}{47}{CG-Verfahren angewandt auf das Beispiel\relax }{section.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Jacobi-Iterationsverfahren}}{47}{table.5.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.7}PCG-Verfahren angewandt auf das Beispiel}{48}{section.5.7}}
+\newlabel{s.PCG mit Beispiel}{{5.7}{48}{PCG-Verfahren angewandt auf das Beispiel\relax }{section.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.1}Unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{48}{subsection.5.7.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces Jacobi-Iterationsverfahren}}{48}{table.5.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.2}Modifizierte unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{48}{subsection.5.7.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces Jacobi-Iterationsverfahren}}{48}{table.5.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.8}Das Mehrgitterverfahren angewandt auf das Beispiel}{48}{section.5.8}}
+\newlabel{s.Multigrid mit Beispiel}{{5.8}{48}{Das Mehrgitterverfahren angewandt auf das Beispiel\relax }{section.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.1}V-Zyklus}{48}{subsection.5.8.1}}
+\newlabel{ss.V-Zyklus mit Beispiel}{{5.8.1}{48}{V-Zyklus\relax }{subsection.5.8.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces Jacobi-Iterationsverfahren}}{48}{table.5.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.2}W-Zyklus}{49}{subsection.5.8.2}}
+\newlabel{ss.W-Zyklus mit Beispiel}{{5.8.2}{49}{W-Zyklus\relax }{subsection.5.8.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.8}{\ignorespaces Jacobi-Iterationsverfahren}}{49}{table.5.8}}

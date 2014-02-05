@@ -10,7 +10,7 @@
 \contentsline {subsection}{\numberline {2.3.1}Eigenwerte und Eigenvektoren von $ {\textbf {A}} _{2D}$}{7}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Folgerung ($ {\textbf {A}} _{2D}$ ist s.p.d.)}{13}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}Definition (Kondition einer symmetrischen Matrix)}{13}{subsection.2.3.3}
-\contentsline {subsection}{\numberline {2.3.4}Lemma (Kondition von $ {\textbf {A}} _{2D}$)}{14}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.4}Lemma (Kondition von $ {\textbf {A}} _{2D}$)}{13}{subsection.2.3.4}
 \contentsline {chapter}{\numberline {3}Iterative L\IeC {\"o}sungsvefahren f\IeC {\"u}r lineare Gleichungssysteme}{15}{chapter.3}
 \contentsline {section}{\numberline {3.1}Grundbegriffe}{15}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Definition (Iterationsmatrix)}{15}{subsection.3.1.1}
@@ -52,28 +52,30 @@
 \contentsline {subsection}{\numberline {3.6.4}Die modifizierte unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{32}{subsection.3.6.4}
 \contentsline {subsubsection}{\numberline {3.6.4.1}Eigenschaften der Matrix $\mathaccentV {tilde}47E{ {\textbf {L}} }$}{32}{subsubsection.3.6.4.1}
 \contentsline {subsubsection}{\numberline {3.6.4.2}Der numerische Algorithmus der modifizierten unvollst\IeC {\"a}ndigen Cholesky-Zerlegung}{33}{subsubsection.3.6.4.2}
-\contentsline {chapter}{\numberline {4}Mehrgitterverfahren}{34}{chapter.4}
-\contentsline {section}{\numberline {4.1}Grundlagen}{34}{section.4.1}
-\contentsline {section}{\numberline {4.2}Prolongation}{35}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Interpolationsmatrix}{35}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Restriktion}{37}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Restriktionsmatrix}{38}{subsection.4.3.1}
-\contentsline {section}{\numberline {4.4}Transformation der Matrix}{39}{section.4.4}
-\contentsline {section}{\numberline {4.5}Einf\IeC {\"u}hrung in die Mehrgittermethoden}{40}{section.4.5}
-\contentsline {section}{\numberline {4.6}Das Zweigitterverfahren}{40}{section.4.6}
-\contentsline {section}{\numberline {4.7}Mehrgitter-Algorithmen}{41}{section.4.7}
-\contentsline {chapter}{\numberline {5}Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}{44}{chapter.5}
-\contentsline {section}{\numberline {5.1}Beispiel einer Poisson Gleichung}{44}{section.5.1}
-\contentsline {section}{\numberline {5.2}Zur Implementierung in C++}{44}{section.5.2}
-\contentsline {section}{\numberline {5.3}Abbruchkriterien}{45}{section.5.3}
-\contentsline {section}{\numberline {5.4}L\IeC {\"o}sung der Poisson Gleichung (Jacobi-Verfahren)}{45}{section.5.4}
-\contentsline {section}{\numberline {5.5}L\IeC {\"o}sung der Poisson Gleichung (Jacobi-Relaxations-Verfahren)}{46}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Parameter $\omega = \frac {1} {2}$}{46}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Parameter $\omega = \frac {4} {5}$}{46}{subsection.5.5.2}
-\contentsline {section}{\numberline {5.6}CG-Verfahren angewandt auf das Beispiel}{46}{section.5.6}
-\contentsline {section}{\numberline {5.7}PCG-Verfahren angewandt auf das Beispiel}{47}{section.5.7}
-\contentsline {subsection}{\numberline {5.7.1}Unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{47}{subsection.5.7.1}
-\contentsline {subsection}{\numberline {5.7.2}Modifizierte unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{47}{subsection.5.7.2}
-\contentsline {section}{\numberline {5.8}Das Mehrgitterverfahren angewandt auf das Beispiel}{47}{section.5.8}
-\contentsline {subsection}{\numberline {5.8.1}V-Zyklus}{47}{subsection.5.8.1}
-\contentsline {subsection}{\numberline {5.8.2}W-Zyklus}{48}{subsection.5.8.2}
+\contentsline {subsection}{\numberline {3.6.5}Effiziente Implementation der modifizierten Cholesky-Zerlegungen}{33}{subsection.3.6.5}
+\contentsline {subsection}{\numberline {3.6.6}C++-Methode der MIC}{34}{subsection.3.6.6}
+\contentsline {chapter}{\numberline {4}Mehrgitterverfahren}{35}{chapter.4}
+\contentsline {section}{\numberline {4.1}Grundlagen}{35}{section.4.1}
+\contentsline {section}{\numberline {4.2}Prolongation}{36}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Interpolationsmatrix}{36}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}Restriktion}{38}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Restriktionsmatrix}{39}{subsection.4.3.1}
+\contentsline {section}{\numberline {4.4}Transformation der Matrix}{40}{section.4.4}
+\contentsline {section}{\numberline {4.5}Einf\IeC {\"u}hrung in die Mehrgittermethoden}{41}{section.4.5}
+\contentsline {section}{\numberline {4.6}Das Zweigitterverfahren}{41}{section.4.6}
+\contentsline {section}{\numberline {4.7}Mehrgitter-Algorithmen}{42}{section.4.7}
+\contentsline {chapter}{\numberline {5}Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}{45}{chapter.5}
+\contentsline {section}{\numberline {5.1}Beispiel einer Poisson Gleichung}{45}{section.5.1}
+\contentsline {section}{\numberline {5.2}Zur Implementierung in C++}{45}{section.5.2}
+\contentsline {section}{\numberline {5.3}Abbruchkriterien}{46}{section.5.3}
+\contentsline {section}{\numberline {5.4}L\IeC {\"o}sung der Poisson Gleichung (Jacobi-Verfahren)}{46}{section.5.4}
+\contentsline {section}{\numberline {5.5}L\IeC {\"o}sung der Poisson Gleichung (Jacobi-Relaxations-Verfahren)}{47}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Parameter $\omega = \frac {1} {2}$}{47}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Parameter $\omega = \frac {4} {5}$}{47}{subsection.5.5.2}
+\contentsline {section}{\numberline {5.6}CG-Verfahren angewandt auf das Beispiel}{47}{section.5.6}
+\contentsline {section}{\numberline {5.7}PCG-Verfahren angewandt auf das Beispiel}{48}{section.5.7}
+\contentsline {subsection}{\numberline {5.7.1}Unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{48}{subsection.5.7.1}
+\contentsline {subsection}{\numberline {5.7.2}Modifizierte unvollst\IeC {\"a}ndige Cholesky-Zerlegung}{48}{subsection.5.7.2}
+\contentsline {section}{\numberline {5.8}Das Mehrgitterverfahren angewandt auf das Beispiel}{48}{section.5.8}
+\contentsline {subsection}{\numberline {5.8.1}V-Zyklus}{48}{subsection.5.8.1}
+\contentsline {subsection}{\numberline {5.8.2}W-Zyklus}{49}{subsection.5.8.2}

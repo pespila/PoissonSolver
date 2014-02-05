@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.1.27)  3 FEB 2014 21:59
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.1.27)  5 FEB 2014 22:09
 entering extended mode
  %&-line parsing enabled.
 **arbeit-vorlage.tex
@@ -1011,7 +1011,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
  []
 
-[3] <images/diffStar.pdf, id=448, 915.42pt x 733.74126pt>
+[3] <images/diffStar.pdf, id=458, 915.42pt x 733.74126pt>
 File: images/diffStar.pdf Graphic file (type pdf)
 
 <use images/diffStar.pdf>
@@ -1027,7 +1027,7 @@ lm/m/n/12 ^^A[]\OML/zplm/m/it/12 u\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 x\OT1/ppl
  dis-kre-ti-sier-te Form: 
  []
 
-<images/grid.pdf, id=451, 424.58624pt x 422.57875pt>
+<images/grid.pdf, id=461, 424.58624pt x 422.57875pt>
 File: images/grid.pdf Graphic file (type pdf)
  <use images/grid.pdf>
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
@@ -1114,13 +1114,13 @@ Overfull \hbox (99.25903pt too wide) in paragraph at lines 294--295
 1/ppl/m/n/12 (-20) lässt sich auch in der fol-gen-den Form dar-stel-len: 
  []
 
-<images/sin1.png, id=488, 642.4pt x 401.5pt>
+<images/sin1.png, id=498, 642.4pt x 401.5pt>
 File: images/sin1.png Graphic file (type png)
  <use images/sin1.png>
-<images/sin7.png, id=489, 642.4pt x 401.5pt>
+<images/sin7.png, id=499, 642.4pt x 401.5pt>
 File: images/sin7.png Graphic file (type png)
  <use images/sin7.png> [7]
-<images/sin13.png, id=498, 642.4pt x 401.5pt>
+<images/sin13.png, id=508, 642.4pt x 401.5pt>
 File: images/sin13.png Graphic file (type png)
  <use images/sin13.png> [8pdfTeX warning (ext4): destination with the same iden
 tifier (name{figure.2.3}) has been already used, duplicate ignored
@@ -1141,7 +1141,7 @@ l.319
                                                   \fi \fi 
 l.319 
        <./images/sin1.png (PNG copy)> <./images/sin7.png> <./images/sin13.png (
-PNG copy)>] <images/EV.png, id=508, 642.4pt x 385.44pt>
+PNG copy)>] <images/EV.png, id=518, 642.4pt x 385.44pt>
 File: images/EV.png Graphic file (type png)
  <use images/EV.png>
 Overfull \hbox (83.08247pt too wide) in paragraph at lines 322--323
@@ -1296,32 +1296,32 @@ er (name{equation.2.3.31}) has been already used, duplicate ignored
                    \relax 
 l.491 \begin{equation}
                       
-Overfull \hbox (52.07326pt too wide) in paragraph at lines 510--512
+Overfull \hbox (52.07326pt too wide) in paragraph at lines 503--505
 \T1/ppl/m/n/12 (-20) Je klei-ner die Kon-di-ti-ons-zahl $\OML/zplm/m/it/12 ^^T$
 \T1/ppl/m/n/12 (-20) , de-sto bes-ser ist ei-ne Ma-trix kon-di-tio-niert. 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 513.
+(hyperref)                removing `math shift' on input line 506.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 513.
+(hyperref)                removing `subscript' on input line 506.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 513.
+(hyperref)                removing `math shift' on input line 506.
 
 [13]
-Overfull \hbox (121.82657pt too wide) in paragraph at lines 529--531
+Overfull \hbox (121.82657pt too wide) in paragraph at lines 530--532
 \T1/ppl/m/n/12 (-20) In [Dah-men-Reus-ken] wird au-ÿer-dem ge-zeigt, dass sich 
 $\OML/zplm/m/it/12 ^^T[]\OT1/zplm/m/n/12 ([][])$ \T1/ppl/m/n/12 (-20) wie folgt
  nä-hern lässt: 
  []
 
 
-Overfull \hbox (8.03621pt too wide) in paragraph at lines 541--542
+Overfull \hbox (8.03621pt too wide) in paragraph at lines 542--543
 []\T1/ppl/m/n/12 (-20) Diesem Pro-blem wer-den wir spä-ter noch-mals ge-gen-übe
 r ste-hen. 
  []
@@ -1331,19 +1331,19 @@ r ste-hen.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.543 \chapter
+l.544 \chapter
               {Iterative LÃ¶sungsvefahren fÃ¼r lineare Gleichungssysteme}\la...
 ]
 Kapitel 3.
 
-Overfull \hbox (0.76988pt too wide) in paragraph at lines 556--558
+Overfull \hbox (0.76988pt too wide) in paragraph at lines 557--559
 \T1/ppl/m/n/12 (-20) wobei die Ite-ra-ti-ons-vor-schrift für $\OML/zplm/m/it/12
  k \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 (-20) 1, ..., \OML/zplm/m/it/12 n$ \T1/pp
 l/m/n/12 (-20) ge-ge-ben ist durch: 
  []
 
 
-Overfull \hbox (74.3029pt too wide) in paragraph at lines 567--569
+Overfull \hbox (74.3029pt too wide) in paragraph at lines 568--570
 \T1/ppl/m/n/12 (-20) Ist $[]$ sym-me-trisch so gilt auch $\OML/zplm/m/it/12 ^^Z
 \OT1/zplm/m/n/12 (\OML/zplm/m/it/12 A\OT1/zplm/m/n/12 ) = \OMS/zplm/m/n/12 k\OM
 L/zplm/m/it/12 A\OMS/zplm/m/n/12 k[]$ \T1/ppl/m/n/12 (-20) und $\OML/zplm/m/it/
@@ -1356,13 +1356,13 @@ lm/m/it/12 n$\T1/ppl/m/n/12 (-20) .
 
 
 ]
-Overfull \hbox (50.92764pt too wide) in paragraph at lines 577--578
+Overfull \hbox (50.92764pt too wide) in paragraph at lines 578--579
 []\T1/ppl/m/n/12 (-20) Einen Be-weis hier-zu fin-det man z.B. in (Dah-men/Reus-
 ken und Ver-weis). 
  []
 
 
-Overfull \hbox (115.24103pt too wide) in paragraph at lines 610--611
+Overfull \hbox (115.24103pt too wide) in paragraph at lines 611--612
 []\T1/ppl/m/n/12 (-20) Ist nun $[]$ nicht sin-gu-lär, so gilt für das Jacobi-Ve
 rfahren fol-gen-de Ite-ra-ti-ons-vor-schrift: 
  []
@@ -1370,18 +1370,18 @@ rfahren fol-gen-de Ite-ra-ti-ons-vor-schrift:
 [16]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 644.
+(hyperref)                removing `math shift' on input line 645.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 644.
+(hyperref)                removing `subscript' on input line 645.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 644.
+(hyperref)                removing `math shift' on input line 645.
 
 [17]
-Overfull \hbox (36.2721pt too wide) in paragraph at lines 654--655
+Overfull \hbox (36.2721pt too wide) in paragraph at lines 655--656
 []\T1/ppl/m/n/12 (-20) Dieser folgt di-rekt mit dem Be-weis aus []Un-ter-ab-sch
 nitt 3.3.2[][] für $\OML/zplm/m/it/12 ! \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 (-20
 ) 1$\T1/ppl/m/n/12 (-20) . 
@@ -1389,36 +1389,36 @@ nitt 3.3.2[][] für $\OML/zplm/m/it/12 ! \OT1/zplm/m/n/12 = \OT1/ppl/m/n/12 (-20
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 671.
+(hyperref)                removing `math shift' on input line 672.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 671.
+(hyperref)                removing `subscript' on input line 672.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 671.
+(hyperref)                removing `math shift' on input line 672.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 705.
+(hyperref)                removing `math shift' on input line 706.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 705.
+(hyperref)                removing `subscript' on input line 706.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 705.
+(hyperref)                removing `math shift' on input line 706.
 
 [18pdfTeX warning (ext4): destination with the same identifier (name{equation.3
 .2.13}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.714 
+l.715 
       ]
-Overfull \hbox (66.87415pt too wide) in paragraph at lines 747--748
+Overfull \hbox (66.87415pt too wide) in paragraph at lines 748--749
 \T1/ppl/m/n/12 (-20) Sei $\OML/zplm/m/it/12 u[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/
 n/12 R[]$ \T1/ppl/m/n/12 (-20) ein \T1/ppl/m/it/12 (-20) be-lie-bi-ger \T1/ppl/
 m/n/12 (-20) Start-vek-tor und $\OML/zplm/m/it/12 k \OT1/zplm/m/n/12 = \OT1/ppl
@@ -1430,24 +1430,24 @@ m/n/12 (-20) Start-vek-tor und $\OML/zplm/m/it/12 k \OT1/zplm/m/n/12 = \OT1/ppl
 [19]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 755.
+(hyperref)                removing `math shift' on input line 756.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 755.
+(hyperref)                removing `subscript' on input line 756.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 755.
+(hyperref)                removing `math shift' on input line 756.
 
 
-Overfull \hbox (106.67778pt too wide) in paragraph at lines 757--758
+Overfull \hbox (106.67778pt too wide) in paragraph at lines 758--759
 \T1/ppl/m/n/12 (-20) Die Ei-gen-vek-to-ren ent-spre-chen de-nen von $[][]$ und 
 für die Ei-gen-wer-te von $[][]$ gilt: 
  []
 
 
-Overfull \hbox (89.45772pt too wide) in paragraph at lines 768--770
+Overfull \hbox (89.45772pt too wide) in paragraph at lines 769--771
 \T1/ppl/m/n/12 (-20) Die Ei-gen-wer-te von $[][]$ las-sen sich al-so ein-fach d
 urch $\OT1/zplm/m/n/12 (\OT1/ppl/m/n/12 (-20) 1 \OMS/zplm/m/n/12 ^^@ []\OML/zpl
 m/m/it/12 ^^U[]\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 A\OT1/zplm/m/n/12 ))$ \T1/pp
@@ -1456,57 +1456,57 @@ l/m/n/12 (-20) be-rech-nen:
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 777.
+(hyperref)                removing `math shift' on input line 778.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 777.
+(hyperref)                removing `subscript' on input line 778.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 777.
+(hyperref)                removing `math shift' on input line 778.
 
 [20pdfTeX warning (ext4): destination with the same identifier (name{equation.3
 .3.22}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.786 M
+l.787 M
        it \autoref{eq.Jacobi-Eigenwerte} folgt:pdfTeX warning (ext4): destinati
 on with the same identifier (name{equation.3.3.22}) has been already used, dupl
 icate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.786 M
+l.787 M
        it \autoref{eq.Jacobi-Eigenwerte} folgt:]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 799.
+(hyperref)                removing `math shift' on input line 800.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 799.
+(hyperref)                removing `subscript' on input line 800.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 799.
+(hyperref)                removing `math shift' on input line 800.
 
 [21pdfTeX warning (ext4): destination with the same identifier (name{equation.3
 .3.23}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.954 \begin{equation}
+l.955 \begin{equation}
                       ]
-Overfull \hbox (74.04561pt too wide) in paragraph at lines 958--959
+Overfull \hbox (74.04561pt too wide) in paragraph at lines 959--960
 []\T1/ppl/m/n/12 (-20) Betrachten wir nun den $\OT1/zplm/m/n/12 (\OML/zplm/m/it
 /12 k \OT1/zplm/m/n/12 + \OT1/ppl/m/n/12 (-20) 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/
 n/12 ^^@ \OML/zplm/m/it/12 ten$ \T1/ppl/m/n/12 (-20) Feh-ler und for-men ge-sch
 ickt um, so gilt: 
  []
 
-<images/omegaeins.png, id=616, 642.4pt x 385.44pt>
+<images/omegaeins.png, id=626, 642.4pt x 385.44pt>
 File: images/omegaeins.png Graphic file (type png)
  <use images/omegaeins.png>
 [22pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
@@ -1514,9 +1514,9 @@ File: images/omegaeins.png Graphic file (type png)
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.973 \end{eqnarray}
+l.974 \end{eqnarray}
                      <./images/omegaeins.png>]
-<images/omegaeinhalb.png, id=625, 642.4pt x 385.44pt>
+<images/omegaeinhalb.png, id=635, 642.4pt x 385.44pt>
 File: images/omegaeinhalb.png Graphic file (type png)
 
 <use images/omegaeinhalb.png> [23pdfTeX warning (ext4): destination with the sa
@@ -1524,13 +1524,13 @@ me identifier (name{figure.3.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.980 
+l.981 
        <./images/omegaeinhalb.png>]
-<images/omeganullacht.png, id=633, 642.4pt x 385.44pt>
+<images/omeganullacht.png, id=643, 642.4pt x 385.44pt>
 File: images/omeganullacht.png Graphic file (type png)
 
 <use images/omeganullacht.png>
-Overfull \hbox (4.20439pt too wide) in paragraph at lines 989--990
+Overfull \hbox (4.20439pt too wide) in paragraph at lines 990--991
 \T1/ppl/m/n/12 (-20) Sei $[]$ ei-ne sym-me-tri-sche, nicht sin-gu-lä-re Ma-trix
 . Zwei Vek-to-ren $\OML/zplm/m/it/12 x\OT1/ppl/m/n/12 (-20) , \OML/zplm/m/it/12
  y \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl/m/n/12 (-20) hei-ÿen $[]$
@@ -1541,16 +1541,16 @@ Overfull \hbox (4.20439pt too wide) in paragraph at lines 989--990
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.991 \subsection
+l.992 \subsection
                  {Satz} <./images/omeganullacht.png (PNG copy)>]
-Overfull \hbox (99.25497pt too wide) in paragraph at lines 1030--1032
+Overfull \hbox (99.25497pt too wide) in paragraph at lines 1031--1033
 \T1/ppl/m/n/12 (-20) zu lö-sen. Be-trach-tet man nun den Gra-di-en-ten von $\OM
 L/zplm/m/it/12 f\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 x\OT1/zplm/m/n/12 )$\T1/ppl
 /m/n/12 (-20) , so stellt man fest, dass gilt: 
  []
 
 
-Overfull \hbox (20.40482pt too wide) in paragraph at lines 1042--1043
+Overfull \hbox (20.40482pt too wide) in paragraph at lines 1043--1044
 \T1/ppl/m/n/12 (-20) Sei $\OML/zplm/m/it/12 U[]$ \T1/ppl/m/n/12 (-20) ein k-dim
 ensionaler Teil-raum des $\U/fplmbb/m/n/12 R[] \OT1/zplm/m/n/12 (\OML/zplm/m/it
 /12 k \OMS/zplm/m/n/12 ^^T \OML/zplm/m/it/12 n\OT1/zplm/m/n/12 )$\T1/ppl/m/n/12
@@ -1560,7 +1560,7 @@ ensionaler Teil-raum des $\U/fplmbb/m/n/12 R[] \OT1/zplm/m/n/12 (\OML/zplm/m/it
  []
 
 
-Overfull \hbox (88.61629pt too wide) in paragraph at lines 1042--1043
+Overfull \hbox (88.61629pt too wide) in paragraph at lines 1043--1044
 \T1/ppl/m/n/12 (-20) die-ses Teil-raums, al-so $\OMS/zplm/m/n/12 h\OML/zplm/m/i
 t/12 p[]\OT1/ppl/m/n/12 (-20) , \OML/zplm/m/it/12 p[]\OMS/zplm/m/n/12 i[] \OT1/
 zplm/m/n/12 = \OT1/ppl/m/n/12 (-20) 0 \OML/zplm/m/it/12 f[]r i \OMS/zplm/m/n/12
@@ -1571,7 +1571,7 @@ ilt für $\OML/zplm/m/it/12 u[] \OMS/zplm/m/n/12 2 \OML/zplm/m/it/12 U[]$\T1/ppl
  []
 
 [25]
-Overfull \hbox (31.73439pt too wide) in paragraph at lines 1088--1090
+Overfull \hbox (31.73439pt too wide) in paragraph at lines 1089--1091
 \T1/ppl/m/n/12 (-20) die-ses Teil-rau-mes. Ein gän-gi-ges Ver-fah-ren ist das G
 ram-Schmidt-Orthonormalisierungsverfahren.
  []
@@ -1581,15 +1581,15 @@ ion.3.5.40}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1144 \end{equation}
+l.1145 \end{equation}
                      pdfTeX warning (ext4): destination with the same identifie
 r (name{equation.3.5.40}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1144 \end{equation}
+l.1145 \end{equation}
                      ]
-Overfull \hbox (88.47392pt too wide) in paragraph at lines 1144--1146
+Overfull \hbox (88.47392pt too wide) in paragraph at lines 1145--1147
 \T1/ppl/m/n/12 (-20) wird die A-orthogonale Ba-sis zum Vek-tor $\OML/zplm/m/it/
 12 r[]$ \T1/ppl/m/n/12 (-20) be-stimmt, wo-bei $\OML/zplm/m/it/12 p[]\OT1/ppl/m
 /n/12 (-20) , \OML/zplm/m/it/12 r[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$\T1
@@ -1601,140 +1601,147 @@ Overfull \hbox (88.47392pt too wide) in paragraph at lines 1144--1146
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1197 
+l.1198 
        ]pdfTeX warning (ext4): destination with the same identifier (name{equat
 ion.3.5.43}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1203 \begin{equation}
+l.1204 \begin{equation}
                        pdfTeX warning (ext4): destination with the same identif
 ier (name{equation.3.5.43}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1203 \begin{equation}
+l.1204 \begin{equation}
                        pdfTeX warning (ext4): destination with the same identif
 ier (name{equation.3.5.43}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1203 \begin{equation}
+l.1204 \begin{equation}
                        pdfTeX warning (ext4): destination with the same identif
 ier (name{equation.3.5.43}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1203 \begin{equation}
+l.1204 \begin{equation}
                         [29] [30pdfTeX warning (ext4): destination with the sam
 e identifier (name{equation.3.6.45}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1249 
+l.1250 
        ]pdfTeX warning (ext4): destination with the same identifier (name{equat
 ion.3.6.45}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1258 \begin{equation}
+l.1259 \begin{equation}
                        pdfTeX warning (ext4): destination with the same identif
 ier (name{equation.3.6.45}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1258 \begin{equation}
+l.1259 \begin{equation}
                        pdfTeX warning (ext4): destination with the same identif
 ier (name{equation.3.6.45}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1258 \begin{equation}
+l.1259 \begin{equation}
                        pdfTeX warning (ext4): destination with the same identif
 ier (name{equation.3.6.45}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1258 \begin{equation}
+l.1259 \begin{equation}
                        
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1268.
+(hyperref)                removing `math shift' on input line 1269.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1268.
+(hyperref)                removing `math shift' on input line 1269.
 
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 1270
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 1271
 .
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1270.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1271.
 
-
-Overfull \hbox (121.256pt too wide) in paragraph at lines 1278--1279
-\T1/ppl/m/n/12 (-20) Seien $[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl
-/m/n/12 (-20) s.p.d. und $\OML/zplm/m/it/12 E$ \T1/ppl/m/n/12 (-20) das Mus-ter
- zur Ma-trix $[]$. Be-rech-ne dann für $\OML/zplm/m/it/12 i \OT1/zplm/m/n/12 = 
-\OT1/ppl/m/n/12 (-20) 1, 2, ..., \OML/zplm/m/it/12 n$\T1/ppl/m/n/12 (-20) : 
- []
-
-[31]
-Underfull \hbox (badness 10000) in paragraph at lines 1289--1290
+ [31]
+Underfull \hbox (badness 10000) in paragraph at lines 1290--1291
 
  []
 
 
-Overfull \hbox (52.91913pt too wide) in paragraph at lines 1296--1297
+Overfull \hbox (52.91913pt too wide) in paragraph at lines 1297--1298
 \T1/ppl/m/n/12 (-20) schnitt 3.6.3[][]. Je-doch wer-den die Vor-schrif-ten für 
 die Ma-trix $[]$ ab-ge-än-dert: 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1298.
+(hyperref)                removing `math shift' on input line 1299.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1298.
+(hyperref)                removing `math shift' on input line 1299.
 
 
-Overfull \hbox (121.256pt too wide) in paragraph at lines 1310--1311
+Overfull \hbox (121.256pt too wide) in paragraph at lines 1311--1312
 \T1/ppl/m/n/12 (-20) Seien $[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl
 /m/n/12 (-20) s.p.d. und $\OML/zplm/m/it/12 E$ \T1/ppl/m/n/12 (-20) das Mus-ter
  zur Ma-trix $[]$. Be-rech-ne dann für $\OML/zplm/m/it/12 i \OT1/zplm/m/n/12 = 
 \OT1/ppl/m/n/12 (-20) 1, 2, ..., \OML/zplm/m/it/12 n$\T1/ppl/m/n/12 (-20) : 
  []
 
-[32] [33]
+[32] [33] (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
+(/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 1347.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 1347
+.
+
+(/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+) (./code/MIC.c
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <6> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1.
+LaTeX Font Info:    Try loading font information for U+mvs on input line 1.
+
+(/usr/share/texmf-texlive/tex/latex/marvosym/umvs.fd)
+(/usr/share/texmf-texlive/tex/latex/microtype/mt-mvs.cfg
+File: mt-mvs.cfg 2006/07/05 v1.1 microtype config. file: Marvosym Euro (RS)
+)) [34]
 Kapitel 4.
-[34
+[35
 
 
-]
-Overfull \hbox (77.89223pt too wide) in paragraph at lines 1373--1374
-[]\T1/ppl/m/n/12 (-20) Wir wol-len die-se Aus-sa-ge an-hand ei-nes Bei-spiels i
-l-lus-trie-ren. Wir be-trach-ten... 
+] [36]
+Overfull \hbox (46.64844pt too wide) in paragraph at lines 1486--1487
+[]\T1/ppl/m/n/12 (-20) Für den Fall von ein-di-men-sio-na-len Git-tern hät-te $
+[]$ fol-gen-de Dar-stel-lung: 
  []
 
-[35]
-Overfull \hbox (93.16925pt too wide) in paragraph at lines 1457--1458
-[]\T1/ppl/m/n/12 (-20) Für den Fall ei-ner ein-di-men-sio-na-len Pois-son Ma-tr
-ix hät-te $[]$ fol-gen-de Dar-stel-lung: 
- []
-
-<images/interpolation.png, id=720, 642.4pt x 401.5pt>
+<images/interpolation.png, id=776, 642.4pt x 401.5pt>
 File: images/interpolation.png Graphic file (type png)
 
-<use images/interpolation.png> [36] [37pdfTeX warning (ext4): destination with 
+<use images/interpolation.png> [37] [38pdfTeX warning (ext4): destination with 
 the same identifier (name{figure.4.1}) has been already used, duplicate ignored
 
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1492 \begin{equation}
+l.1521 \begin{equation}
                         <./images/interpolation.png (PNG copy)>]
-Overfull \hbox (78.46753pt too wide) in paragraph at lines 1536--1537
+Overfull \hbox (78.46753pt too wide) in paragraph at lines 1565--1566
 []\T1/ppl/m/n/12 (-20) Und für die Um-set-zung in Co-de be-nut-zen wir die Kom-
 po-nen-ten-schreib-wei-se: 
  []
 
 
-Overfull \hbox (1.37097pt too wide) detected at line 1541
+Overfull \hbox (1.37097pt too wide) detected at line 1570
 []\OML/zplm/m/it/12 u[] \OT1/zplm/m/n/12 = [](\OT1/ppl/m/n/12 4\OML/zplm/m/it/1
 2 u[] \OT1/zplm/m/n/12 + \OT1/ppl/m/n/12 2\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 u
 [] \OT1/zplm/m/n/12 + \OML/zplm/m/it/12 u[] \OT1/zplm/m/n/12 + \OML/zplm/m/it/1
@@ -1743,53 +1750,47 @@ it/12 u[] \OT1/zplm/m/n/12 + \OML/zplm/m/it/12 u[] \OT1/zplm/m/n/12 + \OML/zplm
 /m/it/12 u[] \OT1/zplm/m/n/12 + \OML/zplm/m/it/12 u[]\OT1/zplm/m/n/12 )
  []
 
-<images/restrict.png, id=734, 642.4pt x 401.5pt>
+<images/restrict.png, id=791, 642.4pt x 401.5pt>
 File: images/restrict.png Graphic file (type png)
  <use images/restrict.png>
-[38] [39pdfTeX warning (ext4): destination with the same identifier (name{figur
+[39] [40pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.4.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1570 \textbf{Beispiel:}
-                          <./images/restrict.png>]
-Overfull \hbox (4.44005pt too wide) in paragraph at lines 1593--1598
+l.1600 
+        <./images/restrict.png>]
+Overfull \hbox (4.44005pt too wide) in paragraph at lines 1627--1632
 \T1/ppl/m/n/12 (-20) Wie in[]Abschnitt 2.2[][] ge-se-hen be-fin-den wir uns bei
  der Dis-kre-ti-sie-rung der Poisson-Gleichung
  []
 
-
-Overfull \hbox (2.69135pt too wide) in paragraph at lines 1601--1602
-\T1/ppl/m/n/12 (-20) Nun wol-len wir das ers-te Ver-fah-ren der Mehr-git-ter-me
--tho-den ken-nen ler-nen. Der Zweigitter-
- []
-
-[40]
-Underfull \hbox (badness 10000) in paragraph at lines 1623--1624
+[41]
+Underfull \hbox (badness 10000) in paragraph at lines 1657--1658
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1623--1624
+Underfull \hbox (badness 10000) in paragraph at lines 1657--1658
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1625--1626
+Underfull \hbox (badness 10000) in paragraph at lines 1659--1660
 
  []
 
-[41] [42] [43pdfTeX warning (ext4): destination with the same identifier (name{
+[42] [43] [44pdfTeX warning (ext4): destination with the same identifier (name{
 equation.4.7.21}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1670 \chapter
+l.1704 \chapter
                {Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}\...
 ]
 Kapitel 5.
 
-Overfull \hbox (74.67157pt too wide) in paragraph at lines 1676--1677
+Overfull \hbox (74.67157pt too wide) in paragraph at lines 1710--1711
 \OML/zplm/m/it/12 y[]$\T1/ppl/m/n/12 (-20) . Sei au-ÿer-dem $\OT1/zplm/m/n/12 
  = (\OT1/ppl/m/n/12 (-20) 0, 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 ^^B \OT1/zplm
 /m/n/12 (\OT1/ppl/m/n/12 (-20) 0, 1\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 2 \U/fpl
@@ -1797,123 +1798,123 @@ mbb/m/n/12 R[]$\T1/ppl/m/n/12 (-20) .Gegeben ist das Rand-wert-pro-blem
  []
 
 
-Overfull \hbox (4.9124pt too wide) in paragraph at lines 1680--1684
+Overfull \hbox (4.9124pt too wide) in paragraph at lines 1714--1718
 \T1/ppl/m/n/12 (-20) Die ge-wünsch-te Lö-sung soll-te al-so fol-gen-den Gra-phe
 n er-ge-ben: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1687--1688
+Underfull \hbox (badness 10000) in paragraph at lines 1721--1722
 
  []
 
-[44
+[45
 
 
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1724.
+(hyperref)                removing `math shift' on input line 1758.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\omega' on input line 1724.
+(hyperref)                removing `\omega' on input line 1758.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 1724.
+(hyperref)                removing `\begingroup' on input line 1758.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\endgroup' on input line 1724.
+(hyperref)                removing `\endgroup' on input line 1758.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@@over' on input line 1724.
+(hyperref)                removing `\@@over' on input line 1758.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1724.
+(hyperref)                removing `math shift' on input line 1758.
 
-[45pdfTeX warning (ext4): destination with the same identifier (name{table.5.1}
+[46pdfTeX warning (ext4): destination with the same identifier (name{table.5.1}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1734 
+l.1768 
        ]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1735.
+(hyperref)                removing `math shift' on input line 1769.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\omega' on input line 1735.
+(hyperref)                removing `\omega' on input line 1769.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 1735.
+(hyperref)                removing `\begingroup' on input line 1769.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\endgroup' on input line 1735.
+(hyperref)                removing `\endgroup' on input line 1769.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@@over' on input line 1735.
+(hyperref)                removing `\@@over' on input line 1769.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1735.
+(hyperref)                removing `math shift' on input line 1769.
 
-[46pdfTeX warning (ext4): destination with the same identifier (name{table.5.2}
+[47pdfTeX warning (ext4): destination with the same identifier (name{table.5.2}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1769 
+l.1803 
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 5.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1769 
+l.1803 
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 5.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1769 
-       ] [47pdfTeX warning (ext4): destination with the same identifier (name{t
+l.1803 
+       ] [48pdfTeX warning (ext4): destination with the same identifier (name{t
 able.5.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1804 
+l.1838 
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 5.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1804 
+l.1838 
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 5.7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1804 
-       ] [48pdfTeX warning (ext4): destination with the same identifier (name{t
+l.1838 
+       ] [49pdfTeX warning (ext4): destination with the same identifier (name{t
 able.5.8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1849 \chapter
+l.1883 \chapter
                *{ErklÃ¤rung}]
-Underfull \hbox (badness 10000) in paragraph at lines 1854--1855
+Underfull \hbox (badness 10000) in paragraph at lines 1888--1889
 
  []
 
-[49
+[50
 
 
 ] (./arbeit-vorlage.aux)
@@ -1922,28 +1923,30 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 11896 strings out of 494948
- 173563 string characters out of 1179523
- 309045 words of memory out of 3000000
- 14308 multiletter control sequences out of 15000+50000
- 83702 words of font info for 323 fonts, out of 3000000 for 9000
+ 12446 strings out of 494948
+ 180136 string characters out of 1179523
+ 489793 words of memory out of 3000000
+ 14785 multiletter control sequences out of 15000+50000
+ 86495 words of font info for 333 fonts, out of 3000000 for 9000
  73 hyphenation exceptions out of 8191
- 45i,16n,66p,1783b,687s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
-ve/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/ty
-pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
-cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/mathpazo/fplmbb.pfb></u
-sr/share/texmf-texlive/fonts/type1/public/mathpazo/fplmr.pfb></usr/share/texmf-
-texlive/fonts/type1/public/mathpazo/fplmri.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/palatino/uplb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplr
-8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplr8a.pfb></usr/shar
-e/texmf-texlive/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on arbeit-vorlage.pdf (53 pages, 711372 bytes).
+ 45i,16n,66p,1783b,1470s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-
+texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/mathpazo/fplmbb.pfb></usr/share/texmf-texli
+ve/fonts/type1/public/mathpazo/fplmr.pfb></usr/share/texmf-texlive/fonts/type1/
+public/mathpazo/fplmri.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
+s/symbols/msam10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb
+></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texm
+f-texlive/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-texlive/fonts/t
+ype1/urw/palatino/uplr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palatino
+/uplri8a.pfb>
+Output written on arbeit-vorlage.pdf (54 pages, 753121 bytes).
 PDF statistics:
- 911 PDF objects out of 1000 (max. 8388607)
- 817 compressed objects within 9 object streams
- 255 named destinations out of 1000 (max. 500000)
- 50336 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 979 PDF objects out of 1000 (max. 8388607)
+ 883 compressed objects within 9 object streams
+ 296 named destinations out of 1000 (max. 500000)
+ 51376 words of extra memory for PDF output out of 51595 (max. 10000000)
 

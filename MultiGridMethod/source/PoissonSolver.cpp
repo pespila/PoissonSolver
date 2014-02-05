@@ -19,41 +19,46 @@ int main(int argc, char const *argv[]) {
 
     double h=1.0/(double)(arg+1);
 
-    // for(int i=0;i<arg*arg;i++) {
-    //     x[i]=sin(i*h*3.14);
-    // }
+    for(int i=0;i<arg*arg;i++) {
+        x[i]=sin(i*h*3.14);
+    }
 
     printf("Started\n");
     double time,start=0.0,end=0.0;
     start=clock();
 
-    Run.MultiGridMethod(A,x,b);
+    // Run.MultiGridMethod(A,x,b);
 
-    // vector<double> e(arg*arg),solved(arg*arg);
+    vector<double> e(arg*arg),solved(arg*arg);
 
-    // for(int i=1,k=0;i<=arg;i++) {
-    //     for(int j=1;j<=arg;j++,k++) {
-    //         solved[k]=g(j*h,i*h);
-    //     }
-    // }
+    for(int i=1,k=0;i<=arg;i++) {
+        for(int j=1;j<=arg;j++,k++) {
+            solved[k]=g(j*h,i*h);
+        }
+    }
 
     // Run.JacobiRelaxationMethod(A,x,b,5);
 
-    // e=x-solved;
+    e=x-solved;
 
-    // V.WriteToFile(e);
+    int N=((arg+1)/2)-1;
+    vector<double> E(N*N,0);
+
+    Run.Restriction(e,E,arg);
+
+    V.WriteToFile(E);
     
     end=clock();
     time=(end-start)/CLOCKS_PER_SEC;
     printf("%f\n", time);
 
     if(arg<=5) {
-        A.PrintMatrix();
-        V.PrintVector(x);
+        // A.PrintMatrix();
+        // V.PrintVector(x);
     } else {
         printf("Couldn't print Matrix! Dimension is too high.\n");
     }
-    V.WriteToFile(x);
+    // V.WriteToFile(x);
 
     return EXIT_SUCCESS;
 }

@@ -50,6 +50,8 @@
 \BOOKMARK [2][-]{subsection.3.6.4}{Die modifizierte unvollst\344ndige Cholesky-Zerlegung}{section.3.6}
 \BOOKMARK [3][-]{subsubsection.3.6.4.1}{Eigenschaften der Matrix }{subsection.3.6.4}
 \BOOKMARK [3][-]{subsubsection.3.6.4.2}{Der numerische Algorithmus der modifizierten unvollst\344ndigen Cholesky-Zerlegung}{subsection.3.6.4}
+\BOOKMARK [2][-]{subsection.3.6.5}{Effiziente Implementation der modifizierten Cholesky-Zerlegungen}{section.3.6}
+\BOOKMARK [2][-]{subsection.3.6.6}{C++-Methode der MIC}{section.3.6}
 \BOOKMARK [0][-]{chapter.4}{Mehrgitterverfahren}{}
 \BOOKMARK [1][-]{section.4.1}{Grundlagen}{chapter.4}
 \BOOKMARK [1][-]{section.4.2}{Prolongation}{chapter.4}

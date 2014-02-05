@@ -441,7 +441,7 @@ A_{1} & -Id\\
 \end{pmatrix}
 = \lambda_{k,l}
 \begin{pmatrix}
-\sin(j\theta_{l}) v_{k}\\
+\sin(\theta_{l}) v_{k}\\
 \sin(2\theta_{l}) v_{k}\\
 \vdots\\
 \sin((N-1)\theta_{l}) v_{k}\\
@@ -487,17 +487,10 @@ Für für die Eigenwerte gilt $\lambda_{k,l} \in \mathbb{R}_{> 0}$, d.h. $\mat{A
 
 \textbf{Beweis:}
 
-Mit $\sin^{2}(x) \in [0,1]$ für $x \in [0,\pi]$ und $0 < \frac{\pi h}{2} < \pi$ gilt:
+Mit $\sin^{2}(x) \in (0,1)$ für $x \in (0,\frac{\pi}{2})$ und $0 < \frac{\pi h}{2} < \frac{\pi}{2}$ gilt:
 \begin{equation}
 \lambda_{k,l} = 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) > 0.
 \end{equation}
-Zudem gilt wegen $h = \frac{1}{m}$:
-\begin{eqnarray}
-\lambda_{min} &=& \lambda_{1,1} = 8\sin^{2}(\frac{\pi h}{2}) \\ \label{eq.Lambda min}
-\lambda_{max} &=& \lambda_{N,N} = 8\sin^{2}(\frac{N\pi h}{2}) \overset{\substack{h=\frac {1} {m}, \\N=m-1}}{=} 8\sin^{2}(\frac{(m-1)\pi}{2m}) \notag \\
-&=& 8\sin^{2}(\frac{\pi}{2} - \frac{\pi}{2m}) = 8\sin^{2}(\frac{\pi}{2} - \frac{\pi h}{2}) \notag \\
-&=& 8(\sin(\frac{\pi}{2}\cos(\frac{\pi h}{2})) - \cos(\frac{\pi h}{2})\sin(\frac{\pi}{2}))^{2} = 8\cos^{2}(\frac{\pi h}{2}) \label{eq.Lambda max}
-\end{eqnarray}
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
@@ -519,7 +512,15 @@ Für die Kondition der Matrix $\mat{A}_{2D}$ gilt:
 
 \textbf{Beweis:}
 
-Aus \autoref{eq.Lambda min} und \autoref{eq.Lambda max} folgt:
+Zudem gilt mit $h = \frac{1}{m}$ und da $sin^{2}(x) \in (0,1)$ streng monoton steigend ist für $x \in (0,\frac{\pi}{2})$:
+\begin{eqnarray}
+\lambda_{min} &=& \lambda_{1,1} = 8\sin^{2}(\frac{\pi h}{2}),\label{eq.Lambda min}\\
+\lambda_{max} &=& \lambda_{N,N} = 8\sin^{2}(\frac{N\pi h}{2}) \overset{\substack{h=\frac {1} {m}, \\N=m-1}}{=} 8\sin^{2}(\frac{(m-1)\pi}{2m}) \notag \\
+&=& 8\sin^{2}(\frac{\pi}{2} - \frac{\pi}{2m}) = 8\sin^{2}(\frac{\pi}{2} - \frac{\pi h}{2}) \notag \\
+&=& 8(\sin(\frac{\pi}{2}\cos(\frac{\pi h}{2})) - \cos(\frac{\pi h}{2})\sin(\frac{\pi}{2}))^{2} = 8\cos^{2}(\frac{\pi h}{2}) \label{eq.Lambda max}
+\end{eqnarray}
+
+Somit folgt aus \autoref{eq.Lambda min} und \autoref{eq.Lambda max}:
 \begin{equation}
 \kappa_{2} (A_{2D}) = \frac {\lambda_{N,N}} {\lambda_{1,1}} = \frac {\cos^{2} (\frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})}. \notag
 \end{equation}
@@ -1275,7 +1276,7 @@ Natürlich ist diese Faktorisierung ungenauer, als die vollständige Zerlegung, 
 
 \subsubsection{Der numerische Algorithmus der unvollständigen Cholesky Zerlegung}\label{sss.Cholesky-Algorithmus}
 
-Seien $\mat{A} \in \mathbb{R}^{n \times n}$ s.p.d. und $E$ das Muster zur Matrix $\mat{A}$. Berechne dann für $i=1,2,...,n$:
+Seien $\mat{A} \in \mathbb{R}^{n \times n}$ und $E$ das Muster zur Matrix $\mat{A}$. Setze $\mat{L} = \mat{Id}$, $\mat{R} = 0$. Berechne dann für $i=1,2,...,n$:
 \begin{eqnarray}
 l_{i,i} &=& \left( a_{i,i} - \sum^{i-1}_{j=1,(i,j) \in E} l_{i,j}^{2} \right)^{\frac {1} {2}} \\
 \textnormal{for k } &=& i+1,...,n: \textnormal{ if } (k,i) \in E: \\
@@ -1319,6 +1320,34 @@ a_{k,k} &=& a_{i,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l_{i,j}
 
 Wir setzen wieder $\mat{W} := \tilde{\mat{L}} \tilde{\mat{L}}^{T}$. \\
 Es gibt noch weitere Verfahren (siehe z.B. Saad), wie beispielsweise das SSOR-Verfahren, die wir hier nicht weiter diskutieren wollen.
+
+\subsection{Effiziente Implementation der modifizierten Cholesky-Zerlegungen}
+
+Gerade für diese Aufgabenstellung ist es von großem Interesse, wie der Algorithmus in Code umgesetzt wird. Offensichtlich haben beide Zerlegungen einen Rechenaufwand von $\mathcal{O}(n^{2})$. Auch wenn wir nur über das Muster $E$ iterieren, werden viele Werte der Matrix $\mat{A}$ überprüft. Dies kostet ebenfalls Rechenzeit.\\
+Um dies zu optimieren wird im Fall der Matrix $\mat{A}_{2D}$ eine weitere Matrix $\mat{B} \in \mathbb{R}^{n \times 5}$ eingeführt. Wie bereits mehrfach erwähnt, enthält die 2D Poisson Matrix maximal 5 Werte ungleich Null pro Zeile. Somit können in der $i - ten$ Zeile maximal 5 Indizes $j$ auftauchen, für die gilt $a_{i,j} \ne 0$. In den Zeilen, in denen die Matrix weniger als fünf Werte ungleich Null hat, wird die $i - te$ Zeile von $\mat{B}$ mit $-1$ aufgefüllt.
+
+\textbf{Beispiel:}
+
+Um eine Vorstellung von $\mat{B}$ zu bekommen, wählen wir $\mat{A}_{2D} \in \mathbb{R}^{9 \times 9}$, also $m = 4, N = 3$. Dann folgt:
+\begin{equation}
+B = 
+\begin{pmatrix}
+1 & 2 & (1+N) & -1 & -1\\
+1 & 2 & 3 & (2+N) & -1\\
+  &   & \vdots & &\\
+(5-N) & 4 & 5 & 6 & (5+N)\\
+  &   & \vdots & &\\
+(8-N) & 7 & 8 & 9 & -1\\
+(9-N) & 8 & 9 & -1 & -1
+\end{pmatrix}
+\end{equation}
+
+Mit der Matrix $\mat{B}$ als Ersatz für das Muster $E$ ergibt sich folgender C++-Code für die modifizierten unvollständige Cholesky-Zerlegung:
+
+\subsection{C++-Methode der MIC}\label{s.MIC}\lstinputlisting[language=C]{code/MIC.c}
+
+Analog würde diese Vorschrift für die unvollständige Cholesky-Zerlegung folgen, was wir hier nicht mehr explizit anführen wollen. Betrachtet man in \autoref{c.Vergleich} die Laufzeiten für den PCG-Algorithmus mit diesen Zerlegungen und der angeführten Implementation, sieht man wie schnell und effizient die Berechnung von statten geht.
+
 \chapter{Mehrgitterverfahren}\label{c.Mehrgitterverfahren}
 
 In diesem Abschnitt sollen nun die Mehrgittermethoden genauer betrachtet werden. Zunächst aber nochmals die Grundlagen:
@@ -1361,16 +1390,16 @@ Somit ist
 $\blacksquare$
 \end{flushright}
 
-\begin{description}
+% \begin{description}
 
-\item[3.] Grobe Fehler nach einer Gittertransformation \\
-Kurzwellige Fehler auf dem feinen Gitter bleiben kurzwellig, wenn man diese auf ein grobes Gitter transformiert. Langwellige Fehleranteile des feinen Gitters, werden jedoch auf dem groben Gitter ebenfalls zu kurzwelligen.
+% \item[3.] Grobe Fehler nach einer Gittertransformation \\
+% Kurzwellige Fehler auf dem feinen Gitter bleiben kurzwellig, wenn man diese auf ein grobes Gitter transformiert. Langwellige Fehleranteile des feinen Gitters, werden jedoch auf dem groben Gitter ebenfalls zu kurzwelligen.
 
-\end{description}
+% \end{description}
 
-\textbf{Beispiel:}
+% \textbf{Beispiel:}
 
-Wir wollen diese Aussage anhand eines Beispiels illustrieren. Wir betrachten...
+% Wir wollen diese Aussage anhand eines Beispiels illustrieren. Wir betrachten...
 
 \section{Prolongation}
 
@@ -1421,7 +1450,7 @@ für $I_{1},I_{2} \in \mathbb{R}^{(2\tilde N - 1) \times \tilde N}$ gilt folgend
 \end{pmatrix}.
 \end{equation}
 
-Wir haben hier die Full-Weighted-Matrix der Interpolation verwendet, da sie die höchste Genauigkeit beim Übergang von $\Omega_{2h}$ auf $\Omega_{h}$ besitzt. Sie berücksichtigt bei der Interpolation nicht nur Gitterpunkte, die in $\Omega_{2h}$, sowie in $\Omega_{h}$, existieren, sondern auch den jeweiligen Nachbarn. Zur Veranschaulichung dient (Abbildung bla). Es geht also in jedes $u^{i,j}_{h}$ auch der gewichtete Wert aller Nachbarpunkte von $u^{i,j}_{2h}$ des feinen Gitters mit ein.
+Wir haben hier die Full-Weighted-Matrix der Interpolation verwendet, da sie die höchste Genauigkeit beim Übergang von $\Omega_{2h}$ auf $\Omega_{h}$ besitzt. Sie berücksichtigt bei der Interpolation nicht nur Gitterpunkte, die in $\Omega_{2h}$, sowie in $\Omega_{h}$, existieren, sondern auch den jeweiligen Nachbarn. Es gibt andere Möglichkeiten der Interpolation, z.B. den Half-Weighting-Operator, auf die wir in dieser Arbeit nicht explizit eingehen wollen. Zur Veranschaulichung des Full-Weighted-Operators dient \autoref{img.Prolongation}. Es geht also in jedes $u^{i,j}_{h}$ auch der gewichtete Wert aller Nachbarpunkte von $u^{i,j}_{2h}$ des feinen Gitters mit ein.
 
 \textbf{Beispiel:}
 
@@ -1454,7 +1483,7 @@ u^{i,j}_{h}.
 
 \textbf{Bemerkung:}
 
-Für den Fall einer eindimensionalen Poisson Matrix hätte $\mat{I}$ folgende Darstellung:
+Für den Fall von eindimensionalen Gittern hätte $\mat{I}$ folgende Darstellung:
 \begin{equation}
 \mat{I} = \frac {1} {2}
 \begin{pmatrix}
@@ -1471,24 +1500,24 @@ Für den Fall einer eindimensionalen Poisson Matrix hätte $\mat{I}$ folgende Da
 \end{equation}
 Hier ist $\mat{I} \in \mathbb{R}^{N \times \tilde N}$.
 
-\bild{interpolation}{12cm}{Bei der Interpolation bedienen sich die Punkte vom feinen Gitter, den gewichteten Punkten des groben Gitters.}{Bei der Interpolation bedienen sich die Punkte vom feinen Gitter, den gewichteten Punkten des groben Gitters.}
+\bild{interpolation}{12cm}{Bei der Interpolation bedienen sich die Punkte vom feinen Gitter, den gewichteten Punkten des groben Gitters.}{Bei der Interpolation bedienen sich die Punkte vom feinen Gitter, den gewichteten Punkten des groben Gitters.}\label{img.Prolongation}
 
 % \bild{Restriktionsoperator}{14cm}{bla}{bla}\label{img.Restriktion}
 
-Für das Umsetzen in Programmcode ist es natürlich ungünstig eine komplette Matrix-Vektor-Multiplikation zu implementieren, zumal eine Matrix dieser Größe enorm viel Speicherplatz erfordert. Aus diesem Grund lässt sich die Interpolation auch in Komponentenschreibweise schreiben:
+Für das Umsetzen in Programmcode ist es natürlich ungünstig eine komplette Matrix-Vektor-Multiplikation zu implementieren, zumal eine Matrix dieser Größe enorm viel Speicherplatz erfordert. Aus diesem Grund lässt sich die Interpolation auch in Komponentenschreibweise fassen:
 
 \begin{eqnarray}
 u_{h}^{2i-1,2j-1} = u_{2h}^{i,j} &\hspace{0.5cm}& i,j = 1,...,\tilde N, \\
-u_{h}^{2i-1,2j} = \frac{1}{2} (u_{2h}^{i,j} + u_{2h}^{i,j+1}) &\hspace{0.5cm}& i = 1,...,\tilde N; j = 1,...,\tilde N - 1 \\
-u_{h}^{2i,2j-1} = \frac{1}{2} (u_{2h}^{i,j} + u_{2h}^{i+1,j}) &\hspace{0.5cm}& i = 1,...,\tilde N - 1; j = 1,...,\tilde N \\
-u_{h}^{2i,2j} = \frac{1}{4} (u_{2h}^{i,j} + u_{2h}^{i,j+1} + u_{2h}^{i+1,j} + u_{2h}^{i+1,j+1}) &\hspace{0.5cm}& i,j = 1,...,\tilde N - 1
+u_{h}^{2i-1,2j} = \frac{1}{2} (u_{2h}^{i,j} + u_{2h}^{i,j+1}) &\hspace{0.5cm}& i = 1,...,\tilde N; j = 1,...,\tilde N - 1, \\
+u_{h}^{2i,2j-1} = \frac{1}{2} (u_{2h}^{i,j} + u_{2h}^{i+1,j}) &\hspace{0.5cm}& i = 1,...,\tilde N - 1; j = 1,...,\tilde N, \\
+u_{h}^{2i,2j} = \frac{1}{4} (u_{2h}^{i,j} + u_{2h}^{i,j+1} + u_{2h}^{i+1,j} + u_{2h}^{i+1,j+1}) &\hspace{0.5cm}& i,j = 1,...,\tilde N - 1.
 \end{eqnarray}
 
-Diese Vorschrift lässt sich nun relativ komfortabel und effizient programmieren. Somit ist nun der Übergang vom groben zum feinen Gitter bekannt. Im Folgenden wollen wir auch noch die Gegenrichtung betrachten.
+Diese Vorschrift lässt sich nun relativ komfortabel und effizient programmieren. Somit ist nun der Übergang vom groben zum feinen Gitter bekannt. Nun wollen wir noch die Gegenrichtung betrachten.
 
 \section{Restriktion}
 
-Sei also $R_{h}^{2h}: \Omega_{h} \longrightarrow \Omega_{2h}$ mit $R_{h}^{2h}(u_{h}) = \mat{R}u_{h} = u_{2h}$ und $\mat{R} \in \mathbb{R}^{\tilde N^{2} \times (2 \tilde N - 1)^{2}}$. Diese Abbildungsvorschrift nennt man Restriktion. Auch hier gibt es unterschiedliche Methoden, wobei in diesem Abschnitt das Gegenstück zur obigen Interpolation - der Full-Weighting-Operator für die Restriktion - verwendet wird. Auch dieser stellt den exaktesten Übergang zwischen beiden Gittern dar und hat einen speziellen Bezug zu $\mat{I}$
+Sei $R_{h}^{2h}: \Omega_{h} \longrightarrow \Omega_{2h}$ mit $R_{h}^{2h}(u_{h}) = \mat{R}u_{h} = u_{2h}$ und $\mat{R} \in \mathbb{R}^{\tilde N^{2} \times (2 \tilde N - 1)^{2}}$. Diese Abbildungsvorschrift nennt man Restriktion. Auch hier gibt es unterschiedliche Methoden, wobei in diesem Abschnitt das Gegenstück zur obigen Interpolation - der Full-Weighting-Operator für die Restriktion - verwendet wird. Auch dieser stellt den exaktesten Übergang zwischen beiden Gittern dar und hat einen speziellen Bezug zur Matrix $\mat{I}$
 \begin{equation}
 \mat{R} := \frac {1} {4} \mat{I}^{T}
 \end{equation}
@@ -1540,7 +1569,9 @@ Für ein $u_{2h}$ auf $\Omega_{2h}$ gilt:
 u_{2h}^{i,j} = \frac {1} {16} (4u_{h}^{i,j}+2(u_{h}^{i+1,j}+u_{h}^{i-1,j}+u_{h}^{i,j+1}+u_{h}^{i,j-1})+u_{h}^{i-1,j-1}+u_{h}^{i-1,j+1}+u_{h}^{i+1,j+1}+u_{h}^{i+1,j-1})
 \end{equation}
 
-\bild{restrict}{12cm}{Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte schön veranschaulicht.}{Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte schön veranschaulicht.}\label{img.restrict}
+Das Vorgehen wird von \autoref{img.restrict} illustriert.
+
+\bild{restrict}{12cm}{Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte veranschaulicht. Jeder Wert wird zusätzlich mit einem Faktor $\frac{1}{16}$ multipliziert}{Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte veranschaulicht. Jeder Wert wird zusätzlich mit einem Faktor $\frac{1}{16}$ multipliziert}\label{img.restrict}
 
 \textbf{Bemerkung:}
 
@@ -1572,7 +1603,7 @@ Da wir uns jedoch auf dem Einheitsquadrat befinden und $\mat{A}_{2D}$ eine güns
 Sei $N = 7$ die Anzahl der Gitterpunkte in beide Richtungen des feinen Gitters und $\tilde N = 3$ die Anzahl der Gitterpunkte in beide Richtungen des groben Gitters. Außerdem seien $\mat{A}_{2h} \in \mathbb{R}^{9 \times 9}$, $\mat{A}_{h} \in \mathbb{R}^{49 \times 49}$, $\mat{I} \in \mathbb{R}^{49 \times 9}$ und $\mat{R} \in \mathbb{R}^{9 \times 49}$. So folgt:
 
 \begin{equation}
-\mat{R}\mat{A}\mat{I} = \mat{R}
+\mat{R}\mat{A}_{2D_{h}}\mat{I} = \mat{R}
 \begin{pmatrix}
 A_{1} & -Id \\
 -Id & A_{2} & \ddots \\
@@ -1586,19 +1617,22 @@ A_{1} & -Id \\
 -Id & A_{2} & -Id \\
  & -Id & A_{3}
 \end{pmatrix}
+= \mat{A}_{2D_{2h}}
 \end{equation}
+
+Die Matrizen $\mat{A}_{2D_{ih}}$ sind also für alle $i$ stets bekannt.
 
 \section{Einführung in die Mehrgittermethoden}
 
-Wie in\autoref{s.Finite Differenzen} gesehen befinden wir uns bei der Diskretisierung der Poisson-Gleichung auf einem Gebiet $\Omega_{h} = (0,1)^{2}$ der Schrittweite $h = \frac {1} {n}$. Nach der Ausführung von k-Iterationsschritten des Jacobi-Relaxationsverfahren sind auf diesem Gitter die hochfrequenten Fehler $e^{k} = u^{*} - u^{k}$ verschwunden. Nun berechnet man im $k-ten$ Schritt das Residuum $r^{k}$ und führt für das äquivalente lineare Gleichungssystem $\mat{A}e^{k} = r^{k}$, wobei $e^{k} = 0$ gilt, $l$ Iterationsschritte aus. So erhalten wir eine Näherung des Fehlers $e^{k}$. \\
-Stellt man \autoref{eq.Fehler} um, berechnet also $e^{k} + u^{k}$, so erhält man eine neue Näherung der exakten Lösung. \\
-Kombiniert man dieses Vorgehen nun mit dem Wechsel zwischen zwei Gittern der Gitterweite $h$ und $2h$ so erhält man das Zweigitterverfahren:
+Wie in\autoref{s.Finite Differenzen} gesehen befinden wir uns bei der Diskretisierung der Poisson-Gleichung auf einem Gebiet $\Omega_{h} = (0,1)^{2}$ der Schrittweite $h = \frac {1} {n}$. Nach der Ausführung von k-Iterationsschritten des Jacobi-Relaxationsverfahren sind auf diesem Gitter die kurzwelligen Fehler $e^{k} = u^{*} - u^{k}$ verschwunden. Nun berechnet man im $k-ten$ Schritt das Residuum $r^{k}$ und führt für das äquivalente lineare Gleichungssystem $\mat{A}e^{k} = r^{k}$, wobei $e^{k} = 0$ gilt, $k$ Iterationsschritte aus. So erhalten wir eine Näherung des Fehlers $e^{k}$. \\
+Stellt man \autoref{eq.Fehler} um und berechnet $e^{k} + u^{k}$, so erhält man eine neue Approximation der exakten Lösung. \\
+Kombiniert man dieses Vorgehen nun mit dem Wechsel zwischen zwei Gittern der Gitterweite $h$ und $2h$ so erhält man das Zweigitterverfahren.
   % und bringen dieses auf ein gröberes Gitter, z.B. $\Omega_{2h}$ mit der Schrittweite $2h$, könnten wir hier nun mit \autoref{eq.Residuumsgleichung} das Gleichungssystem mit $e_{2h} = 0$ lösen. Der niedrig frequente Fehler in $r^{k}$ wird in $r_{2h}$ so dann zu einem hochfrequenten auf $\Omega_{2h}$ werden. \\
 % Führt man einige Iterationsschritte auf dem groben Gitter aus, bringt den verbleidenden Fehler $e_{2h}^{k}$ wieder zurück auf $\Omega_{h}$ und addiert diesen zur iterierten Lösung $u^{k}$ reduziert sich $e^{k}$. Diese Vorgehensweise führt man nun so lange durch, bis $e{k} \approx 0$.
 
 \section{Das Zweigitterverfahren}\label{s.Der Zweigitter-Algorithmus}
 
-Nun wollen wir das erste Verfahren der Mehrgittermethoden kennen lernen. Der Zweigitter-Algorithmus bildet die Basis für die Mehrgitterverfahren. Die Idee dahinter ist, zunächste die kurzwelligen Fehler zu eliminieren, dann auf ein gröberes Gitter zu wechseln, auf dem langwellige Fehler zu kurzwelligen Fehlern werden. Dort soll dann die Residuumsgleichung gelöst und auf das feinere Gitter zurück gekehrt werden. Hier findet eine Nachglättung statt. Wiederhole dieses Vorgehen bis zur Konvergenz:
+Wir wollen das erste Verfahren der Mehrgittermethoden kennen lernen. Der Zweigitter-Algorithmus bildet die Basis für die Mehrgitterverfahren. Die Idee dahinter ist, zunächst die kurzwelligen Fehler durch a priori Fehlerglättung zu eliminieren und auf ein gröberes Gitter zu wechseln. Dort soll dann die Residuumsgleichung gelöst und auf das feinere Gitter zurück gekehrt werden. Hier findet eine a posteriori Fehlerglättung statt. Wiederhole dieses Vorgehen bis zur Konvergenz:
 
 \begin{eqnarray}
 \textbf{while }                                 &u^{k} \ne u^{*} \notag \\
@@ -1614,7 +1648,7 @@ Nun wollen wir das erste Verfahren der Mehrgittermethoden kennen lernen. Der Zwe
 \textbf{end } \notag
 \end{eqnarray}
 
-Es bleiben zwei Fragen nun unbeantworte:
+Es bleiben zwei Fragen nun unbeantwortet:
 \begin{description}
 \item[1.] Wie soll die Residuumsgleichung auf dem gröberen Gitter gelöst werden?
 \item[2.] Wie steht es mit der Konvergenz dieses Verfahrens? Besitzt es die nötige Rechengeschwindigkeit?
@@ -1628,7 +1662,7 @@ Der klare Nachteil dieser Methode liegt natürlich im direkten Lösen der Residu
 
 Da also das Lösen der Residuumsgleichung auf dem groben Gitter einen direkten Löser erfordert, der zusätzlichen Rechenaufwand bedeutet, ist der Zweigitter-Algorithmus nicht die Variante, die in der Praxis verwendet wird.
 
-Eine bessere Methode ist, das Gitter immer feiner zu machen, bis das System direkt lösbar ist, um dann wieder auf das feinste Gitter zurück zu kehren. Wir erweitern also das Zweigitterverfahren um Rekursion. Denn ruft sich die Funktion in jedem Iterationsschritt selbst auf und löst direkt, sobald sie auf dem gröbsten Gitter befindet, erhalten wir folgende rekursive Funktion:
+Eine bessere Methode ist, das Gitter immer gröber zu machen, bis das System direkt lösbar ist, um dann wieder auf das feinste Gitter zurück zu kehren. Wir erweitern also das Zweigitterverfahren um Rekursion. Denn ruft sich die Funktion in jedem Iterationsschritt selbst auf und löst direkt, sobald sie auf dem gröbsten Gitter befindet, erhalten wir folgende rekursive Funktion:
 
 \begin{eqnarray}
 \textbf{V-cycle }(u,b)                         & \notag \\
@@ -1665,7 +1699,7 @@ Dieser Algorithmus ist auch als V-Zyklus bekannt. Wie dieser Name zustande kommt
 \textbf{end}                                                & \notag
 \end{eqnarray}
 
-Man kann zeigen [Briggs/Saad], dass die Mehrgittermethoden einen Rechenaufwand von $\mathcal{O}(n)$ pro Iterationsschritt haben. Somit sind Mehrgitterverfahren effiziente und häufig verwendete Lösungsalgorithmen für lineare Gleichungssysteme. Im letzten Kapitel werden wir nun noch vergleichen, welcher der bisher vorgestellten Algorithmen für unsere Aufgabenstellung gut geeignet ist.
+% Man kann zeigen [Briggs/Saad], dass die Mehrgittermethoden einen Rechenaufwand von $\mathcal{O}(n)$ pro Iterationsschritt haben. Somit sind Mehrgitterverfahren effiziente und häufig verwendete Lösungsalgorithmen für lineare Gleichungssysteme. Im letzten Kapitel werden wir nun noch vergleichen, welcher der bisher vorgestellten Algorithmen für unsere Aufgabenstellung gut geeignet ist.
 
 \chapter{Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}\label{c.Vergleich}
 

@@ -81,11 +81,11 @@ void PoissonVector2D::InitRightSide(vector<double>& b) {
 void PoissonVector2D::WriteToFile(const vector<double>& x) {
     FILE *file;
     file=fopen("../Plot/plot.txt", "w");
+    int n=sqrt(x.size());
+    double h=1.0/(double)(n+1);
     if(file==NULL) {
         printf("ERROR: Could not open file!\n");
-    } else if (sqrt(x.size())!=this->n) {
-        printf("Size of Vector does not match!\n");
-    }  else {
+    } else {
         for(int i=1,k=0;i<=n;i++) {
             for(int j=1;j<=n;j++,k++) {
                 fprintf(file, "%f %f %f\n", i*h,j*h,x[k]);

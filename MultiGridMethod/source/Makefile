@@ -16,4 +16,4 @@ PoissonSolver.o: PoissonSolver.cpp classes.h
 	$(CC) -c -o $@ $<
 
 clean:
-	rm *.o poissonSolver
+	rm *.o
