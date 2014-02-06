@@ -649,7 +649,7 @@ $\blacksquare$
 Das Jacobi-Verfahren konvergiert also für $\mat{A}_{2D}$. Allerdings nimmt mit feinerem Gitter, also kleinere Schrittweite $h$, die Konvergenzgeschwindigkeit stark ab, da der Spektralradius nahe bei $1$ liegt. Sie dazu auch \autoref{ss.Spektralradius Jacobi Relax}\\
 Abschließend wollen wir den Rechenaufwand verbessern. Dafür nutzen wir die Dünnbesetztheit von $\mat{A}_{2D}$ aus. Es sind pro Zeile maximal $5$ Einträge ungleich Null. Oder anders formuliert, hat jeder Gitterpunkt in $\Omega_{h}$ höchstens 4 Nachbarn. Nutzt man diese Struktur aus, so erhält man den folgenden Algorithmus. 
 
-\subsection{Algorithmus (Jacobi-Verfahren für $\mat{A}_{2D}$)}\label{ss.Jacobi für Poisson}
+\subsection{Algorithmus (Jacobi-Verfahren für $\mat{A}_{2D}$) [NumParVer]}\label{ss.Jacobi für Poisson}
 
 Berechne für $k = 1,2,...$ mit Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig}\\
 Für $i = 1,...,N$ und für $j = 1,...,N$:
@@ -743,7 +743,7 @@ $\blacksquare$
 
 Die Iterationsmatrix des Jacobi-Relaxationsverfahrens bezüglich für $\mat{A}_{2D}$ und für ein $\omega \in (0,1)$ eine bessere Kondition, als die des Standard-Jacobi-Verfahrens. Häufig verwendete Werte im zweidimensionalen Fall sind $\omega = \frac {1} {2}$ und $\omega = \frac {4} {5}$, wobei letzterer Wert für das Mehrgitterverfahren den optimalen Parameter darstellt [Saad]. Leider ist für kleines $h$ die Konvergenz immer noch sehr langsam. Den Rechenaufwand kann man allerdings auch hier verbesseren. Mit der selben Vorgehensweise wie in \autoref{ss.Jacobi für Poisson} erhalten wir:
 
-\subsection{Algorithmus (Jacobi-Relaxations-Verfahren für $\mat{A}_{2D}$)}\label{ss.Algorithmus Jacobi Relax Poisson}
+\subsection{Algorithmus (Jacobi-Relaxations-Verfahren für $\mat{A}_{2D}$) [NumParVer]}\label{ss.Algorithmus Jacobi Relax Poisson}
 
 Berechne für $k = 1,2,...$ mit Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig}\\
 Für $i = 1,...,N$ und für $j = 1,...,N$:
