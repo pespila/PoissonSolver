@@ -20,12 +20,12 @@
 \BOOKMARK [2][-]{subsection.3.2.2}{Satz \(Iterationsmatrix des Jacobi-Verfahrens\)}{section.3.2}
 \BOOKMARK [2][-]{subsection.3.2.3}{Satz \(Eigenwerte der Jacobi-Iterationsmatrix bzgl. \040A 2D\)}{section.3.2}
 \BOOKMARK [2][-]{subsection.3.2.4}{Lemma \(Spektralradius der Jacobi-Iterationsmatrix bzgl. \040A 2D\)}{section.3.2}
-\BOOKMARK [2][-]{subsection.3.2.5}{Algorithmus \(Jacobi-Verfahren f\374r \040A 2D\)}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.5}{Algorithmus \(Jacobi-Verfahren f\374r \040A 2D\) [NumParVer]}{section.3.2}
 \BOOKMARK [1][-]{section.3.3}{Das Jacobi-Relaxationsverfahren}{chapter.3}
 \BOOKMARK [2][-]{subsection.3.3.1}{Algorithmus \(Jacobi-Relaxations-Verfahren\)}{section.3.3}
 \BOOKMARK [2][-]{subsection.3.3.2}{Satz \(Eigenwerte des Jacobi-Relaxationsverfahren bzgl. \040A 2D\)}{section.3.3}
 \BOOKMARK [2][-]{subsection.3.3.3}{Lemma \(Spektralradius der Jacobi-Relaxations-Matrix bzgl. \040A 2D\)}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.4}{Algorithmus \(Jacobi-Relaxations-Verfahren f\374r \040A 2D\)}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.4}{Algorithmus \(Jacobi-Relaxations-Verfahren f\374r \040A 2D\) [NumParVer]}{section.3.3}
 \BOOKMARK [1][-]{section.3.4}{Gl\344ttungseigenschaft}{chapter.3}
 \BOOKMARK [1][-]{section.3.5}{Das Verfahren der konjugierten Gradienten}{chapter.3}
 \BOOKMARK [2][-]{subsection.3.5.1}{Definition \(A-orthogonal\)}{section.3.5}
@@ -62,14 +62,16 @@
 \BOOKMARK [1][-]{section.4.5}{Einf\374hrung in die Mehrgittermethoden}{chapter.4}
 \BOOKMARK [1][-]{section.4.6}{Das Zweigitterverfahren}{chapter.4}
 \BOOKMARK [1][-]{section.4.7}{Mehrgitter-Algorithmen}{chapter.4}
-\BOOKMARK [0][-]{chapter.5}{Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}{}
+\BOOKMARK [0][-]{chapter.5}{Implementierung und Beispiele}{}
 \BOOKMARK [1][-]{section.5.1}{Beispiel einer Poisson Gleichung}{chapter.5}
 \BOOKMARK [1][-]{section.5.2}{Zur Implementierung in C++}{chapter.5}
 \BOOKMARK [1][-]{section.5.3}{Abbruchkriterien}{chapter.5}
 \BOOKMARK [1][-]{section.5.4}{L\366sung der Poisson Gleichung \(Jacobi-Verfahren\)}{chapter.5}
+\BOOKMARK [2][-]{subsection.5.4.1}{Jacobi C++-Methode}{section.5.4}
 \BOOKMARK [1][-]{section.5.5}{L\366sung der Poisson Gleichung \(Jacobi-Relaxations-Verfahren\)}{chapter.5}
-\BOOKMARK [2][-]{subsection.5.5.1}{Parameter = 12}{section.5.5}
-\BOOKMARK [2][-]{subsection.5.5.2}{Parameter = 45}{section.5.5}
+\BOOKMARK [2][-]{subsection.5.5.1}{Jacobi-Relaxation C++-Methode}{section.5.5}
+\BOOKMARK [2][-]{subsection.5.5.2}{Parameter = 12}{section.5.5}
+\BOOKMARK [2][-]{subsection.5.5.3}{Parameter = 45}{section.5.5}
 \BOOKMARK [1][-]{section.5.6}{CG-Verfahren angewandt auf das Beispiel}{chapter.5}
 \BOOKMARK [1][-]{section.5.7}{PCG-Verfahren angewandt auf das Beispiel}{chapter.5}
 \BOOKMARK [2][-]{subsection.5.7.1}{Unvollst\344ndige Cholesky-Zerlegung}{section.5.7}

@@ -15,7 +15,7 @@
    	<link rel="shortcut icon" href="img/newFavicon.png">
    	<link rel="icon" href="img/newFavicon.png">
    
-	<title>PoissonSolver - Using Conjugate Gradient Method</title>
+	<title>PoissonSolver</title>
 
 </head>
 
@@ -58,39 +58,114 @@
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-6">
             	<h4>Discretized Poisson Equation</h4>
-            	<p>See how the Poisson Equation is discretized.
-            		<a href="#" role="button">View details &raquo;</a>
+            	<p>
+                Let $\Omega = (0,1)\times(0,1) \in \mathbb{R}^{2}$ a bounded, open intervall. We are searching for a function $u(x,y)$ which solves:
+                \begin{eqnarray}
+                -\Delta u(x,y) &=& f(x,y) \hspace{1mm} in \hspace{1mm} \Omega, \\
+                u(x,y) &=& g(x,y) \hspace{1mm} in \hspace{1mm} \partial \Omega.
+                \end{eqnarray}
             	</p>
             </div>
             <div class="col-6 col-sm-6 col-lg-6">
+              <h4>Jacobi (Relaxation) Method</h4>
+              <p>
+                  For $\omega \in (0,1)$:
+                  \begin{equation}
+                  u^{k+1}_{i} = (1 - \omega)u^{k} + \frac {\omega} {a_{ii}} (f_{i} - \sum_{\substack{j = 1 \\ j \ne i}}^{n} a_{ij}u^{k}_{i}).
+                  \end{equation}
+              </p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-6">
             	<h4>Conjugate Gradient Method</h4>
-            	<p>See how CG Method works.
-              		<a href="#" role="button">View details &raquo;</a>
+            	<p>
+                  Let $A \in \mathbb{R}^{n}$ s.p.d. Choose an arbitrary $u^{0} \in \mathbb{R}^{n}$. Set $\beta_{-1} := 0$ and $r^{0} = b - Au^{0}$. \\
+                  For $k = 1,2,...$, and if $r^{k-1} \ne 0$ calculate:
+
+                  \begin{eqnarray}
+                  &&p^{k-1} = r^{k-1} + \beta_{k-2}p^{k-2}, \hspace{1mm} \beta_{k-2} = \frac {\langle r^{k-1}, r^{k-1} \rangle} {\langle r^{k-2}, r^{k-2} \rangle}, \notag \\
+                  &&u^{k} = u^{k-1} + \alpha_{k-1}p^{k-1}, \hspace{1mm} \alpha_{k-1} = \frac {\langle r^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle}, \notag \\
+                  &&r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1}. \notag
+                  \end{eqnarray}
              	</p>
             </div>
             <div class="col-6 col-sm-6 col-lg-6">
             	<h4>Preconditioned Conjugate Gradient Method</h4>
-            	<p>Learn why preconditioning is useful.
-            		<a href="#" role="button">View details &raquo;</a>
+            	<p>
+                  Let $A, W \in \mathbb{R}^{n}$ s.p.d. with an arbitrary initial guess $u^{0} \in \mathbb{R}^{n}$. Set $\beta_{-1} := 0$ and $r^{0} = b - Au^{0}$ and $z^{0} = W^{-1}r^{0}$ (solve $Wz^{0} = r^{0}$).\\
+                  For $k = 1,2,...$ and if $r^{k-1} \ne 0$ calculate:
+
+                  \begin{eqnarray}
+                  &&p^{k-1} = z^{k-1} + \beta_{k-2}p^{k-2}, \hspace{1mm} \beta_{k-2} = \frac {\langle z^{k-1}, r^{k-1} \rangle} {\langle z^{k-2}, r^{k-2} \rangle}, \notag \\
+                  &&u^{k} = u^{k-1} + \alpha_{k-1}p^{k-1}, \hspace{1mm} \alpha_{k-1} = \frac {\langle z^{k-1}, r^{k-1} \rangle} {\langle p^{k-1}, Ap^{k-1} \rangle}, \notag \\
+                  &&r^{k} = r^{k-1} - \alpha_{k-1}Ap^{k-1}, \notag \\
+                  &&z^{k} = W^{-1}r^{k}, \hspace{1mm} (solve Wz^{k} = r^{k}). \notag
+                  \end{eqnarray}
             	</p>
             </div>
             <div class="col-6 col-sm-6 col-lg-6">
-            	<h4>Incomplete LU decomposition</h4>
-            	<p>See the algorithm of the incomplete LU decomposition.
-            		<a href="#" role="button">View details &raquo;</a>
-            	</p>
+              <h4>Incomplete LU decomposition</h4>
+              <p>
+                  Let $A \in \mathbb{R}^{n \times n}$ and $E$ the pattern for $A$. Set $L = Id$, $R = 0$. Calculate for $i=1,2,...,n$:
+                  \begin{eqnarray}
+                  &&l_{i,i} = \left( a_{i,i} - \sum^{i-1}_{j=1,(i,j) \in E} l_{i,j}^{2} \right)^{\frac {1} {2}} \\
+                  &&for \hspace{1mm} k = i+1,...,n: \hspace{1mm} if \hspace{1mm} (k,i) \in E: \\
+                  &&l_{k,i} = \left( a_{k,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l_{i,j} \right) / l_{i,i}
+                  \end{eqnarray}
+              </p>
             </div>
             <div class="col-6 col-sm-6 col-lg-6">
-            	<h4>Modified incomplete LU decomposition</h4>
-            	<p>See the algorithm of the modified incomplete LU decomposition.
-            		<a href="#" role="button">View details &raquo;</a>
-            	</p>
+              <h4>Modified incomplete LU decomposition</h4>
+              <p>
+                  Let $A \in \mathbb{R}^{n \times n}$ s.p.d. and $E$ the pattern for $A$. Calculate for $i=1,2,...,n$:
+                  \begin{eqnarray}
+                  &&l_{i,i} = \left( a_{i,i} - \sum^{i-1}_{j=1,(i,j) \in E} l_{i,j}^{2} \right)^{\frac {1} {2}}. \\
+                  &&for \hspace{1mm} k = i+1,...,n: \hspace{1mm} if \hspace{1mm} (k,i) \in E: \\
+                  &&l_{k,i} = \left( a_{k,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l_{i,j} \right) / l_{i,i} \\
+                  &&else:\\
+                  &&a_{k,k} = a_{i,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l_{i,j}
+                  \end{eqnarray}
+              </p>
             </div>
             <div class="col-6 col-sm-6 col-lg-6">
-            	<h4>Advanced literature</h4>
-            	<p>Find my favourite literature.
-            		<a href="#" role="button">View details &raquo;</a>
-            	</p>
+              <h4>Multigrid V-Cycle</h4>
+              <p>
+                \begin{eqnarray}
+                \textbf{V-cycle }(u,b)                      & \notag \\
+                \textbf{if }\textit{(coarsest grid) }       &\hspace{2mm} return \hspace{1mm} u_{finest grid}=A^{-1}b \notag \\
+                \textbf{else }                              & \notag \\
+                \textit{a priori smooth }                   &\hspace{2mm} JacobiRelaxationMethod \notag \\
+                \textit{calculate residual }                &r^{k} = b - Au^{k} \notag \\
+                \textit{restrict }                          &r^{k}_{2h}=Rr^{k}_{h} \notag \\
+                                                            &A^{2h} = RA^{h}P \notag \\
+                \textit{recursion }                         &e^{k}_{2h} = \textbf{V-cycle}(0,r^{k}_{2h}) \notag \\
+                \textit{prolongate }                        &e^{k}_{h} = Pe^{k}_{2h} \notag \\
+                \textit{add error }                         &u^{k}_{h} = u^{k-1}_{h} + e^{k}_{h} \notag \\
+                \textit{a posteriori smooth }               &\hspace{2mm} JacobiRelaxationMethod \notag \\
+                                                            &\hspace{2mm} return \hspace{1mm} u_{h} \notag \\
+                \textbf{end}                                & \notag
+                \end{eqnarray}
+              </p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-6">
+              <h4>Multigrid W-Cycle</h4>
+              <p>
+                  \begin{eqnarray}
+                  \textbf{W-cycle }(u,b)                    & \notag \\
+                  \textbf{if }\textit{(coarsest grid) }     &\hspace{2mm} return \hspace{1mm} u_{finest grid}=A^{-1}b \notag \\
+                  \textbf{else }                            & \notag \\
+                  \textit{a priori smooth }                 &\hspace{2mm} JacobiRelaxationMethod \notag \\
+                  \textit{calculate residual }              &r^{k} = b - Au^{k} \notag \\
+                  \textit{restrict }                        &r^{k}_{2h}=Rr^{k}_{h} \notag \\
+                                                            &A^{2h} = RA^{h}P \notag \\
+                  \textit{recursion }                       &e^{k}_{2h} = \textbf{W-cycle}(0,r^{k}_{2h}) \notag \\
+                  \textit{recursion }                       &e^{k}_{2h} = \textbf{W-cycle}(0,r^{k}_{2h}) \notag \\
+                  \textit{prolongate }                      &e^{k}_{h} = Pe^{k}_{2h} \notag \\
+                  \textit{add error }                       &u^{k}_{h} = u^{k-1}_{h} + e^{k}_{h} \notag \\
+                  \textit{a posteriori smooth }             &\hspace{2mm} JacobiRelaxationMethod \notag \\
+                                                            &\hspace{2mm} return \hspace{1mm} u_{h} \notag \\
+                  \textbf{end}                              & \notag
+                  \end{eqnarray}
+              </p>
             </div>
           </div>
         </div>
@@ -107,37 +182,59 @@
 
     <hr>
 
-	<footer>
-    	<p>&copy; Michael Bauer 2013</p>
-	</footer>
+    <footer>
+        <p>&copy; Michael Bauer 2014</p>
+    </footer>
 
     </div>
 
-	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/offcanvas.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/offcanvas.js"></script>
+<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-	    <script type="text/javascript">
-	    $(document).ready(function(){
-			$("#maincontent").text("With this website you can solve the Discretized Poisson Equation with the help of the Conjugate Gradient Method.");
-		});
-		$("#home").click(function(){
-			$("h1").text("PoissonSolver Online");
-			$("#maincontent").text("With this website you can solve the Discretized Poisson Equation with the help of the Conjugate Gradient Method.");
-		});
-		$("#about").click(function(){
-			$("h1").text("Bachelor Thesis of...");
-			$("#maincontent").text("...Michael Bauer, degree course: Computational Science, title: ...");
-		});
-		$("#contact").click(function(){
-			$("h1").text("Contact me");
-			$("#maincontent").html("E-Mail: <a href=mailto:michael1.bauer@stud.uni-r.de>Michael Bauer</a>");
-		});
-		$("#run").click(function(){
-			
-		});
-	    </script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#maincontent").text("This website was created after programming the PoissonSolver code for my Bachelor Thesis. The title of it is 'Iterative Methods for solving the discretized poisson equation'. This thesis was written under the supervisor Prof. Dr. Harald Garcke.");
+    });
+    $("#home").click(function(){
+        $("h1").text("PoissonSolver Online");
+        $("#maincontent").text("This website was created after programming the PoissonSolver code for my Bachelor Thesis. The title of it is 'Iterative Methods for solving the discretized poisson equation'. This thesis was written under the supervisor Prof. Dr. Harald Garcke.");
+    });
+    $("#about").click(function(){
+        $("h1").text("Bachelor Thesis of...");
+        $("#maincontent").text("...Michael Bauer, degree course: Computational Science, title: Iterative Methods for solving the discretized poisson equation");
+    });
+    $("#contact").click(function(){
+        $("h1").text("Contact me");
+      $("#maincontent").html("E-Mail: <a href=mailto:michael1.bauer@stud.uni-r.de>Michael Bauer</a>");
+    });
+    $("#poissonEquation").click(function(){
+        // $('#maincontent').text("Für ein $u_{2h}$ auf gilt:
+        //   $u_{2h}^{i,j} = (4u_{h}^{i,j}+2(u_{h}^{i+1,j}+u_{h}^{i-1,j}+u_{h}^{i,j+1}+u_{h}^{i,j-1})+u_{h}^{i-1,j-1}+u_{h}^{i-1,j+1}+u_{h}^{i+1,j+1}+u_{h}^{i+1,j-1})$");
+    });
+</script>
 
 </body>
 
 </html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<title>MathJax TeX Test Page</title>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+Für ein $u_{2h}$ auf $\Omega_{2h}$ gilt:
+\begin{equation}
+u_{2h}^{i,j} = \frac {1} {16} (4u_{h}^{i,j}+2(u_{h}^{i+1,j}+u_{h}^{i-1,j}+u_{h}^{i,j+1}+u_{h}^{i,j-1})+u_{h}^{i-1,j-1}+u_{h}^{i-1,j+1}+u_{h}^{i+1,j+1}+u_{h}^{i+1,j-1})
+\end{equation}
+</body>
+</html> -->
