@@ -9,24 +9,33 @@
 
 \begin{center}
 \begin{Huge}
-Fakultät für Mathematik\\
+Universität Regensburg\\
 \vspace{3mm}
-\end{Huge}{\Large Universität Regensburg}\\
+\end{Huge}{\Large Fachbereich Mathematik}\\
 
-\vspace{20mm}
+\bild{UR}{10cm}{}{}
+
+\vspace{15mm}
 \begin{Large}
-Ein Vergleich des Verfahrens der konjugierten Gradienten und Mehrgittermethoden, angewandt auf die diskretisierte Poisson-Gleichung\\
+Bachelorarbeit
 \end{Large}
-\vspace{8mm}
-Bachelor-Arbeit\\
-\vspace{0.4cm}
-\vspace{2 cm}
-Michael Bauer \\
-Matrikel-Nummer 1528558\\
+
+\vspace{5mm}
+\begin{large}
+im Studiengang Computational Science	
+\end{large}
+
+\vspace{15mm}
+\begin{Large}
+Iterative Verfahren zur Lösung der diskretisierten Poisson Gleichung
+\end{Large}
+von\\
+Michael Bauer
+
 \vspace{8cm}
 \begin{tabular}{ll}
-{\bf Erstprüfer}&Prof. Garcke\\
-{\bf Zweitprüfer}&Prof. Blank\\
+{\bf Betreuer:} &Prof. Dr. Harald Garcke\\
+{\bf Eingereicht am:} &Datum\\
 \end{tabular}
 
 \end{center}
@@ -159,24 +168,6 @@ Man stellt $\Delta_{h} u(x,y)$ häufig auch als 5-Punkt-Differenzenstern (\autor
 \textnormal{, } \xi \in \Omega_{h}
 \end{equation}
 dar. (Dahmen Reusken)
-% \begin{eqnarray}
-% \Delta_{h} u(x,y) &:=& \frac {u(x-h,y) + u(x+h,y) - 4u(x,y) + u(x,y-h) + u(x,y+h)} {h^{2}} \notag \\
-% &=& \frac {1} {h^{2}}
-% \begin{pmatrix}
-% \frac {u(x,y+h)} {u(x,y)}, & 1, & \frac {u(x,y-h)} {u(x,y)}
-% \end{pmatrix}
-% \begin{pmatrix}
-%   & 1 & \\
-% 1 & -4 & 1 \\
-%   & 1 & 
-% \end{pmatrix}
-% \begin{pmatrix}
-% u(x+h,y) \\
-% u(x,y) \\
-% u(x-h,y)
-% \end{pmatrix}
-% \end{eqnarray}
-% Diese Approximation wird auch 5-Punkt-Differenzenstern genannt, siehe dazu Abbildung (2.1).
 
 \bild{grid}{8cm}{Nummerierung der Punkte von $\Omega = (0,1)^{2}$ mit $m=5$. In x- bzw. y-Richtung gibt es jeweils $N=4$ Punkte}{Gitter}\label{img.gridWithNumbers}
 
@@ -251,22 +242,6 @@ f(1-h,1-h) + h^{-2}(g(1-h,1)+g(1,1-h))
 
 Schließlich erhalten wir das lineare Gleichungssystem der Form $\mat{A}u = f$, wobei $\mat{A}$ und $f$ bekannt sind und $u$ die approximierte Lösung, der partiellen Differentialgleichung darstellt.\\
 Wir bezeichnet ab jetzt die diskrete 2D Poisson Matrix aus \autoref{eq.2D Matrix} mit $\mat{A}_{2D}$.
-
-% \section{Das Residuum und die Residuumsgleichung}\label{s.Residuum und Resdiuumsgleichung}
-
-% Ein weiterer Begriff, der im Zusammenhang mit linearen Gleichungssystemen oft fällt, ist der des Residuums. Dieses wird uns in \autoref{s.Das Verfahren der konjugierten Gradienten} und \autoref{c.Mehrgitterverfahren} wieder begegnen.
-
-% \subsection{Definition (Residuum)}\label{ss.Das Residuum}
-
-% Sei $\mat{A}u = f$ ein lineares Gleichungssystem mit $A \in \mathbb{R}^{n \times n}$, $u,f \in \mathbb{R}^{n}$. Dann gilt für $r \in \mathbb{R}^{n}$:
-% \begin{equation}
-% r := f - \mat{A}u
-% \end{equation}
-% wobei wir $r$ das Residuum nennen.
-
-% \subsection{Die Residuumsgleichung}\label{ss.Resdiuumsgleichung}
-
-% Seien $\mat{A},u,f$ und $r$ wie in \autoref{ss.Das Residuum}. Dann gilt für $e \in \mathbb{R}^{n}$:
 
 \section{Eigenschaften der Matrix $\mat{A}_{2D}$}\label{s.Eigenwerte und Eigenvektoren}
 
@@ -657,18 +632,6 @@ Dieser folgt direkt mit dem Beweis aus \autoref{ss.EW Relax} für $\omega = 1$.
 $\blacksquare$
 \end{flushright}
 
-% Für $\mat{D} = 4 \mat{Id}$ folgt $\mat{D}^{-1} = \frac {1} {4} \mat{Id}$. Für die Iterationsmatrix $\mat{T}_{J}$ angewandt auf einen Vektor $u$ gilt:
-% \begin{eqnarray}
-% Tu = (Id - D^{-1}A)u = Id u - D^{-1} \underbrace{Au}_{=\lambda(A) u} = Id u - \frac {1} {4} Id u A = u (1 - \frac {1} {4} \lambda(A)). \notag
-% \end{eqnarray}
-% Die Eigenwerte von $\mat{T}$ lassen sich also einfach durch $(1 - \frac {h^{2}} {4} \lambda(A))$ berechen:
-% \begin{equation}
-% \lambda_{i,j}(\mat{T}_{J}) = 1 - \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{j}} {2}) \right) \textnormal{ für } 1 \le i,j \le N. \notag
-% \end{equation}
-% \begin{flushright}
-% $\blacksquare$
-% \end{flushright}
-
 \subsection{Lemma (Spektralradius der Jacobi-Iterationsmatrix bzgl. $\mat{A}_{2D}$)}\label{ss.Spektralradius Jacobi}
 
 Das Jacobi-Verfahren konvergiert für die diskrete Poisson Gleichung und es gilt für den Spektralradius:
@@ -683,25 +646,8 @@ Folgt mit Beweis aus \autoref{ss.Spektralradius Jacobi Relax} und $\omega = 1$.
 $\blacksquare$
 \end{flushright}
 
-% Mit \autoref{eq.Jacobi-Eigenwerte} folgt:
-% \begin{eqnarray}
-% \rho(Id-D^{-1}A_{2D}) &=& \max_{1 \le i \le n} | \lambda_{i} | = \max_{1 \le i \le n} | 1 - \left(\sin^{2}(\frac {\theta_{i}} {2}) + \sin^{2}(\frac {\theta_{}} {2} \right) | \notag \\
-% &=& 1 - 2\sin^{2} (\frac {\pi h} {2}) = 1 - 2(\frac{1} {2} (1 - \cos (\pi h)) \notag \\
-% &=& \cos (\pi h) \overset{\textnormal{Taylorformel}}{\approx} 1 - \frac {1} {2} \pi^{2} h^{2}. \notag
-% \end{eqnarray}
-% \begin{flushright}
-% $\blacksquare$
-% \end{flushright}
-
 Das Jacobi-Verfahren konvergiert also für $\mat{A}_{2D}$. Allerdings nimmt mit feinerem Gitter, also kleinere Schrittweite $h$, die Konvergenzgeschwindigkeit stark ab, da der Spektralradius nahe bei $1$ liegt. Sie dazu auch \autoref{ss.Spektralradius Jacobi Relax}\\
 Abschließend wollen wir den Rechenaufwand verbessern. Dafür nutzen wir die Dünnbesetztheit von $\mat{A}_{2D}$ aus. Es sind pro Zeile maximal $5$ Einträge ungleich Null. Oder anders formuliert, hat jeder Gitterpunkt in $\Omega_{h}$ höchstens 4 Nachbarn. Nutzt man diese Struktur aus, so erhält man den folgenden Algorithmus. 
-% Da die Matrix, die durch das diskretisierte Poisson-Problem aufgestellt wird, dünn besetzt ist, können wir den Rechenaufwand für dieses spezielle Problem auf $\mathcal{O}(n)$ pro Iterationsschritt verbessern. Dafür benötigen wir nochmals den 5-Punkt-Differenzenstern und die partielle Differentialgleichung:
-
-% \begin{equation}
-% \frac {u(x_{i-1},y_{j}) + u(x_{i+1},y_{j}) - 4u(x_{i},y_{j}) + u(x_{i},y_{j-1}) + u(x_{i},y_{j+1})} {h^{2}} = f(x,y)
-% \end{equation}
-
-% Löst man diese Gleichung nun für alle $i,j$ nach $u(x_{i},y_{j})$ auf, so erhält man folgende Iterationsvorschrift für das Jacobi-Verfahren: \\
 
 \subsection{Algorithmus (Jacobi-Verfahren für $\mat{A}_{2D}$)}\label{ss.Jacobi für Poisson}
 
@@ -807,138 +753,6 @@ u^{k+1}_{i,j} = (1 - \omega)u^{k} + \frac {\omega} {a_{i,i}} (f_{i,j} - u^{k}_{i
 
 mit Rechenaufwand $\mathcal{O}(n)$.
 
-% \section{Das Gauß-Seidel-Verfahren (Einzelschrittverfahren)}\label{s.Das Gauss-Seidel-Verfahren}
-
-% Mit einer ähnlichen Vorgehensweise wie in \autoref{s.Das Jacobi-Iterationsverfahren}, wollen wir uns nun ein weiteres Verfahren herleiten.
-
-% \subsection{Das allgemeine Gauss-Seidel-Iterationsverfahren}\label{ss.Allgemeines Gauss-Seidel-Verfahren}
-
-% Wir zerlegen die Matrix $\mat{A}$ wie folgt:
-% \begin{equation}
-% A = D - L - U
-% \end{equation}
-
-% Somit ergibt sich für $\mat{A}u = f$:
-% \begin{equation}
-% Au = f \Leftrightarrow (D-L-U)u = f \Leftrightarrow (D-L)u = Uu + f
-% \end{equation}
-
-% Daraus können wir nun folgende Iterationsvorschrift ableiten:
-% \begin{equation}
-% (D-L)u^{k+1} = Uu^{k} + f \Leftrightarrow u^{k+1} = (D-L)^{-1}Uu^{k} + (D-L)^{-1}f
-% \end{equation}
-
-% In Komponentenschreibweise für $i=1,...,n$:
-% \begin{equation}
-% \sum\limits_{j=1}^{i} a_{ij}u_{j}^{k+1} = -\sum\limits_{j=i+1}^{n} a_{ij}u_{j}^{k} + f_{i}\label{eq.GaussSeidel}
-% \end{equation}
-
-% Formt man \autoref{eq.GaussSeidel} um, so erhält man den Algorithmus des Gauss-Seidel-Verfahrens mit Startvektor $u^{0} \in \mathbb{R}$ \textit{beliebig}:
-
-% Für $k = 1,2,...$ berechne für $i = 1,...,n$
-% \begin{eqnarray}
-% u_{i}^{k+1} &=& \frac {1} {a_{ii}} (f_{i} - \sum\limits_{j=1}^{i-1} a_{ij}u_{j}^{k+1} - \sum\limits_{j=i+1}^{n} a_{ij}u_{j}^{k})
-% \end{eqnarray}
-
-% Dieses Verfahren nutzt sofort die Werte, die im laufenden Iterationsschritt berechnet wurden. Somit spart man sich das Alloziieren eines temporären Vektors, also Speicherplatz. \\
-% Das Gauss-Seidel-Verfahren wartet ebenfalls mit einem Rechaufwand von $\mathcal{O}(n^{2})$ auf. Wie beim Jacobi-Verfahren kann man dies auf $\mathcal{O}(n)$ optimieren.
-
-% \subsection{Das Gauss-Seidel-Iterationsverfahren für die Poisson-Gleichung}\label{ss.Gauss-Seidel-Verfahren der Poisson Gleichung}
-
-% Ebenso wie in \autoref{ss.Jacobi-Verfahren der Poisson Gleichung} entwickeln wir den Algorithmus, beachten aber dabei, dass bereits berechnete Werte im Iterationsschritt wieder genutzt werden:
-
-% \begin{eqnarray}
-% u^{k}_{i,j} &=&  \frac {1} {4} (u^{k}_{i-1,j} + u^{k}_{i,j-1} + u^{k-1}_{i+1,j} + u^{k-1}_{i,j+1} - h^{2}f(x_{i},y_{j})) \\
-% &=& \frac {1} {4} (f_{i,j} - u^{k}_{i-1,j} + u^{k}_{i,j-1} + u^{k-1}_{i+1,j} + u^{k-1}_{i,j+1})
-% \end{eqnarray}
-% Auch hier reduziert sich der Rechenaufwand auf $\mathcal{O}(n)$.
-
-
-% \section{Warum Einzelschritt- und Gesamtschrittverfahren?}\label{s.Warum Einzelschritt- und Gesamtschrittverfahren?}
-% Zum lösen von großen linearen Gleichungssystemen werden das Jacobi-Verfahren und das Gauss-Seidel-Verfahren heute kaum mehr verwendet. Es gibt mittlerweile schnellere, stabilere und effizientere Verfahren wie wir im fortlaufenden sehen werden. Einen großen Vorteil haben allerdings beide Verfahren: Sie löschen große Fehler bereits nach den ersten Iterationsschritten aus. Darum finden sie besonders große Verwendung in den Mehrgittermethoden, die wir später kennen lernen werden.
-
-% \section{Die SOR-Methode (SOR = successive overrelaxation)}\label{s.SOR-Methode}
-
-% Eine Optimierung von \autoref{eq.GaussSeidel} bietet das SOR-Verfahren oder auch Gauss-Seidel-Relaxationsverfahren. Die Einführung eines Relaxationsparameters $\omega$ kann in einigen Fällen das Iterationsverfahren effizienter machen. Speziell für die Poisson-Gleichung wird nicht nur die Effizienz signifikant verbessert, es ist auch ein optimaler Parameter $\omega$ bekannt (siehe hierzu Dahmen/Reusken).
-
-% \subsection{Algorithmus des SOR-Verfahrens}\label{ss.Algorithmus des SOR-Verfahrens}
-
-% Für $k = 1,2,...$ berechne für $i = 1,...,n$
-% \begin{eqnarray}
-% u_{i}^{k+1} &=& u_{i}^{k} - \frac {\omega} {a_{ii}} (f_{i} - \sum\limits_{j=1}^{i-1} a_{ij}u_{j}^{k+1} - \sum\limits_{j=i}^{n} a_{ij}u_{j}^{k}) \\
-% &=& (1-\omega)u_{i}^{k} - \frac {\omega} {a_{ii}} (f_{i} - \sum\limits_{j=1}^{i-1} a_{ij}u_{j}^{k+1} - \sum\limits_{j=i+1}^{n} a_{ij}u_{j}^{k})
-% \end{eqnarray}
-
-% Offensichtlich erhält man für $\omega = 1$ wieder das Gauss-Seidel-Verfahren. Außerdem existiert, wie bereits erwähnt, nicht immer ein $\omega$, welches das Verfahren schneller konvergieren lässt. Da für die Poisson Gleichung sogar ein optimaler Parameter existiert, wollen wir uns diesen näher ansehen.
-
-% \subsection{Satz (Optimaler Parameter $\omega$)}\label{ss.optimales omega}
-
-% Sei $\mu := cos(\pi h)$. Für die diskretisierte Poisson Gleichung $Au = f$ gilt dann für den Relaxationsparameter:
-
-% \begin{equation}
-% \omega_{opt} := 1 + \left( \frac {\mu} {1 + \sqrt{1 - \mu^{2}}} \right)
-% \end{equation}
-
-% Verlgeichen Sie hierzu auch Dahmen/Reusken (Seite 564).
-
-% \subsection{SOR in Matrix-Darstellung}\label{ss.Matrixdarstellung}
-
-% Der Vollständigkeit halber, wollen wir uns jetzt noch der Matrix-Darstellung der SOR-Methode widmen. Im wesentlichen entspricht sie dem Gauss-Seidel-Verfahren. Lediglich der Relaxationsparameter muss eingebaut werden. Man erhält:
-
-% \begin{eqnarray}
-% (\mat{Id}+\omega\mat{D}^{-1}\mat{L})x^{k+1} &=& [(1-\omega)\mat{I}-\omega\mat{D}^{-1}\mat{R}]x^{k} + \omega\mat{D}^{-1}b \notag \\
-% \Longleftrightarrow \mat{D}^{-1}(\mat{D}+\omega\mat{L})x^{k+1} &=& \mat{D}^{-1}[(1-\omega)\mat{D}-\omega\mat{R}]x^{k} + \omega\mat{D}^{-1}b \notag \\
-% \end{eqnarray}
-
-% dies ergibt
-
-% \begin{equation}
-% x^{k+1} = (\mat{D}+\omega\mat{L})^{-1}[(1-\omega)\mat{D}-\omega\mat{R}]x^{k}+\omega(\mat{D}+\omega\mat{L})^{-1}b
-% \end{equation}
-
-% Mit dieser Gleichung und einigen weiteren Überlegungen kann gezeigt werden, dass folgender Satz gilt.
-
-% \subsection{Satz}\label{ss.konvergenz für omega}
-
-% Sei $\mat{A}$ hermitesch und positiv definit, dann konvergiert das Gauß-Seidel-Relaxationsverfahren genau dann, wenn $\omega \in (0,2)$ ist. (aus oranges buch) \\ \\
-
-% Einen Beweis hierzu findet man beispielsweise in (oranges buch) \\ \\
-
-% Aus \autoref{ss.optimales omega} ist der optimale Paramater für die Poisson Gleichung bereits bekannt. Also konvergiert - wie erwartet - das Verfahren für $\omega = $.
-
-% \subsection{Satz (Iterationsmatrix des Gauss-Seidel-Verfahrens)}
-
-% Für die Iterationsmatrix des Jacobi-Verfahrens gilt:
-% \begin{equation}
-% \mat{T}_{GS} := (\mat{Id} - (\mat{D} - \mat{L})^{-1} \mat{A})
-% \end{equation}
-% Hier ist also $\mat{C} = (\mat{D} - \mat{L})^{-1}$
-
-% \textbf{Beweis}:
-
-% Mit der Iterationsvorschrift folgt:
-% \begin{eqnarray}
-% u^{k+1} &=& (D-L)^{-1}Uu^{k} + (D-L)^{-1}f \\
-% &\overset{\mat{U}=(\mat{D}-\mat{L}-\mat{A})}{=}& (D-L)^{-1}(D-L-A)u^{k}+(D-L)^{-1}f \\
-% &=& (D-L)^{-1}(D-L)-(D-L)^{-1}Au^{k}+(D-L)^{-1}f \\
-% &=& (Id - (D-L)^{-1}A)u^{k} + (D-L)^{-1}f
-% \end{eqnarray}
-% $\Longrightarrow$ Beh.
-
-% \subsection{Lemma (Spektralradius der Gauss-Seidel-Iterationsmatrix bzgl. $\mat{A}_{2D}$)}
-
-% Das Gauss-Seidel-Verfahren konvergiert für die diskrete Poisson Gleichung und man kann zeigen, dass gilt:
-% \begin{equation}
-% \rho(\mat{T}_{GS}) = (\rho(\mat{T}_{J}))^{2} = \cos^{2}(\pi h) < 1
-% \end{equation}
-
-% \textbf{Beweis:}
-
-% Einen ausführlichen Beweis findet man z.B. in (Dahmen/Reusken). Das $\cos^{2}(\pi h) < 1$ ist, folgt aus der Taylorentwicklung von $\cos^{2}$, für die gilt:
-% \begin{equation}
-% \cos^{2}(\pi h) \approx 1 - \pi^{2} h^{2} < 1
-% \end{equation}
-
 \section{Glättungseigenschaft}\label{s.Glättungseigenschaft}
 
 Für die Iterationsmatrix des Jacobi-Relaxationsverfahrens gilt:
@@ -1001,32 +815,6 @@ f hat ein eindeutig bestimmtes Minimum und
 \begin{equation}
 Au^{*} = f \Longleftrightarrow f(u^{*}) = \underset{u\in\mathbb{R}^{n}}{\min} f(u)
 \end{equation}
-
-% \textbf{Beweis:}
-
-% \begin{enumerate}
-% \item Eindeutigkeit: per Widerspruch \\
-% Sei $\hat x$ ein weiteres Minimum von f. Dann ist
-% \begin{equation}
-% \nabla f(\hat x) = A\hat x - b = 0 \Rightarrow A\hat x = b. \notag
-% \end{equation}
-% $\Rightarrow Ax = b$ hat zwei Lösungen $x^{*}$ und $\hat x$. Widerspruch, da $A$ eine quadratische Matrix und $det(A) \ne 0 \Rightarrow $ das GLS hat eine eindeutige Lösung.
-% \item $\Rightarrow:$ Sei $x^{*}$ die eind. Lsg. von $Ax = b$. Dann kann man $f(x)$ auch folgenderma{\ss}en schreiben:
-% \begin{equation}
-% f(x) = \frac 1 2 (x - x^{*})^{T}A(x - x^{*}) - c \hspace{2mm} mit \hspace{2mm} c = \frac 1 2 (x^{*})^{T}Ax^{*}. \notag
-% \end{equation}
-% Da $y^{T}Ay > 0 \hspace{2mm} \forall _{y \ne 0}$ und $c$ konstant ist, da es nicht von $x$ abhängt, folgt
-% $$f(x) = \underbrace {\frac 1 2 (x - x^{*})^{T}A(x - x^{*})}_{\ge 0} - c$$
-% ist genau dann minimal, wenn $x = x^{*}$.
-% \item $\Leftarrow:$ Sei $f(x^{*})$ das Minimum von $f(x)$, dann gilt
-% \begin{equation}
-% \nabla f(x^{*}) = Ax^{*} - b = 0 \Rightarrow Ax^{*} = b. \notag
-% \end{equation}
-% $\Rightarrow x^{*}$ löst $Ax = b$
-% \end{enumerate}
-% \begin{flushright}
-% $\blacksquare$
-% \end{flushright}
 
 Einen Beweis hierzu findet man z.B. in [Dahmen/Reusken].\\
 Es ist also äquivalent die Funktion $f(u)$ zu minimieren und das Gleichungssystem $Au = f$ zu lösen. Betrachtet man nun den Gradienten von $f(x)$, so stellt man fest, dass gilt:
@@ -1157,31 +945,6 @@ p^{k-1} = r^{k-1} - \frac {\langle r^{k-1}, Ap^{k-2} \rangle} {\langle p^{k-2}, 
 \end{equation}
 
 Substituiert man nun geschickt einige Werte in den Skalarprodukten, führt das auf den Algorithmus der konjugierten Gradienten.
-
-% \textbf{Beweis:}
-% \begin{eqnarray}
-% x^{k} &=& \sum_{j=0}^{k-1} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle {p^{j}, p^{j}} \rangle _{A}} p^{j} =
-% \underbrace{\sum_{j=0}^{k-2} \frac {\langle x^{*}, p^{j} \rangle _{A}} {\langle {p^{j}, p^{j}} \rangle _{A}} p^{j}}_{=x^{k-1}} +
-% \frac {\langle \overbrace{Ax^{*}}^{=b=b-Ax^{0}=r^{0}}, p^{k-1} \rangle} {\langle {Ap^{k-1}, p^{k-1}} \rangle} p^{k-1}\\
-% &=& x^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ mit } \alpha_{k-1} \overset{(8)}{=} \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle}
-% \end{eqnarray}
-% \begin{flushright}
-% $\blacksquare$
-% \end{flushright}
-
-% \subsubsection{Erklärung zum CG-Algorithmus}\label{Erklärung zum CG-Algorithmus}
-
-% \begin{description}
-
-% \item[zu 0.] Initialisiere den Algorithmus und bestimme das Residuum. Hierfür ist ein Startvektor $x^{0}$ beliebig zu wählen.
-
-% \item[zu 1.] Um eine A-orthogonale Basis von den $U_{k}$ zu bestimmen ist im wesentlichen ein (A-) Orthogonalisierungverfahren notwendig.
-
-% \item[zu 2.] Hier wird das Verfahren aus \autoref{s.Projektionssatz} angewandt, um eine neue Näherungslösung in $U_{k}$ zu bestimmen.
-
-% \item[zu 3.] Erweiterung des Teilraums $U_{k}$ zu $U_{k+1}$ durch das Hinzufügen des $k-ten$ Resdiduums (berechne: $r^{k} := b - Ax^{k}$).
-
-% \end{description}
 
 \subsection{Numerischer Algorithmus der konjugierten Gradienten}\label{ss.Numerisches CG}
 
@@ -1705,9 +1468,9 @@ Dieser Algorithmus ist auch als V-Zyklus bekannt. Wie dieser Name zustande kommt
 
 % Man kann zeigen [Briggs/Saad], dass die Mehrgittermethoden einen Rechenaufwand von $\mathcal{O}(n)$ pro Iterationsschritt haben. Somit sind Mehrgitterverfahren effiziente und häufig verwendete Lösungsalgorithmen für lineare Gleichungssysteme. Im letzten Kapitel werden wir nun noch vergleichen, welcher der bisher vorgestellten Algorithmen für unsere Aufgabenstellung gut geeignet ist.
 
-\chapter{Ein Vergleich zwischen Iterativen- und Mehrgitter-Methoden}\label{c.Vergleich}
+\chapter{Implementierung und Beispiele}\label{c.Vergleich}
 
-In diesem letzten Kapitel wollen wir die Iterativen-Verfahren, speziell das Verfahren der konjugierten Gradienten, und die Mehrgitterverfahren numerisch vergleichen. Dafür betrachten wir folgende Gleichung:
+In diesem letzten Kapitel sollen noch einmal praktische Code-Beispiele und erhaltene Berechnungswerte anhand eines Beispiels erfolgen. Dafür wollen wir folgende Gleichung betrachten:
 
 \section{Beispiel einer Poisson Gleichung}\label{s.Beispiel einer Poisson Gleichung}
 
@@ -1720,13 +1483,13 @@ Gesucht ist eine Funktion $u(x,y)$, die diese Gleichung löst. \\
 Offensichtlich löst der elliptische Paraboloid $u(x,y) = x^{2} + y^{2}$ die partielle Differentialgleichung, da $\partial_{xx}u(x,y) = \partial_{yy}u(x,y) = 2$. Allerdings wollen wir nun diese Lösung auch numerisch erhalten.\\
 Die gewünschte Lösung sollte also folgenden Graphen ergeben:
 
-%bild
+\bild{MyFunction}{10cm}{Die analytische Lösung für diese Poisson-Gleichung war gegeben durch $u(x,y) = x^{2} + y^{2}$.}{Die analytische Lösung für diese Poisson-Gleichung war gegeben durch $u(x,y) = x^{2} + y^{2}$.}
 
-Zu beachten ist außerdem, dass wir $\Omega_{h} \in [0,1]$ gewählt haben. Es wird also auch nur das Viertel des Graphen ausgegeben, welches sich im Einheitsquadrat befindet.\\
+Zu beachten ist, dass wir $\Omega_{h} \in [0,1]$ gewählt haben. Es wird also in den numerischen Lösungen stets der Graph ausgegeben, welcher sich im Einheitsquadrat befindet.\\
 
 \section{Zur Implementierung in C++}
 
-Das gesamte Programm wurde objektorientiert geschrieben, darum ist stets von Methoden und Klassen, nicht von Funktionen die Rede. In den folgenden Beispielen wollen wir zunächst die Lösung der Poisson Gleichung für verschiedene Verfahren betrachten. Dafür werden die jeweiligen Methoden der Klassen ebenfalls dargestellt. Außerdem wollen wir nicht nur die Iterationsschritte genauer betrachten, sondern auch die Rechenzeit.\\
+Das gesamte Programm wurde objektorientiert geschrieben, darum ist von Methoden und Klassen, nicht von Funktionen die Rede. In den folgenden Beispielen wollen wir zunächst die Lösung der Poisson Gleichung für verschiedene Verfahren betrachten. Dafür werden die jeweiligen Methoden der Klassen ebenfalls dargestellt. Außerdem wollen wir nicht nur die Iterationsschritte genauer betrachten, sondern auch die Rechenzeit.\\
 An manchen Stellen im Code kommt die Vermutung auf, dass es sich um Pseudocode handeln könnte. Dies ist natürlich nicht der Fall. Es wurden lediglich bestimmte Operatoren wie *,+,-,etc. überladen.
 
 \section{Abbruchkriterien}
@@ -1742,11 +1505,9 @@ Im Allgemeinen ist natürlich die Lösung der partiellen Differentialgleichung n
 
 \section{Lösung der Poisson Gleichung (Jacobi-Verfahren)}\label{s.Jacobi mit Beispiel}
 
-Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert das Jacobi-Verfahren nur langsam. Es überrascht darum nicht, dass einige Iterationsschritte nötig sind, um das Gleichungssystem zu lösen. Trotz einer effizienten Programmierung benötigt die Methode viel Rechenzeit. Dies illustriert (Tabelle kommt noch).
+Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert das Jacobi-Verfahren nur langsam. Es überrascht darum nicht, dass einige Iterationsschritte nötig sind, um das Gleichungssystem zu lösen. Trotz einer effizienten Programmierung benötigt die Methode viel Rechenzeit. Dies illustriert \autoref{tab.Jacobi}.
 
-% \subsection{Jacobi C++-Methode}\label{s.cpu}\lstinputlisting[language=C]{code/Jacobi.c}
-
-% Der \"JacobiMethod\"-Methode wird die Matrix $\mat{A}$, der Iterationsvektor $x$ und der Lösungsvektor $b$ übergeben.
+\subsection{Jacobi C++-Methode}\label{s.cpu}\lstinputlisting[language=C]{code/Jacobi.c}
 
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
@@ -1755,22 +1516,32 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 & Rechenzeit in s &  0.45  & 7.28 & 120.31 & 2034.71 \\\hline
 \end{tabular}
 \caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
-\vspace{2ex}\end{table}
+\vspace{2ex}\end{table}\label{tab.Jacobi}
 
 \section{Lösung der Poisson Gleichung (Jacobi-Relaxations-Verfahren)}\label{s.JacobiRelax mit Beispiel}
 
+Zunächst soll der C++-Code angegeben werden, da er für beide Parameter identisch ist. Lediglich der Parameter $\omega$ ändert sich.
+
+\subsection{Jacobi-Relaxation C++-Methode}\label{s.cpu}\lstinputlisting[language=C]{code/JacobiRelax.c}
+
 \subsection{Parameter $\omega = \frac {1} {2}$}
+
+In \autoref{ss.Spektralradius Jacobi Relax} haben wir gesehen, das der Spektralradius des Jacobi-Relaxationsverfahrens näher an eins liegt, als der des Jacobi-Verfahrens. Aus diesem Grunde benötigt das relaxierte Verfahren auch wesentlich mehr Iterationsschritte. Nun ist klar, dass es als iteratives Verfahren gänzlich ungeeignet ist und lediglich als Glätter für die Mehrgittermethoden dient.
 
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
-\multirow{5}* & Schritte & 4186  & 16693 & 66667  & 133227  \\\cline{2-6}
-& Rechenzeit in s &  0.88  & 14.43 & 237.10 & bla \\\hline
+\multirow{5}* & Schritte & 4186  & 16693 & 66667  & 266456  \\\cline{2-6}
+& Rechenzeit in s &  0.88  & 14.43 & 237.10 & 3068.42 \\\hline
 \end{tabular}
 \caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
 \vspace{2ex}\end{table}
 
+Das Erstaunliche an diesen Messwerten ist nun, dass man für den Parameter $\omega = \frac{1}{2}$ stets doppelt so viele Iterationsschritte benötigt, als beim Jacobi-Verfahren.
+
 \subsection{Parameter $\omega = \frac {4} {5}$}
+
+Folgt man nun der Logik, dass sich bei einem Faktor $\omega = \frac{1}{2}$ die Iterationswerte verzweifachen, so müssten die Iterationsschritte für den Parameter $\omega = \frac{4}{5}$ ca. $1.25$ mal so viele sein, als beim Jacobi-Verfahren.
 
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
@@ -1779,9 +1550,13 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 & Rechenzeit in s &  0.55  & 9.00 & 147.91 & 3794.98 \\\hline
 \end{tabular}
 \caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
-\vspace{2ex}\end{table}
+\vspace{2ex}\end{table}\label{tab.Parameter 2}
+
+Teilt man nun die Werte der Iterationsschritte aus \autoref{tab.Parameter 2} durch die von \autoref{tab.Jacobi}, erhält man tatsächlich einen Faktor von $\approx 1.25$. Diese Tatsache liegt natürlich daran, dass das aufaddierte Residuum bei jedem Iterationsschritt, um den Faktor $\omega$ verkleinert wird. 
 
 \section{CG-Verfahren angewandt auf das Beispiel}\label{s.CG mit Beispiel}
+
+Da das CG-Verfahren eines der effizienteren Iterationsverfahren ist, sollte natürlich die Messwerte dementsprechend gut sein. Man sieht aber im Folgenden die schlechte Kondition von $\mat{A}_{2D}$, je feiner das Gitter wird. Pro Verdopplung der Gitterweite, verdoppeln sich auch die Iterationsschritte. Die Rechenzeit für ein sehr feines Gitter ist ebenfalls nicht akzeptabel.
 
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
@@ -1790,11 +1565,17 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 & Rechenzeit in s &  0.02  & 0.16 & 1.35 & 11.26 \\\hline
 \end{tabular}
 \caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
-\vspace{2ex}\end{table}
+\vspace{2ex}\end{table}\label{tab.CG}
+
+Der C++-Code für das CG-Verfahren, wie auch im nächsten Abschnitt das PCG-Verfahren ist verhältnismäßig lang und würde den Rahmen dieses Kapitels sprengen. Die Implementierung folgt aber eins zu eins dem Algorithmus aus \autoref{ss.Numerisches CG} und \autoref{ss.Algorithmus PCG}.
 
 \section{PCG-Verfahren angewandt auf das Beispiel}\label{s.PCG mit Beispiel}
 
+In diesem Abschnitt müsste man nun eine deutliche Verbesserung für die Anzahl der Iterationsschritte und der Rechenzeit sehen.
+
 \subsection{Unvollständige Cholesky-Zerlegung}
+
+Auch wenn man eine klare Verbesserung zum Standardverfahren der konjugierten Gradienten sieht, sind die Ergebnisse immer noch nicht in einem akzeptablen Rahmen. Speziell für das feinste Gitter ist die Rechenzeit nur unwesentlich besser als in \autoref{tab.CG}.
 
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
@@ -1807,6 +1588,8 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 
 \subsection{Modifizierte unvollständige Cholesky-Zerlegung}
 
+Für den Fall der modifizierten unvollständigen Cholesky-Zerlegung erwartet man nun eine deutlichen Effekt auf Anzahl der Iterationsschritte und Rechenzeit.
+
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$N$} & 40  & 80 & 160 & 320 \\\hline\hline
@@ -1814,7 +1597,9 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 & Rechenzeit in s &  0.00  & 0.04 & 0.21 & 1.23 \\\hline
 \end{tabular}
 \caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
-\vspace{2ex}\end{table}
+\vspace{2ex}\end{table}\label{tab.MIC}
+
+Wie \autoref{tab.MIC} nun eindrucksvoll zeigt, liegt die Rechenzeit für das feinste Gitter gerade mal mehr als einer Sekunde. Dies ist natürlich eine enorme Verbesserung zum Anfangsproblem. Mit $19$ Iterationsschritten liegt man hierbei deutlich unter der Anzahl für das gröbste Gitter beim CG-Verfahren.
 
 \section{Das Mehrgitterverfahren angewandt auf das Beispiel}\label{s.Multigrid mit Beispiel}
 
@@ -1839,6 +1624,8 @@ Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert
 \end{tabular}
 \caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
 \vspace{2ex}\end{table}
+
+Es zeigt sich also, dass sowohl iterative Verfahren, als auch die Mehrgittermethoden, in der numerischen Mathematik eine tragende Rolle spielen. Die Effizienz dieser Verfahren ist beeindruckend und findet in vielen Gebieten Anwendung. Selbst Verfahren, die nun nicht als optimal gelten, können durch ein wenig Fingerspitzengefühl und mathematischen Kalkül zu einem unumgänglichen Werkzeug geformt werden. Man darf gespannt sein, was in Zukunft noch für Ansätze zur Lösung linearer Gleichungssysteme gefunden werden.
 
 % \begin{table}[H]\vspace{1ex}\centering\begin{tabular}{|l|l|}
 % \hline

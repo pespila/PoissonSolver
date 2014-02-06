@@ -36,6 +36,7 @@ void Algorithms::JacobiMethod(Matrix& A,vector<double>& x,const vector<double>& 
 void Algorithms::JacobiRelaxationMethod(Matrix& A,vector<double>& x,const vector<double>& b) {
     int dim=A.Size(),steps=0;
     vector<double> r(dim,1),solved(dim);
+    double omega=1.0/2.0;
 
     for(int i=1,k=0;i<(n+1);i++) {
         for(int j=1;j<(n+1);j++,k++) {
@@ -46,7 +47,7 @@ void Algorithms::JacobiRelaxationMethod(Matrix& A,vector<double>& x,const vector
     while(TOL<(r|r)) {
         r=A*x;
         for(int i=0;i<dim;i++) {
-            r[i]=1.0/8.0*(b[i]-r[i]);
+            r[i]=omega*1.0/4.0*(b[i]-r[i]);
             x[i]+=r[i];
             r[i]=x[i]-solved[i];
         }
