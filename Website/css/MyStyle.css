@@ -1,4 +1,4 @@
-a {
+/*a {
 	color: #000;
 	text-decoration: underline;
 }
@@ -81,4 +81,8 @@ li:hover {
 	background-color: #FFF;
 	font-weight: bolder;
 	margin: 0px 0px 20px 0px;
+}*/
+
+.math{
+	font-size: 11px;
 }

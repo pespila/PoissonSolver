@@ -11,6 +11,7 @@
 
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/offcanvas.css" rel="stylesheet">
+    <link href="./css/MyStyle.css" rel="stylesheet">
     
    	<link rel="shortcut icon" href="img/newFavicon.png">
    	<link rel="icon" href="img/newFavicon.png">
@@ -58,17 +59,17 @@
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-6">
             	<h4>Discretized Poisson Equation</h4>
-            	<p>
+            	<p class="math">
                 Let $\Omega = (0,1)\times(0,1) \in \mathbb{R}^{2}$ a bounded, open intervall. We are searching for a function $u(x,y)$ which solves:
                 \begin{eqnarray}
-                -\Delta u(x,y) &=& f(x,y) \hspace{1mm} in \hspace{1mm} \Omega, \\
+                -\Delta u(x,y) &=& f(x,y) \hspace{1mm} in \hspace{1mm} \Omega,\\
                 u(x,y) &=& g(x,y) \hspace{1mm} in \hspace{1mm} \partial \Omega.
                 \end{eqnarray}
             	</p>
             </div>
             <div class="col-6 col-sm-6 col-lg-6">
               <h4>Jacobi (Relaxation) Method</h4>
-              <p>
+              <p class="math">
                   For $\omega \in (0,1)$:
                   \begin{equation}
                   u^{k+1}_{i} = (1 - \omega)u^{k} + \frac {\omega} {a_{ii}} (f_{i} - \sum_{\substack{j = 1 \\ j \ne i}}^{n} a_{ij}u^{k}_{i}).
@@ -77,7 +78,7 @@
             </div>
             <div class="col-6 col-sm-6 col-lg-6">
             	<h4>Conjugate Gradient Method</h4>
-            	<p>
+            	<p class="math">
                   Let $A \in \mathbb{R}^{n}$ s.p.d. Choose an arbitrary $u^{0} \in \mathbb{R}^{n}$. Set $\beta_{-1} := 0$ and $r^{0} = b - Au^{0}$. \\
                   For $k = 1,2,...$, and if $r^{k-1} \ne 0$ calculate:
 
@@ -90,7 +91,7 @@
             </div>
             <div class="col-6 col-sm-6 col-lg-6">
             	<h4>Preconditioned Conjugate Gradient Method</h4>
-            	<p>
+            	<p class="math">
                   Let $A, W \in \mathbb{R}^{n}$ s.p.d. with an arbitrary initial guess $u^{0} \in \mathbb{R}^{n}$. Set $\beta_{-1} := 0$ and $r^{0} = b - Au^{0}$ and $z^{0} = W^{-1}r^{0}$ (solve $Wz^{0} = r^{0}$).\\
                   For $k = 1,2,...$ and if $r^{k-1} \ne 0$ calculate:
 
@@ -104,7 +105,7 @@
             </div>
             <div class="col-6 col-sm-6 col-lg-6">
               <h4>Incomplete LU decomposition</h4>
-              <p>
+              <p class="math">
                   Let $A \in \mathbb{R}^{n \times n}$ and $E$ the pattern for $A$. Set $L = Id$, $R = 0$. Calculate for $i=1,2,...,n$:
                   \begin{eqnarray}
                   &&l_{i,i} = \left( a_{i,i} - \sum^{i-1}_{j=1,(i,j) \in E} l_{i,j}^{2} \right)^{\frac {1} {2}} \\
@@ -115,7 +116,7 @@
             </div>
             <div class="col-6 col-sm-6 col-lg-6">
               <h4>Modified incomplete LU decomposition</h4>
-              <p>
+              <p class="math">
                   Let $A \in \mathbb{R}^{n \times n}$ s.p.d. and $E$ the pattern for $A$. Calculate for $i=1,2,...,n$:
                   \begin{eqnarray}
                   &&l_{i,i} = \left( a_{i,i} - \sum^{i-1}_{j=1,(i,j) \in E} l_{i,j}^{2} \right)^{\frac {1} {2}}. \\
@@ -128,7 +129,7 @@
             </div>
             <div class="col-6 col-sm-6 col-lg-6">
               <h4>Multigrid V-Cycle</h4>
-              <p>
+              <p class="math">
                 \begin{eqnarray}
                 \textbf{V-cycle }(u,b)                      & \notag \\
                 \textbf{if }\textit{(coarsest grid) }       &\hspace{2mm} return \hspace{1mm} u_{finest grid}=A^{-1}b \notag \\
@@ -148,7 +149,7 @@
             </div>
             <div class="col-6 col-sm-6 col-lg-6">
               <h4>Multigrid W-Cycle</h4>
-              <p>
+              <p class="math">
                   \begin{eqnarray}
                   \textbf{W-cycle }(u,b)                    & \notag \\
                   \textbf{if }\textit{(coarsest grid) }     &\hspace{2mm} return \hspace{1mm} u_{finest grid}=A^{-1}b \notag \\
