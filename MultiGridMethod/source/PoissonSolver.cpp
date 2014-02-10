@@ -2,34 +2,30 @@
 
 int main(int argc, char const *argv[]) {
     int arg;
-    if (argc==2) {
-        arg=atoi(&*argv[1])-1;
-    } else {
-        arg=31;
-    }
+    if (argc==2) arg=atoi(&*argv[1])-1;
+    else arg=31;
 
-    PoissonMatrix A(arg,4.0,-1.0,-1.0);
-    PoissonVector V(arg,0);
+    Matrix A(arg,4.0,-1.0,-1.0);
+    Vector V(arg);
     Algorithms Run(arg);
 
     printf("Started\n");
     double time,start=0.0,end=0.0;
     start=clock();
 
-    // Run.MultiGridMethod(A,V.x,V.b,V.solved);
-    Run.JacobiRelaxationMethod(A,V.x,V.b,2);
-
+    Run.MultiGridMethod(A,V.x,V.b,V.solved);
+    
     end=clock();
     time=(end-start)/CLOCKS_PER_SEC;
     printf("%f\n", time);
 
     if(arg<=5) {
         A.PrintMatrix();
-        V.PrintVector();
+        V.PrintVector(V.x);
     } else {
         printf("Couldn't print Matrix! Dimension is too high.\n");
     }
-    V.WriteToFile();
+    V.WriteToFile(V.x);
 
     return EXIT_SUCCESS;
 }
@@ -47,7 +43,6 @@ vector<double> operator-(const vector<double>& lhs, const vector<double>& rhs) {
     for(int i=0;i<(int)lhs.size();i++) {
         tmp[i]=lhs[i]-rhs[i];
     }
-    //tmp.insert(tmp.end(),rhs.begin(),rhs.end());
     return tmp;
 }
 

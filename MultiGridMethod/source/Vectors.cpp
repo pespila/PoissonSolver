@@ -1,20 +1,14 @@
 #include "classes.h"
 
-PoissonVector::PoissonVector(int n, double a) {
+Vector::Vector(int n) {
     this->n=n;
     this->h=1.0/(double)(n+1);
-    x.assign(n*n,a);
-    solved.assign(n*n,0);
-    b.assign(n*n,0);
-
+    x.assign(n*n,0);
+    b.resize(n*n);
+    solved.resize(n*n);
     for(int i=1,k=0;i<=n;i++) {
         for(int j=1;j<=n;j++,k++) {
             solved[k]=g(j*h,i*h);
-        }
-    }
-
-    for(int i=1,k=0;i<=n;i++) {
-        for(int j=1;j<=n;j++,k++) {
             b[k]=pow(h,2)*f(h,h);
             if(i==1) b[k]+=g(j*h,0);
             if(i==n) b[k]+=g(j*h,1);
@@ -24,15 +18,17 @@ PoissonVector::PoissonVector(int n, double a) {
     }
 }
 
-PoissonVector::~PoissonVector() {
+Vector::~Vector() {
     vector<double>().swap(x);
     vector<double>().swap(b);
     vector<double>().swap(solved);
 }
 
-void PoissonVector::WriteToFile() {
+void Vector::WriteToFile(const vector<double>& x) {
     FILE *file;
     file=fopen("../Plot/plot.txt", "w");
+    int n=sqrt(x.size());
+    double h=1.0/(double)(n+1);
     if(file==NULL) {
         printf("ERROR: Could not open file!\n");
     } else {
@@ -46,9 +42,9 @@ void PoissonVector::WriteToFile() {
     fclose (file);
 }
 
-void PoissonVector::PrintVector() {
-    for(int i=0;i<n*n;i++) {
-            printf("%f ", x[i]);
+void Vector::PrintVector(const vector<double>& x) {
+    for(int i=0;i<(int)x.size();i++) {
+        printf("%f ", x[i]);
     }
     printf("\n");
 }
