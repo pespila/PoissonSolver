@@ -1,88 +1,38 @@
 #include "classes.h"
 
-PoissonVector1D::PoissonVector1D(int n) {
+PoissonVector::PoissonVector(int n, double a) {
     this->n=n;
-    this->dim=n;
     this->h=1.0/(double)(n+1);
-}
+    x.assign(n*n,a);
+    solved.assign(n*n,0);
+    b.assign(n*n,0);
 
-PoissonVector1D::~PoissonVector1D() {
-}
+    for(int i=1,k=0;i<=n;i++) {
+        for(int j=1;j<=n;j++,k++) {
+            solved[k]=g(j*h,i*h);
+        }
+    }
 
-void PoissonVector1D::InitRightSide(vector<double>& b) {
-    if((int)b.size()!=this->dim) printf("Size of Vector does not match!\n");
-    else {
-        for(int i=0;i<this->dim;i++) {
-            b[i]=pow(h,2)*f(h);
-            if(i==0) {
-                b[i]+=g(0);
-            }
-            if(i==dim-1) {
-                b[i]+=g(1);
-            }
+    for(int i=1,k=0;i<=n;i++) {
+        for(int j=1;j<=n;j++,k++) {
+            b[k]=pow(h,2)*f(h,h);
+            if(i==1) b[k]+=g(j*h,0);
+            if(i==n) b[k]+=g(j*h,1);
+            if(j==1) b[k]+=g(0,i*h);
+            if(j==n) b[k]+=g(1,i*h);
         }
     }
 }
 
-void PoissonVector1D::WriteToFile(const vector<double>& x) {
+PoissonVector::~PoissonVector() {
+    vector<double>().swap(x);
+    vector<double>().swap(b);
+    vector<double>().swap(solved);
+}
+
+void PoissonVector::WriteToFile() {
     FILE *file;
     file=fopen("../Plot/plot.txt", "w");
-    if(file==NULL) {
-        printf("ERROR: Could not open file!\n");
-    } else if ((int)x.size()!=this->dim) {
-        printf("Size of Vector does not match!\n");
-    } else {
-        for(int i=0;i<this->dim;i++) {
-            if(i==0) {
-                fprintf(file, "%d %f\n", i,g(i));
-            }
-            fprintf(file, "%f %f\n", (double)i*h,x[i]);
-            if(i==dim-1) {
-                fprintf(file, "%d %f\n", 1,g(1));
-            }
-        }
-        fprintf(file, "\n");
-    }
-    fclose (file);
-}
-
-PoissonVector2D::PoissonVector2D(int n) {
-    this->n=n;
-    this->dim=n;
-    this->h=1.0/(double)(n+1);
-}
-
-PoissonVector2D::~PoissonVector2D() {
-}
-
-void PoissonVector2D::InitRightSide(vector<double>& b) {
-    if(sqrt(b.size())!=this->n) printf("Size of Vector b does not match!\n");
-    else {
-        for(int i=1,k=0;i<=this->n;i++) {
-            for(int j=1;j<=this->n;j++,k++) {
-                b[k]=pow(h,2)*f(h,h);
-                if(i==1) {
-                    b[k]+=g(j*h,0);
-                }
-                if(i==n) {
-                    b[k]+=g(j*h,1);
-                }
-                if(j==1) {
-                    b[k]+=g(0,i*h);
-                }
-                if(j==n) {
-                    b[k]+=g(1,i*h);
-                }
-            }
-        }
-    }
-}
-
-void PoissonVector2D::WriteToFile(const vector<double>& x) {
-    FILE *file;
-    file=fopen("../Plot/plot.txt", "w");
-    int n=sqrt(x.size());
-    double h=1.0/(double)(n+1);
     if(file==NULL) {
         printf("ERROR: Could not open file!\n");
     } else {
@@ -96,9 +46,9 @@ void PoissonVector2D::WriteToFile(const vector<double>& x) {
     fclose (file);
 }
 
-void Vector::PrintVector(const vector<double>& x) {
-    for(int i=0;i<(int)x.size();i++) {
-        printf("%f ", x[i]);
+void PoissonVector::PrintVector() {
+    for(int i=0;i<n*n;i++) {
+            printf("%f ", x[i]);
     }
     printf("\n");
 }

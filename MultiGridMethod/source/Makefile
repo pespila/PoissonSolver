@@ -1,4 +1,4 @@
-CC = g++ -Wall -g
+CC = g++ -fopenmp -Wall -g
 
 poissonSolver: PoissonMatrix.o Algorithms.o Vectors.o PoissonSolver.o
 	$(CC) -o $@ $+

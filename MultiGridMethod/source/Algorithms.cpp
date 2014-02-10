@@ -6,30 +6,59 @@ Algorithms::Algorithms(int n) {
     this->h=1.0/(double)(n+1);
 }
 
-Algorithms::~Algorithms() {
-}
+Algorithms::~Algorithms() {}
 
-void Algorithms::JacobiMethod(Matrix& A, vector<double>& x, const vector<double>& b, int steps) {
-    for(int j=0;j<steps;j++) {
-        x+=1.0/4.0*(b-A*x);
+void Algorithms::JacobiRelaxationMethod(Matrix& A,vector<double>& x,const vector<double>& b,int steps) {
+    vector<double> tmp(x.size());
+    double sum,omega=4.0/5.0*1.0/4.0;
+    int n=sqrt(x.size());
+    for(int k=0;k<steps;k++) {
+        tmp=x;
+        for(int i=0;i<n*n;i++) {
+            if(i==0) sum=tmp[i+1]+tmp[i+n];
+            else if(i!=0 && i<n) {
+                if(i%n==n-1) sum=tmp[i-1]+tmp[i+n];
+                else sum=tmp[i-1]+tmp[i+1]+tmp[i+n];
+            }
+            else if(i>=n && i<dim-n) {
+                if(i%n==0) sum=tmp[i-n]+tmp[i+1]+tmp[i+n];
+                else if(i%n==n-1) sum=tmp[i-n]+tmp[i-1]+tmp[i+n];
+                else sum=tmp[i-n]+tmp[i-1]+tmp[i+1]+tmp[i+n];
+            }
+            else if(i!=dim-1 && i>=dim-n) {
+                if(i%n==0) sum=tmp[i-n]+tmp[i+1];
+                else sum=tmp[i-n]+tmp[i-1]+tmp[i+1];
+            }
+            else if(i==dim-1) sum=tmp[i-n]+tmp[i-1];
+            x[i]=omega*(b[i]+sum);
+            }
     }
 }
 
-void Algorithms::JacobiRelaxationMethod(Matrix& A, vector<double>& x, const vector<double>& b, int steps) {
-    double omega=4.0/5.0;
-    for(int j=0;j<steps;j++) {
-        x+=omega*1.0/4.0*(b-A*x);
-    }
-}
-
-void Algorithms::JacobiRelaxationSolver(Matrix& A,vector<double>& x,const vector<double>& b) {
-    vector<double> r(x.size(),0);
-    r=b-A*x;
-    double TOL=(r|r);
-    // double omega=4.0/5.0;
-    while(TOL<=(r|r)) {
-        x+=1.0/4.0*r;
-        r=b-A*x;
+void Algorithms::JacobiSolver(Matrix& A,vector<double>& x,const vector<double>& b) {
+    vector<double> tmp(x.size());
+    double sum,omega=1.0/4.0;
+    int n=sqrt(x.size());
+    for(int k=0;k<2;k++) {
+        tmp=x;
+        for(int i=0;i<n*n;i++) {
+            if(i==0) sum=tmp[i+1]+tmp[i+n];
+            else if(i!=0 && i<n) {
+                if(i%n==n-1) sum=tmp[i-1]+tmp[i+n];
+                else sum=tmp[i-1]+tmp[i+1]+tmp[i+n];
+            }
+            else if(i>=n && i<dim-n) {
+                if(i%n==0) sum=tmp[i-n]+tmp[i+1]+tmp[i+n];
+                else if(i%n==n-1) sum=tmp[i-n]+tmp[i-1]+tmp[i+n];
+                else sum=tmp[i-n]+tmp[i-1]+tmp[i+1]+tmp[i+n];
+            }
+            else if(i!=dim-1 && i>=dim-n) {
+                if(i%n==0) sum=tmp[i-n]+tmp[i+1];
+                else sum=tmp[i-n]+tmp[i-1]+tmp[i+1];
+            }
+            else if(i==dim-1) sum=tmp[i-n]+tmp[i-1];
+            x[i]=omega*(b[i]+sum);
+            }
     }
 }
 
@@ -119,32 +148,24 @@ vector<double> Algorithms::MultiGridAlgorithm(Matrix& A,vector<double>& X,const 
         x=X;
     }
     if(n==1) {
-        //x[0]=b[0]/A.Get(0,0);
-        JacobiRelaxationSolver(A,x,b);
+        JacobiSolver(A,x,b);
         return x;
     } else {
-        JacobiRelaxationMethod(A,x,b,6);        
+        JacobiRelaxationMethod(A,x,b,3);        
         r=b-A*x;
         Restriction(r,r2h,n);
-        A.Resize(N2h);
+        // A.Resize(N2h);
         E2h=MultiGridAlgorithm(A,X,r2h,N2h);
-        // E2h=MultiGridAlgorithm(A,X,r2h,N2h);
         Interpolation(E2h,E,n);
         x+=E;
-        A.Resize(n);
-        JacobiRelaxationMethod(A,x,b,6);        
+        // A.Resize(n);
+        JacobiRelaxationMethod(A,x,b,3);        
         return x;
     }
 }
 
-void Algorithms::MultiGridMethod(Matrix& A,vector<double>& x,vector<double>& b) {
+void Algorithms::MultiGridMethod(Matrix& A,vector<double>& x,const vector<double>& b,const vector<double>& solved) {
     int steps=0;
-    vector<double> solved(dim);
-    for(int i=1,k=0;i<=n;i++) {
-        for(int j=1;j<=n;j++,k++) {
-            solved[k]=g(j*h,i*h);
-        }
-    }
     vector<double> r(dim);
     r=x-solved;
     double TOL=pow(10,-3)*(r|r);
