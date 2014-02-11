@@ -15,6 +15,7 @@ vector<double> operator-(const vector<double>&,const vector<double>&);
 void operator+=(vector<double>&,const vector<double>&);
 vector<double> operator*(double, vector<double>);
 double operator|(const std::vector<double>&,const std::vector<double>&);
+double operator*(const std::vector<double>&,const std::vector<double>&);
 
 class Matrix {
     private:
@@ -53,10 +54,13 @@ class Algorithms {
 		Algorithms(int);
 		~Algorithms();
         void JacobiRelaxation(Matrix&,vector<double>&,const vector<double>&,int);
+        void JacobiSolver(Matrix&,vector<double>&,const vector<double>&);
         void Restriction(const vector<double>&,vector<double>&,int);
         void Interpolation(const vector<double>&,vector<double>&,int);
         vector<double> MultiGridAlgorithm(Matrix&,vector<double>&,const vector<double>&,int);
         void MultiGridMethod(Matrix&,vector<double>&,const vector<double>&,const vector<double>&);
+        void TwoGrid(Matrix&,vector<double>&,const vector<double>&);
+        void CG(Matrix&,vector<double>&,const vector<double>&);
 };
 
 #endif
