@@ -90,8 +90,8 @@ void Algorithms::Restriction(const vector<double>& r,vector<double>& r2h,int n) 
         for(int j=1;j<=n;j++,k++) {
             if(i%2==0 && j%2==0) {
                 // r2h[l]=1.0/8.0*(4.0*r[k]+r[k-1]+r[k+1]+r[k+n]+r[k-n]);
-                // r2h[l]=1.0/16.0*(4.0*r[k]+2.0*(r[k-1]+r[k+1]+r[k-n]+r[k+n])+r[k+n-1]+r[k+n+1]+r[k-n-1]+r[k-n+1]);
-                r2h[l]=r[k];
+                r2h[l]=1.0/16.0*(4.0*r[k]+2.0*(r[k-1]+r[k+1]+r[k-n]+r[k+n])+r[k+n-1]+r[k+n+1]+r[k-n-1]+r[k-n+1]);
+                // r2h[l]=r[k];
                 l++;
             }
         }
@@ -111,24 +111,24 @@ void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,int n
         for(int j=1;j<=n;j++,k++) {
             if(i%2==0 && j%2!=0) {
                 if(j!=1 && j!=n) E[k]=1.0/2.0*(E[k-1]+E[k+1]);
-                if(j==1) E[k]=1.0/2.0*(E[k+1]);
-                if(j==n) E[k]=1.0/2.0*(E[k-1]);
+                if(j==1) E[k]=1.0/2.0*(E[k+1]);//+g(0,i*h));
+                if(j==n) E[k]=1.0/2.0*(E[k-1]);//+g(1,i*h));
             }
             if(i%2!=0 && j%2==0) {
                 if(i!=1 && i!=n) E[k]=1.0/2.0*(E[k-n]+E[k+n]);
-                if(i==1) E[k]=1.0/2.0*(E[k+n]);
-                if(i==n) E[k]=1.0/2.0*(E[k-n]);
+                if(i==1) E[k]=1.0/2.0*(E[k+n]);//+g(j*h,0));
+                if(i==n) E[k]=1.0/2.0*(E[k-n]);//+g(j*h,1));
             }
             if(i%2!=0 && j%2!=0) {
                 if(i!=1 && j!=1 && i!=n && j!=n) E[k]=1.0/4.0*(E[k+n-1]+E[k+n+1]+E[k-n+1]+E[k-n-1]);
-                if(i==1 && j==1) E[k]=1.0/4.0*E[k+n+1];
-                if(i==n && j==n) E[k]=1.0/4.0*E[k-n-1];
-                if(i==1 && j==n) E[k]=1.0/4.0*E[k+n-1];
-                if(i==n && j==1) E[k]=1.0/4.0*E[k-n+1];
-                if(i==1 && j!=1 && j!=n) E[k]=1.0/4.0*(E[k+n+1]+E[k+n-1]);
-                if(i==n && j!=1 && j!=n) E[k]=1.0/4.0*(E[k-n-1]+E[k-n+1]);
-                if(j==1 && i!=1 && i!=n) E[k]=1.0/4.0*(E[k+n+1]+E[k-n+1]);
-                if(j==n && i!=1 && i!=n) E[k]=1.0/4.0*(E[k+n-1]+E[k-n-1]);
+                if(i==1 && j==1) E[k]=1.0/4.0*(E[k+n+1]);//+g(0,0)+g(0,i*h)+g(j*h,0));
+                if(i==n && j==n) E[k]=1.0/4.0*(E[k-n-1]);//+g(1,1)+g(0,i*h)+g(j*h,0));
+                if(i==1 && j==n) E[k]=1.0/4.0*(E[k+n-1]);//+g(1,0)+g(0,i*h)+g(j*h,0));
+                if(i==n && j==1) E[k]=1.0/4.0*(E[k-n+1]);//+g(0,1)+g(0,i*h)+g(j*h,0));
+                if(i==1 && j!=1 && j!=n) E[k]=1.0/4.0*(E[k+n+1]+E[k+n-1]);//+g((j-1)*h,0)+g((j+1)*h,0));
+                if(i==n && j!=1 && j!=n) E[k]=1.0/4.0*(E[k-n-1]+E[k-n+1]);//+g((j-1)*h,1)+g((j+1)*h,1));
+                if(j==1 && i!=1 && i!=n) E[k]=1.0/4.0*(E[k+n+1]+E[k-n+1]);//+g(0,(i+1)*h)+g(0,(i-1)*h));
+                if(j==n && i!=1 && i!=n) E[k]=1.0/4.0*(E[k+n-1]+E[k-n-1]);//+g(1,(i+1)*h)+g(1,(i-1)*h));
             }
 
         }
@@ -156,13 +156,13 @@ vector<double> Algorithms::MultiGridAlgorithm(Matrix& A,vector<double>& X,const 
         // x[0]=b[0]/4.0;
         return x;
     } else {
-        JacobiRelaxation(A,x,b,3);        
+        JacobiRelaxation(A,x,b,1);        
         r=b-A*x;
         Restriction(r,r2h,n);
         E2h=MultiGridAlgorithm(A,X,r2h,N2h);
         Interpolation(E2h,E,n);
         x+=E;
-        JacobiRelaxation(A,x,b,3);        
+        JacobiRelaxation(A,x,b,1);        
         return x;
     }
 }
@@ -171,10 +171,12 @@ void Algorithms::MultiGridMethod(Matrix& A,vector<double>& x,const vector<double
     int steps=0;
     vector<double> r(dim);
     r=x-solved;
+    // r=b-A*x;
     double TOL=pow(10,-3)*(r|r);
     while(TOL<=(r|r)) {
         x=MultiGridAlgorithm(A,x,b,n);
         r=x-solved;
+        // r=b-A*x;
         steps++;
         if(steps==500) r.assign(dim,0);
     }

@@ -13,17 +13,10 @@ int main(int argc, char const *argv[]) {
     double time,start=0.0,end=0.0;
     start=clock();
 
-    Run.MultiGridMethod(A,V.x,V.b,V.solved);
-    // int steps=0;
-    // vector<double> r(arg*arg);
-    // r=V.x-V.solved;
-    // double TOL=(r|r)*pow(10,-3);
-    // while(TOL<(r|r)) {
-    //     Run.TwoGrid(A,V.x,V.b);
-    //     r=V.x-V.solved;
-    //     steps++;
-    // }
-    // printf("%d\n", steps);
+    // Run.MultiGridMethod(A,V.x,V.b,V.solved); 
+    // Run.TwoGrid(A,V.x,V.b);
+    // Run.TwoGrid(A,V.x,V.b);
+    // V.WriteToFile(V.x);
 
     // vector<double> E(49,0),E2h(9,0);
     // E2h=V.b;
@@ -46,8 +39,6 @@ int main(int argc, char const *argv[]) {
     //     }
     //     printf("\n");
     // }
-
-
 
     // vector<double> r(49),r2h(9,0);
     // r=V.b;
@@ -77,12 +68,12 @@ int main(int argc, char const *argv[]) {
     printf("%f\n", time);
 
     if(arg<=5) {
-        A.PrintMatrix();
-        V.PrintVector(V.x);
+        // A.PrintMatrix();
+        // V.PrintVector(V.x);
     } else {
         printf("Couldn't print Matrix! Dimension is too high.\n");
     }
-    V.WriteToFile(V.x);
+    // V.WriteToFile(V.x);
 
     return EXIT_SUCCESS;
 }

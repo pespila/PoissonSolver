@@ -61,6 +61,7 @@ class Algorithms {
         void MultiGridMethod(Matrix&,vector<double>&,const vector<double>&,const vector<double>&);
         void TwoGrid(Matrix&,vector<double>&,const vector<double>&);
         void CG(Matrix&,vector<double>&,const vector<double>&);
+        void SORMethod(Matrix&,vector<double>&,const vector<double>&,int);
 };
 
 #endif
