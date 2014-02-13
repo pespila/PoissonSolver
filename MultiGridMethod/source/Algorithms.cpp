@@ -4,6 +4,9 @@ Algorithms::Algorithms(int n) {
     this->n=n;
     this->dim=n*n;
     this->h=1.0/(double)(n+1);
+    this->Vcounter=0;
+    this->Wcounter1=0;
+    this->Wcounter2=0;
 }
 
 Algorithms::~Algorithms() {}
@@ -148,32 +151,98 @@ void Algorithms::TwoGrid(Matrix& A,vector<double>& x,const vector<double>& b) {
     JacobiRelaxation(A,x,b,4);
 }
 
-vector<double> Algorithms::MultiGridAlgorithm(Matrix& A,vector<double>& x,const vector<double>& b,int n) {
-    int dim=pow(n,2),N2h=(n+1)/2-1,dim2h=pow(N2h,2);
+// vector<double> Algorithms::V_Cycle(Matrix& A,vector<double>& x,const vector<double>& b,int n) {
+//     int dim=pow(n,2),N2h=(n+1)/2-1,dim2h=pow(N2h,2);
+//     vector<double> r(dim,0),E(dim,0),r2h(dim2h,0),E2h(dim2h,0);
+//     if(n==15) {
+//         CG(A,x,b);
+//         // x[0]=b[0]/4.0;
+//         return x;
+//     } else {
+//         JacobiRelaxation(A,x,b,3);        
+//         r=b-A*x;
+//         Restriction(r,r2h,n);
+//         E2h=V_Cycle(A,E2h,r2h,N2h);
+//         E2h=V_Cycle(A,E2h,r2h,N2h);
+//         Interpolation(E2h,E,n);
+//         x+=E;
+//         JacobiRelaxation(A,x,b,3);        
+//         return x;
+//     }
+// }
+
+vector<double> Algorithms::V_Cycle(Matrix& A,vector<double>& x,const vector<double>& b,int lambda,int theta) {
+    int dim=x.size(),n=sqrt(dim),N2h=(n+1)/2-1,dim2h=pow(N2h,2);
     vector<double> r(dim,0),E(dim,0),r2h(dim2h,0),E2h(dim2h,0);
-    if(n==31) {
+    if(this->Vcounter==lambda) {
         CG(A,x,b);
-        // x[0]=b[0]/4.0;
         return x;
     } else {
+        this->Vcounter++;
         JacobiRelaxation(A,x,b,3);        
         r=b-A*x;
         Restriction(r,r2h,n);
-        E2h=MultiGridAlgorithm(A,E2h,r2h,N2h);
+        E2h=V_Cycle(A,E2h,r2h,lambda,theta);
+        if(theta==1) E2h=V_Cycle(A,E2h,r2h,lambda,theta);
         Interpolation(E2h,E,n);
         x+=E;
-        JacobiRelaxation(A,x,b,3);        
+        JacobiRelaxation(A,x,b,3);
+        this->Vcounter--;
         return x;
     }
 }
 
+// vector<double> Algorithms::W_Cycle(Matrix& A,vector<double>& x,const vector<double>& b,int lambda,int theta,int kappa) {
+//     this->Vcounter++;
+//     this->Wcounter1++;
+//     this->Wcounter2++;
+//     int dim=x.size(),n=sqrt(dim),N2h=(n+1)/2-1,dim2h=pow(N2h,2);
+//     vector<double> r(dim,0),E(dim,0),r2h(dim2h,0),E2h(dim2h,0);
+//     if(this->Vcounter==lambda) {
+//         printf("Solve direct\n");
+//         CG(A,x,b);
+//         return x;
+//     } else if(this->Wcounter1<theta && this->Vcounter<theta) {
+//         printf("First node\n");
+//         JacobiRelaxation(A,x,b,3);
+//         r=b-A*x;
+//         Restriction(r,r2h,n);
+//         E2h=W_Cycle(A,E2h,r2h,lambda,theta,kappa);
+//         Interpolation(E2h,E,n);
+//         x+=E;
+//         JacobiRelaxation(A,x,b,3);
+//         return x;
+//     } else if(this->Wcounter2<kappa && this->Vcounter<kappa) {
+//         printf("Second node\n");
+//         JacobiRelaxation(A,x,b,3);
+//         r=b-A*x;
+//         Restriction(r,r2h,n);
+//         E2h=W_Cycle(A,E2h,r2h,lambda,theta,kappa);
+//         Interpolation(E2h,E,n);
+//         x+=E;
+//         JacobiRelaxation(A,x,b,3);
+//         return x;
+//     } else {
+//         printf("ois easy...\n");
+//         JacobiRelaxation(A,x,b,3);        
+//         r=b-A*x;
+//         Restriction(r,r2h,n);
+//         E2h=W_Cycle(A,E2h,r2h,lambda,theta,kappa);
+//         Interpolation(E2h,E,n);
+//         x+=E;
+//         JacobiRelaxation(A,x,b,3);      
+//         return x;
+//     }
+// }
+
 void Algorithms::MultiGridMethod(Matrix& A,vector<double>& x,const vector<double>& b,const vector<double>& solved) {
-    int steps=0,dim=x.size(),n=sqrt(dim);
+    int steps=0,dim=x.size();
     vector<double> r(dim),tmp(dim);
     r=x-solved;
     double TOL=pow(10,-3)*(r|r);
     while(TOL<=(r|r)) {
-        x=MultiGridAlgorithm(A,x,b,n);
+        x=V_Cycle(A,x,b,2,0);
+        // x=W_Cycle(A,x,b,4,2,3);
         r=x-solved;
         steps++;
         if(steps==500) r.assign(dim,0);

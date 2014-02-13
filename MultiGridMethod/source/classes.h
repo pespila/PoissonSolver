@@ -50,6 +50,9 @@ class Algorithms {
 		int dim;
 		int n;
         double h;
+        int Vcounter;
+        int Wcounter1;
+        int Wcounter2;
 	public:
 		Algorithms(int);
 		~Algorithms();
@@ -57,7 +60,7 @@ class Algorithms {
         void JacobiSolver(Matrix&,vector<double>&,const vector<double>&);
         void Restriction(const vector<double>&,vector<double>&,int);
         void Interpolation(const vector<double>&,vector<double>&,int);
-        vector<double> MultiGridAlgorithm(Matrix&,vector<double>&,const vector<double>&,int);
+        vector<double> V_Cycle(Matrix&,vector<double>&,const vector<double>&,int,int);
         void MultiGridMethod(Matrix&,vector<double>&,const vector<double>&,const vector<double>&);
         void TwoGrid(Matrix&,vector<double>&,const vector<double>&);
         void CG(Matrix&,vector<double>&,const vector<double>&);
