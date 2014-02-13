@@ -48,6 +48,7 @@ void Algorithms::JacobiSolver(Matrix& A, vector<double>& x, const vector<double>
     tmp=x;
     double sum;//,omega=4.0/5.0;
     int n=sqrt(x.size()),dim=n*n;
+    double h=1.0/(double)(n+1);
     vector<double> r(x.size(),0);
     r=b-A*x;
     double TOL=(r|r)*pow(10,-2);
@@ -59,7 +60,7 @@ void Algorithms::JacobiSolver(Matrix& A, vector<double>& x, const vector<double>
             if(i>=dim-n) sum+=tmp[i-n];
             if(i%n!=0) sum+=tmp[i-1];
             if(i%n!=n-1) sum+=tmp[i+1];
-            x[i]=1.0/4.0*(b[i]+sum);
+            x[i]=1.0/(4.0*pow(1.0/h,2))*(b[i]+pow(1.0/h,2)*sum);
             tmp[i]=x[i];
         }
         r=b-A*x;
@@ -79,7 +80,7 @@ void Algorithms::JacobiRelaxation(Matrix& A, vector<double>& x, const vector<dou
             if(i>=dim-n) sum+=tmp[i-n];
             if(i%n!=0) sum+=tmp[i-1];
             if(i%n!=n-1) sum+=tmp[i+1];
-            x[i]=omega*1.0/4.0*(b[i]+sum)+tmp[i]*(1-omega);
+            x[i]=omega*1.0/(4.0*pow(1.0/h,2))*(b[i]+pow(1.0/h,2)*sum)+tmp[i]*(1-omega);
             tmp[i]=x[i];
         }
     }
@@ -121,14 +122,14 @@ void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,int n
             }
             if(i%2!=0 && j%2!=0) {
                 if(i!=1 && j!=1 && i!=n && j!=n) E[k]=1.0/4.0*(E[k+n-1]+E[k+n+1]+E[k-n+1]+E[k-n-1]);
-                if(i==1 && j==1) E[k]=1.0/4.0*(E[k+n+1]);//+g(0,0)+g(0,i*h)+g(j*h,0));
-                if(i==n && j==n) E[k]=1.0/4.0*(E[k-n-1]);//+g(1,1)+g(0,i*h)+g(j*h,0));
-                if(i==1 && j==n) E[k]=1.0/4.0*(E[k+n-1]);//+g(1,0)+g(0,i*h)+g(j*h,0));
-                if(i==n && j==1) E[k]=1.0/4.0*(E[k-n+1]);//+g(0,1)+g(0,i*h)+g(j*h,0));
-                if(i==1 && j!=1 && j!=n) E[k]=1.0/4.0*(E[k+n+1]+E[k+n-1]);//+g((j-1)*h,0)+g((j+1)*h,0));
-                if(i==n && j!=1 && j!=n) E[k]=1.0/4.0*(E[k-n-1]+E[k-n+1]);//+g((j-1)*h,1)+g((j+1)*h,1));
-                if(j==1 && i!=1 && i!=n) E[k]=1.0/4.0*(E[k+n+1]+E[k-n+1]);//+g(0,(i+1)*h)+g(0,(i-1)*h));
-                if(j==n && i!=1 && i!=n) E[k]=1.0/4.0*(E[k+n-1]+E[k-n-1]);//+g(1,(i+1)*h)+g(1,(i-1)*h));
+                if(i==1 && j==1) E[k]=1.0/1.0*(E[k+n+1]);//+g(0,0)+g(0,i*h)+g(j*h,0));
+                if(i==n && j==n) E[k]=1.0/1.0*(E[k-n-1]);//+g(1,1)+g(0,i*h)+g(j*h,0));
+                if(i==1 && j==n) E[k]=1.0/1.0*(E[k+n-1]);//+g(1,0)+g(0,i*h)+g(j*h,0));
+                if(i==n && j==1) E[k]=1.0/1.0*(E[k-n+1]);//+g(0,1)+g(0,i*h)+g(j*h,0));
+                if(i==1 && j!=1 && j!=n) E[k]=1.0/2.0*(E[k+n+1]+E[k+n-1]);//+g((j-1)*h,0)+g((j+1)*h,0));
+                if(i==n && j!=1 && j!=n) E[k]=1.0/2.0*(E[k-n-1]+E[k-n+1]);//+g((j-1)*h,1)+g((j+1)*h,1));
+                if(j==1 && i!=1 && i!=n) E[k]=1.0/2.0*(E[k+n+1]+E[k-n+1]);//+g(0,(i+1)*h)+g(0,(i-1)*h));
+                if(j==n && i!=1 && i!=n) E[k]=1.0/2.0*(E[k+n-1]+E[k-n-1]);//+g(1,(i+1)*h)+g(1,(i-1)*h));
             }
 
         }
@@ -138,45 +139,42 @@ void Algorithms::Interpolation(const vector<double>& E2h,vector<double>& E,int n
 void Algorithms::TwoGrid(Matrix& A,vector<double>& x,const vector<double>& b) {
     int dim=pow(n,2),N2h=(n+1)/2-1,dim2h=pow(N2h,2);
     vector<double> r(dim,0),E(dim,0),r2h(dim2h,0),E2h(dim2h,0);
-    JacobiRelaxation(A,x,b,3);
+    JacobiRelaxation(A,x,b,4);
     r=b-A*x;
     Restriction(r,r2h,n);
     CG(A,E2h,r2h);
     Interpolation(E2h,E,n);
     x+=E;
-    JacobiRelaxation(A,x,b,3);
+    JacobiRelaxation(A,x,b,4);
 }
 
-vector<double> Algorithms::MultiGridAlgorithm(Matrix& A,vector<double>& X,const vector<double>& b,int n) {
+vector<double> Algorithms::MultiGridAlgorithm(Matrix& A,vector<double>& x,const vector<double>& b,int n) {
     int dim=pow(n,2),N2h=(n+1)/2-1,dim2h=pow(N2h,2);
-    vector<double> x(dim,0),r(dim,0),E(dim,0),r2h(dim2h,0),E2h(dim2h,0);
-    if(n==this->n) x=X;
-    if(n==15) {
+    vector<double> r(dim,0),E(dim,0),r2h(dim2h,0),E2h(dim2h,0);
+    if(n==31) {
         CG(A,x,b);
         // x[0]=b[0]/4.0;
         return x;
     } else {
-        JacobiRelaxation(A,x,b,1);        
+        JacobiRelaxation(A,x,b,3);        
         r=b-A*x;
         Restriction(r,r2h,n);
-        E2h=MultiGridAlgorithm(A,X,r2h,N2h);
+        E2h=MultiGridAlgorithm(A,E2h,r2h,N2h);
         Interpolation(E2h,E,n);
         x+=E;
-        JacobiRelaxation(A,x,b,1);        
+        JacobiRelaxation(A,x,b,3);        
         return x;
     }
 }
 
 void Algorithms::MultiGridMethod(Matrix& A,vector<double>& x,const vector<double>& b,const vector<double>& solved) {
-    int steps=0;
-    vector<double> r(dim);
+    int steps=0,dim=x.size(),n=sqrt(dim);
+    vector<double> r(dim),tmp(dim);
     r=x-solved;
-    // r=b-A*x;
     double TOL=pow(10,-3)*(r|r);
     while(TOL<=(r|r)) {
         x=MultiGridAlgorithm(A,x,b,n);
         r=x-solved;
-        // r=b-A*x;
         steps++;
         if(steps==500) r.assign(dim,0);
     }

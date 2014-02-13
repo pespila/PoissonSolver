@@ -13,67 +13,20 @@ int main(int argc, char const *argv[]) {
     double time,start=0.0,end=0.0;
     start=clock();
 
-    // Run.MultiGridMethod(A,V.x,V.b,V.solved); 
+    Run.MultiGridMethod(A,V.x,V.b,V.solved);
     // Run.TwoGrid(A,V.x,V.b);
-    // Run.TwoGrid(A,V.x,V.b);
-    // V.WriteToFile(V.x);
-
-    // vector<double> E(49,0),E2h(9,0);
-    // E2h=V.b;
-    // Run.Interpolation(E2h,E,7);
-
-    // for(int i=0,k=0;i<3;i++) {
-    //     for(int j=0;j<3;j++,k++) {
-    //         if(E2h[k]>0) printf("%f  ", E2h[k]);
-    //         else printf("%f ", E2h[k]);
-    //     }
-    //     printf("\n");
-    // }
-    // printf("\n");
-    // printf("\n");
-
-    // for(int i=0,k=0;i<7;i++) {
-    //     for(int j=0;j<7;j++,k++) {
-    //         if(E[k]>0) printf("%f  ", E[k]);
-    //         else printf("%f ", E[k]);
-    //     }
-    //     printf("\n");
-    // }
-
-    // vector<double> r(49),r2h(9,0);
-    // r=V.b;
-    // Run.Restriction(r,r2h,7);
-    // // V.PrintVector(r2h);
-
-    // for(int i=0,k=0;i<3;i++) {
-    //     for(int j=0;j<3;j++,k++) {
-    //         if(r2h[k]>0) printf("%f  ", r2h[k]);
-    //         else printf("%f ", r2h[k]);
-    //     }
-    //     printf("\n");
-    // }
-    // printf("\n");
-    // printf("\n");
-
-    // for(int i=0,k=0;i<7;i++) {
-    //     for(int j=0;j<7;j++,k++) {
-    //         if(r[k]>0) printf("%f  ", r[k]);
-    //         else printf("%f ", r[k]);
-    //     }
-    //     printf("\n");
-    // }
 
     end=clock();
     time=(end-start)/CLOCKS_PER_SEC;
     printf("%f\n", time);
 
     if(arg<=5) {
-        // A.PrintMatrix();
-        // V.PrintVector(V.x);
+        A.PrintMatrix();
+        V.PrintVector(V.x);
     } else {
         printf("Couldn't print Matrix! Dimension is too high.\n");
     }
-    // V.WriteToFile(V.x);
+    V.WriteToFile(V.x);
 
     return EXIT_SUCCESS;
 }

@@ -9,11 +9,11 @@ Vector::Vector(int n) {
     for(int i=1,k=0;i<=n;i++) {
         for(int j=1;j<=n;j++,k++) {
             solved[k]=g(j*h,i*h);
-            b[k]=pow(h,2)*f(h,h);
-            if(i==1) b[k]+=g(j*h,0);
-            if(i==n) b[k]+=g(j*h,1);
-            if(j==1) b[k]+=g(0,i*h);
-            if(j==n) b[k]+=g(1,i*h);
+            b[k]=f(h,h);
+            if(i==1) b[k]+=pow(1.0/h,2)*g(j*h,0);
+            if(i==n) b[k]+=pow(1.0/h,2)*g(j*h,1);
+            if(j==1) b[k]+=pow(1.0/h,2)*g(0,i*h);
+            if(j==n) b[k]+=pow(1.0/h,2)*g(1,i*h);
         }
     }
 }
