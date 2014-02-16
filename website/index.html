@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solving the discrete Poisson equation with the Conjugate Gradient Method">
+    <meta name="keywords" content="Bachelor, CG, PCG, Poisson">
+    <meta name="author" content="Michael Bauer" >
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/offcanvas.css" rel="stylesheet">
+    <link href="./css/MyStyle.css" rel="stylesheet">
+   	<link rel="shortcut icon" href="img/newFavicon.png">
+   	<link rel="icon" href="img/newFavicon.png">
+   
+    <title>PoissonSolver - Online</title>
+</head>
+
+<body>
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./">PoissonSolver</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#" id="home">Home</a></li>
+                    <li><a href="#" id="about">About</a></li>
+                    <li><a href="http://www.uni-regensburg.de" target="_blank">UR</a></li>
+                    <li><a href="http://www.uni-regensburg.de/physik/computational-science/" target="_blank">Computational Science</a></li>
+                    <li><a href="http://www.mathematik.uni-regensburg.de" target="_blank">Faculty of Mathematics</a></li>
+                    <li><a href="#" id="contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <div class="col-xs-12 col-sm-9">
+                <p class="pull-right visible-xs">
+                  <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+                </p>
+                <div class="jumbotron">
+                    <h1 id="headline">PoissonSolver</h1>
+                    <p id="maincontent"></p>
+                    <div class="form">
+                        Step size $m$ for $h = \frac{1}{m}$:
+                        <input type="text" min="2" max="1024" size="5" maxlength="4" value="32" id="grid" class="form-control" />
+                        Choose Algorithm: 
+                        <select id="opt" class="form-control">
+                            <option value="99">Run all and compare</option>
+                            <option value="1">Conjugate Gradient</option>
+                            <option value="2">P. Conjugate Gradient (ICG)</option>
+                            <option value="3">P. Conjugate Gradient (MICG)</option>
+                            <option value="4">Two Grid</option>
+                            <option value="5">V-Cycle</option>
+                            <option value="6">W-Cycle</option>
+                            <option value="7">Jacobi Method</option>
+                            <option value="8">Jacobi Relaxation Method</option>
+                            <option value="9">Gauss-Seidel-Method</option>
+                            <option value="10">SOR Method</option>
+                        </select>
+                        Functions f and g:
+                        <div>
+                            <input type="radio" name="func" value="1" checked="checked"> $f(x,y) = x^{2} + y^{2}$ and $g(x,y) = -4$.
+                        </div>
+                        <div>
+                            <input type="radio" name="func" value="2"> $f(x,y) = 0$ and $g(x,y) = 1$,
+                        </div>
+                        where f is the right side of the laplace equation and g is the dirichlet boundary condition.
+                        <p class="text-right"><a class="btn btn-primary btn-lg" role="button" id="calc">Calculate &raquo;</a></p>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Results</div>
+                            <div class="panel-body">
+                                <p>
+                                    In this section you'll get information about running time and iteration steps, where N := m-1 are the grid points in x and y direction. On a smartphone you can scroll the table to the right to view solutions. Here is an example file for gnuplot to plot .dat file: <a href="./Plot/plot.gpl" class="btn btn-primary btn-sm" target=_blank>gnuplot file</a>.
+                                </p>
+                            </div>
+                            <div class="table-responsive" id="myTable">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>algorithm</th>
+                                        <th>N</th>
+                                        <th>steps</th>
+                                        <th>time</th>
+                                        <th>download</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <p class="text-center"><a class="btn btn-primary btn-lg" role="button" id="clickExcel">Download table &raquo;</a></p>
+                    </div>
+                    <p class="text-right" id="submit"><a class="btn btn-primary btn-lg" role="button" id="run">Run &raquo;</a></p>
+                    <p id="download"></p>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                <div class="list-group">
+                    <a href="./" class="list-group-item active">PoissonSolver</a>
+                    <a href="#" id="equ" class="list-group-item">Poisson Equation</a>
+                    <a href="#" id="jaco" class="list-group-item">Jacobi (Relaxation) Method</a>
+                    <a href="#" id="cg" class="list-group-item">Conjugate Gradient</a>
+                    <a href="#" id="pcg" class="list-group-item">Preconditioned Conjugate Gradient</a>
+                    <a href="#" id="icg" class="list-group-item">Incomplete Cholesky Decomposition</a>
+                    <a href="#" id="micg" class="list-group-item">Modified Incomplete Cholesky Decomposition</a>
+                    <a href="#" id="vc" class="list-group-item">V-Cycle</a>
+                    <a href="#" id="wc" class="list-group-item">W-Cycle</a>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+
+        <footer>
+            <p>&copy; Michael Bauer 2014, University of Regensburg, Computational Science</p>
+        </footer>
+
+    </div>
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/offcanvas.js"></script>
+<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="js/MyScript.js"></script>
+
+<div id="wait">
+    <div style="font-size:12px;color:#fff;">Long loading time, does not depend on a slow script, as the measured time attests. Passing large data takes a bit.<br>To get your solutions faster, use the original C++-Programme from <a href="http://www.github.com/BauerMichael/PoissonSolver" target="_blank">Github</a>.</div>
+    <span class="glyphicon glyphicon-repeat blue"></span>
+</div>
+
+</body>
+
+</html>

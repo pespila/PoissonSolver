@@ -1,0 +1,6 @@
+#------------------------------------------
+#call: gnuplot -p plot.gpl in LINUX SHELL!
+#------------------------------------------
+
+set title "Your function"
+splot "plot.dat" t "3D Plot" with pm3d

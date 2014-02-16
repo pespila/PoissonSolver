@@ -1,5 +1,9 @@
 \input{arbeit-vorlage-praeambel.tex} % Importiere die Einstellungen aus der Präambel
 % hier beginnt der eigentliche Inhalt
+
+\usepackage{geometry}
+\geometry{tmargin=3cm,bmargin=3cm,lmargin=5cmm,rmargin=2cmm}
+
 \begin{document}
 \pagenumbering{Roman} % große Römische Seitenummerierung
 \pagestyle{empty}
@@ -95,7 +99,9 @@ u(x,y) &=& g(x,y) \textnormal{ in } \partial \Omega.\label{eq.Dirichlet2}
 
 Um diese (elliptische) partielle Differentialgleichung nun in $\Omega$ zu diskretisieren, bedarf es der Hilfe der Finiten Differenzen Methode.
 
-\section{Finite Differenzen-Methode für die Poisson-Gleichung}\label{s.Finite Differenzen}
+\section{Finite Differenzen-Methode und Diskretisierung von $\Omega$}\label{s.Finite Differenzen}
+
+Zunächst wollen wir nun den zentralen Differenzenquotienten (zweiter Ordnung) einführen. Diesen verwenden wir dann bei der Diskretisierung unseres Gitters $\Omega$. Die Matrix, die wir für den Fall der Poisson Gleichung erhalten werden, soll dann auch noch auf ihre Eigenschaften untersucht werden.
 
 \subsection{Zentraler Differenzenquotient zweiter Ordnung}\label{ss.Differenzenquotient zweiter Ordnung}
 
@@ -130,11 +136,10 @@ Ebenso lösen wir nach $\partial_{yy} u(x,y)$ auf und erhalten:
 
 Diese Näherungen nennt man den \textbf{zentralen Differenzenquotienten der zweiten Ableitung}. $O(h^{2})$ ist ein Term zweiter Ordnung und wird vernachlässigt.
 
-Somit erhalten wir für $\Delta u(x,y)$ die Näherung
-\begin{eqnarray}
-\Delta u(x,y) &=& \partial_{xx} u(x,y) + \partial_{yy} u(x,y) \notag \\
-&\approx& \frac {u(x-h,y) + u(x+h,y) - 4u(x,y) + u(x,y-h) + u(x,y+h)} {h^{2}}.\label{eq.Differenzenquotienten}
-\end{eqnarray}
+Somit erhalten wir für $-\Delta u(x,y)$ die Näherung
+\begin{equation}
+-\Delta u(x,y) \approx \frac {u(x-h,y) - u(x+h,y) + 4u(x,y) - u(x,y-h) - u(x,y+h)} {h^{2}}.\label{eq.Differenzenquotienten}
+\end{equation}
 
 \subsection{Diskretisierung von $\Omega$}\label{ss.Diskretisierung}
 
@@ -152,12 +157,12 @@ $\Omega$ fassen wir als $\Omega_{h}$ auf, so dass:
 
 \bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter}{5-Punkt-Differenzenstern im Gitter}\label{img.5-Point-Star}
 
-Mit \autoref{eq.Differenzenquotienten} ergibt sich nun für $\Delta u(x,y) \approx \Delta_{h} u(x,y)$ die diskretisierte Form:
+Mit \autoref{eq.Differenzenquotienten} fassen wir $\Delta u(x,y) = \Delta_{h} u(x,y)$ in diskretisierter Form auf:
 \begin{equation}
-\Delta_{h} u(x,y) = \frac {u(x-h,y) + u(x+h,y) - 4u(x,y) + u(x,y-h) + u(x,y+h)} {h^{2}}.\label{eq.5-Point-Star}
+-\Delta_{h} u(x,y) = \frac {u(x-h,y) - u(x+h,y) + 4u(x,y) - u(x,y-h) - u(x,y+h)} {h^{2}}.\label{eq.5-Point-Star}
 \end{equation}
 für alle $(x,y) \in \Omega_{h}$. \\
-Man stellt $\Delta_{h} u(x,y)$ häufig auch als 5-Punkt-Differenzenstern (\autoref{img.5-Point-Star}) in der Form
+Man stellt $\Delta_{h} u(x,y)$ auch als 5-Punkt-Differenzenstern (\autoref{img.5-Point-Star}) in der Form
 \begin{equation}
 \left[-\Delta_{h}\right]_{\xi} = \frac {1} {h^{2}}
 \begin{pmatrix}
@@ -171,7 +176,7 @@ dar. (Dahmen Reusken)
 
 \bild{grid}{8cm}{Nummerierung der Punkte von $\Omega = (0,1)^{2}$ mit $m=5$. In x- bzw. y-Richtung gibt es jeweils $N=4$ Punkte}{Gitter}\label{img.gridWithNumbers}
 
-Nummeriert man nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben (\autoref{img.gridWithNumbers}) und stellt für jeden dieser Punkte \autoref{eq.5-Point-Star} auf, so führt dies mit dem 5-Punkt-Differenzenstern auf eine $N^{2} \times N^{2}$-Matrix der Form:
+Es werden nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben (\autoref{img.gridWithNumbers}) nummeriert. Stellt man nun \autoref{eq.5-Point-Star} für jeden Punkt auf, so erhält man eine $N^{2} \times N^{2}$-Matrix. In dieser ist der 5-Punkt-Differenzenstern gut zu erkennen. Offensichtlich werden bei jedem Punkt des Gitters, der mindestens einen Randpunkt als Nachbarn hat, in der Matrix Werte unterdrückt. Diese tauchen später in der rechten Seite des Gleichungssystems wieder auf.
 
 \begin{equation}
 \mat{A} =
@@ -185,13 +190,16 @@ A_{1} & -Id \\
 wobei $\mat{Id} \in \mathbb{R}^{N \times N}$ die Identität meint und für alle $i = 0,..,N$ gilt:
 
 \begin{equation}
-A_{i} = 
+A_{i} =
 \begin{pmatrix}
-4 & -1 & & \\
--1 & 4 & \ddots & \\
- & \ddots & \ddots & -1 \\
- & & -1 & 4
-\end{pmatrix}.
+4 & -1\\
+-1 & 4 & -1\\
+   & -1 & 4 & -1\\
+   &    & \ddots & \ddots & \ddots\\
+   &    &        & -1 & 4 & -1\\
+   &    &        &    & -1 & 4 & -1\\
+   &    &        &    &    & -1 & 4
+\end{pmatrix}
 \end{equation}
 $A_{i} \in \mathbb{R}^{N \times N}$.
 
@@ -315,7 +323,7 @@ gilt für die Eigenwerte $\lambda_{k} := a + 2b\left(\frac{c}{b}\right)^{\frac{1
 
 \textit{Beweis:}
 
-Da $\lambda_{k}, v_{k}$ Eigenwerte bzw. Eigenvektoren von $\mat{B}$ sind gilt folgende Gleichung:
+Da $\lambda_{k}, v_{k}$ Eigenwerte bzw. Eigenvektoren von $\mat{B}$ sind, gilt folgende Gleichung:
 \begin{equation}
 (\mat{B} - \lambda_{k} \mat{Id}) v_{k} = 0
 \end{equation}
@@ -487,7 +495,7 @@ Für die Kondition der Matrix $\mat{A}_{2D}$ gilt:
 
 \textbf{Beweis:}
 
-Zudem gilt mit $h = \frac{1}{m}$ und da $sin^{2}(x) \in (0,1)$ streng monoton steigend ist für $x \in (0,\frac{\pi}{2})$:
+Es gilt mit $h = \frac{1}{m}$ und da $sin^{2}(x) \in (0,1)$ streng monoton steigend ist für $x \in (0,\frac{\pi}{2})$:
 \begin{eqnarray}
 \lambda_{min} &=& \lambda_{1,1} = 8\sin^{2}(\frac{\pi h}{2}),\label{eq.Lambda min}\\
 \lambda_{max} &=& \lambda_{N,N} = 8\sin^{2}(\frac{N\pi h}{2}) \overset{\substack{h=\frac {1} {m}, \\N=m-1}}{=} 8\sin^{2}(\frac{(m-1)\pi}{2m}) \notag \\
@@ -519,7 +527,7 @@ Diesem Problem werden wir später nochmals gegenüber stehen.
 \chapter{Iterative Lösungsvefahren für lineare Gleichungssysteme}\label{c.IterativeVerfahren}
 
 Gleichungssysteme, die partielle Differentialgleichungen lösen, können sehr groß werden. Aus diesem Grund sind direkte Verfahren, wie z.B. der Gauß-Algorithmus oder die LR-Zerlegung nicht geeignet. Ihr Rechenaufwand beläuft sich im Allgemeinen auf $\mathcal{O}(n^{3})$ und ist zu langsam.\\
-Wesentlich besser geeignet für diese Problemstellung sind iterative Verfahren. Sie zeichnen sich durch eine schnelle Konvergenz und einen geringeren Rechenaufwand aus - falls sie konvergieren.\\
+Wesentlich besser geeignet für diese Problemstellung sind iterative Verfahren. Sie zeichnen sich durch eine schnelle Konvergenz und einen geringeren Rechenaufwand aus.\\
 Ein Großteil der Definitionen, Sätze und Lemmata in diesem Kapitel sind sinngemäß aus Dahmen/Reusken.
 
 \section{Grundbegriffe}\label{s.Grundbegriffe}
