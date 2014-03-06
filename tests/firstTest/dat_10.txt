@@ -1,0 +1,6 @@
+SOR Method with 59 steps in 0.010000 seconds.
+SOR Method with 117 steps in 0.060000 seconds.
+SOR Method with 234 steps in 0.550000 seconds.
+SOR Method with 468 steps in 4.470000 seconds.
+SOR Method with -1 steps in 0.000000 seconds.
+SOR Method with -1 steps in 0.000000 seconds.

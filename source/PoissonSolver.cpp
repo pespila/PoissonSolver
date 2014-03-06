@@ -49,37 +49,37 @@ int main(int argc, char const *argv[]) {
     }
     if(alg==4) {
         method="Two Grid";
-        if(arg<2048) steps=Run.MultiGridMethod(A,X.x,B.b,B.solved,alg);
+        if(arg<4096) steps=Run.MultiGridMethod(A,X.x,B.b,B.solved,alg);
         else steps=-1;
     }
     if(alg==5) {
         method="V-Cycle";
-        if(arg<2048) steps=Run.MultiGridMethod(A,X.x,B.b,B.solved,alg);
+        if(arg<4096) steps=Run.MultiGridMethod(A,X.x,B.b,B.solved,alg);
         else steps=-1;
     }
     if(alg==6) {
         method="W-Cycle";
-        if(arg<2048) steps=Run.MultiGridMethod(A,X.x,B.b,B.solved,alg);
+        if(arg<4096) steps=Run.MultiGridMethod(A,X.x,B.b,B.solved,alg);
         else steps=-1;
     }
     if(alg==7) {
         method="Jacobi Method";
-        if(arg<128) steps=Run.JacobiMethod(A,X.x,B.b,B.solved);
+        if(arg<256) steps=Run.JacobiMethod(A,X.x,B.b,B.solved);
         else steps=-1;
     }
     if(alg==8) {
         method="Jacobi Relaxation Method";
-        if(arg<128) steps=Run.JacobiRelaxationMethod(A,X.x,B.b,B.solved);
+        if(arg<256) steps=Run.JacobiRelaxationMethod(A,X.x,B.b,B.solved);
         else steps=-1;
     }
     if(alg==9) {
         method="Gauss-Seidel-Method";
-        if(arg<128) steps=Run.GaussSeidelMethod(A,X.x,B.b,B.solved);
+        if(arg<256) steps=Run.GaussSeidelMethod(A,X.x,B.b,B.solved);
         else steps=-1;
     }
     if(alg==10) {
         method="SOR Method";
-        if(arg<256) steps=Run.SORMethod(A,X.x,B.b,B.solved);
+        if(arg<512) steps=Run.SORMethod(A,X.x,B.b,B.solved);
         else steps=-1;
     }
 

@@ -1,0 +1,6 @@
+P. Conjugate Gradient (MICG) with 7 steps in 0.010000 seconds.
+P. Conjugate Gradient (MICG) with 9 steps in 0.040000 seconds.
+P. Conjugate Gradient (MICG) with 12 steps in 0.180000 seconds.
+P. Conjugate Gradient (MICG) with 17 steps in 0.950000 seconds.
+P. Conjugate Gradient (MICG) with 24 steps in 5.110000 seconds.
+P. Conjugate Gradient (MICG) with 33 steps in 27.110000 seconds.

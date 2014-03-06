@@ -1,0 +1,2 @@
+Jacobi Relaxation Method with 1676 steps in 0.240000 seconds.
+Jacobi Relaxation Method with 6681 steps in 3.860000 seconds.
