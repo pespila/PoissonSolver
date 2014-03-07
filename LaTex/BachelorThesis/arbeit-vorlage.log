@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.1.27)  6 MAR 2014 09:14
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.1.27)  7 MAR 2014 13:16
 entering extended mode
  %&-line parsing enabled.
 **arbeit-vorlage.tex
@@ -1130,9 +1130,9 @@ Overfull \hbox (10.86533pt too wide) detected at line 171
                                                   \fi \fi 
 l.171 \end{equation}
                      <./images/diffStar.pdf>]
-<images/grid.pdf, id=484, 424.58624pt x 422.57875pt>
-File: images/grid.pdf Graphic file (type pdf)
- <use images/grid.pdf>
+<images/gitter.png, id=484, 451.6875pt x 351.3125pt>
+File: images/gitter.png Graphic file (type png)
+ <use images/gitter.png>
 Overfull \hbox (4.97646pt too wide) detected at line 185
 | [] |
  []
@@ -1142,8 +1142,8 @@ Overfull \hbox (4.97646pt too wide) detected at line 185
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.189 \begin{equation}
-                       <./images/grid.pdf>]
+l.188 
+       <./images/gitter.png>]
 Overfull \hbox (80.45918pt too wide) in paragraph at lines 197--199
 \T1/ppl/m/n/12 (-20) wobei $[] \OMS/zplm/m/n/12 2 \U/fplmbb/m/n/12 R[]$ \T1/ppl
 /m/n/12 (-20) die Iden-ti-tät meint und für al-le $\OML/zplm/m/it/12 i \OT1/zpl
@@ -1187,21 +1187,21 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 271.
 
-[7] <images/sin1.png, id=514, 642.4pt x 401.5pt>
+[7] <images/sin1.png, id=512, 642.4pt x 401.5pt>
 File: images/sin1.png Graphic file (type png)
  <use images/sin1.png>
 Overfull \hbox (4.97646pt too wide) detected at line 305
 | [] |
  []
 
-<images/sin7.png, id=515, 642.4pt x 401.5pt>
+<images/sin7.png, id=513, 642.4pt x 401.5pt>
 File: images/sin7.png Graphic file (type png)
  <use images/sin7.png>
 Overfull \hbox (4.97646pt too wide) detected at line 306
 | [] |
  []
 
-[8] <images/sin13.png, id=523, 642.4pt x 401.5pt>
+[8] <images/sin13.png, id=521, 642.4pt x 401.5pt>
 File: images/sin13.png Graphic file (type png)
  <use images/sin13.png>
 Overfull \hbox (10.11365pt too wide) in paragraph at lines 309--310
@@ -1228,7 +1228,7 @@ l.310
                                                   \fi \fi 
 l.310 
        <./images/sin1.png (PNG copy)> <./images/sin7.png> <./images/sin13.png (
-PNG copy)>] <images/EV.png, id=533, 642.4pt x 385.44pt>
+PNG copy)>] <images/EV.png, id=531, 642.4pt x 385.44pt>
 File: images/EV.png Graphic file (type png)
  <use images/EV.png>
 Overfull \hbox (4.97646pt too wide) detected at line 311
@@ -1744,7 +1744,7 @@ Overfull \hbox (68.0736pt too wide) in paragraph at lines 779--780
 rens gilt: 
  []
 
-[24] <images/omegaeins.png, id=648, 642.4pt x 385.44pt>
+[24] <images/omegaeins.png, id=646, 642.4pt x 385.44pt>
 File: images/omegaeins.png Graphic file (type png)
 
 <use images/omegaeins.png>
@@ -1764,7 +1764,7 @@ Overfull \hbox (9.31506pt too wide) in alignment at lines 805--809
                                                   \fi \fi 
 l.809 \end{eqnarray}
                      <./images/omegaeins.png>]
-<images/omegaeinhalb.png, id=656, 642.4pt x 385.44pt>
+<images/omegaeinhalb.png, id=654, 642.4pt x 385.44pt>
 File: images/omegaeinhalb.png Graphic file (type png)
 
 <use images/omegaeinhalb.png>
@@ -1779,7 +1779,7 @@ Overfull \hbox (4.97646pt too wide) detected at line 811
                                                   \fi \fi 
 l.816 
        <./images/omegaeinhalb.png>]
-<images/omeganullacht.png, id=664, 642.4pt x 385.44pt>
+<images/omeganullacht.png, id=662, 642.4pt x 385.44pt>
 File: images/omeganullacht.png Graphic file (type png)
 
 <use images/omeganullacht.png>
@@ -1787,7 +1787,7 @@ Overfull \hbox (4.97646pt too wide) detected at line 817
 | [] |
  []
 
-<images/startError.png, id=666, 642.4pt x 385.44pt>
+<images/startError.png, id=664, 642.4pt x 385.44pt>
 File: images/startError.png Graphic file (type png)
 
 <use images/startError.png>
@@ -1802,7 +1802,7 @@ Overfull \hbox (4.97646pt too wide) detected at line 821
                                                   \fi \fi 
 l.822 
        <./images/omeganullacht.png (PNG copy)>]
-<images/oneStepError.png, id=673, 642.4pt x 385.44pt>
+<images/oneStepError.png, id=671, 642.4pt x 385.44pt>
 File: images/oneStepError.png Graphic file (type png)
 
 <use images/oneStepError.png>
@@ -1810,7 +1810,7 @@ Overfull \hbox (4.97646pt too wide) detected at line 825
 | [] |
  []
 
-<images/threeStepError.png, id=674, 642.4pt x 385.44pt>
+<images/threeStepError.png, id=672, 642.4pt x 385.44pt>
 File: images/threeStepError.png Graphic file (type png)
 
 <use images/threeStepError.png>
@@ -2068,7 +2068,7 @@ Overfull \hbox (117.7803pt too wide) in paragraph at lines 1290--1291
 []$ fol-gen-de Dar-stel-lung: 
  []
 
-[44] <images/interpolation.png, id=829, 642.4pt x 401.5pt>
+[44] <images/interpolation.png, id=827, 642.4pt x 401.5pt>
 File: images/interpolation.png Graphic file (type png)
 
 <use images/interpolation.png>
@@ -2107,7 +2107,7 @@ Overfull \hbox (8.30128pt too wide) in paragraph at lines 1377--1378
 riert. 
  []
 
-<images/restrict.png, id=844, 642.4pt x 401.5pt>
+<images/restrict.png, id=842, 642.4pt x 401.5pt>
 File: images/restrict.png Graphic file (type png)
  <use images/restrict.png>
 Overfull \hbox (4.97646pt too wide) detected at line 1379
@@ -2154,7 +2154,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1467--1468
 
  []
 
-[50] <images/V-cycle.png, id=870, 234.8775pt x 205.76875pt>
+[50] <images/V-cycle.png, id=868, 234.8775pt x 205.76875pt>
 File: images/V-cycle.png Graphic file (type png)
 
 <use images/V-cycle.png> [51pdfTeX warning (ext4): destination with the same id
@@ -2169,7 +2169,7 @@ fier (name{equation.4.6.21}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.1497 \begin{eqnarray}
-                        <images/W-cycle.png, id=881, 353.32pt x 184.69pt>
+                        <images/W-cycle.png, id=879, 353.32pt x 184.69pt>
 File: images/W-cycle.png Graphic file (type png)
 
 <use images/W-cycle.png> [52pdfTeX warning (ext4): destination with the same id
@@ -2187,7 +2187,7 @@ Overfull \hbox (83.49263pt too wide) in paragraph at lines 1530--1534
 n ge-nü-gen: 
  []
 
-<images/MyFunction.png, id=893, 642.4pt x 385.44pt>
+<images/MyFunction.png, id=891, 642.4pt x 385.44pt>
 File: images/MyFunction.png Graphic file (type png)
 
 <use images/MyFunction.png>
@@ -2198,7 +2198,7 @@ Overfull \hbox (4.97646pt too wide) detected at line 1535
 [54
 
 
-] <images/MyFunctionOnSquare.png, id=899, 642.4pt x 385.44pt>
+] <images/MyFunctionOnSquare.png, id=897, 642.4pt x 385.44pt>
 File: images/MyFunctionOnSquare.png Graphic file (type png)
 
 <use images/MyFunctionOnSquare.png>
@@ -2358,8 +2358,8 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  13115 strings out of 494948
- 189807 string characters out of 1179523
- 448069 words of memory out of 3000000
+ 189819 string characters out of 1179523
+ 448067 words of memory out of 3000000
  15311 multiletter control sequences out of 15000+50000
  90498 words of font info for 358 fonts, out of 3000000 for 9000
  73 hyphenation exceptions out of 8191
@@ -2378,10 +2378,10 @@ am10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share
 nts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/pal
 atino/uplr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplri8a.pfb
 >
-Output written on arbeit-vorlage.pdf (68 pages, 1078002 bytes).
+Output written on arbeit-vorlage.pdf (68 pages, 1065660 bytes).
 PDF statistics:
- 1156 PDF objects out of 1200 (max. 8388607)
- 1032 compressed objects within 11 object streams
+ 1154 PDF objects out of 1200 (max. 8388607)
+ 1030 compressed objects within 11 object streams
  383 named destinations out of 1000 (max. 500000)
  53472 words of extra memory for PDF output out of 61914 (max. 10000000)
 
