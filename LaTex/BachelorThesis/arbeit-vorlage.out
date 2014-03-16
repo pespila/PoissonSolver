@@ -1,7 +1,7 @@
 \BOOKMARK [0][-]{chapter.1}{Einleitung}{}
 \BOOKMARK [0][-]{chapter.2}{Diskretisierung der Poisson-Gleichung im R2}{}
 \BOOKMARK [1][-]{section.2.1}{Definition \(Poisson-Gleichung\)}{chapter.2}
-\BOOKMARK [1][-]{section.2.2}{Finite Differenzen-Methode und Diskretisierung von }{chapter.2}
+\BOOKMARK [1][-]{section.2.2}{Finite-Differenzen-Methode und Diskretisierung von }{chapter.2}
 \BOOKMARK [2][-]{subsection.2.2.1}{Zentraler Differenzenquotient zweiter Ordnung}{section.2.2}
 \BOOKMARK [2][-]{subsection.2.2.2}{Diskretisierung von }{section.2.2}
 \BOOKMARK [1][-]{section.2.3}{Eigenschaften der Matrix \040A 2D}{chapter.2}
