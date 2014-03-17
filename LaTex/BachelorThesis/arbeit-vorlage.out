@@ -44,9 +44,9 @@
 \BOOKMARK [3][-]{subsubsection.3.6.1.1}{Beweis:}{subsection.3.6.1}
 \BOOKMARK [2][-]{subsection.3.6.2}{Der Algorithmus des vorkonditionierten konjugierten Gradienten Verfahrens}{section.3.6}
 \BOOKMARK [2][-]{subsection.3.6.3}{Die unvollst\344ndige Cholesky-Zerlegung}{section.3.6}
-\BOOKMARK [3][-]{subsubsection.3.6.3.1}{Definition \(Muster E\)}{subsection.3.6.3}
+\BOOKMARK [3][-]{subsubsection.3.6.3.1}{Definition \(Muster E\) [D/R]}{subsection.3.6.3}
 \BOOKMARK [3][-]{subsubsection.3.6.3.2}{Eigenschaften der Matrix }{subsection.3.6.3}
-\BOOKMARK [3][-]{subsubsection.3.6.3.3}{Algorithmus der unvollst\344ndigen Cholesky Zerlegung}{subsection.3.6.3}
+\BOOKMARK [3][-]{subsubsection.3.6.3.3}{Algorithmus der unvollst\344ndigen Cholesky-Zerlegung}{subsection.3.6.3}
 \BOOKMARK [2][-]{subsection.3.6.4}{Die modifizierte unvollst\344ndige Cholesky-Zerlegung}{section.3.6}
 \BOOKMARK [3][-]{subsubsection.3.6.4.1}{Eigenschaften der Matrix }{subsection.3.6.4}
 \BOOKMARK [3][-]{subsubsection.3.6.4.2}{Algorithmus der modifizierten unvollst\344ndigen Cholesky-Zerlegung}{subsection.3.6.4}
@@ -63,7 +63,7 @@
 \BOOKMARK [1][-]{section.4.6}{Mehrgitter-Algorithmen}{chapter.4}
 \BOOKMARK [0][-]{chapter.5}{Implementierung und Beispiel}{}
 \BOOKMARK [1][-]{section.5.1}{Beispiel einer Poisson Gleichung}{chapter.5}
-\BOOKMARK [1][-]{section.5.2}{Zur Implementierung in C++}{chapter.5}
+\BOOKMARK [1][-]{section.5.2}{Bemerkung zur Implementierung in C++}{chapter.5}
 \BOOKMARK [1][-]{section.5.3}{Speicherung von \040A 2D}{chapter.5}
 \BOOKMARK [1][-]{section.5.4}{Abbruchkriterien}{chapter.5}
 \BOOKMARK [1][-]{section.5.5}{Jacobi-Verfahren}{chapter.5}
@@ -78,3 +78,6 @@
 \BOOKMARK [2][-]{subsection.5.9.2}{V-Zyklus}{section.5.9}
 \BOOKMARK [2][-]{subsection.5.9.3}{W-Zyklus}{section.5.9}
 \BOOKMARK [2][-]{subsection.5.9.4}{Mehrgitteralgorithmus C++-Methode}{section.5.9}
+\BOOKMARK [0][-]{chapter*.3}{Danksagung}{}
+\BOOKMARK [0][-]{chapter*.4}{Abbildungsverzeichnis}{}
+\BOOKMARK [0][-]{chapter*.5}{Tabellenverzeichnis}{}

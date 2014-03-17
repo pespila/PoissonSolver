@@ -2,7 +2,7 @@
 % hier beginnt der eigentliche Inhalt
 
 \usepackage{geometry}
-\geometry{tmargin=3cm,bmargin=3cm,lmargin=5cm,rmargin=2cm}
+\geometry{tmargin=3cm,bmargin=3cm,lmargin=4cm,rmargin=2cm}
 
 \begin{document}
 \pagenumbering{Roman} % große Römische Seitenummerierung
@@ -12,53 +12,70 @@
 \clearscrheadings\clearscrplain
 
 \begin{center}
-\begin{Huge}
-Universität Regensburg\\
-\vspace{3mm}
-\end{Huge}{\Large Fachbereich Mathematik}
+\includegraphics[width=6cm]{images/uniR.png}
 
-\bild{uniR}{8cm}
+\begin{huge}
+UNIVERSITÄT REGENSBURG
+\vspace{10mm}
+\end{huge}
 
-\vspace{}
-\begin{Large}
-Bachelorarbeit
-\end{Large}
+{\Large \textbf{Fakultät für Mathematik}}
+\vspace{0mm}
 
-\vspace{5mm}
-\begin{large}
-im Studiengang Computational Science  
-\end{large}
-
-\vspace{5mm}
-\begin{large}
-WS 2013/2014
-\end{large}
+{\Large Bachelor of Science Computational Science}
 
 \vspace{10mm}
+\begin{huge}
+Bachelorarbeit
+\end{huge}
+
+\textit{zur Erlangung des akademischen Grades eines Bachelor of Science (B. Sc.)}
+
+\vspace{10mm}
+
 \begin{Large}
 Iterative Verfahren zur Lösung der diskretisierten Poisson Gleichung
 \end{Large}
 
-\vspace{5mm}
 \begin{large}
-von Michael Bauer
+in der angewandten Mathematik.  
 \end{large}
+
+\vspace{5mm}
+\begin{small}
+von
+\end{small}
+
+\begin{large}
+Michael Bauer
+\end{large}
+
+\begin{small}
+Matrikelnummer: 152 8558
+\end{small}
 
 \vspace{3cm}
 \begin{tabular}{ll}
 {\bf Betreuer:} &Prof. Dr. Harald Garcke\\
-{\bf Eingereicht am:} &15.03.2014\\
+{\bf Eingereicht am:} &20.03.2014\\
 \end{tabular}
 
 \end{center}
 \clearpage
 
+\chapter*{Erklärung}
+
+\textbf{Eidesstattliche Erklärung zur Bachelorarbeit}
+
+Ich habe die Arbeit selbstständig verfasst, keine anderen als die angegebenen Quellen und Hilfsmittel benutzt und bisher keiner anderen Prüfungsbehörde vorgelegt. Außerdem bestätige ich hiermit, dass die vorgelegten Druckexemplare und die vorgelegte elektronische Version der Arbeit identisch sind, dass ich über wissenschaftlich korrektes Arbeiten und Zitieren aufgeklärt wurde und dass ich von den in § 26/27 Abs. 5 vorgesehenen Rechtsfolgen Kenntnis habe.
+
+\vspace{3cm}
+Ort, Datum \hspace{5cm} Unterschrift\\
+
 
 \pagestyle{useheadings} % normale Kopf- und Fußzeilen für den Rest
 
 \tableofcontents
-% \listoffigures
-% \listoftables
 
 %\chapter*{Symbolverzeichnis}\label{s.sym}
 %\addcontentsline{toc}{chapter}{Symbolverzeichnis}
@@ -109,7 +126,7 @@ Um diese (elliptische) partielle Differentialgleichung nun in $\Omega$ zu diskre
 
 \section{Finite-Differenzen-Methode und Diskretisierung von $\Omega$}\label{s.Finite Differenzen}
 
-Zunächst wollen wir den zentralen Differenzenquotienten (zweiter Ordnung) einführen, mit Hilfe dessen wir bei der Diskretisierung eine Matrix $\mat{A}$ erhalten werden. Diese wollen wir auf ihre Eigenschaften untersuchen.
+Zunächst wollen wir den zentralen Differenzenquotienten (zweiter Ordnung) einführen, Mithilfe dessen wir bei der Diskretisierung eine Matrix $\mat{A}$ erhalten werden. Diese wollen wir auf ihre Eigenschaften untersuchen.
 
 \subsection{Zentraler Differenzenquotient zweiter Ordnung}\label{ss.Differenzenquotient zweiter Ordnung}
 
@@ -163,7 +180,7 @@ $\Omega$ schreiben wir als $\Omega_{h}$, so dass gilt:
 \Omega_{h} := \{u(ih, jh) | 1 \le i,j \le N\}.
 \end{equation}
 
-\bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter, wobei für alle $1 < i,j < N$ jeder Punkt $(x,y) \in \Omega_{h}$ genau vier Nachbarn in $\Omega_{h}$ besitzt.}{5-Punkt-Stern.}\label{img.5-Point-Star}
+\bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter, wobei für alle $1 < i,j < N$ jeder Punkt $(x,y) \in \Omega_{h}$ genau vier Nachbarn in $\Omega_{h}$ besitzt.}{5-Punkt-Differenzenstern bei der Diskretisierung von $\Omega$.}\label{img.5-Point-Star}
 
 Mit \autoref{eq.Differenzenquotienten} fassen wir $\Delta u(x,y) = \Delta_{h} u(x,y)$ für alle $(x,y) \in \Omega_{h}$ in diskretisierter Form auf als:
 \begin{equation}
@@ -181,7 +198,7 @@ Man stellt $\Delta_{h} u(x,y)$ auch als 5-Punkt-Differenzenstern (Abbildung 2.1)
 \end{equation}
 dar. (Dahmen Reusken)
 
-\bild{gitter}{12cm}{Nummerierung der Punkte von $\Omega = (0,1)^{2}$ mit $m=5$. In x- bzw. y-Richtung gibt es jeweils $N=4$ Punkte.}{Gitter}\label{img.gridWithNumbers}
+\bild{gitter}{12cm}{Nummerierung der Punkte von $\Omega = (0,1)^{2}$ mit $m=5$. In x- bzw. y-Richtung gibt es jeweils $N=4$ Punkte.}{Lexikographische Nummerierung der Punkte auf dem Gitter im Einheitsquadrat.}\label{img.gridWithNumbers}
 
 Es werden nun alle Gitterpunkte des Gitters fortlaufend von links unten nach rechts oben (Abbildung 2.2) nummeriert (Lexikographische Nummerierung). Stellt man nun \autoref{eq.5-Point-Star} für jeden Punkt auf, so führt dies auf eine $N^{2} \times N^{2}$-Matrix, in der die Koeffizienten der Gleichung abgespeichert werden. Die vierfache Gewichtung der Funktion $u(x,y)$ steht in der Diagonale. Der linke bzw. der rechte Nachbar im Gitter sind auf der unteren bzw. oberen Nebendiagonalen zu finden, so fern der Nachbar in $\Omega_{h}$ liegt. Die oberen bzw. unteren Nachbarn, falls diese in $\Omega_{h}$ liegen, werden jeweils auf der $N-ten$ Nebendiagonalen der Matrix gespeichert.
 
@@ -301,13 +318,13 @@ v_{k.l} =
 
 Um sich die Eigenvektoren besser vorstellen zu können, wollen wir zunächst drei Eigenvektoren des eindimensionalen Poisson Problems betrachten. Es wird das Gebiet $\Omega_{h} = (0,1)$ diskretisiert und es gilt $u(x)' = g(x)$ mit Randbedingung $u(x) = f(x)$. Dann erhält man auf einem Gitter $(0,1)$ mit $h = \frac{1}{m}$ wie oben, die Eigenvektoren in den Punkten 1,7 und 13:
 
-\bild{sin1}{8cm}{Dieser Graph stellt den Eigenvektor am ersten Punkt, also $h = \frac{1}{15}$ dar. Zu sehen sind harmonische, kurzwellige Sinuskurven.}{Für Faktor 1}
-\bild{sin7}{8cm}{Bei diesen stark oszillierenden Sinuswellen handelt es sich um den Eigenvektor im Punkt $\frac{7}{15}$.}{Für Faktor 7}
-\bild{sin13}{8cm}{Diese langen Sinuswellen gehören zum Punkt $\frac{13}{15}$.}{Für Faktor 13}\label{img.1D Langwelle}
+\bild{sin1}{8cm}{Dieser Graph stellt den Eigenvektor am ersten Punkt, also $h = \frac{1}{15}$ dar. Zu sehen sind harmonische, kurzwellige Sinuskurven.}{Eigenvektor mit harmonischen, kurzwelligen Sinuswellen für die eindimensionale Poisson Gleichung.}
+\bild{sin7}{8cm}{Bei diesen stark oszillierenden Sinuswellen handelt es sich um den Eigenvektor im Punkt $\frac{7}{15}$.}{Stark oszillierender Eigenvektor für die eindimensionale Poisson Gleichung.}
+\bild{sin13}{8cm}{Diese langen Sinuswellen gehören zum Punkt $\frac{13}{15}$.}{Langwelliger Eigenvektor für die eindimensionale Poisson Gleichung.}\label{img.1D Langwelle}
 
 Man sieht deutlich, das die Oszillation der einzelnen Eigenvektoren unterschiedlich ist. Manche der Eigenvektoren sind langwellig, andere kurzwellig. Wenn wir nun zurück zu unserer Ausgangssituation des zweidimensionalen Poisson Problems gehen und das Gitter aus Abbildung 2.2 als Basis nehmen, erhalten wir für den Punkt 11 des Gitters folgende Darstellung des Eigenvektors:
 
-\bild{EV}{14cm}{Es sind die Sinuswellen des Eigenvektors im Gitterpunkt $(\frac {3} {5},\frac {3} {5})$ zu sehen. Sie sind langwellig und nur schwach oszillierend.}{Man kann am Eigenvektor des Gitterpunktes $(\frac {3} {5},\frac {3} {5})$ gut die überlagerten Sinuswellen erkennen.}\label{img.Jacobi1}
+\bild{EV}{14cm}{Es sind die Sinuswellen des Eigenvektors im Gitterpunkt $(\frac {3} {5},\frac {3} {5})$ zu sehen. Sie sind langwellig und nur schwach oszillierend.}{Ein Beispiel für einen langwelligen Eigenvektor für die zweidimensionale Poisson Gleichung.}\label{img.Jacobi1}
 
 Man kann dieses Bild in etwa mit Abbildung 2.5 vergleichen. Dieser Eigenvektor besitzt eine langwellige Oszillation.
 
@@ -807,7 +824,7 @@ e^{k+1} &=& u^{*} - u^{k+1} = u^{*} - \left( (Id - \omega D^{-1} A)u^{k} + \omeg
 &=& e^{k} + \omega D^{-1} A e^{k} = (Id - \omega D^{-1} A) e^{k}.
 \end{eqnarray}
 
-\bild{omegaeins}{14cm}{Dies ist das Eigenwertspektrum für $\omega = 1$. Das Gesamtschrittverfahren hat keine Glättungseigenschaft. Es liegen nur wenige der Eigenwerte um die Null.}{Dies ist das Eigenwertspektrum für $\omega = 1$. Das Gesamtschrittverfahren hat keine Glättungseigenschaft. Es liegen nur wenige der Eigenwerte um die Null.}\label{img.Jacobi1}
+\bild{omegaeins}{14cm}{Dies ist das Eigenwertspektrum für $\omega = 1$. Das Gesamtschrittverfahren hat keine Glättungseigenschaft. Es liegen nur wenige der Eigenwerte um die Null.}{Eigenwertspektrum der Jacobi Iterationsmatrix, bzw. der Iterationsmatrix des Jacobi-Relaxationsverfahrens mit Parameter $\omega = 1$.}\label{img.Jacobi1}
 
 Da die $n$ Eigenvektoren $v_{i,j}$ eine Basis bilden, lässt sich der Fehler $e$ als Linearkombination der $v_{i,j}$ darstellen:
 \begin{eqnarray}
@@ -816,22 +833,22 @@ e^{k+1} &=& \sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k+1}_{i,j} v_{i,j} = (Id - \o
 &=& \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} \underbrace{(1 - \frac {\omega} {4} \lambda_{i,j}(A))}_{= \lambda_{i,j}(\mat{T}_{J_{\omega}})} v_{i,j}\right) = \left(\sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k}_{i,j} \lambda_{i,j}(\mat{T}_{J_{\omega}}) v_{i,j}\right).
 \end{eqnarray}
 
-\bild{omegaeinhalb}{14cm}{Für $\omega = \frac{1}{2}$ ist gut zu erkennen, dass für $i,j$ nahe $N$ viele Eigenwerte nahe Null liegen.}{Für $\omega = \frac{1}{2}$ ist gut zu erkennen, dass für $i,j$ nahe $N$ viele Eigenwerte nahe Null liegen (lila Fläche).}\label{img.Jacobi2}
+\bild{omegaeinhalb}{14cm}{Für $\omega = \frac{1}{2}$ ist gut zu erkennen, dass für $i,j$ nahe $N$ viele Eigenwerte nahe Null liegen.}{Eigenwertspektrum der Iterationsmatrix des Jacobi-Relaxationsverfahrens mit dem Parameter $\omega = \frac{1}{2}$.}\label{img.Jacobi2}
 
 Betrachten wir nun die Eigenwerte der Iterationsmatrix für $\omega = 1$ (Jacobi-Verfahren), sieht man, dass die Eigenwerte für $i,j$ nahe Null oder $i,j$ nahe N den Fehler schlecht bis gar nicht dämpfen (\subfigureautorefname{ 3.1}). Diese liegen nahe 1 bzw. -1 und verändern die zugehörigen Eigenvektoren kaum. Als iteratives Verfahren ist $\omega = 1$ der optimale Parameter [Saad]. Das Jacobi-Verfahren besitzt wegen seines Eigenwertspektrums keine Glättungseigenschaft.\\
 Da wir im Folgenden eine Fehlerglättung erreichen wollen, wählen wir nun $\omega = \frac {1} {2}$ (\subfigureautorefname{ 3.2}). Wir stellen fest, dass die Eigenwerte der Iterationsmatrix zwischen $0$ und $1$ liegen. Sind $i,j > \frac {N} {2}$ so werden die Fehleranteile wesentlich besser gedämpft, da die Eigenwerte hier nahe Null liegen, d.h. zugehörige Eigenvektoren werden nahezu eliminiert. Diese Eigenschaft nennt man die \textit{Glättungseigenschaft}.\\
 Es stellt sich z.B. heraus, dass der optimale Relaxationsparameter, der unabhängig von der Schrittweite $h$ gewählt werden kann, $\omega = \frac {4} {5}$ ist [Saad]. In \subfigureautorefname{ 3.3} ist gut zu sehen, dass ein Großteil des Spektrums nahe Null liegt.
 
-\bild{omeganullacht}{14cm}{Für den optimalen Parameter $\omega = \frac{4}{5}$ ist gut zu erkennen, dass viele Eigenwerte um die Null liegen (orange Fläche) und somit eine gute Glättungseigenschaft besteht.}{}\label{img.Jacobi3}
+\bild{omeganullacht}{14cm}{Für den optimalen Parameter $\omega = \frac{4}{5}$ ist gut zu erkennen, dass viele Eigenwerte um die Null liegen (orange Fläche) und somit eine gute Glättungseigenschaft besteht.}{Plot der Eigenwerte für den optimalen Parameter $\omega = \frac{4}{5}$ für das Jacobi-Relaxationsverfahren.}\label{img.Jacobi3}
 
 Zum Abschluss dieses Abschnitts wollen wir ein konkretes Beispiel zur Glättungseigenschaft anführen. Angenommen wir wählen unseren Startvektor $u^{0} = \sin(\theta_{i})$, mit $i = 1,...,n$ und $\theta_{i}$ wie in \autoref{s.Eigenwerte und Eigenvektoren}. Berechnen wir den Fehlerterm $e^{0} = u^{*} - u^{0}$, und plotten diesen, so sieht der Fehler zu Beginn wie folgt aus:
 
-\bild{startError}{12cm}{Die Oszillation der Sinuswellen im Startfehler ist hier gut zu erkennen.}{Die Oszillation des Startfehlers ist hier schön zu erkennen.}
+\bild{startError}{12cm}{Die Oszillation der Sinuswellen im Startfehler ist hier gut zu erkennen.}{Plot des Startfehlers mit stark oszillierenden Sinuswellen.}
 
 Nun wollen wir uns noch die Plots nach einem und drei Iterationsschritten des Jacobi-Relaxationsverfahrens ansehen. Nach drei Schritten sind die starken Oszillationen verschwunden.
 
-\bild{oneStepError}{12cm}{Nach einem Iterationsschritt ist bereits eine Glättung des Fehlers zu beobachten.}{Nach einem Iterationsschritt ist bereits eine Glättung des Fehlers zu beobachten.}
-\bild{threeStepError}{12cm}{Man sieht, dass bereits nach 3 Iterationsschritten der Fehler glatt ist.}{Die Oszillation im Fehlerterm ist nahezu verschwunden.}
+\bild{oneStepError}{12cm}{Nach einem Iterationsschritt ist bereits eine Glättung des Fehlers zu beobachten.}{Plot des Fehlers nach einem Glättungsschritt.}
+\bild{threeStepError}{12cm}{Man sieht, dass bereits nach 3 Iterationsschritten der Fehler glatt ist.}{Geglätteter Fehler nach drei Iterationsschritten des Jacobi-Relaxationsverfahrens mit optimalen Parameter.}
 
 % \bild{omeganullacht}{14cm}{Für den optimalen Parameter $\omega = \frac{4}{5}$ [Saad] ist gut zu erkennen, dass viele Eigenwerte um die Null liegen und somit eine gute Glättungseigenschaft besteht.}{Für den optimalen Parameter $\omega = \frac{4}{5}$ [Saad] ist gut zu erkennen, dass viele Eigenwerte um die Null liegen und somit eine gute Glättungseigenschaft besteht.}\label{img.Jacobi3}
 
@@ -916,7 +933,7 @@ U_{k+1} := span\{p^{0},...,p^{k-1},r^{k}\} \textnormal{ wobei } r^{k} := f - Au^
 
 \end{description}
 
-Nachdem man ein Residuum berechnet hat, startet der erste Iterationsschritt: Man erweitert seinen Teilraum um das Residuum und bestimmt daraufhin eine A-orthogonale Basis dieses Teilraumes. Ein gängiges Verfahren ist das Gram-Schmidt-Orthonormalisierungsverfahren. Die neue Näherungslösung bzgl. $U_{k}$ kann dann über den (A-orthogonalen) Projektionssatz bestimmt werden. Nachdem erneut ein Residuum berechnet wurde, startet der nächste Iterationsschritt.\\
+Nachdem man ein Residuum berechnet hat, startet der erste Iterationsschritt. Man erweitert seinen Teilraum um das Residuum und bestimmt daraufhin eine A-orthogonale Basis dieses Teilraumes. Ein gängiges Verfahren ist das Gram-Schmidt-Orthonormalisierungsverfahren. Die neue Näherungslösung bzgl. $U_{k}$ kann dann über den (A-orthogonalen) Projektionssatz bestimmt werden. Nachdem erneut ein Residuum berechnet wurde, startet der nächste Iterationsschritt.\\
 Wegen \autoref{eq.Projektion} könnte man vermuten, dass die Lösung des Gleichungssystems $u^{*}$ zur Durchführung des Algorithmus bekannt sein muss. Die folgenden Lemmata werden zeigen, dass dem nicht so ist.
 
 \subsection{Lemma}
@@ -990,7 +1007,7 @@ Substituiert man nun geschickt einige Werte in den Skalarprodukten (ohne Beweis)
 
 \subsection{Algorithmus der konjugierten Gradienten}\label{ss.Numerisches CG}
 
-Gegeben ist eine symmetrisch positiv definite Matrix $\mat{A} \in \mathbb{R}^{n}$. Bestimme die (Näherungs-) Lösung $u^{*}$ mit Hilfe eines \textit{beliebigen} Startvektors $u^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $f \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$ und berechne das Residuum $r^{0} = f - Au^{0}$. \\
+Gegeben ist eine symmetrisch positiv definite Matrix $\mat{A} \in \mathbb{R}^{n}$. Bestimme die Lösung Mithilfe eines \textit{beliebigen} Startvektors $u^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $f \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$ und berechne das Residuum $r^{0} = f - Au^{0}$. \\
 Für $k = 1,2,...$, falls $r^{k-1} \ne 0$ berechne:
 
 \begin{eqnarray}
@@ -1041,7 +1058,7 @@ Die Konditionszahl dieses Problem ist nun durch $\kappa_{2}(\mat{W}^{-1}\mat{A})
 
 \subsection{Der Algorithmus des vorkonditionierten konjugierten Gradienten Verfahrens}\label{ss.Algorithmus PCG}
 
-Gegeben seien $\mat{A}, \mat{W} \in \mathbb{R}^{n}$ s.p.d. Bestimme die (Näherungs-) Lösung $u^{*}$ mit Hilfe eines \textit{beliebigen} Startvektors $u^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $f \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$, berechne das Residuum $r^{0} = b - Au^{0}$ und $z^{0} = \mat{W}^{-1}r^{0}$ (löse $\mat{W}z^{0} = r^{0}$).\\
+Gegeben seien $\mat{A}, \mat{W} \in \mathbb{R}^{n}$ s.p.d. Bestimme die Lösung Mithilfe eines \textit{beliebigen} Startvektors $u^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $f \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$, berechne das Residuum $r^{0} = b - Au^{0}$ und $z^{0} = \mat{W}^{-1}r^{0}$ (löse $\mat{W}z^{0} = r^{0}$).\\
 Für $k = 1,2,...$, falls $r^{k-1} \ne 0$ berechne:
 
 \begin{eqnarray}
@@ -1051,14 +1068,14 @@ r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1}, \notag \\
 z^{k} &=& \mat{W}^{-1}r^{k} \textnormal{ (löse } \mat{W}z^{k} = r^{k}). \notag
 \end{eqnarray}
 
-Wichtig hierbei ist, dass das Lösen von $\mat{W}z^{k} = r^{k}$ mit möglichst wenig Aufwand (ideal: $\mathcal{O}(n)$) berechnet werden soll.
+Wichtig hierbei ist, dass das Lösen von $\mat{W}z^{k} = r^{k}$ mit möglichst wenig Aufwand (ideal: $\mathcal{O}(n)$) berechnet werden soll. Für eine schnelle Lösung von $\mat{W} z^{k} = r^{k}$ verwenden wir eine unvollständige Cholesky-Zerlegung.
 
 \subsection{Die unvollständige Cholesky-Zerlegung}\label{ss.ICCG}
 
 Eine Matrix $\mat{A}$, die symmetrisch positiv definit ist, lässt sich durch eine Cholesky-Zerlegung in eine normierte untere Dreiecksmatrix $\mat{L}$ und eine rechte obere Dreicksmatrix $\mat{U}$ zerlegen, wobei gilt: $\mat{U} := \mat{D}\mat{L}^{T}$ \\
 Mit dieser Zerlegung möchten wir nun unser System vorkonditionieren. Allerdings würde eine vollständige Cholesky-Zerlegung viele Nulleinträge in einer dünn besetzten Matrix auslöschen. Darum greift man auf eine unvollständige Cholesky-Zerlegung zurück, bei der die Stellen, an denen $\mat{A}$ Nulleinträge besitzt, in $L$ und $U$ ebenfalls Null bleiben.
 
-\subsubsection{Definition (Muster E)}\label{sss.Muster E}
+\subsubsection{Definition (Muster E) [D/R]}\label{sss.Muster E}
 
 Sei $E \subseteq \{1,...,n\} \times \{1,...,n\}$ ein Muster, für das gilt:
 \begin{equation}
@@ -1067,7 +1084,7 @@ E := \{(i,j) | 1 \le i,j \le n, a_{i,j} \ne 0 \}.
 
 Dann lässt sich die Matrix $\mat{A}$ auch folgendermaßen schreiben:
 \begin{equation}
-\mat{A} \approx \tilde{\mat{L}} \tilde{\mat{L}}^{T}.
+\mat{A} \approx \tilde{\mat{L}} \tilde{\mat{L}}^{T} + E.
 \end{equation}
 wobei $\tilde{\mat{L}}, \tilde{\mat{L}}^{T}$ nicht die komplette Faktorisierung darstellt, sondern folgende Eigenschaften erfüllt:
 
@@ -1079,7 +1096,7 @@ wobei $\tilde{\mat{L}}, \tilde{\mat{L}}^{T}$ nicht die komplette Faktorisierung 
 
 Natürlich ist diese Faktorisierung ungenauer, als die vollständige Zerlegung. Allerdings genügt sie, um die Kondition des Gleichungssystems in vielen Fällen zu verbessern. Um den Algorithmus effizient und den Rechenaufwand so klein wie möglich zu machen, werden Summen nur über Indizes aus dem Muster berechnet [Dahmen/Reusken].
 
-\subsubsection{Algorithmus der unvollständigen Cholesky Zerlegung}\label{sss.Cholesky-Algorithmus}
+\subsubsection{Algorithmus der unvollständigen Cholesky-Zerlegung}\label{sss.Cholesky-Algorithmus}
 
 Seien $\mat{A} \in \mathbb{R}^{n \times n}$ und $E$ das Muster zur Matrix $\mat{A}$. Setze $\mat{L} = \mat{Id}$, $\mat{R} = 0$. Berechne dann für $i=1,2,...,n$:
 \begin{eqnarray}
@@ -1091,7 +1108,7 @@ l_{k,i} &=& \left( a_{k,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l
 \textbf{Bemerkungen:}
 
 \begin{itemize}
-\item Die für den PCG-Algorithmus wichtige Matrix $\mat{W}$ wird nun definierte als: $\mat{W} := \tilde{\mat{L}} \tilde{\mat{L}}^{T}$. Dadurch wird auch $\mat{W}z^{k} = \tilde{\mat{L}} \tilde{\mat{L}}^{T}z^{k} = r^{k}$ schnell durch Vorwärts- bzw. Rückwärtseinsetzen lösbar.
+\item Die für den PCG-Algorithmus wichtige Matrix $\mat{W}$ wird nun definiert als: $\mat{W} := \tilde{\mat{L}} \tilde{\mat{L}}^{T}$. Dadurch wird auch $\mat{W}z^{k} = \tilde{\mat{L}} \tilde{\mat{L}}^{T}z^{k} = r^{k}$ schnell durch Vorwärts- bzw. Rückwärtseinsetzen lösbar.
 \item Für viele Probleme zeigt sich, dass $\kappa_{2}(\mat{W}^{-1} \mat{\mat{A}}) \ll \kappa_{2} (A)$ gilt. \\
 \end{itemize}
 
@@ -1106,9 +1123,9 @@ Auch bei der modifizierten Methode des Verfahrens gehen wir vor, wie in \autoref
 Sei $e := (1,1,...,1)^{T}$,
 
 \begin{itemize}
-\item $a_{i,j} = (\tilde{\mat{L}} \tilde{\mat{L}}^{T})_{i,j}$ für alle $(i,j) \in E, i \ne j$
-\item $\mat{A} e = \tilde{\mat{L}} \tilde{\mat{L}}^{T} e$, d.h. die Zeilensummen stimmen überein.
-\item $l_{i,j} = r_{i,j} = 0$ für alle $(i,j) \notin E$
+\item $a_{i,j} = (\tilde{\mat{L}} \tilde{\mat{L}}^{T})_{i,j}$ für alle $(i,j) \in E, i \ne j$,
+\item $\mat{A} e = \tilde{\mat{L}} \tilde{\mat{L}}^{T} e$, d.h. die Zeilensummen stimmen überein und
+\item $l_{i,j} = r_{i,j} = 0$ für alle $(i,j) \notin E$.
 \end{itemize}
 
 \subsubsection{Algorithmus der modifizierten unvollständigen Cholesky-Zerlegung}\label{sss.Algorithmus MUCZ}
@@ -1125,12 +1142,12 @@ a_{k,k} &=& a_{i,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l_{i,j}
 
 Wir setzen wieder $\mat{W} := \tilde{\mat{L}} \tilde{\mat{L}}^{T}$. \\
 
-Weiter Verfahren zur Vorkonditionierung, wie beispielsweise das SSOR-Verfahren, sind u.a. in [Saad] zu finden.
+Weitere Verfahren zur Vorkonditionierung, wie beispielsweise das SSOR-Verfahren, sind u.a. in [Saad] zu finden.
 
 \subsection{Effiziente Implementation der modifizierten Cholesky-Zerlegungen}
 
 Gerade für diese Aufgabenstellung ist es von großem Interesse, wie der Algorithmus in Code umgesetzt wird. Offensichtlich haben beide Zerlegungen einen Rechenaufwand von $\mathcal{O}(n^{2})$. Auch wenn wir nur über das Muster $E$ iterieren, werden viele Werte der Matrix $\mat{A}$ überprüft. Dies kostet Rechenzeit.\\
-Um dies zu optimieren, wird für $\mat{A}_{2D}$ eine weitere Matrix $\mat{B} \in \mathbb{R}^{n \times 5}$ eingeführt. Die 2D Poisson Matrix enthält maximal 5 Werte ungleich Null pro Zeile. Somit können in der $i - ten$ Zeile maximal 5 Indizes $j$ auftauchen, für die gilt $a_{i,j} \ne 0$. In den Zeilen, in denen die Matrix weniger als fünf Werte ungleich Null hat, wird die $i - te$ Zeile von $\mat{B}$ mit $-1$ aufgefüllt.
+Um dies zu optimieren, wird für $\mat{A}_{2D}$ eine weitere Matrix $\mat{B} \in \mathbb{R}^{n \times 5}$ eingeführt, die das Muster E ersetzt bzw. darstellt. Die 2D Poisson Matrix enthält maximal 5 Werte ungleich Null pro Zeile. Somit können in der $i - ten$ Zeile von $\mat{A}_{2D}$ maximal 5 Indizes $j$ auftauchen, für die gilt $a_{i,j} \ne 0$. In $\mat{B}$ werden die Indizes $j$ nacheinander abgespeichert. Sollte weniger als fünf Werte ungleich Null sein, so wird die zugehörige Zeile von $\mat{B}$ mit $-1$ aufgefüllt.
 
 \textbf{Beispiel:}
 
@@ -1151,9 +1168,9 @@ B =
 Mit der Matrix $\mat{B}$ als Ersatz für das Muster $E$, ergibt sich folgender C++-Code für die modifizierten unvollständige Cholesky-Zerlegung:
 
 \subsection{C++-Methode der MIC}\label{s.MIC}\lstinputlisting[language=C]{code/MIC.c}
-Der Rechenaufwand beträgt unter diesen Bedingungen lediglich $\mathcal{O}(5n) \approx \mathcal{0}(n)$.
+Der Rechenaufwand beträgt unter diesen Bedingungen lediglich $\mathcal{O}(5n) \approx \mathcal{O}(n)$.
 
-Analog würde diese Vorschrift für die unvollständige Cholesky-Zerlegung folgen, was wir hier nicht mehr explizit anführen wollen. Betrachtet man in \autoref{c.Vergleich} die Laufzeiten für den PCG-Algorithmus mit diesen Zerlegungen und der angeführten Implementation, sieht man wie schnell und effizient die Berechnung vonstatten geht.
+Analog würde diese Vorschrift für die unvollständige Cholesky-Zerlegung folgen, was wir hier nicht mehr explizit anführen wollen. Betrachtet man in \autoref{c.Vergleich} die Laufzeiten für den PCG-Algorithmus mit diesen Zerlegungen und der angeführten Implementation, sieht man, wie schnell und effizient die Berechnung vonstatten geht.
 
 \chapter{Mehrgitterverfahren}\label{c.Mehrgitterverfahren}
 
@@ -1164,7 +1181,7 @@ In diesem Abschnitt sollen nun die Mehrgittermethoden genauer betrachtet werden.
 \begin{description}
 
 \item[1.] Glättungseigenschaft der Jacobi-Relaxation \\
-Die kurzwelligen Fehlerterme verschwinden nach wenigen Iterationsschritten.
+Die kurzwelligen Fehlerterme werden nach wenigen Iterationsschritten geglättet bzw. verschwinden nahezu.
 \item[2.] Residuumsgleichung \\
 Die für diesen Algorithmus wichtige Residuumsgleichung lautet:
 \begin{equation}
@@ -1215,7 +1232,7 @@ Bevor wir nun auf die Mehrgittermethoden explizit eingehen, müssen wir uns Geda
 
 \textbf{Bemerkung:}
 
-Wir wählen der Einfachheit halber das $N$, stets so, dass gilt: $N = 2^{n} - 1$, wobei $n \in \mathbb{N}$. Somit können wir die Schrittweite $h$ auf jedem Gitter komfortabel bestimmen. Es gilt dann z.B. für $N_{h} = 2^{n} - 1$ und für $N_{2h} = 2^{n-1} - 1$.
+Wir wählen der Einfachheit halber das $N$ stets so, dass gilt: $N = 2^{n} - 1$, wobei $n \in \mathbb{N}$. Somit können wir die Schrittweite $h$ auf jedem Gitter komfortabel bestimmen. Es gilt dann z.B. für $N_{h} = 2^{n} - 1$ und für $N_{2h} = 2^{n-1} - 1$.
 
 \subsection{Interpolationsmatrix}
 
@@ -1231,10 +1248,10 @@ I_{2} & & &\\
 & & \ddots &\\
 & & & I_{1}\\
 & & & I_{2}
-\end{pmatrix},
+\end{pmatrix}.
 \end{equation}
 
-für $I_{1},I_{2} \in \mathbb{R}^{(2\tilde N - 1) \times \tilde N}$ gilt:
+Für $I_{1},I_{2} \in \mathbb{R}^{(2\tilde N - 1) \times \tilde N}$ gilt:
 
 \begin{equation}
 \mat{I}_{1} =
@@ -1262,7 +1279,7 @@ für $I_{1},I_{2} \in \mathbb{R}^{(2\tilde N - 1) \times \tilde N}$ gilt:
 \end{pmatrix}.
 \end{equation}
 
-Wir haben hier die Full-Weighted-Matrix der Interpolation verwendet, da sie die höchste Genauigkeit beim Übergang von $\Omega_{2h}$ auf $\Omega_{h}$ besitzt. Sie berücksichtigt bei der Interpolation nicht nur Gitterpunkte, die in $\Omega_{2h}$, sowie in $\Omega_{h}$, existieren, sondern auch den jeweiligen Nachbarn. Es gibt andere Möglichkeiten der Interpolation, z.B. den Half-Weighting-Operator, auf die wir in dieser Arbeit nicht explizit eingehen wollen. Zur Veranschaulichung des Full-Weighted-Operators dient \autoref{img.Prolongation}. Es geht in jedes $u^{i,j}_{h}$ auch der gewichtete Wert aller Nachbarpunkte von $u^{i,j}_{2h}$ des groben Gitters mit ein.
+Wir haben hier die Full-Weighted-Matrix der Interpolation verwendet, da sie die höchste Genauigkeit beim Übergang von $\Omega_{2h}$ auf $\Omega_{h}$ besitzt. Sie berücksichtigt bei der Interpolation nicht nur Gitterpunkte, die in $\Omega_{2h}$, sowie in $\Omega_{h}$ existieren, sondern auch den jeweiligen Nachbarn. Es gibt andere Möglichkeiten der Interpolation, z.B. den Half-Weighting-Operator, auf die wir in dieser Arbeit nicht explizit eingehen wollen. Zur Veranschaulichung des Full-Weighted-Operators dient Abbildung 4.1. Es geht in jedes $u^{i,j}_{h}$ auch der gewichtete Wert aller Nachbarpunkte von $u^{i,j}_{2h}$ des groben Gitters mit ein.
 
 \textbf{Beispiel:}
 
@@ -1312,11 +1329,11 @@ Für den Fall von eindimensionalen Gittern hätte $\mat{I}$ folgende Darstellung
 \end{equation}
 Hier ist $\mat{I} \in \mathbb{R}^{N \times \tilde N}$.
 
-\bild{interpolation}{12cm}{Bei der Interpolation bedienen sich die Punkte vom feinen Gitter, den gewichteten Punkten des groben Gitters.}{Bei der Interpolation bedienen sich die Punkte vom feinen Gitter, den gewichteten Punkten des groben Gitters.}\label{img.Prolongation}
+\bild{interpolation}{12cm}{Bei der Interpolation bedienen sich die Punkte vom feinen Gitter (gelb), den gewichteten Punkten des groben Gitters (grün). Direkte Nachbarn werden mit $\frac{1}{2}$, diagonale Nachbarn mit $\frac{1}{4}$ gewichtet.}{Illustration der Gewichtung im Falle einer Interpolation mit Full-Weighting-Operator.}\label{img.Prolongation}
 
 % \bild{Restriktionsoperator}{14cm}{bla}{bla}\label{img.Restriktion}
 
-Für das Umsetzen in Programmcode ist es natürlich ungünstig eine komplette Matrix-Vektor-Multiplikation zu implementieren, zumal eine Matrix dieser Größe enorm viel Speicherplatz erfordert. Aus diesem Grund lässt sich die Interpolation auch in Komponentenschreibweise fassen:
+Für das Umsetzen in Programmcode ist es natürlich ungünstig eine komplette Matrix-Vektor-Multiplikation zu implementieren, zumal eine Matrix dieser Größe enorm viel Speicherplatz erfordert. Aus diesem Grund geben wir die Interpolation in Komponentenschreibweise an:
 
 \begin{eqnarray}
 &&u_{h}^{2i-1,2j-1} = u_{2h}^{i,j} \hspace{0.1cm} i,j = 1,...,\tilde N, \\
@@ -1325,7 +1342,7 @@ Für das Umsetzen in Programmcode ist es natürlich ungünstig eine komplette Ma
 &&u_{h}^{2i,2j} = \frac{1}{4} (u_{2h}^{i,j} + u_{2h}^{i,j+1} + u_{2h}^{i+1,j} + u_{2h}^{i+1,j+1}) \hspace{0.1cm} i,j = 1,...,\tilde N - 1.
 \end{eqnarray}
 
-Diese Vorschrift lässt sich nun effizient programmieren. Somit ist nun der Übergang vom groben zum feinen Gitter bekannt. Nun wollen wir noch die Gegenrichtung betrachten.
+Somit ist nun der Übergang vom groben zum feinen Gitter bekannt. Nun wollen wir noch die Gegenrichtung betrachten.
 
 \section{Restriktion}
 
@@ -1382,9 +1399,9 @@ u_{2h}^{i,j} &=& \frac {1} {16} (4u_{h}^{i,j}+2(u_{h}^{i+1,j}+u_{h}^{i-1,j}+u_{h
 &+& u_{h}^{i-1,j-1}+u_{h}^{i-1,j+1}+u_{h}^{i+1,j+1}+u_{h}^{i+1,j-1})
 \end{eqnarray}
 
-Das Vorgehen wird von \autoref{img.restrict} illustriert.
+Das Vorgehen wird in Abbildung 4.2 illustriert.
 
-\bild{restrict}{12cm}{Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte veranschaulicht. Jeder Wert wird zusätzlich mit einem Faktor $\frac{1}{16}$ multipliziert}{Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte veranschaulicht. Jeder Wert wird zusätzlich mit einem Faktor $\frac{1}{16}$ multipliziert}\label{img.restrict}
+\bild{restrict}{8cm}{Ausgehend von einem Punkt innerhalb des Gitters, bedient dieser sich der Werte seiner direkten ($\frac{2}{16}$ in gelb) und diagonalen Nachbarn ($\frac{1}{16}$ in grün). Der Punkt, in dem restringiert wird fließt mit einer Gewichtung von $\frac{4}{16}$ (rot) in den neuen Wert ein.}{Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte veranschaulicht. Jeder Wert wird zusätzlich mit einem Faktor $\frac{1}{16}$ multipliziert}{Full-Weighting-Operator für die Restriktion.}\label{img.restrict}
 
 \textbf{Bemerkung:}
 
@@ -1433,12 +1450,12 @@ A_{1} & -Id \\
 = \mat{A}_{2D_{2h}}
 \end{equation}
 
-Die Matrizen $\mat{A}_{2D_{ih}}$ sind also für alle $i \in \{x^{n} \in \mathbb{N} | n \in \mathbb{N} \}$ stets bekannt.
+Die Matrizen $\mat{A}_{2D_{ih}}$ sind also für alle $i \in \{2^{n} \in \mathbb{N} | n \in \mathbb{N} \}$ stets bekannt.
 
 \section{Das Zweigitterverfahren}\label{s.Der Zweigitter-Algorithmus}
 
-Wie in \autoref{s.Finite Differenzen} gesehen befinden wir uns bei der Diskretisierung der Poisson-Gleichung auf einem Gebiet $\Omega_{h} = (0,1)^{2}$ mit Schrittweite $h = \frac {1} {m}$. Nach der Ausführung von k Iterationsschritten des Jacobi-Relaxationsverfahren sind auf diesem Gitter die kurzwelligen Fehler $e^{k} = u^{*} - u^{k}$ verschwunden. Zudem haben wir die Äquivalenz der Gleichung $\mat{A} u = f$ und $\mat{A} e = r$ für $e = 0$ gesehen.\\
-Wir berechnen nach dem $k-ten$ Iterationsschritt das Residuum $r^{k}$ und wollen so dann $\mat{A}_{h} e^{k}_{h} = r^{k}_{h}$ lösen. Die Lösung dieser Gleichung auf dem einem gröberen Gitter ist natürlich wesentlich günstiger, als auf dem feinen Gitter. Darum bringen wir $r^{k}_{h}$ durch Restriktion auf das gröbere Gitter und lösen die Residuumsgleichung dort direkt. Anschließend bringen wir den approximierten Fehlerterem $e_{2h}^{k}$ durch Prolongation zurück auf das feine Gitter und addieren $e_{h}^{k}$ zu $u_{h}^{k}$, da $u^{*} = u^{k} + e^{k}$. Abschließend wird $k$ mal nachgeglättet. Wir wiederholen dieses Vorgehen bis zur Konvergenz. Nachfolgend der Pseudocode für den Algorithmus des Zweigitterverfahrens:
+Wie in \autoref{s.Finite Differenzen} gesehen befinden wir uns bei der Diskretisierung der Poisson-Gleichung auf einem Gebiet $\Omega_{h} = (0,1)^{2}$ mit Schrittweite $h = \frac {1} {m}$. Nach der Ausführung von k Iterationsschritten des Jacobi-Relaxationsverfahren sind auf diesem Gitter die kurzwelligen Fehler $e^{k} = u^{*} - u^{k}$ geglättet bzw. nahezu verschwunden. Zudem haben wir die Äquivalenz der Gleichung $\mat{A} u = f$ und $\mat{A} e = r$ für $e = 0$ gesehen.\\
+Wir berechnen nach dem $k-ten$ Iterationsschritt das Residuum $r^{k}$ und wollen sodann $\mat{A}_{h} e^{k}_{h} = r^{k}_{h}$ lösen. Die Lösung dieser Gleichung auf dem einem gröberen Gitter ist natürlich wesentlich günstiger, als auf dem feinen Gitter. Darum bringen wir $r^{k}_{h}$ durch Restriktion auf das gröbere Gitter und lösen die Residuumsgleichung dort direkt. Anschließend bringen wir den approximierten Fehlerterem $e_{2h}^{k}$ durch Prolongation zurück auf das feine Gitter und addieren $e_{h}^{k}$ zu $u_{h}^{k}$, da $u^{*} = u^{k} + e^{k}$. Abschließend wird $k$ mal nachgeglättet. Wir wiederholen dieses Vorgehen bis zur Konvergenz. Nachfolgend der Pseudocode für den Algorithmus des Zweigitterverfahrens:
 
 % Nun berechnet man im $k-ten$ Schritt das Residuum $r^{k}$ und führt für das äquivalente lineare Gleichungssystem $\mat{A}e^{k} = r^{k}$, wobei $e^{k} = 0$ gilt, $k$ Iterationsschritte aus. So erhalten wir eine Näherung des Fehlers $e^{k}$. \\
 % Stellt man \autoref{eq.Fehler} um und berechnet $e^{k} + u^{k}$, so erhält man eine neue Approximation der exakten Lösung. \\
@@ -1470,15 +1487,16 @@ Es bleiben zwei Fragen nun unbeantwortet:
 \item[2.] Wie steht es mit der Konvergenz dieses Verfahrens? Besitzt es die nötige Rechengeschwindigkeit?
 \end{description}
 
-Die Antwort auf die Frage nach der Konvergenz werden wir in dieser Arbeit schuldig bleiben. Für ein weiteres Studium wird [Saad] empfohlen.\\ \\
+Die Antwort auf die Frage nach der Konvergenz werden wir in dieser Arbeit schuldig bleiben. Für ein weiteres Studium wird [Saad] empfohlen.
+Als direkten Löser verwenden wir den PCG-Algorithmus aus \autoref{c.IterativeVerfahren}.\\
 
-Der klare Nachteil dieser Methode liegt natürlich im direkten Lösen der Residuumsgleichung. Wählen wir ein sehr feines Gebiet $\Omega_{h}$ mit $m = 256$, also $h = \frac {1} {256}$, so liefert das Gebiet $\Omega_{2h}$ immer noch ein Gleichungssystem der Dimension $n = 127^{2}$. Ein System dieser Ordnung zu lösen erfordert großen Rechenaufwand, der in dieser Form nicht immer erwünscht ist. \\
+Der klare Nachteil dieser Methode liegt natürlich am direkten Lösen der Residuumsgleichung. Wählen wir ein sehr feines Gebiet $\Omega_{h}$ mit $m = 256$, also $h = \frac {1} {256}$, so liefert das Gebiet $\Omega_{2h}$ immer noch ein Gleichungssystem der Dimension $n = 127^{2}$. Ein System dieser Ordnung direkt zu lösen erfordert großen Rechenaufwand, der in dieser Form nicht immer erwünscht ist. \\
 
 \section{Mehrgitter-Algorithmen}\label{s.Mehrgitteralgorithmus}
 
 Da also das Lösen der Residuumsgleichung auf dem groben Gitter einen direkten Löser erfordert, der zusätzlichen Rechenaufwand bedeutet, ist der Zweigitter-Algorithmus nicht immer die erste Wahl zum Lösen eines Gleichungssystems.
 
-Eine andere Methode ist, das Gitter immer gröber zu machen, bis das System direkt lösbar ist, um dann wieder auf das feinste Gitter zurück zu kehren. Wir erweitern also das Zweigitterverfahren um Rekursion. Denn ruft sich die Funktion in jedem Iterationsschritt selbst auf und löst direkt, sobald sie auf dem gröbsten Gitter befindet, erhalten wir folgende rekursive Funktion:
+Eine andere Methode ist, das Gitter immer gröber zu machen, bis das System direkt lösbar ist, um dann wieder auf das feinste Gitter zurück zu kehren. Wir erweitern also das Zweigitterverfahren um Rekursion. Denn ruft sich die Funktion in jedem Iterationsschritt selbst auf und löst direkt, sobald sie sich auf dem gröbsten Gitter befindet, erhalten wir folgende rekursive Funktion:
 
 \begin{eqnarray}
 \textbf{V-cycle }(u,b)                         & \notag \\
@@ -1498,9 +1516,9 @@ Eine andere Methode ist, das Gitter immer gröber zu machen, bis das System dire
 
 Die Schritte sind im wesentlichen die gleichen, als die beim Zweigitterverfahren. Es wird auf jedem Gitter eine a priori Glättung durchgeführt und das Residuum restringiert. Auf dem gröbsten Gitter wird die Residuumsgleichung mit $e = 0$ gelöst. Der Fehlerterm wird anschließend prolongiert und auf dem nächst feineren Gitter zum jeweiligen $u^{k}$ dazu addiert. Nach einer a posteriori Glättung wird das neu berechnete $u^{k}$ ebenfalls prolongiert. Sobald wir auf das feinste Gitter zurück gekehrt sind, erhalten wir eine neue Approximation für $u_{h}^{k}$.
 
-\bild{V-cycle}{6cm}{Text über V-Zyklus}{Text über V-Zyklus}\label{img.V-cycle}
+\bild{V-cycle}{6cm}{\textbf{rot:} a priori Glättung, \textbf{gelb:} Restriktion, \textbf{grün:} direktes Lösen, \textbf{braun:} Prolongation, \textbf{blau:} a posteriori Glättun und \textbf{schwarz:} a posteriori Glättung und Korrektur des Fehlers.}{Veranschaulichung eines V-Zyklus in den Mehrgittermethoden.}\label{img.V-cycle}
 
-Dieser Algorithmus ist auch als V-Zyklus bekannt. Wie dieser Name zustande kommt illustriert \autoref{img.V-cycle}. Nun gibt es eine weitere Variante, den W-Zyklus (illustriert in \autoref{img.W-cycle}). Durch zweifachen rekursiven Aufruf der Funktion entstehen wesentlich mehr Wechsel zwischen den Gittern. Natürlich ist die Rechenzeit durch häufigeres glätten, lösen, restringieren und prolongieren höher:
+Dieser Algorithmus ist auch als V-Zyklus bekannt. Wie dieser Name zustande kommt illustriert Abbildung 4.3. Nun gibt es eine weitere Variante, den W-Zyklus (illustriert in Abbildung 4.4). Durch zweifachen rekursiven Aufruf der Funktion entstehen wesentlich mehr Wechsel zwischen den Gittern. Natürlich ist die Rechenzeit durch häufigeres glätten, lösen, restringieren und prolongieren höher:
 
 \begin{eqnarray}
 \textbf{W-cycle }(u,b)                         & \notag \\
@@ -1519,15 +1537,15 @@ Dieser Algorithmus ist auch als V-Zyklus bekannt. Wie dieser Name zustande kommt
 \textbf{end}                                                & \notag
 \end{eqnarray}
 
-\bild{W-cycle}{8cm}{Text über W-Zyklus}{Text über W-Zyklus}\label{img.W-cycle}
+\bild{W-cycle}{12cm}{\textbf{rot:} a priori Glättung, \textbf{gelb:} Restriktion, \textbf{grün:} direktes Lösen, \textbf{braun:} Prolongation, \textbf{blau:} a posteriori Glättun und \textbf{schwarz:} a posteriori Glättung und Korrektur des Fehlers.}{Ein W-Zyklus der die einzelnen Schritte illustriert.}\label{img.W-cycle}
 
-Für manche Systeme erhält man durch schnellere Konvergenz ein kürzere Rechenzeit, als bei einem V-Zyklus. Im Falle der Poisson Gleichung ist dies nicht der Fall, wie \autoref{c.Vergleich} zeigen wird.
+Für manche Systeme erhält man durch schnellere Konvergenz eine kürzere Rechenzeit, als bei einem V-Zyklus. Im Falle der Poisson Gleichung ist dies nicht der Fall, wie \autoref{c.Vergleich} zeigen wird.
 
 % Man kann zeigen [Briggs/Saad], dass die Mehrgittermethoden einen Rechenaufwand von $\mathcal{O}(n)$ pro Iterationsschritt haben. Somit sind Mehrgitterverfahren effiziente und häufig verwendete Lösungsalgorithmen für lineare Gleichungssysteme. Im letzten Kapitel werden wir nun noch vergleichen, welcher der bisher vorgestellten Algorithmen für unsere Aufgabenstellung gut geeignet ist.
 
 \chapter{Implementierung und Beispiel}\label{c.Vergleich}
 
-In diesem letzten Kapitel sollen noch einmal praktische Code-Beispiele und erhaltene Berechnungswerte anhand eines Beispiels erfolgen. Dafür wollen wir folgende Gleichung betrachten:
+In diesem letzten Kapitel werden praktische Code-Beispiele gezeigt. Außerdem werden anhand eines Beispiels die Iterationsschritte und Rechenzeit der verschiedenen Verfahren betrachtet.
 
 \section{Beispiel einer Poisson Gleichung}\label{s.Beispiel einer Poisson Gleichung}
 
@@ -1538,23 +1556,23 @@ Seien $f: \Omega \rightarrow \mathbb{R}$ und $g: \partial\Omega \rightarrow \mat
 \end{eqnarray}
 Gesucht ist eine Funktion $u(x,y)$, die diese Gleichung löst. \\
 Offensichtlich löst der elliptische Paraboloid $u(x,y) = x^{2} + y^{2}$ die partielle Differentialgleichung, da $\partial_{xx}u(x,y) = \partial_{yy}u(x,y) = 2$. Allerdings wollen wir nun diese Lösung auch numerisch erhalten.\\
-Die gewünschte Lösung sollte also folgendem Graphen genügen:
+Die gewünschte Lösung sollte also folgendem Graphen ergeben:
 
-\bild{MyFunction}{12cm}{Die analytische Lösung für diese Poisson-Gleichung war gegeben durch $u(x,y) = x^{2} + y^{2}$.}{Die analytische Lösung für diese Poisson-Gleichung war gegeben durch $u(x,y) = x^{2} + y^{2}$.}
+\bild{MyFunction}{12cm}{Die analytische Lösung für diese Poisson-Gleichung war gegeben durch $u(x,y) = x^{2} + y^{2}$.}{Plot der Funktion $u(x,y) = x^{2} + y^{2}$, als analytische Lösung einer partiellen Differentialgleichung.}
 
-Zu beachten ist, dass wir $\Omega_{h} \in (0,1)^{2}$ gewählt haben. Die Lösung unseres Systems sollte also folgenden Graphen ergeben:
+Zu beachten ist, dass wir $\Omega_{h} \in (0,1)^{2}$ gewählt haben. Die Lösung unseres Systems sollte folgenden Graphen als Ergebnis haben:
 
-\bild{MyFunctionOnSquare}{12cm}{Dieser Graph entspricht der Lösung der Poisson-Gleichung auf dem Einheitsquadrat. Als Ausgangsdaten wurde die Lösung durch einen Mehrgitter-V-Zyklus verwendet mit $m = 1024$.}{Dieser Graph entspricht der Lösung der Poisson-Gleichung auf dem Einheitsquadrat. Als Ausgangsdaten wurde die Lösung durch einen Mehrgitter-V-Zyklus verwendet mit $m = 1024$.}
+\bild{MyFunctionOnSquare}{12cm}{Dieser Graph entspricht der Lösung der Poisson-Gleichung auf dem Einheitsquadrat mit $h = \frac{1}{1024}$. Als Ausgangsdaten wurde die Lösung durch einen Mehrgitter-V-Zyklus mit 3 Gittern verwendet mit $m = 1024$.}{Plot des Lösungsvektors nach einem V-Zyklus im Einheitsquadrat.}
 
-\section{Zur Implementierung in C++}
+\section{Bemerkung zur Implementierung in C++}
 
-Das gesamte Programm wurde objektorientiert geschrieben, darum ist von Methoden und Klassen, nicht von Funktionen die Rede. In den folgenden Beispielen wollen wir die Lösung der Poisson Gleichung für verschiedene Verfahren betrachten. Dafür werden einige der Methoden ebenfalls dargestellt. Wir wollen nicht nur die Iterationsschritte genauer betrachten, sondern auch die Rechenzeit.\\
+Das gesamte Programm wurde objektorientiert geschrieben, darum ist von Methoden und Klassen, nicht von Funktionen die Rede. In den folgenden Beispielen wollen wir die Lösung der Poisson Gleichung für verschiedene Verfahren betrachten. Dafür werden einige der Methoden dargestellt. Wir wollen nicht nur die Iterationsschritte genauer betrachten, sondern auch die Rechenzeit.\\
 An manchen Stellen im Code kommt die Vermutung auf, dass es sich um Pseudocode handeln könnte. Dies ist natürlich nicht der Fall. Es wurden lediglich bestimmte Operatoren wie *,+,-,etc. überladen.
 
 \section{Speicherung von $\mat{A}_{2D}$}
 
-Für eine effiziente Implementierung ist die Speicherung der Poisson-Matrix ein wichtiges Kriterium. Da die Werte der Diagonale und die der Nebendiagonalen zu jeder Zeit bekannt sind, werden in der C++-Methode PoissonMatrix lediglich drei double-Werte gespeichert. Somit benötigen wir lediglich drei mal 8 Byte, also 24 Byte, Speicherplatz für die gesamte Matrix.\\
-Für die Matrizen $\mat{L}$ und $\mat{R}$, deren Werte ebenfalls nur auf der Diagonale und den 4 Nebendiagonalen ungleich Null sind, gehen wir ähnlich vor. Da dort die Werte jedoch unterschiedlich sind, werden drei Vektoren (vector<double>) angelegt. Hier hängt zwar der Speicherplatz von der Größe der Matrix ab, ist aber immer noch überschaubar.\\
+Für eine effiziente Implementierung ist die Speicherung der Poisson-Matrix ein wichtiges Kriterium. Da die Werte der Diagonale und die der Nebendiagonalen zu jeder Zeit bekannt sind und die Matrix symmetrisch ist, werden in der C++-Methode PoissonMatrix lediglich drei double-Werte gespeichert. Somit benötigen wir lediglich drei mal 8 Byte, also 24 Byte, Speicherplatz für die gesamte Matrix.\\
+Für die Matrizen $\mat{L}$ und $\mat{R}$, deren Werte ebenfalls nur auf der Diagonale und den 4 Nebendiagonalen ungleich Null sind und die beide ebenfalls symmetrisch sind, gehen wir ähnlich vor. Da dort die Werte jedoch unterschiedlich sind, werden pro Matrix drei Vektoren (vector<double>) angelegt, die pro Matrix einen Speicherplatz von  $< 24n$ Bytes ausmachen. Hier hängt zwar der Speicherplatz von der Größe der Matrix ab, ist aber immer noch überschaubar.\\
 Durch diese Art der Speicherung können wir die Matrix-Vektor-Multiplikation, die im Allgemeinen einen Rechenaufwand von $\mathcal{O}(n^{2})$ hat, anpassen, so dass der Aufwand auf $\mathcal{O}(n)$ sinkt.
 
 \lstinputlisting[language=C++]{code/MatrixVector.cpp}
@@ -1562,7 +1580,7 @@ Durch diese Art der Speicherung können wir die Matrix-Vektor-Multiplikation, di
 \section{Abbruchkriterien}
 
 Um zu verstehen, warum wir Abbruchkriterien benötigen, hier ein kurzes Beispiel:\\
-Das CG-Verfahren konvergiert nach maximal $n$ Schritten. Wir bräuchten somit kein Abbruchkriterium, damit wir die optimale Lösung finden. Angenommen die Dimension der Matrix ist $n = 10^{6}$. Dann werden trotz der schnellen Konvergenz eine große Anzahl an Iterationen benötigt. Um dies zu vermeiden, lässt man den Algorithmus abbrechen, sobald eine gewisse Toleranzgrenze erreicht ist. In der Praxis schätzt man beispielsweise das $k-te$ Residuum in der A-Norm oder der 2-Norm gegen $r^{0}$ ab. In diesem Beispiel wählen wir folgenden Ansatz:
+Das CG-Verfahren konvergiert nach maximal $n$ Schritten. Wir bräuchten somit kein Abbruchkriterium, damit wir die optimale Lösung finden. Angenommen die Dimension der Matrix ist $n = 10^{6}$. Dann werden trotz der schnellen Konvergenz eine große Anzahl an Iterationen benötigt, nämlich gerade n. Um dies zu vermeiden, lässt man den Algorithmus abbrechen, sobald eine gewisse Toleranzgrenze erreicht ist. In der Praxis schätzt man beispielsweise das $k-te$ Residuum in der A-Norm oder der 2-Norm gegen $r^{0}$ ab. In diesem Beispiel wählen wir folgenden Ansatz:
 
 \begin{equation}
 \| u^{k} - u^{*} \|_{2} \le 10^{-3} \cdot \| u^{0} - u^{*} \|_{2},
@@ -1577,17 +1595,17 @@ In Dahmen/Reusken findet man für einige dieser Verfahren und dem gewählten Abb
 
 \section{Jacobi-Verfahren}\label{s.Jacobi mit Beispiel}
 
-Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert das Jacobi-Verfahren nur langsam. Es überrascht darum nicht, dass einige Iterationsschritte nötig sind, um das Gleichungssystem zu lösen. Trotz einer effizienten Programmierung benötigt die Methode viel Rechenzeit. Dies illustriert \autoref{tab.Jacobi}.
+Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert das Jacobi-Verfahren nur langsam. Es überrascht darum nicht, dass einige Iterationsschritte nötig sind, um das Gleichungssystem zu lösen. Trotz einer effizienten Programmierung benötigt die Methode viel Rechenzeit. Dies illustriert Tabelle 5.1.
 
 % \subsection{Jacobi C++-Methode}\label{s.cpu}\lstinputlisting[language=C]{code/Jacobi.c}
 
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$m$} & 32 & 64 & 128 & 256 \\\hline\hline
-\multirow{5}* & Schritte & 1340 & 5344 & 21341 & 85282 \\\cline{2-6}
+\multirow{5}* & Iterationsschritte & 1340 & 5344 & 21341 & 85282 \\\cline{2-6}
 & Rechenzeit in s &  0.17  & 2.89 & 47.22 & 771.03 \\\hline
 \end{tabular}
-\caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
+\caption[Tabelle für das Jacobi-Verfahren mit Iterationsschritten und Rechenzeit.]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
 \vspace{2ex}\end{table}\label{tab.Jacobi}
 
 Es ist gut zu sehen, dass sich die Anzahl der Iterationsschritte vervierfacht, sobald $m$ verdoppelt wird.
@@ -1597,6 +1615,8 @@ Es ist gut zu sehen, dass sich die Anzahl der Iterationsschritte vervierfacht, s
 Zunächst soll der C++-Code angegeben werden. Setzt man $\omega = 1$ erhält man obiges Jacobi-Verfahrens.
 
 \lstinputlisting[language=C++,firstline=232,lastline=255]{code/Algorithms.cpp}
+
+Der Code lässt gut erkennen, wie die Struktur von $\mat{A}_{2D}$ gut ausgenutzt werden kann.
 
 \subsection{Parameter $\omega = \frac {4} {5}$}
 
@@ -1610,23 +1630,23 @@ Aus diesem Grund benötigt das relaxierte Verfahren auch wesentlich mehr Iterati
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$m$} & 32  & 64 & 128 & 256 \\\hline\hline
-\multirow{5}* & Schritte & 1676  & 6681 & 26676 & 106603 \\\cline{2-6}
+\multirow{5}* & Iterationsschritte & 1676  & 6681 & 26676 & 106603 \\\cline{2-6}
 & Rechenzeit in s &  0.23  & 3.86 & 62.95 & 1031.14 \\\hline
 \end{tabular}
-\caption[Jacobi-Iterationsverfahren]{Es ist deutlich zu erkennen, dass das Jacobi-Relaxationsverfahrens als iterativer Löser ungeeignet ist.}
+\caption[Tabelle für das Jacobi-Relaxationsverfahren mit Iterationsschritten und Rechenzeit.]{Es ist deutlich zu erkennen, dass das Jacobi-Relaxationsverfahrens als iterativer Löser ungeeignet ist.}
 \vspace{2ex}\end{table}\label{tab.Parameter 2}
 
 \section{CG-Verfahren}\label{s.CG mit Beispiel}
 
-Da das CG-Verfahren eines der effizienteren Iterationsverfahren ist, sollten die Messwerte entsprechend gut sein. Man erkennt aber in \autoref{tab.CG} die schlechte Kondition von $\mat{A}_{2D}$. Pro Verdopplung der Gitterweite, verdoppeln sich auch die Iterationsschritte. Die Rechenzeit für ein sehr feines Gitter ist ebenfalls nicht akzeptabel.
+Da das CG-Verfahren eines der effizienteren Iterationsverfahren ist, sollten die Messwerte entsprechend gut sein. Man erkennt aber in Tabelle 5.3 die schlechte Kondition von $\mat{A}_{2D}$. Pro Verdopplung der Gitterweite, verdoppeln sich auch die Iterationsschritte. Die Rechenzeit für ein sehr feines Gitter ist ebenfalls nicht akzeptabel.
 
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$m$} & 32 & 64 & 128 & 256 & 512 \\\hline\hline
-\multirow{6}* & Schritte & 52 & 104 & 210 & 420 & 841  \\\cline{2-7}
+\multirow{6}* & Iterationsschritte & 52 & 104 & 210 & 420 & 841  \\\cline{2-7}
 & Rechenzeit in s & 0.02 & 0.15 & 1.33 & 10.96 & 87.76 \\\hline
 \end{tabular}
-\caption[Jacobi-Iterationsverfahren]{Ein gutes iteratives Verfahren, dass jedoch für feine Gitter nicht die gewünschte Effizienz aufweist.}
+\caption[Tabelle für das CG-Verfahren mit Iterationsschritten und Rechenzeit.]{Ein gutes iteratives Verfahren, dass jedoch für feine Gitter nicht die gewünschte Effizienz aufweist.}
 \vspace{2ex}\end{table}\label{tab.CG}
 
 Der C++-Code für das CG-Verfahren, wie auch im nächsten Abschnitt für das PCG-Verfahren ist verhältnismäßig lang. Wir wollen daher auf das Codebeispiel verzichten.
@@ -1640,10 +1660,10 @@ Auch wenn man eine klare Verbesserung zum Standardverfahren der konjugierten Gra
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$m$} & 32  & 64 & 128 & 256 & 512 & 1024 \\\hline\hline
-\multirow{7}* & Schritte & 16  & 32 & 63  & 126 & 251 & 502 \\\cline{2-8}
+\multirow{7}* & Iterationsschritte & 16  & 32 & 63  & 126 & 251 & 502 \\\cline{2-8}
 & Rechenzeit in s &  0.01  & 0.10 & 0.74 & 5.97 & 47.09 & 373.97 \\\hline
 \end{tabular}
-\caption[Jacobi-Iterationsverfahren]{Es ist anhand der Tabelle schön zu erkennen, dass die Anzahl der Schritte proportional mit der Gitterweite zunimmt.}
+\caption[Tabelle für das PCG-Verfahren (mit unvollständiger Cholesky-Zerlegung) mit Iterationsschritten und Rechenzeit.]{Es ist anhand der Tabelle schön zu erkennen, dass die Anzahl der Schritte proportional mit der Gitterweite zunimmt.}
 \vspace{2ex}\end{table}
 
 Offensichtlich gilt für das vorkonditionierte Verfahren der konjugierten Gradienten, dass die Anzahl der Schritte ungefähr doppelt so groß ist, als die Gitterweite $m$. Für die feinsten Gitter ist die Rechenzeit allerdings ungenügend.
@@ -1655,17 +1675,17 @@ Im Fall der modifizierten unvollständigen Cholesky-Zerlegung erwartet man nun e
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$m$} & 32  & 64 & 128 & 256 & 512 & 1024 \\\hline\hline
-\multirow{7}* & Schritte & 7  & 9 & 12  & 17 & 24 & 33 \\\cline{2-8}
+\multirow{7}* & Iterationsschritte & 7  & 9 & 12  & 17 & 24 & 33 \\\cline{2-8}
 & Rechenzeit in s &  0.01  & 0.03 & 0.17 & 0.96 & 5.12 & 27.07 \\\hline
 \end{tabular}
-\caption[Jacobi-Iterationsverfahren]{Es ist deutlich zu erkennen, dass diese Variante des PCG-Verfahrens die effizientere von beiden darstellt.}
+\caption[Tabelle für das PCG-Verfahren (mit modifizierter unvollständiger Cholesky-Zerlegung) mit Iterationsschritten und Rechenzeit.]{Es ist deutlich zu erkennen, dass diese Variante des PCG-Verfahrens die effizientere von beiden darstellt.}
 \vspace{2ex}\end{table}\label{tab.MIC}
 
-Wie \autoref{tab.MIC} nun eindrucksvoll zeigt, brauchen wir für das feinster Gitter maximal $33$ Iterationsschritte. Auch die Rechenzeit liegt in einem überschaubaren Rahmen. Wie wir im nächsten Abschnitt sehen werden, sind lediglich die Mehrgittermethoden schneller und effizienter.
+Wie Tabelle 5.5 nun eindrucksvoll zeigt, brauchen wir für das feinster Gitter maximal $33$ Iterationsschritte. Auch die Rechenzeit ist mit $27.07$ Sekunden gut. Wie wir im nächsten Abschnitt sehen werden, sind lediglich die Mehrgittermethoden schneller und effizienter.
 
 \section{Das Mehrgitterverfahren}\label{s.Multigrid mit Beispiel}
 
-Auch wenn der Zweigitteralgorithmus nicht immer die beste Wahl zur Lösung einer partiellen Differentialgleichung ist, stellt er speziell für die Poisson Gleichung eine äußerst effiziente Methode dar. 
+Auch wenn der Zweigitteralgorithmus nicht immer die beste Wahl zur Lösung einer partiellen Differentialgleichung ist, stellt er speziell für die Poisson Gleichung eine äußerst effiziente Methode dar. Besonders bemerkenswert ist bei den Mehrgitterverfahren die Feinheit des Gitters, dass mit einer maximalen Schrittweite von $h = \frac{1}{4096}$ diskretisiert werden kann.
 
 \subsection{Zweigitterverfahren}\label{ss.Zweigitterverfahren mit Beispiel}
 
@@ -1674,10 +1694,10 @@ Als direkter Löser wird das PCG-Verfahren mit einer modifizierten unvollständi
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$m$} & 32  & 64 & 128 & 256 & 512 & 1024 & 2048 & 4096 \\\hline\hline
-\multirow{9}* & Schritte & 3  & 3 & 3  & 3 & 3 & 3 & 3 & 3 \\\cline{2-10}
+\multirow{9}* & Anzahl der Zyklen & 3  & 3 & 3  & 3 & 3 & 3 & 3 & 3 \\\cline{2-10}
 & Rechenzeit in s &  0.01  & 0.02 & 0.13 & 0.55 & 2.54 & 12.08 & 57.66 & 282.13 \\\hline
 \end{tabular}
-\caption[Jacobi-Iterationsverfahren]{Das direkte Lösen auf dem groben Gitter erfolgt mit der modifizierten unvollständigen Cholesky-Zerlegung.}
+\caption[Tabelle für einen Zweigitteralgorithmus mit Anzahl der Zyklen und Rechenzeit.]{Das direkte Lösen auf dem groben Gitter erfolgt mit der modifizierten unvollständigen Cholesky-Zerlegung.}
 \vspace{2ex}\end{table}
 
 Ein Iterationsschritt ist ein Zyklus vom feinen auf das grobe Gitter und zurück.
@@ -1689,10 +1709,10 @@ Betrachten wir nun mehr als zwei Gitter, stellt sich durch "trial and error" her
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$m$} & 32  & 64 & 128 & 256 & 512 & 1024 & 2048 & 4096 \\\hline\hline
-\multirow{9}* & Schritte & 5  & 4 & 4  & 4 & 4 & 4 & 4 & 4 \\\cline{2-10}
+\multirow{9}* & Anzahl der Zyklen & 5  & 4 & 4  & 4 & 4 & 4 & 4 & 4 \\\cline{2-10}
 & Rechenzeit in s &  0.00  & 0.02 & 0.01 & 0.47 & 1.97 & 8.30 & 35.44 & 154.53 \\\hline
 \end{tabular}
-\caption[Jacobi-Iterationsverfahren]{Die Messwerte für einen V-Zyklus mit einem feinen und zwei groben Gittern.}
+\caption[Tabelle für einen V-Zyklus mit Anzahl der Zyklen und Rechenzeit.]{Die Messwerte für einen V-Zyklus mit einem feinen und zwei groben Gittern.}
 \vspace{2ex}\end{table}
 
 \subsection{W-Zyklus}\label{ss.W-Zyklus mit Beispiel}
@@ -1702,19 +1722,36 @@ Abschließend werfen wir noch einen Blick auf einen W-Zyklus. Auch hier stellt s
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|l|l|l|l|}\hline
 \multicolumn{2}{|c||}{$m$} & 32  & 64 & 128 & 256 & 512 & 1024 & 2048 & 4096 \\\hline\hline
-\multirow{9}* & Schritte & 5  & 5 & 5  & 4 & 4 & 4 & 4 & 3 \\\cline{2-10}
+\multirow{9}* & Anzahl der Zyklen & 5  & 5 & 5  & 4 & 4 & 4 & 4 & 3 \\\cline{2-10}
 & Rechenzeit in s &  0.01  & 0.05 & 0.22 & 0.82 & 3.74 & 17.31 & 81.88 & 297.59 \\\hline
 \end{tabular}
-\caption[Jacobi-Iterationsverfahren]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
+\caption[Tabelle für einen W-Zyklus mit Anzahl der Zyklen und Rechenzeit.]{Je größer $N$ wird, desto mehr Iterationsschritte und Rechenaufwand ist zum Lösen der Gleichung nötig.}
 \vspace{2ex}\end{table}
 
 Zwar braucht der W-Zyklus nicht mehr Iterationsschritte, jedoch ist der Rechenaufwand höher. Es werden pro Zyklus mehr Restriktionen und Interpolationen benötigt. Zudem werden auf jedem Gitter Glättungen durchgeführt. Und es wird öfter direkt gelöst. Dies benötigt mehr Rechenzeit, was durch die Tabelle belegt wird. \\
 
-Die Implementierung der drei Mehrgittermethoden ist die gleiche. Es wird lediglich beim Aufruf der C++-Methode die Anzahl der Gitter mitgegeben und ob es ein V- oder W-Zyklus sein soll. Wählt man zwei Gitter, so fungiert der Algorithmus als Zweigitterverfahren. Der Algorithmus sieht dann wie folgt aus:
+Die Implementierung der drei Mehrgittermethoden ist die gleiche. Es wird lediglich beim Aufruf der C++-Methode die Anzahl der Gitter mitgegeben und ob es ein V- oder W-Zyklus sein soll. Wählt man zwei Gitter, so fungiert der Algorithmus als Zweigitterverfahren. Dieser sieht dann wie folgt aus:
 
 \subsection{Mehrgitteralgorithmus C++-Methode}\label{s.mgm}\lstinputlisting[language=C++,firstline=151,lastline=170]{code/Algorithms.cpp}
 
 Wir wir gesehen haben, gibt es einige effiziente Verfahren zur Lösung der diskretisierten Poisson Gleichung. Am Ende stellt sich heraus, dass die mit Abstand geeignetsten Verfahren die Mehrgittermethoden sind. Man könnte die Verfahren mit etwas Aufwand zusätzlich parallelisieren und dadurch noch einmal eine bessere Rechenzeit erreichen.
+
+\chapter*{Danksagung}
+\addcontentsline{toc}{chapter}{Danksagung}
+
+\begin{large}
+An dieser Stelle möchte ich mich noch bei einigen Menschen bedanken, die mich bei der Erstellung dieser Bachelorarbeit unterstützt und ausgehalten haben:
+\begin{itemize}
+\item \textit{Meiner Mama}: Für die Unterstützung, das Vertrauen in mich und die große Geduld mit mir.
+\item \textit{Meiner Freundin}: Ohne dich, Sylvia, wäre ich nie durch dieses Studium gekommen. Deine Hilfe, dein Verständnis und dein Zuspruch haben mir sehr geholfen.
+\item \textit{Meinen besten Freunden}: Obwohl ihr Mathematik alle nicht sonderlich mögt, habt ihr euch meine scheinbar endlosen Vorträge immer wieder angehört.
+\item \textit{Christopher Rupprecht}: Die gute Hilfestellung hat mir gerade bei meinen Algorithmen sehr weiter geholfen.
+\item \textit{Prof. Dr. Harald Garcke}:  Vielen Dank für die kompetente Unterstützung und die investierte Zeit. Es ist nicht selbstverständlich, dass ein Professor immer zur Verfügung steht und ein offenes Ohr für seine Studenten hat. Durch ihre Einbringung und Hilfe war es mir möglich diese Arbeit auf ein gutes Niveau zu bringen. Vielen Dank für die hervorragende Betreuung!
+\end{itemize}
+\end{large}
+
+\listoffigures
+\listoftables
 
 % \begin{table}[H]\vspace{1ex}\centering
 % \begin{tabular}{|ll||l|l|l|l|}\hline
@@ -1741,13 +1778,5 @@ Wir wir gesehen haben, gibt es einige effiziente Verfahren zur Lösung der diskr
 
 % \bibliographystyle{alphadin_martin}
 % \bibliography{bibliographie}
-
-
-\chapter*{Erklärung}
-
-Hiermit versichere ich, dass ich die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe, dass alle Stellen der Arbeit, die wörtlich oder sinngemäß aus anderen Quellen übernommen wurden, als solche kenntlich gemacht und dass die Arbeit in gleicher oder ähnlicher Form noch keiner Prüfungsbehörde vorgelegt wurde.
-
-\vspace{3cm}
-Ort, Datum \hspace{5cm} Unterschrift\\
 
 \end{document}
