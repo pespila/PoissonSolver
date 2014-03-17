@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.1.27)  17 MAR 2014 22:32
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.1.27)  17 MAR 2014 22:40
 entering extended mode
  %&-line parsing enabled.
 **arbeit-vorlage.tex
@@ -2249,11 +2249,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 13177 strings out of 494948
- 190625 string characters out of 1179523
+ 13190 strings out of 494948
+ 190745 string characters out of 1179523
  450188 words of memory out of 3000000
  15335 multiletter control sequences out of 15000+50000
- 94284 words of font info for 377 fonts, out of 3000000 for 9000
+ 94994 words of font info for 386 fonts, out of 3000000 for 9000
  73 hyphenation exceptions out of 8191
  45i,16n,66p,1783b,1974s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-
@@ -2270,7 +2270,7 @@ am10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share
 nts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/pal
 atino/uplr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplri8a.pfb
 >
-Output written on arbeit-vorlage.pdf (73 pages, 1191291 bytes).
+Output written on arbeit-vorlage.pdf (73 pages, 1191624 bytes).
 PDF statistics:
  1222 PDF objects out of 1440 (max. 8388607)
  1093 compressed objects within 11 object streams
