@@ -153,7 +153,6 @@ vector<double> Algorithms::Cycle(Matrix& A,vector<double>& x,const vector<double
     vector<double> r(dim,0),E(dim,0),r2h(dim2h,0),E2h(dim2h,0);
     if(this->Vcounter==lambda) {
         PCGdirect(B,L,U,x,b);
-        // CGdirect(A,x,b);
         return x;
     } else {
         this->Vcounter++;
