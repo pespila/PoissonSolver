@@ -126,7 +126,7 @@ class Algorithms {
         int SORMethod(Matrix&,vector<double>&,const vector<double>&,const vector<double>&);
         int CG(Matrix&,vector<double>&,const vector<double>&,const vector<double>&);
         int PCG(Matrix&,WriteableMatrix&,WriteableMatrix&,vector<double>&,const vector<double>&,const vector<double>&);
-        void modifiedIncompleteLU(Matrix&, WriteableMatrix&, WriteableMatrix&);
+        void modifiedIncompleteCholesky(Matrix&, WriteableMatrix&, WriteableMatrix&);
         void incompleteLU(Matrix&,WriteableMatrix&,WriteableMatrix&);
         void LUsolverUpper(Matrix&,Matrix&,vector<double>&);
 

@@ -1,0 +1,28 @@
+\select@language {ngerman}
+\select@language {ngerman}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces 5-Punkt-Differenzenstern bei der Diskretisierung von $\Omega $.}}{5}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Lexikographische Nummerierung der Punkte auf dem Gitter im Einheitsquadrat.}}{6}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Eigenvektor mit kurzwelligen, schwach oszillierenden Sinuswellen.}}{10}{figure.2.3}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Stark oszillierender Eigenvektor f\IeC {\"u}r die eindimensionale Poisson Gleichung.}}{10}{figure.2.4}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Sehr stark oszillierender Eigenvektor.}}{11}{figure.2.5}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Ein Beispiel f\IeC {\"u}r einen langwelligen Eigenvektor f\IeC {\"u}r die zweidimensionale Poisson Gleichung.}}{12}{figure.2.6}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Eigenwertspektrum der Jacobi Iterationsmatrix, bzw. der Iterationsmatrix des Jacobi-Relaxationsverfahrens mit Parameter $\omega = 1$.}}{29}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Eigenwertspektrum der Iterationsmatrix des Jacobi-Relaxationsverfahrens mit dem Parameter $\omega = \frac {1}{2}$.}}{30}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Plot der Eigenwerte f\IeC {\"u}r den optimalen Parameter $\omega = \frac {4}{5}$ f\IeC {\"u}r das Jacobi-Relaxationsverfahren.}}{31}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Plot des Startfehlers mit stark oszillierenden Sinuswellen.}}{32}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Plot des Fehlers nach einem Gl\IeC {\"a}ttungsschritt.}}{33}{figure.3.5}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Gegl\IeC {\"a}tteter Fehler nach drei Iterationsschritten des Jacobi-Relaxationsverfahrens mit optimalen Parameter.}}{33}{figure.3.6}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Illustration der Gewichtung im Falle einer Interpolation mit Full-Weighting-Operator.}}{51}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Ausgehend von einem Punkt innerhalb des Gitters, ist hier die Gewichtung der Werte veranschaulicht. Jeder Wert wird zus\IeC {\"a}tzlich mit einem Faktor $\frac {1}{16}$ multipliziert}}{53}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Veranschaulichung eines V-Zyklus in den Mehrgittermethoden.}}{58}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Ein W-Zyklus der die einzelnen Schritte illustriert.}}{59}{figure.4.4}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Plot der Funktion $u(x,y) = x^{2} + y^{2}$, als analytische L\IeC {\"o}sung einer partiellen Differentialgleichung.}}{62}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Plot des L\IeC {\"o}sungsvektors nach einem V-Zyklus im Einheitsquadrat.}}{62}{figure.5.2}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

@@ -193,7 +193,7 @@ int Algorithms::MultiGridMethod(Matrix& A,vector<double>& x,const vector<double>
     LowerMatrix L(n);
     UpperMatrix U(n);
     B.InitHashMatrix();
-    modifiedIncompleteLU(B,L,U);
+    modifiedIncompleteCholesky(B,L,U);
     double TOL=pow(10,-3)*(r|r);
     while(TOL<=(r|r)) {
         x=Cycle(A,x,b,numberOfGrids,VW,B,L,U);
@@ -377,7 +377,7 @@ int Algorithms::PCG(Matrix& A,WriteableMatrix& L,WriteableMatrix& U,vector<doubl
     return steps;
 }
 
-void Algorithms::modifiedIncompleteLU(Matrix& A,WriteableMatrix& L,WriteableMatrix& U) {
+void Algorithms::modifiedIncompleteCholesky(Matrix& A,WriteableMatrix& L,WriteableMatrix& U) {
     int i,j,k,m,u,dim=A.Size();
     double sum, drop;
 

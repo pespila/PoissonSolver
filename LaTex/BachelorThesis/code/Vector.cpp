@@ -3,14 +3,12 @@
 double Vectors::f(double x,double y,int k) {
     double val;
     if(k==1) val=-4.0;
-    if(k==2) val=0.0;
     return val;
 }
 
 double Vectors::g(double x,double y,int k) {
     double val;
     if(k==1) val=pow(x,2)+pow(y,2);
-    if(k==2) val=1.0;
     return val;
 }
 

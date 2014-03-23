@@ -2,24 +2,22 @@
 
 int main(int argc, char const *argv[]) {
     const char *method;
-    int arg,alg,func,steps=0;
+    int arg,alg,steps=0;
     if(argc<4) {
         printf("\n");
         printf("Choose your prefered algorithm:\n[1] Conjugate Gradient\n[2] P. Conjugate Gradient (ICG)\n[3] P.Conjugate Gradient (MICG)\n[4] Two Grid (square numbers of 2 recommended!)\n[5] V-Cycle (square numbers of 2 recommended!)\n[6] W-Cycle (square numbers of 2 recommended!)\n[7] Jacobi Method\n[8] Jacobi Relaxation Method \n[9] Gauss-Seidel-Method\n[10] SOR Method\n");
         scanf("%d",&alg);
         printf("Choose your m, where h=1/m and N=m-1 number of grid points in x and y direction:\n");
         scanf("%d",&arg);
-        printf("Choose your prefered equation:\n[1] -nabla u(x,y) = -4, and u(x,y) = x^2 + y^2.\n[2] -nabla u(x,y) = 0, and u(x,y) = 1.\n");
-        scanf("%d",&func);
         arg=arg-1;
     } else {
-	    arg=atoi(&*argv[1])-1;alg=atoi(&*argv[2]);func=atoi(&*argv[3]);
+	    arg=atoi(&*argv[1])-1;alg=atoi(&*argv[2]);
 	}
 
     PoissonMatrix A(arg);
     LowerMatrix L(arg);
     UpperMatrix U(arg);
-    Boundary B(arg,func);
+    Boundary B(arg,1);
     Startvector X(arg,0.0);
     Algorithms Run(arg);
 
@@ -43,7 +41,7 @@ int main(int argc, char const *argv[]) {
         method="P. Conjugate Gradient (MICG)";
         if(arg<1024) {
             A.InitHashMatrix();
-            Run.modifiedIncompleteLU(A,L,U);
+            Run.modifiedIncompleteCholesky(A,L,U);
             steps=Run.PCG(A,L,U,X.x,B.b,B.solved);
         } else steps=-1;
     }

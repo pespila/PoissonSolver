@@ -1,4 +1,4 @@
-\input{arbeit-vorlage-praeambel.tex} % Importiere die Einstellungen aus der Präambel
+\input{IterativeMethodsForTheDiscretizedPoissonEquation_settings.tex} % Importiere die Einstellungen aus der Präambel
 % hier beginnt der eigentliche Inhalt
 
 % \usepackage{geometry}
@@ -76,20 +76,8 @@ Ort, Datum \hspace{5cm} Unterschrift\\
 \pagestyle{useheadings} % normale Kopf- und Fußzeilen für den Rest
 
 \tableofcontents
-
-%\chapter*{Symbolverzeichnis}\label{s.sym}
-%\addcontentsline{toc}{chapter}{Symbolverzeichnis}
-%\markboth{Symbolverzeichnis}{Symbolverzeichnis}
-%\section*{Allgemeine Symbole}\label{s.sym.alg}
-% \begin{flushleft}\begin{tabularx}{\textwidth}{l|X}
-% Symbol & Bedeutung\\\hline
-% $a$ & der Skalar $a$ \\
-% $\vec{x}$ & der Vektor $\vec{x}$\\
-% $\mat{A}$ & die Matrix $\mat{A}$\\
-% \end{tabularx}\end{flushleft}
-
-
-
+\listoffigures
+\listoftables
 
 % richtiger Inhalt
 \chapter{Einleitung}\label{c.Einleitung}
@@ -114,7 +102,7 @@ Sei $\Omega = (0,1)\times(0,1) \in \mathbb{R}^{2}$ ein beschränktes, offenes Ge
 u(x,y) &=& g(x,y) \textnormal{ auf } \partial \Omega\label{eq.Dirichlet1}
 \end{eqnarray}
 löst.
-Dabei seien $f: \Omega \rightarrow \mathbb{R}$ und $g: \partial\Omega \rightarrow \mathbb{R}$ stetige Funktionen und es bezeichnet $\Delta := \sum\limits_{k=1}^{2} \frac {\partial^{2}} {\partial x_{k}^{2}}$ den Laplace-Operator. Für die Poisson-Gleichung im $\mathbb{R}^{2}$ gilt dann:
+Dabei seien $f: \Omega \rightarrow \mathbb{R}$ und $g: \partial\Omega \rightarrow \mathbb{R}$ stetige Funktionen und es bezeichnet $\Delta = \sum\limits_{k=1}^{2} \frac {\partial^{2}} {\partial x_{k}^{2}}$ den Laplace-Operator. Für die Poisson-Gleichung im $\mathbb{R}^{2}$ gilt dann:
 \begin{eqnarray}
 -\Delta u(x,y) &=& - \left( \frac {\partial^{2} u(x,y)} {\partial x^{2}} + \frac {\partial^{2} u(x,y)} {\partial y^{2}} = f(x,y) \right) \textnormal{ in } \Omega, \\
 u(x,y) &=& g(x,y) \textnormal{ auf } \partial \Omega.\label{eq.Dirichlet2}
@@ -160,8 +148,8 @@ Somit erhalten wir für $-\Delta u(x,y)$ die Näherung
 \subsection{Diskretisierung von $\Omega$}\label{ss.Diskretisierung}
 
 
-Mit einem zweidimensionalen Gitter, der Gitterweite $h$, wobei $h \in \mathbb{Q}$ mit $h = \frac {1} {m}$ und $m \in \mathbb{N}_{>2}$, wird nun das Gebiet $\Omega$ diskretisiert. Die Zahl $N := (m-1)$ gibt an, wie viele innere Gitterpunkte es jeweils in x- bzw. y-Richtung gibt.\\
-Die folgenden Aussagen sind weitestgehend in \cite{DAR1} wieder zu finden.\\
+Mit einem zweidimensionalen Gitter, der Gitterweite $h$, wobei $h \in \mathbb{Q}$ mit $h = \frac {1} {m}$ und $m \in \mathbb{N}_{>2}$, wird nun das Gebiet $\Omega$ diskretisiert. Die Zahl $N = (m-1)$ gibt an, wie viele innere Gitterpunkte es jeweils in x- bzw. y-Richtung gibt.\\
+Die folgenden Aussagen sind weitestgehend in \cite{DR1} wieder zu finden.\\
 
 Für $i,j = 1,...,N$ fassen wir $u(x,y)$ auf als:
 \begin{equation}
@@ -170,7 +158,7 @@ u(x_{i},y_{j}) = u(ih,jh).
 
 $\Omega$ schreiben wir als $\Omega_{h}$, so dass gilt:
 \begin{equation}
-\Omega_{h} := \{(ih, jh) | 1 \le i,j \le N\}.
+\Omega_{h} = \{(ih, jh) | 1 \le i,j \le N\}.
 \end{equation}
 
 \bild{diffStar}{8cm}{5-Punkt-Differenzenstern im Gitter, wobei für alle $1 < i,j < N$ jeder Punkt $(x,y) \in \Omega_{h}$ genau vier Nachbarn in $\Omega_{h}$ besitzt.}{5-Punkt-Differenzenstern bei der Diskretisierung von $\Omega$.}\label{img.5-Point-Star}
@@ -189,7 +177,7 @@ Man stellt $\Delta_{h} u(x,y)$ auch als 5-Punkt-Differenzenstern (Abbildung 2.1)
 \end{pmatrix}_{\xi}
 \textnormal{, } \xi \in \Omega_{h}
 \end{equation}
-dar. (Dahmen Reusken)
+dar.
 
 \bild{gitter}{12cm}{Nummerierung der Punkte von $\Omega = (0,1)^{2}$ mit $m=5$. In x- bzw. y-Richtung gibt es jeweils $N=4$ Punkte.}{Lexikographische Nummerierung der Punkte auf dem Gitter im Einheitsquadrat.}\label{img.gridWithNumbers}
 
@@ -220,7 +208,7 @@ A_{i} =
 \end{equation}
 $A_{i} \in \mathbb{R}^{N \times N}$.
 
-Nun wissen wir, wie $-\Delta u_{h}$ in Matrixform aussieht. Man nennt eine Matrix bei der viele Einträge gleich Null sind dünn besetzt oder sparse. Die rechte Seite $f$ der partiellen Differentialgleichung kann nun ebenfalls in diskretisierter Form $f_{h}$ geschrieben werden. Zu jeder Komponente von $f_{h}$, die einen Randpunkt als Nachbarn hat, wird dieser dazu addiert. Hat eine Komponente von $f_{h}$ zwei Nachbarn auf $\partial \Omega_{h}$, werden beide addiert. Dies führt uns auf folgende rechte Seite, wobei wir diese nun als $f$ auffassen wollen [Dahmen/Reusken]:
+Nun wissen wir, wie $-\Delta u_{h}$ in Matrixform aussieht. Man nennt eine Matrix bei der viele Einträge gleich Null sind dünn besetzt oder sparse. Die rechte Seite $f$ der partiellen Differentialgleichung kann nun ebenfalls in diskretisierter Form $f_{h}$ geschrieben werden. Zu jeder Komponente von $f_{h}$, die einen Randpunkt als Nachbarn hat, wird dieser dazu addiert. Hat eine Komponente von $f_{h}$ zwei Nachbarn auf $\partial \Omega_{h}$, werden beide addiert. Dies führt uns auf folgende rechte Seite, wobei wir diese nun als $f$ auffassen wollen:
 
 \begin{equation}
 f =
@@ -273,20 +261,19 @@ Außerdem gilt für die Schrittweite stets $h = \frac{1}{m}$, wobei $m \in \math
 
 $\mat{A}_{2D} \in \mathbb{R}^{n \times n}$ ist symmetrisch, da $\mat{A}_{2D} = \mat{A}_{2D}^{T}$. Somit existiert eine Orthogonalbasis aus Eigenvektoren für die gilt:
 \begin{equation}
-\mat{A}_{2D}v_{i,j} = \lambda_{i,j} v_{i,j},
+\mat{A}_{2D}v_{i} = \lambda_{i} v_{i},
 \end{equation}
-wobei $\lambda_{1,1},...,\lambda_{N,N} \in \mathbb{R}$ und $v_{i,j} \in \mathbb{R}^{n}$.
+wobei für alle $1 \le i \le n$ gilt: $\lambda_{1},...,\lambda_{n} \in \mathbb{R}$ und $v_{i} \in \mathbb{R}^{n}$.
 
 \subsection{Eigenwerte und Eigenvektoren von $\mat{A}_{2D}$}\label{ss.Eigenwerte und Eigenvektoren}
 
-Aus \cite{SAA1} für $k,l \in \mathbb{N}$ sei $(x_{k},y_{l}) \in \Omega_{h}$ mit $x_{k} := k \cdot h, y_{l} := l \cdot h$. Zudem sind $\theta_{k}, \theta_{l} \in \mathbb{R}$ mit $\theta_{k} := k \pi h$ bzw. $\theta_{l} := l \pi h$. Dann gilt für die Eigenwerte:
+Aus \cite{SAAD1} sei für $k,l \in \mathbb{N}$, $(x_{k},y_{l}) \in \Omega_{h}$ mit $x_{k} = k \cdot h, y_{l} = l \cdot h$. Zudem sind $\theta_{k}, \theta_{l} \in \mathbb{R}$ mit $\theta_{k} = k \pi h$ bzw. $\theta_{l} = l \pi h$. Dann gilt für die Eigenwerte:
 \begin{equation}
 \lambda_{k,l} = 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2}) \right) \textnormal{ für } 1 \le k,l \le N.\label{eq.Eigenwerte}
 \end{equation}
 Zudem gilt für einen Eigenvektor am Punkt $(x_{k},y_{l})$ gilt:
 \begin{equation}
-(v_{k,l})_{i,j} = \sin(i \pi x_{k}) \sin(j \pi y_{l}) = \sin(i\theta_{k}) \sin(j\theta_{l}) \textnormal{ für } 1 \le i,j \le N.
-% v_{i,j}(x_{k},y_{l}) = \sin(i \pi x_{k}) \sin(j \pi y_{l}) \textnormal{ für } 1 \le i,j,k,l \le N.
+(v_{k,l})_{i,j} = \sin(i \pi x_{k}) \sin(j \pi y_{l}) = \sin(i\theta_{k}) \sin(j\theta_{l}) \textnormal{ für } 1 \le i,j,k,l \le N.
 \end{equation}
 
 \textbf{Bemerkung:}
@@ -309,17 +296,19 @@ v_{k.l} =
 
 \textbf{Beispiel:}
 
-Um sich die Eigenvektoren besser vorstellen zu können, wollen wir zunächst drei Eigenvektoren des eindimensionalen Poisson Problems betrachten. Es wird das Gebiet $\Omega_{h} = (0,1)$ diskretisiert und es gilt $u(x)'' = f(x)$ mit Randbedingung $u(x) = g(x)$. Dann erhält man auf einem Gitter $(0,1)$ mit $h = \frac{1}{m}$ wie oben, die Eigenvektoren in den Punkten 1,7 und 13:
+Um sich die Eigenvektoren besser vorstellen zu können, wollen wir zunächst drei Eigenvektoren des eindimensionalen Poisson Problems betrachten. Es wird das Gebiet $\Omega_{h} = (0,1)$ diskretisiert und es gilt $u(x)'' = f(x)$ mit Randbedingung $u(x) = g(x)$. Dann erhält man auf einem Gitter $(0,1)$ mit $h = \frac{1}{m}$ wie oben, die Eigenvektoren des diskretisierten Problems in den Punkten 1,7 und 13:
 
-\bild{sin1}{8cm}{Dieser Graph stellt den Eigenvektor am ersten Punkt, also $h = \frac{1}{15}$ dar. Zu sehen sind harmonische, kurzwellige Sinuskurven.}{Eigenvektor mit harmonischen, kurzwelligen Sinuswellen für die eindimensionale Poisson Gleichung.}
-\bild{sin7}{8cm}{Bei diesen stark oszillierenden Sinuswellen handelt es sich um den Eigenvektor im Punkt $\frac{7}{15}$.}{Stark oszillierender Eigenvektor für die eindimensionale Poisson Gleichung.}
-\bild{sin13}{8cm}{Diese langen Sinuswellen gehören zum Punkt $\frac{13}{15}$.}{Langwelliger Eigenvektor für die eindimensionale Poisson Gleichung.}\label{img.1D Langwelle}
+\bild{sin1}{10cm}{Dieser Graph stellt den Eigenvektor am ersten Punkt, also $h = \frac{1}{15}$ dar. Die Sinuswellen sind zwar eher kurzwellig, allerdings nicht stark oszillierend.}{Eigenvektor mit kurzwelligen, schwach oszillierenden Sinuswellen.}
+\bild{sin7}{10cm}{Bei diesen stark oszillierenden Sinuswellen handelt es sich um den Eigenvektor im Punkt $\frac{7}{15}$.}{Stark oszillierender Eigenvektor für die eindimensionale Poisson Gleichung.}
+\bild{sin13}{10cm}{Die Sinuswellen sind für den Eigenvektor im Punkt $\frac{13}{15}$ kaum mehr erkennbar, wegen ihrer starken Oszillation.}{Sehr stark oszillierender Eigenvektor.}\label{img.1D Langwelle}
+
+
 
 Man sieht deutlich, dass die Oszillation der einzelnen Eigenvektoren unterschiedlich ist. Manche der Eigenvektoren sind langwellig, andere kurzwellig. Wenn wir nun zurück zu unserer Ausgangssituation des zweidimensionalen Poisson Problems gehen und das Gitter aus Abbildung 2.2 als Basis nehmen, erhalten wir für den Punkt 11 des Gitters folgende Darstellung des Eigenvektors:
 
 \bild{EV}{14cm}{Es sind die Sinuswellen des Eigenvektors im Gitterpunkt $(\frac {3} {5},\frac {3} {5})$ zu sehen. Sie sind langwellig und nur schwach oszillierend.}{Ein Beispiel für einen langwelligen Eigenvektor für die zweidimensionale Poisson Gleichung.}
 
-Man kann dieses Bild in etwa mit Abbildung 2.5 vergleichen. Dieser Eigenvektor besitzt eine langwellige Oszillation.
+Zur besseren Darstellung wurde für den Plot der Eigenvektor das kontinuierlichen Problem herangezogen. Man konnte hier einen langwelligen Eigenvektor erkennen. Von besonderem Interesse sind in späteren Abschnitten jedoch die kurzwelligen, stark oszillierenden Eigenvektoren.
 
 \textbf{Beweis zu \autoref{ss.Eigenwerte und Eigenvektoren}:}
 
@@ -336,7 +325,8 @@ c & a & b\\
 \end{pmatrix}
 \end{equation}
 
-gilt für die Eigenwerte $\lambda_{k} = a + 2b\left(\frac{c}{b}\right)^{\frac{1}{2}} \cos(\theta_{k})$ und die Eigenvektoren $v_{k_{i}} = \left(\frac{c}{b}\right)^{\frac{i}{2}} \sin(i \theta_{k})$ für alle $1 \le i \le N$, $\lambda_{k} \in \mathbb{R}, v_{k} \in \mathbb{R}^{N \times N}$.
+gilt für die Eigenwerte $\lambda_{k} = a + 2b\left(\frac{c}{b}\right)^{\frac{1}{2}} \cos(\theta_{k})$ und die Eigenvektoren\\
+$(v_{k})_{i} = \left(\frac{c}{b}\right)^{\frac{i}{2}} \sin(i \theta_{k})$ für alle $1 \le i \le N$, $\lambda_{k} \in \mathbb{R}, v_{k} \in \mathbb{R}^{N}$.
 
 \textit{Beweis:}
 
@@ -366,31 +356,31 @@ c v_{k_{1}} + (a - \lambda_{k}) v_{k_{2}} + b v_{k_{3}}\\
 c v_{k_{N-2}} + (a - \lambda_{k}) v_{k_{N-1}} + b v_{k_{N}}\\
 c v_{k_{N-1}} + (a - \lambda_{k}) v_{k_{N}}
 \end{pmatrix}
-= 0
+= 0.
 \end{equation}
 
 Wir wollen zunächst die einzelnen Summanden ausrechnen bzw. vereinfachen. Dabei benutzen wir u.a. die Additionstheoreme:
 
 \begin{description}
-\item[1.] Löse $(a - \lambda_{k}) v_{k_{i}}$
+\item[1.] Löse $(a - \lambda_{k}) (v_{k})_{i}$
 \begin{eqnarray}
-(a - \lambda_{k}) v_{k_{i}} &=& (a - (a + 2b\left(\frac{c}{b}\right)^{\frac{1}{2}} \cos(\theta_{k}))) \left(\frac{c}{b}\right)^{\frac{i}{2}} \sin(i \theta_{k})\notag \\
+(a - \lambda_{k}) (v_{k})_{i} &=& (a - (a + 2b\left(\frac{c}{b}\right)^{\frac{1}{2}} \cos(\theta_{k}))) \left(\frac{c}{b}\right)^{\frac{i}{2}} \sin(i \theta_{k})\notag \\
 &=& -2b\left(\frac{c}{b}\right)^{\frac{i+1}{2}} \cos(\theta_{k})\sin(i \theta_{k}) \notag
 \end{eqnarray}
-\item[2.] Löse $b v_{k_{i+1}}$
+\item[2.] Löse $b (v_{k})_{i+1}$
 \begin{eqnarray}
-b v_{k_{i+1}} &=& b \left(\frac{c}{b}\right)^{\frac{i+1}{2}} \sin((i+1) \theta_{k})\notag \\
+b (v_{k})_{i+1} &=& b \left(\frac{c}{b}\right)^{\frac{i+1}{2}} \sin((i+1) \theta_{k})\notag \\
 &=& b \left(\frac{c}{b}\right)^{\frac{i+1}{2}} (\cos(\theta_{k}) \sin(i \theta_{k}) + \cos(i \theta_{k}) \sin(\theta_{k})) \notag
 \end{eqnarray}
-\item[3.] Löse $c v_{k_{i-1}}$
+\item[3.] Löse $c (v_{k})_{i-1}$
 \begin{eqnarray}
-c v_{k_{i-1}} &=& c \left(\frac{c}{b}\right)^{\frac{i-1}{2}} \sin((i-1) \theta_{k}) = \left(c^{2}\frac{c}{b}\right)^{\frac{i-1}{2}} \sin((i-1) \theta_{k})\notag \\
+c (v_{k})_{i-1} &=& c \left(\frac{c}{b}\right)^{\frac{i-1}{2}} \sin((i-1) \theta_{k}) = \left(c^{2}\frac{c}{b}\right)^{\frac{i-1}{2}} \sin((i-1) \theta_{k})\notag \\
 &=& \left(\frac{1}{b^{-2}} \frac{c}{b}\right)^{\frac{i+1}{2}} \sin((i-1) \theta_{k}) = b \left(\frac{c}{b}\right)^{\frac{i+1}{2}} \sin((i-1) \theta_{k}) \notag \\
 &=& b \left(\frac{c}{b}\right)^{\frac{i+1}{2}} (\cos(\theta_{k}) \sin(i \theta_{k}) - \cos(i \theta_{k}) \sin(\theta_{k})) \notag
 \end{eqnarray}
 \end{description}
 
-Nun rechnen wir jede Zeile unseres Vektors aus:
+Nun rechnen wir jede Zeile unseres Vektors aus und nutzen dabei wieder die Additionstheoreme:
 
 \begin{description}
 \item[1.] $i = 1$
@@ -408,9 +398,9 @@ Nun rechnen wir jede Zeile unseres Vektors aus:
 \item[3.] $i = N$
 \begin{eqnarray}
 && b \left(\frac{c}{b}\right)^{\frac{N+1}{2}} (\cos(\theta_{k}) \sin(N \theta_{k}) - \cos(N \theta_{k}) \sin(\theta_{k})) - 2b\left(\frac{c}{b}\right)^{\frac{N+1}{2}} \cos(\theta_{k})\sin(N \theta_{k}) \notag \\
-&=& b \left(\frac{c}{b}\right)^{\frac{N+1}{2}}(-2\cos(\theta_{k})\sin(N\theta_{k}) + \cos(\theta_{k})\sin(N\theta_{k}) - \cos(N\theta_{k})\sin(\theta_{k})) \notag \\
+&=& b \left(\frac{c}{b}\right)^{\frac{N+1}{2}}(-\cos(\theta_{k})\sin(N\theta_{k}) - \cos(N\theta_{k})\sin(\theta_{k})) \notag \\
 &=& -b \left(\frac{c}{b}\right)^{\frac{N+1}{2}}(\cos(\theta_{k})\sin(N\theta_{k}) + \cos(N\theta_{k})\sin(\theta_{k})). \notag \\
-&=& -b \left(\frac{c}{b}\right)^{\frac{N+1}{2}} \sin((N+1)\theta_{k}) \overset{h = \frac{1}{N+1}}{=} -b \left(\frac{c}{b}\right)^{\frac{N+1}{2}} \sin(k\pi) = 0. \notag
+&=& -b \left(\frac{c}{b}\right)^{\frac{N+1}{2}} \sin((N+1)\theta_{k}) \overset{h = \frac{1}{N+1}}{=} -b \left(\frac{c}{b}\right)^{\frac{N+1}{2}} \sin(k\pi) \overset{k \in \mathbb{N}}{=} 0. \notag
 \end{eqnarray}
 \end{description}
 \begin{flushright}
@@ -419,18 +409,18 @@ $\blacksquare$
 Für die Matrizen $A_{i}$ erhalten wir mit $a = 4, b = c = -1$ für die Eigenwerte $\lambda_{k} = 4 (1 - \frac{1}{2} \cos(\theta_{k}))$ und die Eigenvektoren $v_{k} = \sin(i\theta_{k})$ für alle $1 \le i \le N$.\\
 Offensichtlich hat auch $-\mat{Id}$ die selben Eigenvektoren wie $A_{i}$, mit den Eigenwerten $\mu_{k} = -1$, denn
 \begin{equation}
-(-\mat{Id} - \lambda_{k}\mat{Id}) v_{k} = \mat{0} v_{k} = 0.
+(-\mat{Id} - \lambda_{k}\mat{Id}) v_{k} = 0.
 \end{equation}
 Nun wollen wir diese Erkenntnisse für die Matrix $\mat{A}_{2D} \in \mathbb{R}^{n \times n}$ verwenden. Da diese Matrix ebenfalls eine Tridiagonalmatrix ist, folgt für $a = A_{j}$, wobei $1 \le j \le N$ und $b = c = -Id$.\\
-Der gesuchte Eigenvektor in einem Punkt $(x_{k},y_{l})$ war gegeben durch $v_{k,l} = \sin(i\theta_{k}) \sin(j\theta_{l})$ für alle $1 \le k,l \le N$. Diese Eigenvektoren können wir auch auffassen als $v_{k,l} = \sin(\theta_{l})v_{k}$ für alle $1 \le k,l \le N$. Wegen $\mat{A}_{2D}$ symmetrisch folgt:
+Der gesuchte Eigenvektor in einem Punkt $(x_{k},y_{l})$ war gegeben durch $(v_{k,l})_{i,j} = \sin(i\theta_{k}) \sin(j\theta_{l})$ für alle $1 \le i,j,k,l \le N$. Diese Eigenvektoren können wir auch auffassen als $(v_{k,l})_{i,j} = \sin(j\theta_{l})(v_{k})_{i}$ für alle $1 \le i,j,k,l \le N$. Wegen $\mat{A}_{2D}$ symmetrisch folgt:
 \begin{eqnarray}
 \mat{A}_{2D}v_{k,l} &=& 
 \begin{pmatrix}
 A_{1} & -Id\\
 -Id & A_{2} & -Id\\
     & \ddots & \ddots & \ddots\\
-   	&		 & -Id    & A_{n-1} & -Id\\
-   	&		 &		  & -Id    & A_{n}
+   	&		 & -Id    & A_{N-1} & -Id\\
+   	&		 &		  & -Id    & A_{N}
 \end{pmatrix}
 \begin{pmatrix}
 \sin(\theta_{l}) v_{k}\\
@@ -449,34 +439,36 @@ A_{1} & -Id\\
 \end{pmatrix}\notag
 \end{eqnarray}
 
-Für $1 \le l,k \le N$ werden wir nun $\mat{A}_{2D} v_{k,l}$ explizit ausrechnen und müssen dafür wieder drei Fälle unterscheiden:
+Für $1 \le l,k \le N$ werden wir nun $\mat{A}_{2D} v_{k,l}$ explizit ausrechnen und müssen dafür wieder drei Fälle unterscheiden, bei denen wir die Additionstheoreme benutzen:
 \begin{description}
 \item[1.] $j = 1$
 \begin{eqnarray}
-&&\underbrace{A_{1} v_{k}}_{=\lambda_{k} v_{k}} \sin(\theta_{l}) + (\underbrace{-Id v_{k}}_{\mu_{k} v_{k}}) \underbrace{\sin(2\theta_{l})}_{\sin(\theta_{k} + \theta_{l}) = 2\cos({\theta_{l})\sin({\theta_{l}})}} \notag \\
+&&\underbrace{A_{1} v_{k}}_{=\lambda_{k} v_{k}} \sin(\theta_{l}) + (\underbrace{-Id v_{k}}_{= \mu_{k} v_{k}}) \underbrace{\sin(2\theta_{l})}_{= \sin(\theta_{l} + \theta_{l}) = 2\cos({\theta_{l})\sin({\theta_{l}})}} \notag \\
 &=& \lambda_{k}v_{k}\sin(\theta_{l}) + 2\mu_{k}v_{k}\cos(\theta_{l})\sin(\theta_{l}) \notag \\
-&=& (\lambda_{k} + 2\mu_{k}\cos(\theta_{l})) \underbrace{v_{k}\sin(\theta_{l})}_{v_{k,l}} = (\lambda_{k} + 2\mu_{k}\cos(\theta_{l}))v_{k,l} \notag \\
-&=& (4(1 - \frac{1}{2}\cos{\theta_{k}}) - 2\cos(\theta_{l})) v_{k,l} = (4 - 2\cos(\theta_{k}) - 2\cos(\theta_{l})) v_{k,l} \notag \\
-&=& (2 - 2\cos(\theta_{k}) + 2 - 2\cos(\theta_{l})) v_{k,l} \notag \\
-&=& \underbrace{(2(1 - \frac{1}{2}\cos(\theta_{k})) + 2(1 - \frac{1}{2}\cos(\theta_{l}))}_{\textnormal{mit } 2 - \cos(x) = \sin^{2}(\frac{x}{2})} v_{k,l} \notag \\
-&=& 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) v_{k,l}\notag
+&=& (\lambda_{k} + 2\mu_{k}\cos(\theta_{l})) \underbrace{v_{k}\sin(\theta_{l})}_{= (v_{k,l})_{j=1}} = (\lambda_{k} + 2\mu_{k}\cos(\theta_{l}))(v_{k,l})_{j=1} \notag \\
+&=& (4(1 - \frac{1}{2}\cos{\theta_{k}}) - 2\cos(\theta_{l})) (v_{k,l})_{j=1} \notag \\
+&=& (4 - 2\cos(\theta_{k}) - 2\cos(\theta_{l})) (v_{k,l})_{j=1} \notag \\
+&=& (2 - 2\cos(\theta_{k}) + 2 - 2\cos(\theta_{l})) (v_{k,l})_{j=1} \notag \\
+&=& \underbrace{(4(\frac{1}{2} - \frac{1}{2}\cos(\theta_{k})) + 4(\frac{1}{2} - \frac{1}{2}\cos(\theta_{l}))}_{\textnormal{mit } \frac{1}{2}(1 - \cos(x)) = \sin^{2}(\frac{x}{2})} (v_{k,l})_{j=1} \notag \\
+&=& 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) (v_{k,l})_{j=1}\notag
 \end{eqnarray}
 \item[2.] für alle $2 \le j \le N-1$
 \begin{eqnarray}
-&&\Longrightarrow -Id v_{k} \sin((j-1) \theta_{l}) + A_{j} v_{k} \sin(j\theta_{l}) - Id v_{k} \sin((j+1) \theta_{l}) \notag \\
+&&\underbrace{-Id v_{k}}_{= \mu_{k} v_{k}} \sin((j-1) \theta_{l}) + \underbrace{A_{j} v_{k}}_{=\lambda_{k} v_{k}} \sin(j\theta_{l}) \underbrace{- Id v_{k}}_{= \mu_{k} v_{k}} \sin((j+1) \theta_{l}) \notag \\
 &=& \mu_{k} v_{k} (\sin(j\theta_{l})\cos(\theta_{l}) - \cos(j\theta_{l})\sin(\theta_{l})) + \lambda_{k} v_{k} \sin(j\theta_{l}) \notag \\
-&-& \mu_{k} v_{k} (\sin(j\theta_{l})\cos(\theta_{l}) + \cos(j\theta_{l})\sin(\theta_{l})) \notag \\
-&=& 2 \mu_{k} v_{k} \sin(j\theta_{l})\cos(\theta_{l}) + \lambda_{k} v_{k} \sin(j\theta_{l}) = (\lambda_{k} + \mu_{k} \cos(\theta_{l})) \underbrace{v_{k,l}}_{\sin(j\theta_{l}) v_{k}} \notag \\
-&=& (\lambda_{k} + \mu_{k} \cos(\theta_{l})) \sin(j\theta_{l}) v_{k,l} \overset{\textnormal{ wie oben }}{=} 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) v_{k,l} \notag
+&+& \mu_{k} v_{k} (\sin(j\theta_{l})\cos(\theta_{l}) + \cos(j\theta_{l})\sin(\theta_{l})) \notag \\
+&=& 2 \mu_{k} v_{k} \sin(j\theta_{l})\cos(\theta_{l}) + \lambda_{k} v_{k} \sin(j\theta_{l}) = (\lambda_{k} + \mu_{k} \cos(\theta_{l})) \underbrace{(v_{k,l})_{j=N}}_{= \sin(j\theta_{l}) v_{k}} \notag \\
+&=& (\lambda_{k} + \mu_{k} \cos(\theta_{l})) \sin(j\theta_{l}) (v_{k,l})_{j=N} \notag \\
+&\overset{\textnormal{ wie oben }}{=}& 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) (v_{k,l})_{j=N} \notag
 \end{eqnarray}
 \item[3.] $j = N$
 \begin{eqnarray}
-&&\Longrightarrow -Id v_{k} \sin((N-1)\theta_{l}) + A_{N} v_{k} \sin(N \theta_{l}) \notag \\
+&&\underbrace{-Id v_{k}}_{= \mu_{k} v_{k}} \sin((N-1)\theta_{l}) + \underbrace{A_{Ń} v_{k}}_{=\lambda_{k} v_{k}} \sin(N \theta_{l}) \notag \\
 &=& \mu_{k} v_{k} (\sin((N-1)\theta_{l}) + \underbrace{\sin((N+1)\theta_{l})}_{= 0}) + \lambda_{k} v_{k} \sin(N\theta_{l}) \notag \\
 &=& \mu_{k} v_{k} (\sin(N\theta_{l})\cos(\theta_{l}) - \cos(N\theta_{l})\sin(\theta_{l}) + \sin(N\theta_{l})\cos(\theta_{l}) \notag \\
 &+& \cos(N\theta_{l})\sin(\theta_{l})) + \lambda_{k} v_{k} \sin(N \theta_{l}) \notag \\
 &=& 2\mu_{k} v_{k} \sin(N\theta_{l})cos(\theta_{l}) + \lambda_{k} v_{k} \sin(N\theta_{l}) \notag \\
-&=& (\lambda_{k} + 2\mu_{k}\cos(\theta_{l})) \underbrace{v_{k,l}}_{\sin(N\theta_{l}) v_{k}} \overset{\textnormal{ wie oben }}{=} 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) v_{k,l} \notag
+&=& (\lambda_{k} + 2\mu_{k}\cos(\theta_{l})) \underbrace{(v_{k,l})_{j=N}}_{= \sin(N\theta_{l}) v_{k}} \overset{\textnormal{ wie oben }}{=} 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2})\right) (v_{k,l})_{j=N} \notag
 \end{eqnarray}
 \end{description}
 Also sind die $\lambda_{k,l}$ Eigenwerte von $\mat{A}_{2D}$ zu den Eigenvektoren $v_{k,l}$.
@@ -506,13 +498,13 @@ $\blacksquare$
 
 Sei $\mat{A}$ eine symmetrische Matrix des $\mathbb{R}^{n \times n}$. Dann ist die euklidische Kondition der Matrix definiert als:
 \begin{equation}
-\kappa_{2} (A) := \frac {\lambda_{max}} {\lambda_{min}} \ge 1.\label{eq.Kondition}
+\kappa_{2} (A) = \frac {\lambda_{max}} {\lambda_{min}} \ge 1.\label{eq.Kondition}
 \end{equation}
 Je kleiner die Konditionszahl $\kappa$, desto besser ist eine Matrix konditioniert.
 
 \subsection{Lemma (Kondition von $\mat{A}_{2D}$)}\label{ss.Matrixkondition}
 
-In \cite{DAR2} wird gezeigt, dass für die Kondition der Matrix $\mat{A}_{2D}$ gilt:
+In \cite{DR2} wird gezeigt, dass für die Kondition der Matrix $\mat{A}_{2D}$ gilt:
 \begin{equation}
 \kappa_{2} (A_{2D}) = \frac {\cos^{2}(\frac{\pi h}{2})} {\sin^{2}(\frac{\pi h}{2})}.
 \end{equation}
@@ -535,8 +527,8 @@ Somit folgt aus \autoref{eq.Lambda min} und \autoref{eq.Lambda max}:
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
-In \cite{DAR3} wird außerdem gezeigt, dass sich $\kappa_{2}(\mat{A}_{2D})$ wie folgt nähern lässt:
-% Substituiert man nun $\cos^{2}(\frac {\pi h} {2}) = 1 - \sin^{2}(\frac {\pi h} {2})$ und nähert $\sin (\frac {\pi h} {2}) = \frac {\pi h} {2} + \mathcal{O}(h^{3})$ mit der Taylorformel, so erhält man:
+In \cite{DR3} wird außerdem gezeigt, dass sich $\kappa_{2}(\mat{A}_{2D})$ wie folgt nähern lässt:
+
 \begin{equation}
 \frac {\cos^{2} (\frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})} = \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2})).
 \end{equation}
@@ -553,7 +545,7 @@ Man sieht, dass die Kondition der Matrix quadratisch mit $m$ wächst.
 
 Gleichungssysteme, die partielle Differentialgleichungen lösen, sind im Allgemeinen sehr groß. Aus diesem Grund sind direkte Verfahren, wie z.B. der Gauß-Algorithmus oder die LR-Zerlegung nicht geeignet. Ihr Rechenaufwand beläuft sich für voll besetzte Matrizen im Allgemeinen auf $\mathcal{O}(n^{3})$ und ist zu langsam. Nun ist unser System zwar nicht voll besetzt, jedoch kann es durch die Struktur der Matrix zur Auslöschung von Nullen kommen. Dadurch ist ebenfalls keine große Effizienz gegeben.\\
 Wesentlich besser geeignet für diese Problemstellung sind iterative Verfahren. Sie zeichnen sich durch eine schnelle Konvergenz und einen geringeren Rechenaufwand aus.\\
-Ein Großteil der Definitionen, Sätze und Lemmata in diesem Kapitel sind sinngemäß aus \cite{DAR4}. Der Abschnitt über das Jacobi-Relaxationsverfahren wurde in Teilen von \cite{SAA2} übernommen. Stellen, an denen andere Literatur verwendet wurde, sind deutlich gekennzeichnet.
+Ein Großteil der Definitionen, Sätze und Lemmata in diesem Kapitel sind sinngemäß aus \cite{DR4}. Der Abschnitt über das Jacobi-Relaxationsverfahren wurde in Teilen von \cite{SAAD2} übernommen. Stellen, an denen andere Literatur verwendet wurde, sind deutlich gekennzeichnet.
 
 \section{Grundbegriffe}\label{s.Grundbegriffe}
 
@@ -561,7 +553,7 @@ Ein Großteil der Definitionen, Sätze und Lemmata in diesem Kapitel sind sinnge
 
 Sei $\mat{A} \in \mathbb{R}^{n \times n}$. Sei außerdem $\mat{C} \in \mathbb{R}^{n \times n}$ eine nichtsinguläre Matrix. Für die iterative Lösung eines linearen Gleichungssystems der Form $Au = f$ ist die Iterationsmatrix $\mat{T} \in \mathbb{R}^{n \times n}$ definiert als:
 \begin{equation}
-\mat{T} := (\mat{Id} - \mat{C} \mat{A}),
+\mat{T} = (\mat{Id} - \mat{C} \mat{A}),
 \end{equation}
 wobei die Iterationsvorschrift für $k=1,...,n$ gegeben ist durch:
 \begin{equation}
@@ -584,7 +576,7 @@ Ein iteratives Verfahren mit beliebigem Startvektor $u^{0} \in \mathbb{R}^{n}$ k
 \end{equation}
 Je kleiner $\rho$ ist, desto schneller konvergiert das System.
 
-Einen Beweis hierzu findet man z.B. in \cite{DAR5}.
+Einen Beweis hierzu findet man z.B. in \cite{DR5}.
 
 \subsection{Definition (Residuum und Fehler)}\label{ss.Residuum und Fehler}
 
@@ -639,7 +631,7 @@ In jedem Schritt zur Berechnung von $u^{k+1}$ muss im Algorithmus die Informatio
 
 Für die Iterationsmatrix des Jacobi-Verfahrens gilt:
 \begin{equation}
-\mat{T}_{J} := (\mat{Id} - \mat{D}^{-1} \mat{A})
+\mat{T}_{J} = (\mat{Id} - \mat{D}^{-1} \mat{A})
 \end{equation}
 Hier ist also $\mat{C} = \mat{D}^{-1}$
 
@@ -688,17 +680,15 @@ Wir können für das Jacobi-Verfahren zwar die Konvergenz nicht verbessern, alle
 
 \subsection{Algorithmus (Jacobi-Verfahren für $\mat{A}_{2D}$)}\label{ss.Jacobi für Poisson}
 
-Dieser Abschnitt wurde sinngemäß aus [NumParVer S. 21] übernommen. Der Algorithmus wurde auf unser Problem hingehend optimiert.
+Dieser Abschnitt wurde sinngemäß aus \cite{ALO2} übernommen. Der Algorithmus wurde auf unser Problem hingehend optimiert.
 Berechne für $k = 1,2,...$ mit Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig}:\\
 Für $i = 1,...,N$ und für $j = 1,...,N$:
 \begin{equation}
 u^{k+1}_{i,j} = \frac{h^{-2}}{4} (u^{k}_{i-1,j} + u^{k}_{i+1,j} + u^{k}_{i,j-1} + u^{k}_{i,j+1}) - \frac{1}{4} f_{i,j}
-% u^{k+1}_{i,j} =  \frac {1} {a_{i,i}} (f_{i,j} - u^{k}_{i-1,j} + u^{k}_{i+1,j} + u^{k}_{i,j-1} + u^{k}_{i,j+1}).
 \end{equation}
 Bei diesem Algorithmus gehen wir über allen inneren Punkte des Gitters in x- und y-Richtung. Sobald ein Zeilenindex $i$ (bezeichnet die y-Komponente) Null wird, ignorieren wir diesen Wert. Das Gleiche gilt für die Spalteninidzes $j$, die die x-Komponente repräsentieren.\\
 Der Rechenaufwand pro Iterationsschritt beträgt lediglich $\mathcal{O}(N \cdot N)=\mathcal{O}(n)$ Schritte.
 
-% \subsection{Das Jacobi-Relaxations-Verfahren für $\mat{A}_{2D}$}\label{ss.Jacobi-Verfahren der Poisson Gleichung}
 \section{Das Jacobi-Relaxationsverfahren}\label{s.Jacobi Relaxation}
 
 Wir wollen nochmal die Iterationsvorschrift des Jacobi-Verfahrens betrachten:
@@ -723,7 +713,7 @@ u^{k+1} &=& u^{k} + D^{-1} \omega r^{k} = u^{k} + \omega D^{-1} (f - Au^{k}) \no
 \end{eqnarray}
 \autoref{eq.Jacobi-Relaxation} stellt die Iterationsvorschrift für das Jacobi-Relaxationsverfahren dar. Die Iterationsmatrix ist gegeben durch:
 \begin{equation}
-\mat{T}_{J_{\omega}} := (1 - \omega) \mat{Id} + \omega(\mat{Id} - \mat{D}^{-1} \mat{A}) = (\mat{Id} - \omega \mat{D}^{-1} \mat{A}).
+\mat{T}_{J_{\omega}} = (1 - \omega) \mat{Id} + \omega(\mat{Id} - \mat{D}^{-1} \mat{A}) = (\mat{Id} - \omega \mat{D}^{-1} \mat{A}).
 \end{equation}
 
 Letztlich erweitert man den Jacobi-Algorithmus also mit dem Parameter $\omega$ und addiert $(1 - \omega)u^{k}$ zu $u^{k+1}$.
@@ -848,9 +838,9 @@ e^{k+1} &=& \sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k+1}_{i,j} v_{i,j} = (Id - \o
 
 \bild{omegaeinhalb}{14cm}{Für $\omega = \frac{1}{2}$ ist gut zu erkennen, dass für $i,j$ nahe $N$ viele Eigenwerte nahe Null liegen.}{Eigenwertspektrum der Iterationsmatrix des Jacobi-Relaxationsverfahrens mit dem Parameter $\omega = \frac{1}{2}$.}\label{img.Jacobi2}
 
-Betrachten wir nun die Eigenwerte der Iterationsmatrix für $\omega = 1$ (Jacobi-Verfahren), sieht man, dass die Eigenwerte für $i,j$ nahe Null oder $i,j$ nahe N den Fehler schlecht bis gar nicht dämpfen (\subfigureautorefname{ 3.1}). Diese liegen nahe 1 bzw. -1 und verändern die zugehörigen Eigenvektoren kaum. Als iteratives Verfahren ist $\omega = 1$ der optimale Parameter \cite{SAA4}. Das Jacobi-Verfahren besitzt wegen seines Eigenwertspektrums keine Glättungseigenschaft.\\
-Da wir im Folgenden eine Fehlerglättung erreichen wollen, wählen wir nun $\omega = \frac {1} {2}$ (\subfigureautorefname{ 3.2}). Wir stellen fest, dass die Eigenwerte der Iterationsmatrix zwischen $0$ und $1$ liegen. Sind $i,j > \frac {N} {2}$ so werden die Fehleranteile wesentlich besser gedämpft, da die Eigenwerte hier nahe Null liegen, d.h. zugehörige Eigenvektoren werden nahezu eliminiert. Diese Eigenschaft nennt man die \textit{Glättungseigenschaft}.\\
-Es stellt sich z.B. heraus, dass der optimale Relaxationsparameter, der unabhängig von der Schrittweite $h$ gewählt werden kann, $\omega = \frac {4} {5}$ ist \cite{SAA4}. In \subfigureautorefname{ 3.3} ist gut zu sehen, dass ein Großteil des Spektrums nahe Null liegt.
+Da wir im Folgenden eine Fehlerglättung erreichen wollen, wählen wir nun $\omega = \frac {1} {2}$ (\subfigureautorefname{ 3.2}). Wir stellen fest, dass die Eigenwerte der Iterationsmatrix zwischen $0$ und $1$ liegen. Sind $i,j > \frac {N} {2}$ so werden die Fehleranteile wesentlich besser gedämpft, da die Eigenwerte hier nahe Null liegen, d.h. zugehörige Eigenvektoren werden nahezu eliminiert. Diese Eigenschaft nennt man die \textit{Glättungseigenschaft}. Wie die Abbildungen 3.4, 3.5 und 3.6 illustrieren, werden beim Glätten des Fehlers kurzwellige, stark oszillierende (hochfrequente) Fehleranteile nahezu ausgelöscht. Zwar heißt das nicht, dass der Fehler verschwindet oder kleiner wird, jedoch wird er glatt.\\
+Es stellt sich z.B. heraus, dass der optimale Relaxationsparameter, der unabhängig von der Schrittweite $h$ gewählt werden kann, $\omega = \frac {4} {5}$ ist \cite{SAAD4}. In \subfigureautorefname{ 3.3} ist gut zu sehen, dass ein Großteil des Spektrums nahe Null liegt.
+Betrachten wir nun die Eigenwerte der Iterationsmatrix für $\omega = 1$ (Jacobi-Verfahren), sieht man, dass die Eigenwerte für $i,j$ nahe Null oder $i,j$ nahe N den Fehler schlecht bis gar nicht dämpfen (\subfigureautorefname{ 3.1}). Diese liegen nahe 1 bzw. -1 und verändern die zugehörigen Eigenvektoren kaum. Als iteratives Verfahren ist $\omega = 1$ der optimale Parameter \cite{SAAD3}. Das Jacobi-Verfahren besitzt wegen seines Eigenwertspektrums keine Glättungseigenschaft.\\
 
 \bild{omeganullacht}{14cm}{Für den optimalen Parameter $\omega = \frac{4}{5}$ ist gut zu erkennen, dass mehr Eigenwerte um die Null liegen, als beim Jacobi-Verfahren oder für den Parameter $\omega = \frac{1}{2}$ (orange Fläche) und somit eine gute Glättungseigenschaft besteht.}{Plot der Eigenwerte für den optimalen Parameter $\omega = \frac{4}{5}$ für das Jacobi-Relaxationsverfahren.}\label{img.Jacobi3}
 
@@ -862,8 +852,6 @@ Nun wollen wir uns noch die Plots nach einem und drei Iterationsschritten des Ja
 
 \bild{oneStepError}{12cm}{Nach einem Iterationsschritt ist bereits eine Glättung des Fehlers zu beobachten.}{Plot des Fehlers nach einem Glättungsschritt.}
 \bild{threeStepError}{12cm}{Man sieht, dass bereits nach 3 Iterationsschritten der Fehler glatt ist.}{Geglätteter Fehler nach drei Iterationsschritten des Jacobi-Relaxationsverfahrens mit optimalen Parameter.}
-
-% \bild{omeganullacht}{14cm}{Für den optimalen Parameter $\omega = \frac{4}{5}$ [Saad] ist gut zu erkennen, dass viele Eigenwerte um die Null liegen und somit eine gute Glättungseigenschaft besteht.}{Für den optimalen Parameter $\omega = \frac{4}{5}$ [Saad] ist gut zu erkennen, dass viele Eigenwerte um die Null liegen und somit eine gute Glättungseigenschaft besteht.}\label{img.Jacobi3}
 
 \section{Das Verfahren der konjugierten Gradienten}\label{s.Das Verfahren der konjugierten Gradienten}
 
@@ -878,7 +866,7 @@ Die A-Orthogonalität ist spezifisch für das CG-Verfahren. Bei der Aufstellung 
 \subsection{Satz (Minimierungsfunktion)}
 Sei $A\in\mathbb{R}^{n \times n}$ s.p.d. und
 \begin{equation}
-h(u) := \frac {1} {2} u^{T}Au - f^{T}u,
+h(u) = \frac {1} {2} u^{T}Au - f^{T}u,
 \end{equation}
 wobei $f,u \in \mathbb{R}^{n}$. Dann gilt:
 \begin{center}
@@ -888,15 +876,13 @@ h hat ein eindeutig bestimmtes Minimum und
 Au^{*} = f \Longleftrightarrow h(u^{*}) = \underset{u\in\mathbb{R}^{n}}{\min} h(u)
 \end{equation}
 
-Einen kurzen Beweis hierzu findet man z.B. in \cite{DAR6}.\\
+Einen kurzen Beweis hierzu findet man z.B. in \cite{DR6}.\\
 Es ist also äquivalent, die Funktion $h(u)$ zu minimieren und das Gleichungssystem $Au = f$ zu lösen. Betrachtet man nun den Gradienten von $h(u)$, so gilt:
 \begin{equation}
 \nabla h(u) = Ax - f = -r.
 \end{equation}
-% Der Gradient von $f(x)$ ist das negative Residuum. Beim normalen Gradientenverfahren wählt man als Richtung des steilsten Abstiegs genau dieses Residuum. Beim CG-Verfahren wählt man konjugierte Richtungen $p$ für die Richtung des steilsten Abstiegs. Die dabei berechneten (konjugierten) Vektoren $p$ sind alle A-orthogonal und spannen einen sogenannten Krylow-Raum $U_{k} = \{p^{0},...,p^{k}\}$ auf. Für den Zusammenhang zwischen dem CG-Verfahren und Krylow-Räumen möchte ich an dieser Stelle auf [Braess] verweisen.\\
-Da wir bei diesem Verfahren stets das Minimum in einem Teilraum $U_{k} \in \mathbb{R}$ suchen, also die Funktion $h(u)$ minimieren wollen, wird uns folgendes Lemma hilfreich sein:
 
-% \bild{CG_Illu}{8cm}{Abstieg}{Abstieg}\label{img.CG}
+Da wir bei diesem Verfahren stets das Minimum in einem Teilraum $U_{k} \in \mathbb{R}$ suchen, also die Funktion $h(u)$ minimieren wollen, wird uns folgendes Lemma hilfreich sein:
 
 \subsection{Lemma - (A-orthogonaler) Projektionssatz}\label{s.Projektionssatz}
 
@@ -912,17 +898,17 @@ genau dann, wenn $u^{k}$ die $\textit{A-orthogonale Projektion}$ von $v$ auf $U_
 P_{U_{k,\langle \cdot,\cdot \rangle}}(v) = \textbf{u}^{k} = \sum_{j=0}^{k-1} \frac {\langle v, p^{j} \rangle _{A}} {\langle p^{j}, p^{j} \rangle _{A}} p^{j}
 \end{equation}
 
-Der Beweis zu diesem Lemma wird in \cite{DAR7} erläutert.
+Der Beweis zu diesem Lemma wird in \cite{DR7} erläutert.
 
 \subsection{Allgemeiner Algorithmus der konjugierten Gradienten}\label{ss.Allgemeiner CG-Algorithmus}
 
-Zur Erzeugung der Lösung von $u^{*}$ durch Näherungen $u^{1}, u^{2},...$ definieren wir folgende Teilschritte [Dahmen/Reusken]:
+Zur Erzeugung der Lösung von $u^{*}$ durch Näherungen $u^{1}, u^{2},...$ definieren wir folgende Teilschritte:
 
 \begin{description}
 
 \item[0.] Definiere Teilraum $U_{1}$ und bestimme $r^{0}$ mit beliebigen Startvektor $u^{0}$
 \begin{equation}
-U_{1} := span\{r^{0}\} \textnormal{, wobei } r^{0} = f - Au^{0}
+U_{1} = span\{r^{0}\} \textnormal{, wobei } r^{0} = f - Au^{0}
 \end{equation}
 
 \item[1.] Bestimme eine A-orthogonale Basis
@@ -941,7 +927,7 @@ u^{k} = \sum_{j=0}^{k-1} \frac {\langle u^{*}, p^{j} \rangle _{A}} {\langle p^{j
 
 \item[3.] Berechne erneut das Residuum und erweitere den Teilraum $U_{k}$
 \begin{equation}
-U_{k+1} := span\{p^{0},...,p^{k-1},r^{k}\} \textnormal{ wobei } r^{k} := f - Au^{k}.
+U_{k+1} = span\{p^{0},...,p^{k-1},r^{k}\} \textnormal{ wobei } r^{k} = f - Au^{k}.
 \end{equation}
 
 \end{description}
@@ -970,10 +956,10 @@ Nun wollen wir \autoref{eq.Projektion} neu formulieren.
 \subsection{Lemma}
 Sei $u^{*} \in \mathbb{R}^{n}$ die Lösung von $Au = f$ und $u^{k} \in \mathbb{R}^{n}$ die optimale Approximation von $u^{*}$ in $U_{k}$. Dann kann $u^{k}$ wie folgt berechnet werden:
 \begin{equation}
-u^{k} = u^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ mit } \alpha_{k-1} := \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle}.\label{eq.Alpha}
+u^{k} = u^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ mit } \alpha_{k-1} = \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, Ap^{k-1}} \rangle}.\label{eq.Alpha}
 \end{equation}
 
-Für einen Beweis möchte ich auf \cite{DAR8} verweisen.
+Für einen Beweis möchte ich auf \cite{DR8} verweisen.
 
 \textbf{Bemerkung:}
 $u^{k}$ kann dadurch mit wenig Aufwand aus $u^{k-1}$ und $p^{k-1}$ berechnet werden.
@@ -1008,7 +994,7 @@ wird die A-orthogonale Basis des Unterraums (Krylow-Raums) $U_{k} = span\{p^{0},
 \textbf{Beweis:}
 
 Der Beweis folgt direkt aus dem Gram-Schmidt-Orthonormalisierungsverfahren, welches allerdings einen hohen Rechenaufwand vorweist.\\
-Wir wollen ohne Herleitung und Beweis (siehe z.B. [Dahmen/Reusken]) angeben, wie man die $p^{k}$ effizienter bestimmen kann.
+Wir wollen ohne Herleitung und Beweis (siehe dazu beispielsweise \cite{DR9}) angeben, wie man die $p^{k}$ effizienter bestimmen kann.
 
 \subsection{Satz}
 Für die Berechnung von $p^{k}$ gilt:
@@ -1016,11 +1002,11 @@ Für die Berechnung von $p^{k}$ gilt:
 p^{k-1} = r^{k-1} - \frac {\langle r^{k-1}, Ap^{k-2} \rangle} {\langle p^{k-2}, Ap^{k-2} \rangle} p^{k-2}.
 \end{equation}
 
-Substituiert man geschickt einige Werte in den Skalarprodukten (ohne Beweis [DaR]), führt das auf den Algorithmus der konjugierten Gradienten.
+Substituiert man geschickt einige Werte in den Skalarprodukten (ohne Beweis), führt das auf den Algorithmus der konjugierten Gradienten.
 
 \subsection{Algorithmus der konjugierten Gradienten}\label{ss.Numerisches CG}
 
-Gegeben ist eine symmetrisch positiv definite Matrix $\mat{A} \in \mathbb{R}^{n}$. Bestimme die Lösung Mithilfe eines \textit{beliebigen} Startvektors $u^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $f \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$ und berechne das Residuum $r^{0} = f - Au^{0}$. \\
+Gegeben ist eine symmetrisch positiv definite Matrix $\mat{A} \in \mathbb{R}^{n}$. Bestimme die Lösung Mithilfe eines \textit{beliebigen} Startvektors $u^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $f \in \mathbb{R}^{n}$. Setze $\beta_{-1} = 0$ und berechne das Residuum $r^{0} = f - Au^{0}$. \\
 Für $k = 1,2,...$, falls $r^{k-1} \ne 0$ berechne:
 
 \begin{eqnarray}
@@ -1031,9 +1017,9 @@ r^{k} &=& r^{k-1} - \alpha_{k-1}Ap^{k-1} \notag
 
 Man muss in diesem Algorithmus pro Iterationsschritt lediglich zwei Skalarprodukte ausrechnen (die $r^{k-1}$-Skalarprodukte können für die $r^{k-2}$ nach der Berechnung des neuen Residuums wieder verwendet werden!) und eine Matrix-Vektor-Multiplikation durchführen. Somit erhält man einen Rechenaufwand von $\mathcal{O}(n^{2})$. Angewandt auf $\mat{A}_{2D}$ kann man - durch das Ausnutzen der Dünnbesetztheit und der Symmetrie - einen Aufwand von $\mathcal{O}(n)$ erreichen. Diesen erhält man durch eine geschickt gewählte Matrix-Vektor-Multiplikation, die die Struktur von $\mat{A}_{2D}$ ausnutzt.
 
-An dieser Stelle soll noch ein kurzer Satz über die Konvergenz des Verfahrens folgen. Einen Beweis hierzu findet man z.B. in (Dahmen/Reusken 573):
+An dieser Stelle soll noch ein kurzer Satz über die Konvergenz des Verfahrens folgen. Einen Beweis zur Konvergenz findet man u.a. in [GL].
 
-\subsection{Satz (Konvergenz des CG-Algorithmus) [DahmenReusken]}\label{ss.Konvergenz CG}
+\subsection{Satz (Konvergenz des CG-Algorithmus)}\label{ss.Konvergenz CG}
 
 Sei $\mat{A} \in \mathbb{R}^{n \times n}$ symmetrisch, positiv definit und seien $u,f,u^{*},u^{k} \in \mathbb{R}^{n}$, wobei $u^{*}$ die exakte Lösung des Gleichungssystems $Au = f$ und $u^{k}$ die approximierte Lösung durch das CG-Verfahren ist. Dann gilt für $k = 1,2,...$:
 \begin{equation}
@@ -1075,11 +1061,12 @@ Es macht also keinen Unterschied, ob wir $Au = f$ oder das äquivalente System l
 $\blacksquare$
 \end{flushright}
 
-Die Konditionszahl dieses Problem ist nun durch $\kappa_{2}(\mat{W}^{-1}\mat{A})$ bedingt. Das Ziel muss es also sein, $\mat{W}^{-1}$ so gut wie möglich zu wählen, damit die Kondition klein wird. Nun ist im Allgemeinen $\mat{W}^{-1}\mat{A}$ nicht s.p.d. Somit könnten wir zwar den CG-Alorithmus trotzdem anwenden, werden aber wegen dieser Tatsache möglicherweise keine Konvergenz erhalten. Um dies zu umgehen findet man einen Lösungsansatz (z.B. in Dahmen/Reusken 576), bei dem mit der Cholesky-Zerlegung eine entsprechende Umformung gefunden werden kann.
+Die Konditionszahl dieses Problem ist nun durch $\kappa_{2}(\mat{W}^{-1}\mat{A})$ bedingt. Das Ziel muss es also sein, $\mat{W}^{-1}$ so gut wie möglich zu wählen, damit die Kondition klein wird. Nun ist im Allgemeinen $\mat{W}^{-1}\mat{A}$ nicht s.p.d. Somit könnten wir zwar den CG-Alorithmus trotzdem anwenden, werden aber wegen dieser Tatsache möglicherweise keine Konvergenz erhalten. Um dies zu umgehen findet man einen Lösungsansatz, bei dem mit der Cholesky-Zerlegung eine entsprechende Umformung gefunden werden kann.\\
+Die Formeln und Algorithmen zu den folgenden Cholesky-Zerlegungen gehen aus expliziten Formeln der LR-Zerlegung hervor. Da die Cholesky-Zerlegung eine LR-Zerlegung für symmetrisch positiv definite Matrizen darstellt, wollen wir diesen Aspekt nicht näher erläutern.
 
 \subsection{Der Algorithmus des vorkonditionierten konjugierten Gradienten Verfahrens}\label{ss.Algorithmus PCG}
 
-Gegeben seien $\mat{A}, \mat{W} \in \mathbb{R}^{n}$ s.p.d. Bestimme die Lösung Mithilfe eines \textit{beliebigen} Startvektors $u^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $f \in \mathbb{R}^{n}$. Setze $\beta_{-1} := 0$, berechne das Residuum $r^{0} = b - Au^{0}$ und $z^{0} = \mat{W}^{-1}r^{0}$ (löse $\mat{W}z^{0} = r^{0}$).\\
+Gegeben seien $\mat{A}, \mat{W} \in \mathbb{R}^{n}$ s.p.d. Bestimme die Lösung Mithilfe eines \textit{beliebigen} Startvektors $u^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $f \in \mathbb{R}^{n}$. Setze $\beta_{-1} = 0$, berechne das Residuum $r^{0} = b - Au^{0}$ und $z^{0} = \mat{W}^{-1}r^{0}$ (löse $\mat{W}z^{0} = r^{0}$).\\
 Für $k = 1,2,...$, falls $r^{k-1} \ne 0$ berechne:
 
 \begin{eqnarray}
@@ -1096,11 +1083,11 @@ Wichtig hierbei ist, dass das Lösen von $\mat{W}z^{k} = r^{k}$ mit möglichst w
 Eine Matrix $\mat{A}$, die symmetrisch positiv definit ist, lässt sich durch eine Cholesky-Zerlegung in eine normierte untere Dreiecksmatrix $\mat{L}$ und eine rechte obere Dreicksmatrix $\mat{U}$ zerlegen, wobei gilt: $\mat{U} = \mat{D}\mat{L}^{T}$. \\
 Mit dieser Zerlegung möchten wir nun unser System vorkonditionieren. Allerdings würde eine vollständige Cholesky-Zerlegung viele Nulleinträge in einer dünn besetzten Matrix auslöschen. Darum greift man auf eine unvollständige Cholesky-Zerlegung zurück, bei der die Stellen, an denen $\mat{A}$ Nulleinträge besitzt, in $L$ und $U$ ebenfalls Null bleiben.
 
-\subsubsection{Definition (Muster E) [D/R]}\label{sss.Muster E}
+\subsubsection{Definition (Muster E)}\label{sss.Muster E}
 
 Ein Muster ist eine Teilmenge $E \subseteq \{1,...,n\} \times \{1,...,n\}$ für die gilt:
 \begin{equation}
-E := \{(i,j) | 1 \le i,j \le n, a_{i,j} \ne 0 \}.
+E = \{(i,j) | 1 \le i,j \le n, a_{i,j} \ne 0 \}.
 \end{equation}
 
 Dann lässt sich die Matrix $\mat{A}$ auch folgendermaßen approximieren:
@@ -1112,24 +1099,25 @@ wobei $\tilde{\mat{L}}, \tilde{\mat{L}}^{T}$ nicht die komplette Faktorisierung 
 \subsubsection{Eigenschaften der Matrix $\tilde{\mat{L}}$}\label{sss.Eigenschaften L CZ}
 \begin{itemize}
 \item $\tilde{\mat{L}}$ ist normierte untere Dreicksmatrix
-\item Es gilt: $l_{i,j} = 0$, falls $(i,j) \notin E$
+\item Es gilt: $\tilde l_{i,j} = 0$, falls $(i,j) \notin E$
 \end{itemize}
 
-Natürlich ist diese Faktorisierung ungenauer, als die vollständige Zerlegung. Allerdings genügt sie, um die Kondition des Gleichungssystems in vielen Fällen zu verbessern. Um den Algorithmus effizient und den Rechenaufwand so klein wie möglich zu machen, werden Summen nur über Indizes aus dem Muster berechnet [Dahmen/Reusken].
+Natürlich ist diese Faktorisierung ungenauer, als die vollständige Zerlegung. Allerdings genügt sie, um die Kondition des Gleichungssystems in vielen Fällen zu verbessern. Um den Algorithmus effizient und den Rechenaufwand so klein wie möglich zu machen, werden Summen nur über Indizes aus dem Muster berechnet.
 
 \subsubsection{Algorithmus der unvollständigen Cholesky-Zerlegung}\label{sss.Cholesky-Algorithmus}
 
-Seien $\mat{A} \in \mathbb{R}^{n \times n}$ und $E$ das Muster zur Matrix $\mat{A}$. Setze $\mat{L} = \mat{Id}$, $\mat{R} = 0$. Berechne dann für $i=1,2,...,n$:
+Seien $\mat{A} \in \mathbb{R}^{n \times n}$ und $E$ das Muster zur Matrix $\mat{A}$. Setze $\tilde{\mat{L}} = \mat{Id}$, $\tilde{\mat{U}} = 0$. Berechne dann für $i=1,2,...,n$:
 \begin{eqnarray}
-l_{i,i} &=& \left( a_{i,i} - \sum^{i-1}_{j=1,(i,j) \in E} l_{i,j}^{2} \right)^{\frac {1} {2}} \\
-\textnormal{for k } &=& i+1,...,n: \textnormal{ if } (k,i) \in E: \\
-l_{k,i} &=& \left( a_{k,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l_{i,j} \right) / l_{i,i}
+&&\textnormal{for } k = 1,...,i-1: \textnormal{ if } (i,k) \in E,\notag \\
+\tilde l_{i,k} &=& (a_{i,k} - \sum_{j=1}^{k-1} \tilde l_{i,j} \tilde u_{j,k})/ \tilde u_{k,k}; \notag \\
+&&\textnormal{for } k = i,...,n: \textnormal{ if } (i,k) \in E, \notag \\
+\tilde r_{i,k} &=& a_{i,k} - \sum_{j=1}^{i-1} \tilde l_{i,j} \tilde u_{j,k}; \notag
 \end{eqnarray}
 
 \textbf{Bemerkungen:}
 
 \begin{itemize}
-\item Die für den PCG-Algorithmus wichtige Matrix $\mat{W}$ wird nun definiert als: $\mat{W} := \tilde{\mat{L}} \tilde{\mat{L}}^{T}$. Dadurch wird auch $\mat{W}z^{k} = \tilde{\mat{L}} \tilde{\mat{L}}^{T}z^{k} = r^{k}$ schnell durch Vorwärts- bzw. Rückwärtseinsetzen lösbar.
+\item Die für den PCG-Algorithmus wichtige Matrix $\mat{W}$ wird nun definiert als: $\mat{W} = \tilde{\mat{L}} \tilde{\mat{L}}^{T}$. Dadurch wird auch $\mat{W}z^{k} = \tilde{\mat{L}} \tilde{\mat{L}}^{T}z^{k} = r^{k}$ schnell durch Vorwärts- bzw. Rückwärtseinsetzen lösbar.
 \item Für viele Probleme zeigt sich, dass $\kappa_{2}(\mat{W}^{-1} \mat{\mat{A}}) \ll \kappa_{2} (A)$ gilt. \\
 \end{itemize}
 
@@ -1139,33 +1127,37 @@ Es gibt einige Varianten zur Vorkonditionierung. Wir wollen uns an dieser Stelle
 
 Auch bei der modifizierten Methode des Verfahrens gehen wir vor, wie in \autoref{ss.ICCG}. Jedoch werden die Vorschriften für die Matrix $\tilde{\mat{L}}$ abgeändert:
 
-\subsubsection{Eigenschaften der Matrix $\tilde{\mat{L}}$}\label{sss.Eigenschaften L MCZ}
+\subsubsection{Eigenschaften der Matrix $\hat{\mat{L}}$}\label{sss.Eigenschaften L MCZ}
 
-Sei $e := (1,1,...,1)^{T}$,
+Sei $e = (1,1,...,1)^{T}$,
 
 \begin{itemize}
-\item $a_{i,j} = (\tilde{\mat{L}} \tilde{\mat{L}}^{T})_{i,j}$ für alle $(i,j) \in E, i \ne j$,
-\item $\mat{A} e = \tilde{\mat{L}} \tilde{\mat{L}}^{T} e$, d.h. die Zeilensummen stimmen überein und
-\item $l_{i,j} = r_{i,j} = 0$ für alle $(i,j) \notin E$.
+\item $a_{i,j} = (\hat{\mat{L}} \hat{\mat{L}}^{T})_{i,j}$ für alle $(i,j) \in E, i \ne j$,
+\item $\mat{A} e = \hat{\mat{L}} \hat{\mat{L}}^{T} e$, d.h. die Zeilensummen stimmen überein und
+\item $\hat l_{i,j} = \hat r_{i,j} = 0$ für alle $(i,j) \notin E$.
 \end{itemize}
 
 \subsubsection{Algorithmus der modifizierten unvollständigen Cholesky-Zerlegung}\label{sss.Algorithmus MUCZ}
 
-Seien $\mat{A} \in \mathbb{R}^{n \times n}$ s.p.d. und $E$ das Muster zur Matrix $\mat{A}$. Berechne dann für $i=1,2,...,n$:
+Seien $\mat{A} \in \mathbb{R}^{n \times n}$ s.p.d. und $E$ das Muster zur Matrix $\mat{A}$. Setze $\hat{\mat{L}} = \mat{Id}$ und $\hat{\mat{U}} = 0$. Berechne dann für $i=1,2,...,n$:
 \begin{eqnarray}
-l_{i,i} &=& \left( a_{i,i} - \sum^{i-1}_{j=1,(i,j) \in E} l_{i,j}^{2} \right)^{\frac {1} {2}} \\
-\textnormal{for k } &=& i+1,...,n: \\
-&\textnormal{ if }& (k,i) \in E: \\
-l_{k,i} &=& \left( a_{k,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l_{i,j} \right) / l_{i,i} \\
-&\textnormal{ else }&:\\
-a_{k,k} &=& a_{i,i} - \sum^{k-1}_{j=1,(k,j) \in E, (i,j) \in E} l_{k,j} l_{i,j}
+&&\textnormal{drop } = 0;\notag\\
+&&\textnormal{for } k = 1,...,i-1:\notag\\
+&&s = \sum_{j=1}^{k-1} \hat l_{i,j} \hat u_{j,k};\notag\\
+&&\textnormal{if } (i,k) \in E: \hat l_{i,k} = (a_{i,k} - s)/ \hat u_{k,k};\notag\\
+&&\textnormal{else drop = drop + s};\notag \\
+&&\textnormal{for } k = i,...,n: \notag \\
+&&s = \sum_{j=1}^{i-1} \hat l_{i,j} \hat u_{j,k};\notag\\
+&&\textnormal{if } (i,k) \in E: \hat r_{i,k} = a_{i,k} - s; \notag\\
+&&\textnormal{else drop = drop + s};\notag \\
+\hat u_{i,i} &=& \hat u_{i,i} -drop;
 \end{eqnarray}
 
-Wir setzen wieder $\mat{W} := \tilde{\mat{L}} \tilde{\mat{L}}^{T}$. \\
+Wir setzen wieder $\mat{W} = \hat{\mat{L}} \hat{\mat{L}}^{T}$. \\
 
-Weitere Verfahren zur Vorkonditionierung, wie beispielsweise das SSOR-Verfahren, sind u.a. in [Saad] zu finden.
+Weitere Verfahren zur Vorkonditionierung, wie beispielsweise das SSOR-Verfahren, sind u.a. in \cite{SAAD5} zu finden.
 
-\subsection{Effiziente Implementation der modifizierten Cholesky-Zerlegungen}
+\subsection{Effiziente Implementierung der modifizierten unvollständigen Cholesky-Zerlegungen}
 
 Gerade für diese Aufgabenstellung ist es von großem Interesse, wie der Algorithmus in Code umgesetzt wird. Da das Muster $E$ unabhängig von der Dimension $n$ ist haben beide Zerlegungen einen Rechenaufwand von $\mathcal{O}(n^{2})$. Auch wenn wir nur über das Muster $E$ iterieren, werden viele Werte der Matrix $\mat{A}$ überprüft. Dies kostet Rechenzeit.\\
 Um dies zu optimieren, wird für $\mat{A}_{2D}$ eine weitere Matrix $\mat{B} \in \mathbb{R}^{n \times 5}$ eingeführt, die das Muster E ersetzt bzw. darstellt. Die 2D Poisson Matrix enthält maximal 5 Werte ungleich Null pro Zeile. Somit können in der $i - ten$ Zeile von $\mat{A}_{2D}$ maximal 5 Indizes $j$ auftauchen, für die gilt $a_{i,j} \ne 0$. In $\mat{B}$ werden die Indizes $j$ nacheinander abgespeichert. Sollten weniger als fünf Werte ungleich Null sein, so wird die zugehörige Zeile von $\mat{B}$ mit $-1$ aufgefüllt.
@@ -1188,7 +1180,7 @@ B =
 
 Mit der Matrix $\mat{B}$ als Ersatz für das Muster $E$, ergibt sich folgender C++-Code für die modifizierten unvollständige Cholesky-Zerlegung:
 
-\subsection{C++-Methode der MIC}\label{s.MIC}\lstinputlisting[language=C]{code/MIC.c}
+\subsection{C++-Methode der MIC}\label{s.MIC}\lstinputlisting[language=C++,firstline=381,lastline=416]{code/Algorithms.cpp}
 
 Der Zugriff auf die richtigen Matrixeinträge von $\mat{A}_{2D}$ über $\mat{B}$ erfolgt hier mit die Methode $A.HashMatrix[i]k] = b_{i,k}$. Für $i = 1,...,n$ und $k = 1,...,5$ wird eine Integer Variable $m = b_{i,k}$ gesetzt. In $m$ wird nun für die $i - te$ Zeile der Matrix $\mat{A}_{2D}$ der $j - te$ Zeilenindex gespeichert, für den gilt: $a_{i,m} \ne 0$.
 
@@ -1198,14 +1190,16 @@ Analog würde diese Vorschrift für die unvollständige Cholesky-Zerlegung folge
 
 \chapter{Mehrgitterverfahren}\label{c.Mehrgitterverfahren}
 
-In diesem Abschnitt sollen nun die Mehrgittermethoden genauer betrachtet werden. Zunächst aber nochmals die Grundlagen:
+In diesem Abschnitt wollen wir uns mit den Mehrgittermethoden befassen. Wie \autoref{c.IterativeVerfahren} gezeigt hat, spielt die Kondition der zugehörigen Matrix beim Lösen von Gleichungssystemen eine wichtige Rolle. Zwar konnten wir mit Vorkonditionierung diese Problem in den Griff bekommen, aber wie \autoref{c.Vergleich} zeigen wird, wächst die Anzahl der Iterationsschritte auch bei den vorkonditionieren Verfahren mit der Gitterweite $h$ mit. Mehrgitterverfahren hingegen sind Gitter unabhängig, d.h. die Anzahl der Iterationsschritte (oder Zyklen) hängt nicht davon ab, wie fein wir unser Gitter wählen (\cite{SAAD6}). Der Name für diese Verfahren leitet sich dauraus ab, dass wir gewisse Operationen nicht nur auf dem zugrunde liegenden Gitter ausführen, sondern auf gröbere Gitter wechseln. Dadurch erhalten wir mehrere Gitter beim Lösen des Gleichungssystems.\\
+Die Idee dieser Methoden beruht auf der Fehlerglättung. Wir haben bereits festgestellt, dass beispielsweise das Jacobi-Relaxationsverfahren kurzwellige Fehler nach wenigen Iterationsschritten nahezu auslöscht. Zudem werden die niederfrequenten Fehleranteile auf dem feinen Gitter zu hochfrequenten Fehlern auf dem groben Gitter (siehe dazu beispielsweise \cite{STR}).\\
+Wir wollen uns in diesem Kapitel an \cite{SAAD7} halten. Spezifische Matrizen für das zweidimensionale Poisson Problem wurden selbst aufgestellt.
 
 \section{Grundlagen}\label{s.Idee MGM}
 
 \begin{description}
 
 \item[1.] Glättungseigenschaft der Jacobi-Relaxation \\
-Die kurzwelligen Fehlerterme werden nach wenigen Iterationsschritten geglättet bzw. verschwinden nahezu.
+Die kurzwelligen Fehlerterme werden nach wenigen Iterationsschritten geglättet bzw. verschwinden nahezu (siehe \autoref{s.Glättungseigenschaft}).
 \item[2.] Residuumsgleichung \\
 Die für diesen Algorithmus wichtige Residuumsgleichung lautet:
 \begin{equation}
@@ -1237,17 +1231,6 @@ Somit ist
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
-
-% \begin{description}
-
-% \item[3.] Grobe Fehler nach einer Gittertransformation \\
-% Kurzwellige Fehler auf dem feinen Gitter bleiben kurzwellig, wenn man diese auf ein grobes Gitter transformiert. Langwellige Fehleranteile des feinen Gitters, werden jedoch auf dem groben Gitter ebenfalls zu kurzwelligen.
-
-% \end{description}
-
-% \textbf{Beispiel:}
-
-% Wir wollen diese Aussage anhand eines Beispiels illustrieren. Wir betrachten...
 
 \section{Prolongation}
 
@@ -1326,8 +1309,6 @@ Hier ist $\mat{I} \in \mathbb{R}^{N \times \tilde N}$.
 
 \bild{interpolation}{12cm}{Bei der Interpolation bedienen sich die Punkte vom feinen Gitter (grün und gelb), bei den gewichteten Punkten des groben Gitters (grün). Direkte Nachbarn werden mit $\frac{1}{2}$, diagonale Nachbarn mit $\frac{1}{4}$ gewichtet.}{Illustration der Gewichtung im Falle einer Interpolation mit Full-Weighting-Operator.}\label{img.Prolongation}
 
-% \bild{Restriktionsoperator}{14cm}{bla}{bla}\label{img.Restriktion}
-
 Für das Umsetzen in Programmcode ist es natürlich ungünstig eine komplette Matrix-Vektor-Multiplikation zu implementieren, zumal eine Matrix dieser Größe enorm viel Speicherplatz erfordert. Aus diesem Grund geben wir die Interpolation in Komponentenschreibweise an:
 
 \begin{eqnarray}
@@ -1343,7 +1324,7 @@ Somit ist nun der Übergang vom groben zum feinen Gitter bekannt. Nun wollen wir
 
 Sei $R_{h}^{2h}: \Omega_{h} \longrightarrow \Omega_{2h}$ mit $R_{h}^{2h}(u_{h}) = \mat{R}u_{h} = u_{2h}$ und $\mat{R} \in \mathbb{R}^{\tilde N^{2} \times (2 \tilde N - 1)^{2}}$. Diese Abbildungsvorschrift nennt man Restriktion. Auch hier gibt es unterschiedliche Methoden, wobei in diesem Abschnitt das Gegenstück zur obigen Interpolation - der Full-Weighting-Operator für die Restriktion - verwendet wird. Auch dieser stellt den exaktesten Übergang zwischen beiden Gittern dar und hat einen speziellen Bezug zur Matrix $\mat{I}$
 \begin{equation}
-\mat{R} := \frac {1} {4} \mat{I}^{T}
+\mat{R} = \frac {1} {4} \mat{I}^{T}
 \end{equation}
 
 \subsection{Restriktionsmatrix}
@@ -1428,16 +1409,6 @@ Die Matrizen $\mat{A}_{2D_{ih}}$ sind also für alle $i \in \{2^{n} \in \mathbb{
 Wie in \autoref{s.Finite Differenzen} gesehen befinden wir uns bei der Diskretisierung der Poisson-Gleichung auf einem Gebiet $\Omega_{h} = (0,1)^{2}$ mit Schrittweite $h = \frac {1} {m}$. Nach der Ausführung von $\tilde k$ Iterationsschritten des Jacobi-Relaxationsverfahren sind auf diesem Gitter die kurzwelligen Fehler $e^{k} = u^{*} - u^{k}$ geglättet bzw. nahezu verschwunden. Zudem haben wir die Äquivalenz der Gleichung $\mat{A} u = f$ und $\mat{A} e = r$ für $e = 0$ gesehen.\\
 Wir berechnen nach $\tilde k$ Glättungsschritten das Residuum $r^{k}$ und wollen sodann $\mat{A}_{h} e^{k}_{h} = r^{k}_{h}$ lösen. Die Lösung dieser Gleichung auf dem einem gröberen Gitter ist natürlich wesentlich günstiger, als auf dem feinen Gitter. Darum bringen wir $r^{k}_{h}$ durch Restriktion auf das gröbere Gitter und lösen die Residuumsgleichung dort direkt. Anschließend bringen wir den approximierten Fehlerterem $e_{2h}^{k}$ durch Prolongation zurück auf das feine Gitter und addieren $e_{h}^{k}$ zu $u_{h}^{k}$, da $u^{*} = u^{k} + e^{k}$. Abschließend wird $\tilde k$ mal nachgeglättet. Wir wiederholen dieses Vorgehen bis zur Konvergenz. Nachfolgend der Pseudocode für den Algorithmus des Zweigitterverfahrens:
 
-% Nun berechnet man im $k-ten$ Schritt das Residuum $r^{k}$ und führt für das äquivalente lineare Gleichungssystem $\mat{A}e^{k} = r^{k}$, wobei $e^{k} = 0$ gilt, $k$ Iterationsschritte aus. So erhalten wir eine Näherung des Fehlers $e^{k}$. \\
-% Stellt man \autoref{eq.Fehler} um und berechnet $e^{k} + u^{k}$, so erhält man eine neue Approximation der exakten Lösung. \\
-% Kombiniert man dieses Vorgehen nun mit dem Wechsel zwischen zwei Gittern der Gitterweite $h$ und $2h$ so erhält man das Zweigitterverfahren.
-  % und bringen dieses auf ein gröberes Gitter, z.B. $\Omega_{2h}$ mit der Schrittweite $2h$, könnten wir hier nun mit \autoref{eq.Residuumsgleichung} das Gleichungssystem mit $e_{2h} = 0$ lösen. Der niedrig frequente Fehler in $r^{k}$ wird in $r_{2h}$ so dann zu einem hochfrequenten auf $\Omega_{2h}$ werden. \\
-% Führt man einige Iterationsschritte auf dem groben Gitter aus, bringt den verbleidenden Fehler $e_{2h}^{k}$ wieder zurück auf $\Omega_{h}$ und addiert diesen zur iterierten Lösung $u^{k}$ reduziert sich $e^{k}$. Diese Vorgehensweise führt man nun so lange durch, bis $e{k} \approx 0$.
-
-% \section{Das Zweigitterverfahren}\label{s.Der Zweigitter-Algorithmus}
-
-% Wir wollen das erste Verfahren der Mehrgittermethoden kennen lernen. Der Zweigitter-Algorithmus bildet die Basis für die Mehrgitterverfahren. Die Idee dahinter ist, zunächst die kurzwelligen Fehler durch a priori Fehlerglättung zu eliminieren und auf ein gröberes Gitter zu wechseln. Dort soll dann die Residuumsgleichung gelöst und auf das feinere Gitter zurück gekehrt werden. Hier findet eine a posteriori Fehlerglättung statt. Wiederhole dieses Vorgehen bis zur Konvergenz:
-
 \begin{eqnarray}
 \textbf{while }                                 &||u^{k} - u^{*}|| < TOL \notag \\
 &\textit{pre-smooth }                         &\textnormal{JacobiRelaxationMethod} \notag \\
@@ -1458,16 +1429,16 @@ Es bleiben zwei Fragen nun unbeantwortet:
 \item[2.] Wie steht es mit der Konvergenz dieses Verfahrens? Besitzt es die nötige Rechengeschwindigkeit?
 \end{description}
 
-Die Antwort auf die Frage nach der Konvergenz werden wir in dieser Arbeit schuldig bleiben. Für ein weiteres Studium wird [Saad] empfohlen.
-Als direkten Löser verwenden wir den PCG-Algorithmus aus \autoref{c.IterativeVerfahren}.\\
+Die Antwort auf die Frage nach der Konvergenz werden wir in dieser Arbeit schuldig bleiben. Für ein weiteres Studium wird \cite{SAAD8} empfohlen.
+Als Löser verwenden wir den PCG-Algorithmus aus \autoref{c.IterativeVerfahren} mit einer modifizierten unvollständigen Cholesky-Zerlegung.\\
 
-Der klare Nachteil dieser Methode liegt natürlich am direkten Lösen der Residuumsgleichung. Wählen wir ein sehr feines Gebiet $\Omega_{h}$ mit $m = 256$, also $h = \frac {1} {256}$, so liefert das Gebiet $\Omega_{2h}$ immer noch ein Gleichungssystem der Dimension $n = 127^{2}$. Ein System dieser Ordnung direkt zu lösen erfordert großen Rechenaufwand, der in dieser Form nicht immer erwünscht ist. \\
+Der klare Nachteil dieser Methode liegt natürlich am Lösen der Residuumsgleichung. Wählen wir ein sehr feines Gebiet $\Omega_{h}$ mit $m = 256$, also $h = \frac {1} {256}$, so liefert das Gebiet $\Omega_{2h}$ immer noch ein Gleichungssystem der Dimension $n = 127^{2}$. Ein System dieser Ordnung zu lösen erfordert großen Rechenaufwand, der in dieser Form nicht immer erwünscht ist. \\
 
 \section{Mehrgitter-Algorithmen}\label{s.Mehrgitteralgorithmus}
 
-Da also das Lösen der Residuumsgleichung auf dem groben Gitter einen direkten Löser erfordert, der zusätzlichen Rechenaufwand bedeutet, ist der Zweigitter-Algorithmus nicht immer die erste Wahl zum Lösen eines Gleichungssystems.
+Da also das Lösen der Residuumsgleichung auf dem groben Gitter einen Löser erfordert, der zusätzlichen Rechenaufwand bedeutet, ist der Zweigitter-Algorithmus nicht immer die erste Wahl zum Lösen eines Gleichungssystems.
 
-Eine andere Methode ist, das Gitter immer gröber zu machen, bis das System direkt lösbar ist, um dann wieder auf das feinste Gitter zurück zu kehren. Wir erweitern also das Zweigitterverfahren um Rekursion. Denn ruft sich die Funktion in jedem Iterationsschritt selbst auf und löst direkt, sobald sie sich auf dem gröbsten Gitter befindet, erhalten wir folgende rekursive Funktion:
+Eine andere Methode ist, das Gitter immer gröber zu machen, bis das System direkt lösbar ist oder zumindest entsprechend klein ist, um dann wieder auf das feinste Gitter zurück zu kehren. Wir erweitern also das Zweigitterverfahren um Rekursion. Denn ruft sich die Funktion in jedem Iterationsschritt selbst auf und löst, sobald sie sich auf dem gröbsten Gitter befindet, erhalten wir folgende rekursive Funktion:
 
 \begin{eqnarray}
 \textbf{V-cycle }(u,b)                         & \notag \\
@@ -1489,7 +1460,7 @@ Die Schritte sind im wesentlichen die gleichen, als die beim Zweigitterverfahren
 
 \bild{V-cycle}{6cm}{\textbf{rot:} a priori Glättung, \textbf{gelb:} Restriktion, \textbf{grün:} direktes Lösen, \textbf{braun:} Prolongation, \textbf{blau:} a posteriori Glättun und \textbf{schwarz:} a posteriori Glättung und Korrektur des Fehlers.}{Veranschaulichung eines V-Zyklus in den Mehrgittermethoden.} \label{V-Cycle}
 
-Dieser Algorithmus ist auch als V-Zyklus bekannt. Wie dieser Name zustande kommt illustriert Abbildung 4.3. Nun gibt es eine weitere Variante, den W-Zyklus (illustriert in Abbildung 4.4). Durch zweifachen rekursiven Aufruf der Funktion entstehen wesentlich mehr Wechsel zwischen den Gittern. Natürlich ist die Rechenzeit durch häufigeres glätten, lösen, restringieren und prolongieren höher:
+Dieser Algorithmus ist auch als V-Zyklus bekannt. Wie dieser Name zustande kommt, illustriert Abbildung 4.3. Nun gibt es eine weitere Variante, den W-Zyklus (illustriert in Abbildung 4.4). Durch zweifachen rekursiven Aufruf der Funktion entstehen wesentlich mehr Wechsel zwischen den Gittern. Natürlich ist die Rechenzeit durch häufigeres glätten, lösen, restringieren und prolongieren höher:
 
 \begin{eqnarray}
 \textbf{W-cycle }(u,b)                         & \notag \\
@@ -1510,9 +1481,7 @@ Dieser Algorithmus ist auch als V-Zyklus bekannt. Wie dieser Name zustande kommt
 
 \bild{W-cycle}{12cm}{\textbf{rot:} a priori Glättung, \textbf{gelb:} Restriktion, \textbf{grün:} direktes Lösen, \textbf{braun:} Prolongation, \textbf{blau:} a posteriori Glättun und \textbf{schwarz:} a posteriori Glättung und Korrektur des Fehlers.}{Ein W-Zyklus der die einzelnen Schritte illustriert.} \label{W-Cycle}
 
-Für manche Systeme erhält man durch schnellere Konvergenz eine kürzere Rechenzeit, als bei einem V-Zyklus. Im Falle der Poisson Gleichung ist dies nicht der Fall, wie \autoref{c.Vergleich} zeigen wird.
-
-% Man kann zeigen [Briggs/Saad], dass die Mehrgittermethoden einen Rechenaufwand von $\mathcal{O}(n)$ pro Iterationsschritt haben. Somit sind Mehrgitterverfahren effiziente und häufig verwendete Lösungsalgorithmen für lineare Gleichungssysteme. Im letzten Kapitel werden wir nun noch vergleichen, welcher der bisher vorgestellten Algorithmen für unsere Aufgabenstellung gut geeignet ist.
+Für manche Systeme erhält man durch schnellere Konvergenz eine kürzere Rechenzeit, als bei einem V-Zyklus. Im Falle der Poisson Gleichung ist dies nicht der Fall, wie \autoref{c.Vergleich} zeigen wird. Außerdem ist dort die Gitterunabhängigkeit schön zu sehen, da die Anzahl der benötigten Zyklen bis zur Konvergenz nahezu konstant ist.
 
 \chapter{Implementierung und Beispiel}\label{c.Vergleich}
 
@@ -1562,13 +1531,11 @@ Im Allgemeinen ist natürlich die Lösung der partiellen Differentialgleichung n
 
 \textbf{Bemerkung:}
 
-In Dahmen/Reusken findet man für einige dieser Verfahren und dem gewählten Abbruchkriterium Tabellen mit Vergleichswerten für $m = 40,80,160,320$. Da wir die Werte für diese $m$ bereits kennen, beschränken wir uns auf Werte für $m = 2^{n} - 1, n \in \mathbb{N}_{>0}$, um einen besseren Vergleich zu den Mehrgitterverfahren zu erhalten.
+In \cite{DR4} findet man für einige dieser Verfahren und dem gewählten Abbruchkriterium Tabellen mit Vergleichswerten für $m = 40,80,160,320$. Da wir die Werte für diese $m$ bereits kennen, beschränken wir uns auf Werte für $m = 2^{n} - 1, n \in \mathbb{N}_{>0}$, um einen besseren Vergleich zu den Mehrgitterverfahren zu erhalten.
 
 \section{Jacobi-Verfahren}\label{s.Jacobi mit Beispiel}
 
 Wie wir bereits in \autoref{ss.Spektralradius Jacobi} gesehen haben, konvergiert das Jacobi-Verfahren nur langsam. Es überrascht darum nicht, dass einige Iterationsschritte nötig sind, um das Gleichungssystem zu lösen. Trotz einer effizienten Programmierung benötigt die Methode viel Rechenzeit. Dies illustriert Tabelle 5.1.
-
-% \subsection{Jacobi C++-Methode}\label{s.cpu}\lstinputlisting[language=C]{code/Jacobi.c}
 
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|}\hline
@@ -1668,7 +1635,7 @@ Als Löser auf dem gröbsten Gitter verwenden wir das PCG-Verfahren mit einer mo
 \multirow{9}* & Anzahl der Zyklen & 3  & 3 & 3  & 3 & 3 & 3 & 3 & 3 \\\cline{2-10}
 & Rechenzeit in s &  0.01  & 0.02 & 0.13 & 0.55 & 2.54 & 12.08 & 57.66 & 282.13 \\\hline
 \end{tabular}
-\caption[Tabelle für einen Zweigitteralgorithmus mit Anzahl der Zyklen und Rechenzeit.]{Das direkte Lösen auf dem groben Gitter erfolgt mit der modifizierten unvollständigen Cholesky-Zerlegung.}
+\caption[Tabelle für einen Zweigitteralgorithmus mit Anzahl der Zyklen und Rechenzeit.]{Das Lösen auf dem groben Gitter erfolgt mit der modifizierten unvollständigen Cholesky-Zerlegung.}
 \vspace{2ex}\end{table}
 
 Ein Iterationsschritt ist ein Zyklus vom feinen auf das grobe Gitter und zurück.
@@ -1715,6 +1682,16 @@ Diese Arbeit hat gezeigt, wie die Poisson Gleichung auf ihrem Gebiet diskretisie
 Die Implementierung der Mehrgittermethoden dagegen ist weitaus einfacher. Jedoch ist hier darauf zu achten, wie man die Poisson Gleichung aufstellt und wie Operationen wie Restriktion und Prolongation geschickt programmiert werden. Hat man ein fertigs Programm, so wird man mit einer Gitter unabhängigen Anzahl an Zyklen und enorm kurzer Rechenzeit belohnt.\\
 Die Mehrgittermethoden stellen zur Lösung der Poisson Gleichung ein hervorragendes Werkzeug dar. Es ist schwer vorstellbar, dass in naher Zukunft ein ähnlich effizienter Algorithmus entwickelt wird, um die Lösung dieser Gleichung zu ermöglichen.
 
+\chapter{C++-Code}
+\section{Hauptprogramm}\lstinputlisting[language=C++]{code/PoissonSolver.cpp}
+\section{Klassen}\lstinputlisting[language=C++]{code/classes.h}
+\section{Poisson Matrix Klassen}\lstinputlisting[language=C++]{code/PoissonMatrix.cpp}
+\section{Cholesky-Zerlegung Klassen}\lstinputlisting[language=C++]{code/LUMatrices.cpp}
+\section{Vektor Klassen}\lstinputlisting[language=C++]{code/Vector.cpp}
+\section{Algorithmen}\lstinputlisting[language=C++]{code/Algorithms.cpp}
+\section{Makefile}\lstinputlisting[language=make]{code/Makefile}
+\section{Gnuplot Datei}\lstinputlisting[language=Gnuplot]{code/plot.gpl}
+
 \chapter*{Danksagung}
 \addcontentsline{toc}{chapter}{Danksagung}
 
@@ -1729,46 +1706,6 @@ An dieser Stelle möchte ich mich noch bei einigen Menschen bedanken, die mich b
 \end{itemize}
 \end{large}
 
-\chapter{C++-Code}
-\section{Hauptprogramm}\lstinputlisting[language=C++]{code/PoissonSolver.cpp}
-\section{Klassen}\lstinputlisting[language=C++]{code/classes.h}
-\section{Poisson Matrix Klassen}\lstinputlisting[language=C++]{code/PoissonMatrix.cpp}
-\section{Cholesky-Zerlegung Klassen}\lstinputlisting[language=C++]{code/LUMatrices.cpp}
-\section{Vektor Klassen}\lstinputlisting[language=C++]{code/Vector.cpp}
-\section{Algorithmen}\lstinputlisting[language=C++]{code/Algorithms.cpp}
-\section{Makefile}\lstinputlisting[language=make]{code/Makefile}
-\section{Gnuplot Datei}\lstinputlisting[language=Gnuplot]{code/plot.gpl}
-
-
-\listoffigures
-\listoftables
-
-% \begin{table}[H]\vspace{1ex}\centering
-% \begin{tabular}{|ll||l|l|l|l|}\hline
-% \multicolumn{2}{|c||}{}&\multicolumn{4}{c|}{ dies} \\
-% \multicolumn{2}{|c||}{}& von dort  & und dort & über hier & zu Los \\\hline\hline
-% \multirow{3}*{\rotatebox{90}{das}} & hier &  bla  & bla  & bla  & bla \\\cline{2-6}
-% & dort & bla  & bla & bla  & bla  \\\cline{2-6}
-% & da &  bla  & bla & bla & bla \\\hline
-% \end{tabular}
-% \caption[eine kompliziertere Tabelle]{eine kompliziertere Tabelle mit viel Beschreibungstext, der aber nicht im Tabellenverzeichnis auftauschen soll}
-% \vspace{2ex}\end{table}
-
-% Er hörte leise Schritte hinter sich. Das bedeutete nichts Gutes. Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte! Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn beobachtet und abgewartet, um ihn nun um die Früchte seiner Arbeit zu erleichtern? Oder gehörten die Schritte hinter ihm zu einem der unzähligen Gesetzeshüter dieser Stadt, und die stählerne Acht um seine Handgelenke würde gleich zuschnappen? Er konnte die Aufforderung stehen zu bleiben schon hören. Gehetzt sah er sich um. Plötzlich erblickte er den schmalen Durchgang. Blitzartig drehte er sich nach rechts und verschwand zwischen den beiden Gebäuden. Beinahe wäre er dabei über den umgestürzten Mülleimer gefallen, der mitten im Weg lag. Er versuchte, sich in der Dunkelheit seinen Weg zu ertasten und erstarrte: Anscheinend gab es keinen anderen Ausweg aus diesem kleinen Hof als den Durchgang, durch den er gekommen war. Die Schritte wurden lauter und lauter, er sah eine dunkle Gestalt um die Ecke biegen. Fieberhaft irrten seine Augen durch die nächtliche Dunkelheit und suchten einen Ausweg. War jetzt wirklich alles vorbei, waren alle Mühe und alle Vorbereitungen umsonst? Er presste sich ganz eng an die Wand hinter ihm und hoffte, der Verfolger würde ihn übersehen, als plötzlich neben ihm mit kaum wahrnehmbarem Quietschen eine Tür im nächtlichen Wind hin und her schwang. Könnte dieses der flehentlich herbeigesehnte Ausweg aus seinem Dilemma sein? Langsam bewegte er sich auf die offene Tür zu, immer dicht an die Mauer gepresst. Würde diese Tür seine Rettung werden?
-
-
-% Anhang
-% \begin{landscape}\begin{multicols}{2}
-% \appendix
-% \chapter{Anhang}
-% \section{Quelltexte}
-% \subsubsection*{cpu.c aus Linux 2.6.16}\label{s.cpu}\lstinputlisting[language=C]{code/cpu.c}
-% \end{multicols}\end{landscape}
-
-
-% \bibliographystyle{alphadin_martin}
-% \bibliography{bibliographie}
-
 \begin{thebibliography}{56}
 
 \bibitem[ALO1]{ALO1}
@@ -1776,97 +1713,145 @@ Götz Alefeld, Ingrid Lenhardt und Holger Obermaier,
 Parallele numerische Verfahren,
 Seiten 18-19,
 Springer-Verlag Berlin Heidelberg,
-2002
+2002.
 \bibitem[ALO2]{ALO2}
 Götz Alefeld, Ingrid Lenhardt und Holger Obermaier,
 Parallele numerische Verfahren,
 Seite 21,
 Springer-Verlag Berlin Heidelberg,
-2002
-\bibitem[DAR1]{DAR1}
+2002.
+\bibitem[DR1]{DR1}
 Wolfgang Dahmen und Arnold Reusken,
 Numerik für Ingeneure und Naturwissenschaftler,
 2.,korrigierte Auflage,
 Seiten 470-472,
 Springer-Verlag Berlin Heidelberg,
-2008, 2006
-\bibitem[DAR2]{DAR2}
+2008, 2006.
+\bibitem[DR2]{DR2}
 Wolfgang Dahmen und Arnold Reusken,
 Numerik für Ingeneure und Naturwissenschaftler,
 2.,korrigierte Auflage,
 Seite 479,
 Springer-Verlag Berlin Heidelberg,
-2008, 2006
-\bibitem[DAR3]{DAR3}
+2008, 2006.
+\bibitem[DR3]{DR3}
 Wolfgang Dahmen und Arnold Reusken,
 Numerik für Ingeneure und Naturwissenschaftler,
 2.,korrigierte Auflage,
 Seite 480,
 Springer-Verlag Berlin Heidelberg,
-2008, 2006
-\bibitem[DAR4]{DAR4}
+2008, 2006.
+\bibitem[DR4]{DR4}
 Wolfgang Dahmen und Arnold Reusken,
 Numerik für Ingeneure und Naturwissenschaftler,
 2.,korrigierte Auflage,
 Seiten 549-583,
 Springer-Verlag Berlin Heidelberg,
-2008, 2006
-\bibitem[DAR5]{DAR5}
+2008, 2006.
+\bibitem[DR5]{DR5}
 Wolfgang Dahmen und Arnold Reusken,
 Numerik für Ingeneure und Naturwissenschaftler,
 2.,korrigierte Auflage,
 Seiten 550,
 Springer-Verlag Berlin Heidelberg,
-2008, 2006
-\bibitem[DAR6]{DAR6}
+2008, 2006.
+\bibitem[DR6]{DR6}
 Wolfgang Dahmen und Arnold Reusken,
 Numerik für Ingeneure und Naturwissenschaftler,
 2.,korrigierte Auflage,
 Seiten 566,
 Springer-Verlag Berlin Heidelberg,
-2008, 2006
-\bibitem[DAR7]{DAR7}
+2008, 2006.
+\bibitem[DR7]{DR7}
 Wolfgang Dahmen und Arnold Reusken,
 Numerik für Ingeneure und Naturwissenschaftler,
 2.,korrigierte Auflage,
 Seiten 567,
 Springer-Verlag Berlin Heidelberg,
-2008, 2006
-\bibitem[DAR8]{DAR8}
+2008, 2006.
+\bibitem[DR8]{DR8}
 Wolfgang Dahmen und Arnold Reusken,
 Numerik für Ingeneure und Naturwissenschaftler,
 2.,korrigierte Auflage,
 Seiten 569,
 Springer-Verlag Berlin Heidelberg,
-2008, 2006
-\bibitem[SAA1]{SAA1}
+2008, 2006.
+\bibitem[DR9]{DR9}
+Wolfgang Dahmen und Arnold Reusken,
+Numerik für Ingeneure und Naturwissenschaftler,
+2.,korrigierte Auflage,
+Seiten 570,
+Springer-Verlag Berlin Heidelberg,
+2008, 2006.
+\bibitem[GL]{GL}
+G. H. Golub, C. F. van Loan,
+Matrix Computations,
+3. Aufl.,
+Oxford,
+University Press,
+1996.
+\bibitem[SAAD1]{SAAD1}
 Yousef Saad,
 Iterative Methods for sparse linear systems,
 2nd ed.,
 Seite 411,
-Siam Verlag,
-2003
-\bibitem[SAA2]{SAA2}
+SIAM Verlag,
+2003.
+\bibitem[SAAD2]{SAAD2}
 Yousef Saad,
 Iterative Methods for sparse linear systems,
 2nd ed.,
 Seiten 414-416,
-Siam Verlag,
-2003
+SIAM Verlag,
+2003.
 \bibitem[SAA3]{SAA3}
 Yousef Saad,
 Iterative Methods for sparse linear systems,
 2nd ed.,
 Seiten 415,
-Siam Verlag,
-2003
-\bibitem[SAA4]{SAA4}
+SIAM Verlag,
+2003.
+\bibitem[SAAD4]{SAAD4}
 Yousef Saad,
 Iterative Methods for sparse linear systems,
 2nd ed.,
 Seiten 416,
-Siam Verlag,
-2003
+SIAM Verlag,
+2003.
+\bibitem[SAAD5]{SAAD5}
+Yousef Saad,
+Iterative Methods for sparse linear systems,
+2nd ed.,
+Seiten 105-106,
+SIAM Verlag,
+2003.
+\bibitem[SAAD6]{SAAD6}
+Yousef Saad,
+Iterative Methods for sparse linear systems,
+2nd ed.,
+Seiten 407,
+SIAM Verlag,
+2003.
+\bibitem[SAAD7]{SAAD7}
+Yousef Saad,
+Iterative Methods for sparse linear systems,
+2nd ed.,
+Seiten 419-429,
+SIAM Verlag,
+2003.
+\bibitem[SAAD8]{SAAD8}
+Yousef Saad,
+Iterative Methods for sparse linear systems,
+2nd ed.,
+Seiten 435-437,
+SIAM Verlag,
+2003.
+\bibitem[STR]{STR}
+Gilbert Strang,
+Wissenschaftliches Rechnen,
+ab Seiten 661-676,
+Springer-Verlag Berlin Heidelberg,
+2010.
 
 \end{thebibliography}
 

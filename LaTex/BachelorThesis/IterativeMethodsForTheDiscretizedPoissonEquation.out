@@ -1,3 +1,5 @@
+\BOOKMARK [0][-]{chapter*.3}{Abbildungsverzeichnis}{}
+\BOOKMARK [0][-]{chapter*.4}{Tabellenverzeichnis}{}
 \BOOKMARK [0][-]{chapter.1}{Einleitung}{}
 \BOOKMARK [0][-]{chapter.2}{Diskretisierung der Poisson-Gleichung im R2}{}
 \BOOKMARK [1][-]{section.2.1}{Definition \(Poisson-Gleichung\)}{chapter.2}
@@ -28,7 +30,6 @@
 \BOOKMARK [1][-]{section.5.8}{PCG-Verfahren}{chapter.5}
 \BOOKMARK [1][-]{section.5.9}{Das Mehrgitterverfahren}{chapter.5}
 \BOOKMARK [0][-]{chapter.6}{Fazit}{}
-\BOOKMARK [0][-]{chapter*.3}{Danksagung}{}
 \BOOKMARK [0][-]{chapter.7}{C++-Code}{}
 \BOOKMARK [1][-]{section.7.1}{Hauptprogramm}{chapter.7}
 \BOOKMARK [1][-]{section.7.2}{Klassen}{chapter.7}
@@ -38,6 +39,5 @@
 \BOOKMARK [1][-]{section.7.6}{Algorithmen}{chapter.7}
 \BOOKMARK [1][-]{section.7.7}{Makefile}{chapter.7}
 \BOOKMARK [1][-]{section.7.8}{Gnuplot Datei}{chapter.7}
-\BOOKMARK [0][-]{chapter*.4}{Abbildungsverzeichnis}{}
-\BOOKMARK [0][-]{chapter*.5}{Tabellenverzeichnis}{}
+\BOOKMARK [0][-]{chapter*.5}{Danksagung}{}
 \BOOKMARK [0][-]{chapter*.6}{Literaturverzeichnis}{}
