@@ -109,7 +109,7 @@ Zunächst wollen wir den zentralen Differenzenquotienten (zweiter Ordnung) einf�
 
 \subsection{Zentraler Differenzenquotient zweiter Ordnung}\label{ss.Differenzenquotient zweiter Ordnung}
 
-In diesem Abschnitt folgen wir \cite{ALO1}.\\
+In diesem Abschnitt folgen wir \cite[S. 18-19]{ALO02}.\\
 Wir betrachten ein $(x,y) \in \Omega$ beliebig. Dann gilt für $u(x,y)$ mit $h > 0$ und der Taylorformel
 
 \begin{equation}
@@ -138,7 +138,7 @@ Somit erhalten wir für $-\Delta u(x,y)$ die Näherung
 \subsection{Diskretisierung von $\Omega$}\label{ss.Diskretisierung}
 
 Mit einem zweidimensionalen Gitter, der Gitterweite $h$, wobei $h \in \mathbb{Q}$ mit $h = \frac {1} {m}$ und $m \in \mathbb{N}_{>2}$, wird nun das Gebiet $\Omega$ diskretisiert. Die Zahl $N = (m-1)$ gibt an, wie viele innere Gitterpunkte es jeweils in x- bzw. y-Richtung gibt.\\
-Die folgenden Aussagen sind weitestgehend in \cite{DR1} wieder zu finden.\\
+Die folgenden Aussagen sind weitestgehend in \cite[S. 470-472]{DR08} wieder zu finden.\\
 
 Für $i,j = 1,...,N$ fassen wir $u(x,y)$ auf als:
 \begin{equation}
@@ -256,7 +256,7 @@ wobei für alle $1 \le i \le n$ gilt: $\lambda_{1},...,\lambda_{n} \in \mathbb{R
 
 \subsection{Eigenwerte und Eigenvektoren von $\mat{A}_{2D}$}\label{ss.Eigenwerte und Eigenvektoren}
 
-Aus \cite{SAAD1} sei für $k,l \in \mathbb{N}$, $(x_{k},y_{l}) \in \Omega_{h}$ mit $x_{k} = k \cdot h, y_{l} = l \cdot h$. Zudem sind $\theta_{k}, \theta_{l} \in \mathbb{R}$ mit $\theta_{k} = k \pi h$ bzw. $\theta_{l} = l \pi h$. Dann gilt für die Eigenwerte:
+Aus \cite[S. 411]{SAAD03} sei für $k,l \in \mathbb{N}$, $(x_{k},y_{l}) \in \Omega_{h}$ mit $x_{k} = k \cdot h, y_{l} = l \cdot h$. Zudem sind $\theta_{k}, \theta_{l} \in \mathbb{R}$ mit $\theta_{k} = k \pi h$ bzw. $\theta_{l} = l \pi h$. Dann gilt für die Eigenwerte:
 \begin{equation}
 \lambda_{k,l} = 4 \left(\sin^{2}(\frac {\theta_{k}} {2}) + \sin^{2}(\frac {\theta_{l}} {2}) \right) \textnormal{ für } 1 \le k,l \le N.\label{eq.Eigenwerte}
 \end{equation}
@@ -492,7 +492,7 @@ Je kleiner die Konditionszahl $\kappa$, desto besser ist eine Matrix konditionie
 
 \subsection{Lemma (Kondition von $\mat{A}_{2D}$)}\label{ss.Matrixkondition}
 
-In \cite{DR2} wird gezeigt, dass für die Kondition der Matrix $\mat{A}_{2D}$ gilt:
+In \cite[S. 479, Lemma 12.8.]{DR08} wird gezeigt, dass für die Kondition der Matrix $\mat{A}_{2D}$ gilt:
 \begin{equation}
 \kappa_{2} (\mat{A}_{2D}) = \frac {\cos^{2}(\frac{\pi h}{2})} {\sin^{2}(\frac{\pi h}{2})}.
 \end{equation}
@@ -515,7 +515,7 @@ Somit folgt aus \autoref{eq.Lambda min} und \autoref{eq.Lambda max}:
 \begin{flushright}
 $\blacksquare$
 \end{flushright}
-In \cite{DR3} wird außerdem gezeigt, dass sich $\kappa_{2}(\mat{A}_{2D})$ wie folgt nähern lässt:
+In \cite[S. 479, Lemma 12.8.]{DR08} wird außerdem gezeigt, dass sich $\kappa_{2}(\mat{A}_{2D})$ wie folgt nähern lässt:
 
 \begin{equation}
 \frac {\cos^{2} (\frac {\pi h} {2})} {\sin^{2} (\frac {\pi h} {2})} = \left( \frac {2} {\pi h} \right)^{2} (1 + \mathcal{O}(h^{2})).
@@ -533,7 +533,7 @@ Man sieht, dass die Kondition der Matrix quadratisch mit $m$ wächst.
 
 Gleichungssysteme, die partielle Differentialgleichungen lösen, sind im Allgemeinen sehr groß. Aus diesem Grund sind direkte Verfahren, wie z.B. der Gauß-Algorithmus oder die LR-Zerlegung nicht geeignet. Ihr Rechenaufwand beläuft sich für voll besetzte Matrizen im Allgemeinen auf $\mathcal{O}(n^{3})$ und ist zu langsam. Nun ist unser System zwar nicht voll besetzt, jedoch kann es durch die Struktur der Matrix zur Auslöschung von Nullen kommen. Dadurch ist ebenfalls keine große Effizienz gegeben.\\
 Wesentlich besser geeignet für diese Problemstellung sind iterative Verfahren. Sie zeichnen sich durch eine schnelle Konvergenz und einen geringeren Rechenaufwand aus.\\
-Ein Großteil der Definitionen, Sätze und Lemmata in diesem Kapitel sind sinngemäß aus \cite{DR4}. Der Abschnitt über das Jacobi-Relaxationsverfahren wurde in Teilen von \cite{SAAD2} übernommen. Stellen, an denen andere Literatur verwendet wurde, sind deutlich gekennzeichnet.
+Ein Großteil der Definitionen, Sätze und Lemmata in diesem Kapitel sind sinngemäß aus \cite[S. 549-583]{DR08}. Der Abschnitt über das Jacobi-Relaxationsverfahren wurde in Teilen von \cite[S. 414-416]{SAAD03} übernommen. Stellen, an denen andere Literatur verwendet wurde, sind deutlich gekennzeichnet.
 
 \section{Grundbegriffe}\label{s.Grundbegriffe}
 
@@ -564,7 +564,7 @@ Ein iteratives Verfahren mit beliebigem Startvektor $u^{0} \in \mathbb{R}^{n}$ k
 \end{equation}
 Je kleiner $\rho$ ist, desto schneller konvergiert das System.
 
-Einen Beweis hierzu findet man z.B. in \cite{DR5}.
+Einen Beweis hierzu findet man z.B. in \cite[S. 550]{DR08}.
 
 \subsection{Definition (Residuum und Fehler)}\label{ss.Residuum und Fehler}
 
@@ -667,7 +667,7 @@ Wir können für das Jacobi-Verfahren zwar die Konvergenz nicht verbessern, alle
 
 \subsection{Algorithmus (Jacobi-Verfahren für $\mat{A}_{2D}$)}\label{ss.Jacobi für Poisson}
 
-In \cite{ALO2} wird gezeigt, wie man den Rechenaufwand verbessern kann, indem man die Struktur von $\mat{A}_{2D}$ optimal ausnutzt.\\
+In \cite[S. 21]{ALO02} wird gezeigt, wie man den Rechenaufwand verbessern kann, indem man die Struktur von $\mat{A}_{2D}$ optimal ausnutzt.\\
 Berechne für $k = 1,2,...$ mit Startvektor $u^{0} \in \mathbb{R}^{n}$ \textit{beliebig}:\\
 Für $i = 1,...,N$ und für $j = 1,...,N$:
 \begin{equation}
@@ -761,7 +761,7 @@ für $\omega \in (0,1)$.
 $\blacksquare$
 \end{flushright}
 
-Der Spektralradius ist für ein $\omega \in (0,1)$ näher an eins, als der des Jacobi-Verfahrens \\($\omega = 1)$. Das Jacobi-Relaxationsverfahren konvergiert also langsamer gegen die approximierte Lösung $u^{*}$, als das Jacobi-Verfahren. Es wird daher nicht als iteratives Verfahren eingesetzt. Wie wir in \autoref{s.Glättungseigenschaft} sehen werden, besitzt dieses Verfahren die Glättungseigenschaft und findet in den Mehrgitter-Algorithmen seine Anwendung. Für die zweidimensionale Poisson Gleichung stellen $\omega = \frac{1}{2}$ und $\omega = \frac{4}{5}$ die optimalen Parameter als Glätter dar \cite{SAAD4}.
+Der Spektralradius ist für ein $\omega \in (0,1)$ näher an eins, als der des Jacobi-Verfahrens \\($\omega = 1)$. Das Jacobi-Relaxationsverfahren konvergiert also langsamer gegen die approximierte Lösung $u^{*}$, als das Jacobi-Verfahren. Es wird daher nicht als iteratives Verfahren eingesetzt. Wie wir in \autoref{s.Glättungseigenschaft} sehen werden, besitzt dieses Verfahren die Glättungseigenschaft und findet in den Mehrgitter-Algorithmen seine Anwendung. Für die zweidimensionale Poisson Gleichung stellen $\omega = \frac{1}{2}$ und $\omega = \frac{4}{5}$ die optimalen Parameter als Glätter dar \cite[S. 416]{SAAD03}.
 
 \subsection{Algorithmus (Jacobi-Relaxations-Verfahren für $\mat{A}_{2D}$)}\label{ss.Algorithmus Jacobi Relax Poisson}
 
@@ -814,7 +814,7 @@ e^{k+1} &=& \sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k+1}_{i,j} (v_{k,l})_{i,j} = 
 Da wir im Folgenden eine Fehlerglättung erreichen wollen, wählen wir nun $\omega = \frac {1} {2}$ (\subfigureautorefname{ 3.2}). Wir stellen fest, dass die Eigenwerte der Iterationsmatrix zwischen $0$ und $1$ liegen. Sind $i,j > \frac {N} {2}$ so werden die Fehleranteile wesentlich besser gedämpft, da die Eigenwerte hier nahe Null liegen, d.h. zugehörige Eigenvektoren werden nahezu eliminiert. Diese Eigenschaft nennt man die \textit{Glättungseigenschaft}. Wie die Abbildungen 3.4, 3.5 und 3.6 illustrieren, werden beim Glätten des Fehlers kurzwellige, stark oszillierende (hochfrequente) Fehleranteile nahezu ausgelöscht. Zwar heißt das nicht, dass der Fehler verschwindet oder kleiner wird, jedoch wird er glatt.\\
 Es stellt sich z.B. heraus, dass der optimale Relaxationsparameter, der unabhängig von der Schrittweite $h$ gewählt werden kann, $\omega = \frac {4} {5}$ ist \cite{SAAD4}. In \subfigureautorefname{ 3.3} ist gut zu sehen, dass ein Großteil des Spektrums nahe Null liegt.
 Betrachten wir nun die Eigenwerte der Iterationsmatrix für $\omega = 1$ (Jacobi-Verfahren), sieht man, dass die Eigenwerte für $i,j$ nahe Null oder $i,j$ nahe N den Fehler schlecht bis gar nicht dämpfen (\subfigureautorefname{ 3.1}). Sie liegen nahe 1 bzw. -1 und verändern die zugehörigen Eigenvektoren kaum.\\
-Das Jacobi-Verfahren besitzt wegen seines Eigenwertspektrums keine Glättungseigenschaft. Als iteratives Verfahren jedoch stellt $\omega = 1$ den optimalen Parameter dar \cite{SAAD3}.\\
+Das Jacobi-Verfahren besitzt wegen seines Eigenwertspektrums keine Glättungseigenschaft. Als iteratives Verfahren jedoch stellt $\omega = 1$ den optimalen Parameter dar \cite[S. 415]{SAAD03}.\\
 
 \bild{omeganullacht}{14cm}{Für den optimalen Parameter $\omega = \frac{4}{5}$ ist gut zu erkennen, dass mehr Eigenwerte um die Null liegen, als beim Jacobi-Verfahren oder für den Parameter $\omega = \frac{1}{2}$ (orange Fläche) und somit eine gute Glättungseigenschaft besteht.}{Plot der Eigenwerte für den optimalen Parameter $\omega = \frac{4}{5}$ für das Jacobi-Relaxationsverfahren.}\label{img.Jacobi3}
 
@@ -852,7 +852,7 @@ h hat ein eindeutig bestimmtes Minimum und
 \mat{A}u^{*} = f \Longleftrightarrow h(u^{*}) = \underset{u\in\mathbb{R}^{n}}{\min} w(u)
 \end{equation}
 
-Einen kurzen Beweis hierzu findet man z.B. in \cite{DR6}.\\
+Einen kurzen Beweis hierzu findet man z.B. in \cite[S. 566]{DR08}.\\
 Es ist also äquivalent, die Funktion $w(u)$ zu minimieren und das Gleichungssystem $Au = f$ zu lösen. Betrachtet man nun den Gradienten von $w(u)$, so gilt:
 \begin{equation}
 \nabla w(u) = \mat{A}x - f = -r.
@@ -874,7 +874,7 @@ genau dann, wenn $u^{k}$ die $\textit{A-orthogonale Projektion}$ von $v$ auf $U_
 P_{U_{k,\langle \cdot,\cdot \rangle}}(v) = \textbf{u}^{k} = \sum_{j=0}^{k-1} \frac {\langle v, p^{j} \rangle _{\mat{A}}} {\langle p^{j}, p^{j} \rangle _{\mat{A}}} p^{j}
 \end{equation}
 
-Der Beweis zu diesem Lemma wird in \cite{DR7} erläutert.
+Der Beweis zu diesem Lemma wird in \cite[S. 567]{DR08} erläutert.
 
 \subsection{Allgemeiner Algorithmus der konjugierten Gradienten}\label{ss.Allgemeiner CG-Algorithmus}
 
@@ -935,7 +935,7 @@ Sei $u^{*} \in \mathbb{R}^{n}$ die Lösung von $\mat{A}u = f$ und $u^{k} \in \ma
 u^{k} = u^{k-1} + \alpha_{k-1}p^{k-1}, \textnormal{ mit } \alpha_{k-1} = \frac {\langle r^{0}, p^{k-1} \rangle} {\langle {p^{k-1}, \mat{A}p^{k-1}} \rangle}.\label{eq.Alpha}
 \end{equation}
 
-Für einen Beweis soll auf \cite{DR8} verwiesen werden.
+Für einen Beweis soll auf \cite[S. 569]{DR08} verwiesen werden.
 
 \textbf{Bemerkung:}
 $u^{k}$ kann dadurch mit wenig Aufwand aus $u^{k-1}$ und $p^{k-1}$ berechnet werden.
@@ -970,7 +970,7 @@ wird die A-orthogonale Basis des Unterraums (Krylow-Raums) $U_{k} = span\{p^{0},
 \textbf{Beweis:}
 
 Der Beweis folgt direkt aus dem Gram-Schmidt-Orthonormalisierungsverfahren, welches allerdings einen hohen Rechenaufwand vorweist.\\
-Wir wollen ohne Herleitung und Beweis (siehe dazu beispielsweise \cite{DR9}) angeben, wie man die $p^{k}$ effizienter bestimmen kann.
+Wir wollen ohne Herleitung und Beweis (siehe dazu beispielsweise \cite[S. 570]{DR08}) angeben, wie man die $p^{k}$ effizienter bestimmen kann.
 
 \subsection{Satz}
 Für die Berechnung von $p^{k}$ gilt:
@@ -993,7 +993,7 @@ r^{k} &=& r^{k-1} - \alpha_{k-1}\mat{A}p^{k-1} \notag
 
 Man muss in diesem Algorithmus pro Iterationsschritt lediglich zwei Skalarprodukte ausrechnen (die $r^{k-1}$-Skalarprodukte können für die $r^{k-2}$ nach der Berechnung des neuen Residuums wieder verwendet werden!) und eine Matrix-Vektor-Multiplikation durchführen. Somit erhält man einen Rechenaufwand von $\mathcal{O}(n^{2})$. Angewandt auf $\mat{A}_{2D}$ kann man - durch das Ausnutzen der Dünnbesetztheit und der Symmetrie - einen Aufwand von $\mathcal{O}(n)$ erreichen. Diesen erhält man durch eine geschickt gewählte Matrix-Vektor-Multiplikation, die die Struktur von $\mat{A}_{2D}$ ausnutzt.
 
-An dieser Stelle soll noch ein kurzer Satz über die Konvergenz des Verfahrens folgen. Einen Beweis zur Konvergenz findet man u.a. in [GL].
+An dieser Stelle soll noch ein kurzer Satz über die Konvergenz des Verfahrens folgen. Einen Beweis zur Konvergenz findet man u.a. in \cite{GL96}.
 
 \subsection{Satz (Konvergenz des CG-Algorithmus)}\label{ss.Konvergenz CG}
 
@@ -1131,7 +1131,7 @@ Seien $\mat{A} \in \mathbb{R}^{n \times n}$ s.p.d. und $E$ das Muster zur Matrix
 
 Wir setzen wieder $\mat{W} = \hat{\mat{L}} \hat{\mat{L}}^{T}$. \\
 
-Weitere Verfahren zur Vorkonditionierung, wie beispielsweise das SSOR-Verfahren, sind u.a. in \cite{SAAD5} zu finden.
+Weitere Verfahren zur Vorkonditionierung, wie beispielsweise das SSOR-Verfahren, sind u.a. in \cite[S. 105-106]{SAAD03} zu finden.
 
 \subsection{Effiziente Implementierung der modifizierten unvollständigen Cholesky-Zerlegungen}
 
@@ -1167,9 +1167,9 @@ Analog würde diese Vorschrift für die unvollständige Cholesky-Zerlegung folge
 
 \chapter{Mehrgitterverfahren}\label{c.Mehrgitterverfahren}
 
-In diesem Abschnitt wollen wir uns mit den Mehrgittermethoden befassen. Wie \autoref{c.IterativeVerfahren} gezeigt hat, spielt die Kondition der zugehörigen Matrix beim Lösen von Gleichungssystemen eine wichtige Rolle. Zwar konnten wir mit Vorkonditionierung diese Problem in den Griff bekommen, aber wie \autoref{c.Vergleich} zeigen wird, wächst die Anzahl der Iterationsschritte auch bei den vorkonditionieren Verfahren mit der Gitterweite $h$ mit. Mehrgitterverfahren hingegen sind Gitter unabhängig, d.h. die Anzahl der Iterationsschritte (oder Zyklen) hängt nicht davon ab, wie fein wir unser Gitter wählen (\cite{SAAD6}). Der Name für diese Verfahren leitet sich dauraus ab, dass wir gewisse Operationen nicht nur auf dem zugrunde liegenden Gitter ausführen, sondern auf gröbere Gitter wechseln. Dadurch erhalten wir mehrere Gitter beim Lösen des Gleichungssystems.\\
-Die Idee dieser Methoden beruht auf der Fehlerglättung. Wir haben bereits festgestellt, dass beispielsweise das Jacobi-Relaxationsverfahren kurzwellige Fehler nach wenigen Iterationsschritten nahezu auslöscht. Zudem werden die niederfrequenten Fehleranteile auf dem feinen Gitter zu hochfrequenten Fehlern auf dem groben Gitter (siehe dazu beispielsweise \cite{STR}).\\
-Wir wollen uns in diesem Kapitel an \cite{SAAD7} halten. Spezifische Matrizen für das zweidimensionale Poisson Problem wurden selbst aufgestellt.
+In diesem Abschnitt wollen wir uns mit den Mehrgittermethoden befassen. Wie \autoref{c.IterativeVerfahren} gezeigt hat, spielt die Kondition der zugehörigen Matrix beim Lösen von Gleichungssystemen eine wichtige Rolle. Zwar konnten wir mit Vorkonditionierung diese Problem in den Griff bekommen, aber wie \autoref{c.Vergleich} zeigen wird, wächst die Anzahl der Iterationsschritte auch bei den vorkonditionieren Verfahren mit der Gitterweite $h$ mit. Mehrgitterverfahren hingegen sind Gitter unabhängig, d.h. die Anzahl der Iterationsschritte (oder Zyklen) hängt nicht davon ab, wie fein wir unser Gitter wählen (\cite[S. 407]{SAAD03}). Der Name für diese Verfahren leitet sich dauraus ab, dass wir gewisse Operationen nicht nur auf dem zugrunde liegenden Gitter ausführen, sondern auf gröbere Gitter wechseln. Dadurch erhalten wir mehrere Gitter beim Lösen des Gleichungssystems.\\
+Die Idee dieser Methoden beruht auf der Fehlerglättung. Wir haben bereits festgestellt, dass beispielsweise das Jacobi-Relaxationsverfahren kurzwellige Fehler nach wenigen Iterationsschritten nahezu auslöscht. Zudem werden die niederfrequenten Fehleranteile auf dem feinen Gitter zu hochfrequenten Fehlern auf dem groben Gitter (siehe dazu beispielsweise \cite[S. 661-676]{STR10}).\\
+Wir wollen uns in diesem Kapitel an \cite[S. 419-429]{SAAD03} halten. Spezifische Matrizen für das zweidimensionale Poisson Problem wurden selbst aufgestellt.
 
 \section{Grundlagen}\label{s.Idee MGM}
 
@@ -1372,7 +1372,7 @@ Es bleiben zwei Fragen unbeantwortet:
 \item[2.] Wie steht es mit der Konvergenz dieses Verfahrens? Besitzt es die nötige Rechengeschwindigkeit?
 \end{description}
 
-Die Antwort auf die Frage nach der Konvergenz werden wir in dieser Arbeit schuldig bleiben. Für ein weiteres Studium wird \cite{SAAD8} empfohlen.
+Die Antwort auf die Frage nach der Konvergenz werden wir in dieser Arbeit schuldig bleiben. Für ein weiteres Studium wird \cite[S. 435-437]{SAAD03} empfohlen.
 Als Löser verwenden wir den PCG-Algorithmus aus \autoref{c.IterativeVerfahren} mit einer modifizierten unvollständigen Cholesky-Zerlegung.\\
 
 Der klare Nachteil dieser Methode liegt natürlich am Lösen der Residuumsgleichung. Wählen wir ein sehr feines Gebiet $\Omega_{h}$ mit $m = 256$, also $h = \frac {1} {256}$, so liefert das Gebiet $\Omega_{2h}$ immer noch ein Gleichungssystem der Dimension $n = 127^{2}$. Ein System dieser Ordnung zu lösen erfordert großen Rechenaufwand, der in dieser Form nicht immer erwünscht ist. \\
@@ -1474,7 +1474,7 @@ Im Allgemeinen ist natürlich die Lösung der partiellen Differentialgleichung n
 
 \textbf{Bemerkung:}
 
-In \cite{DR4} findet man für einige dieser Verfahren und dem gewählten Abbruchkriterium Tabellen mit Vergleichswerten für $m = 40,80,160,320$. Da wir die Werte für diese $m$ bereits kennen, beschränken wir uns auf Werte für $m = 2^{n} - 1, n \in \mathbb{N}_{>1}$, um einen besseren Vergleich zu den Mehrgitterverfahren zu erhalten.
+In \cite[S. 549-583]{DR08} findet man für einige dieser Verfahren und dem gewählten Abbruchkriterium Tabellen mit Vergleichswerten für $m = 40,80,160,320$. Da wir die Werte für diese $m$ bereits kennen, beschränken wir uns auf Werte für $m = 2^{n} - 1, n \in \mathbb{N}_{>1}$, um einen besseren Vergleich zu den Mehrgitterverfahren zu erhalten.
 
 \section{Jacobi-Verfahren}\label{s.Jacobi mit Beispiel}
 
@@ -1652,148 +1652,33 @@ An dieser Stelle möchte ich mich noch bei einigen Menschen bedanken, die mich b
 
 \begin{thebibliography}{56}
 
-\bibitem[ALO1]{ALO1}
+\bibitem[ALO02]{ALO02}
 Götz Alefeld, Ingrid Lenhardt und Holger Obermaier,
 Parallele numerische Verfahren,
-Seiten 18-19,
 Springer-Verlag Berlin Heidelberg,
 2002.
-\bibitem[ALO2]{ALO2}
-Götz Alefeld, Ingrid Lenhardt und Holger Obermaier,
-Parallele numerische Verfahren,
-Seite 21,
-Springer-Verlag Berlin Heidelberg,
-2002.
-\bibitem[DR1]{DR1}
+\bibitem[DR08]{DR08}
 Wolfgang Dahmen und Arnold Reusken,
 Numerik für Ingeneure und Naturwissenschaftler,
 2.,korrigierte Auflage,
-Seiten 470-472,
 Springer-Verlag Berlin Heidelberg,
 2008, 2006.
-\bibitem[DR2]{DR2}
-Wolfgang Dahmen und Arnold Reusken,
-Numerik für Ingeneure und Naturwissenschaftler,
-2.,korrigierte Auflage,
-Seite 479,
-Springer-Verlag Berlin Heidelberg,
-2008, 2006.
-\bibitem[DR3]{DR3}
-Wolfgang Dahmen und Arnold Reusken,
-Numerik für Ingeneure und Naturwissenschaftler,
-2.,korrigierte Auflage,
-Seite 480,
-Springer-Verlag Berlin Heidelberg,
-2008, 2006.
-\bibitem[DR4]{DR4}
-Wolfgang Dahmen und Arnold Reusken,
-Numerik für Ingeneure und Naturwissenschaftler,
-2.,korrigierte Auflage,
-Seiten 549-583,
-Springer-Verlag Berlin Heidelberg,
-2008, 2006.
-\bibitem[DR5]{DR5}
-Wolfgang Dahmen und Arnold Reusken,
-Numerik für Ingeneure und Naturwissenschaftler,
-2.,korrigierte Auflage,
-Seiten 550,
-Springer-Verlag Berlin Heidelberg,
-2008, 2006.
-\bibitem[DR6]{DR6}
-Wolfgang Dahmen und Arnold Reusken,
-Numerik für Ingeneure und Naturwissenschaftler,
-2.,korrigierte Auflage,
-Seiten 566,
-Springer-Verlag Berlin Heidelberg,
-2008, 2006.
-\bibitem[DR7]{DR7}
-Wolfgang Dahmen und Arnold Reusken,
-Numerik für Ingeneure und Naturwissenschaftler,
-2.,korrigierte Auflage,
-Seiten 567,
-Springer-Verlag Berlin Heidelberg,
-2008, 2006.
-\bibitem[DR8]{DR8}
-Wolfgang Dahmen und Arnold Reusken,
-Numerik für Ingeneure und Naturwissenschaftler,
-2.,korrigierte Auflage,
-Seiten 569,
-Springer-Verlag Berlin Heidelberg,
-2008, 2006.
-\bibitem[DR9]{DR9}
-Wolfgang Dahmen und Arnold Reusken,
-Numerik für Ingeneure und Naturwissenschaftler,
-2.,korrigierte Auflage,
-Seiten 570,
-Springer-Verlag Berlin Heidelberg,
-2008, 2006.
-\bibitem[GL]{GL}
+\bibitem[GL96]{GL96}
 G. H. Golub, C. F. van Loan,
 Matrix Computations,
 3. Aufl.,
 Oxford,
 University Press,
 1996.
-\bibitem[SAAD1]{SAAD1}
+\bibitem[SAAD03]{SAAD03}
 Yousef Saad,
 Iterative Methods for sparse linear systems,
 2nd ed.,
-Seite 411,
 SIAM Verlag,
 2003.
-\bibitem[SAAD2]{SAAD2}
-Yousef Saad,
-Iterative Methods for sparse linear systems,
-2nd ed.,
-Seiten 414-416,
-SIAM Verlag,
-2003.
-\bibitem[SAAD3]{SAAD3}
-Yousef Saad,
-Iterative Methods for sparse linear systems,
-2nd ed.,
-Seiten 415,
-SIAM Verlag,
-2003.
-\bibitem[SAAD4]{SAAD4}
-Yousef Saad,
-Iterative Methods for sparse linear systems,
-2nd ed.,
-Seiten 416,
-SIAM Verlag,
-2003.
-\bibitem[SAAD5]{SAAD5}
-Yousef Saad,
-Iterative Methods for sparse linear systems,
-2nd ed.,
-Seiten 105-106,
-SIAM Verlag,
-2003.
-\bibitem[SAAD6]{SAAD6}
-Yousef Saad,
-Iterative Methods for sparse linear systems,
-2nd ed.,
-Seiten 407,
-SIAM Verlag,
-2003.
-\bibitem[SAAD7]{SAAD7}
-Yousef Saad,
-Iterative Methods for sparse linear systems,
-2nd ed.,
-Seiten 419-429,
-SIAM Verlag,
-2003.
-\bibitem[SAAD8]{SAAD8}
-Yousef Saad,
-Iterative Methods for sparse linear systems,
-2nd ed.,
-Seiten 435-437,
-SIAM Verlag,
-2003.
-\bibitem[STR]{STR}
+\bibitem[STR10]{STR10}
 Gilbert Strang,
 Wissenschaftliches Rechnen,
-ab Seiten 661-676,
 Springer-Verlag Berlin Heidelberg,
 2010.
 
