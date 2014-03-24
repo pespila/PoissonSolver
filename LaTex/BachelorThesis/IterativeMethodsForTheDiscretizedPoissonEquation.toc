@@ -26,7 +26,7 @@
 \contentsline {subsection}{\numberline {3.2.4}Lemma (Spektralradius von $ {\textbf {T}} _{J}$ bzgl. $ {\textbf {A}} _{2D}$)}{24}{subsection.3.2.4}
 \contentsline {subsection}{\numberline {3.2.5}Algorithmus (Jacobi-Verfahren f\IeC {\"u}r $ {\textbf {A}} _{2D}$)}{24}{subsection.3.2.5}
 \contentsline {section}{\numberline {3.3}Das Jacobi-Relaxationsverfahren}{25}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Algorithmus (Jacobi-Relaxations-Verfahren)}{25}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.1}Algorithmus (Jacobi-Relaxations-Verfahren)}{26}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Satz (Eigenwerte von $ {\textbf {T}} _{J_{\omega }}$ bzgl. $ {\textbf {A}} _{2D}$)}{26}{subsection.3.3.2}
 \contentsline {subsection}{\numberline {3.3.3}Lemma (Spektralradius von $ {\textbf {T}} _{J_{\omega }}$ bzgl. $ {\textbf {A}} _{2D}$)}{27}{subsection.3.3.3}
 \contentsline {subsection}{\numberline {3.3.4}Algorithmus (Jacobi-Relaxations-Verfahren f\IeC {\"u}r $ {\textbf {A}} _{2D}$)}{28}{subsection.3.3.4}

@@ -75,8 +75,8 @@ Matrikelnummer: 152 8558
 
 Viele Prozesse in den Naturwissenschaften, wie Biologie, Chemie und Physik, aber auch der Medizin und Wirtschaft lassen sich auf partielle Differentialgleichungen zurückführen. Das Lösen solcher Gleichungen ist allerdings nicht immer möglich, oder aufwendig. \\
 Eine partielle Differentialgleichung, die vor allem in der Physik häufige Verwendung findet, ist die Poisson-Gleichung. Sie stellt eine elliptische partielle Differentialgleichung zweiter Ordnung dar. So genügt beispielsweise das elektrostatische Potential $u$ zu gegebener Ladungsdichte $f$, oder das Gravitationspotential $u$ zu gegebener Massendichte $f$ dieser Gleichung. Wie man sieht, hängt diese Gleichung mit ganz elementaren Dingen unseres Lebens zusammen. \\
-Methoden aus der numerischen Mathematik ermöglichen das Lösen von partiellen\\ Differentialgleichungen mittels computerbasierten Algorithmen. Es wird jedoch nicht die Lösung direkt bestimmt, sondern versucht eine exakte Approximation der Lösung zu erhalten. Dabei ist es wichtig, dass der zugrunde liegende Algorithmus effizient, also durch Stabilität und geringem Rechenaufwand gekennzeichnet, ist. \\
-Unser Ziel ist es nun, solche Algorithmen herzuleiten und in Programmiercode umzusetzen, damit wir die oben genannte Poisson Gleichung im zweidimensionalen Raum lösen können. Bevor man die Lösung einer partiellen Differentialgleichung berechnen kann, versucht man zunächst die Gleichung auf ein lineares Gleichungssystem $\mat{A} u = f$ zurückzuführen. Eine der zentralen Methoden der Numerik sind Finite-Differenzen. Hierbei diskretisiert man das Gebiet, auf dem die partielle Differentialgleichung definiert ist und kann dann die Gleichung auf ein lineares Gleichungssystem der Form $\mat{A} u = f$ zurück führen. \\
+Methoden aus der numerischen Mathematik ermöglichen das Lösen von partiellen\\ Differentialgleichungen mittels computerbasierten Algorithmen. Es wird jedoch nicht die Lösung direkt bestimmt, sondern versucht eine möglichst exakte Approximation der Lösung zu erhalten. Dabei ist es wichtig, dass der zugrunde liegende Algorithmus effizient, also durch Stabilität und geringem Rechenaufwand gekennzeichnet ist. \\
+Unser Ziel ist es nun, solche Algorithmen herzuleiten und in Programmiercode umzusetzen, damit wir die oben genannte Poisson Gleichung im zweidimensionalen Raum lösen können. Bevor man die Lösung einer partiellen Differentialgleichung berechnen kann, versucht man zunächst die Gleichung auf ein lineares Gleichungssystem $\mat{A} u = f$ zurückzuführen. Eine der zentralen Methoden der Numerik sind Finite-Differenzen. Hierbei diskretisiert man das Gebiet, auf dem die partielle Differentialgleichung definiert ist und kann dann die Gleichung auf ein lineares Gleichungssystem der Form $\mat{A} u = f$ bringen. \\
 Da es eine Reihe von Methoden zur Lösung von linearen Gleichungssystemen gibt, stellt sich natürlich die Frage, welche die effizienteste für die gegebene Problemstellung ist. Eine Möglichkeit, ein solches Gleichungssystem zu lösen, sind iterative Verfahren. Sie zeichnen sich dadurch aus, dass sie die approximierte Lösung schrittweise nähern. Dabei werden pro Iterationsschritt nur endlich viele Rechenoperationen benötigt. Beispiele, die in dieser Arbeit diskutiert werden, sind das Jacobi-Verfahren oder das Verfahren der konjugierten Gradienten. Letzteres liefert ein großartiges Werkzeug, um eine Lösung innerhalb weniger Iterationsschritte zu berechnen. \\
 Wie wir sehen werden, ist das Jacobi-Verfahren zwar ein iteratives Verfahren, jedoch als solches ungeeignet. Durch eine Modifikation erhalten wir das Jacobi-Relaxationsverfahren, welches ebenfalls nicht als ein iteratives Verfahren geeignet ist, allerdings die sogenannte Glättungseigenschaft besitzt. Diese Eigenschaft findet ihre Anwendung in den\\ Mehrgittermethoden, die sich durch schnelle Konvergenz und geringe Rechenzeit auszeichnen. Gerade für die Poisson-Gleichung liefern die Mehrgittermethoden innerhalb weniger Sekunden eine sehr gute Approximation der Lösung.\\
 Um einen Vergleich dieser Verfahren zu erhalten, wollen wir zum Abschluss dieser Arbeit die vorgestellten Algorithmen auf ein Beispiel anwenden. Dabei betrachten wir, basierend auf einem selbst entwickelten C++-Algorithmus, die Iterationsschritte für die iterativen Verfahren und die Anzahl der Zyklen bei den Mehrgittermethoden. Zusätzlich soll uns die Rechenzeit als Referenz beim Vergleich der Verfahren dienen und uns deutliche Unterschiede erkennen lassen. So werden wir sehen, dass speziell für die Poisson Gleichung die Mehrgittermethoden die effizientesten Algorithmen darstellen.
@@ -94,7 +94,7 @@ u(x,y) &=& g(x,y) \textnormal{ auf } \partial \Omega\label{eq.Dirichlet1}
 löst.
 Dabei seien $f: \Omega \rightarrow \mathbb{R}$ und $g: \partial\Omega \rightarrow \mathbb{R}$ stetige Funktionen und es bezeichnet \\$\Delta = \sum\limits_{k=1}^{2} \frac {\partial^{2}} {\partial x_{k}^{2}}$ den Laplace-Operator. Für die Poisson-Gleichung im $\mathbb{R}^{2}$ gilt dann:
 \begin{eqnarray}
--\Delta u(x,y) &=& - \left( \frac {\partial^{2} u(x,y)} {\partial x^{2}} + \frac {\partial^{2} u(x,y)} {\partial y^{2}} = f(x,y) \right) \textnormal{ in } \Omega, \\
+-\Delta u(x,y) &=& - \left( \frac {\partial^{2} u(x,y)} {\partial x^{2}} + \frac {\partial^{2} u(x,y)} {\partial y^{2}} \right) = f(x,y) \textnormal{ in } \Omega, \\
 u(x,y) &=& g(x,y) \textnormal{ auf } \partial \Omega.\label{eq.Dirichlet2}
 \end{eqnarray}
 \autoref{eq.Dirichlet1} bzw. \autoref{eq.Dirichlet2} nennt man Dirichlet-Randbedingung.\\
@@ -315,7 +315,7 @@ c & a & b\\
 gilt für die Eigenwerte $\lambda_{k} = a + 2b\left(\frac{c}{b}\right)^{\frac{1}{2}} \cos(\theta_{k})$ und die Eigenvektoren\\
 $(v_{k})_{i} = \left(\frac{c}{b}\right)^{\frac{i}{2}} \sin(i \theta_{k})$ für alle $1 \le i,k \le N$, $\lambda_{k} \in \mathbb{R}, v_{k} \in \mathbb{R}^{N}$.
 
-\textit{Beweis:}
+\textbf{Beweis:}
 
 Da $\lambda_{k}, v_{k}$ Eigenwerte bzw. Eigenvektoren von $\mat{B}$ sind, gilt folgende Gleichung:
 \begin{equation}
@@ -395,11 +395,11 @@ $\blacksquare$
 \end{flushright}
 
 Für die Matrizen $\mat{A}_{i}$ erhalten wir mit $a = 4, b = c = -1$ für die Eigenwerte \\$\lambda_{k} = 4 (1 - \frac{1}{2} \cos(\theta_{k}))$ und die Eigenvektoren $v_{k} = \sin(i\theta_{k})$ für alle $1 \le i,k \le N$.\\
-Offensichtlich hat auch $-\mat{Id}$ die selben Eigenvektoren wie $A_{i}$, mit den Eigenwerten \\$\mu_{k} = -1$, denn
+Offensichtlich hat auch $-\mat{Id}$ die selben Eigenvektoren wie $\mat{A}_{i}$, mit den Eigenwerten \\$\mu_{k} = -1$, denn
 \begin{equation}
 (-\mat{Id} - \lambda_{k}\mat{Id}) v_{k} = 0.
 \end{equation}
-Nun wollen wir diese Erkenntnisse für die Matrix $\mat{A}_{2D} \in \mathbb{R}^{n \times n}$ verwenden. Da diese Matrix ebenfalls eine Tridiagonalmatrix ist, folgt für $a = A_{j}$, wobei $1 \le j \le N$ und $b = c = -Id$.\\
+Nun wollen wir diese Erkenntnisse für die Matrix $\mat{A}_{2D} \in \mathbb{R}^{n \times n}$ verwenden. Da diese Matrix ebenfalls eine Tridiagonalmatrix ist, folgt für $a = \mat{A}_{j}$, wobei $1 \le j \le N$ und $b = c = \mat{-Id}$.\\
 Der gesuchte Eigenvektor in einem Punkt $(x_{k},y_{l})$ war gegeben durch $(v_{k,l})_{i,j} = \sin(i\theta_{k}) \sin(j\theta_{l})$ für alle $1 \le i,j,k,l \le N$. Diese Eigenvektoren können wir auch auffassen als \\$(v_{k,l})_{i,j} = \sin(j\theta_{l})(v_{k})_{i}$ für alle $1 \le i,j,k,l \le N$. Wegen $\mat{A}_{2D}$ symmetrisch folgt:
 \begin{eqnarray}
 \mat{A}_{2D}v_{k,l} &=& 
@@ -673,8 +673,8 @@ Für $i = 1,...,N$ und für $j = 1,...,N$:
 \begin{equation}
 u^{k+1}_{i,j} = \frac{h^{-2}}{4} (u^{k}_{i-1,j} + u^{k}_{i+1,j} + u^{k}_{i,j-1} + u^{k}_{i,j+1}) - \frac{1}{4} f_{i,j}.
 \end{equation}
-Bei diesem Algorithmus gehen wir über alle inneren Punkte des Gitters in x- und y-Richtung. Sobald ein Zeilenindex $i$ (bezeichnet die y-Komponente) Null wird, ignorieren wir diesen Wert. Das Gleiche gilt für die Spalteninidzes $j$, die die x-Komponente repräsentieren.\\
-Der Rechenaufwand pro Iterationsschritt beträgt lediglich $\mathcal{O}(N \cdot N)=\mathcal{O}(n)$ Schritte.
+Bei diesem Algorithmus gehen wir über alle inneren Punkte des Gitters in x- und y-Richtung. Sobald ein Zeilenindex $i$ (bezeichnet die y-Komponente) Null wird, ignorieren wir diesen Wert. Das Gleiche gilt für die Spaltenindizes $j$, die die x-Komponente repräsentieren.\\
+Der Rechenaufwand pro Iterationsschritt beträgt lediglich \\$\mathcal{O}(N \cdot N)=\mathcal{O}(n)$ Schritte.
 
 \section{Das Jacobi-Relaxationsverfahren}\label{s.Jacobi Relaxation}
 
@@ -704,7 +704,7 @@ u^{k+1} &=& u^{k} + \mat{D}^{-1} \omega r^{k} = u^{k} + \omega \mat{D}^{-1} (f -
 \end{equation}
 
 Letztlich erweitert man den Jacobi-Algorithmus also mit dem Parameter $\omega$ und addiert $(1 - \omega)u^{k}$ zu $u^{k+1}$.
-
+\\\\\\
 \subsection{Algorithmus (Jacobi-Relaxations-Verfahren)}\label{ss.Algorithmus Jacobi Relax}
 
 Sei $u^{0} \in \mathbb{R}^{n}$ ein \textit{beliebiger} Startvektor und $k=1,2,...$. Berechne für $i=1,...,n$:
@@ -812,7 +812,7 @@ e^{k+1} &=& \sum_{i = 1}^{N} \sum_{j = 1}^{N} \xi^{k+1}_{i,j} (v_{k,l})_{i,j} = 
 \bild{omegaeinhalb}{14cm}{Für $\omega = \frac{1}{2}$ ist gut zu erkennen, dass für $i,j$ nahe $N$ viele Eigenwerte nahe Null liegen (schwarze Fläche).}{Eigenwertspektrum der Iterationsmatrix des Jacobi-Relaxationsverfahrens mit dem Parameter $\omega = \frac{1}{2}$.}\label{img.Jacobi2}
 
 Da wir im Folgenden eine Fehlerglättung erreichen wollen, wählen wir nun $\omega = \frac {1} {2}$ (\subfigureautorefname{ 3.2}). Wir stellen fest, dass die Eigenwerte der Iterationsmatrix zwischen $0$ und $1$ liegen. Sind $i,j > \frac {N} {2}$ so werden die Fehleranteile wesentlich besser gedämpft, da die Eigenwerte hier nahe Null liegen, d.h. zugehörige Eigenvektoren werden nahezu eliminiert. Diese Eigenschaft nennt man die \textit{Glättungseigenschaft}. Wie die Abbildungen 3.4, 3.5 und 3.6 illustrieren, werden beim Glätten des Fehlers kurzwellige, stark oszillierende (hochfrequente) Fehleranteile nahezu ausgelöscht. Zwar heißt das nicht, dass der Fehler verschwindet oder kleiner wird, jedoch wird er glatt.\\
-Es stellt sich z.B. heraus, dass der optimale Relaxationsparameter, der unabhängig von der Schrittweite $h$ gewählt werden kann, $\omega = \frac {4} {5}$ ist \cite{SAAD4}. In \subfigureautorefname{ 3.3} ist gut zu sehen, dass ein Großteil des Spektrums nahe Null liegt.
+Es stellt sich z.B. heraus, dass der optimale Relaxationsparameter, der unabhängig von der Schrittweite $h$ gewählt werden kann, $\omega = \frac {4} {5}$ ist \cite[S. 416]{SAAD03}. In \subfigureautorefname{ 3.3} ist gut zu sehen, dass ein Großteil des Spektrums nahe Null liegt.
 Betrachten wir nun die Eigenwerte der Iterationsmatrix für $\omega = 1$ (Jacobi-Verfahren), sieht man, dass die Eigenwerte für $i,j$ nahe Null oder $i,j$ nahe N den Fehler schlecht bis gar nicht dämpfen (\subfigureautorefname{ 3.1}). Sie liegen nahe 1 bzw. -1 und verändern die zugehörigen Eigenvektoren kaum.\\
 Das Jacobi-Verfahren besitzt wegen seines Eigenwertspektrums keine Glättungseigenschaft. Als iteratives Verfahren jedoch stellt $\omega = 1$ den optimalen Parameter dar \cite[S. 415]{SAAD03}.\\
 
@@ -849,13 +849,13 @@ wobei $f,u \in \mathbb{R}^{n}$. Dann gilt:
 h hat ein eindeutig bestimmtes Minimum und
 \end{center}
 \begin{equation}
-\mat{A}u^{*} = f \Longleftrightarrow h(u^{*}) = \underset{u\in\mathbb{R}^{n}}{\min} w(u)
+\mat{A}u^{*} = f \Longleftrightarrow w(u^{*}) = \underset{u\in\mathbb{R}^{n}}{\min} w(u)
 \end{equation}
 
 Einen kurzen Beweis hierzu findet man z.B. in \cite[S. 566]{DR08}.\\
-Es ist also äquivalent, die Funktion $w(u)$ zu minimieren und das Gleichungssystem $Au = f$ zu lösen. Betrachtet man nun den Gradienten von $w(u)$, so gilt:
+Es ist also äquivalent, die Funktion $w(u)$ zu minimieren und das Gleichungssystem $\mat{A}u = f$ zu lösen. Betrachtet man nun den Gradienten von $w(u)$, so gilt:
 \begin{equation}
-\nabla w(u) = \mat{A}x - f = -r.
+\nabla w(u) = \mat{A}u - f = -r.
 \end{equation}
 
 Da wir bei diesem Verfahren stets das Minimum in einem Teilraum $U_{k} \in \mathbb{R}$ suchen, also die Funktion $w(u)$ minimieren wollen, wird uns folgendes Lemma hilfreich sein:
@@ -982,7 +982,7 @@ Substituiert man geschickt einige Werte in den Skalarprodukten (ohne Beweis), f�
 
 \subsection{Algorithmus der konjugierten Gradienten}\label{ss.Numerisches CG}
 
-Gegeben ist eine symmetrisch positiv definite Matrix $\mat{A} \in \mathbb{R}^{n \times n}$. Bestimme die Lösung Mithilfe eines \textit{beliebigen} Startvektors $u^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $f \in \mathbb{R}^{n}$. Setze $\beta_{-1} = 0$ und berechne das Residuum $r^{0} = f - Au^{0}$. \\
+Gegeben ist eine symmetrisch positiv definite Matrix $\mat{A} \in \mathbb{R}^{n \times n}$. Bestimme die Lösung Mithilfe eines \textit{beliebigen} Startvektors $u^{0} \in \mathbb{R}^{n}$ zu einer gegebenen rechten Seite $f \in \mathbb{R}^{n}$. Setze $\beta_{-1} = 0$ und berechne das Residuum $r^{0} = f - \mat{A}u^{0}$. \\
 Für $k = 1,2,...$, falls $r^{k-1} \ne 0$ berechne:
 
 \begin{eqnarray}
@@ -999,7 +999,7 @@ An dieser Stelle soll noch ein kurzer Satz über die Konvergenz des Verfahrens f
 
 Sei $\mat{A} \in \mathbb{R}^{n \times n}$ symmetrisch positiv definit und seien $u,f,u^{*},u^{k} \in \mathbb{R}^{n}$, wobei $u^{*}$ die exakte Lösung des Gleichungssystems $\mat{A}u = f$ und $u^{k}$ die approximierte Lösung durch das CG-Verfahren ist. Dann gilt für $k = 1,2,...$:
 \begin{equation}
-\| u^{k} - u^{*} \|_{A} \le 2 \left( \frac {\kappa_{2} (\mat{A}) - 1} {\kappa_{2} (A) + 1} \right)^{k} \| u^{0} - u^{*} \|_{\mat{A}} \label{eq.konvergenzabsch.}
+\| u^{k} - u^{*} \|_{\mat{A}} \le 2 \left( \frac {\kappa_{2} (\mat{A}) - 1} {\kappa_{2} (\mat{A}) + 1} \right)^{k} \| u^{0} - u^{*} \|_{\mat{A}} \label{eq.konvergenzabsch.}
 \end{equation}
 Da stets $\frac {\kappa_{2} (\mat{A}) - 1} {\kappa_{2} (\mat{A}) + 1} < 1$ gilt, sichert dieser Satz die Konvergenz des Algorithmus. Man sieht also, dass die Konvergenz des Verfahrens von der Kondition der Matrix $\mat{A}_{2D}$ abhängt.
 
@@ -1158,7 +1158,7 @@ Mit der Matrix $\mat{B}$ als Ersatz für das Muster $E$, ergibt sich folgender C
 
 \subsection{C++-Methode der MIC}\label{s.MIC}\lstinputlisting[language=C++,firstline=381,lastline=416]{code/Algorithms.cpp}
 
-Der Zugriff auf die richtigen Matrixeinträge von $\mat{A}_{2D}$ über $\mat{B}$ erfolgt hier mit die Methode $A.HashMatrix[i]k]$, wobei $b_{i,k} = A.HashMatrix[i]k]$. Für $i = 1,...,n$ und $k = 1,...,5$ wird eine Integer Variable $m = b_{i,k}$ gesetzt. In $m$ wird nun für die $i - te$ Zeile der Matrix $\mat{A}_{2D}$ der $j - te$ Zeilenindex gespeichert, für den gilt: $a_{i,j} \ne 0$.\\
+Der Zugriff auf die richtigen Matrixeinträge von $\mat{A}_{2D}$ über $\mat{B}$ erfolgt hier mit die Methode $A.HashMatrix[i][k]$, wobei $b_{i,k} = A.HashMatrix[i][k]$. Für $i = 1,...,n$ und $k = 1,...,5$ wird eine Integer Variable $m = b_{i,k}$ gesetzt. In $m$ wird nun für die $i - te$ Zeile der Matrix $\mat{A}_{2D}$ der $j - te$ Zeilenindex gespeichert, für den gilt: $a_{i,j} \ne 0$.\\
 Nun ist sicher gestellt, dass der Wert $A.Get(i,m) = \mat{A}_{i,m} \ne 0$.
 
 Der Rechenaufwand beträgt unter diesen Bedingungen lediglich $\mathcal{O}(5n) \approx \mathcal{O}(n)$.
@@ -1279,7 +1279,7 @@ Somit ist nun der Übergang vom groben zum feinen Gitter bekannt. Nun wollen wir
 
 \section{Restriktion}
 
-Sei $R_{h}^{2h}: \Omega_{h} \longrightarrow \Omega_{2h}$ mit $R_{h}^{2h}(u_{h}) = \mat{R}u_{h} = u_{2h}$ und $\mat{R} \in \mathbb{R}^{\tilde N^{2} \times (2 \tilde N - 1)^{2}}$. Diese Abbildungsvorschrift nennt man Restriktion. Auch hier gibt es unterschiedliche Methoden, wobei in diesem Abschnitt das Gegenstück zur obigen Interpolation - der Full-Weighting-Operator für die Restriktion - verwendet wird. Auch dieser stellt den exaktesten Übergang zwischen beiden Gittern dar und hat einen speziellen Bezug zur Matrix $\mat{I}$:
+Sei $R_{h}^{2h}: \Omega_{h} \longrightarrow \Omega_{2h}$ mit $R_{h}^{2h}(u_{h}) = \mat{R}u_{h} = u_{2h}$ und $\mat{R} \in \mathbb{R}^{\tilde N^{2} \times (2 \tilde N - 1)^{2}}$. Diese Abbildungsvorschrift nennt man Restriktion. Auch hier gibt es unterschiedliche Methoden, wobei in diesem Abschnitt das Gegenstück zur obigen Interpolation - der Full-Weighting-Operator für die Restriktion - verwendet wird. Auch dieser stellt den exaktesten Übergang zwischen beiden Gittern dar und hat einen speziellen Bezug zur \\Matrix $\mat{I}$:
 \begin{equation}
 \mat{R} = \frac {1} {4} \mat{I}^{T}
 \end{equation}
@@ -1322,7 +1322,7 @@ Zum Abschluss sollte noch die Matrix $\mat{A}$ vom feinen Gitter auf das grobe G
 
 mit $\mat{A}_{2h},\mat{A}_{h},\mat{R},\mat{I}$ wie oben.\\
 Da wir uns jedoch auf dem Einheitsquadrat befinden und $\mat{A}_{2D}$ eine günstige Struktur hat, wollen wir diesen Abschnitt nicht weiter vertiefen. Lediglich soll angegeben werden, wie $\mat{A}_{2h}$ in unserem Fall nach der Transformation aussieht.
-
+\\\\\\
 \textbf{Beispiel:}
 
 Sei $N = 7$ die Anzahl der inneren Gitterpunkte in x- und y-Richtung des feinen Gitters und $\tilde N = 3$ die Anzahl der Gitterpunkte in x- bzw. y-Richtung des groben Gitters. Außerdem seien $\mat{A}_{2h} \in \mathbb{R}^{9 \times 9}$, $\mat{A}_{h} \in \mathbb{R}^{49 \times 49}$, $\mat{I} \in \mathbb{R}^{49 \times 9}$ und $\mat{R} \in \mathbb{R}^{9 \times 49}$. So folgt:
@@ -1432,7 +1432,7 @@ In diesem letzten Kapitel werden praktische Code-Beispiele gezeigt. Außerdem we
 
 \section{Beispiel einer Poisson Gleichung}\label{s.Beispiel einer Poisson Gleichung}
 
-Seien $f: \Omega \rightarrow \mathbb{R}$ und $g: \partial\Omega \rightarrow \mathbb{R}$ stetige Funktionen mit $f(x,y) = -4.$ und $g(x,y) = x^{2} + y^{2}$. Sei außerdem $\Omega = (0,1)\times(0,1) \in \mathbb{R}^{2}$. Gegeben ist das Randwertproblem
+Seien $f: \Omega \rightarrow \mathbb{R}$ und $g: \partial\Omega \rightarrow \mathbb{R}$ stetige Funktionen mit $f(x,y) = -4.$ und \\$g(x,y) = x^{2} + y^{2}$. Sei außerdem $\Omega = (0,1)\times(0,1) \in \mathbb{R}^{2}$. Gegeben ist das Randwertproblem
 \begin{eqnarray}
         -\Delta u(x,y) &=& f(x,y) = -4 \textnormal{ in } \Omega, \\
     u(x,y) &=& g(x,y) = x^{2} + y^{2} \textnormal{ auf } \partial \Omega.
@@ -1454,7 +1454,7 @@ An manchen Stellen im Code kommt die Vermutung auf, dass es sich um Pseudocode h
 
 \section{Speicherung von $\mat{A}_{2D}$}
 
-Für eine effiziente Implementierung ist die Speicherung der Poisson-Matrix ein wichtiges Kriterium. Da die Werte der Diagonale und die der Nebendiagonalen zu jeder Zeit bekannt sind und die Matrix symmetrisch ist, werden in der C++-Methode "PoissonMatrix"  lediglich drei double-Werte gespeichert. Somit benötigen wir lediglich drei mal 8 Byte, also 24 Byte, Speicherplatz für die gesamte Matrix.\\
+Für eine effiziente Implementierung ist die Speicherung der Poisson-Matrix ein wichtiges Kriterium. Da die Werte der Diagonale und die der Nebendiagonalen zu jeder Zeit bekannt sind und die Matrix symmetrisch ist, werden in der C++-Methode "PoissonMatrix" $\vspace{2mm}$ lediglich drei double-Werte gespeichert. Somit benötigen wir lediglich drei mal 8 Byte, also 24 Byte, Speicherplatz für die gesamte Matrix.\\
 Für die Matrizen $\mat{L}$ und $\mat{R}$, deren Werte ebenfalls nur auf der Diagonale und den 4 Nebendiagonalen ungleich Null sind und die beide ebenfalls symmetrisch sind, gehen wir ähnlich vor. Da dort die Werte jedoch unterschiedlich sind, werden pro Matrix drei Vektoren (vector<double>) angelegt, die pro Matrix einen Speicherplatz von  $< 24n$ Bytes ausmachen. Hier hängt zwar der Speicherplatz von der Größe der Matrix ab, ist aber immer noch überschaubar.\\
 Durch diese Art der Speicherung können wir die Matrix-Vektor-Multiplikation, die im Allgemeinen einen Rechenaufwand von $\mathcal{O}(n^{2})$ hat, anpassen, so dass der Aufwand auf $\mathcal{O}(n)$ sinkt.
 
@@ -1497,7 +1497,7 @@ Zunächst soll der C++-Code angegeben werden. Setzt man $\omega = 1$ erhält man
 
 \lstinputlisting[language=C++,firstline=232,lastline=255]{code/Algorithms.cpp}
 
-Der Code lässt gut erkennen, wie die Struktur von $\mat{A}_{2D}$ gut ausgenutzt werden kann.
+Der Code lässt erkennen, wie die Struktur von $\mat{A}_{2D}$ gut ausgenutzt werden kann.
 
 \subsection{Parameter $\omega = \frac {4} {5}$}
 
@@ -1585,7 +1585,7 @@ Ein Iterationsschritt ist ein Zyklus vom feinen auf das grobe Gitter und zurück
 
 \subsection{V-Zyklus}\label{ss.V-Zyklus mit Beispiel}
 
-Betrachten wir nun mehr als zwei Gitter, stellt sich durch "trial and error"  heraus, dass für die Poisson-Gleichung ein 3-Gitter-V-Zyklus die günstigste Variante ist. Nachfolgend sind die durchaus imposanten Werte dargestellt.
+Betrachten wir nun mehr als zwei Gitter, stellt sich durch "trial and error" $\vspace{2mm}$ heraus, dass für die Poisson-Gleichung ein 3-Gitter-V-Zyklus die günstigste Variante ist. Nachfolgend sind die durchaus imposanten Werte dargestellt.
 
 \begin{table}[H]\vspace{1ex}\centering
 \begin{tabular}{|ll||l|l|l|l|l|l|l|l|}\hline
@@ -1621,7 +1621,7 @@ Die Implementierung der drei Mehrgittermethoden ist die gleiche. Es wird ledigli
 
 \chapter{Fazit}
 
-Diese Arbeit hat gezeigt, wie die Poisson Gleichung auf ihrem Gebiet diskretisiert werden kann. Das daraus resultierende Gleichungssystem $\mat{A} u = f$ ermöglicht uns, auf eine Bandbreite von Lösungsverfahren zurück greifen zu können. Wir haben gesehen, dass iterative Verfahren ihre Daseinsberechtigung haben, da einige von ihnen schnell, sehr gute Lösungen des Gleichungssystems liefern. Allen voran ist hier das Verfahren der konjugierten Gradienten. Konditioniert man die Ausgangsmatrix geschickt vor, so können wir große Systeme effizient lösen. Das Umsetzen in Programmcode ist für die vorkonditionieren Verfahren nicht immer einfach, vor allem weil man versuchen möchte, die Rechenzeit so klein wie möglich zu halten.\\
+Diese Arbeit hat gezeigt, wie die Poisson Gleichung auf ihrem Gebiet diskretisiert werden kann. Das daraus resultierende Gleichungssystem $\mat{A} u = f$ ermöglicht uns, auf eine Bandbreite von Lösungsverfahren zurück greifen zu können. Wir haben gesehen, dass iterative Verfahren ihre Daseinsberechtigung haben, da einige von ihnen schnell, sehr gute Lösungen des Gleichungssystems liefern. Allen voran ist hier das Verfahren der konjugierten Gradienten. Konditioniert man die Ausgangsmatrix geschickt vor, so können wir große Systeme effizient lösen. Das Umsetzen in Programmcode ist für die vorkonditionierten Verfahren nicht immer einfach, vor allem weil man versuchen möchte, die Rechenzeit so klein wie möglich zu halten.\\
 Die Implementierung der Mehrgittermethoden dagegen ist weitaus einfacher. Jedoch ist hier darauf zu achten, wie man die Poisson Gleichung aufstellt und wie Operationen wie Restriktion und Prolongation geschickt programmiert werden. Hat man dieses Programm geschrieben, so wird man mit einer Gitter unabhängigen Anzahl an Zyklen und enorm kurzer Rechenzeit belohnt.\\
 Die Mehrgittermethoden stellen zur Lösung der Poisson Gleichung ein hervorragendes Werkzeug dar. Es ist schwer vorstellbar, dass in naher Zukunft ein ähnlich effizienter Algorithmus zur Lösung elliptischer partieller Differentialgleichungen entwickelt wird.
 
@@ -1646,7 +1646,7 @@ An dieser Stelle möchte ich mich noch bei einigen Menschen bedanken, die mich b
 \item \textit{Meiner Freundin}: Ohne dich, Sylvia, wäre ich nie durch dieses Studium gekommen. Deine Hilfe, dein Verständnis, deine Unterstützung und dein Zuspruch haben mir sehr geholfen. Du bist definitiv mein Fels in der Brandung.
 \item \textit{Meinen besten Freunden}: Obwohl ihr Mathematik alle nicht sonderlich mögt, habt ihr euch meine scheinbar endlosen Vorträge immer wieder angehört.
 \item \textit{Christopher Rupprecht}: Die gute Hilfestellung hat mir gerade bei meinen Algorithmen sehr weiter geholfen.
-\item \textit{Prof. Dr. Harald Garcke}:  Vielen Dank für die kompetente Unterstützung und die investierte Zeit. Es ist nicht selbstverständlich, dass ein Professor immer zur Verfügung steht und ein offenes Ohr für seine Studenten hat. Durch ihre Einbringung und Hilfe war es mir möglich diese Arbeit auf ein gutes Niveau zu bringen. Vielen Dank für die hervorragende Betreuung!
+\item \textit{Prof. Dr. Harald Garcke}:  Vielen Dank für die kompetente Unterstützung und die investierte Zeit. Es ist nicht selbstverständlich, dass ein\\ Professor immer zur Verfügung steht und ein offenes Ohr für seine Studenten hat. Durch ihre Einbringung und Hilfe war es mir möglich diese Arbeit auf ein gutes Niveau zu bringen. Vielen Dank für die hervorragende Betreuung!
 \end{itemize}
 \end{large}
 
