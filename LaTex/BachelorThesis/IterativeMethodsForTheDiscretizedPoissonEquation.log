@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.1.27)  24 MAR 2014 10:23
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.1.27)  24 MAR 2014 10:35
 entering extended mode
  %&-line parsing enabled.
 **IterativeMethodsForTheDiscretizedPoissonEquation.tex
@@ -1034,14 +1034,11 @@ i-ter Ord-nung und wird ver-nach-läs-sigt.
  []
 
 
-LaTeX Warning: Citation `DR1' on page 4 undefined on input line 141.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 140--142
 
  []
 
-[4] <images/diffStar.pdf, id=355, 915.42pt x 733.74126pt>
+[4] <images/diffStar.pdf, id=356, 915.42pt x 733.74126pt>
 File: images/diffStar.pdf Graphic file (type pdf)
 
 <use images/diffStar.pdf>
@@ -1062,7 +1059,7 @@ dung 2.1) in der Form
                                                   \fi \fi 
 l.168 \end{equation}
                      <./images/diffStar.pdf>]
-<images/gitter.png, id=368, 451.6875pt x 351.3125pt>
+<images/gitter.png, id=370, 451.6875pt x 351.3125pt>
 File: images/gitter.png Graphic file (type png)
  <use images/gitter.png>
 [6pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}
@@ -1098,7 +1095,13 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 249.
 
 
-LaTeX Warning: Citation `SAAD1' on page 8 undefined on input line 259.
+Overfull \hbox (25.66185pt too wide) in paragraph at lines 259--260
+\OML/zplm/m/it/12 ^^R[]\OT1/ppl/m/n/12 (-20) , \OML/zplm/m/it/12 ^^R[] \OMS/zpl
+m/m/n/12 2 \U/fplmbb/m/n/12 R$ \T1/ppl/m/n/12 (-20) mit $\OML/zplm/m/it/12 ^^R[
+] \OT1/zplm/m/n/12 = \OML/zplm/m/it/12 k^^Yh$ \T1/ppl/m/n/12 (-20) bzw. $\OML/z
+plm/m/it/12 ^^R[] \OT1/zplm/m/n/12 = \OML/zplm/m/it/12 l^^Yh$\T1/ppl/m/n/12 (-2
+0) . Dann gilt für die Ei-gen-wer-te: 
+ []
 
 [8]
 Overfull \hbox (99.25903pt too wide) in paragraph at lines 270--271
@@ -1107,13 +1110,13 @@ Overfull \hbox (99.25903pt too wide) in paragraph at lines 270--271
 1/ppl/m/n/12 (-20) lässt sich auch in der fol-gen-den Form dar-stel-len: 
  []
 
-<images/sin1.png, id=394, 642.4pt x 401.5pt>
+<images/sin1.png, id=397, 642.4pt x 401.5pt>
 File: images/sin1.png Graphic file (type png)
  <use images/sin1.png>
-<images/sin7.png, id=395, 642.4pt x 401.5pt>
+<images/sin7.png, id=398, 642.4pt x 401.5pt>
 File: images/sin7.png Graphic file (type png)
  <use images/sin7.png> [9]
-<images/sin13.png, id=404, 642.4pt x 401.5pt>
+<images/sin13.png, id=408, 642.4pt x 401.5pt>
 File: images/sin13.png Graphic file (type png)
  <use images/sin13.png> [10pdfTeX warning (ext4): destination with the same ide
 ntifier (name{figure.2.3}) has been already used, duplicate ignored
@@ -1128,7 +1131,7 @@ l.293
                                                   \fi \fi 
 l.293 
        <./images/sin1.png> <./images/sin7.png>]
-<images/EV.png, id=411, 642.4pt x 385.44pt>
+<images/EV.png, id=415, 642.4pt x 385.44pt>
 File: images/EV.png Graphic file (type png)
  <use images/EV.png> [11pdfTeX warning (ext4): destination with the same identi
 fier (name{figure.2.5}) has been already used, duplicate ignored
@@ -1274,19 +1277,6 @@ l.470 \begin{equation}
 Overfull \hbox (52.07326pt too wide) in paragraph at lines 490--492
 \T1/ppl/m/n/12 (-20) Je klei-ner die Kon-di-ti-ons-zahl $\OML/zplm/m/it/12 ^^T$
 \T1/ppl/m/n/12 (-20) , de-sto bes-ser ist ei-ne Ma-trix kon-di-tio-niert. 
- []
-
-
-Overfull \hbox (12.96548pt too wide) in paragraph at lines 495--496
-\T1/ppl/m/n/12 (-20) In [[]] wird ge-zeigt, dass für die Kon-di-ti-on der Ma-tr
-ix $[][]$ gilt: 
- []
-
-
-Overfull \hbox (55.86115pt too wide) in paragraph at lines 518--519
-\T1/ppl/m/n/12 (-20) In [[]] wird au-ÿer-dem ge-zeigt, dass sich $\OML/zplm/m/i
-t/12 ^^T[]\OT1/zplm/m/n/12 ([][])$ \T1/ppl/m/n/12 (-20) wie folgt nä-hern lässt
-: 
  []
 
 [18]pdfTeX warning (ext4): destination with the same identifier (name{equation.
@@ -1437,7 +1427,7 @@ n/12 ^^@ \OML/zplm/m/it/12 ten$ \T1/ppl/m/n/12 (-20) Feh-ler und for-men ge-sch
 ickt um, so er-gibt sich: 
  []
 
-[28] <images/omegaeins.png, id=570, 642.4pt x 385.44pt>
+[28] <images/omegaeins.png, id=567, 642.4pt x 385.44pt>
 File: images/omegaeins.png Graphic file (type png)
 
 <use images/omegaeins.png>
@@ -1454,10 +1444,14 @@ Overfull \hbox (19.06735pt too wide) in paragraph at lines 805--806
                                                   \fi \fi 
 l.810 \end{eqnarray}
                      <./images/omegaeins.png>]
-<images/omegaeinhalb.png, id=578, 642.4pt x 385.44pt>
+<images/omegaeinhalb.png, id=575, 642.4pt x 385.44pt>
 File: images/omegaeinhalb.png Graphic file (type png)
 
 <use images/omegaeinhalb.png>
+
+LaTeX Warning: Citation `SAAD4' on page 30 undefined on input line 815.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 814--818
 
  []
@@ -1469,7 +1463,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 814--818
                                                   \fi \fi 
 l.818 
        <./images/omegaeinhalb.png>]
-<images/omeganullacht.png, id=587, 642.4pt x 385.44pt>
+<images/omeganullacht.png, id=583, 642.4pt x 385.44pt>
 File: images/omeganullacht.png Graphic file (type png)
 
 <use images/omeganullacht.png> [31pdfTeX warning (ext4): destination with the s
@@ -1479,15 +1473,15 @@ ame identifier (name{figure.3.3}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.822 
        <./images/omeganullacht.png (PNG copy)>]
-<images/startError.png, id=596, 642.4pt x 385.44pt>
+<images/startError.png, id=591, 642.4pt x 385.44pt>
 File: images/startError.png Graphic file (type png)
 
 <use images/startError.png>
-<images/oneStepError.png, id=597, 642.4pt x 385.44pt>
+<images/oneStepError.png, id=592, 642.4pt x 385.44pt>
 File: images/oneStepError.png Graphic file (type png)
 
 <use images/oneStepError.png>
-<images/threeStepError.png, id=598, 642.4pt x 385.44pt>
+<images/threeStepError.png, id=593, 642.4pt x 385.44pt>
 File: images/threeStepError.png Graphic file (type png)
 
 <use images/threeStepError.png> [32pdfTeX warning (ext4): destination with the 
@@ -1699,7 +1693,10 @@ L/zplm/m/it/12 n\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 ^^Y O\OT1/zplm/m/n/12 (\OML
 [46] [47]
 Kapitel 4.
 
-LaTeX Warning: Citation `STR' on page 48 undefined on input line 1171.
+Overfull \hbox (15.90486pt too wide) in paragraph at lines 1170--1173
+\T1/ppl/m/n/12 (-20) das zwei-di-men-sio-na-le Pois-son Pro-blem wur-den selbst
+ auf-ge-stellt. 
+ []
 
 [48
 
@@ -1711,7 +1708,7 @@ ak-te Lö-sung dar-stellt. Be-trach-ten wir jetzt noch-mals []Glei-chung 3.7[][]
 : 
  []
 
-[49] <images/interpolation.png, id=793, 642.4pt x 401.5pt>
+[49] <images/interpolation.png, id=785, 642.4pt x 401.5pt>
 File: images/interpolation.png Graphic file (type png)
 
 <use images/interpolation.png> [50] [51pdfTeX warning (ext4): destination with 
@@ -1727,7 +1724,7 @@ Overfull \hbox (55.6312pt too wide) in paragraph at lines 1303--1304
 en-ten-schreib-wei-se: 
  []
 
-<images/restrict.png, id=806, 648.4225pt x 602.25pt>
+<images/restrict.png, id=798, 648.4225pt x 602.25pt>
 File: images/restrict.png Graphic file (type png)
  <use images/restrict.png>
 [52]
@@ -1762,7 +1759,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1378--1379
 
  []
 
-[55] <images/V-cycle.png, id=837, 501.875pt x 451.6875pt>
+[55] <images/V-cycle.png, id=828, 501.875pt x 451.6875pt>
 File: images/V-cycle.png Graphic file (type png)
 
 <use images/V-cycle.png> [56]pdfTeX warning (ext4): destination with the same i
@@ -1777,7 +1774,7 @@ ntifier (name{figure.4.3}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.1423 \end{eqnarray}
                       <./images/V-cycle.png>]
-<images/W-cycle.png, id=848, 1204.5pt x 501.875pt>
+<images/W-cycle.png, id=839, 1204.5pt x 501.875pt>
 File: images/W-cycle.png Graphic file (type png)
  <use images/W-cycle.png>
 [58pdfTeX warning (ext4): destination with the same identifier (name{figure.4.4
@@ -1802,14 +1799,14 @@ Overfull \hbox (4.9124pt too wide) in paragraph at lines 1439--1443
 n er-ge-ben: 
  []
 
-<images/MyFunction.png, id=859, 642.4pt x 385.44pt>
+<images/MyFunction.png, id=850, 642.4pt x 385.44pt>
 File: images/MyFunction.png Graphic file (type png)
 
 <use images/MyFunction.png> [60
 
 
 ]
-<images/MyFunctionOnSquare.png, id=865, 642.4pt x 385.44pt>
+<images/MyFunctionOnSquare.png, id=856, 642.4pt x 385.44pt>
 File: images/MyFunctionOnSquare.png Graphic file (type png)
 
 <use images/MyFunctionOnSquare.png> [61pdfTeX warning (ext4): destination with 
@@ -1963,12 +1960,12 @@ LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <14.4> not available
 ] [101
 
 
-] [102]
-Underfull \hbox (badness 10000) in paragraph at lines 1809--1810
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1695--1696
 
  []
 
-[103
+[102
 
 
 ] (./IterativeMethodsForTheDiscretizedPoissonEquation.aux)
@@ -1977,13 +1974,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 14411 strings out of 494948
- 209025 string characters out of 1179523
- 623362 words of memory out of 3000000
- 15398 multiletter control sequences out of 15000+50000
- 95544 words of font info for 390 fonts, out of 3000000 for 9000
+ 14379 strings out of 494948
+ 208796 string characters out of 1179523
+ 622897 words of memory out of 3000000
+ 15380 multiletter control sequences out of 15000+50000
+ 95693 words of font info for 392 fonts, out of 3000000 for 9000
  73 hyphenation exceptions out of 8191
- 45i,20n,66p,961b,2018s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 45i,20n,66p,970b,2018s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-
 texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/publi
 c/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
@@ -1998,11 +1995,11 @@ am10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfit1000.pfb></usr/share
 /type1/urw/palatino/uplb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palati
 no/uplr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplr8a.pfb></u
 sr/share/texmf-texlive/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on IterativeMethodsForTheDiscretizedPoissonEquation.pdf (109 pag
-es, 1209699 bytes).
+Output written on IterativeMethodsForTheDiscretizedPoissonEquation.pdf (108 pag
+es, 1208392 bytes).
 PDF statistics:
- 2561 PDF objects out of 2984 (max. 8388607)
- 2379 compressed objects within 24 object streams
- 1511 named destinations out of 1728 (max. 500000)
+ 2539 PDF objects out of 2984 (max. 8388607)
+ 2358 compressed objects within 24 object streams
+ 1494 named destinations out of 1728 (max. 500000)
  58296 words of extra memory for PDF output out of 61914 (max. 10000000)
 
