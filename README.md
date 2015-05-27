@@ -13,8 +13,8 @@ INSTALLATION
 RUN THE PROGRAM
 -------------------------------
 
-* Execute ./poissonSolver program
-* add three more command line arguments:
+1.) Execute ./poissonSolver program
+2.) add three more command line arguments:
 ..* m: the parameter which specifies h = 1/m (you observer N = m - 1 grid points in x and y direction respectively)
 ..* x: the chosen algorithm (CG-Method, PCG-Method with incomplete LU decomposition, Jacobi-Method, Multigrid-Method)
 ..* k: the chose function -> default: laplace(u) = -4 in Omega and u(x) = x^2 + y^2 in the bound of Omega
@@ -22,4 +22,4 @@ RUN THE PROGRAM
 FURTHER INFORMATION
 -------------------------------
 
-3.) Please, visit http://homepages.uni-regensburg.de/~bam23651/PoissonSolver and try the website!
+1.) Please, visit http://homepages.uni-regensburg.de/~bam23651/PoissonSolver and try the website!
