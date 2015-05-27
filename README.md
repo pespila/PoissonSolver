@@ -1,7 +1,25 @@
-To use the poisson equation solver you have to choices:
+PoissonSolver
+===============================
 
-1.) download the source files and execute the makefile. Afterwards you get a file named poissonSolver.
-Call in your Linux Shell: "./poissonSolver m x k", where m is the parameter to calculate h=1/m. Then
-you get N=m-1 grid points in x and y direction. x is the chosen algorithm and k the chosen function.
+This program solves the discrete poisson equation in the unit square in two dimensions.
 
-2.) visit http://homepages.uni-regensburg.de/~bam23651/PoissonSolver and try the website! :)
+INSTALLATION
+-------------------------------
+
+1.) Download the source code
+2.) Run the Makefile
+
+
+RUN THE PROGRAM
+-------------------------------
+
++ Execute ./poissonSolver program
++ add three more command line arguments:
+..+ m: the parameter which specifies h = 1/m (you observer N = m - 1 grid points in x and y direction respectively)
+..+ x: the chosen algorithm (CG-Method, PCG-Method with incomplete LU decomposition, Jacobi-Method, Multigrid-Method)
+..+ k: the chose function -> default: laplace(u) = -4 in Omega and u(x) = x^2 + y^2 in the bound of Omega
+
+FURTHER INFORMATION
+-------------------------------
+
+3.) Please, visit http://homepages.uni-regensburg.de/~bam23651/PoissonSolver and try the website!

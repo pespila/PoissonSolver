@@ -1,6 +1,0 @@
-Two Grid with 3 steps in 0.010000 seconds.
-Two Grid with 3 steps in 0.020000 seconds.
-Two Grid with 3 steps in 0.130000 seconds.
-Two Grid with 3 steps in 0.550000 seconds.
-Two Grid with 3 steps in 2.540000 seconds.
-Two Grid with 3 steps in 12.080000 seconds.

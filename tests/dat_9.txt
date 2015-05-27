@@ -1,6 +1,0 @@
-Gauss-Seidel-Method with 678 steps in 0.090000 seconds.
-Gauss-Seidel-Method with 2689 steps in 1.460000 seconds.
-Gauss-Seidel-Method with 10703 steps in 23.700000 seconds.
-Gauss-Seidel-Method with -1 steps in 0.000000 seconds.
-Gauss-Seidel-Method with -1 steps in 0.000000 seconds.
-Gauss-Seidel-Method with -1 steps in 0.000000 seconds.

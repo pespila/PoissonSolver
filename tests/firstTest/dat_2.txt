@@ -1,6 +1,0 @@
-P. Conjugate Gradient (ICG) with 16 steps in 0.010000 seconds.
-P. Conjugate Gradient (ICG) with 32 steps in 0.100000 seconds.
-P. Conjugate Gradient (ICG) with 63 steps in 0.740000 seconds.
-P. Conjugate Gradient (ICG) with 126 steps in 5.970000 seconds.
-P. Conjugate Gradient (ICG) with 251 steps in 47.090000 seconds.
-P. Conjugate Gradient (ICG) with 502 steps in 373.970000 seconds.

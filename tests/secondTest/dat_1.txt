@@ -1,2 +1,0 @@
-Conjugate Gradient with 52 steps in 0.010000 seconds.
-Conjugate Gradient with 104 steps in 0.150000 seconds.

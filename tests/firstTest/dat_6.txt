@@ -1,6 +1,0 @@
-W-Cycle with 5 steps in 0.010000 seconds.
-W-Cycle with 5 steps in 0.050000 seconds.
-W-Cycle with 5 steps in 0.220000 seconds.
-W-Cycle with 4 steps in 0.820000 seconds.
-W-Cycle with 4 steps in 3.740000 seconds.
-W-Cycle with 4 steps in 17.310000 seconds.

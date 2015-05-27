@@ -1,1 +1,0 @@
-W-Cycle with 3 steps in 297.590000 seconds.

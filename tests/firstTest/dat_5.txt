@@ -1,6 +1,0 @@
-V-Cycle with 5 steps in 0.000000 seconds.
-V-Cycle with 4 steps in 0.020000 seconds.
-V-Cycle with 4 steps in 0.100000 seconds.
-V-Cycle with 4 steps in 0.470000 seconds.
-V-Cycle with 4 steps in 1.970000 seconds.
-V-Cycle with 4 steps in 8.300000 seconds.

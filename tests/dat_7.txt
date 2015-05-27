@@ -1,6 +1,0 @@
-Jacobi Method with 1340 steps in 0.180000 seconds.
-Jacobi Method with 5344 steps in 2.900000 seconds.
-Jacobi Method with 21341 steps in 47.240000 seconds.
-Jacobi Method with 85282 steps in 771.030000 seconds.
-Jacobi Method with -1 steps in 0.000000 seconds.
-Jacobi Method with -1 steps in 0.000000 seconds.
