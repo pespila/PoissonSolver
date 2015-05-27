@@ -7,6 +7,7 @@ INSTALLATION
 -------------------------------
 
 1.) Download the source code
+
 2.) Run the Makefile
 
 
@@ -14,6 +15,7 @@ RUN THE PROGRAM
 -------------------------------
 
 1.) Execute ./poissonSolver program
+
 2.) add three more command line arguments:
   * m: the parameter which specifies h = 1/m (you observer N = m - 1 grid points in x and y direction respectively)
   * x: the chosen algorithm (CG-Method, PCG-Method with incomplete LU decomposition, Jacobi-Method, Multigrid-Method)
