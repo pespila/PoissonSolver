@@ -15,9 +15,9 @@ RUN THE PROGRAM
 
 1.) Execute ./poissonSolver program
 2.) add three more command line arguments:
-..* m: the parameter which specifies h = 1/m (you observer N = m - 1 grid points in x and y direction respectively)
-..* x: the chosen algorithm (CG-Method, PCG-Method with incomplete LU decomposition, Jacobi-Method, Multigrid-Method)
-..* k: the chose function -> default: laplace(u) = -4 in Omega and u(x) = x^2 + y^2 in the bound of Omega
+  * m: the parameter which specifies h = 1/m (you observer N = m - 1 grid points in x and y direction respectively)
+  * x: the chosen algorithm (CG-Method, PCG-Method with incomplete LU decomposition, Jacobi-Method, Multigrid-Method)
+  * k: the chose function -> default: laplace(u) = -4 in Omega and u(x) = x^2 + y^2 in the bound of Omega
 
 FURTHER INFORMATION
 -------------------------------
